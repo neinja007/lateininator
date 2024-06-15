@@ -89,7 +89,7 @@ function Navbar() {
 					<NavbarLink label='Konto' href='/account' active={pathnameSegment1 === '/account'} />
 				</SignedIn>
 				<SignedOut>
-					<NavbarLink label='Anmelden' href='/account/sign-in' active={fullPathname === '/account/sign-in'} />
+					<NavbarLink label='Anmelden' href='/sign-in' active={fullPathname === '/sign-in'} />
 				</SignedOut>
 			</div>
 		</div>
