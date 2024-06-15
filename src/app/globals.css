@@ -2,10 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-.button {
-	@apply p-2 px-4 rounded-lg;
+.navlink {
+	@apply p-2 px-4 rounded-md my-auto font-semibold text-inherit;
 }
 
-.navlink {
-	@apply button my-auto font-semibold;
+.basic-element {
+	@apply h-9 p-1 px-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:border-black;
+}
+
+h1 {
+	@apply font-bold text-xl mb-3;
+}
+
+select {
+	@apply basic-element;
+}
+
+input {
+	@apply basic-element;
+}
+
+button {
+	@apply basic-element;
+}
+
+p {
+	@apply mb-3;
+}
+
+a {
+	@apply text-blue-500;
 }
