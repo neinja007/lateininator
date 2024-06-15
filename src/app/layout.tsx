@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Container from '@/components/Container';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'] });
 
@@ -17,13 +18,15 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='en'>
-			<body className={inter.className}>
-				<div className='min-h-screen'>
-					<Navbar />
-					<Container>{children}</Container>
-				</div>
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang='en'>
+				<body className={inter.className}>
+					<div className='min-h-screen'>
+						<Navbar />
+						<Container>{children}</Container>
+					</div>
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }

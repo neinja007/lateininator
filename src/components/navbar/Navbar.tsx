@@ -6,6 +6,7 @@ import Logo from '@/components/navbar/Logo';
 import NavbarDropdown from '@/components/navbar/NavbarDropdown';
 import { usePathname } from 'next/navigation';
 import NavbarDropdownLink from './NavbarDropdownLink';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 type Link = {
 	label: string;
@@ -34,6 +35,7 @@ const links: Array<Link | Dropdown> = [
 		]
 	},
 	{ label: 'Grammatik', href: '/grammar' },
+	{ label: 'Kompetenz', href: '/competence' },
 	{
 		label: 'Tools',
 		href: '/tools',
@@ -41,14 +43,14 @@ const links: Array<Link | Dropdown> = [
 			{ label: 'Wörterbuch', href: '/dictionary' },
 			{ label: 'Formengenerator', href: '/generator' }
 		]
-	},
-	{ label: 'Kompetenz', href: '/competence' }
+	}
 ];
 
 function Navbar() {
 	const [open, setOpen] = useState('');
 	const pathname = usePathname();
-	const segment = '/' + pathname.split('/')[1];
+	const pathnameSegment1 = '/' + pathname.split('/')[1];
+	const fullPathname = '/' + pathname;
 	useEffect(() => {
 		setOpen('');
 	}, [pathname]);
@@ -56,7 +58,7 @@ function Navbar() {
 	return (
 		<div className='w-full h-16 inline-flex border-b'>
 			<Logo />
-			<div className='flex w-full justify-center gap-x-3'>
+			<div className='flex w-full justify-center gap-x-2'>
 				{links.map((link, i) => {
 					if (link.hasOwnProperty('children')) {
 						return (
@@ -65,7 +67,7 @@ function Navbar() {
 								label={link.label}
 								open={open}
 								handleOpen={setOpen}
-								active={segment === link.href}
+								active={pathnameSegment1 === link.href}
 							>
 								{(link as Dropdown).children.map((child, i) => {
 									return (
@@ -73,16 +75,22 @@ function Navbar() {
 											key={i}
 											label={child.label}
 											href={link.href + child.href}
-											active={segment === link.href + child.href}
+											active={fullPathname === link.href + child.href}
 										/>
 									);
 								})}
 							</NavbarDropdown>
 						);
 					} else {
-						return <NavbarLink key={i} label={link.label} href={link.href} active={segment === link.href} />;
+						return <NavbarLink key={i} label={link.label} href={link.href} active={pathnameSegment1 === link.href} />;
 					}
 				})}
+				<SignedIn>
+					<NavbarLink label='Konto' href='/account' active={pathnameSegment1 === '/account'} />
+				</SignedIn>
+				<SignedOut>
+					<NavbarLink label='Anmelden' href='/account/sign-in' active={fullPathname === '/account/sign-in'} />
+				</SignedOut>
 			</div>
 		</div>
 	);
