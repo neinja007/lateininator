@@ -1,14 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
-import WideLogo from '../../../public/next.svg';
+import WideLogo from '../../../public/lateininator.png';
 
 function Logo() {
 	return (
 		<Link href={'/'}>
-			<span className='h-10 w-auto top-3 start-3 absolute text-4xl'>Lateininator</span>
-
-			{/* <Image className='h-10 w-auto top-3 start-3 absolute' src={WideLogo} alt='Logo Wide' /> */}
+			<Image className='h-14 w-auto top-1 start-1 absolute' src={WideLogo} alt='Logo Wide' />
 		</Link>
 	);
 }
