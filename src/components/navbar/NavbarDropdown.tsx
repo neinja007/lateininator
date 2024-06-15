@@ -13,8 +13,8 @@ type NavbarDropdownProps = {
 function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDropdownProps) {
 	return (
 		<div className='flex justify-center my-auto'>
-			<button
-				className={`navlink ${active ? 'bg-gray-200' : 'hover:bg-gray-100'}`}
+			<div
+				className={`navlink ${active ? 'bg-gray-200' : 'hover:bg-gray-100'} cursor-pointer selection:bg-inherit`}
 				onClick={() => handleOpen((prevOpen: string) => (prevOpen === label ? '' : label))}
 			>
 				{label}
@@ -29,8 +29,8 @@ function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDro
 				>
 					<polyline points='6 15 12 9 18 15' fill='none' stroke='black' strokeWidth='2' />
 				</svg>
-			</button>
-			<div hidden={open !== label} className='absolute mt-2 shadow rounded-lg text-center translate-y-10 border'>
+			</div>
+			<div hidden={open !== label} className='absolute mt-2 shadow rounded-md text-center translate-y-10 border'>
 				{children}
 			</div>
 		</div>
