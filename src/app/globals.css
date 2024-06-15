@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navlink {
-	@apply p-2 px-4 rounded-md my-auto font-semibold text-inherit;
+	@apply p-2 px-3 rounded-md my-auto font-semibold text-inherit;
 }
 
 .basic-element {
