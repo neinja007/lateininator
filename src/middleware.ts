@@ -5,7 +5,7 @@ export default function middleware(request: NextRequest) {
 	if (request.nextUrl.pathname === '/') {
 		return NextResponse.redirect(new URL('/dashboard', request.url));
 	}
-	clerkMiddleware({ publishableKey: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY });
+	clerkMiddleware({ publishableKey: 'pk_test_cmVuZXdpbmctZWVsLTMzLmNsZXJrLmFjY291bnRzLmRldiQ' });
 }
 
 export const config = {
