@@ -51,6 +51,7 @@ function Navbar() {
 	const pathname = usePathname();
 	const pathnameSegment1 = '/' + pathname.split('/')[1];
 	const fullPathname = pathname;
+
 	useEffect(() => {
 		setOpen('');
 	}, [pathname]);
