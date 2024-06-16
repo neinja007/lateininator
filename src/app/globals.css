@@ -3,11 +3,19 @@
 @tailwind utilities;
 
 .navlink {
-	@apply p-2 px-3 rounded-md my-auto font-semibold text-inherit;
+	@apply p-2 px-4 rounded-md my-auto font-semibold text-inherit border;
 }
 
-.basic-element {
-	@apply h-9 p-1 px-2 rounded-md bg-white border border-gray-400 focus:outline-none focus:border-black;
+.shape-basic {
+	@apply h-9 p-1 px-2 rounded-md;
+}
+
+.appearance {
+	@apply bg-white border border-gray-400 focus:outline-none focus:border-black;
+}
+
+.element-basic {
+	@apply shape-basic appearance;
 }
 
 h1 {
@@ -15,15 +23,15 @@ h1 {
 }
 
 select {
-	@apply basic-element;
+	@apply element-basic;
 }
 
 input {
-	@apply basic-element;
+	@apply element-basic;
 }
 
 .button {
-	@apply basic-element hover:bg-gray-100;
+	@apply element-basic hover:bg-gray-100 text-black;
 }
 
 p {
