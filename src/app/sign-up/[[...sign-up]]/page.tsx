@@ -2,7 +2,7 @@
 
 import Button from '@/components/ui/Button';
 import { Connection, Field, FieldError, Icon, Input, Label } from '@clerk/elements/common';
-import { Action, Root, Step, Strategy } from '@clerk/elements/sign-up';
+import { Action, Captcha, Root, Step, Strategy } from '@clerk/elements/sign-up';
 import Link from 'next/link';
 import { fieldErrorCodeMapper } from '@/data/authMapper';
 
@@ -16,7 +16,7 @@ export default function SignUpPage() {
 						Sie haben schon ein Konto? <Link href={'/sign-in'}>Melden Sie sich hier an.</Link>
 					</p>
 
-					<Connection name='google' asChild>
+					<Connection name='google' asChild className='mb-4'>
 						<Button
 							className='w-full'
 							children={
@@ -26,7 +26,6 @@ export default function SignUpPage() {
 							}
 						/>
 					</Connection>
-					<br />
 					<br />
 					<Field name='emailAddress' className='mb-4'>
 						<Label>E-Mail Adresse</Label>
@@ -47,6 +46,8 @@ export default function SignUpPage() {
 							}
 						</FieldError>
 					</Field>
+
+					<Captcha />
 
 					<Action submit asChild>
 						<Button children={'Weiter'} />

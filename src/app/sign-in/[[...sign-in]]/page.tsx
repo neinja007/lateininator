@@ -15,7 +15,7 @@ export default function SignInPage() {
 					<p>
 						Noch kein Konto? <Link href={'/sign-up'}>Erstellen Sie hier eines.</Link>
 					</p>
-					<Connection name='google' asChild>
+					<Connection name='google' asChild className='mb-4'>
 						<Button
 							className='w-full'
 							children={
@@ -25,7 +25,6 @@ export default function SignInPage() {
 							}
 						/>
 					</Connection>
-					<br />
 					<br />
 					<Field name='identifier' className='mb-4'>
 						<Label>E-Mail Adresse</Label>
@@ -103,9 +102,8 @@ export default function SignInPage() {
 					<h1>Passwort vergessen?</h1>
 
 					<SupportedStrategy name='reset_password_email_code' asChild>
-						<Button children='Passwort zurücksetzen' />
+						<Button children='Passwort zurücksetzen' className='mb-4' />
 					</SupportedStrategy>
-					<br />
 					<br />
 					<Action navigate='previous' asChild>
 						<Button children='Zurück' className='float-end' />
