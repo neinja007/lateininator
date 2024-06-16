@@ -20,7 +20,7 @@ type Dropdown = {
 };
 
 const links: Array<Link | Dropdown> = [
-	{ label: 'Übersicht', href: '/' },
+	{ label: 'Übersicht', href: '/dashboard' },
 	{
 		label: 'Vokabular',
 		href: '/vocabulary'
@@ -50,7 +50,7 @@ function Navbar() {
 	const [open, setOpen] = useState('');
 	const pathname = usePathname();
 	const pathnameSegment1 = '/' + pathname.split('/')[1];
-	const fullPathname = '/' + pathname;
+	const fullPathname = pathname;
 	useEffect(() => {
 		setOpen('');
 	}, [pathname]);
@@ -89,7 +89,7 @@ function Navbar() {
 					<NavbarLink label='Konto' href='/account' active={pathnameSegment1 === '/account'} />
 				</SignedIn>
 				<SignedOut>
-					<NavbarLink label='Anmelden' href='/sign-in' active={fullPathname === '/sign-in'} />
+					<NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegment1 === '/sign-in'} />
 				</SignedOut>
 			</div>
 		</div>
