@@ -18,6 +18,10 @@
 	@apply shape-basic appearance;
 }
 
+.container {
+	@apply mx-auto mt-7 px-4 p-3 rounded-md border;
+}
+
 h1 {
 	@apply font-bold text-xl mb-3;
 }
