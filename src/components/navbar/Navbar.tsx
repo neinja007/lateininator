@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavbarLink from '@/components/navbar/NavbarLink';
 import Logo from '@/components/navbar/Logo';
 import NavbarDropdown from '@/components/navbar/NavbarDropdown';
@@ -11,6 +11,7 @@ import { SignedIn, SignedOut } from '@clerk/nextjs';
 type Link = {
 	label: string;
 	href: string;
+	children?: never;
 };
 
 type Dropdown = {
@@ -23,7 +24,14 @@ const links: Array<Link | Dropdown> = [
 	{ label: 'Übersicht', href: '/dashboard' },
 	{
 		label: 'Vokabular',
-		href: '/vocabulary'
+		href: '/vocabulary',
+		children: [
+			{
+				label: 'Trainer',
+				href: '/trainer'
+			},
+			{ label: 'Wörterbuch', href: '/dictionary' }
+		]
 	},
 	{
 		label: 'Flexion',
@@ -35,15 +43,7 @@ const links: Array<Link | Dropdown> = [
 		]
 	},
 	{ label: 'Grammatik', href: '/grammar' },
-	{ label: 'Kompetenz', href: '/competence' },
-	{
-		label: 'Tools',
-		href: '/tools',
-		children: [
-			{ label: 'Wörterbuch', href: '/dictionary' },
-			{ label: 'Formengenerator', href: '/generator' }
-		]
-	}
+	{ label: 'Kompetenz', href: '/competence' }
 ];
 
 function Navbar() {
@@ -54,14 +54,14 @@ function Navbar() {
 
 	useEffect(() => {
 		setOpen('');
-	}, [pathname]);
+  }, [pathname]);
 
-	return (
+  return (
 		<div className='w-full h-16 inline-flex border-b'>
 			<Logo />
 			<div className='flex w-full justify-center gap-x-2'>
 				{links.map((link, i) => {
-					if (link.hasOwnProperty('children')) {
+					if (link.children) {
 						return (
 							<NavbarDropdown
 								key={i}
