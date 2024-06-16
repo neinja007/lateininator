@@ -23,7 +23,11 @@
 }
 
 h1 {
-	@apply font-bold text-xl mb-3;
+	@apply font-bold text-2xl mb-4 last:mb-0;
+}
+
+div {
+	@apply mb-4 last:mb-0;
 }
 
 select {
@@ -34,12 +38,16 @@ input {
 	@apply element-basic;
 }
 
-.button {
+.wide-button {
+	@apply w-full mb-4;
+}
+
+button {
 	@apply element-basic hover:bg-gray-100 text-black;
 }
 
 p {
-	@apply mb-3;
+	@apply mb-4 last:mb-0;
 }
 
 a {
