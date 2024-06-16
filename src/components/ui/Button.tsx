@@ -1,9 +1,11 @@
-type ButtonProps = { children: React.PropsWithChildren } & React.ComponentProps<'button'>;
+type ButtonProps = ({ label?: never; children: React.ReactNode } | { label: React.ReactNode; children?: never }) &
+	React.ComponentProps<'button'>;
 
-function Button({ children, className, ...restProps }: ButtonProps) {
+function Button({ label, children, className, ...restProps }: ButtonProps) {
+	const content = label !== '' ? label : children;
 	return (
 		<button {...restProps} className={`${className ? className : ''} button`}>
-			{children}
+			{content}
 		</button>
 	);
 }
