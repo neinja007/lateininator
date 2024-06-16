@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
-import Container from '@/components/Container';
 import { ClerkProvider } from '@clerk/nextjs';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'] });
@@ -23,7 +22,7 @@ export default function RootLayout({
 				<body className={inter.className}>
 					<div className='min-h-screen'>
 						<Navbar />
-						<Container>{children}</Container>
+						{children}
 					</div>
 				</body>
 			</html>
