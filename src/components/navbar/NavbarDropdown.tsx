@@ -1,12 +1,12 @@
 'use client';
 
-import React, { SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 type NavbarDropdownProps = {
 	label: string;
 	children: React.ReactNode;
 	open: string;
-	handleOpen: (arg: SetStateAction<string>) => void;
+	handleOpen: Dispatch<SetStateAction<string>>;
 	active: boolean;
 };
 
@@ -30,7 +30,7 @@ function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDro
 					<polyline points='6 15 12 9 18 15' fill='none' stroke='black' strokeWidth='2' />
 				</svg>
 			</div>
-			<div hidden={open !== label} className='absolute mt-2 shadow rounded-md text-center translate-y-10 border'>
+			<div hidden={open !== label} className='absolute mt-2 rounded-md text-center translate-y-10 border'>
 				{children}
 			</div>
 		</div>
