@@ -3,6 +3,7 @@
 import { Words } from '@/data/words';
 import { useEffect, useState } from 'react';
 import { words } from '@/data/words';
+import WordDisplay from '@/components/ui/WordDisplay';
 
 function Page() {
 	const [query, setQuery] = useState<string>('');
@@ -17,18 +18,19 @@ function Page() {
 			<h1>Wörterbuch</h1>
 
 			<div>
-				Suche: <input placeholder='Suche nach Wörtern...' value={query} onChange={(e) => setQuery(e.target.value)} />
+				Suche: <input placeholder='schola' value={query} onChange={(e) => setQuery(e.target.value)} />
+				<button className='ml-4'>Erweiterte Suche</button>
 			</div>
 			<div>
-				Ihre Suche hat{' '}
+				Wir haben{' '}
 				<b>
 					{results.length} {results.length === 1 ? 'Ergebnis' : 'Ergebnisse'}
 				</b>{' '}
-				ergeben.
+				gefunden.
 			</div>
 			<div>
-				{results.map((word) => (
-					<div>{word.word}</div>
+				{results.map((word, i) => (
+					<WordDisplay key={i} word={word} query={query} />
 				))}
 			</div>
 		</div>
