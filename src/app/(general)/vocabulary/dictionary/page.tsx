@@ -1,6 +1,6 @@
 'use client';
 
-import { Words } from '@/data/words';
+import { Words } from '@/data/types';
 import { useEffect, useState } from 'react';
 import { words } from '@/data/words';
 import WordDisplay from '@/components/ui/WordDisplay';
