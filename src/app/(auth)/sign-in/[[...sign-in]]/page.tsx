@@ -3,7 +3,7 @@
 import { Connection, Field, FieldError, Icon, Input, Label } from '@clerk/elements/common';
 import { Action, Root, SafeIdentifier, Step, Strategy, SupportedStrategy } from '@clerk/elements/sign-in';
 import Link from 'next/link';
-import { fieldErrorCodeMapper } from '@/data/authMapper';
+import { fieldErrorCodeMapper } from '@/utils/authMapper';
 
 export default function SignInPage() {
 	return (
@@ -21,7 +21,7 @@ export default function SignInPage() {
 				<br />
 				<Field name='identifier'>
 					<Label>E-Mail Adresse</Label>
-					<Input className='w-full' placeholder='max.mustermann@duck.com' />
+					<Input className='w-full' type='email' placeholder='max.mustermann@duck.com' />
 					<FieldError className='text-red-500'>
 						{({ code }) => (fieldErrorCodeMapper.email[code] ? fieldErrorCodeMapper.email[code] : code)}
 					</FieldError>

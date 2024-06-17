@@ -3,7 +3,7 @@
 import { Connection, Field, FieldError, Icon, Input, Label } from '@clerk/elements/common';
 import { Action, Captcha, Root, Step } from '@clerk/elements/sign-up';
 import Link from 'next/link';
-import { fieldErrorCodeMapper } from '@/data/authMapper';
+import { fieldErrorCodeMapper } from '@/utils/authMapper';
 
 export default function SignUpPage() {
 	return (
