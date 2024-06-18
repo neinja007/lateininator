@@ -7,7 +7,7 @@ type MainLayoutProps = {
 function AuthLayout({ children }: MainLayoutProps) {
 	return (
 		<div>
-			<div className='w-fit mx-auto mt-7'>{children}</div>
+			<div className='w-fit mx-auto mt-7 reset-styles'>{children}</div>
 		</div>
 	);
 }

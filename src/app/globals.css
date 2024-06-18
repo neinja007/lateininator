@@ -13,3 +13,7 @@ div:last-child, h1:last-child, p:last-child {
 a {
   color: rgb(59 130 246)
 }
+
+.reset-styles div, .reset-styles h1, .reset-styles p {
+  margin: unset;
+}
