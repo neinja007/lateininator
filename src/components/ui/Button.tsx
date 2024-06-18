@@ -1,6 +1,6 @@
 type ButtonProps = {
 	children: React.ReactNode;
-	className: React.CSSProperties;
+	className?: React.CSSProperties;
 } & React.ComponentProps<'button'>;
 
 function Button({ className, children, ...props }: ButtonProps) {
