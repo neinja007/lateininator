@@ -6,7 +6,7 @@ import Logo from '@/components/navbar/Logo';
 import NavbarDropdown from '@/components/navbar/NavbarDropdown';
 import { usePathname } from 'next/navigation';
 import NavbarDropdownLink from './NavbarDropdownLink';
-import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 type Link = {
 	label: string;
@@ -54,9 +54,9 @@ function Navbar() {
 
 	useEffect(() => {
 		setOpen('');
-  }, [pathname]);
+	}, [pathname]);
 
-  return (
+	return (
 		<div className='w-full h-16 inline-flex border-b'>
 			<Logo />
 			<div className='flex w-full justify-center gap-x-2'>
@@ -87,7 +87,7 @@ function Navbar() {
 					}
 				})}
 				<SignedIn>
-					<NavbarLink label='Konto' href='/account' active={pathnameSegment1 === '/account'} />
+					<UserButton showName />
 				</SignedIn>
 				<SignedOut>
 					<NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegment1 === '/sign-in'} />
