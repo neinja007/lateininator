@@ -7,7 +7,7 @@ type MainLayoutProps = {
 function AuthLayout({ children }: MainLayoutProps) {
 	return (
 		<div>
-			<div className='w-full sm:w-[640px] container'>{children}</div>
+			<div className='w-fit mx-auto mt-7'>{children}</div>
 		</div>
 	);
 }
