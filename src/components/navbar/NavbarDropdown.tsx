@@ -32,7 +32,7 @@ function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDro
 					<polyline points='6 15 12 9 18 15' fill='none' stroke='black' strokeWidth='2' />
 				</svg>
 			</div>
-			<div hidden={open !== label} className='absolute mt-2 rounded-md text-center translate-y-10 border'>
+			<div hidden={open !== label} className='absolute z-50 mt-2 rounded-md text-center translate-y-10 border'>
 				{children}
 			</div>
 		</div>
