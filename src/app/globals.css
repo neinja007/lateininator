@@ -2,54 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.navlink {
-	@apply p-2 px-4 rounded-md my-auto font-semibold text-inherit border;
+div, h1, p {
+	margin-bottom: 16px;
 }
 
-.shape-basic {
-	@apply h-9 p-1 px-2 rounded-md;
-}
-
-.appearance {
-	@apply bg-white border border-gray-400 focus:outline-none focus:border-black;
-}
-
-.element-basic {
-	@apply shape-basic appearance;
-}
-
-.container {
-	@apply mx-auto mt-7 px-4 p-3 rounded-md border;
-}
-
-h1 {
-	@apply font-bold text-2xl mb-4 last:mb-0;
-}
-
-div {
-	@apply mb-4 last:mb-0;
-}
-
-select {
-	@apply element-basic;
-}
-
-input {
-	@apply element-basic;
-}
-
-.wide-button {
-	@apply w-full mb-4;
-}
-
-button {
-	@apply element-basic hover:bg-gray-100 text-black;
-}
-
-p {
-	@apply mb-4 last:mb-0;
+div:last-child, h1:last-child, p:last-child {
+  margin-bottom: 0
 }
 
 a {
-	@apply text-blue-500;
+  color: rgb(59 130 246)
 }
