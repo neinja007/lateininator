@@ -3,7 +3,7 @@
 import { Words } from '@/data/types';
 import { useEffect, useState } from 'react';
 import { words } from '@/data/words';
-import WordDisplay from '@/components/ui/WordDisplay';
+import WordDisplay from '@/components/WordDisplay';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import Header from '@/components/ui/Header';
@@ -32,9 +32,20 @@ function Page() {
 				gefunden.
 			</div>
 			<div>
-				{results.map((word, i) => (
-					<WordDisplay key={i} word={word} query={query} />
-				))}
+				<table className='w-full table-auto text-left' hidden={results.length === 0}>
+					<thead>
+						<tr>
+							<th>Wort</th>
+							<th>Übersetzung</th>
+							<th />
+						</tr>
+					</thead>
+					<tbody>
+						{results.map((word, i) => (
+							<WordDisplay key={i} word={word} query={query} />
+						))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
