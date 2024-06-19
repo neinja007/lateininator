@@ -4,9 +4,9 @@ import { Word, Conjugation, Person, Numerus, Tense, Voice, Modus, Declension, Ge
 
 export function getLexicalForm(word: Word) {
 	if (word.type === 'noun') {
-		return `-${getEnding.noun(word.declension, word.gender, 'sin', 2)}, ${word.gender}`;
+		return `-${getEnding.noun(word.declension, word.gender, 'sin', 2)}, ${word.gender}.`;
 	} else if (word.type === 'verb') {
-		return `-${getEnding.verb(word.conjugation, 'ind', 'act', 'pres', 'sin', 2)}, ${word.conjugation}`;
+		return `-${getEnding.verb(word.conjugation, 'ind', 'act', 'pres', 'sin', 2)}, ${word.conjugation}.`;
 	}
 }
 
