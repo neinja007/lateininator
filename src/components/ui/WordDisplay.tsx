@@ -1,4 +1,5 @@
 import { Word } from '@/data/types';
+import { getLexicalForm } from '@/utils/wordUtils';
 
 type WordDisplayProps = {
 	word: Word;
@@ -7,6 +8,7 @@ type WordDisplayProps = {
 
 function WordDisplay({ word, query }: WordDisplayProps) {
 	let highlightedWord: React.ReactNode = <span>{word.word}</span>;
+
 	if (query !== '' && query) {
 		const indexOfQuery = word.word.indexOf(query);
 		highlightedWord = (
@@ -18,7 +20,11 @@ function WordDisplay({ word, query }: WordDisplayProps) {
 		);
 	}
 
-	return <div>{highlightedWord}</div>;
+	return (
+		<div>
+			{highlightedWord} <i>{getLexicalForm(word)}</i>
+		</div>
+	);
 }
 
 export default WordDisplay;

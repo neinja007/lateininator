@@ -42,36 +42,39 @@ export type Other = {
 	type: 'other';
 };
 
-export type Conjugations = 'a' | 'e' | 'i' | 'm' | 'k';
-export type Modi = 'ind' | 'kon';
-export type Voices = 'act' | 'pas';
-export type Tenses = 'pres' | 'impe' | 'fut1' | 'perf' | 'plus';
-export type TensesForModus<M extends Modi> = M extends 'kon' ? Exclude<Tenses, 'fut1'> : Tenses;
-export type Numeri = 'sin' | 'plu';
-export type Persons = 1 | 2 | 3;
-export type Cases = 1 | 2 | 3 | 4 | 5;
+export type Conjugation = 'a' | 'e' | 'i' | 'm' | 'k';
+export type Modus = 'ind' | 'kon';
+export type Voice = 'act' | 'pas';
+export type Tense = 'pres' | 'impe' | 'fut1' | 'perf' | 'plus';
+export type Numerus = 'sin' | 'plu';
+export type Person = 1 | 2 | 3;
+export type Case = 1 | 2 | 3 | 4 | 5;
 export type Declension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
-export type Genders = 'm' | 'f' | 'n';
+export type Gender = 'm' | 'f' | 'n';
+
+type MakeFut1Optional<T> = {
+	[K in keyof T as K extends 'fut1' ? never : K]: T[K];
+} & { fut1?: T extends { fut1: infer R } ? R : never };
 
 export type Endings = {
 	verb: {
-		[C in Conjugations]: {
-			[M in Modi]: {
-				[V in Voices]: {
-					[T in TensesForModus<M>]: {
-						[N in Numeri]: {
-							[P in Persons]: string;
+		[C in Conjugation]: {
+			[M in Modus]: {
+				[V in Voice]: MakeFut1Optional<{
+					[T in Tense]: {
+						[N in Numerus]: {
+							[P in Person]: string;
 						};
 					};
-				};
+				}>;
 			};
 		};
 	};
 	noun: {
 		[D in Declension]: {
-			[G in Genders]: {
-				[N in Numeri]: {
-					[C in Cases]: string;
+			[G in Gender]: {
+				[N in Numerus]: {
+					[C in Case]: string;
 				};
 			};
 		};
