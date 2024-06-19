@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
+import { deDE } from '@clerk/localizations';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<ClerkProvider>
+		<ClerkProvider localization={deDE}>
 			<html lang='en'>
 				<body className={inter.className}>
 					<div className='min-h-screen'>

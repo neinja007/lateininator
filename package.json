@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "del": "del .next",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -10,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/elements": "^0.7.0",
+    "@clerk/localizations": "^2.4.4",
     "@clerk/nextjs": "^5.1.5",
     "next": "14.2.4",
     "node": "^20.11.1",
