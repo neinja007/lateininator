@@ -14,7 +14,7 @@ function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDro
 	return (
 		<div className='flex justify-center my-auto'>
 			<div
-				className={`p-2 px-4 rounded-md my-auto font-semibold text-inherit border ${
+				className={`p-2 px-4 rounded-md font-semibold text-inherit border ${
 					active ? 'bg-gray-200' : 'hover:bg-gray-100'
 				} cursor-pointer selection:bg-inherit`}
 				onClick={() => handleOpen((prevOpen: string) => (prevOpen === label ? '' : label))}
