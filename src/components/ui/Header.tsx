@@ -14,7 +14,7 @@ type HeaderProps = {
 
 function Header({ children, className, ...props }: HeaderProps) {
 	return (
-		<h1 {...props} className={`${className} font-bold text-2xl`}>
+		<h1 {...props} className={`${className} font-bold text-2xl text-theme`}>
 			{children}
 		</h1>
 	);

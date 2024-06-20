@@ -6,7 +6,7 @@ type ButtonProps = {
 function Button({ className, children, ...props }: ButtonProps) {
 	return (
 		<button
-			className={`${className} h-9 p-1 px-2 rounded-md bg-white border border-gray-400 hover:bg-gray-100 text-black`}
+			className={`${className} h-9 p-1 px-2 rounded-md bg-theme hover:bg-theme-subtle active:border-theme text-white`}
 			{...props}
 		>
 			{children}
