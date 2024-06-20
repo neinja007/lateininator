@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import WideLogo from '../../../public/lateininator.png';
+import WideLogo from '../../../public/logo_wide.png';
 
 function Logo() {
 	return (
