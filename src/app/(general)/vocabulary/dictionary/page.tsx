@@ -31,22 +31,20 @@ function Page() {
 				</b>{' '}
 				gefunden.
 			</div>
-			<div>
-				<table className='w-full table-auto text-left' hidden={results.length === 0}>
-					<thead>
-						<tr>
-							<th>Wort</th>
-							<th>Übersetzung</th>
-							<th />
-						</tr>
-					</thead>
-					<tbody>
-						{results.map((word, i) => (
-							<WordDisplay key={i} word={word} query={query} />
-						))}
-					</tbody>
-				</table>
-			</div>
+			<table className='min-w-full rounded-lg overflow-hidden text-left' hidden={results.length === 0}>
+				<thead>
+					<tr className='bg-gray-200'>
+						<th className='pl-4 py-2'>Wort</th>
+						<th className='pl-4 py-2'>Übersetzung</th>
+						<th className='pl-4 py-2' />
+					</tr>
+				</thead>
+				<tbody>
+					{results.map((word, i) => (
+						<WordDisplay key={i} word={word} query={query} />
+					))}
+				</tbody>
+			</table>
 		</div>
 	);
 }
