@@ -4,7 +4,7 @@ import Navbar from '@/components/navbar/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { deDE } from '@clerk/localizations';
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'Lateininator',
