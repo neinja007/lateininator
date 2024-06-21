@@ -1,13 +1,15 @@
+import { mapper } from '@/data/mapper';
 import { Word } from '@/data/types';
 import { getLexicalForm } from '@/utils/wordUtils';
 import { useRouter } from 'next/navigation';
+import { ChevronRight } from 'react-feather';
 
-type WordDisplayProps = {
+type WordRowProps = {
 	word: Word;
 	query?: string;
 };
 
-function WordDisplay({ word, query }: WordDisplayProps) {
+function WordRow({ word, query }: WordRowProps) {
 	let highlightedWord: React.ReactNode = <span>{word.word}</span>;
 
 	const router = useRouter();
@@ -32,18 +34,26 @@ function WordDisplay({ word, query }: WordDisplayProps) {
 				{highlightedWord} <i>{getLexicalForm(word)}</i>
 			</td>
 			<td>{word.translation?.join(', ')}</td>
-			<td className='inline-flex float-end'>
-				Wort ansehen
-				<svg xmlns='http://www.w3.org/2000/svg' viewBox='-2 -2 20 20' fill='currentColor' className='size-5'>
-					<path
-						fillRule='evenodd'
-						d='M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z'
-						clipRule='evenodd'
-					/>
-				</svg>
+			<td>
+				<span
+					className={`px-2 text-md font-medium rounded-full ${
+						word.type === 'verb'
+							? 'bg-red-300 text-red-800'
+							: word.type === 'noun'
+							  ? 'bg-blue-300 text-blue-800'
+							  : word.type === 'adjective'
+							    ? 'bg-green-300 text-green-800'
+							    : 'bg-gray-300 text-gray-800'
+					}`}
+				>
+					{mapper.type[word.type]}
+				</span>
+			</td>
+			<td className='float-end'>
+				Wort ansehen <ChevronRight size={16} className='inline' />
 			</td>
 		</tr>
 	);
 }
 
-export default WordDisplay;
+export default WordRow;
