@@ -7,8 +7,8 @@ import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import Header from '@/components/ui/Header';
 import { CreditCard, List } from 'react-feather';
-import WordList from '@/components/specific/dashboard/WordList';
-import WordCards from '@/components/specific/dashboard/WordCards';
+import WordList from '@/components/specific/dictionary/WordList';
+import WordCards from '@/components/specific/dictionary/WordCards';
 
 function Page() {
 	const [query, setQuery] = useState<string>('');
