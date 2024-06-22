@@ -1,8 +1,8 @@
-import { mapper } from '@/data/mapper';
 import { Word } from '@/data/types';
 import { getLexicalForm } from '@/utils/wordUtils';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
+import TypeIndicator from './TypeIndicator';
 
 type WordRowProps = {
 	word: Word;
@@ -10,10 +10,9 @@ type WordRowProps = {
 };
 
 function WordRow({ word, query }: WordRowProps) {
-	let highlightedWord: React.ReactNode = <span>{word.word}</span>;
-
 	const router = useRouter();
 
+	let highlightedWord: React.ReactNode = <span>{word.word}</span>;
 	if (query !== '' && query) {
 		const indexOfQuery = word.word.indexOf(query);
 		highlightedWord = (
@@ -35,22 +34,10 @@ function WordRow({ word, query }: WordRowProps) {
 			</td>
 			<td>{word.translation?.join(', ')}</td>
 			<td>
-				<span
-					className={`px-2 text-md font-medium rounded-full ${
-						word.type === 'verb'
-							? 'bg-red-300 text-red-800'
-							: word.type === 'noun'
-							  ? 'bg-blue-300 text-blue-800'
-							  : word.type === 'adjective'
-							    ? 'bg-green-300 text-green-800'
-							    : 'bg-gray-300 text-gray-800'
-					}`}
-				>
-					{mapper.type[word.type]}
-				</span>
+				<TypeIndicator type={word.type} />
 			</td>
-			<td className='float-end'>
-				Wort ansehen <ChevronRight size={16} className='inline' />
+			<td className='flex float-right'>
+				Wort ansehen <ChevronRight size={16} className='m-1' />
 			</td>
 		</tr>
 	);
