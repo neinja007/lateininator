@@ -35,7 +35,10 @@ export const mapper: {
 			noun: 'Nomen',
 			verb: 'Verb',
 			adjective: 'Adjektiv',
-			other: 'Sonstiges'
+			other: 'Sonstiges',
+			adverb: 'Adverb',
+			irregular_verb: 'Irreguläres Verb',
+			pronoun: 'Pronomen'
 		},
 		nounDeclension: {
 			a: 'A Deklination',
@@ -96,8 +99,11 @@ export const mapper: {
 		type: {
 			noun: 'Nomen',
 			verb: 'Verb',
-			adjective: 'Adjektiv',
-			other: 'Sonstiges'
+			adjective: 'Adj.',
+			other: 'Sonst.',
+			adverb: 'Adv.',
+			irregular_verb: 'Irr. Verb',
+			pronoun: 'Pron.'
 		},
 		nounDeclension: {
 			a: 'A Dekl.',

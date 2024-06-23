@@ -1,28 +1,29 @@
 /* eslint-disable no-unused-vars */
 
-export type Word = Base & (Verb | Noun | Adjective | Other);
-
-export type Type = 'noun' | 'verb' | 'adjective' | 'other';
-
+export type Word = Base & (Verb | Noun | Adjective | Other | IrregularVerb);
 export type Words = Array<Word>;
+export type Type = 'noun' | 'verb' | 'adjective' | 'other' | 'irregular_verb' | 'pronoun' | 'adverb';
+export type List = { name: string; words: Array<number> };
 
 export type Base = {
 	id: number;
 	word: string;
 	type: Type;
 	translation?: Array<string>;
+	info?: string;
+	derivative?: number;
 };
 
 export type Noun = {
 	type: 'noun';
-	declension: 'a' | 'o' | 'm' | 'i' | 'k' | 'e' | 'u';
+	declension: NounDeclension;
 	genitive: string;
-	gender: 'm' | 'f' | 'n';
+	gender: Gender;
 };
 
 export type Verb = {
 	type: 'verb';
-	conjugation: 'a' | 'e' | 'i' | 'k' | 'm';
+	conjugation: Conjugation;
 	forms: {
 		present: string;
 		perfect: string;
@@ -32,16 +33,24 @@ export type Verb = {
 
 export type Adjective = {
 	type: 'adjective';
-	declension: 'a_o' | 'kon';
+	declension: AdjectiveDeclension;
 	forms: {
-		masculinum: string;
 		femininum: string;
 		neutrum: string;
 	};
 };
 
 export type Other = {
-	type: 'other';
+	type: 'other' | 'adverb' | 'pronoun';
+};
+
+export type IrregularVerb = {
+	type: 'irregular_verb';
+	forms: {
+		present: string;
+		perfect: string;
+		participle: string;
+	};
 };
 
 export type Conjugation = 'a' | 'e' | 'i' | 'm' | 'k';
