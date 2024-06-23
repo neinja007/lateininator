@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Rubik } from 'next/font/google';
 import Navbar from '@/components/navbar/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { deDE } from '@clerk/localizations';
 
-const inter = Inter({ subsets: ['latin'] });
+const rubik = Rubik({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'Lateininator',
@@ -19,8 +19,8 @@ export default function RootLayout({
 	return (
 		<ClerkProvider localization={deDE}>
 			<html lang='en'>
-				<body className={inter.className}>
-					<div className='min-h-screen'>
+				<body className={rubik.className}>
+					<div className='min-h-screen px-4'>
 						<Navbar />
 						{children}
 					</div>
