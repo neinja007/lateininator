@@ -26,7 +26,7 @@ function WordCard({ word, query }: WordCardProps) {
 
 	return (
 		<div
-			className='border text-left shadow cursor-pointer hover:bg-gray-100'
+			className='border text-left shadow cursor-pointer rounded-lg hover:bg-gray-100'
 			onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
 		>
 			<div className='p-2 px-3'>

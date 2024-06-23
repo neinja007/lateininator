@@ -1,57 +1,157 @@
-//TODO: full mapper typing
+import {
+	AdjectiveDeclension,
+	Case,
+	Conjugation,
+	Gender,
+	Modus,
+	NounDeclension,
+	Numerus,
+	Person,
+	Tense,
+	Type,
+	Voice
+} from './types';
 
-export const mapper: { [key: string]: { [key: string]: string } } = {
-	type: {
-		noun: 'Nomen',
-		verb: 'Verb',
-		adjective: 'Adjektiv',
-		other: 'Sonstiges'
+type MapperKeys = {
+	type: Record<Type, string>;
+	nounDeclension: Record<NounDeclension, string>;
+	adjectiveDeclension: Record<AdjectiveDeclension, string>;
+	case: Record<Case, string>;
+	gender: Record<Gender, string>;
+	numerus: Record<Numerus, string>;
+	conjugation: Record<Conjugation, string>;
+	tense: Record<Tense, string>;
+	person: Record<Person, string>;
+	modus: Record<Modus, string>;
+	voice: Record<Voice, string>;
+};
+
+export const mapper: {
+	extended: MapperKeys;
+	short: MapperKeys;
+} = {
+	extended: {
+		type: {
+			noun: 'Nomen',
+			verb: 'Verb',
+			adjective: 'Adjektiv',
+			other: 'Sonstiges'
+		},
+		nounDeclension: {
+			a: 'A Deklination',
+			o: 'O Deklination',
+			k: 'konsonantische Deklination',
+			i: 'konsonantische Deklination (I-Stämme)',
+			m: 'konsonantische Deklination (Mischstämme)',
+			e: 'E Deklination',
+			u: 'U Deklination'
+		},
+		adjectiveDeclension: {
+			a_o: 'A/O Deklination',
+			e_u: 'E/U Deklination'
+		},
+		case: {
+			1: 'Nominativ',
+			2: 'Genitiv',
+			3: 'Dativ',
+			4: 'Akkusativ',
+			5: 'Ablativ',
+			6: 'Vokativ'
+		},
+		gender: {
+			m: 'maskulin',
+			f: 'feminin',
+			n: 'neutrum'
+		},
+		numerus: {
+			sin: 'Singular',
+			plu: 'Plural'
+		},
+		conjugation: {
+			a: 'A Konjugation',
+			e: 'E Konjugation',
+			k: 'konsonantische Konjugation',
+			i: 'I Konjugation',
+			m: 'Mischkonjugation'
+		},
+		tense: {
+			pres: 'Präsens',
+			perf: 'Perfekt',
+			plus: 'Plusquamperfekt',
+			fut1: 'Futur 1',
+			impe: 'Imperfekt'
+		},
+		person: {
+			1: '1. Person',
+			2: '2. Person',
+			3: '3. Person'
+		},
+		modus: {
+			ind: 'Indikativ',
+			kon: 'Konjunktiv'
+		},
+		voice: { act: 'Aktiv', pas: 'Passiv' }
 	},
-	declension: {
-		a: 'A Deklination',
-		o: 'O Deklination',
-		k: 'konsonantische Deklination',
-		i: 'konsonantische Deklination (I-Stämme)',
-		m: 'konsonantische Deklination (Mischstämme)',
-		e: 'E Deklination',
-		u: 'U Deklination',
-		a_o: 'A/O Deklination',
-		e_u: 'E/U Deklination'
-	},
-	case: {
-		1: 'Nominativ',
-		2: 'Genitiv',
-		3: 'Dativ',
-		4: 'Akkusativ',
-		5: 'Ablativ',
-		6: 'Vokativ'
-	},
-	gender: {
-		m: 'männlich',
-		f: 'weiblich',
-		n: 'neutrum'
-	},
-	numerus: {
-		sin: 'Singular',
-		plu: 'Plural'
-	},
-	conjugation: {
-		a: 'A Konjugation',
-		e: 'E Konjugation',
-		k: 'konsonantische Konjugation',
-		i: 'I Konjugation',
-		m: 'Mischkonjugation'
-	},
-	tense: {
-		pres: 'Präsens',
-		perf: 'Perfekt',
-		plus: 'Plusquamperfekt',
-		fut1: 'Futur 1',
-		impe: 'Imperfekt'
-	},
-	person: {
-		1: '1. Person',
-		2: '2. Person',
-		3: '3. Person'
+	short: {
+		type: {
+			noun: 'Nomen',
+			verb: 'Verb',
+			adjective: 'Adjektiv',
+			other: 'Sonstiges'
+		},
+		nounDeclension: {
+			a: 'A Dekl.',
+			o: 'O Dekl.',
+			k: 'konsonantische Dekl.',
+			i: 'konsonantische Dekl. I',
+			m: 'konsonantische Dekl. Misch.',
+			e: 'E Dekl.',
+			u: 'U Dekl.'
+		},
+		adjectiveDeclension: {
+			a_o: 'A/O Dekl.',
+			e_u: 'E/U Dekl.'
+		},
+		case: {
+			1: 'Nom.',
+			2: 'Gen.',
+			3: 'Dat.',
+			4: 'Akk.',
+			5: 'Abl.',
+			6: 'Vok.'
+		},
+		gender: {
+			m: 'm.',
+			f: 'f.',
+			n: 'n.'
+		},
+		numerus: {
+			sin: 'Sg.',
+			plu: 'Pl.'
+		},
+		conjugation: {
+			a: 'A Konj.',
+			e: 'E Konj.',
+			k: 'kons. Konj.',
+			i: 'I Konj.',
+			m: 'Mischkonj.'
+		},
+		tense: {
+			pres: 'Präs.',
+			perf: 'Perf.',
+			plus: 'Plus.',
+			fut1: 'Fut1.',
+			impe: 'Imp.'
+		},
+		person: {
+			1: '1. P.',
+			2: '2. P.',
+			3: '3. P.'
+		},
+		modus: {
+			ind: 'Ind.',
+			kon: 'Konj.'
+		},
+		voice: { act: 'Akt.', pas: 'Pas.' }
 	}
 };

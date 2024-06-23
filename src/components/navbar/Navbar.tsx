@@ -56,7 +56,7 @@ function Navbar() {
 	}, [pathname]);
 
 	return (
-		<div className='w-full h-16 inline-flex border-b'>
+		<div className='w-full h-16 inline-flex bg-gray-100'>
 			<Logo />
 			<div className='flex w-full justify-center gap-x-2'>
 				{links.map((link, i) => {

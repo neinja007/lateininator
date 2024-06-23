@@ -5,7 +5,7 @@ export function getLexicalForm(word: Word) {
 	if (word.type === 'noun') {
 		return `-${endings.noun[word.declension][word.gender].sin[2]}, ${word.gender}.`;
 	} else if (word.type === 'verb') {
-		return `-${endings.verb[word.conjugation].ind.act.pres.sin[2]}, ${word.conjugation}.`;
+		return `-${endings.verb[word.conjugation].ind.act.pres.sin[1]}, ${word.conjugation}.`;
 	}
 }
 

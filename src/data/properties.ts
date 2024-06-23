@@ -1,5 +1,3 @@
-//TODO: full property typing
-
 import { Case, Modus, Numerus, Person, Tense, Voice } from './types';
 
 export const properties: {

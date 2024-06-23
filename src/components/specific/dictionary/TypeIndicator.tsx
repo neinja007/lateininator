@@ -1,11 +1,12 @@
 import { mapper } from '@/data/mapper';
+import { Type } from '@/data/types';
 
-type TypeIndicatorProps = { type: string };
+type TypeIndicatorProps = { type: Type };
 
 function TypeIndicator({ type }: TypeIndicatorProps) {
 	return (
 		<span
-			className={`p-1 text-sm uppercase font-medium ${
+			className={`p-1 px-2 text-sm uppercase font-medium rounded-full ${
 				type === 'verb'
 					? 'bg-red-300 text-red-800'
 					: type === 'noun'
@@ -15,7 +16,7 @@ function TypeIndicator({ type }: TypeIndicatorProps) {
 					    : 'bg-gray-300 text-gray-800'
 			}`}
 		>
-			{mapper.type[type]}
+			{mapper.extended.type[type]}
 		</span>
 	);
 }

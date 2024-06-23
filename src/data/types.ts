@@ -51,7 +51,8 @@ export type Tense = 'pres' | 'impe' | 'fut1' | 'perf' | 'plus';
 export type Numerus = 'sin' | 'plu';
 export type Person = '1' | '2' | '3';
 export type Case = '1' | '2' | '3' | '4' | '5' | '6';
-export type Declension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
+export type NounDeclension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
+export type AdjectiveDeclension = 'a_o' | 'e_u';
 export type Gender = 'm' | 'f' | 'n';
 
 export type ConditionalTense<T, M> = M extends 'kon' ? Exclude<T, 'fut1'> : T;
@@ -71,7 +72,7 @@ export type Endings = {
 		};
 	};
 	noun: {
-		[D in Declension]: {
+		[D in NounDeclension]: {
 			[G in Gender]: {
 				[N in Numerus]: {
 					[C in Case]: string;

@@ -3,17 +3,17 @@
 import { Words } from '@/data/types';
 import { useEffect, useState } from 'react';
 import { words } from '@/data/words';
-import Button from '@/components/ui/Button';
-import Input from '@/components/ui/Input';
-import Header from '@/components/ui/Header';
 import { CreditCard, List } from 'react-feather';
 import WordList from '@/components/specific/dictionary/WordList';
 import WordCards from '@/components/specific/dictionary/WordCards';
+import H1 from '@/components/navbar/ui/H1';
+import Input from '@/components/navbar/ui/Input';
+import Button from '@/components/navbar/ui/Button';
 
 function Page() {
 	const [query, setQuery] = useState<string>('');
 	const [results, setResults] = useState<Words>([]);
-	const [view, setView] = useState<'cards' | 'list'>('list');
+	const [view, setView] = useState<'cards' | 'list'>('cards');
 
 	useEffect(() => {
 		setResults(words.filter((word) => word.word.includes(query)));
@@ -21,7 +21,7 @@ function Page() {
 
 	return (
 		<div>
-			<Header>Wörterbuch</Header>
+			<H1>Wörterbuch</H1>
 
 			<div>
 				Suche: <Input placeholder='schola' value={query} onChange={(e) => setQuery(e.target.value)} />
@@ -35,15 +35,18 @@ function Page() {
 				gefunden.
 			</div>
 			<div className='m-2 flex float-end'>
-				<button
-					className={`flex ${view === 'cards' ? 'text-theme' : 'text-gray-500'}`}
+				<div
+					className={`flex cursor-pointer ${view === 'cards' ? 'text-black' : 'text-gray-400'}`}
 					onClick={() => setView('cards')}
 				>
 					Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
-				</button>
-				<button className={`flex ${view === 'list' ? 'text-theme' : 'text-gray-500'}`} onClick={() => setView('list')}>
+				</div>
+				<div
+					className={`flex cursor-pointer ${view === 'list' ? 'text-black' : 'text-gray-400'}`}
+					onClick={() => setView('list')}
+				>
 					Listenansicht <List className='ml-2' />
-				</button>
+				</div>
 			</div>
 			<div>
 				{results.length > 0 && view === 'list' ? (

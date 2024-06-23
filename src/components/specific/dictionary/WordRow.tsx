@@ -26,18 +26,20 @@ function WordRow({ word, query }: WordRowProps) {
 
 	return (
 		<tr
-			className='even:bg-gray-200 cursor-pointer hover:bg-gray-100 *:pl-4 *:p-2'
+			className='cursor-pointer hover:bg-gray-100 border-y'
 			onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
 		>
-			<td>
+			<td className='px-4 p-2'>
 				{highlightedWord} <i>{getLexicalForm(word)}</i>
 			</td>
-			<td>{word.translation?.join(', ')}</td>
-			<td>
+			<td className='px-4 p-2'>{word.translation?.join(', ')}</td>
+			<td className='px-4 p-2'>
 				<TypeIndicator type={word.type} />
 			</td>
-			<td className='flex float-right'>
-				Wort ansehen <ChevronRight size={16} className='m-1' />
+			<td className='px-4 p-2'>
+				<div className='flex float-end'>
+					Wort ansehen <ChevronRight size={16} className='m-1' />
+				</div>
 			</td>
 		</tr>
 	);

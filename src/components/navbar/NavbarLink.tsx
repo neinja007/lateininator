@@ -10,12 +10,7 @@ type NavbarLinkProps = {
 
 function NavbarLink({ label, href, active }: NavbarLinkProps) {
 	return (
-		<Link
-			className={`p-2 px-4 my-auto font-semibold text-inherit border ${
-				active ? 'bg-gray-200 text-theme' : 'hover:bg-gray-100'
-			}`}
-			href={href}
-		>
+		<Link className={`my-auto mx-2 font-semibold ${active ? 'text-blue-700' : 'text-gray-600'}`} href={href}>
 			{label}
 		</Link>
 	);

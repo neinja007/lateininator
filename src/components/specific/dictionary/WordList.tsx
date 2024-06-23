@@ -5,13 +5,13 @@ type WordListProps = { results: Words; query: string };
 
 function WordList({ results, query }: WordListProps) {
 	return (
-		<table className='min-w-full table-fixed overflow-hidden text-left'>
+		<table className='w-full table-fixed rounded-lg overflow-hidden shadow text-left'>
 			<thead>
-				<tr className='bg-gray-200'>
+				<tr className='bg-gray-100'>
 					<th className='px-4 py-2'>Wort</th>
-					<th className='px-4'>Übersetzung</th>
-					<th className='px-4'>Wortart</th>
-					<th className='px-4 text-right w-2/12'></th>
+					<th className='px-4 py-2'>Übersetzung</th>
+					<th className='px-4 py-2'>Wortart</th>
+					<th className='px-4 py-2 w-2/12'></th>
 				</tr>
 			</thead>
 			<tbody>
