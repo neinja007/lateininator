@@ -1,5 +1,5 @@
 import H1 from '@/components/navbar/ui/H1';
-import TypeIndicator from '@/components/specific/dictionary/TypeIndicator';
+import TypeIndicator from '@/components/TypeIndicator';
 import { mapper } from '@/data/mapper';
 import { properties } from '@/data/properties';
 import { words } from '@/data/words';
