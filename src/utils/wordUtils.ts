@@ -12,7 +12,7 @@ export function getLexicalForm(word: Word) {
 export function getBase(word: Word): string {
 	let base = '';
 	if (word.type === 'noun') {
-		if (word.declension === 'a' || word.declension === 'o') {
+		if (word.declension === 'a') {
 			base = word.word.substring(0, word.word.length - 1);
 		} else {
 			base = word.word.substring(0, word.word.length - 2);
