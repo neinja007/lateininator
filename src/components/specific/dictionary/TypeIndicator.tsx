@@ -5,7 +5,7 @@ type TypeIndicatorProps = { type: string };
 function TypeIndicator({ type }: TypeIndicatorProps) {
 	return (
 		<span
-			className={`px-2 text-md font-medium rounded-full ${
+			className={`p-1 text-sm uppercase font-medium ${
 				type === 'verb'
 					? 'bg-red-300 text-red-800'
 					: type === 'noun'

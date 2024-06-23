@@ -2,12 +2,14 @@
 
 export type Word = Base & (Verb | Noun | Adjective | Other);
 
+export type Type = 'noun' | 'verb' | 'adjective' | 'other';
+
 export type Words = Array<Word>;
 
 export type Base = {
 	id: number;
 	word: string;
-	type: 'noun' | 'verb' | 'adjective' | 'other';
+	type: Type;
 	translation?: Array<string>;
 };
 
@@ -47,26 +49,24 @@ export type Modus = 'ind' | 'kon';
 export type Voice = 'act' | 'pas';
 export type Tense = 'pres' | 'impe' | 'fut1' | 'perf' | 'plus';
 export type Numerus = 'sin' | 'plu';
-export type Person = 1 | 2 | 3;
-export type Case = 1 | 2 | 3 | 4 | 5;
+export type Person = '1' | '2' | '3';
+export type Case = '1' | '2' | '3' | '4' | '5' | '6';
 export type Declension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
 export type Gender = 'm' | 'f' | 'n';
 
-type MakeFut1Optional<T> = {
-	[K in keyof T as K extends 'fut1' ? never : K]: T[K];
-} & { fut1?: T extends { fut1: infer R } ? R : never };
+export type ConditionalTense<T, M> = M extends 'kon' ? Exclude<T, 'fut1'> : T;
 
 export type Endings = {
 	verb: {
 		[C in Conjugation]: {
 			[M in Modus]: {
-				[V in Voice]: MakeFut1Optional<{
-					[T in Tense]: {
+				[V in Voice]: {
+					[T in ConditionalTense<Tense, M>]: {
 						[N in Numerus]: {
 							[P in Person]: string;
 						};
 					};
-				}>;
+				};
 			};
 		};
 	};

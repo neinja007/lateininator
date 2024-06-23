@@ -49,8 +49,7 @@ const links: Array<Link | Dropdown> = [
 function Navbar() {
 	const [open, setOpen] = useState('');
 	const pathname = usePathname();
-	const pathnameSegment1 = '/' + pathname.split('/')[1];
-	const fullPathname = pathname;
+	const pathnameSegments = pathname.split('/').map((segment) => '/' + segment);
 
 	useEffect(() => {
 		setOpen('');
@@ -68,7 +67,7 @@ function Navbar() {
 								label={link.label}
 								open={open}
 								handleOpen={setOpen}
-								active={pathnameSegment1 === link.href}
+								active={pathnameSegments[1] === link.href}
 							>
 								{(link as Dropdown).children.map((child, i) => {
 									return (
@@ -76,21 +75,23 @@ function Navbar() {
 											key={i}
 											label={child.label}
 											href={link.href + child.href}
-											active={fullPathname === link.href + child.href}
+											active={pathnameSegments[2] === child.href}
 										/>
 									);
 								})}
 							</NavbarDropdown>
 						);
 					} else {
-						return <NavbarLink key={i} label={link.label} href={link.href} active={pathnameSegment1 === link.href} />;
+						return (
+							<NavbarLink key={i} label={link.label} href={link.href} active={pathnameSegments[1] === link.href} />
+						);
 					}
 				})}
 				<SignedIn>
 					<UserButton showName />
 				</SignedIn>
 				<SignedOut>
-					<NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegment1 === '/sign-in'} />
+					<NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegments[1] === '/sign-in'} />
 				</SignedOut>
 			</div>
 		</div>

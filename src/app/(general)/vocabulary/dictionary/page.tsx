@@ -39,7 +39,7 @@ function Page() {
 					className={`flex ${view === 'cards' ? 'text-theme' : 'text-gray-500'}`}
 					onClick={() => setView('cards')}
 				>
-					Kartenansicht <CreditCard className='ml-2 mr-8' />
+					Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
 				</button>
 				<button className={`flex ${view === 'list' ? 'text-theme' : 'text-gray-500'}`} onClick={() => setView('list')}>
 					Listenansicht <List className='ml-2' />

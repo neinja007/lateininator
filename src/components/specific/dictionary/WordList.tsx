@@ -5,7 +5,7 @@ type WordListProps = { results: Words; query: string };
 
 function WordList({ results, query }: WordListProps) {
 	return (
-		<table className='min-w-full rounded-md table-fixed overflow-hidden text-left'>
+		<table className='min-w-full table-fixed overflow-hidden text-left'>
 			<thead>
 				<tr className='bg-gray-200'>
 					<th className='px-4 py-2'>Wort</th>

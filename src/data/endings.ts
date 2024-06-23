@@ -1161,14 +1161,16 @@ export const endings: Endings = {
 					2: 'ae',
 					3: 'ae',
 					4: 'am',
-					5: 'a'
+					5: 'a',
+					6: 'a'
 				},
 				plu: {
 					1: 'ae',
 					2: 'arum',
 					3: 'is',
 					4: 'as',
-					5: 'is'
+					5: 'is',
+					6: 'is'
 				}
 			},
 			f: {
@@ -1177,14 +1179,16 @@ export const endings: Endings = {
 					2: 'ae',
 					3: 'ae',
 					4: 'am',
-					5: 'a'
+					5: 'a',
+					6: 'a'
 				},
 				plu: {
 					1: 'ae',
 					2: 'arum',
 					3: 'is',
 					4: 'as',
-					5: 'is'
+					5: 'is',
+					6: 'is'
 				}
 			},
 			n: {
@@ -1193,14 +1197,16 @@ export const endings: Endings = {
 					2: 'ae',
 					3: 'ae',
 					4: 'am',
-					5: 'a'
+					5: 'a',
+					6: 'a'
 				},
 				plu: {
 					1: 'ae',
 					2: 'arum',
 					3: 'is',
 					4: 'as',
-					5: 'is'
+					5: 'is',
+					6: 'is'
 				}
 			}
 		},
@@ -1211,14 +1217,16 @@ export const endings: Endings = {
 					2: 'i',
 					3: 'o',
 					4: 'um',
-					5: 'o'
+					5: 'o',
+					6: 'e'
 				},
 				plu: {
 					1: 'i',
 					2: 'orum',
 					3: 'is',
 					4: 'os',
-					5: 'is'
+					5: 'is',
+					6: 'is'
 				}
 			},
 			f: {
@@ -1227,14 +1235,16 @@ export const endings: Endings = {
 					2: 'i',
 					3: 'o',
 					4: 'um',
-					5: 'o'
+					5: 'o',
+					6: 'e'
 				},
 				plu: {
 					1: 'i',
 					2: 'orum',
 					3: 'is',
 					4: 'os',
-					5: 'is'
+					5: 'is',
+					6: 'is'
 				}
 			},
 			n: {
@@ -1243,14 +1253,16 @@ export const endings: Endings = {
 					2: 'i',
 					3: 'o',
 					4: 'um',
-					5: 'o'
+					5: 'o',
+					6: 'e'
 				},
 				plu: {
 					1: 'a',
 					2: 'orum',
 					3: 'is',
 					4: 'a',
-					5: 'is'
+					5: 'is',
+					6: 'is'
 				}
 			}
 		},
@@ -1261,14 +1273,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'um',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			f: {
@@ -1277,14 +1291,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'um',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			n: {
@@ -1293,14 +1309,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: '-',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'a',
 					2: 'um',
 					3: 'ibus',
 					4: 'a',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			}
 		},
@@ -1311,14 +1329,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			f: {
@@ -1327,14 +1347,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			n: {
@@ -1343,14 +1365,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: '-',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'a',
 					2: 'ium',
 					3: 'ibus',
 					4: 'a',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			}
 		},
@@ -1361,14 +1385,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			f: {
@@ -1377,14 +1403,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: 'im',
-					5: 'i'
+					5: 'i',
+					6: 'i'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			n: {
@@ -1393,14 +1421,16 @@ export const endings: Endings = {
 					2: 'is',
 					3: 'i',
 					4: '-',
-					5: 'i'
+					5: 'i',
+					6: 'i'
 				},
 				plu: {
 					1: 'ia',
 					2: 'ium',
 					3: 'ibus',
 					4: 'ia',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			}
 		},
@@ -1411,14 +1441,16 @@ export const endings: Endings = {
 					2: 'ei',
 					3: 'ei',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'erum',
 					3: 'ebus',
 					4: 'es',
-					5: 'ebus'
+					5: 'ebus',
+					6: 'ebus'
 				}
 			},
 			f: {
@@ -1427,14 +1459,16 @@ export const endings: Endings = {
 					2: 'ei',
 					3: 'ei',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'erum',
 					3: 'ebus',
 					4: 'es',
-					5: 'ebus'
+					5: 'ebus',
+					6: 'ebus'
 				}
 			},
 			n: {
@@ -1443,14 +1477,16 @@ export const endings: Endings = {
 					2: 'ei',
 					3: 'ei',
 					4: 'em',
-					5: 'e'
+					5: 'e',
+					6: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'erum',
 					3: 'ebus',
 					4: 'es',
-					5: 'ebus'
+					5: 'ebus',
+					6: 'ebus'
 				}
 			}
 		},
@@ -1461,14 +1497,16 @@ export const endings: Endings = {
 					2: 'us',
 					3: 'ui',
 					4: 'um',
-					5: 'u'
+					5: 'u',
+					6: 'u'
 				},
 				plu: {
 					1: 'us',
 					2: 'uum',
 					3: 'ibus',
 					4: 'us',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			f: {
@@ -1477,14 +1515,16 @@ export const endings: Endings = {
 					2: 'us',
 					3: 'ui',
 					4: 'um',
-					5: 'u'
+					5: 'u',
+					6: 'u'
 				},
 				plu: {
 					1: 'us',
 					2: 'uum',
 					3: 'ibus',
 					4: 'us',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			},
 			n: {
@@ -1493,14 +1533,16 @@ export const endings: Endings = {
 					2: 'us',
 					3: 'ui',
 					4: 'um',
-					5: 'u'
+					5: 'u',
+					6: 'u'
 				},
 				plu: {
 					1: 'ua',
 					2: 'uum',
 					3: 'ibus',
 					4: 'ua',
-					5: 'ibus'
+					5: 'ibus',
+					6: 'ibus'
 				}
 			}
 		}

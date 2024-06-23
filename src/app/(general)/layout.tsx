@@ -1,4 +1,3 @@
-import React from 'react';
 import '@/app/globals.css';
 
 type MainLayoutProps = {
@@ -8,7 +7,7 @@ type MainLayoutProps = {
 function MainLayout({ children }: MainLayoutProps) {
 	return (
 		<div>
-			<div className='container mx-auto mt-7 px-4 p-3 rounded-md border *:space-y-4'>{children}</div>
+			<div className='container max-w-[1280px] mx-auto mt-7 *:space-y-5'>{children}</div>
 		</div>
 	);
 }
