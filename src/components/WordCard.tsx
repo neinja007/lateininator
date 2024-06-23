@@ -26,7 +26,7 @@ function WordCard({ word, query }: WordCardProps) {
 
 	return (
 		<div
-			className='border text-left shadow cursor-pointer rounded-lg hover:bg-gray-100'
+			className='border text-left shadow cursor-pointer rounded-lg hover:bg-gray-100 flex flex-col'
 			onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
 		>
 			<div className='p-2 px-3'>
@@ -38,7 +38,7 @@ function WordCard({ word, query }: WordCardProps) {
 				<br />
 				<p>{word.translation?.join(', ')}</p>
 			</div>
-			<div className='p-2 px-3 w-full bg-gray-200 text-center'>
+			<div className='p-2 px-3 w-full bg-gray-200 text-center mt-auto'>
 				Wort ansehen <ChevronRight size={16} className='inline' />
 			</div>
 		</div>
