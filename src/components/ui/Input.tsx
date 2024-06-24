@@ -16,7 +16,7 @@ function Input({ label, className, ...props }: InputProps) {
 			<input
 				id={id}
 				{...props}
-				className={`p-1 px-2 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-700 shadow ${className}`}
+				className={`h-9 p-1 px-2 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-700 shadow ${className}`}
 			/>
 		</div>
 	);
