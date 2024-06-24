@@ -1,9 +1,11 @@
-import { Case, Modus, Numerus, Person, Tense, Voice } from './types';
+import { Case, Gender, Modus, NounDeclension, Numerus, Person, Tense, Voice } from './types';
 
 export const properties: {
 	case: Array<Case>;
 	person: Array<Person>;
 	numerus: Array<Numerus>;
+	nounDeclension: Array<NounDeclension>;
+	gender: Array<Gender>;
 	modus: Array<Modus>;
 	voice: Array<Voice>;
 	indTense: Array<Tense>;
@@ -15,5 +17,7 @@ export const properties: {
 	modus: ['ind', 'kon'],
 	voice: ['act', 'pas'],
 	indTense: ['pres', 'perf', 'plus', 'fut1', 'impe'],
-	konTense: ['pres', 'perf', 'plus', 'impe']
+	konTense: ['pres', 'perf', 'plus', 'impe'],
+	nounDeclension: ['a', 'e', 'i', 'k', 'm', 'o', 'u'],
+	gender: ['m', 'f', 'n']
 };
