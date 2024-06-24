@@ -7,7 +7,7 @@ type MainLayoutProps = {
 function MainLayout({ children }: MainLayoutProps) {
 	return (
 		<div>
-			<div className='container max-w-[1280px] mx-auto mt-7 *:space-y-5'>{children}</div>
+			<div className='container max-w-[1024px] mx-auto mt-7 *:space-y-5'>{children}</div>
 		</div>
 	);
 }
