@@ -1,4 +1,4 @@
-import H1 from '@/components/navbar/ui/H1';
+import H1 from '@/components/ui/H1';
 import TypeIndicator from '@/components/TypeIndicator';
 import { mapper } from '@/data/mapper';
 import { properties } from '@/data/properties';
@@ -10,7 +10,7 @@ function Page({ params: { id } }: { params: { id: string } }) {
 	const word = words.find((word) => word.id.toString() === id);
 
 	return (
-		<div className='w-2/3 mx-auto'>
+		<div>
 			{word?.word ? (
 				<>
 					<div className='float-end'>
