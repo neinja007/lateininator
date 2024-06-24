@@ -6,9 +6,9 @@ import { words } from '@/data/words';
 import { CreditCard, List } from 'react-feather';
 import WordList from '@/components/WordList';
 import WordCards from '@/components/WordCards';
-import H1 from '@/components/navbar/ui/H1';
-import Input from '@/components/navbar/ui/Input';
-import Button from '@/components/navbar/ui/Button';
+import H1 from '@/components/ui/H1';
+import Input from '@/components/ui/Input';
+import Button from '@/components/ui/Button';
 
 function Page() {
 	const [query, setQuery] = useState<string>('');
@@ -24,7 +24,13 @@ function Page() {
 			<H1>Wörterbuch</H1>
 
 			<div>
-				Suche: <Input placeholder='schola' value={query} onChange={(e) => setQuery(e.target.value)} />
+				<Input
+					label='Suche:'
+					placeholder='Wort oder Übersetzung eingeben'
+					className='w-96'
+					value={query}
+					onChange={(e) => setQuery(e.target.value)}
+				/>
 				<Button className='ml-4'>Erweiterte Suche</Button>
 			</div>
 			<div className='inline-block'>
