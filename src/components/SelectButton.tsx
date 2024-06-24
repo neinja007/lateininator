@@ -7,8 +7,8 @@ function SelectButton({ list, active, handleClick }: SelectButtonProps) {
 	return (
 		<button
 			onClick={() => handleClick(list)}
-			className={`p-1 px-2 font-bold rounded-lg border-2 shadow w-1/12 ${
-				active ? 'text-blue-600 bg-blue-300 border-blue-500' : 'text-gray-600 bg-gray-300 border-gray-500'
+			className={`p-1 px-3 rounded-lg border-2 font-medium shadow ${
+				active ? 'text-green-700 bg-green-200 border-green-400' : 'text-gray-700 bg-gray-200 border-gray-400'
 			}`}
 		>
 			{list.name}
