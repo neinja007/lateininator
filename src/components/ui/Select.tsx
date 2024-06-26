@@ -24,14 +24,14 @@ function Select({ label, options, handleChange, className, ...props }: SelectPro
 				{...props}
 				className={`${className} h-9 p-1 px-2 shadow border border-gray-400 rounded-lg overflow-ellipsis focus:outline-none focus:border-gray-700`}
 			>
+				<option value={''} hidden>
+					Auswählen
+				</option>
 				{Object.keys(options).map((key, i) => (
 					<option key={i} value={key}>
 						{options[key]}
 					</option>
 				))}
-				<option value={''} hidden>
-					Auswählen
-				</option>
 			</select>
 		</div>
 	);
