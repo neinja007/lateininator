@@ -5,34 +5,38 @@ import H1 from '@/components/ui/H1';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { Words, List, Word, WordInputKey } from '@/data/types';
-import { useEffect, useState } from 'react';
+import { experimental_useEffectEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import TypeIndicator from '@/components/TypeIndicator';
 import { properties } from '@/data/properties';
 import TrainerInput from '@/components/TrainerInput';
 
+const initialInputValues = {
+	conjugation: '',
+	declension: '',
+	femininum: '',
+	gender: '',
+	genitive: '',
+	neutrum: '',
+	participle: '',
+	perfect: '',
+	present: ''
+};
+
 function Page() {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
 
 	const [remainingWords, setRemainingWords] = useState<Words>([]);
 	const [selectedLists, setSelectedLists] = useState<Array<List>>([]);
+	const [maxWords, setMaxWords] = useState<number>(0);
 
 	const [activeWord, setActiveWord] = useState<Word>();
-
 	const [translationInput, setTranslationInput] = useState<string>('');
+	const [translationInputIsCorrect, setTranslationInputIsCorrect] = useState<boolean>(true);
 
-	const [inputValues, setInputValues] = useState<Record<WordInputKey, string>>({
-		conjugation: '',
-		declension: '',
-		femininum: '',
-		gender: '',
-		genitive: '',
-		neutrum: '',
-		participle: '',
-		perfect: '',
-		present: ''
-	});
+	const [inputValues, setInputValues] = useState<Record<WordInputKey, string>>(initialInputValues);
+	const [correct, setCorrect] = useState<boolean>(true);
 
 	function updateInputValues(key: WordInputKey, value: string) {
 		setInputValues((prevInputValues) => {
@@ -45,12 +49,43 @@ function Page() {
 		selectedLists.forEach((list) => {
 			ids = ids.concat(list.words);
 		});
-		setRemainingWords(words.filter((word) => ids.includes(word.id)));
+		const remainingWords = words.filter((word) => ids.includes(word.id));
+		setRemainingWords(remainingWords);
+		setMaxWords(remainingWords.length);
 	}, [selectedLists]);
 
-	useEffect(() => {
-		setActiveWord(remainingWords[Math.floor(remainingWords.length * Math.random())] || undefined);
+	const newWord = useCallback(() => {
+		setStage('test');
+		setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
+		setCorrect(true);
+		setInputValues(initialInputValues);
+		setTranslationInput('');
 	}, [remainingWords]);
+
+	const checkWord = useCallback(() => {
+		setStage('review');
+		setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
+	}, [activeWord?.id]);
+
+	useEffect(() => {
+		setTranslationInputIsCorrect(activeWord?.translation?.includes(translationInput) || false);
+	}, [activeWord?.translation, translationInput]);
+
+	useEffect(() => {
+		if (stage === 'review') {
+			let correct = true;
+
+			(
+				Object.keys(activeWord || {}).filter((key) =>
+					properties.wordKeys.includes(key as WordInputKey)
+				) as Array<WordInputKey>
+			).forEach((key) => {
+				if ((activeWord as Partial<Record<WordInputKey, string>>)[key] === inputValues[key]) correct = false;
+			});
+
+			setCorrect(correct);
+		}
+	}, [activeWord, inputValues, stage]);
 
 	function toggleList(list: List) {
 		if (selectedLists.includes(list)) {
@@ -59,6 +94,8 @@ function Page() {
 			setSelectedLists((prevSelectedLists) => [...prevSelectedLists, list]);
 		}
 	}
+
+	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
 
 	return (
 		<div>
@@ -77,7 +114,7 @@ function Page() {
 						))}
 					</div>
 					<p>Es wurden {remainingWords.length} Wörter ausgewählt.</p>
-					<Button onClick={() => setStage('test')}>Weiter</Button>
+					<Button onClick={newWord}>Weiter</Button>
 				</>
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
@@ -93,7 +130,7 @@ function Page() {
 							className={
 								'w-full' +
 								(stage === 'review'
-									? activeWord.translation?.includes(translationInput)
+									? translationInputIsCorrect
 										? ' bg-green-300 border-none'
 										: ' bg-red-300 border-none'
 									: '')
@@ -116,18 +153,28 @@ function Page() {
 									inputKey={key}
 									value={inputValues[key]}
 									handleChange={updateInputValues}
-									evaluate={stage === 'review'}
+									correct={
+										stage === 'review'
+											? (activeWord as Partial<Record<WordInputKey, string>>)[key] === inputValues[key]
+											: null
+									}
 								/>
 							);
 						})}
 					</div>
-					<Button
-						onClick={() => {
-							setStage('review');
-						}}
-					>
-						Weiter
-					</Button>
+					<div className='flex'>
+						<Button
+							onClick={() => {
+								setStage('results');
+							}}
+						>
+							Beenden
+						</Button>
+						<div className='flex-grow w-auto h-4 mx-3 my-auto rounded-full bg-gray-400'>
+							<div className='h-4 bg-green-400 rounded-full' style={{ width: `${progressPercentage}%` }} />
+						</div>
+						<Button onClick={stage === 'test' ? checkWord : newWord}>Weiter</Button>
+					</div>
 				</>
 			)}
 		</div>

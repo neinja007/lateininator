@@ -9,15 +9,11 @@ type TrainerInputProps = {
 	inputKey: WordInputKey;
 	value: string;
 	handleChange: (key: WordInputKey, value: string) => void;
-	evaluate?: boolean;
+	correct?: boolean | null;
 };
 
-function TrainerInput({ word, evaluate, inputKey, handleChange, value }: TrainerInputProps) {
-	let evaluationClasses = evaluate
-		? (word as Partial<Record<WordInputKey, string>>)[inputKey] === value
-			? 'bg-green-300 border-none'
-			: 'bg-red-300 border-none'
-		: '';
+function TrainerInput({ word, correct, inputKey, handleChange, value }: TrainerInputProps) {
+	let evaluationClasses = correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : '';
 
 	if (inputKey === 'declension' || inputKey === 'conjugation' || inputKey === 'gender') {
 		const propertyKey =
@@ -32,7 +28,7 @@ function TrainerInput({ word, evaluate, inputKey, handleChange, value }: Trainer
 				className={'w-full ' + evaluationClasses}
 				value={value}
 				handleChange={(value) => handleChange(inputKey, value)}
-				disabled={evaluate}
+				disabled={correct !== null}
 			/>
 		);
 	} else {
@@ -42,7 +38,7 @@ function TrainerInput({ word, evaluate, inputKey, handleChange, value }: Trainer
 				className={'w-full ' + evaluationClasses}
 				value={value}
 				handleChange={(value) => handleChange(inputKey, value)}
-				disabled={evaluate}
+				disabled={correct !== null}
 			/>
 		);
 	}
