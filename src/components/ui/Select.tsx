@@ -5,7 +5,7 @@ type SelectProps = {
 	options: { [key: string]: string };
 	handleChange: Dispatch<SetStateAction<any>>;
 	className?: React.CSSProperties;
-} & React.ComponentProps<'select'>;
+} & Omit<React.ComponentProps<'select'>, 'onChange'>;
 
 function Select({ label, options, handleChange, className, ...props }: SelectProps) {
 	const id = useId();
@@ -22,14 +22,14 @@ function Select({ label, options, handleChange, className, ...props }: SelectPro
 				onChange={(e) => handleChange(e.target.value)}
 				id={id}
 				{...props}
-				className={`h-9 p-1 px-2 bg-white shadow border border-gray-400 rounded-lg overflow-ellipsis focus:outline-none focus:border-gray-700 ${className}`}
+				className={`${className} h-9 p-1 px-2 shadow border border-gray-400 rounded-lg overflow-ellipsis focus:outline-none focus:border-gray-700`}
 			>
 				{Object.keys(options).map((key, i) => (
 					<option key={i} value={key}>
 						{options[key]}
 					</option>
 				))}
-				<option value='' hidden>
+				<option value={''} hidden>
 					Auswählen
 				</option>
 			</select>

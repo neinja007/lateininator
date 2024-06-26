@@ -1,8 +1,12 @@
-import { useId } from 'react';
+import { Dispatch, SetStateAction, useId } from 'react';
 
-type InputProps = { label?: string; className?: React.CSSProperties } & React.ComponentProps<'input'>;
+type InputProps = {
+	label?: string;
+	handleChange: Dispatch<SetStateAction<any>>;
+	className?: React.CSSProperties;
+} & Omit<React.ComponentProps<'input'>, 'onChange'>;
 
-function Input({ label, className, ...props }: InputProps) {
+function Input({ label, handleChange, className, ...props }: InputProps) {
 	const id = useId();
 
 	return (
@@ -14,9 +18,10 @@ function Input({ label, className, ...props }: InputProps) {
 				</>
 			)}
 			<input
+				onChange={(e) => handleChange(e.target.value)}
 				id={id}
 				{...props}
-				className={`h-9 p-1 px-2 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-700 shadow ${className}`}
+				className={`${className} h-9 p-1 px-2 border border-gray-400 rounded-lg shadow focus:outline-none focus:border-gray-700`}
 			/>
 		</div>
 	);
