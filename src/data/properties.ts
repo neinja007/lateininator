@@ -1,4 +1,16 @@
-import { Case, Gender, Modus, NounDeclension, Numerus, Person, Tense, Voice } from './types';
+import {
+	AdjectiveDeclension,
+	Case,
+	Conjugation,
+	Gender,
+	Modus,
+	NounDeclension,
+	Numerus,
+	Person,
+	Tense,
+	Voice,
+	WordInputKey
+} from './types';
 
 export const properties: {
 	case: Array<Case>;
@@ -10,6 +22,9 @@ export const properties: {
 	voice: Array<Voice>;
 	indTense: Array<Tense>;
 	konTense: Array<Exclude<Tense, 'fut1'>>;
+	wordKeys: Array<WordInputKey>;
+	conjugation: Array<Conjugation>;
+	adjectiveDeclension: Array<AdjectiveDeclension>;
 } = {
 	case: ['1', '2', '3', '4', '5', '6'],
 	person: ['1', '2', '3'],
@@ -19,5 +34,18 @@ export const properties: {
 	indTense: ['pres', 'perf', 'plus', 'fut1', 'impe'],
 	konTense: ['pres', 'perf', 'plus', 'impe'],
 	nounDeclension: ['a', 'e', 'i', 'k', 'm', 'o', 'u'],
-	gender: ['m', 'f', 'n']
+	gender: ['m', 'f', 'n'],
+	wordKeys: [
+		'declension',
+		'genitive',
+		'gender',
+		'conjugation',
+		'present',
+		'participle',
+		'perfect',
+		'femininum',
+		'neutrum'
+	],
+	conjugation: ['a', 'e', 'i', 'k', 'm'],
+	adjectiveDeclension: ['a_o', 'e_u']
 };

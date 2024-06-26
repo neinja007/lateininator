@@ -9,7 +9,8 @@ import {
 	Person,
 	Tense,
 	Type,
-	Voice
+	Voice,
+	WordInputKey
 } from './types';
 
 type MapperKeys = {
@@ -24,6 +25,7 @@ type MapperKeys = {
 	person: Record<Person, string>;
 	modus: Record<Modus, string>;
 	voice: Record<Voice, string>;
+	wordKey: Record<WordInputKey, string>;
 };
 
 export const mapper: {
@@ -93,7 +95,18 @@ export const mapper: {
 			ind: 'Indikativ',
 			kon: 'Konjunktiv'
 		},
-		voice: { act: 'Aktiv', pas: 'Passiv' }
+		voice: { act: 'Aktiv', pas: 'Passiv' },
+		wordKey: {
+			conjugation: 'Konjugation',
+			declension: 'Deklination',
+			gender: 'Geschlecht',
+			femininum: 'Nominativ Feminin',
+			neutrum: 'Nominativ Neutrum',
+			genitive: 'Genitiv Singular',
+			participle: 'Partizip Perfekt Passiv',
+			perfect: '1. Person Singular Perfekt',
+			present: '1. Person Singular Präsens'
+		}
 	},
 	short: {
 		type: {
@@ -108,9 +121,9 @@ export const mapper: {
 		nounDeclension: {
 			a: 'A Dekl.',
 			o: 'O Dekl.',
-			k: 'konsonantische Dekl.',
-			i: 'konsonantische Dekl. I',
-			m: 'konsonantische Dekl. Misch.',
+			k: 'kons. Dekl.',
+			i: 'kons. Dekl. I',
+			m: 'kons. Dekl. Misch.',
 			e: 'E Dekl.',
 			u: 'U Dekl.'
 		},
@@ -158,6 +171,17 @@ export const mapper: {
 			ind: 'Ind.',
 			kon: 'Konj.'
 		},
-		voice: { act: 'Akt.', pas: 'Pas.' }
+		voice: { act: 'Akt.', pas: 'Pas.' },
+		wordKey: {
+			conjugation: 'Konj.',
+			declension: 'Dekl.',
+			gender: 'Geschl.',
+			femininum: 'Nom. F.',
+			neutrum: 'Nom. N.',
+			genitive: 'Gen.',
+			participle: 'PPP',
+			perfect: 'Perf.',
+			present: 'Präs.'
+		}
 	}
 };

@@ -1,6 +1,14 @@
-/* eslint-disable no-unused-vars */
-
 export type Word = Base & (Verb | Noun | Adjective | Other | IrregularVerb);
+export type WordInputKey =
+	| 'declension'
+	| 'genitive'
+	| 'gender'
+	| 'conjugation'
+	| 'present'
+	| 'participle'
+	| 'perfect'
+	| 'femininum'
+	| 'neutrum';
 export type Words = Array<Word>;
 export type Type = 'noun' | 'verb' | 'adjective' | 'other' | 'irregular_verb' | 'pronoun' | 'adverb';
 export type List = { name: string; words: Array<number> };
