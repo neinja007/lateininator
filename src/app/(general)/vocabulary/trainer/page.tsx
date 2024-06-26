@@ -4,14 +4,13 @@ import SelectButton from '@/components/SelectButton';
 import H1 from '@/components/ui/H1';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
-import { Words, List, Word, NounDeclension, Gender, Conjugation, AdjectiveDeclension } from '@/data/types';
+import { Words, List, Word, WordInputKey } from '@/data/types';
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import TypeIndicator from '@/components/TypeIndicator';
-import Select from '@/components/ui/Select';
 import { properties } from '@/data/properties';
-import { mapper } from '@/data/mapper';
+import TrainerInput from '@/components/TrainerInput';
 
 function Page() {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
@@ -23,18 +22,23 @@ function Page() {
 
 	const [translationInput, setTranslationInput] = useState<string>('');
 
-	const [nounDeclensionInput, setNounDeclensionInput] = useState<NounDeclension>('');
-	const [genitiveInput, setGenitiveInput] = useState<string>('');
-	const [genderInput, setGenderInput] = useState<Gender>('');
+	const [inputValues, setInputValues] = useState<Record<WordInputKey, string>>({
+		conjugation: '',
+		declension: '',
+		femininum: '',
+		gender: '',
+		genitive: '',
+		neutrum: '',
+		participle: '',
+		perfect: '',
+		present: ''
+	});
 
-	const [conjugationInput, setConjugationInput] = useState<Conjugation>('');
-	const [presInput, setPresInput] = useState<string>('');
-	const [perfInput, setPerfInput] = useState<string>('');
-	const [plusInput, setPlusInput] = useState<string>('');
-
-	const [adjectiveDeclensionInput, setAdjectiveDeclensionInput] = useState<AdjectiveDeclension>('');
-	const [femininumInput, setFemininumInput] = useState('');
-	const [neutrumInput, setNeutrumInput] = useState('');
+	function updateInputValues(key: WordInputKey, value: string) {
+		setInputValues((prevInputValues) => {
+			return { ...prevInputValues, [key]: value };
+		});
+	}
 
 	useEffect(() => {
 		let ids: Array<number> = [];
@@ -76,7 +80,7 @@ function Page() {
 					<Button onClick={() => setStage('test')}>Weiter</Button>
 				</>
 			)}
-			{stage === 'test' && activeWord && (
+			{(stage === 'test' || stage === 'review') && activeWord && (
 				<>
 					<p className='text-2xl font-medium text-blue-700'>
 						{activeWord.word} <TypeIndicator type={activeWord.type} />
@@ -85,41 +89,40 @@ function Page() {
 						<Input
 							label='Übersetzung'
 							placeholder='mehrere Antworten durch "," trennen'
-							className='w-full'
+							readOnly={stage === 'review'}
+							className={
+								'w-full' +
+								(stage === 'review'
+									? activeWord.translation?.includes(translationInput)
+										? ' bg-green-300 border-none'
+										: ' bg-red-300 border-none'
+									: '')
+							}
 							value={translationInput}
-							onChange={(e) => setTranslationInput(e.target.value)}
+							handleChange={setTranslationInput}
 						/>
 					</div>
 					<div className='grid grid-cols-3 gap-3'>
-						{activeWord.type === 'noun' && (
-							<>
-								<Select
-									label='Deklination'
-									options={properties.nounDeclension.reduce((object: { [key: string]: string }, declension) => {
-										object[declension] = mapper.extended.nounDeclension[declension];
-										return object;
-									}, {})}
-									className='w-full'
-									value={nounDeclensionInput}
-									handleChange={setNounDeclensionInput}
+						{(
+							Object.keys(activeWord).filter((key) =>
+								properties.wordKeys.includes(key as WordInputKey)
+							) as Array<WordInputKey>
+						).map((key, i) => {
+							if (key === undefined) return;
+							return (
+								<TrainerInput
+									key={i}
+									word={activeWord}
+									inputKey={key}
+									value={inputValues[key]}
+									handleChange={updateInputValues}
+									evaluate={stage === 'review'}
 								/>
-								<Input label='Genitiv' className='w-full' />
-								<Select
-									label='Geschlecht'
-									options={properties.gender.reduce((object: { [key: string]: string }, gender) => {
-										object[gender] = mapper.extended.gender[gender];
-										return object;
-									}, {})}
-									className='w-full'
-									value={nounDeclensionInput}
-									handleChange={setNounDeclensionInput}
-								/>
-							</>
-						)}
+							);
+						})}
 					</div>
 					<Button
 						onClick={() => {
-							setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord.id));
 							setStage('review');
 						}}
 					>
