@@ -29,7 +29,7 @@ function Page() {
 					placeholder='Wort oder Übersetzung eingeben'
 					className='w-96'
 					value={query}
-					handleChange={(e) => setQuery(e.target.value)}
+					handleChange={setQuery}
 				/>
 				<Button className='ml-4'>Erweiterte Suche</Button>
 			</div>

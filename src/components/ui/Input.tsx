@@ -18,7 +18,7 @@ function Input({ label, handleChange, className, ...props }: InputProps) {
 				</>
 			)}
 			<input
-				onChange={handleChange}
+				onChange={(e) => handleChange(e.target.value)}
 				id={id}
 				{...props}
 				className={`${className} h-9 p-1 px-2 border border-gray-400 rounded-lg shadow focus:outline-none focus:border-gray-700`}
