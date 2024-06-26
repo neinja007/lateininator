@@ -42,7 +42,7 @@ function Page({ params: { id } }: { params: { id: string } }) {
 									<tbody>
 										{properties.case.map((wordCase, i) => {
 											return (
-												<tr key={i} className='border-y'>
+												<tr key={i} className='border-t'>
 													<th key={i} className='px-3 py-1 bg-gray-100'>
 														{mapper.extended.case[wordCase]}
 													</th>
@@ -71,7 +71,7 @@ function Page({ params: { id } }: { params: { id: string } }) {
 												<p>
 													{mapper.extended.modus[modus]} {mapper.extended.voice[voice]}
 												</p>
-												<table key={i} className='w-full table-fixed border shadow'>
+												<table key={i} className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 													<thead className='bg-gray-100'>
 														<tr>
 															<th />
@@ -85,7 +85,7 @@ function Page({ params: { id } }: { params: { id: string } }) {
 													<tbody>
 														{properties.numerus.map((numerus) =>
 															properties.person.map((person, i) => (
-																<tr key={i} className='border-y'>
+																<tr key={i} className='border-t'>
 																	<th className='px-3 py-1 bg-gray-100'>
 																		{mapper.short.person[person]} {mapper.extended.numerus[numerus]}
 																	</th>

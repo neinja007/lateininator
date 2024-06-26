@@ -26,7 +26,7 @@ function WordRow({ word, query }: WordRowProps) {
 
 	return (
 		<tr
-			className='cursor-pointer hover:bg-gray-100 border-y'
+			className='cursor-pointer hover:bg-gray-100 border-t'
 			onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
 		>
 			<td className='px-4 p-2'>
