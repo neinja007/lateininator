@@ -20,7 +20,7 @@ export default function RootLayout({
 		<ClerkProvider localization={deDE}>
 			<html lang='en'>
 				<body className={rubik.className}>
-					<div className='min-h-screen px-4'>
+					<div className='min-h-screen px-4 mb-16'>
 						<Navbar />
 						{children}
 					</div>
