@@ -1,9 +1,9 @@
 {
-	"plugins": ["react"],
+  "plugins": ["react"],
 	"extends": ["next/core-web-vitals", "eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime"],
   "rules": {
     "no-undef": "off",
     "no-mixed-spaces-and-tabs": "off",
-    "no-unused-vars": ["error", {"args": "none"}]
+    "no-unused-vars": "off"
   }
 }
