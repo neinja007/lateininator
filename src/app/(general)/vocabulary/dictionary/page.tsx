@@ -40,27 +40,29 @@ function Page() {
 				</b>{' '}
 				gefunden.
 			</div>
-			<div className='m-2 flex float-end'>
-				<div
-					className={`flex cursor-pointer ${view === 'cards' ? 'text-black' : 'text-gray-400'}`}
-					onClick={() => setView('cards')}
-				>
-					Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
+			{results.length > 0 && (
+				<div>
+					<div className='m-2 flex float-end mb-4'>
+						<div
+							className={`flex cursor-pointer ${view === 'cards' ? 'text-black' : 'text-gray-400'}`}
+							onClick={() => setView('cards')}
+						>
+							Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
+						</div>
+						<div
+							className={`flex cursor-pointer ${view === 'list' ? 'text-black' : 'text-gray-400'}`}
+							onClick={() => setView('list')}
+						>
+							Listenansicht <List className='ml-2' />
+						</div>
+					</div>
+					{view === 'list' ? (
+						<WordList results={results} query={query} />
+					) : (
+						<WordCards results={results} query={query} />
+					)}
 				</div>
-				<div
-					className={`flex cursor-pointer ${view === 'list' ? 'text-black' : 'text-gray-400'}`}
-					onClick={() => setView('list')}
-				>
-					Listenansicht <List className='ml-2' />
-				</div>
-			</div>
-			<div>
-				{results.length > 0 && view === 'list' ? (
-					<WordList results={results} query={query} />
-				) : (
-					<WordCards results={results} query={query} />
-				)}
-			</div>
+			)}
 		</div>
 	);
 }
