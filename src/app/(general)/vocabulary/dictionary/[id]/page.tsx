@@ -6,7 +6,9 @@ import { words } from '@/data/words';
 import { getForm, getLexicalForm } from '@/utils/wordUtils';
 import Link from 'next/link';
 
-function Page({ params: { id } }: { params: { id: string } }) {
+type PageProps = { params: { id: string } };
+
+function Page({ params: { id } }: PageProps) {
 	const word = words.find((word) => word.id.toString() === id);
 
 	return (
