@@ -33,6 +33,22 @@ function Page() {
 				/>
 				<Button className='ml-4'>Erweiterte Suche</Button>
 			</div>
+			{results.length > 0 && (
+				<div className='m-2 flex float-end mb-4'>
+					<div
+						className={`flex cursor-pointer ${view === 'cards' ? 'text-black' : 'text-gray-400'}`}
+						onClick={() => setView('cards')}
+					>
+						Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
+					</div>
+					<div
+						className={`flex cursor-pointer ${view === 'list' ? 'text-black' : 'text-gray-400'}`}
+						onClick={() => setView('list')}
+					>
+						Listenansicht <List className='ml-2' />
+					</div>
+				</div>
+			)}
 			<div className='inline-block'>
 				Wir haben{' '}
 				<b>
@@ -42,20 +58,6 @@ function Page() {
 			</div>
 			{results.length > 0 && (
 				<div>
-					<div className='m-2 flex float-end mb-4'>
-						<div
-							className={`flex cursor-pointer ${view === 'cards' ? 'text-black' : 'text-gray-400'}`}
-							onClick={() => setView('cards')}
-						>
-							Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
-						</div>
-						<div
-							className={`flex cursor-pointer ${view === 'list' ? 'text-black' : 'text-gray-400'}`}
-							onClick={() => setView('list')}
-						>
-							Listenansicht <List className='ml-2' />
-						</div>
-					</div>
 					{view === 'list' ? (
 						<WordList results={results} query={query} />
 					) : (
