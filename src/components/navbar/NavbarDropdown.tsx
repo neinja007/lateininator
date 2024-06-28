@@ -16,8 +16,8 @@ function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDro
 		<div className='flex justify-center my-auto'>
 			<div
 				className={`font-semibold mx-2 ${
-					active ? 'text-blue-700' : 'text-gray-600'
-				} cursor-pointer selection:bg-inherit`}
+					active ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'
+				} cursor-pointer`}
 				onClick={() => handleOpen((prevOpen) => (prevOpen === label ? '' : label))}
 			>
 				{label}
@@ -31,9 +31,7 @@ function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDro
 			{open === label && (
 				<>
 					<div onClick={() => handleOpen('')} className='z-40 fixed inset-0 w-full h-full'></div>
-					<div className='absolute z-50 mt-2 text-center translate-y-10 rounded-lg border shadow bg-white'>
-						{children}
-					</div>
+					<div className='absolute z-50 text-center translate-y-8 rounded-lg border shadow bg-white'>{children}</div>
 				</>
 			)}
 		</div>

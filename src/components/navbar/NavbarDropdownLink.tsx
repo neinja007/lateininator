@@ -11,8 +11,8 @@ type NavbarDropdownLinkProps = {
 function NavbarDropdownLink({ label, href, active }: NavbarDropdownLinkProps) {
 	return (
 		<Link
-			className={`p-2 px-4 my-auto font-semibold border-b last:border-b-0 block ${
-				active ? 'text-blue-700' : 'text-gray-600'
+			className={`p-2 px-4 font-semibold border-b last:border-b-0 block ${
+				active ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'
 			}`}
 			href={href}
 		>
