@@ -13,7 +13,8 @@ type TrainerInputProps = {
 };
 
 function TrainerInput({ word, correct, inputKey, handleChange, value }: TrainerInputProps) {
-	let evaluationClasses = correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : '';
+	let evaluationClasses =
+		correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : 'bg-white';
 
 	if (inputKey === 'declension' || inputKey === 'conjugation' || inputKey === 'gender') {
 		const propertyKey =
