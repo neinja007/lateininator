@@ -124,8 +124,7 @@ function Page() {
 					</p>
 					<div>
 						<Input
-							label='Übersetzung'
-							placeholder='mehrere Antworten durch "," trennen'
+							label='Übersetzung (mehrere Antworten durch "," trennen)'
 							readOnly={stage === 'review'}
 							className={
 								'w-full' +
@@ -170,8 +169,10 @@ function Page() {
 						>
 							Beenden
 						</Button>
-						<div className='flex-grow w-auto h-4 mx-3 my-auto rounded-full bg-gray-400'>
-							<div className='h-4 bg-green-400 rounded-full' style={{ width: `${progressPercentage}%` }} />
+						<div className='flex-grow w-auto h-6 mx-3 my-auto rounded-lg bg-gray-400 overflow-hidden'>
+							<div className='h-full bg-green-400 rounded-lg' style={{ width: `${progressPercentage}%` }}>
+								<span className='float-end mr-1'>{Math.floor(progressPercentage)}%</span>
+							</div>
 						</div>
 						<Button onClick={stage === 'test' ? checkWord : newWord}>Weiter</Button>
 					</div>
