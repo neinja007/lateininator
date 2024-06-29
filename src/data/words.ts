@@ -311,5 +311,508 @@ export const words: Words = [
 		type: 'other',
 		translation: ['sie sind'],
 		derivative: 29
+	},
+	{
+		id: 34,
+		word: 'quid?',
+		type: 'other',
+		translation: ['was', 'was?']
+	},
+	{
+		id: 35,
+		word: 'amare',
+		type: 'verb',
+		translation: ['lieben'],
+		conjugation: 'a',
+		forms: {
+			present: 'amo',
+			perfect: 'amavi',
+			participle: 'amatum'
+		}
+	},
+	{
+		id: 36,
+		word: 'non solum - sed etiam',
+		type: 'other',
+		translation: ['nicht nur sondern auch']
+	},
+	{
+		id: 37,
+		word: 'etiam',
+		type: 'other',
+		translation: ['auch', 'sogar']
+	},
+	{
+		id: 38,
+		word: 'lingua',
+		type: 'noun',
+		translation: ['sprache', 'zunge'],
+		genitive: 'linguae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 39,
+		word: 'latinus',
+		type: 'adjective',
+		translation: ['lateinisch'],
+		declension: 'a_o',
+		forms: {
+			femininum: 'latina',
+			neutrum: 'latinum'
+		}
+	},
+	{
+		id: 40,
+		word: 'graecus',
+		type: 'adjective',
+		translation: ['griechisch'],
+		declension: 'a_o',
+		forms: {
+			femininum: 'graeca',
+			neutrum: 'graecum'
+		}
+	},
+	{
+		id: 41,
+		word: 'liber',
+		type: 'noun',
+		translation: ['buch'],
+		genitive: 'libri',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 42,
+		word: 'quam',
+		type: 'other',
+		translation: ['wie']
+	},
+	{
+		id: 43,
+		word: 'pulcher',
+		type: 'adjective',
+		translation: ['schön', 'hübsch'],
+		declension: 'a_o',
+		forms: {
+			femininum: 'pulchra',
+			neutrum: 'pulchrum'
+		}
+	},
+	{
+		id: 44,
+		word: 'verbum',
+		type: 'noun',
+		translation: ['wort'],
+		genitive: 'verbi',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 45,
+		word: 'docere',
+		type: 'verb',
+		translation: ['lehren', 'unterrichten'],
+		conjugation: 'e',
+		forms: {
+			present: 'doceo',
+			perfect: 'docui',
+			participle: 'doctum'
+		}
+	},
+	{
+		id: 46,
+		word: 'secum',
+		type: 'other',
+		translation: ['mit sich', 'bei sich']
+	},
+	{
+		id: 47,
+		word: 'cogitare',
+		type: 'verb',
+		translation: ['denken'],
+		conjugation: 'a',
+		forms: {
+			present: 'cogito',
+			perfect: 'cogitavi',
+			participle: 'cogitatum'
+		}
+	},
+	{
+		id: 48,
+		word: 'puer',
+		type: 'noun',
+		translation: ['bub', 'junge'],
+		genitive: 'pueri',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 49,
+		word: 'puella',
+		type: 'noun',
+		translation: ['mädchen'],
+		genitive: 'puellae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 50,
+		word: 'quod',
+		type: 'other',
+		translation: ['weil'],
+		info: 'als <Konjunktion>'
+	},
+	{
+		id: 51,
+		word: 'quis?',
+		type: 'other',
+		translation: ['wer', 'wer?']
+	},
+	{
+		id: 52,
+		word: 'habere',
+		type: 'verb',
+		translation: ['haben'],
+		conjugation: 'e',
+		forms: {
+			present: 'habeo',
+			perfect: 'habui',
+			participle: 'habitum'
+		}
+	},
+	{
+		id: 53,
+		word: 'spectare',
+		type: 'verb',
+		translation: ['anschauen', 'ansehen', 'betrachten'],
+		conjugation: 'a',
+		forms: {
+			present: 'specto',
+			perfect: 'spectavi',
+			participle: 'spectatum'
+		}
+	},
+	{
+		id: 54,
+		word: 'oculus',
+		type: 'noun',
+		translation: ['auge'],
+		genitive: 'oculi',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 55,
+		word: 'tuus/a/um',
+		type: 'pronoun',
+		translation: ['dein']
+	},
+	{
+		id: 56,
+		word: 'ubi?',
+		type: 'other',
+		translation: ['wo', 'wo?']
+	},
+	{
+		id: 57,
+		word: 'monere',
+		type: 'verb',
+		translation: ['ermahnen', 'mahnen'],
+		conjugation: 'e',
+		forms: {
+			present: 'moneo',
+			perfect: 'monui',
+			participle: 'monitum'
+		}
+	},
+	{
+		id: 58,
+		word: 'iratus',
+		type: 'adjective',
+		translation: ['zornig', 'erzürnt'],
+		declension: 'a_o',
+		forms: {
+			femininum: 'irata',
+			neutrum: 'iratum'
+		}
+	},
+	{
+		id: 59,
+		word: 'iam',
+		type: 'other',
+		translation: ['schon']
+	},
+	{
+		id: 60,
+		word: 'exspectare',
+		type: 'verb',
+		translation: ['erwarten'],
+		conjugation: 'a',
+		forms: {
+			present: 'exspecto',
+			perfect: 'exspectavi',
+			participle: 'exspectatum'
+		}
+	},
+	{
+		id: 61,
+		word: 'intrare',
+		type: 'verb',
+		translation: ['eintreten', 'betreten'],
+		conjugation: 'a',
+		forms: {
+			present: 'intro',
+			perfect: 'intravi',
+			participle: 'intratum'
+		}
+	},
+	{
+		id: 62,
+		word: 'salve!',
+		type: 'other',
+		translation: ['sei gegrüßt', 'sei gegrüßt!']
+	},
+	{
+		id: 63,
+		word: 'salvete!',
+		type: 'other',
+		translation: ['seid gegrüßt', 'seid gegrüßt!']
+	},
+	{
+		id: 64,
+		word: 'magister',
+		type: 'noun',
+		translation: ['lehrer'],
+		genitive: 'magistri',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 65,
+		word: 'roma',
+		type: 'noun',
+		translation: ['rom'],
+		genitive: 'romae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 66,
+		word: 'clarus',
+		type: 'adjective',
+		translation: ['berühmt', 'hell'],
+		declension: 'a_o',
+		forms: {
+			femininum: 'clara',
+			neutrum: 'clarum'
+		}
+	},
+	{
+		id: 67,
+		word: 'monstrare',
+		type: 'verb',
+		translation: ['zeigen'],
+		conjugation: 'a',
+		forms: {
+			present: 'monstro',
+			perfect: 'monstravi',
+			participle: 'monstratum'
+		}
+	},
+	{
+		id: 68,
+		word: 'spectaculum',
+		type: 'noun',
+		translation: ['schauspiel'],
+		genitive: 'spectaculi',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 69,
+		word: 'ibi',
+		type: 'other',
+		translation: ['dort']
+	},
+	{
+		id: 70,
+		word: 'statua',
+		type: 'noun',
+		translation: ['statue'],
+		genitive: 'statuae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 71,
+		word: 'vir',
+		type: 'noun',
+		translation: ['mann'],
+		genitive: 'viri',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 72,
+		word: '-ne',
+		type: 'other',
+		info: 'Fragepartikel (wird an Wort <angehängt>; habes<ne> = hast du?)'
+	},
+	{
+		id: 73,
+		word: 'certe',
+		type: 'adverb',
+		translation: ['sicherlich', 'sicher']
+	},
+	{
+		id: 74,
+		word: 'forum',
+		type: 'noun',
+		translation: ['forum', 'marktplatz'],
+		genitive: 'fori',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 75,
+		word: 'romanus',
+		type: 'adjective',
+		translation: ['römisch'],
+		declension: 'a_o',
+		forms: {
+			femininum: 'romana',
+			neutrum: 'romanum'
+		}
+	},
+	{
+		id: 76,
+		word: 'per',
+		type: 'other',
+		translation: ['durch'],
+		info: 'mit <Akkusativ>'
+	},
+	{
+		id: 77,
+		word: 'templum',
+		type: 'noun',
+		translation: ['tempel'],
+		genitive: 'templi',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 78,
+		word: 'tam',
+		type: 'other',
+		translation: ['so']
+	},
+	{
+		id: 79,
+		word: 'deus',
+		type: 'noun',
+		translation: ['gott'],
+		genitive: 'dei',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 80,
+		word: 'dea',
+		type: 'noun',
+		translation: ['göttin'],
+		genitive: 'deae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 81,
+		word: 'ante',
+		type: 'other',
+		translation: ['vor'],
+		info: 'mit <Akkusativ>'
+	},
+	{
+		id: 82,
+		word: 'post',
+		type: 'other',
+		translation: ['nach', 'hinter'],
+		info: 'mit <Akkusativ>'
+	},
+	{
+		id: 83,
+		word: 'solum',
+		type: 'adverb',
+		translation: ['nur']
+	},
+	{
+		id: 84,
+		word: 'ad',
+		type: 'other',
+		translation: ['an', 'zu', 'bei'],
+		info: 'mit <Akkusativ>'
+	},
+	{
+		id: 85,
+		word: 'via',
+		type: 'noun',
+		translation: ['weg', 'straße'],
+		genitive: 'viae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 86,
+		word: 'ambulare',
+		type: 'verb',
+		translation: ['gehen', 'spazieren'],
+		conjugation: 'a',
+		forms: {
+			present: 'ambulo',
+			perfect: 'ambulavi',
+			participle: 'ambulatum'
+		}
+	},
+	{
+		id: 87,
+		word: 'multi/ae/a',
+		type: 'other',
+		translation: ['viele'],
+		info: 'nur <Plural>'
+	},
+	{
+		id: 88,
+		word: 'multum',
+		type: 'other',
+		translation: ['viel'],
+		info: 'nur <Neutrum Singular>'
+	},
+	{
+		id: 89,
+		word: 'aedificium',
+		type: 'noun',
+		translation: ['gebäude'],
+		genitive: 'aedificii',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 90,
+		word: 'videre',
+		type: 'verb',
+		translation: ['sehen'],
+		conjugation: 'e',
+		forms: {
+			present: 'video',
+			perfect: 'vidi',
+			participle: 'visum'
+		}
+	},
+	{
+		id: 91,
+		word: '-que',
+		type: 'other',
+		translation: ['und'],
+		info: 'an wort <angehängt> (z.B. Gaius<que>)'
 	}
 ];
