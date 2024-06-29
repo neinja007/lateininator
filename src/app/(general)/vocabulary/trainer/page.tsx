@@ -11,6 +11,7 @@ import Input from '@/components/ui/Input';
 import TypeIndicator from '@/components/TypeIndicator';
 import { properties } from '@/data/properties';
 import TrainerInput from '@/components/TrainerInput';
+import Checkbox from '@/components/ui/Checkbox';
 
 const initialInputValues = {
 	conjugation: '',
@@ -30,6 +31,8 @@ function Page() {
 	const [remainingWords, setRemainingWords] = useState<Words>([]);
 	const [selectedLists, setSelectedLists] = useState<Array<List>>([]);
 	const [maxWords, setMaxWords] = useState<number>(0);
+
+	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 
 	const [activeWord, setActiveWord] = useState<Word>();
 	const [translationInput, setTranslationInput] = useState<string>('');
@@ -64,8 +67,10 @@ function Page() {
 
 	const checkWord = useCallback(() => {
 		setStage('review');
-		setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
-	}, [activeWord?.id]);
+		if (!checkIncorrectWordsAgain || (correct && translationInputIsCorrect)) {
+			setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
+		}
+	}, [activeWord?.id, checkIncorrectWordsAgain, correct, translationInputIsCorrect]);
 
 	useEffect(() => {
 		setTranslationInputIsCorrect(activeWord?.translation?.includes(translationInput) || false);
@@ -80,10 +85,14 @@ function Page() {
 					properties.wordKeys.includes(key as WordInputKey)
 				) as Array<WordInputKey>
 			).forEach((key) => {
-				if ((activeWord as Partial<Record<WordInputKey, string>>)[key] === inputValues[key]) correct = false;
+				if ((activeWord as Partial<Record<WordInputKey, string>>)[key] !== inputValues[key]) {
+					correct = false;
+				}
 			});
 
-			setCorrect(correct);
+			if (!correct) {
+				setCorrect(false);
+			}
 		}
 	}, [activeWord, inputValues, stage]);
 
@@ -114,7 +123,16 @@ function Page() {
 						))}
 					</div>
 					<p>Es wurden {remainingWords.length} Wörter ausgewählt.</p>
-					<Button onClick={newWord}>Weiter</Button>
+					<div>
+						<Checkbox
+							checked={checkIncorrectWordsAgain}
+							handleChange={setCheckIncorrectWordsAgain}
+							label='Bei Fehlern Wörter nochmals abprüfen'
+						/>
+					</div>
+					<div>
+						<Button onClick={newWord}>Start</Button>
+					</div>
 				</>
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
