@@ -14,7 +14,7 @@ function Checkbox({ checked, handleChange, label }: CheckboxProps) {
 				onChange={(e) => handleChange(e.target.checked)}
 				className='mr-1'
 			/>
-			<label htmlFor={id} className={checked ? 'text-blue-700' : 'text-gray-600'}>
+			<label htmlFor={id} className={checked ? 'text-black' : 'text-gray-500'}>
 				{label}
 			</label>
 		</div>

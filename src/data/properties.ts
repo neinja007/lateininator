@@ -1,10 +1,10 @@
 import {
-	AdjectiveDeclension,
+	Comparison,
 	Case,
 	Conjugation,
 	Gender,
 	Modus,
-	NounDeclension,
+	Declension,
 	Numerus,
 	Person,
 	Tense,
@@ -16,7 +16,7 @@ export const properties: {
 	case: Array<Case>;
 	person: Array<Person>;
 	numerus: Array<Numerus>;
-	nounDeclension: Array<NounDeclension>;
+	declension: Array<Declension>;
 	gender: Array<Gender>;
 	modus: Array<Modus>;
 	voice: Array<Voice>;
@@ -24,7 +24,7 @@ export const properties: {
 	konTense: Array<Exclude<Tense, 'fut1'>>;
 	wordKeys: Array<WordInputKey>;
 	conjugation: Array<Conjugation>;
-	adjectiveDeclension: Array<AdjectiveDeclension>;
+	adjectiveDeclension: Array<Comparison>;
 } = {
 	case: ['1', '2', '3', '4', '5', '6'],
 	person: ['1', '2', '3'],
@@ -33,7 +33,7 @@ export const properties: {
 	voice: ['act', 'pas'],
 	indTense: ['pres', 'perf', 'plus', 'fut1', 'impe'],
 	konTense: ['pres', 'perf', 'plus', 'impe'],
-	nounDeclension: ['a', 'e', 'i', 'k', 'm', 'o', 'u'],
+	declension: ['a', 'e', 'i', 'k', 'm', 'o', 'u'],
 	gender: ['m', 'f', 'n'],
 	wordKeys: [
 		'declension',

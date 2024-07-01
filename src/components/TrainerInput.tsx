@@ -17,13 +17,11 @@ function TrainerInput({ word, correct, inputKey, handleChange, value }: TrainerI
 		correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : 'bg-white';
 
 	if (inputKey === 'declension' || inputKey === 'conjugation' || inputKey === 'gender') {
-		const propertyKey =
-			inputKey === 'declension' ? (word.type === 'noun' ? 'nounDeclension' : 'adjectiveDeclension') : inputKey;
 		return (
 			<Select
 				label={mapper.extended.wordKey[inputKey]}
-				options={properties[propertyKey].reduce((object: { [key: string]: string }, element) => {
-					object[element] = (mapper.extended[propertyKey] as { [key: string]: string })[element];
+				options={properties[inputKey].reduce((object: { [key: string]: string }, element) => {
+					object[element] = (mapper.extended[inputKey] as { [key: string]: string })[element];
 					return object;
 				}, {})}
 				className={'w-full ' + evaluationClasses}

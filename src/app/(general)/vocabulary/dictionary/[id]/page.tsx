@@ -25,7 +25,7 @@ function Page({ params: { id } }: PageProps) {
 					{(word.type === 'noun' && (
 						<>
 							<p>
-								{mapper.extended.nounDeclension[word.declension]}; {mapper.extended.gender[word.gender]}
+								{mapper.extended.declension[word.declension]}; {mapper.extended.gender[word.gender]}
 							</p>
 							<div>
 								<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>

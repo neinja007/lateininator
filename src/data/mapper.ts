@@ -1,10 +1,10 @@
 import {
-	AdjectiveDeclension,
 	Case,
+	Comparison,
 	Conjugation,
+	Declension,
 	Gender,
 	Modus,
-	NounDeclension,
 	Numerus,
 	Person,
 	Tense,
@@ -15,8 +15,8 @@ import {
 
 type MapperKeys = {
 	type: Record<Type, string>;
-	nounDeclension: Record<NounDeclension, string>;
-	adjectiveDeclension: Record<AdjectiveDeclension, string>;
+	declension: Record<Declension, string>;
+	comparison: Record<Comparison, string>;
 	case: Record<Case, string>;
 	gender: Record<Gender, string>;
 	numerus: Record<Numerus, string>;
@@ -42,7 +42,7 @@ export const mapper: {
 			irregular_verb: 'Irreguläres Verb',
 			pronoun: 'Pronomen'
 		},
-		nounDeclension: {
+		declension: {
 			a: 'A Deklination',
 			o: 'O Deklination',
 			k: 'konsonantische Deklination',
@@ -51,7 +51,7 @@ export const mapper: {
 			e: 'E Deklination',
 			u: 'U Deklination'
 		},
-		adjectiveDeclension: {
+		comparison: {
 			a_o: 'A/O Deklination',
 			e_u: 'E/U Deklination'
 		},
@@ -98,6 +98,7 @@ export const mapper: {
 		voice: { act: 'Aktiv', pas: 'Passiv' },
 		wordKey: {
 			conjugation: 'Konjugation',
+			comparison: 'Komparation',
 			declension: 'Deklination',
 			gender: 'Geschlecht',
 			femininum: 'Nominativ Feminin',
@@ -118,7 +119,7 @@ export const mapper: {
 			irregular_verb: 'Irr. Verb',
 			pronoun: 'Pron.'
 		},
-		nounDeclension: {
+		declension: {
 			a: 'A Dekl.',
 			o: 'O Dekl.',
 			k: 'kons. Dekl.',
@@ -127,7 +128,7 @@ export const mapper: {
 			e: 'E Dekl.',
 			u: 'U Dekl.'
 		},
-		adjectiveDeclension: {
+		comparison: {
 			a_o: 'A/O Dekl.',
 			e_u: 'E/U Dekl.'
 		},
@@ -173,6 +174,7 @@ export const mapper: {
 		},
 		voice: { act: 'Akt.', pas: 'Pas.' },
 		wordKey: {
+			comparison: 'Komp.',
 			conjugation: 'Konj.',
 			declension: 'Dekl.',
 			gender: 'Geschl.',

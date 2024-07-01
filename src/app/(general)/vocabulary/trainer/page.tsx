@@ -5,17 +5,19 @@ import H1 from '@/components/ui/H1';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { Words, List, Word, WordInputKey } from '@/data/types';
-import { experimental_useEffectEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { act, useCallback, useEffect, useMemo, useState } from 'react';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import TypeIndicator from '@/components/TypeIndicator';
 import { properties } from '@/data/properties';
 import TrainerInput from '@/components/TrainerInput';
 import Checkbox from '@/components/ui/Checkbox';
+import { mapper } from '@/data/mapper';
 
 const initialInputValues = {
 	conjugation: '',
 	declension: '',
+	comparison: '',
 	femininum: '',
 	gender: '',
 	genitive: '',
@@ -25,6 +27,19 @@ const initialInputValues = {
 	present: ''
 };
 
+const initialPropertiesToCheck: Array<WordInputKey> = [
+	'declension',
+	'genitive',
+	'gender',
+	'conjugation',
+	'present',
+	'perfect',
+	'participle',
+	'comparison',
+	'femininum',
+	'neutrum'
+];
+
 function Page() {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
 
@@ -33,6 +48,7 @@ function Page() {
 	const [maxWords, setMaxWords] = useState<number>(0);
 
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
+	const [propertiesToCheck, setPropertiesToCheck] = useState<Array<WordInputKey>>(initialPropertiesToCheck);
 
 	const [activeWord, setActiveWord] = useState<Word>();
 	const [translationInput, setTranslationInput] = useState<string>('');
@@ -61,40 +77,56 @@ function Page() {
 		setStage('test');
 		setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
 		setCorrect(true);
+		setTranslationInputIsCorrect(true);
 		setInputValues(initialInputValues);
 		setTranslationInput('');
 	}, [remainingWords]);
 
 	const checkWord = useCallback(() => {
 		setStage('review');
+		Object.keys(activeWord || {})
+			.filter((key) => properties.wordKeys.includes(key as WordInputKey))
+			.forEach((key) => {
+				setInputValues((prevInputValues) => {
+					const originalInput = (prevInputValues as any)[key] || '';
+					const correctInput = (activeWord as any)[key];
+					if (originalInput.trim().toLowerCase() === correctInput.trim().toLowerCase()) {
+						return { ...prevInputValues };
+					} else {
+						setCorrect(false);
+						if (originalInput.trim()) {
+							return { ...prevInputValues, [key]: `${originalInput} (${correctInput})` };
+						} else {
+							return { ...prevInputValues, [key]: `(${correctInput})` };
+						}
+					}
+				});
+			});
+		setTranslationInput((prevTranslationInput) => {
+			let correct = true;
+			prevTranslationInput.split(',').forEach((translation) => {
+				if (!activeWord?.translation?.includes(translation.trim())) correct = false;
+			});
+			if (prevTranslationInput.trim() === '') correct = false;
+			const correctTranslation = activeWord?.translation ? activeWord?.translation?.join(', ') : 'Keine Übersetzung';
+			if (correct) {
+				return activeWord?.translation?.length === prevTranslationInput.split(',').length
+					? prevTranslationInput
+					: `${prevTranslationInput} (${correctTranslation})`;
+			} else {
+				setTranslationInputIsCorrect(false);
+				if (prevTranslationInput.trim()) {
+					return `${prevTranslationInput} (${correctTranslation})`;
+				} else {
+					return `(${correctTranslation})`;
+				}
+			}
+		});
+
 		if (!checkIncorrectWordsAgain || (correct && translationInputIsCorrect)) {
 			setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
 		}
-	}, [activeWord?.id, checkIncorrectWordsAgain, correct, translationInputIsCorrect]);
-
-	useEffect(() => {
-		setTranslationInputIsCorrect(activeWord?.translation?.includes(translationInput) || false);
-	}, [activeWord?.translation, translationInput]);
-
-	useEffect(() => {
-		if (stage === 'review') {
-			let correct = true;
-
-			(
-				Object.keys(activeWord || {}).filter((key) =>
-					properties.wordKeys.includes(key as WordInputKey)
-				) as Array<WordInputKey>
-			).forEach((key) => {
-				if ((activeWord as Partial<Record<WordInputKey, string>>)[key] !== inputValues[key]) {
-					correct = false;
-				}
-			});
-
-			if (!correct) {
-				setCorrect(false);
-			}
-		}
-	}, [activeWord, inputValues, stage]);
+	}, [activeWord, checkIncorrectWordsAgain, correct, translationInputIsCorrect]);
 
 	function toggleList(list: List) {
 		if (selectedLists.includes(list)) {
@@ -111,7 +143,7 @@ function Page() {
 			<H1>Vokabeltrainer</H1>
 			{stage === 'settings' && (
 				<>
-					<p>Wähle aus, welche Wörter du lernen möchtest:</p>
+					<p>Wähle aus, welche Lektionen du lernen möchtest:</p>
 					<div className='space-x-3'>
 						{lists.map((list, i) => (
 							<SelectButton
@@ -123,6 +155,50 @@ function Page() {
 						))}
 					</div>
 					<p>Es wurden {remainingWords.length} Wörter ausgewählt.</p>
+					<hr />
+					<p>Wähle aus, was abgefragt werden soll:</p>
+					<div className='grid grid-cols-3'>
+						<div>
+							Nomen:
+							{(['declension', 'genitive', 'gender'] as Array<WordInputKey>).map((property) => (
+								<Checkbox
+									key={property}
+									checked={propertiesToCheck.includes(property)}
+									handleChange={(checked) =>
+										setPropertiesToCheck((prev) => (checked ? [...prev, property] : prev.filter((p) => p !== property)))
+									}
+									label={mapper.extended.wordKey[property]}
+								/>
+							))}
+						</div>
+						<div>
+							Verben:
+							{(['conjugation', 'present', 'perfect', 'participle'] as Array<WordInputKey>).map((property) => (
+								<Checkbox
+									key={property}
+									checked={propertiesToCheck.includes(property)}
+									handleChange={(checked) =>
+										setPropertiesToCheck((prev) => (checked ? [...prev, property] : prev.filter((p) => p !== property)))
+									}
+									label={mapper.extended.wordKey[property]}
+								/>
+							))}
+						</div>
+						<div>
+							Adjektive:
+							{(['comparison', 'femininum', 'neutrum'] as Array<WordInputKey>).map((property) => (
+								<Checkbox
+									key={property}
+									checked={propertiesToCheck.includes(property)}
+									handleChange={(checked) =>
+										setPropertiesToCheck((prev) => (checked ? [...prev, property] : prev.filter((p) => p !== property)))
+									}
+									label={mapper.extended.wordKey[property]}
+								/>
+							))}
+						</div>
+					</div>
+					<hr />
 					<div>
 						<Checkbox
 							checked={checkIncorrectWordsAgain}
@@ -162,7 +238,7 @@ function Page() {
 								properties.wordKeys.includes(key as WordInputKey)
 							) as Array<WordInputKey>
 						).map((key, i) => {
-							if (key === undefined) return;
+							if (key === undefined || !propertiesToCheck.includes(key) || (activeWord as any)[key] === '-') return;
 							return (
 								<TrainerInput
 									key={i}

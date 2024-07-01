@@ -1,6 +1,7 @@
 export type Word = Base & (Verb | Noun | Adjective | Other | IrregularVerb);
 export type WordInputKey =
 	| 'declension'
+	| 'comparison'
 	| 'genitive'
 	| 'gender'
 	| 'conjugation'
@@ -24,7 +25,7 @@ export type Base = {
 
 export type Noun = {
 	type: 'noun';
-	declension: NounDeclension;
+	declension: Declension;
 	genitive: string;
 	gender: Gender;
 };
@@ -32,20 +33,16 @@ export type Noun = {
 export type Verb = {
 	type: 'verb';
 	conjugation: Conjugation;
-	forms: {
-		present: string;
-		perfect: string;
-		participle: string;
-	};
+	present: string;
+	perfect: string;
+	participle: string;
 };
 
 export type Adjective = {
 	type: 'adjective';
-	declension: AdjectiveDeclension;
-	forms: {
-		femininum: string;
-		neutrum: string;
-	};
+	comparison: Comparison;
+	femininum: string;
+	neutrum: string;
 };
 
 export type Other = {
@@ -54,11 +51,9 @@ export type Other = {
 
 export type IrregularVerb = {
 	type: 'irregular_verb';
-	forms: {
-		present: string;
-		perfect: string;
-		participle: string;
-	};
+	present: string;
+	perfect: string;
+	participle: string;
 };
 
 export type Conjugation = 'a' | 'e' | 'i' | 'm' | 'k';
@@ -68,8 +63,8 @@ export type Tense = 'pres' | 'impe' | 'fut1' | 'perf' | 'plus';
 export type Numerus = 'sin' | 'plu';
 export type Person = '1' | '2' | '3';
 export type Case = '1' | '2' | '3' | '4' | '5' | '6';
-export type NounDeclension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
-export type AdjectiveDeclension = 'a_o' | 'e_u';
+export type Declension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
+export type Comparison = 'a_o' | 'e_u';
 export type Gender = 'm' | 'f' | 'n';
 
 export type ConditionalTense<T, M> = M extends 'kon' ? Exclude<T, 'fut1'> : T;
@@ -89,7 +84,7 @@ export type Endings = {
 		};
 	};
 	noun: {
-		[D in NounDeclension]: {
+		[D in Declension]: {
 			[G in Gender]: {
 				[N in Numerus]: {
 					[C in Case]: string;
