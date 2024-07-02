@@ -9,7 +9,8 @@ import {
 	Person,
 	Tense,
 	Voice,
-	WordInputKey
+	WordInputKey,
+	Type
 } from './types';
 
 export const properties: {
@@ -22,9 +23,18 @@ export const properties: {
 	voice: Array<Voice>;
 	indTense: Array<Tense>;
 	konTense: Array<Exclude<Tense, 'fut1'>>;
-	wordKeys: Array<WordInputKey>;
+	wordKeys: {
+		noun: ['declension', 'genitive', 'gender'];
+		verb: ['conjugation', 'present', 'participle', 'perfect'];
+		irregular_verb: ['present', 'participle', 'perfect'];
+		adjective: ['comparison', 'femininum', 'neutrum'];
+		other: [];
+		adverb: [];
+		pronoun: [];
+	};
 	conjugation: Array<Conjugation>;
 	adjectiveDeclension: Array<Comparison>;
+	types: Array<Type>;
 } = {
 	case: ['1', '2', '3', '4', '5', '6'],
 	person: ['1', '2', '3'],
@@ -35,17 +45,16 @@ export const properties: {
 	konTense: ['pres', 'perf', 'plus', 'impe'],
 	declension: ['a', 'e', 'i', 'k', 'm', 'o', 'u'],
 	gender: ['m', 'f', 'n'],
-	wordKeys: [
-		'declension',
-		'genitive',
-		'gender',
-		'conjugation',
-		'present',
-		'participle',
-		'perfect',
-		'femininum',
-		'neutrum'
-	],
+	wordKeys: {
+		noun: ['declension', 'genitive', 'gender'],
+		verb: ['conjugation', 'present', 'participle', 'perfect'],
+		irregular_verb: ['present', 'participle', 'perfect'],
+		adjective: ['comparison', 'femininum', 'neutrum'],
+		other: [],
+		adverb: [],
+		pronoun: []
+	},
 	conjugation: ['a', 'e', 'i', 'k', 'm'],
-	adjectiveDeclension: ['a_o', 'e_u']
+	adjectiveDeclension: ['a_o', 'e_u'],
+	types: ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun']
 };
