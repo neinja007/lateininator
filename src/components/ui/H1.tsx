@@ -2,7 +2,7 @@ type H1Props = { children: React.ReactNode; className?: React.CSSProperties } & 
 
 function H1({ children, className, ...props }: H1Props) {
 	return (
-		<h1 {...props} className={`text-3xl font-bold ${className}`}>
+		<h1 {...props} className={`text-3xl text-center font-bold text-blue-700 ${className}`}>
 			{children}
 		</h1>
 	);
