@@ -5,6 +5,7 @@ import { properties } from '@/data/properties';
 import { words } from '@/data/words';
 import { getForm, getLexicalForm } from '@/utils/wordUtils';
 import Link from 'next/link';
+import { ArrowLeft } from 'react-feather';
 
 type PageProps = { params: { id: string } };
 
@@ -15,12 +16,19 @@ function Page({ params: { id } }: PageProps) {
 		<div>
 			{word?.word ? (
 				<>
-					<div className='float-end'>
-						<TypeIndicator type={word.type} />
+					<div className='grid grid-cols-3'>
+						<div className='float-start'>
+							<Link href={'/vocabulary/dictionary'} className='text-gray-500 hover:text-blue-500'>
+								<ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
+							</Link>
+						</div>
+						<H1>
+							{word.word} {getLexicalForm(word)}
+						</H1>
+						<div className='text-right'>
+							<TypeIndicator type={word.type} />
+						</div>
 					</div>
-					<H1>
-						{word.word} {getLexicalForm(word)}
-					</H1>
 					<p>{word.translation?.join(', ')}</p>
 					{(word.type === 'noun' && (
 						<>
