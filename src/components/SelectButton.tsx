@@ -1,18 +1,17 @@
-import { List } from '@/data/types';
 import { Dispatch, SetStateAction } from 'react';
+import Button from './ui/Button';
 
-type SelectButtonProps = { list: List; active: boolean; handleClick: Dispatch<SetStateAction<List>> };
+type SelectButtonProps = {
+	label: string;
+	active: boolean;
+	handleClick: Dispatch<SetStateAction<any>>;
+};
 
-function SelectButton({ list, active, handleClick }: SelectButtonProps) {
+function SelectButton({ label, active, handleClick }: SelectButtonProps) {
 	return (
-		<button
-			onClick={() => handleClick(list)}
-			className={`p-1 px-3 rounded-lg border shadow ${
-				active ? 'text-green-700 bg-green-200 border-green-400' : 'text-gray-700 bg-gray-200 border-gray-400'
-			}`}
-		>
-			{list.name}
-		</button>
+		<Button onClick={handleClick} className={`${active ? 'text-sky-100 bg-blue-600 border-blue-800' : ''}`}>
+			{label}
+		</Button>
 	);
 }
 
