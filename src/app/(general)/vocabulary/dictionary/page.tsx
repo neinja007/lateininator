@@ -36,13 +36,13 @@ function Page() {
 			{results.length > 0 && (
 				<div className='m-2 flex float-end mb-4'>
 					<div
-						className={`flex cursor-pointer ${view === 'cards' ? 'text-black' : 'text-gray-400'}`}
+						className={`flex cursor-pointer ${view === 'cards' ? 'text-blue-700' : 'text-gray-400'}`}
 						onClick={() => setView('cards')}
 					>
 						Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
 					</div>
 					<div
-						className={`flex cursor-pointer ${view === 'list' ? 'text-black' : 'text-gray-400'}`}
+						className={`flex cursor-pointer ${view === 'list' ? 'text-blue-700' : 'text-gray-400'}`}
 						onClick={() => setView('list')}
 					>
 						Listenansicht <List className='ml-2' />
@@ -51,7 +51,7 @@ function Page() {
 			)}
 			<div className='inline-block'>
 				Wir haben{' '}
-				<b>
+				<b className='text-blue-700'>
 					{results.length} {results.length === 1 ? 'Ergebnis' : 'Ergebnisse'}
 				</b>{' '}
 				gefunden.
