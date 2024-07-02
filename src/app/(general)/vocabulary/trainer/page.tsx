@@ -77,11 +77,47 @@ function Page() {
 	const newWord = useCallback(() => {
 		setStage('test');
 		setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
+		resetInputs();
+	}, [remainingWords]);
+
+	const resetInputs = () => {
 		setCorrect(true);
 		setTranslationInputIsCorrect(true);
 		setInputValues(initialInputValues);
 		setTranslationInput('');
-	}, [remainingWords]);
+	};
+
+	const validateInput = (originalInput: string, correctInput: string) => {
+		if (originalInput.trim().toLowerCase() === correctInput.trim().toLowerCase()) {
+			return originalInput;
+		} else {
+			setCorrect(false);
+			return originalInput.trim() ? `${originalInput} (${correctInput})` : `(${correctInput})`;
+		}
+	};
+
+	const validateTranslation = useCallback(
+		(prevTranslationInput: string, correctTranslation: string) => {
+			let AllTranslationsAreCorrect = true;
+
+			prevTranslationInput.split(',').forEach((translation) => {
+				if (!activeWord?.translation?.includes(translation.trim())) AllTranslationsAreCorrect = false;
+			});
+			if (prevTranslationInput.trim() === '') AllTranslationsAreCorrect = false;
+
+			if (AllTranslationsAreCorrect) {
+				return activeWord?.translation?.length === prevTranslationInput.split(',').length
+					? prevTranslationInput
+					: `${prevTranslationInput} (${correctTranslation})`;
+			} else {
+				setTranslationInputIsCorrect(false);
+				return prevTranslationInput.trim()
+					? `${prevTranslationInput} (${correctTranslation})`
+					: `(${correctTranslation})`;
+			}
+		},
+		[activeWord]
+	);
 
 	const checkWord = useCallback(() => {
 		setStage('review');
@@ -92,45 +128,31 @@ function Page() {
 					setInputValues((prevInputValues) => {
 						const originalInput = (prevInputValues as any)[key] || '';
 						const correctInput = (activeWord as any)[key];
-						if (originalInput.trim().toLowerCase() === correctInput.trim().toLowerCase()) {
-							return { ...prevInputValues };
-						} else {
-							setCorrect(false);
-							if (originalInput.trim()) {
-								return { ...prevInputValues, [key]: `${originalInput} (${correctInput})` };
-							} else {
-								return { ...prevInputValues, [key]: `(${correctInput})` };
-							}
-						}
+						return { ...prevInputValues, [key]: validateInput(originalInput, correctInput) };
 					});
 				});
-			checkTranslation &&
-				setTranslationInput((prevTranslationInput) => {
-					let correct = true;
-					prevTranslationInput.split(',').forEach((translation) => {
-						if (!activeWord.translation?.includes(translation.trim())) correct = false;
-					});
-					if (prevTranslationInput.trim() === '') correct = false;
-					const correctTranslation = activeWord.translation ? activeWord.translation?.join(', ') : 'Keine Übersetzung';
-					if (correct) {
-						return activeWord.translation?.length === prevTranslationInput.split(',').length
-							? prevTranslationInput
-							: `${prevTranslationInput} (${correctTranslation})`;
-					} else {
-						setTranslationInputIsCorrect(false);
-						if (prevTranslationInput.trim()) {
-							return `${prevTranslationInput} (${correctTranslation})`;
-						} else {
-							return `(${correctTranslation})`;
-						}
-					}
-				});
+
+			if (checkTranslation) {
+				const correctTranslation = activeWord.translation ? activeWord.translation.join(', ') : 'Keine Übersetzung';
+				setTranslationInput((prevTranslationInput) => validateTranslation(prevTranslationInput, correctTranslation));
+
+				// translation state is not updated at this time, so we need to check the input value
+			}
 		}
 
-		if (!checkIncorrectWordsAgain || (correct && translationInputIsCorrect)) {
+		if ((correct && translationInputIsCorrect) || !checkIncorrectWordsAgain) {
+			console.log('correct', correct, 'translationInputIsCorrect', translationInputIsCorrect);
 			setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
 		}
-	}, [activeWord, checkIncorrectWordsAgain, checkTranslation, correct, propertiesToCheck, translationInputIsCorrect]);
+	}, [
+		activeWord,
+		checkIncorrectWordsAgain,
+		checkTranslation,
+		correct,
+		propertiesToCheck,
+		translationInputIsCorrect,
+		validateTranslation
+	]);
 
 	useEffect(() => {
 		properties.types.forEach((type) => {
