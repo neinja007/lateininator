@@ -61,14 +61,16 @@ const Page = () => {
 	const [inputValues, setInputValues] = useState<Record<WordInputKey, string>>(initialInputValues);
 
 	useEffect(() => {
-		let ids: Array<number> = [];
-		selectedLists.forEach((list) => {
-			ids = ids.concat(list.words);
-		});
-		const remainingWords = words.filter((word) => ids.includes(word.id) && typesToCheck.includes(word.type));
-		setRemainingWords(remainingWords);
-		setMaxWords(remainingWords.length);
-	}, [selectedLists, typesToCheck]);
+		if (stage === 'settings') {
+			let ids: Array<number> = [];
+			selectedLists.forEach((list) => {
+				ids = ids.concat(list.words);
+			});
+			const remainingWords = words.filter((word) => ids.includes(word.id) && typesToCheck.includes(word.type));
+			setRemainingWords(remainingWords);
+			setMaxWords(remainingWords.length);
+		}
+	}, [selectedLists, stage, typesToCheck]);
 
 	useEffect(() => {
 		properties.types.forEach((type) => {
@@ -78,11 +80,12 @@ const Page = () => {
 		});
 	}, [typesToCheck]);
 
+	console.log(stage);
+
 	const handleContinue = () => {
 		if (stage === 'test') {
 			if (!activeWord) {
-				setStage('results');
-				return;
+				throw new Error('activeWord is undefined');
 			}
 
 			setStage('review');
@@ -102,6 +105,10 @@ const Page = () => {
 				setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
 			}
 		} else {
+			if (remainingWords.length === 0) {
+				setStage('results');
+				return;
+			}
 			setStage('test');
 
 			setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
@@ -266,6 +273,12 @@ const Page = () => {
 						</div>
 						<Button onClick={handleContinue}>Weiter</Button>
 					</div>
+				</>
+			)}
+			{stage === 'results' && (
+				<>
+					<p>Es wurden {maxWords - remainingWords.length} verschiedene Wörter abgefragt.</p>
+					<Button onClick={() => setStage('settings')}>Neu Laden</Button>
 				</>
 			)}
 		</div>
