@@ -25,7 +25,7 @@ export const properties: {
 	konTense: Array<Exclude<Tense, 'fut1'>>;
 	wordKeys: {
 		noun: ['declension', 'genitive', 'gender'];
-		verb: ['conjugation', 'present', 'participle', 'perfect'];
+		verb: ['conjugation', 'present', 'perfect', 'participle'];
 		irregular_verb: ['present', 'participle', 'perfect'];
 		adjective: ['comparison', 'femininum', 'neutrum'];
 		other: [];
@@ -47,7 +47,7 @@ export const properties: {
 	gender: ['m', 'f', 'n'],
 	wordKeys: {
 		noun: ['declension', 'genitive', 'gender'],
-		verb: ['conjugation', 'present', 'participle', 'perfect'],
+		verb: ['conjugation', 'present', 'perfect', 'participle'],
 		irregular_verb: ['present', 'participle', 'perfect'],
 		adjective: ['comparison', 'femininum', 'neutrum'],
 		other: [],
