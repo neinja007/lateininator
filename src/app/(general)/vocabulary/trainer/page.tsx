@@ -13,6 +13,7 @@ import { properties } from '@/data/properties';
 import TrainerInput from '@/components/TrainerInput';
 import Checkbox from '@/components/ui/Checkbox';
 import { mapper } from '@/data/mapper';
+import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 
 const initialInputValues = {
 	conjugation: '',
@@ -57,12 +58,7 @@ function Page() {
 	const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
 
 	const [translationInput, setTranslationInput] = useState<string>('');
-	const [translationInputIsCorrect, setTranslationInputIsCorrect] = useState<boolean>(true);
-
 	const [inputValues, setInputValues] = useState<Record<WordInputKey, string>>(initialInputValues);
-	const [correct, setCorrect] = useState<boolean>(true);
-
-	const [progressPercentage, setProgressPercentage] = useState<number>(0);
 
 	useEffect(() => {
 		let ids: Array<number> = [];
@@ -74,86 +70,6 @@ function Page() {
 		setMaxWords(remainingWords.length);
 	}, [selectedLists, typesToCheck]);
 
-	const newWord = useCallback(() => {
-		setStage('test');
-		setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
-		resetInputs();
-	}, [remainingWords]);
-
-	const resetInputs = () => {
-		setCorrect(true);
-		setTranslationInputIsCorrect(true);
-		setInputValues(initialInputValues);
-		setTranslationInput('');
-	};
-
-	const validateInput = (originalInput: string, correctInput: string) => {
-		if (originalInput.trim().toLowerCase() === correctInput.trim().toLowerCase()) {
-			return originalInput;
-		} else {
-			setCorrect(false);
-			return originalInput.trim() ? `${originalInput} (${correctInput})` : `(${correctInput})`;
-		}
-	};
-
-	const validateTranslation = useCallback(
-		(prevTranslationInput: string, correctTranslation: string) => {
-			let AllTranslationsAreCorrect = true;
-
-			prevTranslationInput.split(',').forEach((translation) => {
-				if (!activeWord?.translation?.includes(translation.trim())) AllTranslationsAreCorrect = false;
-			});
-			if (prevTranslationInput.trim() === '') AllTranslationsAreCorrect = false;
-
-			if (AllTranslationsAreCorrect) {
-				return activeWord?.translation?.length === prevTranslationInput.split(',').length
-					? prevTranslationInput
-					: `${prevTranslationInput} (${correctTranslation})`;
-			} else {
-				setTranslationInputIsCorrect(false);
-				return prevTranslationInput.trim()
-					? `${prevTranslationInput} (${correctTranslation})`
-					: `(${correctTranslation})`;
-			}
-		},
-		[activeWord]
-	);
-
-	const checkWord = useCallback(() => {
-		setStage('review');
-		if (activeWord) {
-			properties.wordKeys[activeWord.type]
-				.filter((key) => propertiesToCheck.includes(key))
-				.forEach((key) => {
-					setInputValues((prevInputValues) => {
-						const originalInput = (prevInputValues as any)[key] || '';
-						const correctInput = (activeWord as any)[key];
-						return { ...prevInputValues, [key]: validateInput(originalInput, correctInput) };
-					});
-				});
-
-			if (checkTranslation) {
-				const correctTranslation = activeWord.translation ? activeWord.translation.join(', ') : 'Keine Übersetzung';
-				setTranslationInput((prevTranslationInput) => validateTranslation(prevTranslationInput, correctTranslation));
-
-				// translation state is not updated at this time, so we need to check the input value
-			}
-		}
-
-		if ((correct && translationInputIsCorrect) || !checkIncorrectWordsAgain) {
-			console.log('correct', correct, 'translationInputIsCorrect', translationInputIsCorrect);
-			setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
-		}
-	}, [
-		activeWord,
-		checkIncorrectWordsAgain,
-		checkTranslation,
-		correct,
-		propertiesToCheck,
-		translationInputIsCorrect,
-		validateTranslation
-	]);
-
 	useEffect(() => {
 		properties.types.forEach((type) => {
 			if (!typesToCheck.includes(type)) {
@@ -162,9 +78,43 @@ function Page() {
 		});
 	}, [typesToCheck]);
 
-	useEffect(() => {
-		setProgressPercentage(((maxWords - remainingWords.length) / maxWords) * 100);
-	}, [remainingWords, maxWords]);
+	const handleContinue = () => {
+		if (stage === 'test') {
+			if (!activeWord) {
+				setStage('results');
+				return;
+			}
+
+			setStage('review');
+
+			if (
+				(!properties.wordKeys[activeWord.type]
+					.filter((key) => propertiesToCheck.includes(key))
+					.some((key) => {
+						const originalInput = (inputValues as any)[key] || '';
+						const correctInput = (activeWord as any)[key];
+
+						return !compareValues(originalInput, correctInput);
+					}) &&
+					(!activeWord.translation || compareValues(translationInput, activeWord.translation, true))) ||
+				!checkIncorrectWordsAgain
+			) {
+				setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
+			}
+		} else {
+			setStage('test');
+
+			setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
+			resetInputs();
+		}
+	};
+
+	const resetInputs = () => {
+		setInputValues(initialInputValues);
+		setTranslationInput('');
+	};
+
+	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
 
 	return (
 		<div>
@@ -250,7 +200,7 @@ function Page() {
 						/>
 					</div>
 					<div>
-						<Button onClick={newWord}>Start</Button>
+						<Button onClick={handleContinue}>Start</Button>
 					</div>
 				</>
 			)}
@@ -260,19 +210,23 @@ function Page() {
 						{activeWord.word} <TypeIndicator type={activeWord.type} />
 					</p>
 					<div>
-						{checkTranslation && (
+						{checkTranslation && activeWord.translation && (
 							<Input
 								label='Übersetzung (mehrere Antworten durch "," trennen)'
 								readOnly={stage === 'review'}
 								className={
 									'w-full' +
 									(stage === 'review'
-										? translationInputIsCorrect
+										? compareValues(translationInput, activeWord.translation, true)
 											? ' bg-green-300 border-none'
 											: ' bg-red-300 border-none'
 										: '')
 								}
-								value={translationInput}
+								value={
+									stage === 'review'
+										? getInputWithCorrectValue(translationInput, activeWord.translation, true)
+										: translationInput
+								}
 								handleChange={setTranslationInput}
 							/>
 						)}
@@ -286,13 +240,13 @@ function Page() {
 									key={i}
 									word={activeWord}
 									inputKey={key}
-									value={inputValues[key]}
+									value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
 									handleChange={(key: string, value: string) =>
 										setInputValues((prevInputValues) => {
 											return { ...prevInputValues, [key]: value };
 										})
 									}
-									correct={stage === 'review' ? value === inputValues[key] : null}
+									correct={stage === 'review' ? compareValues(inputValues[key], value) : null}
 								/>
 							);
 						})}
@@ -310,7 +264,7 @@ function Page() {
 								<span className='float-end mr-1'>{Math.floor(progressPercentage)}%</span>
 							</div>
 						</div>
-						<Button onClick={stage === 'test' ? checkWord : newWord}>Weiter</Button>
+						<Button onClick={handleContinue}>Weiter</Button>
 					</div>
 				</>
 			)}
