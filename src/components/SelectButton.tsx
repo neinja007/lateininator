@@ -7,7 +7,7 @@ type SelectButtonProps = {
 	handleClick: Dispatch<SetStateAction<any>>;
 };
 
-function SelectButton({ label, active, handleClick }: SelectButtonProps) {
+const SelectButton = ({ label, active, handleClick }: SelectButtonProps) => {
 	return (
 		<button
 			onClick={handleClick}
@@ -18,6 +18,6 @@ function SelectButton({ label, active, handleClick }: SelectButtonProps) {
 			{label}
 		</button>
 	);
-}
+};
 
 export default SelectButton;

@@ -1,6 +1,6 @@
 type ButtonProps = { children: React.ReactNode; className?: React.CSSProperties } & React.ComponentProps<'button'>;
 
-function Button({ children, className, ...props }: ButtonProps) {
+const Button = ({ children, className, ...props }: ButtonProps) => {
 	return (
 		<button
 			{...props}
@@ -9,6 +9,6 @@ function Button({ children, className, ...props }: ButtonProps) {
 			{children}
 		</button>
 	);
-}
+};
 
 export default Button;

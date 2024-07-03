@@ -10,7 +10,7 @@ import H1 from '@/components/ui/H1';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
-function Page() {
+const Page = () => {
 	const [query, setQuery] = useState<string>('');
 	const [results, setResults] = useState<Words>([]);
 	const [view, setView] = useState<'cards' | 'list'>('cards');
@@ -67,6 +67,6 @@ function Page() {
 			)}
 		</div>
 	);
-}
+};
 
 export default Page;

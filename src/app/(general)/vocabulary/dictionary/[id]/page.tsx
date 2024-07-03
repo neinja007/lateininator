@@ -9,7 +9,7 @@ import { ArrowLeft } from 'react-feather';
 
 type PageProps = { params: { id: string } };
 
-function Page({ params: { id } }: PageProps) {
+const Page = ({ params: { id } }: PageProps) => {
 	const word = words.find((word) => word.id.toString() === id);
 
 	return (
@@ -127,6 +127,6 @@ function Page({ params: { id } }: PageProps) {
 			)}
 		</div>
 	);
-}
+};
 
 export default Page;

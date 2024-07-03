@@ -1,15 +1,15 @@
 import { endings } from '@/data/endings';
 import { Word, Person, Numerus, Tense, Voice, Modus, Case } from '@/data/types';
 
-export function getLexicalForm(word: Word) {
+export const getLexicalForm = (word: Word) => {
 	if (word.type === 'noun') {
 		return `-${endings.noun[word.declension][word.gender].sin[2]}, ${word.gender}.`;
 	} else if (word.type === 'verb') {
 		return `-${endings.verb[word.conjugation].ind.act.pres.sin[1]}, ${word.conjugation}.`;
 	}
-}
+};
 
-export function getBase(word: Word): string {
+export const getBase = (word: Word): string => {
 	let base = '';
 	if (word.type === 'noun') {
 		if (word.declension === 'a') {
@@ -21,9 +21,9 @@ export function getBase(word: Word): string {
 		base = word.word.substring(0, word.word.length - 3);
 	}
 	return base;
-}
+};
 
-export function getForm(
+export const getForm = (
 	word: Word,
 	info:
 		| {
@@ -37,7 +37,7 @@ export function getForm(
 				numerus: Numerus;
 				wordCase: Case;
 		  }
-): string {
+): string => {
 	let ending: string | undefined = undefined;
 	if (word.type === 'noun') {
 		if ('numerus' in info && 'wordCase' in info) {
@@ -58,4 +58,4 @@ export function getForm(
 		return word.word;
 	}
 	return getBase(word) + ending;
-}
+};

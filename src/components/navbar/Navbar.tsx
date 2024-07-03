@@ -46,7 +46,7 @@ const links: Array<Link | Dropdown> = [
 	{ label: 'Kompetenz', href: '/competence' }
 ];
 
-function Navbar() {
+const Navbar = () => {
 	const [open, setOpen] = useState('');
 	const pathname = usePathname();
 	const pathnameSegments = pathname.split('/').map((segment) => '/' + segment);
@@ -96,6 +96,6 @@ function Navbar() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Navbar;

@@ -11,7 +11,7 @@ type NavbarDropdownProps = {
 	active: boolean;
 };
 
-function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDropdownProps) {
+const NavbarDropdown = ({ label, children, open, handleOpen, active }: NavbarDropdownProps) => {
 	return (
 		<div className='flex justify-center my-auto'>
 			<div
@@ -36,6 +36,6 @@ function NavbarDropdown({ label, children, open, handleOpen, active }: NavbarDro
 			)}
 		</div>
 	);
-}
+};
 
 export default NavbarDropdown;

@@ -3,7 +3,7 @@ import WordRow from './WordRow';
 
 type WordListProps = { results: Words; query: string };
 
-function WordList({ results, query }: WordListProps) {
+const WordList = ({ results, query }: WordListProps) => {
 	return (
 		<table className='w-full table-fixed rounded-lg overflow-hidden shadow text-left'>
 			<thead>
@@ -21,6 +21,6 @@ function WordList({ results, query }: WordListProps) {
 			</tbody>
 		</table>
 	);
-}
+};
 
 export default WordList;

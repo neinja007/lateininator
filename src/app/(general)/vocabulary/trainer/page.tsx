@@ -5,7 +5,7 @@ import H1 from '@/components/ui/H1';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { Words, List, Word, WordInputKey, Type } from '@/data/types';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import TypeIndicator from '@/components/TypeIndicator';
@@ -43,7 +43,7 @@ const initialPropertiesToCheck: Array<WordInputKey> = [
 
 const initialTypesToCheck: Array<Type> = ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun'];
 
-function Page() {
+const Page = () => {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
 
 	const [remainingWords, setRemainingWords] = useState<Words>([]);
@@ -270,6 +270,6 @@ function Page() {
 			)}
 		</div>
 	);
-}
+};
 
 export default Page;

@@ -3,7 +3,7 @@ import { Type } from '@/data/types';
 
 type TypeIndicatorProps = { type: Type };
 
-function TypeIndicator({ type }: TypeIndicatorProps) {
+const TypeIndicator = ({ type }: TypeIndicatorProps) => {
 	let color: string;
 
 	switch (type) {
@@ -31,6 +31,6 @@ function TypeIndicator({ type }: TypeIndicatorProps) {
 	return (
 		<span className={`p-1 px-2 text-sm uppercase font-medium rounded-full ${color}`}>{mapper.extended.type[type]}</span>
 	);
-}
+};
 
 export default TypeIndicator;

@@ -6,7 +6,7 @@ type InputProps = {
 	className?: React.CSSProperties;
 } & Omit<React.ComponentProps<'input'>, 'onChange'>;
 
-function Input({ label, handleChange, className, ...props }: InputProps) {
+const Input = ({ label, handleChange, className, ...props }: InputProps) => {
 	const id = useId();
 
 	return (
@@ -25,6 +25,6 @@ function Input({ label, handleChange, className, ...props }: InputProps) {
 			/>
 		</div>
 	);
-}
+};
 
 export default Input;

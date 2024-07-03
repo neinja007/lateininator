@@ -7,7 +7,7 @@ type SelectProps = {
 	className?: React.CSSProperties;
 } & Omit<React.ComponentProps<'select'>, 'onChange'>;
 
-function Select({ label, options, handleChange, className, ...props }: SelectProps) {
+const Select = ({ label, options, handleChange, className, ...props }: SelectProps) => {
 	const id = useId();
 
 	return (
@@ -35,6 +35,6 @@ function Select({ label, options, handleChange, className, ...props }: SelectPro
 			</select>
 		</div>
 	);
-}
+};
 
 export default Select;

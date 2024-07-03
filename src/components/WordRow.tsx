@@ -9,7 +9,7 @@ type WordRowProps = {
 	query?: string;
 };
 
-function WordRow({ word, query }: WordRowProps) {
+const WordRow = ({ word, query }: WordRowProps) => {
 	const router = useRouter();
 
 	let highlightedWord: React.ReactNode = <span>{word.word}</span>;
@@ -43,6 +43,6 @@ function WordRow({ word, query }: WordRowProps) {
 			</td>
 		</tr>
 	);
-}
+};
 
 export default WordRow;

@@ -12,7 +12,7 @@ type TrainerInputProps = {
 	correct?: boolean | null;
 };
 
-function TrainerInput({ word, correct, inputKey, handleChange, value }: TrainerInputProps) {
+const TrainerInput = ({ word, correct, inputKey, handleChange, value }: TrainerInputProps) => {
 	let evaluationClasses =
 		correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : 'bg-white';
 
@@ -41,6 +41,6 @@ function TrainerInput({ word, correct, inputKey, handleChange, value }: TrainerI
 			/>
 		);
 	}
-}
+};
 
 export default TrainerInput;

@@ -9,7 +9,7 @@ type WordCardProps = {
 	query?: string;
 };
 
-function WordCard({ word, query }: WordCardProps) {
+const WordCard = ({ word, query }: WordCardProps) => {
 	const router = useRouter();
 
 	let highlightedWord: React.ReactNode = <span>{word.word}</span>;
@@ -43,6 +43,6 @@ function WordCard({ word, query }: WordCardProps) {
 			</div>
 		</div>
 	);
-}
+};
 
 export default WordCard;

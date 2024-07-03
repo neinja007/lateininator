@@ -8,7 +8,7 @@ type NavbarLinkProps = {
 	active: boolean;
 };
 
-function NavbarLink({ label, href, active }: NavbarLinkProps) {
+const NavbarLink = ({ label, href, active }: NavbarLinkProps) => {
 	return (
 		<Link
 			className={`my-auto mx-2 font-semibold ${active ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'}`}
@@ -17,6 +17,6 @@ function NavbarLink({ label, href, active }: NavbarLinkProps) {
 			{label}
 		</Link>
 	);
-}
+};
 
 export default NavbarLink;

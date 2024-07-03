@@ -8,7 +8,7 @@ type NavbarDropdownLinkProps = {
 	active: boolean;
 };
 
-function NavbarDropdownLink({ label, href, active }: NavbarDropdownLinkProps) {
+const NavbarDropdownLink = ({ label, href, active }: NavbarDropdownLinkProps) => {
 	return (
 		<Link
 			className={`p-2 px-4 font-semibold border-b last:border-b-0 block ${
@@ -19,6 +19,6 @@ function NavbarDropdownLink({ label, href, active }: NavbarDropdownLinkProps) {
 			{label}
 		</Link>
 	);
-}
+};
 
 export default NavbarDropdownLink;

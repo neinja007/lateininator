@@ -7,7 +7,7 @@ type CheckboxProps = {
 	label: string;
 };
 
-function Checkbox({ checked, disabled, handleChange, label }: CheckboxProps) {
+const Checkbox = ({ checked, disabled, handleChange, label }: CheckboxProps) => {
 	const id = useId();
 
 	return (
@@ -25,6 +25,6 @@ function Checkbox({ checked, disabled, handleChange, label }: CheckboxProps) {
 			</label>
 		</div>
 	);
-}
+};
 
 export default Checkbox;
