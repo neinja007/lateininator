@@ -38,7 +38,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 				<br />
 				<p>{word.translation?.join(', ')}</p>
 			</div>
-			<div className='p-2 px-3 w-full bg-gray-200 text-center mt-auto'>
+			<div className='p-2 px-3 w-full bg-blue-200 text-center mt-auto rounded-b-lg'>
 				Wort ansehen <ChevronRight size={16} className='inline' />
 			</div>
 		</div>
