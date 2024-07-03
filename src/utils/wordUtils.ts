@@ -53,7 +53,7 @@ export function getForm(
 		}
 	}
 
-	if (ending === undefined) throw new Error('Error: Ending from getForm() is undefined!!!');
+	if (ending === undefined) throw new Error('Error: Ending from getForm() is undefined.');
 	if (ending === '-') {
 		return word.word;
 	}
