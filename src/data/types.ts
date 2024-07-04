@@ -66,30 +66,51 @@ export type Case = '1' | '2' | '3' | '4' | '5' | '6';
 export type Declension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
 export type Comparison = 'a_o' | 'e_u';
 export type Gender = 'm' | 'f' | 'n';
+export type ComparisonDegree = 'pos' | 'comp' | 'sup';
 
 export type ConditionalTense<T, M> = M extends 'kon' ? Exclude<T, 'fut1'> : T;
 
-export type Endings = {
-	verb: {
-		[C in Conjugation]: {
-			[M in Modus]: {
-				[V in Voice]: {
-					[T in ConditionalTense<Tense, M>]: {
-						[N in Numerus]: {
-							[P in Person]: string;
-						};
-					};
-				};
-			};
-		};
-	};
-	noun: {
-		[D in Declension]: {
-			[G in Gender]: {
-				[N in Numerus]: {
-					[C in Case]: string;
-				};
-			};
-		};
-	};
-};
+// export type Endings = {
+// 	verb: {
+// 		[C in Conjugation]: {
+// 			[M in Modus]: {
+// 				[V in Voice]: {
+// 					[T in ConditionalTense<Tense, M>]: {
+// 						[N in Numerus]: {
+// 							[P in Person]: string;
+// 						};
+// 					};
+// 				};
+// 			};
+// 		};
+// 	};
+// 	noun: {
+// 		[D in Declension]: {
+// 			[G in Gender]: {
+// 				[N in Numerus]: {
+// 					[C in Case]: string;
+// 				};
+// 			};
+// 		};
+// 	};
+// 	adjective: {
+// 		[C in Comparison]: {
+// 			[G in Gender]: {
+// 				[D in ComparisonDegree]: {
+// 					[N in Numerus]: {
+// 						[C in Case]: string;
+// 					};
+// 				};
+// 			};
+// 		};
+// 	};
+// 	adverb: {
+// 		pos: {
+// 			a_o: 'e';
+// 			e_u: 'iter';
+// 			_ns: 'nter';
+// 		};
+// 		comp: '-ius';
+// 		sup: '-e';
+// 	};
+// };

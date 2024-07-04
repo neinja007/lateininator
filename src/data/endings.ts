@@ -1,6 +1,6 @@
-import { Endings } from '@/data/types';
+// import { Endings } from '@/data/types';
 
-export const endings: Endings = {
+export const endings = {
 	verb: {
 		a: {
 			ind: {

@@ -1,37 +1,40 @@
-import {
-	Case,
-	Comparison,
-	Conjugation,
-	Declension,
-	Gender,
-	Modus,
-	Numerus,
-	Person,
-	Tense,
-	Type,
-	Voice,
-	WordInputKey
-} from './types';
+// import {
+// 	Case,
+// 	Comparison,
+// 	ComparisonDegree,
+// 	Conjugation,
+// 	Declension,
+// 	Gender,
+// 	Modus,
+// 	Numerus,
+// 	Person,
+// 	Tense,
+// 	Type,
+// 	Voice,
+// 	WordInputKey
+// } from './types';
 
-type MapperKeys = {
-	type: Record<Type, string>;
-	declension: Record<Declension, string>;
-	comparison: Record<Comparison, string>;
-	case: Record<Case, string>;
-	gender: Record<Gender, string>;
-	numerus: Record<Numerus, string>;
-	conjugation: Record<Conjugation, string>;
-	tense: Record<Tense, string>;
-	person: Record<Person, string>;
-	modus: Record<Modus, string>;
-	voice: Record<Voice, string>;
-	wordKey: Record<WordInputKey, string>;
-};
+// type MapperKeys = {
+// 	type: Record<Type, string>;
+// 	declension: Record<Declension, string>;
+// 	comparison: Record<Comparison, string>;
+// 	case: Record<Case, string>;
+// 	gender: Record<Gender, string>;
+// 	numerus: Record<Numerus, string>;
+// 	conjugation: Record<Conjugation, string>;
+// 	tense: Record<Tense, string>;
+// 	person: Record<Person, string>;
+// 	modus: Record<Modus, string>;
+// 	voice: Record<Voice, string>;
+// 	wordKey: Record<WordInputKey, string>;
+// 	comparisonDegree: Record<ComparisonDegree, string>;
+// };
 
-export const mapper: {
-	extended: MapperKeys;
-	short: MapperKeys;
-} = {
+// export const mapper: {
+// 	extended: MapperKeys;
+// 	short: MapperKeys;
+// } = {
+export const mapper = {
 	extended: {
 		type: {
 			noun: 'Nomen',
