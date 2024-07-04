@@ -141,12 +141,12 @@ export const mapper = {
 			e_u: 'E/U Dekl.'
 		},
 		case: {
-			1: 'Nom.',
-			2: 'Gen.',
-			3: 'Dat.',
-			4: 'Akk.',
-			5: 'Abl.',
-			6: 'Vok.'
+			1: '1. F.',
+			2: '2. F.',
+			3: '3. F.',
+			4: '4. F.',
+			5: '5. F.',
+			6: '6. F.'
 		},
 		gender: {
 			m: 'm.',
