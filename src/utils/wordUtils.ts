@@ -1,5 +1,5 @@
 import { endings } from '@/data/endings';
-import { Word, Person, Numerus, Tense, Voice, Modus, Case } from '@/data/types';
+import { Word, Person, Numerus, Tense, Voice, Modus, Case, ComparisonDegree, Gender } from '@/data/types';
 
 export const getLexicalForm = (word: Word) => {
 	if (word.type === 'noun') {
@@ -9,7 +9,11 @@ export const getLexicalForm = (word: Word) => {
 	}
 };
 
-export const getBase = (word: Word): string => {
+export const getBase = (
+	word: Word,
+	info: { key?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean }
+): string => {
+	const { key, superlative } = info;
 	let base = '';
 	if (word.type === 'noun') {
 		if (word.declension === 'a') {
@@ -18,7 +22,24 @@ export const getBase = (word: Word): string => {
 			base = word.word.substring(0, word.word.length - 2);
 		}
 	} else if (word.type === 'verb') {
-		base = word.word.substring(0, word.word.length - 3);
+		if (key === 'present' || key === undefined) {
+			base = word.word.substring(0, word.present.length - 2);
+		} else if (key === 'perfect') {
+			base = word.perfect.substring(0, word.perfect.length - 1);
+		} else if (key === 'participle') {
+			base = word.participle.substring(0, word.participle.length - 2);
+		}
+	} else if (word.type === 'adjective') {
+		base = word.word.substring(0, word.word.length - 2);
+		if (superlative) {
+			if (word.word.endsWith('er')) {
+				base += 'errim';
+			} else if (word.word.endsWith('ilis')) {
+				base += 'illim';
+			} else {
+				base += 'issim';
+			}
+		}
 	}
 	return base;
 };
@@ -27,6 +48,7 @@ export const getForm = (
 	word: Word,
 	info:
 		| {
+				imperative?: boolean;
 				modus: Modus;
 				voice: Voice;
 				tense: Tense;
@@ -34,6 +56,13 @@ export const getForm = (
 				person: Person;
 		  }
 		| {
+				numerus: Numerus;
+				wordCase: Case;
+		  }
+		| {
+				comparisonDegree: ComparisonDegree;
+				gender: Gender;
+				adverb?: boolean;
 				numerus: Numerus;
 				wordCase: Case;
 		  }
@@ -51,11 +80,34 @@ export const getForm = (
 				ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];
 			}
 		}
+	} else if (word.type === 'adjective') {
+		if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
+			if (info.adverb) {
+				ending = endings.adverb[info.comparisonDegree][word.word.endsWith('ns') ? '_ns' : word.comparison];
+			}
+			ending = endings.adjective[word.comparison][info.gender][info.comparisonDegree][info.numerus][info.wordCase];
+		}
 	}
 
-	if (ending === undefined) throw new Error('Error: Ending from getForm() is undefined.');
+	if (ending === undefined) throw new Error('Error: Ending from getForm() is undefined: ' + word + info);
 	if (ending === '-') {
 		return word.word;
 	}
-	return getBase(word) + ending;
+
+	let baseType: 'word' | 'present' | 'perfect' | 'participle' = 'word';
+	let superlative = false;
+	if (word.type === 'verb' && 'tense' in info) {
+		if (info.tense === 'pres') {
+			baseType = 'present';
+		} else if (info.voice === 'pas' && (info.tense === 'perf' || info.tense === 'plus')) {
+			baseType = 'participle';
+		} else if (info.tense === 'perf' || info.tense === 'plus') {
+			baseType = 'perfect';
+		}
+	} else if (word.type === 'adjective' && 'comparisonDegree' in info) {
+		if (info.comparisonDegree === 'sup') {
+			superlative = true;
+		}
+	}
+	return getBase(word, { key: baseType, superlative }) + ending;
 };
