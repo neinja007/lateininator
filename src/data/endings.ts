@@ -9,12 +9,14 @@ export const endings = {
 						sin: {
 							1: 'o',
 							2: 'as',
-							3: 'at'
+							3: 'at',
+							4: 'a'
 						},
 						plu: {
 							1: 'amus',
 							2: 'atis',
-							3: 'ant'
+							3: 'ant',
+							4: 'ate'
 						}
 					},
 					impe: {
@@ -239,12 +241,14 @@ export const endings = {
 						sin: {
 							1: 'eo',
 							2: 'es',
-							3: 'et'
+							3: 'et',
+							4: 'e'
 						},
 						plu: {
 							1: 'emus',
 							2: 'etis',
-							3: 'ent'
+							3: 'ent',
+							4: 'ete'
 						}
 					},
 					impe: {
@@ -469,12 +473,14 @@ export const endings = {
 						sin: {
 							1: 'o',
 							2: 'is',
-							3: 'it'
+							3: 'it',
+							4: 'e'
 						},
 						plu: {
 							1: 'imus',
 							2: 'itis',
-							3: 'unt'
+							3: 'unt',
+							4: 'ite'
 						}
 					},
 					impe: {
@@ -699,12 +705,14 @@ export const endings = {
 						sin: {
 							1: 'io',
 							2: 'is',
-							3: 'it'
+							3: 'it',
+							4: 'i'
 						},
 						plu: {
 							1: 'imus',
 							2: 'itis',
-							3: 'iunt'
+							3: 'iunt',
+							4: 'ite'
 						}
 					},
 					impe: {
@@ -929,12 +937,14 @@ export const endings = {
 						sin: {
 							1: 'io',
 							2: 'is',
-							3: 'it'
+							3: 'it',
+							4: 'e'
 						},
 						plu: {
 							1: 'imus',
 							2: 'itis',
-							3: 'iunt'
+							3: 'iunt',
+							4: 'ite'
 						}
 					},
 					impe: {
