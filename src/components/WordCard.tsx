@@ -36,7 +36,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 				<p className='text-2xl overflow-hidden text-ellipsis'>{highlightedWord}</p>
 				<p>{getLexicalForm(word)}</p>
 				<br />
-				<p>{word.translation?.join(', ')}</p>
+				<p>{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}</p>
 			</div>
 			<div className='p-2 px-3 w-full bg-blue-200 text-center mt-auto rounded-b-lg'>
 				Wort ansehen <ChevronRight size={16} className='inline' />

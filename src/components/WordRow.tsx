@@ -3,6 +3,7 @@ import { getLexicalForm } from '@/utils/wordUtils';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
 import TypeIndicator from './TypeIndicator';
+import { capitalizeFirstLetter } from '@/utils/inputUtils';
 
 type WordRowProps = {
 	word: Word;
@@ -32,7 +33,9 @@ const WordRow = ({ word, query }: WordRowProps) => {
 			<td className='px-4 p-2'>
 				{highlightedWord} <i>{getLexicalForm(word)}</i>
 			</td>
-			<td className='px-4 p-2'>{word.translation?.join(', ')}</td>
+			<td className='px-4 p-2'>
+				{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
+			</td>
 			<td className='px-4 p-2'>
 				<TypeIndicator type={word.type} />
 			</td>
