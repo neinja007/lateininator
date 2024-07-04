@@ -110,6 +110,11 @@ export const mapper = {
 			participle: 'Partizip Perfekt Passiv',
 			perfect: '1. Person Singular Perfekt',
 			present: '1. Person Singular Präsens'
+		},
+		comparisonDegree: {
+			pos: 'Positiv',
+			comp: 'Komparativ',
+			sup: 'Superlativ'
 		}
 	},
 	short: {
@@ -187,6 +192,11 @@ export const mapper = {
 			participle: 'PPP',
 			perfect: 'Perf.',
 			present: 'Präs.'
+		},
+		comparisonDegree: {
+			pos: 'Positiv',
+			comp: 'Komparativ',
+			sup: 'Superlativ'
 		}
 	}
 };
