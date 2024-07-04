@@ -266,9 +266,10 @@ const Page = () => {
 						>
 							Beenden
 						</Button>
-						<div className='flex-grow w-auto h-6 mx-3 my-auto rounded-lg bg-gray-400 overflow-hidden'>
-							<div className='h-full bg-green-400 rounded-lg' style={{ width: `${progressPercentage}%` }}>
-								<span className='float-end mr-1'>{Math.floor(progressPercentage)}%</span>
+						<div className='w-full h-6 mx-3 my-auto flex'>
+							<span className='mr-2'>{Math.floor(progressPercentage)}%</span>
+							<div className='flex-grow h-6 w-auto rounded-lg bg-gray-200'>
+								<div className='h-full bg-blue-500 rounded-lg' style={{ width: `${progressPercentage}%` }}></div>
 							</div>
 						</div>
 						<Button onClick={handleContinue}>Weiter</Button>
