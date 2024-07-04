@@ -17,6 +17,9 @@ export const getInputWithCorrectValue = (
 	correctValue: string | Array<string>,
 	translation?: true
 ): string => {
+	if (translation && typeof correctValue === 'object') {
+		correctValue = correctValue.map((value) => capitalizeFirstLetter(value));
+	}
 	const formattedValue = typeof correctValue === 'object' ? correctValue.join(', ') : correctValue;
 	if (compareValues(input, correctValue, translation) && !translation && typeof correctValue === 'string') {
 		return correctValue;
@@ -25,4 +28,8 @@ export const getInputWithCorrectValue = (
 	} else {
 		return `${input} (${formattedValue})`;
 	}
+};
+
+export const capitalizeFirstLetter = (string: string): string => {
+	return string.charAt(0).toUpperCase() + string.slice(1);
 };
