@@ -1546,5 +1546,365 @@ export const endings: Endings = {
 				}
 			}
 		}
+	},
+	adjective: {
+		a_o: {
+			m: {
+				pos: {
+					sin: {
+						1: 'us',
+						2: 'i',
+						3: 'o',
+						4: 'um',
+						5: 'o',
+						6: 'e'
+					},
+					plu: {
+						1: 'i',
+						2: 'orum',
+						3: 'is',
+						4: 'os',
+						5: 'is',
+						6: 'i'
+					}
+				},
+				comp: {
+					sin: {
+						1: 'ior',
+						2: 'ioris',
+						3: 'iori',
+						4: 'iorem',
+						5: 'iore',
+						6: 'ior'
+					},
+					plu: {
+						1: 'iores',
+						2: 'iorum',
+						3: 'ioribus',
+						4: 'iorem',
+						5: 'ioribus',
+						6: 'iores'
+					}
+				},
+				sup: {
+					sin: {
+						1: 'us',
+						2: 'i',
+						3: 'o',
+						4: 'um',
+						5: 'o',
+						6: 'e'
+					},
+					plu: {
+						1: 'i',
+						2: 'orum',
+						3: 'is',
+						4: 'os',
+						5: 'is',
+						6: 'i'
+					}
+				}
+			},
+			f: {
+				pos: {
+					sin: {
+						1: 'a',
+						2: 'ae',
+						3: 'ae',
+						4: 'am',
+						5: 'a',
+						6: 'a'
+					},
+					plu: {
+						1: 'ae',
+						2: 'arum',
+						3: 'is',
+						4: 'as',
+						5: 'is',
+						6: 'ae'
+					}
+				},
+				comp: {
+					sin: {
+						1: 'ior',
+						2: 'ioris',
+						3: 'iori',
+						4: 'iorem',
+						5: 'iore',
+						6: 'ior'
+					},
+					plu: {
+						1: 'iores',
+						2: 'iorum',
+						3: 'ioribus',
+						4: 'iorem',
+						5: 'ioribus',
+						6: 'iores'
+					}
+				},
+				sup: {
+					sin: {
+						1: 'a',
+						2: 'ae',
+						3: 'ae',
+						4: 'am',
+						5: 'a',
+						6: 'a'
+					},
+					plu: {
+						1: 'ae',
+						2: 'arum',
+						3: 'is',
+						4: 'as',
+						5: 'is',
+						6: 'ae'
+					}
+				}
+			},
+			n: {
+				pos: {
+					sin: {
+						1: 'um',
+						2: 'i',
+						3: 'o',
+						4: 'um',
+						5: 'o',
+						6: 'um'
+					},
+					plu: {
+						1: 'a',
+						2: 'orum',
+						3: 'is',
+						4: 'a',
+						5: 'is',
+						6: 'o'
+					}
+				},
+				comp: {
+					sin: {
+						1: 'ius',
+						2: 'ioris',
+						3: 'iori',
+						4: 'ius',
+						5: 'iore',
+						6: 'ius'
+					},
+					plu: {
+						1: 'iora',
+						2: 'iorum',
+						3: 'ioribus',
+						4: 'iora',
+						5: 'ioribus',
+						6: 'iora'
+					}
+				},
+				sup: {
+					sin: {
+						1: 'um',
+						2: 'i',
+						3: 'o',
+						4: 'um',
+						5: 'o',
+						6: 'um'
+					},
+					plu: {
+						1: 'a',
+						2: 'orum',
+						3: 'is',
+						4: 'a',
+						5: 'is',
+						6: 'o'
+					}
+				}
+			}
+		},
+		e_u: {
+			m: {
+				pos: {
+					sin: {
+						1: '-',
+						2: 'is',
+						3: 'i',
+						4: 'em',
+						5: 'i',
+						6: 'is'
+					},
+					plu: {
+						1: 'es',
+						2: 'ium',
+						3: 'ibus',
+						4: 'es',
+						5: 'ibus',
+						6: 'es'
+					}
+				},
+				comp: {
+					sin: {
+						1: 'or',
+						2: 'oris',
+						3: 'ori',
+						4: 'orem',
+						5: 'ore',
+						6: 'or'
+					},
+					plu: {
+						1: 'ores',
+						2: 'orum',
+						3: 'oribus',
+						4: 'orem',
+						5: 'oribus',
+						6: 'ores'
+					}
+				},
+				sup: {
+					sin: {
+						1: 'us',
+						2: 'i',
+						3: 'o',
+						4: 'um',
+						5: 'o',
+						6: 'e'
+					},
+					plu: {
+						1: 'i',
+						2: 'orum',
+						3: 'is',
+						4: 'os',
+						5: 'is',
+						6: 'i'
+					}
+				}
+			},
+			f: {
+				pos: {
+					sin: {
+						1: '-',
+						2: 'is',
+						3: 'i',
+						4: 'em',
+						5: 'i',
+						6: 'is'
+					},
+					plu: {
+						1: 'es',
+						2: 'ium',
+						3: 'ibus',
+						4: 'es',
+						5: 'ibus',
+						6: 'es'
+					}
+				},
+				comp: {
+					sin: {
+						1: 'or',
+						2: 'oris',
+						3: 'ori',
+						4: 'orem',
+						5: 'ore',
+						6: 'or'
+					},
+					plu: {
+						1: 'ores',
+						2: 'orum',
+						3: 'oribus',
+						4: 'orem',
+						5: 'oribus',
+						6: 'ores'
+					}
+				},
+				sup: {
+					sin: {
+						1: 'a',
+						2: 'ae',
+						3: 'ae',
+						4: 'am',
+						5: 'a',
+						6: 'a'
+					},
+					plu: {
+						1: 'ae',
+						2: 'arum',
+						3: 'is',
+						4: 'as',
+						5: 'is',
+						6: 'ae'
+					}
+				}
+			},
+			n: {
+				pos: {
+					sin: {
+						1: '-',
+						2: 'is',
+						3: 'i',
+						4: 'e',
+						5: 'i',
+						6: 'e'
+					},
+					plu: {
+						1: 'ia',
+						2: 'ium',
+						3: 'ibus',
+						4: 'ia',
+						5: 'ibus',
+						6: 'ia'
+					}
+				},
+				comp: {
+					sin: {
+						1: 'us',
+						2: 'oris',
+						3: 'ori',
+						4: 'us',
+						5: 'ore',
+						6: 'us'
+					},
+					plu: {
+						1: 'ora',
+						2: 'orum',
+						3: 'oribus',
+						4: 'ora',
+						5: 'oribus',
+						6: 'ora'
+					}
+				},
+				sup: {
+					sin: {
+						1: 'um',
+						2: 'i',
+						3: 'o',
+						4: 'um',
+						5: 'o',
+						6: 'um'
+					},
+					plu: {
+						1: 'a',
+						2: 'orum',
+						3: 'is',
+						4: 'a',
+						5: 'is',
+						6: 'o'
+					}
+				}
+			}
+		}
+	},
+	adverb: {
+		pos: {
+			a_o: 'e',
+			e_u: 'iter',
+			_ns: 'nter'
+		},
+		comp: {
+			a_o: '-ius',
+			e_u: '-ius',
+			_ns: '-ius'
+		},
+		sup: {
+			a_o: '-e',
+			e_u: '-e',
+			_ns: '-e'
+		}
 	}
+	// pronoun: {}
 };
