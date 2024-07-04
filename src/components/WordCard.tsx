@@ -3,6 +3,7 @@ import { getLexicalForm } from '@/utils/wordUtils';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
 import TypeIndicator from './TypeIndicator';
+import { capitalizeFirstLetter } from '@/utils/inputUtils';
 
 type WordCardProps = {
 	word: Word;
@@ -24,6 +25,8 @@ const WordCard = ({ word, query }: WordCardProps) => {
 		);
 	}
 
+	let lexicalForm = getLexicalForm(word);
+
 	return (
 		<div
 			className='border text-left shadow cursor-pointer rounded-lg hover:bg-gray-100 flex flex-col'
@@ -34,7 +37,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 					<TypeIndicator type={word.type} />
 				</div>
 				<p className='text-2xl overflow-hidden text-ellipsis'>{highlightedWord}</p>
-				<p>{getLexicalForm(word)}</p>
+				<p>{lexicalForm ? lexicalForm : <br />}</p>
 				<br />
 				<p>{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}</p>
 			</div>
