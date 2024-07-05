@@ -121,6 +121,34 @@ const Page = ({ params: { id } }: PageProps) => {
 							<p>{mapper.extended.comparison[word.comparison]}</p>
 							<hr />
 							<div className='space-y-2'>
+								<p>{mapper.extended.type['adverb']}</p>
+								<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
+									<thead className='bg-gray-100'>
+										<tr>
+											{properties.comparisonDegree.map((comparisonDegree, i) => (
+												<th key={i} className='px-3 py-1'>
+													{mapper.extended.comparisonDegree[comparisonDegree]}
+												</th>
+											))}
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											{properties.comparisonDegree.map((comparisonDegree, i) => (
+												<th key={i} className='px-3 py-1'>
+													{getForm(word, {
+														comparisonDegree,
+														adverb: true,
+														gender: 'm',
+														numerus: 'sin',
+														wordCase: '1'
+													})}
+												</th>
+											))}
+										</tr>
+									</tbody>
+								</table>
+								<br />
 								{properties.comparisonDegree.map((comparisonDegree, i) => (
 									<Fragment key={i}>
 										<p>{mapper.extended.comparisonDegree[comparisonDegree]}</p>
