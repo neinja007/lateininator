@@ -3,8 +3,10 @@ import { Word, Person, Numerus, Tense, Voice, Modus, Case, ComparisonDegree, Gen
 
 export const getLexicalForm = (word: Word) => {
 	if (word.type === 'noun') {
+		if (word.declension === '-' || word.gender === '-') return;
 		return `-${endings.noun[word.declension][word.gender].sin[2]}, ${word.gender}.`;
 	} else if (word.type === 'verb') {
+		if (word.conjugation === '-') return;
 		return `-${endings.verb[word.conjugation].ind.act.pres.sin[1]}, ${word.conjugation}.`;
 	}
 };
@@ -70,6 +72,8 @@ export const getForm = (
 	let ending: string | undefined = undefined;
 
 	if (word.type === 'noun') {
+		if (word.declension === '-' || word.gender === '-')
+			throw new Error('Error: Empty word properties were passed to getForm()');
 		if ('numerus' in info && 'wordCase' in info) {
 			if (info.wordCase === '6') {
 				ending = endings.noun[word.declension][word.gender][info.numerus][1];
@@ -83,6 +87,7 @@ export const getForm = (
 			}
 		}
 	} else if (word.type === 'verb') {
+		if (word.conjugation === '-') throw new Error('Error: Empty word properties were passed to getForm()');
 		if ('modus' in info && 'voice' in info && 'tense' in info && 'numerus' in info && 'person' in info) {
 			if (info.modus === 'kon' && info.tense !== 'fut1') {
 				ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];
@@ -91,6 +96,7 @@ export const getForm = (
 			}
 		}
 	} else if (word.type === 'adjective') {
+		if (word.comparison === '-') throw new Error('Error: Empty word properties were passed to getForm()');
 		if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
 			if (info.adverb) {
 				ending = endings.adverb[info.comparisonDegree][word.word.endsWith('ns') ? '_ns' : word.comparison];
@@ -131,5 +137,7 @@ export const getForm = (
 		}
 	}
 
-	return getBase(word, { baseType: baseType, superlative }) + ending;
+	const base = getBase(word, { baseType, superlative });
+	if (base === '') return '-';
+	else return base + ending;
 };

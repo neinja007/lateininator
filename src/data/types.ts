@@ -25,24 +25,25 @@ export type Base = {
 
 export type Noun = {
 	type: 'noun';
-	declension: Declension;
-	genitive: string;
-	gender: Gender;
+	pluralOnly?: boolean;
+	declension: Declension | '-';
+	genitive: string | '-';
+	gender: Gender | '-';
 };
 
 export type Verb = {
 	type: 'verb';
-	conjugation: Conjugation;
-	present: string;
-	perfect: string;
-	participle: string;
+	conjugation: Conjugation | '-';
+	present: string | '-';
+	perfect: string | '-';
+	participle: string | '-';
 };
 
 export type Adjective = {
 	type: 'adjective';
-	comparison: Comparison;
-	femininum: string;
-	neutrum: string;
+	comparison: Comparison | '-';
+	femininum: string | '-';
+	neutrum: string | '-';
 };
 
 export type Other = {

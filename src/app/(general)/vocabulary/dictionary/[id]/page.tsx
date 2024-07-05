@@ -35,74 +35,158 @@ const Page = ({ params: { id } }: PageProps) => {
 					{word.type === 'noun' ? (
 						<>
 							<p>
-								{mapper.extended.declension[word.declension]}; {mapper.extended.gender[word.gender]}
+								{word.declension ? 'Keine Konjugation' : mapper.extended.declension[word.declension]};{' '}
+								{word.gender ? 'Keine Konjugation' : mapper.extended.gender[word.gender]}
 							</p>
 							<hr />
-							<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
-								<thead className='bg-gray-100'>
-									<tr>
-										<th />
-										{properties.numerus.map((numerus, i) => {
+							{word.declension !== '-' && word.gender !== '-' ? (
+								<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
+									<thead className='bg-gray-100'>
+										<tr>
+											<th />
+											{properties.numerus.map((numerus, i) => {
+												return (
+													<th key={i} className='px-3 py-1'>
+														{mapper.extended.numerus[numerus]}
+													</th>
+												);
+											})}
+										</tr>
+									</thead>
+									<tbody>
+										{properties.case.map((wordCase, i) => {
 											return (
-												<th key={i} className='px-3 py-1'>
-													{mapper.extended.numerus[numerus]}
-												</th>
+												<tr key={i} className='border-t'>
+													<th key={i} className='px-3 py-1 bg-gray-100'>
+														{mapper.extended.case[wordCase]}
+													</th>
+													{properties.numerus.map((numerus, i) => {
+														return (
+															<td key={i} className='px-3 py-1'>
+																{getForm(word, { wordCase: wordCase, numerus: numerus })}
+															</td>
+														);
+													})}
+												</tr>
 											);
 										})}
-									</tr>
-								</thead>
-								<tbody>
-									{properties.case.map((wordCase, i) => {
-										return (
-											<tr key={i} className='border-t'>
-												<th key={i} className='px-3 py-1 bg-gray-100'>
-													{mapper.extended.case[wordCase]}
-												</th>
-												{properties.numerus.map((numerus, i) => {
-													return (
-														<td key={i} className='px-3 py-1'>
-															{getForm(word, { wordCase: wordCase, numerus: numerus })}
-														</td>
-													);
-												})}
-											</tr>
-										);
-									})}
-								</tbody>
-							</table>
+									</tbody>
+								</table>
+							) : (
+								<p>
+									Tabellen können nicht generiert werden, da dieses Wort nicht ordnungsgemäß dekliniert werden kann.
+								</p>
+							)}
 						</>
 					) : word.type === 'verb' ? (
 						<>
-							<p>{mapper.extended.conjugation[word.conjugation]}</p>
+							<p>{word.conjugation ? 'Keine Konjugation' : mapper.extended.conjugation[word.conjugation]}</p>
 							<hr />
-							<div className='space-y-2'>
-								{properties.modus.map((modus) =>
-									properties.voice.map((voice, i) => (
+							{word.conjugation !== '-' ? (
+								<div>
+									{properties.modus.map((modus) =>
+										properties.voice.map((voice, i) => (
+											<Fragment key={i}>
+												<p>
+													{mapper.extended.modus[modus]} {mapper.extended.voice[voice]}
+												</p>
+												<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
+													<thead className='bg-gray-100'>
+														<tr>
+															<th />
+															{properties[modus === 'ind' ? 'indTense' : 'konTense'].map((tense, i) => (
+																<th key={i} className='px-3 py-1'>
+																	{mapper.extended.tense[tense]}
+																</th>
+															))}
+														</tr>
+													</thead>
+													<tbody>
+														{properties.numerus.map((numerus) =>
+															properties.person.map((person, i) => (
+																<tr key={i} className='border-t'>
+																	<th className='px-3 py-1 bg-gray-100'>
+																		{mapper.short.person[person]} {mapper.extended.numerus[numerus]}
+																	</th>
+																	{properties[modus === 'ind' ? 'indTense' : 'konTense'].map((tense, i) => (
+																		<td key={i} className='px-3 py-1'>
+																			{getForm(word, { modus, numerus, person, tense, voice })}
+																		</td>
+																	))}
+																</tr>
+															))
+														)}
+													</tbody>
+												</table>
+												<br />
+											</Fragment>
+										))
+									)}
+								</div>
+							) : (
+								<p>
+									Tabellen können nicht generiert werden, da dieses Wort nicht ordnungsgemäß konjugiert werden kann.
+								</p>
+							)}
+						</>
+					) : word.type === 'adjective' ? (
+						<>
+							<p>{word.comparison === '-' ? 'Keine Deklination' : mapper.extended.comparison[word.comparison]}</p>
+							<hr />
+							{word.comparison !== '-' ? (
+								<div>
+									<p>{mapper.extended.type['adverb']}</p>
+									<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
+										<thead className='bg-gray-100'>
+											<tr>
+												{properties.comparisonDegree.map((comparisonDegree, i) => (
+													<th key={i} className='px-3 py-1'>
+														{mapper.extended.comparisonDegree[comparisonDegree]}
+													</th>
+												))}
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												{properties.comparisonDegree.map((comparisonDegree, i) => (
+													<th key={i} className='px-3 py-1'>
+														{getForm(word, {
+															comparisonDegree,
+															adverb: true,
+															gender: 'm',
+															numerus: 'sin',
+															wordCase: '1'
+														})}
+													</th>
+												))}
+											</tr>
+										</tbody>
+									</table>
+									<br />
+									{properties.comparisonDegree.map((comparisonDegree, i) => (
 										<Fragment key={i}>
-											<p>
-												{mapper.extended.modus[modus]} {mapper.extended.voice[voice]}
-											</p>
-											<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
+											<p>{mapper.extended.comparisonDegree[comparisonDegree]}</p>
+											<table key={i} className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 												<thead className='bg-gray-100'>
 													<tr>
 														<th />
-														{properties[modus === 'ind' ? 'indTense' : 'konTense'].map((tense, i) => (
+														{properties.gender.map((gender, i) => (
 															<th key={i} className='px-3 py-1'>
-																{mapper.extended.tense[tense]}
+																{mapper.extended.gender[gender]}
 															</th>
 														))}
 													</tr>
 												</thead>
 												<tbody>
 													{properties.numerus.map((numerus) =>
-														properties.person.map((person, i) => (
+														properties.case.map((wordCase, i) => (
 															<tr key={i} className='border-t'>
 																<th className='px-3 py-1 bg-gray-100'>
-																	{mapper.short.person[person]} {mapper.extended.numerus[numerus]}
+																	{mapper.extended.case[wordCase]} {mapper.extended.numerus[numerus]}
 																</th>
-																{properties[modus === 'ind' ? 'indTense' : 'konTense'].map((tense, i) => (
+																{properties.gender.map((gender, i) => (
 																	<td key={i} className='px-3 py-1'>
-																		{getForm(word, { modus, numerus, person, tense, voice })}
+																		{getForm(word, { comparisonDegree, gender, numerus, wordCase })}
 																	</td>
 																))}
 															</tr>
@@ -112,78 +196,13 @@ const Page = ({ params: { id } }: PageProps) => {
 											</table>
 											<br />
 										</Fragment>
-									))
-								)}
-							</div>
-						</>
-					) : word.type === 'adjective' ? (
-						<>
-							<p>{mapper.extended.comparison[word.comparison]}</p>
-							<hr />
-							<div className='space-y-2'>
-								<p>{mapper.extended.type['adverb']}</p>
-								<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
-									<thead className='bg-gray-100'>
-										<tr>
-											{properties.comparisonDegree.map((comparisonDegree, i) => (
-												<th key={i} className='px-3 py-1'>
-													{mapper.extended.comparisonDegree[comparisonDegree]}
-												</th>
-											))}
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											{properties.comparisonDegree.map((comparisonDegree, i) => (
-												<th key={i} className='px-3 py-1'>
-													{getForm(word, {
-														comparisonDegree,
-														adverb: true,
-														gender: 'm',
-														numerus: 'sin',
-														wordCase: '1'
-													})}
-												</th>
-											))}
-										</tr>
-									</tbody>
-								</table>
-								<br />
-								{properties.comparisonDegree.map((comparisonDegree, i) => (
-									<Fragment key={i}>
-										<p>{mapper.extended.comparisonDegree[comparisonDegree]}</p>
-										<table key={i} className='w-full rounded-lg table-fixed overflow-hidden shadow'>
-											<thead className='bg-gray-100'>
-												<tr>
-													<th />
-													{properties.gender.map((gender, i) => (
-														<th key={i} className='px-3 py-1'>
-															{mapper.extended.gender[gender]}
-														</th>
-													))}
-												</tr>
-											</thead>
-											<tbody>
-												{properties.numerus.map((numerus) =>
-													properties.case.map((wordCase, i) => (
-														<tr key={i} className='border-t'>
-															<th className='px-3 py-1 bg-gray-100'>
-																{mapper.extended.case[wordCase]} {mapper.extended.numerus[numerus]}
-															</th>
-															{properties.gender.map((gender, i) => (
-																<td key={i} className='px-3 py-1'>
-																	{getForm(word, { comparisonDegree, gender, numerus, wordCase })}
-																</td>
-															))}
-														</tr>
-													))
-												)}
-											</tbody>
-										</table>
-										<br />
-									</Fragment>
-								))}
-							</div>
+									))}
+								</div>
+							) : (
+								<p>
+									Tabellen konnten nicht generiert werden, da dieses Wort nicht ordnungsgemäß dekliniert werden kann.
+								</p>
+							)}
 						</>
 					) : (
 						false
