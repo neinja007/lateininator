@@ -57,6 +57,6 @@ export const properties: {
 	},
 	conjugation: ['a', 'e', 'i', 'k', 'm'],
 	adjectiveDeclension: ['a_o', 'e_u'],
-	types: ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun'],
+	types: ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun', 'irregular_verb'],
 	comparisonDegree: ['pos', 'comp', 'sup']
 };
