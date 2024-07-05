@@ -1666,7 +1666,7 @@ export const endings = {
 				}
 			}
 		},
-		e_u: {
+		kon: {
 			m: {
 				pos: {
 					sin: {
@@ -1822,17 +1822,17 @@ export const endings = {
 	adverb: {
 		pos: {
 			a_o: 'e',
-			e_u: 'iter',
+			kon: 'iter',
 			_ns: 'nter'
 		},
 		comp: {
 			a_o: 'ius',
-			e_u: 'ius',
+			kon: 'ius',
 			_ns: 'ius'
 		},
 		sup: {
 			a_o: 'e',
-			e_u: 'e',
+			kon: 'e',
 			_ns: 'e'
 		}
 	}
