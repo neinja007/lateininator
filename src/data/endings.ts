@@ -1208,7 +1208,7 @@ export const endings = {
 					3: 'ae',
 					4: 'am',
 					5: 'a',
-					6: 'a'
+					6: '-'
 				},
 				plu: {
 					1: 'ae',
@@ -1236,7 +1236,7 @@ export const endings = {
 					3: 'is',
 					4: 'os',
 					5: 'is',
-					6: 'is'
+					6: 'i'
 				}
 			},
 			f: {

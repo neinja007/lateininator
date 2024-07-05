@@ -11,9 +11,9 @@ export const getLexicalForm = (word: Word) => {
 
 export const getBase = (
 	word: Word,
-	info: { key?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean }
+	info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean }
 ): string => {
-	const { key, superlative } = info;
+	const { baseType, superlative } = info;
 	let base = '';
 	if (word.type === 'noun') {
 		if (word.declension === 'a') {
@@ -22,11 +22,11 @@ export const getBase = (
 			base = word.word.substring(0, word.word.length - 2);
 		}
 	} else if (word.type === 'verb') {
-		if (key === 'present' || key === undefined) {
+		if (baseType === 'present' || baseType === 'word') {
 			base = word.word.substring(0, word.present.length - 2);
-		} else if (key === 'perfect') {
+		} else if (baseType === 'perfect') {
 			base = word.perfect.substring(0, word.perfect.length - 1);
-		} else if (key === 'participle') {
+		} else if (baseType === 'participle') {
 			base = word.participle.substring(0, word.participle.length - 2);
 		}
 	} else if (word.type === 'adjective') {
@@ -109,5 +109,5 @@ export const getForm = (
 			superlative = true;
 		}
 	}
-	return getBase(word, { key: baseType, superlative }) + ending;
+	return getBase(word, { baseType: baseType, superlative }) + ending;
 };
