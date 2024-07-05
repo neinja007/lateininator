@@ -1169,16 +1169,14 @@ export const endings = {
 					2: 'ae',
 					3: 'ae',
 					4: 'am',
-					5: 'a',
-					6: 'a'
+					5: 'a'
 				},
 				plu: {
 					1: 'ae',
 					2: 'arum',
 					3: 'is',
 					4: 'as',
-					5: 'is',
-					6: 'is'
+					5: 'is'
 				}
 			},
 			f: {
@@ -1187,16 +1185,14 @@ export const endings = {
 					2: 'ae',
 					3: 'ae',
 					4: 'am',
-					5: 'a',
-					6: 'a'
+					5: 'a'
 				},
 				plu: {
 					1: 'ae',
 					2: 'arum',
 					3: 'is',
 					4: 'as',
-					5: 'is',
-					6: 'is'
+					5: 'is'
 				}
 			},
 			n: {
@@ -1205,36 +1201,32 @@ export const endings = {
 					2: 'ae',
 					3: 'ae',
 					4: 'am',
-					5: 'a',
-					6: '-'
+					5: 'a'
 				},
 				plu: {
 					1: 'ae',
 					2: 'arum',
 					3: 'is',
 					4: 'as',
-					5: 'is',
-					6: 'is'
+					5: 'is'
 				}
 			}
 		},
 		o: {
 			m: {
 				sin: {
-					1: '-',
+					1: 'us',
 					2: 'i',
 					3: 'o',
 					4: 'um',
-					5: 'o',
-					6: 'e'
+					5: 'o'
 				},
 				plu: {
 					1: 'i',
 					2: 'orum',
 					3: 'is',
 					4: 'os',
-					5: 'is',
-					6: 'i'
+					5: 'is'
 				}
 			},
 			f: {
@@ -1243,16 +1235,14 @@ export const endings = {
 					2: 'i',
 					3: 'o',
 					4: 'um',
-					5: 'o',
-					6: 'e'
+					5: 'o'
 				},
 				plu: {
 					1: 'i',
 					2: 'orum',
 					3: 'is',
 					4: 'os',
-					5: 'is',
-					6: 'is'
+					5: 'is'
 				}
 			},
 			n: {
@@ -1261,16 +1251,14 @@ export const endings = {
 					2: 'i',
 					3: 'o',
 					4: 'um',
-					5: 'o',
-					6: 'e'
+					5: 'o'
 				},
 				plu: {
 					1: 'a',
 					2: 'orum',
 					3: 'is',
 					4: 'a',
-					5: 'is',
-					6: 'is'
+					5: 'is'
 				}
 			}
 		},
@@ -1281,16 +1269,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'um',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			f: {
@@ -1299,16 +1285,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'um',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			n: {
@@ -1317,16 +1301,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: '-',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'a',
 					2: 'um',
 					3: 'ibus',
 					4: 'a',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			}
 		},
@@ -1337,16 +1319,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			f: {
@@ -1355,16 +1335,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			n: {
@@ -1373,16 +1351,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: '-',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'a',
 					2: 'ium',
 					3: 'ibus',
 					4: 'a',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			}
 		},
@@ -1393,16 +1369,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			f: {
@@ -1411,16 +1385,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: 'im',
-					5: 'i',
-					6: 'i'
+					5: 'i'
 				},
 				plu: {
 					1: 'es',
 					2: 'ium',
 					3: 'ibus',
 					4: 'es',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			n: {
@@ -1429,16 +1401,14 @@ export const endings = {
 					2: 'is',
 					3: 'i',
 					4: '-',
-					5: 'i',
-					6: 'i'
+					5: 'i'
 				},
 				plu: {
 					1: 'ia',
 					2: 'ium',
 					3: 'ibus',
 					4: 'ia',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			}
 		},
@@ -1449,16 +1419,14 @@ export const endings = {
 					2: 'ei',
 					3: 'ei',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'erum',
 					3: 'ebus',
 					4: 'es',
-					5: 'ebus',
-					6: 'ebus'
+					5: 'ebus'
 				}
 			},
 			f: {
@@ -1467,16 +1435,14 @@ export const endings = {
 					2: 'ei',
 					3: 'ei',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'erum',
 					3: 'ebus',
 					4: 'es',
-					5: 'ebus',
-					6: 'ebus'
+					5: 'ebus'
 				}
 			},
 			n: {
@@ -1485,16 +1451,14 @@ export const endings = {
 					2: 'ei',
 					3: 'ei',
 					4: 'em',
-					5: 'e',
-					6: 'e'
+					5: 'e'
 				},
 				plu: {
 					1: 'es',
 					2: 'erum',
 					3: 'ebus',
 					4: 'es',
-					5: 'ebus',
-					6: 'ebus'
+					5: 'ebus'
 				}
 			}
 		},
@@ -1505,16 +1469,14 @@ export const endings = {
 					2: 'us',
 					3: 'ui',
 					4: 'um',
-					5: 'u',
-					6: 'u'
+					5: 'u'
 				},
 				plu: {
 					1: 'us',
 					2: 'uum',
 					3: 'ibus',
 					4: 'us',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			f: {
@@ -1523,16 +1485,14 @@ export const endings = {
 					2: 'us',
 					3: 'ui',
 					4: 'um',
-					5: 'u',
-					6: 'u'
+					5: 'u'
 				},
 				plu: {
 					1: 'us',
 					2: 'uum',
 					3: 'ibus',
 					4: 'us',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			},
 			n: {
@@ -1541,16 +1501,14 @@ export const endings = {
 					2: 'us',
 					3: 'ui',
 					4: 'um',
-					5: 'u',
-					6: 'u'
+					5: 'u'
 				},
 				plu: {
 					1: 'ua',
 					2: 'uum',
 					3: 'ibus',
 					4: 'ua',
-					5: 'ibus',
-					6: 'ibus'
+					5: 'ibus'
 				}
 			}
 		}
@@ -1564,16 +1522,14 @@ export const endings = {
 						2: 'i',
 						3: 'o',
 						4: 'um',
-						5: 'o',
-						6: 'e'
+						5: 'o'
 					},
 					plu: {
 						1: 'i',
 						2: 'orum',
 						3: 'is',
 						4: 'os',
-						5: 'is',
-						6: 'i'
+						5: 'is'
 					}
 				},
 				comp: {
@@ -1582,16 +1538,14 @@ export const endings = {
 						2: 'ioris',
 						3: 'iori',
 						4: 'iorem',
-						5: 'iore',
-						6: 'ior'
+						5: 'iore'
 					},
 					plu: {
 						1: 'iores',
 						2: 'iorum',
 						3: 'ioribus',
-						4: 'iorem',
-						5: 'ioribus',
-						6: 'iores'
+						4: 'iores',
+						5: 'ioribus'
 					}
 				},
 				sup: {
@@ -1600,16 +1554,14 @@ export const endings = {
 						2: 'i',
 						3: 'o',
 						4: 'um',
-						5: 'o',
-						6: 'e'
+						5: 'o'
 					},
 					plu: {
 						1: 'i',
 						2: 'orum',
 						3: 'is',
 						4: 'os',
-						5: 'is',
-						6: 'i'
+						5: 'is'
 					}
 				}
 			},
@@ -1620,16 +1572,14 @@ export const endings = {
 						2: 'ae',
 						3: 'ae',
 						4: 'am',
-						5: 'a',
-						6: 'a'
+						5: 'a'
 					},
 					plu: {
 						1: 'ae',
 						2: 'arum',
 						3: 'is',
 						4: 'as',
-						5: 'is',
-						6: 'ae'
+						5: 'is'
 					}
 				},
 				comp: {
@@ -1638,16 +1588,14 @@ export const endings = {
 						2: 'ioris',
 						3: 'iori',
 						4: 'iorem',
-						5: 'iore',
-						6: 'ior'
+						5: 'iore'
 					},
 					plu: {
 						1: 'iores',
 						2: 'iorum',
 						3: 'ioribus',
-						4: 'iorem',
-						5: 'ioribus',
-						6: 'iores'
+						4: 'iores',
+						5: 'ioribus'
 					}
 				},
 				sup: {
@@ -1656,16 +1604,14 @@ export const endings = {
 						2: 'ae',
 						3: 'ae',
 						4: 'am',
-						5: 'a',
-						6: 'a'
+						5: 'a'
 					},
 					plu: {
 						1: 'ae',
 						2: 'arum',
 						3: 'is',
 						4: 'as',
-						5: 'is',
-						6: 'ae'
+						5: 'is'
 					}
 				}
 			},
@@ -1676,16 +1622,14 @@ export const endings = {
 						2: 'i',
 						3: 'o',
 						4: 'um',
-						5: 'o',
-						6: 'um'
+						5: 'o'
 					},
 					plu: {
 						1: 'a',
 						2: 'orum',
 						3: 'is',
 						4: 'a',
-						5: 'is',
-						6: 'o'
+						5: 'is'
 					}
 				},
 				comp: {
@@ -1694,16 +1638,14 @@ export const endings = {
 						2: 'ioris',
 						3: 'iori',
 						4: 'ius',
-						5: 'iore',
-						6: 'ius'
+						5: 'iore'
 					},
 					plu: {
 						1: 'iora',
 						2: 'iorum',
 						3: 'ioribus',
 						4: 'iora',
-						5: 'ioribus',
-						6: 'iora'
+						5: 'ioribus'
 					}
 				},
 				sup: {
@@ -1712,16 +1654,14 @@ export const endings = {
 						2: 'i',
 						3: 'o',
 						4: 'um',
-						5: 'o',
-						6: 'um'
+						5: 'o'
 					},
 					plu: {
 						1: 'a',
 						2: 'orum',
 						3: 'is',
 						4: 'a',
-						5: 'is',
-						6: 'o'
+						5: 'is'
 					}
 				}
 			}
@@ -1734,16 +1674,14 @@ export const endings = {
 						2: 'is',
 						3: 'i',
 						4: 'em',
-						5: 'i',
-						6: 'is'
+						5: 'i'
 					},
 					plu: {
 						1: 'es',
 						2: 'ium',
 						3: 'ibus',
 						4: 'es',
-						5: 'ibus',
-						6: 'es'
+						5: 'ibus'
 					}
 				},
 				comp: {
@@ -1752,16 +1690,14 @@ export const endings = {
 						2: 'oris',
 						3: 'ori',
 						4: 'orem',
-						5: 'ore',
-						6: 'or'
+						5: 'ore'
 					},
 					plu: {
 						1: 'ores',
 						2: 'orum',
 						3: 'oribus',
-						4: 'orem',
-						5: 'oribus',
-						6: 'ores'
+						4: 'ores',
+						5: 'oribus'
 					}
 				},
 				sup: {
@@ -1770,16 +1706,14 @@ export const endings = {
 						2: 'i',
 						3: 'o',
 						4: 'um',
-						5: 'o',
-						6: 'e'
+						5: 'o'
 					},
 					plu: {
 						1: 'i',
 						2: 'orum',
 						3: 'is',
 						4: 'os',
-						5: 'is',
-						6: 'i'
+						5: 'is'
 					}
 				}
 			},
@@ -1790,16 +1724,14 @@ export const endings = {
 						2: 'is',
 						3: 'i',
 						4: 'em',
-						5: 'i',
-						6: 'is'
+						5: 'i'
 					},
 					plu: {
 						1: 'es',
 						2: 'ium',
 						3: 'ibus',
 						4: 'es',
-						5: 'ibus',
-						6: 'es'
+						5: 'ibus'
 					}
 				},
 				comp: {
@@ -1808,16 +1740,14 @@ export const endings = {
 						2: 'oris',
 						3: 'ori',
 						4: 'orem',
-						5: 'ore',
-						6: 'or'
+						5: 'ore'
 					},
 					plu: {
 						1: 'ores',
 						2: 'orum',
 						3: 'oribus',
-						4: 'orem',
-						5: 'oribus',
-						6: 'ores'
+						4: 'ores',
+						5: 'oribus'
 					}
 				},
 				sup: {
@@ -1826,16 +1756,14 @@ export const endings = {
 						2: 'ae',
 						3: 'ae',
 						4: 'am',
-						5: 'a',
-						6: 'a'
+						5: 'a'
 					},
 					plu: {
 						1: 'ae',
 						2: 'arum',
 						3: 'is',
 						4: 'as',
-						5: 'is',
-						6: 'ae'
+						5: 'is'
 					}
 				}
 			},
@@ -1846,16 +1774,14 @@ export const endings = {
 						2: 'is',
 						3: 'i',
 						4: 'e',
-						5: 'i',
-						6: 'e'
+						5: 'i'
 					},
 					plu: {
 						1: 'ia',
 						2: 'ium',
 						3: 'ibus',
 						4: 'ia',
-						5: 'ibus',
-						6: 'ia'
+						5: 'ibus'
 					}
 				},
 				comp: {
@@ -1864,16 +1790,14 @@ export const endings = {
 						2: 'oris',
 						3: 'ori',
 						4: 'us',
-						5: 'ore',
-						6: 'us'
+						5: 'ore'
 					},
 					plu: {
 						1: 'ora',
 						2: 'orum',
 						3: 'oribus',
 						4: 'ora',
-						5: 'oribus',
-						6: 'ora'
+						5: 'oribus'
 					}
 				},
 				sup: {
@@ -1882,16 +1806,14 @@ export const endings = {
 						2: 'i',
 						3: 'o',
 						4: 'um',
-						5: 'o',
-						6: 'um'
+						5: 'o'
 					},
 					plu: {
 						1: 'a',
 						2: 'orum',
 						3: 'is',
 						4: 'a',
-						5: 'is',
-						6: 'o'
+						5: 'is'
 					}
 				}
 			}
@@ -1904,15 +1826,14 @@ export const endings = {
 			_ns: 'nter'
 		},
 		comp: {
-			a_o: '-ius',
-			e_u: '-ius',
-			_ns: '-ius'
+			a_o: 'ius',
+			e_u: 'ius',
+			_ns: 'ius'
 		},
 		sup: {
-			a_o: '-e',
-			e_u: '-e',
-			_ns: '-e'
+			a_o: 'e',
+			e_u: 'e',
+			_ns: 'e'
 		}
 	}
-	// pronoun: {}
 };
