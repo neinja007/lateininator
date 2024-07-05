@@ -37,7 +37,6 @@ export const properties: {
 	types: Array<Type>;
 	comparisonDegree: Array<ComparisonDegree>;
 } = {
-	// export const properties = {
 	case: ['1', '2', '3', '4', '5', '6'],
 	person: ['1', '2', '3'],
 	numerus: ['sin', 'plu'],

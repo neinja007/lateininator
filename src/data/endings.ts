@@ -1,5 +1,3 @@
-// import { Endings } from '@/data/types';
-
 export const endings = {
 	verb: {
 		a: {
