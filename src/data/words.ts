@@ -1848,5 +1848,2459 @@ export const words: Words = [
 		present: 'oppugno',
 		perfect: 'oppugnavi',
 		participle: 'oppugnatum'
+	},
+	{
+		id: 266,
+		word: 'imperator',
+		type: 'noun',
+		translation: ['feldherr', 'kaiser'],
+		genitive: 'imperatoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 267,
+		word: 'vincere',
+		type: 'verb',
+		translation: ['siegen', 'besiegen'],
+		conjugation: 'k',
+		present: 'vinco',
+		perfect: 'vici',
+		participle: 'victum'
+	},
+	{
+		id: 268,
+		word: 'pars',
+		type: 'noun',
+		translation: ['teil'],
+		genitive: 'partis',
+		gender: 'f',
+		declension: 'm'
+	},
+	{
+		id: 269,
+		word: 'timor',
+		type: 'noun',
+		translation: ['furcht', 'angst'],
+		genitive: 'timoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 270,
+		word: 'ne ... quidem',
+		type: 'other',
+		translation: ['nicht einmal ...', 'nicht einmal']
+	},
+	{
+		id: 271,
+		word: 'prohibere',
+		type: 'verb',
+		translation: ['abhalten', 'fernhalten', 'hindern', 'verhindern'],
+		conjugation: 'e',
+		present: 'prohibeo',
+		perfect: 'prohibui',
+		participle: 'prohibitum'
+	},
+	{
+		id: 272,
+		word: 'occidere',
+		type: 'verb',
+		translation: ['töten'],
+		conjugation: 'k',
+		present: 'occido',
+		perfect: 'occidi',
+		participle: 'occisum'
+	},
+	{
+		id: 273,
+		word: 'porta',
+		type: 'noun',
+		translation: ['tor', 'tür'],
+		genitive: 'portae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 274,
+		word: 'urbs',
+		type: 'noun',
+		translation: ['stadt'],
+		genitive: 'urbis',
+		gender: 'f',
+		declension: 'm'
+	},
+	{
+		id: 275,
+		word: 'summus',
+		type: 'adjective',
+		translation: ['der höchste', 'sehr hoch'],
+		comparison: 'a_o',
+		femininum: 'summa',
+		neutrum: 'summum'
+	},
+	{
+		id: 276,
+		word: 'honor',
+		type: 'noun',
+		translation: ['ehre', 'ansehen'],
+		genitive: 'honoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 277,
+		word: 'virtus',
+		type: 'noun',
+		translation: ['tapferkeit', 'tugend'],
+		genitive: 'virtutis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 278,
+		word: 'facere',
+		type: 'other',
+		translation: ['zu etwas machen'],
+		info: 'mit doppeltem Akkusativ'
+	},
+	{
+		id: 279,
+		word: 'patria',
+		type: 'noun',
+		translation: ['heimat'],
+		genitive: 'patriae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 280,
+
+		word: 'pax',
+		type: 'noun',
+		translation: ['friede'],
+		genitive: 'pacis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 281,
+		word: 'hostis',
+		type: 'noun',
+		translation: ['feind'],
+		genitive: 'hostis',
+		gender: 'm',
+		declension: 'm'
+	},
+	{
+		id: 282,
+		word: 'liberare',
+		type: 'verb',
+		translation: ['befreien von', 'befreien'],
+		info: 'mit Ablativ',
+		conjugation: 'a',
+		present: 'libero',
+		perfect: 'liberavi',
+		participle: 'liberatum'
+	},
+	{
+		id: 283,
+		word: 'copiae',
+		type: 'noun',
+		pluralOnly: true,
+		translation: ['truppen'],
+		info: 'nicht copia; im Plural',
+		genitive: 'copiarum',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 284,
+		word: 'ducere',
+		type: 'verb',
+		translation: ['führen'],
+		info: 'Imperativ Plural: duc!',
+		conjugation: 'k',
+		present: 'duco',
+		perfect: 'duxi',
+		participle: 'ductum'
+	},
+	{
+		id: 285,
+		word: 'navis',
+		type: 'noun',
+		translation: ['schiff'],
+		genitive: 'navis',
+		gender: 'f',
+		declension: 'm'
+	},
+	{
+		id: 286,
+		word: 'mare',
+		type: 'noun',
+		translation: ['meer'],
+		genitive: 'maris',
+		gender: 'n',
+		declension: 'i'
+	},
+	{
+		id: 287,
+		word: 'audere',
+		type: 'verb',
+		translation: ['wagen'],
+		conjugation: 'e',
+		present: 'audeo',
+		perfect: '-',
+		participle: '-'
+	},
+	{
+		id: 288,
+		word: 'amittere',
+		type: 'verb',
+		translation: ['verlieren'],
+		conjugation: 'k',
+		present: 'amitto',
+		perfect: 'amisi',
+		participle: 'amissum'
+	},
+	{
+		id: 289,
+		word: 'pugna',
+		type: 'noun',
+		translation: ['kampf'],
+		genitive: 'pugnae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 290,
+		word: 'iuppiter',
+		type: 'noun',
+		translation: ['jupiter'],
+		info: 'griechisch: Zeus',
+		genitive: 'iovis',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 291,
+		word: 'litus',
+		type: 'noun',
+		translation: ['küste', 'strand'],
+		genitive: 'litoris',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 292,
+		word: 'eius',
+		type: 'other',
+		translation: ['dessen', 'deren'],
+		info: '2. Fall Singular'
+	},
+	{
+		id: 293,
+		word: 'eorum',
+		type: 'other',
+		translation: ['deren'],
+		info: '2. Fall Singular'
+	},
+	{
+		id: 294,
+		word: 'earum',
+		type: 'other',
+		translation: ['deren'],
+		info: '2. Fall Singular'
+	},
+	{
+		id: 295,
+		word: 'iussum',
+		type: 'noun',
+		translation: ['befehl'],
+		genitive: 'iussi',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 296,
+		word: 'conficere',
+		type: 'verb',
+		translation: ['ausführen', 'anfertigen', 'beenden'],
+		conjugation: 'm',
+		present: 'conficio',
+		perfect: 'confeci',
+		participle: 'confectum'
+	},
+	{
+		id: 297,
+		word: 'solere',
+		type: 'verb',
+		translation: ['gewohnt sein', 'pflegen'],
+		conjugation: 'e',
+		present: 'soleo',
+		perfect: '-',
+		participle: '-'
+	},
+	{
+		id: 298,
+		word: 'idem',
+		type: 'other',
+		translation: ['derselbe', 'dasselbe']
+	},
+	{
+		id: 299,
+		word: 'eadem',
+		type: 'other',
+		translation: ['dieselbe']
+	},
+	{
+		id: 300,
+		word: 'locus',
+		type: 'noun',
+		translation: ['ort', 'stelle', 'platz'],
+		genitive: 'loci',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 301,
+		word: 'scire',
+		type: 'verb',
+		translation: ['wissen'],
+		conjugation: 'i',
+		present: 'scio',
+		perfect: 'scivi',
+		participle: 'scitum'
+	},
+	{
+		id: 302,
+		word: 'virgo',
+		type: 'noun',
+		translation: ['mädchen', 'jungfrau'],
+		genitive: 'virginis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 303,
+		word: 'ludere',
+		type: 'verb',
+		translation: ['spielen'],
+		conjugation: 'k',
+		present: 'ludo',
+		perfect: 'lusi',
+		participle: 'lusum'
+	},
+	{
+		id: 304,
+		word: 'taurus',
+		type: 'noun',
+		translation: ['stier'],
+		genitive: 'tauri',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 305,
+		word: 'multitudo',
+		type: 'noun',
+		translation: ['menge'],
+		genitive: 'multitudinis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 306,
+		word: 'conspicere',
+		type: 'verb',
+		translation: ['erblicken'],
+		conjugation: 'm',
+		present: 'conspicio',
+		perfect: 'conspexi',
+		participle: 'conspectum'
+	},
+	{
+		id: 307,
+		word: 'pulchritudo',
+		type: 'noun',
+		translation: ['schönheit'],
+		genitive: 'pulchritudinis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 308,
+		word: 'primo',
+		type: 'adverb',
+		translation: ['zuerst']
+	},
+	{
+		id: 309,
+		word: 'tangere',
+		type: 'verb',
+		translation: ['berühren'],
+		conjugation: 'k',
+		present: 'tango',
+		perfect: 'tetigi',
+		participle: 'tactum'
+	},
+	{
+		id: 310,
+		word: 'corpus',
+		type: 'noun',
+		translation: ['körper'],
+		genitive: 'corporis',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 311,
+		word: 'mox',
+		type: 'adverb',
+		translation: ['bald']
+	},
+	{
+		id: 312,
+		word: 'is',
+		type: 'other',
+		translation: ['dieser', 'er']
+	},
+	{
+		id: 313,
+		word: 'insula',
+		type: 'noun',
+		translation: ['insel'],
+		genitive: 'insulae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 314,
+		word: 'ea',
+		type: 'other',
+		translation: ['diese', 'sie']
+	},
+	{
+		id: 315,
+		word: 'id',
+		type: 'other',
+		translation: ['dieses', 'es']
+	},
+	{
+		id: 316,
+		word: 'vocare',
+		type: 'verb',
+		translation: ['rufen', 'nennen'],
+		conjugation: 'a',
+		present: 'voco',
+		perfect: 'vocavi',
+		participle: 'vocatum'
+	},
+	{
+		id: 317,
+		word: 'imperare',
+		type: 'verb',
+		translation: ['befehlen'],
+		conjugation: 'a',
+		present: 'impero',
+		perfect: 'imperavi',
+		participle: 'imperatum'
+	},
+	{
+		id: 318,
+		word: 'mons',
+		type: 'noun',
+		translation: ['berg'],
+		genitive: 'montis',
+		gender: 'm',
+		declension: 'm'
+	},
+	{
+		id: 319,
+		word: 'rex',
+		type: 'noun',
+		translation: ['könig'],
+		genitive: 'regis',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 320,
+		word: 'pater',
+		type: 'noun',
+		translation: ['vater'],
+		genitive: 'patris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 321,
+		word: 'debere',
+		type: 'verb',
+		translation: ['müssen'],
+		info: 'mit Infinitiv',
+		conjugation: 'e',
+		present: 'debeo',
+		perfect: 'debui',
+		participle: 'debitum'
+	},
+	{
+		id: 322,
+		word: 'caput',
+		type: 'noun',
+		translation: ['kopf', 'haupt'],
+		genitive: 'capitis',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 323,
+		word: 'periculum',
+		type: 'noun',
+		translation: ['gefahr'],
+		genitive: 'periculi',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 324,
+		word: 'interficere',
+		type: 'verb',
+		translation: ['töten'],
+		conjugation: 'm',
+		present: 'interficio',
+		perfect: 'interfeci',
+		participle: 'interfectum'
+	},
+	{
+		id: 325,
+		word: 'miser',
+		type: 'adjective',
+		translation: ['arm', 'elend', 'unglücklich'],
+		comparison: 'a_o',
+		femininum: 'misera',
+		neutrum: 'miserum'
+	},
+	{
+		id: 326,
+		word: 'navigare',
+		type: 'verb',
+		translation: ['segeln', 'mit dem schiff fahren'],
+		conjugation: 'a',
+		present: 'navigo',
+		perfect: 'navigavi',
+		participle: 'navigatum'
+	},
+	{
+		id: 327,
+		word: 'adulescens',
+		type: 'noun',
+		translation: ['junger mann'],
+		genitive: 'adulescentis',
+		gender: 'm',
+		declension: 'm'
+	},
+	{
+		id: 328,
+		word: 'iuvare',
+		type: 'verb',
+		translation: ['unterstützen', 'helfen'],
+		conjugation: 'a',
+		present: 'iuvo',
+		perfect: 'iuvi',
+		participle: 'iutum'
+	},
+	{
+		id: 329,
+		word: 'nemo',
+		type: 'other',
+		translation: ['niemand']
+	},
+	{
+		id: 330,
+		word: 'invenire',
+		type: 'verb',
+		translation: ['finden', 'erfinden'],
+		conjugation: 'i',
+		present: 'invenio',
+		perfect: 'inveni',
+		participle: 'inventum'
+	},
+	{
+		id: 331,
+		word: 'quaerere',
+		type: 'verb',
+		translation: ['suchen'],
+		info: 'mit Akkusativ',
+		conjugation: 'k',
+		present: 'quaero',
+		perfect: 'quaesivi',
+		participle: 'quaesitum'
+	},
+	{
+		id: 332,
+		word: 'cura',
+		type: 'noun',
+		translation: ['sorge'],
+		genitive: 'curae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 333,
+		word: 'quomodo',
+		type: 'other',
+		translation: ['wie']
+	},
+	{
+		id: 334,
+		word: 'modus',
+		type: 'noun',
+		translation: ['art', 'weise'],
+		genitive: 'modi',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 335,
+		word: 'dare',
+		type: 'verb',
+		translation: ['geben'],
+		conjugation: 'a',
+		present: 'do',
+		perfect: 'dedi',
+		participle: 'datum'
+	},
+	{
+		id: 336,
+		word: 'medius/a/um',
+		type: 'other',
+		translation: ['der mittlere', 'in der mitte']
+	},
+	{
+		id: 337,
+		word: 'medio in labyrintho',
+		type: 'other',
+		translation: ['mitten im labyrinth']
+	},
+	{
+		id: 338,
+		word: 'paratus/a/um',
+		type: 'other',
+		translation: ['bereit']
+	},
+	{
+		id: 339,
+		word: 'atque',
+		type: 'other',
+		translation: ['und'],
+		info: '= ac'
+	},
+	{
+		id: 340,
+		word: 'quaerere',
+		type: 'verb',
+		translation: ['fragen'],
+		info: 'mit ab/ex',
+		conjugation: 'k',
+		present: 'quaero',
+		perfect: 'quaesivi',
+		participle: 'quaesitum'
+	},
+	{
+		id: 341,
+		word: 'parentes',
+		type: 'noun',
+		pluralOnly: true,
+		translation: ['eltern'],
+		info: 'nur Plural',
+		genitive: 'parentium',
+		gender: 'm',
+		declension: 'm'
+	},
+	{
+		id: 342,
+		word: 'qui',
+		type: 'other',
+		translation: ['welcher', 'der']
+	},
+	{
+		id: 343,
+		word: 'quae',
+		type: 'other',
+		translation: ['welche', 'die']
+	},
+	{
+		id: 344,
+		word: 'quod',
+		type: 'other',
+		translation: ['welches', 'das'],
+		info: 'als Pronomen'
+	},
+	{
+		id: 345,
+		word: 'nihil',
+		type: 'other',
+		translation: ['nichts']
+	},
+	{
+		id: 346,
+		word: 'nihil nisi',
+		type: 'other',
+		translation: ['nichts außer', 'nur']
+	},
+	{
+		id: 347,
+		word: 'amor',
+		type: 'noun',
+		translation: ['liebe'],
+		genitive: 'amoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 348,
+		word: 'coniungere',
+		type: 'verb',
+		translation: ['verbinden', 'vereinigen'],
+		conjugation: 'k',
+		present: 'coniungo',
+		perfect: 'coniunxi',
+		participle: 'coniunctum'
+	},
+	{
+		id: 349,
+		word: 'dies',
+		type: 'noun',
+		translation: ['tag'],
+		info: 'in diesem Fall: maskulin (dies kann auch feminin sein)',
+		genitive: 'diei',
+		gender: 'm',
+		declension: 'e'
+	},
+	{
+		id: 350,
+		word: 'opus',
+		type: 'noun',
+		translation: ['werk'],
+		genitive: 'operis',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 351,
+		word: 'meridies',
+		type: 'noun',
+		translation: ['mittag'],
+		genitive: 'meridiei',
+		gender: 'm',
+		declension: 'e'
+	},
+	{
+		id: 352,
+		word: 'sol',
+		type: 'noun',
+		translation: ['sonne'],
+		genitive: 'solis',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 353,
+		word: 'caelum',
+		type: 'noun',
+		translation: ['himmel'],
+		genitive: 'caeli',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 354,
+		word: 'metus',
+		type: 'noun',
+		translation: ['furcht', 'angst'],
+		genitive: 'metus',
+		gender: 'm',
+		declension: 'u'
+	},
+	{
+		id: 355,
+		word: 'denique',
+		type: 'adverb',
+		translation: ['schließlich', 'endlich']
+	},
+	{
+		id: 356,
+		word: 'neglegere',
+		type: 'verb',
+		translation: ['missachten', 'ignorieren'],
+		conjugation: 'k',
+		present: 'neglego',
+		perfect: 'neglexi',
+		participle: 'neglectum'
+	},
+	{
+		id: 357,
+		word: 'solvere',
+		type: 'verb',
+		translation: ['auflösen', 'lösen'],
+		conjugation: 'k',
+		present: 'solvo',
+		perfect: 'solvi',
+		participle: 'solutum'
+	},
+	{
+		id: 358,
+		word: 'cupere',
+		type: 'verb',
+		translation: ['wünschen', 'begehren'],
+		conjugation: 'm',
+		present: 'cupio',
+		perfect: 'cupivi',
+		participle: 'cupitum'
+	},
+	{
+		id: 359,
+		word: 'cadere',
+		type: 'verb',
+		translation: ['fallen'],
+		conjugation: 'k',
+		present: 'cado',
+		perfect: 'cecidi',
+		participle: '-'
+	},
+	{
+		id: 360,
+		word: 'mortuus',
+		type: 'adjective',
+		translation: ['tot', 'gestorben'],
+		comparison: 'a_o',
+		femininum: 'mortua',
+		neutrum: 'mortuum'
+	},
+	{
+		id: 361,
+		word: 'petere',
+		type: 'verb',
+		translation: ['anstreben'],
+		info: 'ohne a/ab',
+		conjugation: 'k',
+		present: 'peto',
+		perfect: 'petivi',
+		participle: 'petitum'
+	},
+	{
+		id: 362,
+		word: 'petere',
+		type: 'verb',
+		translation: ['bitten', 'erbitten'],
+		info: 'mit a/ab',
+		conjugation: 'k',
+		present: 'peto',
+		perfect: 'petivi',
+		participle: 'petitum'
+	},
+	{
+		id: 363,
+		word: 'manus',
+		type: 'noun',
+		translation: ['hand'],
+		genitive: 'manus',
+		gender: 'f',
+		declension: 'u'
+	},
+	{
+		id: 364,
+		word: 'artificium',
+		type: 'noun',
+		translation: ['kunstwerk'],
+		genitive: 'artificii',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 365,
+		word: 'res',
+		type: 'noun',
+		translation: ['sache'],
+		genitive: 'rei',
+		gender: 'f',
+		declension: 'e'
+	},
+	{
+		id: 366,
+		word: 'ars',
+		type: 'noun',
+		translation: ['kunst', 'technik'],
+		genitive: 'artis',
+		gender: 'f',
+		declension: 'm'
+	},
+	{
+		id: 367,
+		word: 'casus',
+		type: 'noun',
+		translation: ['fall', 'zufall', 'unglücksfall'],
+		genitive: 'casus',
+		gender: 'm',
+		declension: 'u'
+	},
+	{
+		id: 368,
+		word: 'fuit',
+		type: 'other',
+		translation: ['er war', 'sie war', 'es war'],
+		info: 'Perfekt von est, irreguläres Verb'
+	},
+	{
+		id: 369,
+		word: 'prudentia',
+		type: 'noun',
+		translation: ['klugheit'],
+		genitive: 'prudentiae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 370,
+		word: 'intellegere',
+		type: 'verb',
+		translation: ['erkennen', 'einsehen'],
+		conjugation: 'k',
+		present: 'intellego',
+		perfect: 'intellexi',
+		participle: 'intellectum'
+	},
+	{
+		id: 371,
+		word: 'reddere',
+		type: 'verb',
+		translation: ['zurückgeben'],
+		conjugation: 'k',
+		present: 'reddo',
+		perfect: 'reddidi',
+		participle: 'redditum'
+	},
+	{
+		id: 372,
+		word: 'poena',
+		type: 'noun',
+		translation: ['strafe'],
+		genitive: 'poenae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 373,
+		word: 'poenas solvere',
+		type: 'other',
+		translation: ['eine strafe verbüßen', 'strafe verbüßen']
+	},
+	{
+		id: 374,
+		word: 'stare',
+		type: 'verb',
+		translation: ['stehen'],
+		conjugation: 'a',
+		present: 'sto',
+		perfect: 'steti',
+		participle: 'statum'
+	},
+	{
+		id: 375,
+		word: 'arbor',
+		type: 'noun',
+		translation: ['baum'],
+		genitive: 'arboris',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 376,
+		word: 'sitis',
+		type: 'noun',
+		translation: ['durst'],
+		genitive: 'sitis',
+		gender: 'f',
+		declension: 'i'
+	},
+	{
+		id: 377,
+		word: 'fames',
+		type: 'noun',
+		translation: ['hunger'],
+		genitive: 'famis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 378,
+		word: 'cum',
+		type: 'other',
+		translation: ['wenn', 'sooft', 'als'],
+		info: 'als Konjunktion'
+	},
+	{
+		id: 379,
+		word: 'hic',
+		type: 'other',
+		translation: ['dieser'],
+		info: 'als Pronomen'
+	},
+	{
+		id: 380,
+		word: 'bibere',
+		type: 'verb',
+		translation: ['trinken'],
+		conjugation: 'k',
+		present: 'bibo',
+		perfect: 'bibi',
+		participle: '-'
+	},
+	{
+		id: 381,
+		word: 'improbus',
+		type: 'adjective',
+		translation: ['schlecht', 'böse'],
+		comparison: 'a_o',
+		femininum: 'improba',
+		neutrum: 'improbum'
+	},
+	{
+		id: 382,
+		word: 'scelus',
+		type: 'noun',
+		translation: ['verbrechen'],
+		genitive: 'sceleris',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 383,
+		word: 'mors',
+		type: 'noun',
+		translation: ['tod'],
+		genitive: 'mortis',
+		gender: 'f',
+		declension: 'm'
+	},
+	{
+		id: 384,
+		word: 'contra',
+		type: 'other',
+		translation: ['gegen'],
+		info: 'mit Akkusativ'
+	},
+	{
+		id: 385,
+		word: 'natura',
+		type: 'noun',
+		translation: ['natur'],
+		genitive: 'naturae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 386,
+		word: 'genus',
+		type: 'noun',
+		translation: ['art', 'geschlecht'],
+		genitive: 'generis',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 387,
+		word: 'punire',
+		type: 'verb',
+		translation: ['bestrafen'],
+		conjugation: 'i',
+		present: 'punio',
+		perfect: 'punivi',
+		participle: 'punitum'
+	},
+	{
+		id: 388,
+		word: 'saxum',
+		type: 'noun',
+		translation: ['fels'],
+		genitive: 'saxi',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 389,
+		word: 'vis',
+		type: 'noun',
+		translation: ['kraft', 'gewalt'],
+		info: 'Singular von vires, ohne Genitiv und Dativ',
+		genitive: '-',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 390,
+		word: 'haec',
+		type: 'other',
+		translation: ['diese']
+	},
+	{
+		id: 391,
+		word: 'vires',
+		type: 'noun',
+		pluralOnly: true,
+		translation: ['die kräfte', 'kräfte'],
+		info: 'Plural von vis',
+		genitive: 'virium',
+		gender: 'f',
+		declension: 'm'
+	},
+	{
+		id: 392,
+		word: 'paene',
+		type: 'adverb',
+		translation: ['fast', 'beinahe']
+	},
+	{
+		id: 393,
+		word: 'hoc',
+		type: 'other',
+		translation: ['dieses']
+	},
+	{
+		id: 394,
+		word: 'cena',
+		type: 'noun',
+		translation: ['mahlzeit', 'mahl'],
+		genitive: 'cenae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 395,
+		word: 'invitare',
+		type: 'verb',
+		translation: ['einladen'],
+		conjugation: 'a',
+		present: 'invito',
+		perfect: 'invitavi',
+		participle: 'invitatum'
+	},
+	{
+		id: 396,
+		word: 'quidam/quaedam/quoddam',
+		type: 'other',
+		translation: ['ein', 'ein gewisser'],
+		info: 'als Singular; 2. Fall: cuiusdam, 3. Fall: cuidam'
+	},
+	{
+		id: 397,
+		word: 'quidam/quaedam/quoddam',
+		type: 'other',
+		translation: ['einige'],
+		info: 'als Plural; 2. Fall: cuiusdam, 3. Fall: cuidam'
+	},
+	{
+		id: 398,
+		word: 'facinus',
+		type: 'noun',
+		translation: ['tat', 'untat'],
+		genitive: 'facinoris',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 399,
+		word: 'ille',
+		type: 'other',
+		translation: ['jener']
+	},
+	{
+		id: 400,
+		word: 'in matrimonium ducere',
+		type: 'other',
+		translation: ['heiraten'],
+		info: 'vom Mann aus'
+	},
+	{
+		id: 401,
+		word: 'dolor',
+		type: 'noun',
+		translation: ['schmerz'],
+		genitive: 'doloris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 402,
+		word: 'flere',
+		type: 'verb',
+		translation: ['weinen'],
+		conjugation: 'e',
+		present: 'fleo',
+		perfect: 'flevi',
+		participle: 'fletum'
+	},
+	{
+		id: 403,
+		word: 'dolere',
+		type: 'verb',
+		translation: ['trauern', 'schmerz empfinden'],
+		conjugation: 'e',
+		present: 'doleo',
+		perfect: 'dolui',
+		participle: '-'
+	},
+	{
+		id: 404,
+		word: 'ipse/ipsa/ipsum',
+		type: 'other',
+		translation: ['selbst']
+	},
+	{
+		id: 405,
+		word: 'regina',
+		type: 'noun',
+		translation: ['königin'],
+		genitive: 'reginae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 406,
+		word: 'movere',
+		type: 'verb',
+		translation: ['bewegen', 'beeindrucken'],
+		conjugation: 'e',
+		present: 'moveo',
+		perfect: 'movi',
+		participle: 'motum'
+	},
+	{
+		id: 407,
+		word: 'postquam',
+		type: 'other',
+		translation: ['nachdem'],
+		info: 'mit Perfekt'
+	},
+	{
+		id: 408,
+		word: 'cuncti/cunctae',
+		type: 'other',
+		translation: ['alle'],
+		info: 'maskulin / feminin; im Plural'
+	},
+	{
+		id: 409,
+		word: 'cuncta',
+		type: 'other',
+		translation: ['alles'],
+		info: 'im Plural'
+	},
+	{
+		id: 410,
+		word: 'illa',
+		type: 'other',
+		translation: ['jene']
+	},
+	{
+		id: 411,
+		word: 'frustra',
+		type: 'adverb',
+		translation: ['vergeblich']
+	},
+	{
+		id: 412,
+		word: 'desinere',
+		type: 'verb',
+		translation: ['aufhren', 'ablassen'],
+		conjugation: 'k',
+		present: 'desino',
+		perfect: 'desii',
+		participle: '-'
+	},
+	{
+		id: 413,
+		word: 'considere',
+		type: 'verb',
+		translation: ['niedersetzen', 'sich niedersetzen'],
+		conjugation: 'k',
+		present: 'consido',
+		perfect: 'consedi',
+		participle: '-'
+	},
+	{
+		id: 414,
+		word: 'ignotus',
+		type: 'adjective',
+		translation: ['unbekannt'],
+		comparison: 'a_o',
+		femininum: 'ignota',
+		neutrum: 'ignotum'
+	},
+	{
+		id: 415,
+		word: 'eram',
+		type: 'other',
+		translation: ['ich war'],
+		info: 'Imperfekt von sum (esse); irreguläres Verb'
+	},
+	{
+		id: 416,
+		word: 'eras',
+		type: 'other',
+		translation: ['du warst'],
+		info: 'Imperfekt von es (esse); irreguläres Verb'
+	},
+	{
+		id: 417,
+		word: 'condicio',
+		type: 'noun',
+		translation: ['bedingung'],
+		genitive: 'condicionis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 418,
+		word: 'uxor',
+		type: 'noun',
+		translation: ['gattin', 'ehefrau'],
+		genitive: 'uxoris',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 419,
+		word: 'iter',
+		type: 'noun',
+		translation: ['weg', 'reise'],
+		genitive: 'itineris',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 420,
+		word: 'iter facere',
+		type: 'other',
+		translation: ['reisen', 'marschieren']
+	},
+	{
+		id: 421,
+		word: 'illud',
+		type: 'other',
+		translation: ['jenes']
+	},
+	{
+		id: 422,
+		word: 'vertere',
+		type: 'verb',
+		translation: ['wenden', 'drehen'],
+		conjugation: 'k',
+		present: 'verto',
+		perfect: 'verti',
+		participle: 'versum'
+	},
+	{
+		id: 423,
+		word: 'domus',
+		type: 'noun',
+		translation: ['haus'],
+		genitive: 'domus',
+		gender: 'f',
+		declension: 'u'
+	},
+	{
+		id: 424,
+		word: 'longus',
+		type: 'adjective',
+		translation: ['lang'],
+		comparison: 'a_o',
+		femininum: 'longa',
+		neutrum: 'longum'
+	},
+	{
+		id: 425,
+		word: 'lux',
+		type: 'noun',
+		translation: ['licht'],
+		genitive: 'lucis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 426,
+		word: 'et ... et',
+		type: 'other',
+		translation: ['sowohl als auch', 'sowohl ... als auch']
+	},
+	{
+		id: 427,
+		word: 'animal',
+		type: 'noun',
+		translation: ['tier', 'lebewesen'],
+		genitive: 'animalis',
+		gender: 'n',
+		declension: 'i'
+	},
+	{
+		id: 428,
+		word: 'carmen',
+		type: 'noun',
+		translation: ['lied'],
+		genitive: 'carminis',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 429,
+		word: 'canere',
+		type: 'verb',
+		translation: ['singen', 'besingen'],
+		conjugation: 'k',
+		present: 'cano',
+		perfect: 'cecini',
+		participle: '-'
+	},
+	{
+		id: 430,
+		word: 'olim',
+		type: 'adverb',
+		translation: ['einst']
+	},
+	{
+		id: 431,
+		word: 'matrimonium',
+		type: 'noun',
+		translation: ['ehe'],
+		genitive: 'matrimonii',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 432,
+		word: 'natio',
+		type: 'noun',
+		translation: ['volk'],
+		genitive: 'nationis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 433,
+		word: 'exercitus',
+		type: 'noun',
+		translation: ['heer'],
+		genitive: 'exercitus',
+		gender: 'm',
+		declension: 'u'
+	},
+	{
+		id: 434,
+		word: 'brevis',
+		type: 'adjective',
+		translation: ['kurz'],
+		comparison: 'kon',
+		femininum: 'brevis',
+		neutrum: 'breve'
+	},
+	{
+		id: 435,
+		word: 'tempus',
+		type: 'noun',
+		translation: ['zeit'],
+		genitive: 'temporis',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 436,
+		word: 'agere',
+		type: 'verb',
+		translation: ['tun', 'verbringen'],
+		conjugation: 'k',
+		present: 'ago',
+		perfect: 'egi',
+		participle: 'actum'
+	},
+	{
+		id: 437,
+		word: 'vitam agere',
+		type: 'other',
+		translation: ['das leben verbringen']
+	},
+	{
+		id: 438,
+		word: 'exercere',
+		type: 'verb',
+		translation: ['trainieren', 'üben'],
+		conjugation: 'e',
+		present: 'exerceo',
+		perfect: 'exercui',
+		participle: 'exercitum'
+	},
+	{
+		id: 439,
+		word: 'celer',
+		type: 'adjective',
+		translation: ['schnell'],
+		comparison: 'kon',
+		femininum: 'celeris',
+		neutrum: 'celere'
+	},
+	{
+		id: 440,
+		word: 'ager',
+		type: 'noun',
+		translation: ['feld'],
+		info: 'im Plural: Gebiet(e)',
+		genitive: 'agri',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 441,
+		word: 'latus',
+		type: 'adjective',
+		translation: ['weit', 'breit'],
+		comparison: 'a_o',
+		femininum: 'lata',
+		neutrum: 'latum'
+	},
+	{
+		id: 442,
+		word: 'recipere',
+		type: 'verb',
+		translation: ['aufnehmen'],
+		conjugation: 'm',
+		present: 'recipio',
+		perfect: 'recepi',
+		participle: 'receptum'
+	},
+	{
+		id: 443,
+		word: 'nobilis',
+		type: 'adjective',
+		translation: ['vornehm', 'adelig'],
+		comparison: 'kon',
+		femininum: 'nobilis',
+		neutrum: 'nobile'
+	},
+	{
+		id: 444,
+		word: 'se recipere',
+		type: 'other',
+		translation: ['sich zurückziehen', 'zurückziehen']
+	},
+	{
+		id: 445,
+		word: 'continere',
+		type: 'verb',
+		translation: ['zusammenhalten', 'enthalten'],
+		conjugation: 'e',
+		present: 'contineo',
+		perfect: 'continui',
+		participle: '-'
+	},
+	{
+		id: 446,
+		word: 'cupiditas',
+		type: 'noun',
+		translation: ['begierde', 'gier'],
+		genitive: 'cupiditatis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 447,
+		word: 'adductus',
+		type: 'adjective',
+		translation: ['veranlasst'],
+		comparison: 'a_o',
+		femininum: 'adducta',
+		neutrum: 'adductum'
+	},
+	{
+		id: 448,
+		word: 'senatus',
+		type: 'noun',
+		translation: ['senat'],
+		genitive: 'senatus',
+		gender: 'm',
+		declension: 'u'
+	},
+	{
+		id: 449,
+		word: 'cognoscere',
+		type: 'verb',
+		translation: ['erkennen', 'erfahren', 'kennenlernen'],
+		conjugation: 'k',
+		present: 'cognosco',
+		perfect: 'cognovi',
+		participle: 'cognitum'
+	},
+	{
+		id: 450,
+		word: 'atrox',
+		type: 'adjective',
+		translation: ['wild', 'grässlich'],
+		comparison: 'kon',
+		femininum: 'atrox',
+		neutrum: 'atrox'
+	},
+	{
+		id: 451,
+		word: 'crux',
+		type: 'noun',
+		translation: ['kreuz'],
+		genitive: 'crucis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 452,
+		word: 'natus',
+		type: 'adjective',
+		translation: ['geboren', 'abstammend'],
+		comparison: 'a_o',
+		femininum: 'nata',
+		neutrum: 'natum'
+	},
+	{
+		id: 453,
+		word: 'fortis',
+		type: 'adjective',
+		translation: ['tapfer'],
+		comparison: 'kon',
+		femininum: 'fortis',
+		neutrum: 'forte'
+	},
+	{
+		id: 454,
+		word: 'gladiator',
+		type: 'noun',
+		translation: ['gladiator'],
+		genitive: 'gladiatoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 455,
+		word: 'crudelis',
+		type: 'adjective',
+		translation: ['grausam'],
+		comparison: 'kon',
+		femininum: 'crudelis',
+		neutrum: 'crudele'
+	},
+	{
+		id: 456,
+		word: 'varius',
+		type: 'adjective',
+		translation: ['verschieden'],
+		comparison: 'a_o',
+		femininum: 'varia',
+		neutrum: 'varium'
+	},
+	{
+		id: 457,
+		word: 'discere',
+		type: 'verb',
+		translation: ['lernen'],
+		conjugation: 'k',
+		present: 'disco',
+		perfect: 'didici',
+		participle: '-'
+	},
+	{
+		id: 458,
+		word: 'difficilis',
+		type: 'adjective',
+		translation: ['schwierig'],
+		comparison: 'kon',
+		femininum: 'difficilis',
+		neutrum: 'difficile'
+	},
+	{
+		id: 459,
+		word: 'littera',
+		type: 'noun',
+		translation: ['buchstabe'],
+		info: 'nur Singular!',
+		genitive: 'litterae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 460,
+		word: 'antiquus',
+		type: 'adjective',
+		translation: ['alt'],
+		comparison: 'a_o',
+		femininum: 'antiqua',
+		neutrum: 'antiquum'
+	},
+	{
+		id: 461,
+		word: 'ferre',
+		type: 'irregular_verb',
+		translation: ['tragen', 'bringen', 'ertragen'],
+		info: 'irreguläres Verb',
+		present: 'fero',
+		perfect: 'tuli',
+		participle: 'latum'
+	},
+	{
+		id: 462,
+		word: 'nobilitas',
+		type: 'noun',
+		translation: ['adel'],
+		genitive: 'nobilitatis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 463,
+		word: 'ius',
+		type: 'noun',
+		translation: ['recht'],
+		genitive: 'iuris',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 464,
+		word: 'oratio',
+		type: 'noun',
+		translation: ['rede'],
+		genitive: 'orationis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 465,
+		word: 'iudicium',
+		type: 'noun',
+		translation: ['urteil'],
+		genitive: 'iudicii',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 466,
+		word: 'sponte sua',
+		type: 'other',
+		translation: ['freiwillig']
+	},
+	{
+		id: 467,
+		word: 'exilium',
+		type: 'noun',
+		translation: ['exil', 'verbannung'],
+		genitive: 'exilii',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 468,
+		word: 'ire',
+		type: 'irregular_verb',
+		translation: ['gehen'],
+		info: 'irreguläres Verb',
+		present: 'eo',
+		perfect: 'ii',
+		participle: 'itum'
+	},
+	{
+		id: 469,
+		word: 'romae',
+		type: 'other',
+		translation: ['in rom'],
+		info: 'Lokativ'
+	},
+	{
+		id: 470,
+		word: 'litterae',
+		type: 'noun',
+		pluralOnly: true,
+		translation: ['wissenschaft', 'brief'],
+		info: 'nur Plural',
+		genitive: 'litterarum',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 471,
+		word: 'studere',
+		type: 'verb',
+		translation: ['sich bemühen', 'streben'],
+		info: 'mit Dativ; ... um, ... nach',
+		conjugation: 'e',
+		present: 'studeo',
+		perfect: 'studui',
+		participle: '-'
+	},
+	{
+		id: 472,
+		word: 'cogere',
+		type: 'verb',
+		translation: ['sammeln', 'zwingen'],
+		conjugation: 'k',
+		present: 'cogo',
+		perfect: 'coegi',
+		participle: 'coactum'
+	},
+	{
+		id: 473,
+		word: 'consul',
+		type: 'noun',
+		translation: ['konsul'],
+		genitive: 'consulis',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 474,
+		word: 'convocare',
+		type: 'verb',
+		translation: ['zusammenrufen'],
+		conjugation: 'a',
+		present: 'convoco',
+		perfect: 'convocavi',
+		participle: 'convocatum'
+	},
+	{
+		id: 475,
+		word: 'senator',
+		type: 'noun',
+		translation: ['senator'],
+		genitive: 'senatoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 476,
+		word: 'fere',
+		type: 'other',
+		translation: ['ungefähr', 'fast']
+	},
+	{
+		id: 477,
+		word: 'exire',
+		type: 'irregular_verb',
+		translation: ['hinausgehen'],
+		info: 'irreguläres Verb',
+		present: 'exeo',
+		perfect: 'exii',
+		participle: 'exitum'
+	},
+	{
+		id: 478,
+		word: 'iubere',
+		type: 'verb',
+		translation: ['befehlen', 'lassen'],
+		info: 'mit Akkusativ',
+		conjugation: 'e',
+		present: 'iubeo',
+		perfect: 'iussi',
+		participle: 'iussum'
+	},
+	{
+		id: 479,
+		word: 'socius',
+		type: 'noun',
+		translation: ['gefährte'],
+		genitive: 'socii',
+		gender: 'm',
+		declension: 'o'
+	},
+	{
+		id: 480,
+		word: 'comprehendere',
+		type: 'verb',
+		translation: ['ergreifen', 'erfassen'],
+		info: 'auch geistig',
+		conjugation: 'k',
+		present: 'comprehendo',
+		perfect: 'comprehendi',
+		participle: 'comprehensum'
+	},
+	{
+		id: 481,
+		word: 'iuvenis',
+		type: 'noun',
+		translation: ['junger mann'],
+		info: '30-45 Jahre',
+		genitive: 'iuvenis',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 482,
+		word: 'afficere',
+		type: 'verb',
+		translation: ['erfüllen', 'versehen', 'versehen mit'],
+		conjugation: 'm',
+		present: 'afficio',
+		perfect: 'affeci',
+		participle: 'affectum'
+	},
+	{
+		id: 483,
+		word: 'priusquam',
+		type: 'other',
+		translation: ['bevor']
+	},
+	{
+		id: 484,
+		word: 'adire',
+		type: 'irregular_verb',
+		translation: ['hingehen', 'sich wenden', 'angreifen'],
+		info: 'irreguläres Verb',
+		present: 'adeo',
+		perfect: 'adii',
+		participle: 'aditum'
+	},
+	{
+		id: 485,
+		word: 'orator',
+		type: 'noun',
+		translation: ['redner'],
+		genitive: 'oratoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 486,
+		word: 'res publica',
+		type: 'noun',
+		translation: ['staat'],
+		genitive: 'res publicae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 487,
+		word: 'iustitia',
+		type: 'noun',
+		translation: ['gerechtigkeit'],
+		genitive: 'iustitiae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 488,
+		word: 'incola',
+		type: 'noun',
+		translation: ['bewohner', 'einwohner'],
+		genitive: 'incolae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 489,
+		word: 'provincia',
+		type: 'noun',
+		translation: ['provinz'],
+		genitive: 'provinciae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 490,
+		word: 'divitiae',
+		type: 'noun',
+		pluralOnly: true,
+		translation: ['reichtum'],
+		genitive: 'divitiarum',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 491,
+		word: 'c. iulius caesar',
+		type: 'noun',
+		translation: ['gaius julius caesar'],
+		info: 'genitiv ohne C.',
+		genitive: 'iulii caesaris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 492,
+		word: 'pauci/ae/a',
+		type: 'other',
+		translation: ['wenige']
+	},
+	{
+		id: 493,
+		word: 'totus',
+		type: 'adjective',
+		translation: ['ganz'],
+		info: '2. Fall: totius, 3. Fall: toti',
+		comparison: 'a_o',
+		femininum: 'tota',
+		neutrum: 'totum'
+	},
+	{
+		id: 494,
+		word: 'at',
+		type: 'other',
+		translation: ['aber']
+	},
+	{
+		id: 495,
+		word: 'auctoritas',
+		type: 'noun',
+		translation: ['ansehen', 'einfluss'],
+		genitive: 'auctoritatis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 496,
+		word: 'omnis',
+		type: 'adjective',
+		translation: ['jeder', 'ganz'],
+		info: 'nicht omnes/ia; im Singular',
+		comparison: 'kon',
+		femininum: 'omnis',
+		neutrum: 'omne'
+	},
+	{
+		id: 497,
+		word: 'omnes',
+		type: 'adjective',
+		translation: ['alle', 'alles'],
+		info: 'nicht omnis; im Plural; Neutrum wird im Singular übersetzt',
+		comparison: 'kon',
+		femininum: 'omnes',
+		neutrum: 'omnia'
+	},
+	{
+		id: 498,
+		word: 'proelium',
+		type: 'noun',
+		translation: ['schlacht'],
+		genitive: 'proelii',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 499,
+		word: 'qui',
+		type: 'other',
+		translation: ['dieser'],
+		info: 'am Satzanfang'
+	},
+	{
+		id: 500,
+		word: 'quae',
+		type: 'other',
+		translation: ['diese'],
+		info: 'am Satzanfang'
+	},
+	{
+		id: 501,
+		word: 'quod',
+		type: 'other',
+		translation: ['dieses'],
+		info: 'am Satzanfang'
+	},
+	{
+		id: 502,
+		word: 'prudens',
+		type: 'adjective',
+		translation: ['klug'],
+		comparison: 'kon',
+		femininum: 'prudens',
+		neutrum: 'prudens'
+	},
+	{
+		id: 503,
+		word: 'circumvenire',
+		type: 'verb',
+		translation: ['umzingeln'],
+		conjugation: 'i',
+		present: 'circumvenio',
+		perfect: 'circumveni',
+		participle: 'circumventum'
+	},
+	{
+		id: 504,
+		word: 'advenire',
+		type: 'verb',
+		translation: ['hinkommen', 'ankommen'],
+		conjugation: 'i',
+		present: 'advenio',
+		perfect: 'adveni',
+		participle: 'adventum'
+	},
+	{
+		id: 505,
+		word: 'frumentum',
+		type: 'noun',
+		translation: ['getreide'],
+		genitive: 'frumenti',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 506,
+		word: 'concilium',
+		type: 'noun',
+		translation: ['versammlung'],
+		genitive: 'concilii',
+		gender: 'n',
+		declension: 'o'
+	},
+	{
+		id: 507,
+		word: 'honestus',
+		type: 'adjective',
+		translation: ['ehrenhaft', 'ehrenvoll'],
+		comparison: 'a_o',
+		femininum: 'honesta',
+		neutrum: 'honestum'
+	},
+	{
+		id: 508,
+		word: 'servitus',
+		type: 'noun',
+		translation: ['sklaverei'],
+		genitive: 'servitutis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 509,
+		word: 'aetas',
+		type: 'noun',
+		translation: ['alter', 'zeitalter', 'zeit'],
+		genitive: 'aetatis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 510,
+		word: 'aut',
+		type: 'other',
+		translation: ['oder']
+	},
+	{
+		id: 511,
+		word: 'ubi',
+		type: 'other',
+		translation: ['sobald'],
+		info: 'mit Perfekt'
+	},
+	{
+		id: 512,
+		word: 'prior',
+		type: 'adjective',
+		translation: ['der frhere', 'die frhere', 'das frhere'],
+		info: 'Komparativ',
+		comparison: 'kon',
+		femininum: 'prior',
+		neutrum: 'prius'
+	},
+	{
+		id: 513,
+		word: 'quam',
+		type: 'other',
+		translation: ['als'],
+		info: 'nach Komparativ'
+	},
+	{
+		id: 514,
+		word: 'acer',
+		type: 'adjective',
+		translation: ['heftig', 'spitz', 'scharf'],
+		comparison: 'kon',
+		femininum: 'acris',
+		neutrum: 'acre'
+	},
+	{
+		id: 515,
+		word: 'incipere',
+		type: 'verb',
+		translation: ['beginnen', 'anfangen'],
+		conjugation: 'm',
+		present: 'incipio',
+		perfect: 'coepi',
+		participle: 'coeptum'
+	},
+	{
+		id: 516,
+		word: 'civitas',
+		type: 'noun',
+		translation: ['stamm', 'gemeinde', 'staat'],
+		genitive: 'civitatis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 517,
+		word: 'gallia',
+		type: 'noun',
+		translation: ['gallien'],
+		info: 'heutiges Frankreich',
+		genitive: 'galliae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 518,
+		word: 'tradere',
+		type: 'verb',
+		translation: ['ausliefern', 'berliefern'],
+		conjugation: 'k',
+		present: 'trado',
+		perfect: 'tradidi',
+		participle: 'traditum'
+	},
+	{
+		id: 519,
+		word: 'se tradere',
+		type: 'other',
+		translation: ['sich ergeben']
+	},
+	{
+		id: 520,
+		word: 'amicitia',
+		type: 'noun',
+		translation: ['freundschaft'],
+		genitive: 'amicitiae',
+		gender: 'f',
+		declension: 'a'
+	},
+	{
+		id: 521,
+		word: 'legio',
+		type: 'noun',
+		translation: ['legion'],
+		genitive: 'legionis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 522,
+		word: 'maximus',
+		type: 'adjective',
+		translation: ['der größte, sehr groß'],
+		comparison: 'a_o',
+		femininum: 'maxima',
+		neutrum: 'maximum'
+	},
+	{
+		id: 523,
+		word: 'potestas',
+		type: 'noun',
+		translation: ['macht'],
+		genitive: 'potestatis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 524,
+		word: 'dictator',
+		type: 'noun',
+		translation: ['diktator'],
+		genitive: 'dictatoris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 525,
+		word: 'perpetuus',
+		type: 'adjective',
+		translation: ['ununterbrochen', 'ewig'],
+		comparison: 'a_o',
+		femininum: 'perpetua',
+		neutrum: 'perpetuum'
+	},
+	{
+		id: 526,
+		word: 'civis',
+		type: 'noun',
+		translation: ['brger'],
+		genitive: 'civis',
+		gender: 'm',
+		declension: 'm'
+	},
+	{
+		id: 527,
+		word: 'persuadere',
+		type: 'verb',
+		translation: ['berreden', 'berzeugen'],
+		conjugation: 'e',
+		present: 'persuadeo',
+		perfect: 'persuasi',
+		participle: 'persuasum'
+	},
+	{
+		id: 528,
+		word: 'persuadeo tibi',
+		type: 'other',
+		translation: ['ich berrede dich']
+	},
+	{
+		id: 529,
+		word: 'mos',
+		type: 'noun',
+		translation: ['sitte', 'brauch'],
+		genitive: 'moris',
+		gender: 'm',
+		declension: 'k'
+	},
+	{
+		id: 530,
+		word: 'lex',
+		type: 'noun',
+		translation: ['gesetz'],
+		genitive: 'legis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 531,
+		word: 'libertas',
+		type: 'noun',
+		translation: ['freiheit'],
+		genitive: 'libertatis',
+		gender: 'f',
+		declension: 'k'
+	},
+	{
+		id: 532,
+		word: 'melior',
+		type: 'other',
+		translation: ['besser'],
+		info: 'm. / f.'
+	},
+	{
+		id: 533,
+		word: 'melius',
+		type: 'other',
+		translation: ['besser'],
+		info: 'n.'
+	},
+	{
+		id: 534,
+		word: 'caedes',
+		type: 'noun',
+		translation: ['ermordung', 'mord'],
+		genitive: 'caedis',
+		gender: 'f',
+		declension: 'm'
+	},
+	{
+		id: 535,
+		word: 'vivere',
+		type: 'verb',
+		translation: ['leben'],
+		conjugation: 'm',
+		present: 'vivo',
+		perfect: 'vixi',
+		participle: '-'
+	},
+	{
+		id: 536,
+		word: 'facilis',
+		type: 'adjective',
+		translation: ['leicht'],
+		comparison: 'kon',
+		femininum: 'facilis',
+		neutrum: 'facile'
+	},
+	{
+		id: 537,
+		word: 'plurimi/ae/a',
+		type: 'other',
+		translation: ['die meisten'],
+		info: 'Superlativ von multi/ae/a'
+	},
+	{
+		id: 538,
+		word: 'statuere',
+		type: 'verb',
+		translation: ['beschließen', 'aufstellen'],
+		conjugation: 'k',
+		present: 'statuo',
+		perfect: 'statui',
+		participle: 'statutum'
+	},
+	{
+		id: 539,
+		word: 'futurus',
+		type: 'adjective',
+		translation: ['zuknftig'],
+		comparison: 'a_o',
+		femininum: 'futura',
+		neutrum: 'futurum'
+	},
+	{
+		id: 540,
+		word: 'adesse',
+		type: 'irregular_verb',
+		translation: ['da sein', 'anwesend sein'],
+		present: 'adsum',
+		perfect: 'adfui',
+		participle: '-'
+	},
+	{
+		id: 541,
+		word: 'quidem',
+		type: 'other',
+		translation: ['zwar', 'freilich']
+	},
+	{
+		id: 542,
+		word: 'iste',
+		type: 'other',
+		translation: ['dieser', 'dieser da'],
+		info: 'abschätzig gemeint'
+	},
+	{
+		id: 543,
+		word: 'ista',
+		type: 'other',
+		translation: ['diese', 'diese da'],
+		info: 'abschätzig gemeint'
+	},
+	{
+		id: 544,
+		word: 'istud',
+		type: 'other',
+		translation: ['dieses', 'dieses da'],
+		info: 'abschätzig gemeint'
+	},
+	{
+		id: 545,
+		word: 'defendere',
+		type: 'verb',
+		translation: ['verteidigen'],
+		conjugation: 'k',
+		present: 'defendo',
+		perfect: 'defendi',
+		participle: 'defensum'
+	},
+	{
+		id: 546,
+		word: 'vulnus',
+		type: 'noun',
+		translation: ['wunde'],
+		genitive: 'vulneris',
+		gender: 'n',
+		declension: 'k'
+	},
+	{
+		id: 547,
+		word: 'ultimus',
+		type: 'adjective',
+		translation: ['der letzte', 'die letzte', 'das letzte'],
+		comparison: 'a_o',
+		femininum: 'ultima',
+		neutrum: 'ultimum'
 	}
 ];
