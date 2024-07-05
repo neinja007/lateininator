@@ -68,9 +68,19 @@ export const getForm = (
 		  }
 ): string => {
 	let ending: string | undefined = undefined;
+
 	if (word.type === 'noun') {
 		if ('numerus' in info && 'wordCase' in info) {
-			ending = endings.noun[word.declension][word.gender][info.numerus][info.wordCase];
+			if (info.wordCase === '6') {
+				ending = endings.noun[word.declension][word.gender][info.numerus][1];
+
+				if (word.declension === 'o' && word.gender === 'm') {
+					if (ending.endsWith('us')) ending = ending.substring(0, ending.length - 2) + 'e';
+					else if (ending.endsWith('ius')) ending = ending.substring(0, ending.length - 3) + 'i';
+				}
+			} else {
+				ending = endings.noun[word.declension][word.gender][info.numerus][info.wordCase];
+			}
 		}
 	} else if (word.type === 'verb') {
 		if ('modus' in info && 'voice' in info && 'tense' in info && 'numerus' in info && 'person' in info) {
@@ -84,8 +94,18 @@ export const getForm = (
 		if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
 			if (info.adverb) {
 				ending = endings.adverb[info.comparisonDegree][word.word.endsWith('ns') ? '_ns' : word.comparison];
+			} else {
+				if (info.wordCase === '6') {
+					ending = endings.adjective[word.comparison][info.gender][info.comparisonDegree][info.numerus][1];
+
+					if (word.comparison === 'a_o' && info.gender === 'm') {
+						if (ending.endsWith('us')) ending = ending.substring(0, ending.length - 2) + 'e';
+						else if (ending.endsWith('ius')) ending = ending.substring(0, ending.length - 3) + 'i';
+					}
+				} else {
+					ending = endings.adjective[word.comparison][info.gender][info.comparisonDegree][info.numerus][info.wordCase];
+				}
 			}
-			ending = endings.adjective[word.comparison][info.gender][info.comparisonDegree][info.numerus][info.wordCase];
 		}
 	}
 
@@ -96,6 +116,7 @@ export const getForm = (
 
 	let baseType: 'word' | 'present' | 'perfect' | 'participle' = 'word';
 	let superlative = false;
+
 	if (word.type === 'verb' && 'tense' in info) {
 		if (info.tense === 'pres') {
 			baseType = 'present';
@@ -109,5 +130,6 @@ export const getForm = (
 			superlative = true;
 		}
 	}
+
 	return getBase(word, { baseType: baseType, superlative }) + ending;
 };
