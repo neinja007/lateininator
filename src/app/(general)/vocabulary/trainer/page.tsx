@@ -131,7 +131,7 @@ const Page = () => {
 			{stage === 'settings' && (
 				<>
 					<p>Wähle aus, welche Lektionen du lernen möchtest:</p>
-					<div className='space-x-3'>
+					<div className='grid grid-cols-8 gap-3'>
 						{lists.map((list, i) => (
 							<SelectButton
 								key={i}
@@ -146,6 +146,18 @@ const Page = () => {
 								label={list.name}
 							/>
 						))}
+					</div>
+					<div className='flex justify-center space-x-3'>
+						<SelectButton
+							label='Alle auswählen'
+							active={selectedLists.length === lists.length}
+							handleClick={() => setSelectedLists(lists)}
+						/>
+						<SelectButton
+							label='Alle abwählen'
+							active={selectedLists.length === 0}
+							handleClick={() => setSelectedLists([])}
+						/>
 					</div>
 					<hr />
 					<p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
