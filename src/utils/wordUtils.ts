@@ -18,10 +18,10 @@ export const getBase = (
 	const { baseType, superlative } = info;
 	let base = '';
 	if (word.type === 'noun') {
-		if (word.declension === 'a') {
-			base = word.word.substring(0, word.word.length - 1);
+		if (word.declension === 'o') {
+			base = word.genitive.substring(0, word.genitive.length - 1);
 		} else {
-			base = word.word.substring(0, word.word.length - 2);
+			base = word.genitive.substring(0, word.genitive.length - 2);
 		}
 	} else if (word.type === 'verb') {
 		if (baseType === 'present' || baseType === 'word') {
@@ -32,8 +32,8 @@ export const getBase = (
 			base = word.participle.substring(0, word.participle.length - 2);
 		}
 	} else if (word.type === 'adjective') {
-		base = word.word.substring(0, word.word.length - 2);
 		if (superlative) {
+			base = word.word.substring(0, word.word.length - 2);
 			if (word.word.endsWith('er')) {
 				base += 'errim';
 			} else if (word.word.endsWith('ilis')) {
@@ -41,6 +41,8 @@ export const getBase = (
 			} else {
 				base += 'issim';
 			}
+		} else {
+			base = word.femininum.substring(0, word.word.length - 1);
 		}
 	}
 	return base;
