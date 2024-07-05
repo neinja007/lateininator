@@ -41,8 +41,6 @@ const initialPropertiesToCheck: Array<WordInputKey> = [
 	'neutrum'
 ];
 
-const initialTypesToCheck: Array<Type> = ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun'];
-
 const Page = () => {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
 
@@ -51,7 +49,7 @@ const Page = () => {
 	const [maxWords, setMaxWords] = useState<number>(0);
 
 	const [selectedLists, setSelectedLists] = useState<Array<List>>([]);
-	const [typesToCheck, setTypesToCheck] = useState<Array<Type>>(initialTypesToCheck);
+	const [typesToCheck, setTypesToCheck] = useState<Array<Type>>(properties.types);
 
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 	const [propertiesToCheck, setPropertiesToCheck] = useState<Array<WordInputKey>>(initialPropertiesToCheck);
@@ -73,11 +71,14 @@ const Page = () => {
 	}, [selectedLists, stage, typesToCheck]);
 
 	useEffect(() => {
-		properties.types.forEach((type) => {
-			if (!typesToCheck.includes(type)) {
-				setPropertiesToCheck((prev) => prev.filter((p) => !(properties.wordKeys[type] as any).includes(p)));
-			}
-		});
+		setPropertiesToCheck(
+			initialPropertiesToCheck.filter((property) => {
+				return typesToCheck.some(
+					(type) =>
+						['noun', 'verb', 'adjective'].includes(type) && (properties.wordKeys[type] as any).includes(property)
+				);
+			})
+		);
 	}, [typesToCheck]);
 
 	const handleContinue = () => {
