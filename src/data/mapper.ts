@@ -20,7 +20,7 @@ export const mapper = {
 		},
 		comparison: {
 			a_o: 'A/O Deklination',
-			e_u: 'E/U Deklination'
+			kon: 'konsonantische Deklination'
 		},
 		case: {
 			1: 'Nominativ',
@@ -102,7 +102,7 @@ export const mapper = {
 		},
 		comparison: {
 			a_o: 'A/O Dekl.',
-			e_u: 'E/U Dekl.'
+			kon: 'kons. Dekl.'
 		},
 		case: {
 			1: '1. F.',
