@@ -80,8 +80,6 @@ const Page = () => {
 		});
 	}, [typesToCheck]);
 
-	console.log(stage);
-
 	const handleContinue = () => {
 		if (stage === 'test') {
 			if (!activeWord) {
@@ -91,14 +89,12 @@ const Page = () => {
 			setStage('review');
 
 			if (
-				(!properties.wordKeys[activeWord.type]
-					.filter((key) => propertiesToCheck.includes(key))
-					.some((key) => {
-						const originalInput = (inputValues as any)[key] || '';
-						const correctInput = (activeWord as any)[key];
+				(validKeysToCheck.some((key) => {
+					const originalInput = (inputValues as any)[key] || '';
+					const correctInput = (activeWord as any)[key];
 
-						return !compareValues(originalInput, correctInput);
-					}) &&
+					return !compareValues(originalInput, correctInput);
+				}) &&
 					(!activeWord.translation || compareValues(translationInput, activeWord.translation, true))) ||
 				!checkIncorrectWordsAgain
 			) {
@@ -120,6 +116,12 @@ const Page = () => {
 		setInputValues(initialInputValues);
 		setTranslationInput('');
 	};
+
+	const validKeysToCheck = activeWord
+		? properties.wordKeys[activeWord.type].filter(
+				(key) => propertiesToCheck.includes(key) && key in activeWord && (activeWord as any)[key] !== '-'
+		  )
+		: [];
 
 	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
 
@@ -239,9 +241,8 @@ const Page = () => {
 						)}
 					</div>
 					<div className='grid grid-cols-3 gap-3'>
-						{properties.wordKeys[activeWord.type].map((key, i) => {
+						{validKeysToCheck.map((key, i) => {
 							const value = (activeWord as any)[key];
-							if (!propertiesToCheck.includes(key) || value === '-') return;
 							return (
 								<TrainerInput
 									key={i}
