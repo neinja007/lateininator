@@ -65,7 +65,7 @@ export type Numerus = 'sin' | 'plu';
 export type Person = '1' | '2' | '3';
 export type Case = '1' | '2' | '3' | '4' | '5' | '6';
 export type Declension = 'a' | 'o' | 'k' | 'i' | 'm' | 'e' | 'u';
-export type Comparison = 'a_o' | 'e_u';
+export type Comparison = 'a_o' | 'kon';
 export type Gender = 'm' | 'f' | 'n';
 export type ComparisonDegree = 'pos' | 'comp' | 'sup';
 
