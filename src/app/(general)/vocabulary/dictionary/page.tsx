@@ -20,7 +20,7 @@ const Page = () => {
 	}, [query]);
 
 	return (
-		<div>
+		<div className='space-y-5'>
 			<H1>Wörterbuch</H1>
 
 			<div>
@@ -39,7 +39,10 @@ const Page = () => {
 						className={`flex cursor-pointer ${view === 'cards' ? 'text-blue-700' : 'text-gray-400'}`}
 						onClick={() => setView('cards')}
 					>
-						Kartenansicht <CreditCard className='ml-2 mr-8 rotate-180' />
+						Kartenansicht{' '}
+						<div className='relative z-0'>
+							<CreditCard className='ml-2 mr-8 rotate-180' />
+						</div>
 					</div>
 					<div
 						className={`flex cursor-pointer ${view === 'list' ? 'text-blue-700' : 'text-gray-400'}`}
