@@ -11,7 +11,7 @@ const WordList = ({ results, query }: WordListProps) => {
 					<th className='px-4 py-2'>Wort</th>
 					<th className='px-4 py-2'>Übersetzung</th>
 					<th className='px-4 py-2'>Wortart</th>
-					<th className='px-4 py-2 w-2/12'></th>
+					<th className='px-4 py-2 w-2/12' />
 				</tr>
 			</thead>
 			<tbody>
