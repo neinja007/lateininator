@@ -3113,7 +3113,7 @@ export const words: Words = [
 		id: 412,
 		word: 'desinere',
 		type: 'verb',
-		translation: ['aufhren', 'ablassen'],
+		translation: ['aufhören', 'ablassen'],
 		conjugation: 'k',
 		present: 'desino',
 		perfect: 'desii',
