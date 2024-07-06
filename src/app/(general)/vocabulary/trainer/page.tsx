@@ -90,7 +90,7 @@ const Page = () => {
 			setStage('review');
 
 			if (
-				(validKeysToCheck.some((key) => {
+				(!validKeysToCheck.some((key) => {
 					const originalInput = (inputValues as any)[key] || '';
 					const correctInput = (activeWord as any)[key];
 
@@ -284,12 +284,9 @@ const Page = () => {
 							Beenden
 						</Button>
 						<div className='w-full h-6 mx-3 my-auto flex'>
-							<span className='mr-2'>{Math.floor(progressPercentage)}%</span>
+							<span className='mr-2'>{progressPercentage.toFixed(1)}%</span>
 							<div className='flex-grow h-6 w-auto rounded-lg bg-gray-200 overflow-hidden'>
-								<div
-									className={`h-full bg-blue-500 ${maxWords < 100 ? 'transition-all' : ''}`}
-									style={{ width: `${progressPercentage}%` }}
-								></div>
+								<div className={`h-full bg-blue-500 transition-all`} style={{ width: `${progressPercentage}%` }} />
 							</div>
 						</div>
 						<Button onClick={handleContinue}>Weiter</Button>
