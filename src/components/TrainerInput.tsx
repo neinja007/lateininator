@@ -16,7 +16,7 @@ const TrainerInput = ({ word, correct, inputKey, handleChange, value }: TrainerI
 	let evaluationClasses =
 		correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : 'bg-white';
 
-	if (inputKey === 'declension' || inputKey === 'conjugation' || inputKey === 'gender') {
+	if (inputKey === 'declension' || inputKey === 'conjugation' || inputKey === 'gender' || inputKey === 'comparison') {
 		return (
 			<Select
 				label={mapper.extended.wordKey[inputKey]}

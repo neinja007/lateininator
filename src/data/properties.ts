@@ -35,6 +35,7 @@ export const properties: {
 	conjugation: Array<Conjugation>;
 	adjectiveDeclension: Array<Comparison>;
 	types: Array<Type>;
+	comparison: Array<Comparison>;
 	comparisonDegree: Array<ComparisonDegree>;
 } = {
 	case: ['1', '2', '3', '4', '5', '6'],
@@ -57,6 +58,7 @@ export const properties: {
 	},
 	conjugation: ['a', 'e', 'i', 'k', 'm'],
 	adjectiveDeclension: ['a_o', 'kon'],
+	comparison: ['a_o', 'kon'],
 	types: ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun', 'irregular_verb'],
 	comparisonDegree: ['pos', 'comp', 'sup']
 };
