@@ -37,9 +37,9 @@ const links: Array<Link | Dropdown> = [
 		label: 'Flexion',
 		href: '/flexion',
 		children: [
-			{ label: 'Deklination', href: '/noun' },
-			{ label: 'Konjugation', href: '/verb' },
-			{ label: 'Komparation', href: '/adjective' }
+			{ label: 'Nomen', href: '/noun' },
+			{ label: 'Verben', href: '/verb' },
+			{ label: 'Adjektive', href: '/adjective' }
 		]
 	},
 	{ label: 'Grammatik', href: '/grammar' },
