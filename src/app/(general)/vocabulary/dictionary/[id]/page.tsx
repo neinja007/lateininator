@@ -35,8 +35,8 @@ const Page = ({ params: { id } }: PageProps) => {
 					{word.type === 'noun' ? (
 						<>
 							<p>
-								{word.declension ? 'Keine Konjugation' : mapper.extended.declension[word.declension]};{' '}
-								{word.gender ? 'Keine Konjugation' : mapper.extended.gender[word.gender]}
+								{word.declension === '-' ? 'Keine Deklination' : mapper.extended.declension[word.declension]};{' '}
+								{word.gender === '-' ? 'Kein Geschlecht' : mapper.extended.gender[word.gender]}
 							</p>
 							<hr />
 							{word.declension !== '-' && word.gender !== '-' ? (
@@ -80,7 +80,7 @@ const Page = ({ params: { id } }: PageProps) => {
 						</>
 					) : word.type === 'verb' ? (
 						<>
-							<p>{word.conjugation ? 'Keine Konjugation' : mapper.extended.conjugation[word.conjugation]}</p>
+							<p>{word.conjugation === '-' ? 'Keine Konjugation' : mapper.extended.conjugation[word.conjugation]}</p>
 							<hr />
 							{word.conjugation !== '-' ? (
 								<div>
