@@ -55,51 +55,54 @@ const Navbar = () => {
 
 	useEffect(() => {
 		setOpen('');
+		setMobileLinksOpen(false);
 	}, [pathname]);
 
 	return (
-		<div className='fixed inset-0 w-full h-16 inline-flex bg-gray-100'>
-			<Logo />
-			<div className='w-full justify-end xl:justify-center gap-x-2 hidden lg:flex mr-4'>
-				{links.map((link, i) => {
-					if (link.children) {
-						return (
-							<NavbarDropdown
-								key={i}
-								label={link.label}
-								open={open}
-								handleOpen={setOpen}
-								active={pathnameSegments[1] === link.href}
-							>
-								{(link as Dropdown).children.map((child, i) => {
-									return (
-										<NavbarDropdownLink
-											key={i}
-											label={child.label}
-											href={link.href + child.href}
-											active={pathnameSegments[2] === child.href}
-										/>
-									);
-								})}
-							</NavbarDropdown>
-						);
-					} else {
-						return (
-							<NavbarLink key={i} label={link.label} href={link.href} active={pathnameSegments[1] === link.href} />
-						);
-					}
-				})}
-				<SignedIn>
-					<UserButton showName />
-				</SignedIn>
-				<SignedOut>
-					<NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegments[1] === '/sign-in'} />
-				</SignedOut>
+		<>
+			<div className='fixed inset-0 w-full h-16 inline-flex bg-gray-100'>
+				<Logo />
+				<div className='w-full justify-end xl:justify-center gap-x-2 hidden lg:flex mr-4'>
+					{links.map((link, i) => {
+						if (link.children) {
+							return (
+								<NavbarDropdown
+									key={i}
+									label={link.label}
+									open={open}
+									handleOpen={setOpen}
+									active={pathnameSegments[1] === link.href}
+								>
+									{(link as Dropdown).children.map((child, i) => {
+										return (
+											<NavbarDropdownLink
+												key={i}
+												label={child.label}
+												href={link.href + child.href}
+												active={pathnameSegments[2] === child.href}
+											/>
+										);
+									})}
+								</NavbarDropdown>
+							);
+						} else {
+							return (
+								<NavbarLink key={i} label={link.label} href={link.href} active={pathnameSegments[1] === link.href} />
+							);
+						}
+					})}
+					<SignedIn>
+						<UserButton showName />
+					</SignedIn>
+					<SignedOut>
+						<NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegments[1] === '/sign-in'} />
+					</SignedOut>
+				</div>
+				<div className='w-full my-auto block lg:hidden'>
+					<Menu className='h-9 w-11 mr-4 cursor-pointer float-end' onClick={() => setMobileLinksOpen(true)} />
+				</div>
 			</div>
-			<div className='w-full my-auto block lg:hidden'>
-				<Menu className='h-9 w-11 mr-4 cursor-pointer float-end' onClick={() => setMobileLinksOpen(true)} />
-			</div>
-			<div className='fixed inset-16 h-fit z-20 rounded-lg bg-white shadow-xl' hidden={!mobileLinksOpen}>
+			<div className='fixed inset-16 h-fit z-50 rounded-lg bg-white shadow-xl pb-1' hidden={!mobileLinksOpen}>
 				<div className='h-12 flex'>
 					<div className='my-auto w-full'>
 						<span className='pl-4 text-xl font-medium'>Navigation</span>
@@ -114,7 +117,9 @@ const Navbar = () => {
 								key={i}
 								label={link.label}
 								open={open}
-								handleOpen={setOpen}
+								handleOpen={(open) => {
+									setOpen(open);
+								}}
 								active={pathnameSegments[1] === link.href}
 								mobile
 							>
@@ -141,13 +146,21 @@ const Navbar = () => {
 						);
 					}
 				})}
+				<SignedIn>
+					<div className='ml-2 my-2'>
+						<UserButton showName />
+					</div>
+				</SignedIn>
+				<SignedOut>
+					<NavbarDropdownLink label='Anmelden' href='/sign-in' active={pathnameSegments[1] === '/sign-in'} />
+				</SignedOut>
 			</div>
 			<div
-				className='z-10 fixed inset-0 h-full w-full bg-black opacity-10'
+				className='z-40 fixed inset-0 h-full w-full'
 				onClick={() => setMobileLinksOpen(false)}
 				hidden={!mobileLinksOpen}
 			/>
-		</div>
+		</>
 	);
 };
 
