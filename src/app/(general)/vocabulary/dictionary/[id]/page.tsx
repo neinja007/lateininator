@@ -15,7 +15,7 @@ const Page = ({ params: { id } }: PageProps) => {
 	const word = words.find((word) => word.id.toString() === id);
 
 	return (
-		<div>
+		<div className='space-y-5'>
 			{word?.word ? (
 				<>
 					<div className='grid grid-cols-3'>
