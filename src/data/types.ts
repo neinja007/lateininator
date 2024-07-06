@@ -12,7 +12,7 @@ export type WordInputKey =
 	| 'neutrum';
 export type Words = Array<Word>;
 export type Type = 'noun' | 'verb' | 'adjective' | 'other' | 'irregular_verb' | 'pronoun' | 'adverb';
-export type List = { name: string; words: Array<number> };
+export type List = { id: number; name: string; words: Array<number> };
 
 export type Base = {
 	id: number;
