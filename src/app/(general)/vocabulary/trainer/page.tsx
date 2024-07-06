@@ -127,7 +127,7 @@ const Page = () => {
 	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
 
 	return (
-		<div>
+		<div className='space-y-5'>
 			<H1>Vokabeltrainer</H1>
 			{stage === 'settings' && (
 				<>
@@ -221,14 +221,17 @@ const Page = () => {
 							label='Bei Fehlern Wörter nochmals abprüfen'
 						/>
 					</div>
-					<div>
+					<div className='text-center'>
 						<Button onClick={handleContinue}>Start</Button>
 					</div>
 				</>
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
 				<>
-					<p className='text-2xl font-medium text-blue-700'>
+					{activeWord.info && (
+						<p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{activeWord.info}</p>
+					)}
+					<p className='text-2xl font-medium text-blue-7000'>
 						{activeWord.word} <TypeIndicator type={activeWord.type} />
 					</p>
 					<div>
@@ -282,8 +285,11 @@ const Page = () => {
 						</Button>
 						<div className='w-full h-6 mx-3 my-auto flex'>
 							<span className='mr-2'>{Math.floor(progressPercentage)}%</span>
-							<div className='flex-grow h-6 w-auto rounded-lg bg-gray-200'>
-								<div className='h-full bg-blue-500 rounded-lg' style={{ width: `${progressPercentage}%` }}></div>
+							<div className='flex-grow h-6 w-auto rounded-lg bg-gray-200 overflow-hidden'>
+								<div
+									className={`h-full bg-blue-500 ${maxWords < 100 ? 'transition-all' : ''}`}
+									style={{ width: `${progressPercentage}%` }}
+								></div>
 							</div>
 						</div>
 						<Button onClick={handleContinue}>Weiter</Button>
