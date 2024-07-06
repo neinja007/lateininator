@@ -9,13 +9,14 @@ type NavbarDropdownProps = {
 	open: string;
 	handleOpen: Dispatch<SetStateAction<string>>;
 	active: boolean;
+	mobile?: boolean;
 };
 
-const NavbarDropdown = ({ label, children, open, handleOpen, active }: NavbarDropdownProps) => {
+const NavbarDropdown = ({ label, children, open, handleOpen, active, mobile }: NavbarDropdownProps) => {
 	return (
-		<div className='flex justify-center my-auto'>
+		<div className={mobile ? 'border-b last:border-b-0' : 'flex justify-center my-auto'}>
 			<div
-				className={`font-semibold mx-2 ${
+				className={`font-semibold ${mobile ? `p-2 px-4 font-semibold block` : `mx-2`} ${
 					active ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'
 				} cursor-pointer`}
 				onClick={() => handleOpen((prevOpen) => (prevOpen === label ? '' : label))}
@@ -30,8 +31,14 @@ const NavbarDropdown = ({ label, children, open, handleOpen, active }: NavbarDro
 			</div>
 			{open === label && (
 				<>
-					<div onClick={() => handleOpen('')} className='z-40 fixed inset-0 w-full h-full'></div>
-					<div className='absolute z-50 text-center translate-y-8 rounded-lg border shadow bg-white'>{children}</div>
+					<div onClick={() => handleOpen('')} className='z-40 fixed inset-0 w-full h-full' />
+					<div
+						className={`absolute z-50 text-center ${
+							mobile ? 'translate-x-2 -translate-y-1' : 'translate-y-8'
+						} rounded-lg border shadow bg-white`}
+					>
+						{children}
+					</div>
 				</>
 			)}
 		</div>
