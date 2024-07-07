@@ -3,7 +3,7 @@ type MainLayoutProps = {
 };
 
 const AuthLayout = ({ children }: MainLayoutProps) => {
-	return <div className='w-fit mx-auto mt-7 mb-16'>{children}</div>;
+	return <div className='w-fit mx-auto pb-16'>{children}</div>;
 };
 
 export default AuthLayout;
