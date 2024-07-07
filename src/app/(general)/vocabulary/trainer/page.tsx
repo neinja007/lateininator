@@ -269,9 +269,7 @@ const Page = () => {
 									inputKey={key}
 									value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
 									handleChange={(key: string, value: string) =>
-										setInputValues((prevInputValues) => {
-											return { ...prevInputValues, [key]: value };
-										})
+										setInputValues((prevInputValues) => ({ ...prevInputValues, [key]: value }))
 									}
 									correct={stage === 'review' ? compareValues(inputValues[key], value) : null}
 								/>
