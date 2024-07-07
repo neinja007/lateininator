@@ -3818,10 +3818,9 @@ export const words: Words = [
 	},
 	{
 		id: 491,
-		word: 'c. iulius caesar',
+		word: 'iulius caesar',
 		type: 'noun',
 		translation: ['gaius julius caesar'],
-		info: 'genitiv ohne C.',
 		genitive: 'iulii caesaris',
 		gender: 'm',
 		declension: 'k'
