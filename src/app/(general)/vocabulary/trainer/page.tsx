@@ -49,7 +49,7 @@ const Page = () => {
 	const [maxWords, setMaxWords] = useState<number>(0);
 
 	const [selectedLists, setSelectedLists] = useState<Array<List>>([]);
-	const [typesToCheck, setTypesToCheck] = useState<Array<Type>>(properties.types);
+	const [typesToCheck, setTypesToCheck] = useState<Array<Type>>([...properties.mainTypes, 'other']);
 
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 	const [propertiesToCheck, setPropertiesToCheck] = useState<Array<WordInputKey>>(initialPropertiesToCheck);
@@ -64,7 +64,12 @@ const Page = () => {
 			selectedLists.forEach((list) => {
 				ids = ids.concat(list.words);
 			});
-			const remainingWords = words.filter((word) => ids.includes(word.id) && typesToCheck.includes(word.type));
+			const remainingWords = words.filter(
+				(word) =>
+					ids.includes(word.id) &&
+					(typesToCheck.includes(word.type) ||
+						(typesToCheck.includes('other') && !properties.mainTypes.includes(word.type)))
+			);
 			setRemainingWords(remainingWords);
 			setMaxWords(remainingWords.length);
 		}
@@ -74,8 +79,7 @@ const Page = () => {
 		setPropertiesToCheck(
 			initialPropertiesToCheck.filter((property) => {
 				return typesToCheck.some(
-					(type) =>
-						['noun', 'verb', 'adjective'].includes(type) && (properties.wordKeys[type] as any).includes(property)
+					(type) => properties.mainTypes.includes(type) && (properties.wordKeys[type] as any).includes(property)
 				);
 			})
 		);
@@ -132,7 +136,7 @@ const Page = () => {
 			{stage === 'settings' && (
 				<>
 					<p>Wähle aus, welche Lektionen du lernen möchtest:</p>
-					<div className='grid grid-cols-8 gap-3'>
+					<div className='grid grid-cols-8 gap-4'>
 						{lists.map((list, i) => (
 							<SelectButton
 								key={i}
@@ -162,8 +166,8 @@ const Page = () => {
 					</div>
 					<hr />
 					<p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
-					<div className='space-x-3'>
-						{properties.types.map((type, i) => (
+					<div className='grid grid-cols-4 gap-4'>
+						{([...properties.mainTypes, 'other'] as Array<Type>).map((type, i) => (
 							<SelectButton
 								key={i}
 								active={typesToCheck.includes(type)}
@@ -191,7 +195,7 @@ const Page = () => {
 						/>
 					</div>
 					<div className='grid grid-cols-3'>
-						{(['noun', 'verb', 'adjective'] as Array<Type>).map((type: Type) => (
+						{properties.mainTypes.map((type: Type) => (
 							<div key={type}>
 								<span className={typesToCheck.includes(type) ? 'text-black' : 'text-gray-500'}>
 									{mapper.extended.type[type]}
@@ -214,6 +218,7 @@ const Page = () => {
 						))}
 					</div>
 					<hr />
+					<p>Weitere Optionen:</p>
 					<div>
 						<Checkbox
 							checked={checkIncorrectWordsAgain}
@@ -221,9 +226,9 @@ const Page = () => {
 							label='Bei Fehlern Wörter nochmals abprüfen'
 						/>
 					</div>
-					<div className='text-center'>
-						<Button onClick={handleContinue}>Start</Button>
-					</div>
+					<Button onClick={handleContinue} className='w-full'>
+						Start
+					</Button>
 				</>
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
@@ -231,7 +236,7 @@ const Page = () => {
 					{activeWord.info && (
 						<p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{activeWord.info}</p>
 					)}
-					<p className='text-2xl font-medium text-blue-7000'>
+					<p className='text-2xl font-medium'>
 						{activeWord.word} <TypeIndicator type={activeWord.type} />
 					</p>
 					<hr />
@@ -257,7 +262,7 @@ const Page = () => {
 							/>
 						)}
 					</div>
-					<div className='grid grid-cols-3 gap-3'>
+					<div className='grid grid-cols-3 gap-4'>
 						{validKeysToCheck.map((key, i) => {
 							const value = (activeWord as any)[key];
 							return (
