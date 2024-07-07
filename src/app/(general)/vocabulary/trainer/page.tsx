@@ -14,6 +14,9 @@ import TrainerInput from '@/components/TrainerInput';
 import Checkbox from '@/components/ui/Checkbox';
 import { mapper } from '@/data/mapper';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
+import ProgressBar from '@/components/progressBar';
+import ActionBar from '@/components/ActionBar';
+import WordDisplay from '@/components/WordDisplay';
 
 const initialInputValues = {
 	conjugation: '',
@@ -233,12 +236,7 @@ const Page = () => {
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
 				<>
-					{activeWord.info && (
-						<p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{activeWord.info}</p>
-					)}
-					<p className='text-2xl font-medium'>
-						{activeWord.word} <TypeIndicator type={activeWord.type} />
-					</p>
+					<WordDisplay word={activeWord} />
 					<hr />
 					<div>
 						{checkTranslation && activeWord.translation && (
@@ -281,22 +279,7 @@ const Page = () => {
 						})}
 					</div>
 					<hr />
-					<div className='flex'>
-						<Button
-							onClick={() => {
-								setStage('results');
-							}}
-						>
-							Beenden
-						</Button>
-						<div className='w-full h-6 mx-3 my-auto flex'>
-							<span className='mr-2'>{progressPercentage.toFixed(1)}%</span>
-							<div className='flex-grow h-6 w-auto rounded-lg bg-gray-200 overflow-hidden'>
-								<div className={`h-full bg-blue-500 transition-all`} style={{ width: `${progressPercentage}%` }} />
-							</div>
-						</div>
-						<Button onClick={handleContinue}>Weiter</Button>
-					</div>
+					<ActionBar setStage={setStage} handleContinue={handleContinue} progressPercentage={progressPercentage} />
 				</>
 			)}
 			{stage === 'results' && (
