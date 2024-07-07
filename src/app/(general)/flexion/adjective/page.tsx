@@ -11,24 +11,26 @@ import Checkbox from '@/components/ui/Checkbox';
 import { mapper } from '@/data/mapper';
 import { properties } from '@/data/properties';
 import Button from '@/components/ui/Button';
+import ActionBar from '@/components/ActionBar';
+import WordDisplay from '@/components/WordDisplay';
 
 const Page = () => {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
 
-	const [remainingWords, setRemainingWords] = useState<Words>([]);
 	const [activeWord, setActiveWord] = useState<Word>();
 	const [maxWords, setMaxWords] = useState<number>(0);
 
-	const [maxUnit, setMaxUnit] = useState(0);
+	const [maxUnit, setMaxUnit] = useState(lists.length);
 	const [selectedWords, setSelectedWords] = useState<Array<Word>>([]);
+	const [remainingWords, setRemainingWords] = useState<Array<Word>>([]);
+	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
 
 	const [comparisons, setComparisons] = useState<Array<Comparison>>(properties.comparison);
 	const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>(properties.comparisonDegree);
 	const [genders, setGenders] = useState<Array<Gender>>(properties.gender);
-
 	const [checkAdverb, setCheckAdverb] = useState(true);
 
-	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
+	const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
 	useEffect(() => {
 		const ids = lists
@@ -37,14 +39,27 @@ const Page = () => {
 				return acc.concat(list.words);
 			}, []);
 		console.log(ids);
-		setSelectedWords(words.filter((word) => ids.includes(word.id) && word.type === 'adjective'));
-	}, [maxUnit]);
+
+		const selectedWords = words.filter(
+			(word) => ids.includes(word.id) && word.type === 'adjective' && word.comparison !== '-'
+		);
+		setSelectedWords(selectedWords);
+
+		const remainingWords = selectedWords.filter(
+			(word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison)
+		);
+		setRemainingWords(remainingWords);
+
+		setMaxWords(remainingWords.length);
+	}, [comparisons, maxUnit]);
 
 	const handleContinue = () => {
 		if (stage === 'test') {
 			if (!activeWord) {
 				throw new Error('activeWord is undefined');
 			}
+
+			setStage('review');
 		} else {
 			if (remainingWords.length === 0) {
 				setStage('results');
@@ -53,8 +68,17 @@ const Page = () => {
 			setStage('test');
 
 			setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
+			resetInputs();
 		}
 	};
+
+	const resetInputs = () => {
+		if (testingType === 'individual') {
+			setIndividualInputValue('');
+		}
+	};
+
+	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
 
 	return (
 		<div className='space-y-5'>
@@ -143,6 +167,12 @@ const Page = () => {
 					<Button onClick={handleContinue} className='w-full'>
 						Start
 					</Button>
+				</>
+			)}
+			{(stage === 'test' || stage === 'review') && activeWord && (
+				<>
+					<WordDisplay word={activeWord} />
+					<ActionBar setStage={setStage} handleContinue={handleContinue} progressPercentage={progressPercentage} />
 				</>
 			)}
 		</div>
