@@ -14,7 +14,7 @@ const SelectButton = ({ label, active, handleClick, className }: SelectButtonPro
 			onClick={handleClick}
 			className={clsx(
 				`h-9 p-1 px-3 border rounded-lg shadow ${
-					active ? 'text-sky-100 bg-blue-600 border-blue-800' : 'border-gray-400'
+					active ? 'text-sky-50 bg-blue-600 border-blue-800' : 'border-gray-400'
 				} transition-colors`,
 				className
 			)}
