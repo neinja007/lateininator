@@ -5,7 +5,7 @@ import Select from '@/components/ui/Select';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
 import { useEffect, useState } from 'react';
-import { Comparison, ComparisonDegree, Gender, Word, Words } from '@/data/types';
+import { Case, Comparison, ComparisonDegree, Gender, Numerus, Word, Words } from '@/data/types';
 import SelectButton from '@/components/SelectButton';
 import Checkbox from '@/components/ui/Checkbox';
 import { mapper } from '@/data/mapper';
@@ -31,6 +31,8 @@ const Page = () => {
 	const [checkAdverb, setCheckAdverb] = useState(true);
 
 	const [individualInputValue, setIndividualInputValue] = useState<string>('');
+	const [tableInputValues, setTableInputValues] =
+		useState<Record<Comparison, Record<ComparisonDegree, Record<Gender, Record<Numerus, Record<Case, string>>>>>>();
 
 	useEffect(() => {
 		const ids = lists
