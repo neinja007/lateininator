@@ -31,7 +31,27 @@ const Page = ({ params: { id } }: PageProps) => {
 							<TypeIndicator type={word.type} />
 						</div>
 					</div>
-					<p>{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}</p>
+					<div className='grid grid-cols-3'>
+						<p>
+							{word.translation
+								? word.translation.length === 1
+									? 'Übersetzung: '
+									: 'Übersetzungen: '
+								: 'Keine Übersetzung'}
+							{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
+						</p>
+						<p>
+							{word.derivative && (
+								<span>
+									Abwandlung von{' '}
+									<Link href={`/vocabulary/dictionary/${word.derivative}`} className='text-blue-500 underline'>
+										{words.find((parent) => parent.id == word.derivative)?.word}
+									</Link>
+								</span>
+							)}
+						</p>
+						<p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{word.info}</p>
+					</div>
 					{word.type === 'noun' ? (
 						<>
 							<p>
