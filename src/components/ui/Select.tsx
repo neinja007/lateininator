@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Dispatch, SetStateAction, useId } from 'react';
 
 type SelectProps = {
@@ -22,7 +23,10 @@ const Select = ({ label, options, handleChange, className, ...props }: SelectPro
 				onChange={(e) => handleChange(e.target.value)}
 				id={id}
 				{...props}
-				className={`${className} h-9 p-1 px-2 shadow border border-gray-400 rounded-lg overflow-ellipsis focus:outline-none focus:border-gray-700`}
+				className={clsx(
+					'bg-white h-9 p-1 px-2 shadow border border-gray-400 rounded-lg overflow-ellipsis focus:outline-none focus:border-gray-700',
+					className
+				)}
 			>
 				<option value={''} hidden>
 					Auswählen

@@ -12,8 +12,7 @@ type TrainerInputProps = {
 };
 
 const TrainerInput = ({ correct, inputKey, handleChange, value }: TrainerInputProps) => {
-	let evaluationClasses =
-		correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : 'bg-white';
+	let evaluationClasses = correct !== null ? (correct ? '!bg-green-300 border-none' : '!bg-red-300 border-none') : '';
 
 	if (inputKey === 'declension' || inputKey === 'conjugation' || inputKey === 'gender' || inputKey === 'comparison') {
 		return (
