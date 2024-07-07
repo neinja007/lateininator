@@ -21,6 +21,7 @@ export type Base = {
 	translation?: Array<string>;
 	info?: string;
 	derivative?: number;
+	exception?: number;
 };
 
 export type Noun = {
