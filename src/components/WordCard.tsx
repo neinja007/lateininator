@@ -19,7 +19,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 		highlightedWord = (
 			<span>
 				{word.word.slice(0, indexOfQuery)}
-				<b>{query}</b>
+				<span className='text-blue-500'>{query}</span>
 				{word.word.slice(indexOfQuery + query.length)}
 			</span>
 		);
@@ -36,7 +36,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 				<div className='float-end m-1'>
 					<TypeIndicator type={word.type} />
 				</div>
-				<p className='text-2xl overflow-hidden text-ellipsis'>{highlightedWord}</p>
+				<p className='text-2xl line-clamp-1'>{highlightedWord}</p>
 				<p>{lexicalForm ? lexicalForm : <br />}</p>
 				<br />
 				<p>{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}</p>

@@ -19,7 +19,7 @@ const WordRow = ({ word, query }: WordRowProps) => {
 		highlightedWord = (
 			<span>
 				{word.word.slice(0, indexOfQuery)}
-				<b>{query}</b>
+				<span className='text-blue-500'>{query}</span>
 				{word.word.slice(indexOfQuery + query.length)}
 			</span>
 		);
