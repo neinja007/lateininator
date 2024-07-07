@@ -31,14 +31,16 @@ const Page = () => {
 		<div className='space-y-5'>
 			<H1>Wörterbuch</H1>
 
-			<Input
-				label='Suche:'
-				placeholder='Wort oder Übersetzung eingeben'
-				className='w-full max-w-96 mr-4'
-				value={query}
-				handleChange={setQuery}
-			/>
-			<Button className=''>Erweiterte Suche</Button>
+			<div>
+				<Input
+					label='Suche:'
+					placeholder='Wort oder Übersetzung eingeben'
+					className='w-full max-w-96 mr-4'
+					value={query}
+					handleChange={setQuery}
+				/>
+				<Button className=''>Erweiterte Suche</Button>
+			</div>
 
 			<div className='inline-block'>
 				Wir haben{' '}
