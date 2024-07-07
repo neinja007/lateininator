@@ -5,14 +5,13 @@ import { properties } from '@/data/properties';
 import Input from './ui/Input';
 
 type TrainerInputProps = {
-	word: Word;
 	inputKey: WordInputKey;
 	value: string;
 	handleChange: (key: WordInputKey, value: string) => void;
 	correct?: boolean | null;
 };
 
-const TrainerInput = ({ word, correct, inputKey, handleChange, value }: TrainerInputProps) => {
+const TrainerInput = ({ correct, inputKey, handleChange, value }: TrainerInputProps) => {
 	let evaluationClasses =
 		correct !== null ? (correct ? 'bg-green-300 border-none' : 'bg-red-300 border-none') : 'bg-white';
 
