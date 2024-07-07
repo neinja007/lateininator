@@ -42,7 +42,7 @@ export const getBase = (
 				base += 'issim';
 			}
 		} else {
-			base = word.femininum.substring(0, word.word.length - 1);
+			base = word.femininum.substring(0, word.femininum.length - 1);
 		}
 	}
 	return base;
