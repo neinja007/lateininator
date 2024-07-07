@@ -234,6 +234,7 @@ const Page = () => {
 					<p className='text-2xl font-medium text-blue-7000'>
 						{activeWord.word} <TypeIndicator type={activeWord.type} />
 					</p>
+					<hr />
 					<div>
 						{checkTranslation && activeWord.translation && (
 							<Input
@@ -262,7 +263,6 @@ const Page = () => {
 							return (
 								<TrainerInput
 									key={i}
-									word={activeWord}
 									inputKey={key}
 									value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
 									handleChange={(key: string, value: string) =>
@@ -275,6 +275,7 @@ const Page = () => {
 							);
 						})}
 					</div>
+					<hr />
 					<div className='flex'>
 						<Button
 							onClick={() => {
