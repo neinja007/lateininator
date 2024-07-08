@@ -4,8 +4,8 @@ import H1 from '@/components/ui/H1';
 import Select from '@/components/ui/Select';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
-import { useEffect, useState } from 'react';
-import { Adjective, Case, Comparison, ComparisonDegree, Gender, Numerus, Word, Words } from '@/data/types';
+import { Fragment, useEffect, useState } from 'react';
+import { Adjective, Case, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/data/types';
 import SelectButton from '@/components/SelectButton';
 import Checkbox from '@/components/ui/Checkbox';
 import { mapper } from '@/data/mapper';
@@ -14,7 +14,6 @@ import Button from '@/components/ui/Button';
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
 import Input from '@/components/ui/Input';
-import TrainerInput from '@/components/TrainerInput';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import { getForm } from '@/utils/wordUtils';
 
@@ -23,12 +22,13 @@ const Page = () => {
 
 	const [activeWord, setActiveWord] = useState<Word>();
 
-	const [maxWordsInput, setMaxWordsInput] = useState<string>('');
-	const [maxWords, setMaxWords] = useState<number>(0);
+	const [wordsToCheckInput, setWordsToCheckInput] = useState<string>('');
+	const [wordsToCheck, setWordsToCheck] = useState<number>(0);
+	const [wordLimit, setWordLimit] = useState<number>(0);
 
 	const [maxUnit, setMaxUnit] = useState(lists.length);
 	const [selectedWords, setSelectedWords] = useState<Array<Word>>([]);
-	const [remainingWords, setRemainingWords] = useState<Array<Word & Adjective>>([]);
+	const [possibleWords, setPossibleWords] = useState<Array<Word & Adjective>>([]);
 	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
 
 	const [comparisons, setComparisons] = useState<Array<Comparison>>(properties.comparison);
@@ -60,11 +60,11 @@ const Page = () => {
 		) as Array<Word & Adjective>;
 		setSelectedWords(selectedWords);
 
-		const remainingWords = selectedWords.filter(
+		const possibleWords = selectedWords.filter(
 			(word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison)
 		);
-		setRemainingWords(remainingWords);
-		setMaxWordsInput(remainingWords.length.toString());
+
+		setPossibleWords(possibleWords);
 	}, [comparisons, maxUnit]);
 
 	const handleContinue = () => {
@@ -75,15 +75,15 @@ const Page = () => {
 
 			setStage('review');
 
-			setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
+			setWordsToCheck((prev) => prev - 1);
 		} else {
-			if (remainingWords.length === 0) {
+			if (wordsToCheck === 0) {
 				setStage('results');
 				return;
 			}
 			setStage('test');
 
-			const newActiveWord = remainingWords[Math.floor(Math.random() * remainingWords.length)];
+			const newActiveWord = possibleWords[Math.floor(Math.random() * possibleWords.length)];
 			setActiveWord(newActiveWord);
 
 			if (testingType === 'individual') {
@@ -101,8 +101,11 @@ const Page = () => {
 	};
 
 	useEffect(() => {
-		setMaxWords(maxWordsInput === '' ? 0 : parseInt(maxWordsInput));
-	}, [maxWordsInput]);
+		const newWordsToCheck = wordsToCheckInput === '' ? 0 : parseInt(wordsToCheckInput);
+
+		setWordsToCheck(newWordsToCheck);
+		setWordLimit(newWordsToCheck);
+	}, [wordsToCheckInput]);
 
 	const resetInputs = () => {
 		if (testingType === 'individual') {
@@ -110,9 +113,9 @@ const Page = () => {
 		}
 	};
 
-	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
+	const progressPercentage = ((wordLimit - wordsToCheck) / wordLimit) * 100;
 
-	const start = remainingWords.length > 0 && maxWords > 0;
+	const start = possibleWords.length > 0 && wordsToCheck > 0;
 
 	return (
 		<div className='space-y-5'>
@@ -199,14 +202,16 @@ const Page = () => {
 						</div>
 					</div>
 					<hr />
-					<div className='grid grid-cols-3'>
+					<div>
 						<Input
-							label={`Anzahl der abgefragten Adjektive (max. ${remainingWords.length})`}
+							label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (Empfehlung: ${
+								testingType === 'individual' ? '20-40' : '2-4'
+							})`}
 							handleChange={(value) =>
-								setMaxWordsInput(
+								setWordsToCheckInput(
 									(!isNaN(parseInt(value))
-										? parseInt(value) > remainingWords.length
-											? remainingWords.length
+										? parseInt(value) > 100
+											? 100
 											: parseInt(value) < 0
 											  ? 0
 											  : parseInt(value)
@@ -216,13 +221,13 @@ const Page = () => {
 									).toString()
 								)
 							}
-							value={maxWordsInput}
+							value={wordsToCheckInput}
 							className={'w-full text-center'}
 							type='number'
 						/>
 					</div>
 					<Button onClick={handleContinue} className='w-full' disabled={!start}>
-						<span>{!start ? 'Wähle ein paar Adjektive aus, um fortzufahren' : 'Start'}</span>
+						<span>{!start ? 'Keine Adjektive verfügbar' : 'Start'}</span>
 					</Button>
 				</>
 			)}
@@ -231,7 +236,7 @@ const Page = () => {
 					<WordDisplay word={activeWord} />
 					<hr />
 					<div>
-						{testingType === 'individual' && (
+						{testingType === 'individual' ? (
 							<Input
 								label={`
                   ${mapper.extended.gender[individualInputForm.gender]};
@@ -255,6 +260,41 @@ const Page = () => {
 								}
 								disabled={stage === 'review'}
 							/>
+						) : (
+							properties.comparisonDegree.map((comparisonDegree, i) => (
+								<Fragment key={i}>
+									<p>{mapper.extended.comparisonDegree[comparisonDegree]}</p>
+									<table key={i} className='w-full rounded-lg table-fixed overflow-hidden shadow'>
+										<thead className='bg-gray-100'>
+											<tr>
+												<th />
+												{properties.gender.map((gender, i) => (
+													<th key={i} className='px-3 py-1'>
+														{mapper.extended.gender[gender]}
+													</th>
+												))}
+											</tr>
+										</thead>
+										<tbody>
+											{properties.numerus.map((numerus) =>
+												properties.case.map((wordCase, i) => (
+													<tr key={i} className='border-t'>
+														<th className='px-3 py-1 bg-gray-100'>
+															{mapper.extended.case[wordCase]} {mapper.extended.numerus[numerus]}
+														</th>
+														{properties.gender.map((gender, i) => (
+															<td key={i} className='px-3 py-1'>
+																{getForm(activeWord, { comparisonDegree, gender, numerus, wordCase })}
+															</td>
+														))}
+													</tr>
+												))
+											)}
+										</tbody>
+									</table>
+									<br />
+								</Fragment>
+							))
 						)}
 					</div>
 					<hr />
