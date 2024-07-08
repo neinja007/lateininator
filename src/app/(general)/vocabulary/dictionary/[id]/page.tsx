@@ -50,15 +50,17 @@ const Page = ({ params: { id } }: PageProps) => {
 								</span>
 							)}
 						</p>
-						<p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{word.info}</p>
+						{word.info && (
+							<p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{word.info}</p>
+						)}
 					</div>
 					{word.type === 'noun' ? (
 						<>
-							<p>
+							<hr />
+							<p className='text-center'>
 								{word.declension === '-' ? 'Keine Deklination' : mapper.extended.declension[word.declension]};{' '}
 								{word.gender === '-' ? 'Kein Geschlecht' : mapper.extended.gender[word.gender]}
 							</p>
-							<hr />
 							{word.declension !== '-' && word.gender !== '-' ? (
 								<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 									<thead className='bg-gray-100'>
@@ -100,8 +102,10 @@ const Page = ({ params: { id } }: PageProps) => {
 						</>
 					) : word.type === 'verb' ? (
 						<>
-							<p>{word.conjugation === '-' ? 'Keine Konjugation' : mapper.extended.conjugation[word.conjugation]}</p>
 							<hr />
+							<p className='text-center'>
+								{word.conjugation === '-' ? 'Keine Konjugation' : mapper.extended.conjugation[word.conjugation]}
+							</p>
 							{word.conjugation !== '-' ? (
 								<div>
 									{properties.modus.map((modus) =>
@@ -151,8 +155,10 @@ const Page = ({ params: { id } }: PageProps) => {
 						</>
 					) : word.type === 'adjective' ? (
 						<>
-							<p>{word.comparison === '-' ? 'Keine Deklination' : mapper.extended.comparison[word.comparison]}</p>
 							<hr />
+							<p className='text-center'>
+								{word.comparison === '-' ? 'Keine Deklination' : mapper.extended.comparison[word.comparison]}
+							</p>
 							{word.comparison !== '-' ? (
 								<div>
 									<p>{mapper.extended.type['adverb']}</p>
