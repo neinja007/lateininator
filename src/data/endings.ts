@@ -1686,18 +1686,18 @@ export const endings = {
 				},
 				comp: {
 					sin: {
-						1: 'or',
-						2: 'oris',
-						3: 'ori',
-						4: 'orem',
-						5: 'ore'
+						1: 'ior',
+						2: 'ioris',
+						3: 'iori',
+						4: 'iorem',
+						5: 'iore'
 					},
 					plu: {
-						1: 'ores',
-						2: 'orum',
-						3: 'oribus',
-						4: 'ores',
-						5: 'oribus'
+						1: 'iores',
+						2: 'iorum',
+						3: 'ioribus',
+						4: 'iores',
+						5: 'ioribus'
 					}
 				},
 				sup: {
@@ -1736,18 +1736,18 @@ export const endings = {
 				},
 				comp: {
 					sin: {
-						1: 'or',
-						2: 'oris',
-						3: 'ori',
-						4: 'orem',
-						5: 'ore'
+						1: 'ior',
+						2: 'ioris',
+						3: 'iori',
+						4: 'iorem',
+						5: 'iore'
 					},
 					plu: {
-						1: 'ores',
-						2: 'orum',
-						3: 'oribus',
-						4: 'ores',
-						5: 'oribus'
+						1: 'iores',
+						2: 'iorum',
+						3: 'ioribus',
+						4: 'iores',
+						5: 'ioribus'
 					}
 				},
 				sup: {
@@ -1786,18 +1786,18 @@ export const endings = {
 				},
 				comp: {
 					sin: {
-						1: 'us',
-						2: 'oris',
-						3: 'ori',
-						4: 'us',
-						5: 'ore'
+						1: 'ius',
+						2: 'ioris',
+						3: 'iori',
+						4: 'ius',
+						5: 'iore'
 					},
 					plu: {
-						1: 'ora',
-						2: 'orum',
-						3: 'oribus',
-						4: 'ora',
-						5: 'oribus'
+						1: 'iora',
+						2: 'iorum',
+						3: 'ioribus',
+						4: 'iora',
+						5: 'ioribus'
 					}
 				},
 				sup: {
