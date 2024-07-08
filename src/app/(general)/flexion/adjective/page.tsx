@@ -5,7 +5,7 @@ import Select from '@/components/ui/Select';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
 import { useEffect, useState } from 'react';
-import { Case, Comparison, ComparisonDegree, Gender, Numerus, Word, Words } from '@/data/types';
+import { Adjective, Case, Comparison, ComparisonDegree, Gender, Numerus, Word, Words } from '@/data/types';
 import SelectButton from '@/components/SelectButton';
 import Checkbox from '@/components/ui/Checkbox';
 import { mapper } from '@/data/mapper';
@@ -13,16 +13,22 @@ import { properties } from '@/data/properties';
 import Button from '@/components/ui/Button';
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
+import Input from '@/components/ui/Input';
+import TrainerInput from '@/components/TrainerInput';
+import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
+import { getForm } from '@/utils/wordUtils';
 
 const Page = () => {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
 
 	const [activeWord, setActiveWord] = useState<Word>();
+
+	const [maxWordsInput, setMaxWordsInput] = useState<string>('');
 	const [maxWords, setMaxWords] = useState<number>(0);
 
 	const [maxUnit, setMaxUnit] = useState(lists.length);
 	const [selectedWords, setSelectedWords] = useState<Array<Word>>([]);
-	const [remainingWords, setRemainingWords] = useState<Array<Word>>([]);
+	const [remainingWords, setRemainingWords] = useState<Array<Word & Adjective>>([]);
 	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
 
 	const [comparisons, setComparisons] = useState<Array<Comparison>>(properties.comparison);
@@ -31,8 +37,16 @@ const Page = () => {
 	const [checkAdverb, setCheckAdverb] = useState(true);
 
 	const [individualInputValue, setIndividualInputValue] = useState<string>('');
-	const [tableInputValues, setTableInputValues] =
-		useState<Record<Comparison, Record<ComparisonDegree, Record<Gender, Record<Numerus, Record<Case, string>>>>>>();
+	const [individualInputForm, setIndividualInputForm] = useState<{
+		comparison: Comparison;
+		comparisonDegree: ComparisonDegree;
+		gender: Gender;
+		numerus: Numerus;
+		wordCase: Case;
+	}>();
+
+	const [tableForm, setTableForm] = useState<Comparison>();
+	const [tableValues, setTableValues] = useState<any>();
 
 	useEffect(() => {
 		const ids = lists
@@ -40,19 +54,17 @@ const Page = () => {
 			.reduce((acc: any, list) => {
 				return acc.concat(list.words);
 			}, []);
-		console.log(ids);
 
-		const selectedWords = words.filter(
+		const selectedWords: Array<Word & Adjective> = words.filter(
 			(word) => ids.includes(word.id) && word.type === 'adjective' && word.comparison !== '-'
-		);
+		) as Array<Word & Adjective>;
 		setSelectedWords(selectedWords);
 
 		const remainingWords = selectedWords.filter(
 			(word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison)
 		);
 		setRemainingWords(remainingWords);
-
-		setMaxWords(remainingWords.length);
+		setMaxWordsInput(remainingWords.length.toString());
 	}, [comparisons, maxUnit]);
 
 	const handleContinue = () => {
@@ -62,6 +74,8 @@ const Page = () => {
 			}
 
 			setStage('review');
+
+			setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
 		} else {
 			if (remainingWords.length === 0) {
 				setStage('results');
@@ -69,10 +83,26 @@ const Page = () => {
 			}
 			setStage('test');
 
-			setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
+			const newActiveWord = remainingWords[Math.floor(Math.random() * remainingWords.length)];
+			setActiveWord(newActiveWord);
+
+			if (testingType === 'individual') {
+				setIndividualInputForm({
+					comparison: newActiveWord.comparison as Comparison,
+					comparisonDegree: comparisonDegrees[Math.floor(Math.random() * comparisonDegrees.length)],
+					numerus: (['sin', 'plu'] as Numerus[])[Math.floor(Math.random() * 2)],
+					wordCase: (['1', '2', '3', '4', '5'] as Case[])[Math.floor(Math.random() * 5)],
+					gender: genders[Math.floor(Math.random() * genders.length)]
+				});
+			}
+
 			resetInputs();
 		}
 	};
+
+	useEffect(() => {
+		setMaxWords(maxWordsInput === '' ? 0 : parseInt(maxWordsInput));
+	}, [maxWordsInput]);
 
 	const resetInputs = () => {
 		if (testingType === 'individual') {
@@ -81,6 +111,8 @@ const Page = () => {
 	};
 
 	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
+
+	const start = remainingWords.length > 0 && maxWords > 0;
 
 	return (
 		<div className='space-y-5'>
@@ -166,14 +198,66 @@ const Page = () => {
 							))}
 						</div>
 					</div>
-					<Button onClick={handleContinue} className='w-full'>
-						Start
+					<hr />
+					<div className='grid grid-cols-3'>
+						<Input
+							label={`Anzahl der abgefragten Adjektive (max. ${remainingWords.length})`}
+							handleChange={(value) =>
+								setMaxWordsInput(
+									(!isNaN(parseInt(value))
+										? parseInt(value) > remainingWords.length
+											? remainingWords.length
+											: parseInt(value) < 0
+											  ? 0
+											  : parseInt(value)
+										: value === ''
+										  ? ''
+										  : 0
+									).toString()
+								)
+							}
+							value={maxWordsInput}
+							className={'w-full text-center'}
+							type='number'
+						/>
+					</div>
+					<Button onClick={handleContinue} className='w-full' disabled={!start}>
+						<span>{!start ? 'Wähle ein paar Adjektive aus, um fortzufahren' : 'Start'}</span>
 					</Button>
 				</>
 			)}
-			{(stage === 'test' || stage === 'review') && activeWord && (
+			{(stage === 'test' || stage === 'review') && activeWord && individualInputForm && (
 				<>
 					<WordDisplay word={activeWord} />
+					<hr />
+					<div>
+						{testingType === 'individual' && (
+							<Input
+								label={`
+                  ${mapper.extended.gender[individualInputForm.gender]};
+                  ${mapper.extended.comparisonDegree[individualInputForm.comparisonDegree]}
+                  ${mapper.extended.numerus[individualInputForm.numerus]}
+                  ${mapper.extended.case[individualInputForm.wordCase]}
+                  `}
+								handleChange={setIndividualInputValue}
+								value={
+									stage === 'review'
+										? getInputWithCorrectValue(individualInputValue, getForm(activeWord, { ...individualInputForm }))
+										: individualInputValue
+								}
+								className={
+									'w-full ' +
+									(stage === 'review'
+										? compareValues(individualInputValue, getForm(activeWord, { ...individualInputForm }))
+											? 'bg-green-300 border-none'
+											: 'bg-red-300 border-none'
+										: '')
+								}
+								disabled={stage === 'review'}
+							/>
+						)}
+					</div>
+					<hr />
 					<ActionBar setStage={setStage} handleContinue={handleContinue} progressPercentage={progressPercentage} />
 				</>
 			)}
