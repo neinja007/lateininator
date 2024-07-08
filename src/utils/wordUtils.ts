@@ -42,7 +42,7 @@ export const getBase = (
 				base += 'issim';
 			}
 		} else {
-			base = word.femininum.substring(0, word.femininum.length - 1);
+			base = word.femininum.substring(0, word.femininum.length - (word.comparison === 'a_o' ? 1 : 2));
 		}
 	}
 	return base;
@@ -61,14 +61,14 @@ export const getForm = (
 		  }
 		| {
 				numerus: Numerus;
-				wordCase: Case;
+				wordCase: Case | '6';
 		  }
 		| {
 				comparisonDegree: ComparisonDegree;
 				gender: Gender;
 				adverb?: boolean;
 				numerus: Numerus;
-				wordCase: Case;
+				wordCase: Case | '6';
 		  }
 ): string => {
 	let ending: string | undefined = undefined;
