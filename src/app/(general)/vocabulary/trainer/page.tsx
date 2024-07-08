@@ -47,6 +47,8 @@ const Page = () => {
 
 	const [remainingWords, setRemainingWords] = useState<Words>([]);
 	const [activeWord, setActiveWord] = useState<Word>();
+
+	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
 	const [maxWordsInput, setMaxWordsInput] = useState<string>('');
 	const [maxWords, setMaxWords] = useState<number>(0);
 
@@ -72,6 +74,7 @@ const Page = () => {
 					(typesToCheck.includes(word.type) ||
 						(typesToCheck.includes('other') && !properties.mainTypes.includes(word.type)))
 			);
+
 			setRemainingWords(remainingWords);
 			setMaxWordsInput(remainingWords.length.toString());
 		}
@@ -99,29 +102,25 @@ const Page = () => {
 
 			setStage('review');
 
-			if (
-				(!validKeysToCheck.some((key) => {
+			const allInputValuesAreCorrect =
+				!validKeysToCheck.some((key) => {
 					const originalInput = (inputValues as any)[key] || '';
 					const correctInput = (activeWord as any)[key];
 
 					return !compareValues(originalInput, correctInput);
 				}) &&
-					(!activeWord.translation || compareValues(translationInput, activeWord.translation, true))) ||
-				!checkIncorrectWordsAgain
-			) {
-				setRemainingWords((prevRemainingWords) => prevRemainingWords.filter((word) => word.id !== activeWord?.id));
+				(!activeWord.translation || compareValues(translationInput, activeWord.translation, true));
+
+			if (allInputValuesAreCorrect || checkType === 'limited' || !checkIncorrectWordsAgain) {
+				setRemainingWords((prev) => prev.splice(prev.indexOf(activeWord), 1));
 			}
-		} else if (stage === 'settings') {
+		} else if (stage === 'settings' && checkType === 'limited') {
 			const slicedRemainingWords = remainingWords.slice(0, maxWords);
 
-			if (slicedRemainingWords.length === 0) {
-				return;
-			} else {
-				setRemainingWords(slicedRemainingWords);
-				setActiveWord(slicedRemainingWords[Math.floor(Math.random() * maxWords)]);
+			setRemainingWords(slicedRemainingWords);
+			setActiveWord(slicedRemainingWords[Math.floor(Math.random() * slicedRemainingWords.length)]);
 
-				setStage('test');
-			}
+			setStage('test');
 		} else {
 			if (remainingWords.length === 0) {
 				setStage('results');
@@ -238,33 +237,50 @@ const Page = () => {
 						))}
 					</div>
 					<hr />
-					<p>Weitere Optionen:</p>
-					<div className='grid grid-cols-3'>
-						<Checkbox
-							checked={checkIncorrectWordsAgain}
-							handleChange={setCheckIncorrectWordsAgain}
-							label='Bei Fehlern Wörter nochmals abprüfen'
+					<p>Abfrage (die Überprüfung kann auch frühzeitig beendet werden):</p>
+					<div className='flex space-x-5'>
+						<SelectButton
+							className='w-1/2 font-medium'
+							active={checkType === 'all'}
+							handleClick={() => setCheckType('all')}
+							label={`Alle verfügbaren Wörter (${remainingWords.length}) abfragen`}
 						/>
-						<Input
-							label={`Anzahl der abgefragten Wörter (max. ${remainingWords.length})`}
-							handleChange={(value) =>
-								setMaxWordsInput(
-									(!isNaN(parseInt(value))
-										? parseInt(value) > remainingWords.length
-											? remainingWords.length
-											: parseInt(value) < 0
-											  ? 0
-											  : parseInt(value)
-										: value === ''
-										  ? ''
-										  : 0
-									).toString()
-								)
-							}
-							value={maxWordsInput}
-							className={'w-full text-center'}
-							type='number'
+						<SelectButton
+							className='w-1/2 font-medium'
+							active={checkType === 'limited'}
+							handleClick={() => setCheckType('limited')}
+							label='Begrenzte Anzahl abfragen'
 						/>
+					</div>
+					<div className='text-center'>
+						{checkType === 'all' ? (
+							<Checkbox
+								checked={checkIncorrectWordsAgain}
+								handleChange={setCheckIncorrectWordsAgain}
+								label='Bei Fehlern Wörter nochmals abprüfen'
+							/>
+						) : (
+							<Input
+								label={`Anzahl der abgefragten Wörter (max. ${remainingWords.length})`}
+								handleChange={(value) =>
+									setMaxWordsInput(
+										(!isNaN(parseInt(value))
+											? parseInt(value) > remainingWords.length
+												? remainingWords.length
+												: parseInt(value) < 0
+												  ? 0
+												  : parseInt(value)
+											: value === ''
+											  ? ''
+											  : 0
+										).toString()
+									)
+								}
+								value={maxWordsInput}
+								className={'w-1/3 text-center'}
+								type='number'
+							/>
+						)}
 					</div>
 					<Button onClick={handleContinue} className='w-full' disabled={!start}>
 						<span>{!start ? 'Wähle ein paar Adjektive aus, um fortzufahren' : 'Start'}</span>
