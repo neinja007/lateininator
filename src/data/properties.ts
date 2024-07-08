@@ -14,7 +14,7 @@ import {
 } from './types';
 
 export const properties: {
-	case: Array<Case>;
+	case: Array<Case | '6'>;
 	person: Array<Person>;
 	numerus: Array<Numerus>;
 	declension: Array<Declension>;
