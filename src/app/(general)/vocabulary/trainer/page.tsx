@@ -149,7 +149,6 @@ const Page = () => {
 		: [];
 
 	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
-	console.log(maxWords, remainingWords.length, progressPercentage);
 
 	return (
 		<div className='space-y-5'>
