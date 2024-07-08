@@ -3834,12 +3834,9 @@ export const words: Words = [
 	{
 		id: 493,
 		word: 'totus',
-		type: 'adjective',
+		type: 'pronoun',
 		translation: ['ganz'],
-		info: '2. Fall: totius, 3. Fall: toti',
-		comparison: 'a_o',
-		femininum: 'tota',
-		neutrum: 'totum'
+		info: '2. Fall: totius, 3. Fall: toti'
 	},
 	{
 		id: 494,
