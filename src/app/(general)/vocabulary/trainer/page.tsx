@@ -150,6 +150,8 @@ const Page = () => {
 
 	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
 
+	const start = remainingWords.length > 0 && maxWords > 0;
+
 	return (
 		<div className='space-y-5'>
 			<H1>Vokabeltrainer</H1>
@@ -246,7 +248,7 @@ const Page = () => {
 							label='Bei Fehlern Wörter nochmals abprüfen'
 						/>
 						<Input
-							label='Maximale Anzahl der abgefragten Wörter'
+							label={`Anzahl der abgefragten Wörter (max. ${remainingWords.length})`}
 							handleChange={(value) =>
 								setMaxWordsInput(
 									(!isNaN(parseInt(value))
@@ -255,7 +257,9 @@ const Page = () => {
 											: parseInt(value) < 0
 											  ? 0
 											  : parseInt(value)
-										: 0
+										: value === ''
+										  ? ''
+										  : 0
 									).toString()
 								)
 							}
@@ -264,8 +268,8 @@ const Page = () => {
 							type='number'
 						/>
 					</div>
-					<Button onClick={handleContinue} className='w-full'>
-						Start
+					<Button onClick={handleContinue} className='w-full' disabled={!start}>
+						<span>{!start ? 'Wähle ein paar Adjektive aus, um fortzufahren' : 'Start'}</span>
 					</Button>
 				</>
 			)}
