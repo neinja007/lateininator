@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import ProgressBar from './progressBar';
+import ProgressBar from '@/components/ProgressBar';
 import Button from './ui/Button';
 
 type ActionBarProps = {

@@ -8,13 +8,11 @@ import { Words, List, Word, WordInputKey, Type } from '@/data/types';
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
-import TypeIndicator from '@/components/TypeIndicator';
 import { properties } from '@/data/properties';
 import TrainerInput from '@/components/TrainerInput';
 import Checkbox from '@/components/ui/Checkbox';
 import { mapper } from '@/data/mapper';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
-import ProgressBar from '@/components/progressBar';
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
 
