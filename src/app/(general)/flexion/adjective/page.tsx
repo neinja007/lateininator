@@ -157,7 +157,7 @@ const Page = () => {
 					</div>
 					<div className='grid grid-cols-3'>
 						<div>
-							Deklinationen:
+							Deklination:
 							{properties.comparison.map((comparison) => (
 								<Checkbox
 									key={comparison}
@@ -170,7 +170,7 @@ const Page = () => {
 							))}
 						</div>
 						<div>
-							Steigerungsformen:
+							Steigerungsform:
 							{properties.comparisonDegree.map((comparisonDegree) => (
 								<Checkbox
 									key={comparisonDegree}
@@ -185,7 +185,7 @@ const Page = () => {
 							))}
 						</div>
 						<div>
-							Geschlechter:
+							Geschlecht:
 							{properties.gender.map((gender) => (
 								<Checkbox
 									key={gender}
