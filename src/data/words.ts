@@ -1,5 +1,6 @@
-import { Words } from '@/data/types';
-export const words: Words = [
+import { Word } from '@/types';
+
+export const words: Array<Word> = [
 	{ id: 1, word: 'schola', type: 'noun', translation: ['schule'], genitive: 'scholae', gender: 'f', declension: 'a' },
 	{ id: 2, word: 'et', type: 'other', translation: ['und'] },
 	{ id: 3, word: 'amicus', type: 'noun', translation: ['freund'], genitive: 'amici', gender: 'm', declension: 'o' },
@@ -135,12 +136,9 @@ export const words: Words = [
 	{
 		id: 29,
 		word: 'esse',
-		type: 'irregular_verb',
+		type: 'irregularVerb',
 		translation: ['sein', 'zu sein'],
-		info: 'irreguläres Verb',
-		present: 'sum',
-		perfect: 'fui',
-		participle: '-'
+		info: 'irreguläres Verb'
 	},
 	{
 		id: 30,
@@ -1046,12 +1044,9 @@ export const words: Words = [
 	{
 		id: 172,
 		word: 'posse',
-		type: 'irregular_verb',
+		type: 'irregularVerb',
 		translation: ['können'],
-		info: 'irreguläres Verb',
-		present: 'possum',
-		perfect: 'potui',
-		participle: '-'
+		info: 'irreguläres Verb'
 	},
 	{
 		id: 173,
@@ -3543,12 +3538,9 @@ export const words: Words = [
 	{
 		id: 461,
 		word: 'ferre',
-		type: 'irregular_verb',
+		type: 'irregularVerb',
 		translation: ['tragen', 'bringen', 'ertragen'],
-		info: 'irreguläres Verb',
-		present: 'fero',
-		perfect: 'tuli',
-		participle: 'latum'
+		info: 'irreguläres Verb'
 	},
 	{
 		id: 462,
@@ -3604,12 +3596,9 @@ export const words: Words = [
 	{
 		id: 468,
 		word: 'ire',
-		type: 'irregular_verb',
+		type: 'irregularVerb',
 		translation: ['gehen'],
-		info: 'irreguläres Verb',
-		present: 'eo',
-		perfect: 'ii',
-		participle: 'itum'
+		info: 'irreguläres Verb'
 	},
 	{
 		id: 469,
@@ -3687,12 +3676,9 @@ export const words: Words = [
 	{
 		id: 477,
 		word: 'exire',
-		type: 'irregular_verb',
+		type: 'irregularVerb',
 		translation: ['hinausgehen'],
-		info: 'irreguläres Verb',
-		present: 'exeo',
-		perfect: 'exii',
-		participle: 'exitum'
+		info: 'irreguläres Verb'
 	},
 	{
 		id: 478,
@@ -3754,12 +3740,9 @@ export const words: Words = [
 	{
 		id: 484,
 		word: 'adire',
-		type: 'irregular_verb',
+		type: 'irregularVerb',
 		translation: ['hingehen', 'sich wenden', 'angreifen'],
-		info: 'irreguläres Verb',
-		present: 'adeo',
-		perfect: 'adii',
-		participle: 'aditum'
+		info: 'irreguläres Verb'
 	},
 	{
 		id: 485,
@@ -4238,11 +4221,8 @@ export const words: Words = [
 	{
 		id: 540,
 		word: 'adesse',
-		type: 'irregular_verb',
-		translation: ['da sein', 'anwesend sein'],
-		present: 'adsum',
-		perfect: 'adfui',
-		participle: '-'
+		type: 'irregularVerb',
+		translation: ['da sein', 'anwesend sein']
 	},
 	{
 		id: 541,

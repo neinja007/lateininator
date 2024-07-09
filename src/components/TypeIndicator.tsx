@@ -1,7 +1,7 @@
-import { mapper } from '@/data/mapper';
-import { Type } from '@/data/types';
+import { MAPPER } from '@/utils/mapper';
+import { WordType } from '@/types';
 
-type TypeIndicatorProps = { type: Type };
+type TypeIndicatorProps = { type: WordType };
 
 const TypeIndicator = ({ type }: TypeIndicatorProps) => {
 	let color: string;
@@ -19,7 +19,7 @@ const TypeIndicator = ({ type }: TypeIndicatorProps) => {
 			color = 'bg-green-300 text-green-800';
 			break;
 
-		case 'irregular_verb':
+		case 'irregularVerb':
 			color = 'bg-gray-100 text-gray-600';
 			break;
 
@@ -29,7 +29,7 @@ const TypeIndicator = ({ type }: TypeIndicatorProps) => {
 	}
 
 	return (
-		<span className={`p-1 px-2 text-sm uppercase font-medium rounded-full ${color}`}>{mapper.extended.type[type]}</span>
+		<span className={`p-1 px-2 text-sm uppercase font-medium rounded-full ${color}`}>{MAPPER.extended.type[type]}</span>
 	);
 };
 

@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, useId } from 'react';
 
-type CheckboxProps = {
+type CheckboxWithLabelProps = {
 	checked: boolean;
 	disabled?: boolean;
 	handleChange: Dispatch<SetStateAction<boolean>>;
 	label: string;
-};
+} & Omit<React.ComponentProps<'input'>, 'type'>;
 
-const Checkbox = ({ checked, disabled, handleChange, label }: CheckboxProps) => {
+const CheckboxWithLabel = ({ checked, disabled, handleChange, label }: CheckboxWithLabelProps) => {
 	const id = useId();
 
 	return (
@@ -27,4 +27,4 @@ const Checkbox = ({ checked, disabled, handleChange, label }: CheckboxProps) => 
 	);
 };
 
-export default Checkbox;
+export default CheckboxWithLabel;

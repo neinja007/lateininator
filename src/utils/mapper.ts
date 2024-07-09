@@ -1,4 +1,6 @@
-export const mapper = {
+import { MapperType } from '@/types';
+
+export const MAPPER = {
 	extended: {
 		type: {
 			noun: 'Nomen',
@@ -6,7 +8,7 @@ export const mapper = {
 			adjective: 'Adjektiv',
 			other: 'Sonstiges',
 			adverb: 'Adverb',
-			irregular_verb: 'Irreguläres Verb',
+			irregularVerb: 'Irreguläres Verb',
 			pronoun: 'Pronomen'
 		},
 		declension: {
@@ -22,7 +24,7 @@ export const mapper = {
 			a_o: 'A/O Deklination',
 			kon: 'konsonantische Deklination'
 		},
-		case: {
+		wordCase: {
 			1: 'Nominativ',
 			2: 'Genitiv',
 			3: 'Dativ',
@@ -56,14 +58,15 @@ export const mapper = {
 		person: {
 			1: '1. Person',
 			2: '2. Person',
-			3: '3. Person'
+			3: '3. Person',
+			4: 'Imperativ'
 		},
 		modus: {
 			ind: 'Indikativ',
 			kon: 'Konjunktiv'
 		},
 		voice: { act: 'Aktiv', pas: 'Passiv' },
-		wordKey: {
+		wordProperty: {
 			conjugation: 'Konjugation',
 			comparison: 'Komparation',
 			declension: 'Deklination',
@@ -88,7 +91,7 @@ export const mapper = {
 			adjective: 'Adj.',
 			other: 'Sonst.',
 			adverb: 'Adv.',
-			irregular_verb: 'Irr. Verb',
+			irregularVerb: 'Irr. Verb',
 			pronoun: 'Pron.'
 		},
 		declension: {
@@ -104,7 +107,7 @@ export const mapper = {
 			a_o: 'A/O Dekl.',
 			kon: 'kons. Dekl.'
 		},
-		case: {
+		wordCase: {
 			1: '1. F.',
 			2: '2. F.',
 			3: '3. F.',
@@ -138,14 +141,15 @@ export const mapper = {
 		person: {
 			1: '1. P.',
 			2: '2. P.',
-			3: '3. P.'
+			3: '3. P.',
+			4: 'Imp.'
 		},
 		modus: {
 			ind: 'Ind.',
 			kon: 'Konj.'
 		},
 		voice: { act: 'Akt.', pas: 'Pas.' },
-		wordKey: {
+		wordProperty: {
 			comparison: 'Komp.',
 			conjugation: 'Konj.',
 			declension: 'Dekl.',
@@ -163,4 +167,4 @@ export const mapper = {
 			sup: 'Superlativ'
 		}
 	}
-};
+} satisfies MapperType;

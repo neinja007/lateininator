@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import WideLogo from '../../../public/logo_wide.png';
+import WideLogo from '../../public/logo_wide.png';
 
 const Logo = () => {
 	return (

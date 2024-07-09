@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import NavbarLink from '@/components/navbar/NavbarLink';
-import Logo from '@/components/navbar/Logo';
-import NavbarDropdown from '@/components/navbar/NavbarDropdown';
 import { usePathname } from 'next/navigation';
-import NavbarDropdownLink from './NavbarDropdownLink';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { Menu, X } from 'react-feather';
+import Logo from '@/components/Logo';
+import NavbarDropdown from '@/components/NavbarDropdown';
+import NavbarDropdownLink from '@/components/NavbarDropdownLink';
+import NavbarLink from '@/components/NavbarLink';
 
 type Link = {
 	label: string;

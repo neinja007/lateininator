@@ -1,21 +1,22 @@
 'use client';
 
-import H1 from '@/components/ui/H1';
-import Select from '@/components/ui/Select';
+import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/types';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
 import { Fragment, useEffect, useState } from 'react';
-import { Adjective, Case, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/data/types';
-import SelectButton from '@/components/SelectButton';
-import Checkbox from '@/components/ui/Checkbox';
-import { mapper } from '@/data/mapper';
-import { properties } from '@/data/properties';
-import Button from '@/components/ui/Button';
-import ActionBar from '@/components/ActionBar';
-import WordDisplay from '@/components/WordDisplay';
-import Input from '@/components/ui/Input';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import { getForm } from '@/utils/wordUtils';
+import { WORD_CONSTANTS } from '@/constants';
+import { isAdjective } from '@/utils/typeguards';
+import { MAPPER } from '@/utils/mapper';
+import ActionBar from '@/components/ActionBar';
+import Button from '@/components/Button';
+import CheckboxWithLabel from '@/components/CheckboxWithLabel';
+import H1 from '@/components/H1';
+import Select from '@/components/Select';
+import SelectButton from '@/components/SelectButton';
+import WordDisplay from '@/components/WordDisplay';
+import Input from '@/components/Input';
 
 const Page = () => {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
@@ -27,13 +28,15 @@ const Page = () => {
 	const [wordLimit, setWordLimit] = useState<number>(0);
 
 	const [maxUnit, setMaxUnit] = useState(lists.length);
-	const [selectedWords, setSelectedWords] = useState<Array<Word>>([]);
-	const [possibleWords, setPossibleWords] = useState<Array<Word & Adjective>>([]);
+	const [selectedWords, setSelectedWords] = useState<Array<Adjective>>([]);
+	const [possibleWords, setPossibleWords] = useState<Array<Adjective>>([]);
 	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
 
-	const [comparisons, setComparisons] = useState<Array<Comparison>>(properties.comparison);
-	const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>(properties.comparisonDegree);
-	const [genders, setGenders] = useState<Array<Gender>>(properties.gender);
+	const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
+	const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>([
+		...WORD_CONSTANTS.comparisonDegree
+	]);
+	const [genders, setGenders] = useState<Array<Gender>>([...WORD_CONSTANTS.gender]);
 	const [checkAdverb, setCheckAdverb] = useState(true);
 
 	const [individualInputValue, setIndividualInputValue] = useState<string>('');
@@ -42,7 +45,7 @@ const Page = () => {
 		comparisonDegree: ComparisonDegree;
 		gender: Gender;
 		numerus: Numerus;
-		wordCase: Case;
+		wordCase: WordCase;
 	}>();
 
 	const [tableForm, setTableForm] = useState<Comparison>();
@@ -55,9 +58,9 @@ const Page = () => {
 				return acc.concat(list.words);
 			}, []);
 
-		const selectedWords: Array<Word & Adjective> = words.filter(
-			(word) => ids.includes(word.id) && word.type === 'adjective' && word.comparison !== '-'
-		) as Array<Word & Adjective>;
+		const selectedWords: Adjective[] = words.filter(
+			(word: Word) => isAdjective(word) && ids.includes(word.id) && word.comparison !== '-'
+		) as Adjective[];
 		setSelectedWords(selectedWords);
 
 		const possibleWords = selectedWords.filter(
@@ -91,7 +94,7 @@ const Page = () => {
 					comparison: newActiveWord.comparison as Comparison,
 					comparisonDegree: comparisonDegrees[Math.floor(Math.random() * comparisonDegrees.length)],
 					numerus: (['sin', 'plu'] as Numerus[])[Math.floor(Math.random() * 2)],
-					wordCase: (['1', '2', '3', '4', '5'] as Case[])[Math.floor(Math.random() * 5)],
+					wordCase: (['1', '2', '3', '4', '5'] as WordCase[])[Math.floor(Math.random() * 5)],
 					gender: genders[Math.floor(Math.random() * genders.length)]
 				});
 			}
@@ -156,26 +159,30 @@ const Page = () => {
 					<hr />
 					<div className='grid grid-cols-3'>
 						<p>Wähle aus, was abgefragt werden soll:</p>
-						<Checkbox checked={checkAdverb} handleChange={() => setCheckAdverb((prev) => !prev)} label={'Adverbien'} />
+						<CheckboxWithLabel
+							checked={checkAdverb}
+							handleChange={() => setCheckAdverb((prev) => !prev)}
+							label={'Adverbien'}
+						/>
 					</div>
 					<div className='grid grid-cols-3'>
 						<div>
 							Deklination:
-							{properties.comparison.map((comparison) => (
-								<Checkbox
+							{WORD_CONSTANTS.comparison.map((comparison) => (
+								<CheckboxWithLabel
 									key={comparison}
 									checked={comparisons.includes(comparison)}
 									handleChange={(checked) =>
 										setComparisons((prev) => (checked ? [...prev, comparison] : prev.filter((p) => p !== comparison)))
 									}
-									label={mapper.extended.comparison[comparison]}
+									label={MAPPER.extended.comparison[comparison]}
 								/>
 							))}
 						</div>
 						<div>
 							Steigerungsform:
-							{properties.comparisonDegree.map((comparisonDegree) => (
-								<Checkbox
+							{WORD_CONSTANTS.comparisonDegree.map((comparisonDegree) => (
+								<CheckboxWithLabel
 									key={comparisonDegree}
 									checked={comparisonDegrees.includes(comparisonDegree)}
 									handleChange={(checked) =>
@@ -183,20 +190,20 @@ const Page = () => {
 											checked ? [...prev, comparisonDegree] : prev.filter((p) => p !== comparisonDegree)
 										)
 									}
-									label={mapper.extended.comparisonDegree[comparisonDegree]}
+									label={MAPPER.extended.comparisonDegree[comparisonDegree]}
 								/>
 							))}
 						</div>
 						<div>
 							Geschlecht:
-							{properties.gender.map((gender) => (
-								<Checkbox
+							{WORD_CONSTANTS.gender.map((gender) => (
+								<CheckboxWithLabel
 									key={gender}
 									checked={genders.includes(gender)}
 									handleChange={(checked) =>
 										setGenders((prev) => (checked ? [...prev, gender] : prev.filter((p) => p !== gender)))
 									}
-									label={mapper.extended.gender[gender]}
+									label={MAPPER.extended.gender[gender]}
 								/>
 							))}
 						</div>
@@ -239,10 +246,10 @@ const Page = () => {
 						{testingType === 'individual' ? (
 							<Input
 								label={`
-                  ${mapper.extended.gender[individualInputForm.gender]};
-                  ${mapper.extended.comparisonDegree[individualInputForm.comparisonDegree]}
-                  ${mapper.extended.numerus[individualInputForm.numerus]}
-                  ${mapper.extended.case[individualInputForm.wordCase]}
+                  ${MAPPER.extended.gender[individualInputForm.gender]};
+                  ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]}
+                  ${MAPPER.extended.numerus[individualInputForm.numerus]}
+                  ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
                   `}
 								handleChange={setIndividualInputValue}
 								value={
@@ -261,28 +268,28 @@ const Page = () => {
 								disabled={stage === 'review'}
 							/>
 						) : (
-							properties.comparisonDegree.map((comparisonDegree, i) => (
+							WORD_CONSTANTS.comparisonDegree.map((comparisonDegree, i) => (
 								<Fragment key={i}>
-									<p>{mapper.extended.comparisonDegree[comparisonDegree]}</p>
+									<p>{MAPPER.extended.comparisonDegree[comparisonDegree]}</p>
 									<table key={i} className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 										<thead className='bg-gray-100'>
 											<tr>
 												<th />
-												{properties.gender.map((gender, i) => (
+												{WORD_CONSTANTS.gender.map((gender, i) => (
 													<th key={i} className='px-3 py-1'>
-														{mapper.extended.gender[gender]}
+														{MAPPER.extended.gender[gender]}
 													</th>
 												))}
 											</tr>
 										</thead>
 										<tbody>
-											{properties.numerus.map((numerus) =>
-												properties.case.map((wordCase, i) => (
+											{WORD_CONSTANTS.numerus.map((numerus) =>
+												WORD_CONSTANTS.wordCase.map((wordCase, i) => (
 													<tr key={i} className='border-t'>
 														<th className='px-3 py-1 bg-gray-100'>
-															{mapper.extended.case[wordCase]} {mapper.extended.numerus[numerus]}
+															{MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
 														</th>
-														{properties.gender.map((gender, i) => (
+														{WORD_CONSTANTS.gender.map((gender, i) => (
 															<td key={i} className='px-3 py-1'>
 																{getForm(activeWord, { comparisonDegree, gender, numerus, wordCase })}
 															</td>

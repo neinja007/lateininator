@@ -1,5 +1,5 @@
-import { Word } from '@/data/types';
-import TypeIndicator from './TypeIndicator';
+import { Word } from '@/types';
+import TypeIndicator from '@/components/TypeIndicator';
 
 type WordDisplayProps = {
 	word: Word;

@@ -1,7 +1,7 @@
-import { Words } from '@/data/types';
-import WordCard from './WordCard';
+import { Word } from '@/types';
+import WordCard from '@/components/WordCard';
 
-type WordCardsProps = { results: Words; query: string };
+type WordCardsProps = { results: Array<Word>; query: string };
 
 const WordCards = ({ results, query }: WordCardsProps) => {
 	return (

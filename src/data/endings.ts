@@ -1,3 +1,5 @@
+import { Endings } from '../types';
+
 export const endings = {
 	verb: {
 		a: {
@@ -1836,4 +1838,4 @@ export const endings = {
 			_ns: 'e'
 		}
 	}
-};
+} satisfies Endings;

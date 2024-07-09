@@ -1,5 +1,5 @@
 import { endings } from '@/data/endings';
-import { Word, Person, Numerus, Tense, Voice, Modus, Case, ComparisonDegree, Gender } from '@/data/types';
+import { Word, Person, Numerus, Tense, Voice, Modus, WordCase, ComparisonDegree, Gender } from '@/types';
 
 export const getLexicalForm = (word: Word) => {
 	if (word.type === 'noun') {
@@ -61,14 +61,14 @@ export const getForm = (
 		  }
 		| {
 				numerus: Numerus;
-				wordCase: Case | '6';
+				wordCase: WordCase | '6';
 		  }
 		| {
 				comparisonDegree: ComparisonDegree;
 				gender: Gender;
 				adverb?: boolean;
 				numerus: Numerus;
-				wordCase: Case | '6';
+				wordCase: WordCase | '6';
 		  }
 ): string => {
 	let ending: string | undefined = undefined;
@@ -91,7 +91,13 @@ export const getForm = (
 	} else if (word.type === 'verb') {
 		if (word.conjugation === '-') throw new Error('Error: Empty word properties were passed to getForm()');
 		if ('modus' in info && 'voice' in info && 'tense' in info && 'numerus' in info && 'person' in info) {
-			if (info.modus === 'kon' && info.tense !== 'fut1') {
+			if (info.person === '4') {
+				if (info.modus === 'ind' && info.tense === 'pres' && info.voice === 'act' && info.numerus === 'sin') {
+					ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];
+				} else {
+					throw new Error('Error: Invalid word properties were passed to getForm()');
+				}
+			} else if (info.modus === 'kon' && info.tense !== 'fut1') {
 				ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];
 			} else if (info.modus === 'ind') {
 				ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
+import Button from '@/components/Button';
 import ProgressBar from '@/components/ProgressBar';
-import Button from './ui/Button';
 
 type ActionBarProps = {
 	setStage: Dispatch<SetStateAction<'settings' | 'test' | 'review' | 'results'>>;

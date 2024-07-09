@@ -1,13 +1,13 @@
-import H1 from '@/components/ui/H1';
-import TypeIndicator from '@/components/TypeIndicator';
-import { mapper } from '@/data/mapper';
-import { properties } from '@/data/properties';
-import { words } from '@/data/words';
-import { getForm, getLexicalForm } from '@/utils/wordUtils';
+import { MAPPER } from '@/utils/mapper';
+import { WORD_CONSTANTS } from '@/constants';
 import Link from 'next/link';
 import { ArrowLeft } from 'react-feather';
 import { Fragment } from 'react';
+import { getForm, getLexicalForm } from '@/utils/wordUtils';
 import { capitalizeFirstLetter } from '@/utils/inputUtils';
+import { words } from '@/data/words';
+import H1 from '@/components/H1';
+import TypeIndicator from '@/components/TypeIndicator';
 
 type PageProps = { params: { id: string } };
 
@@ -58,31 +58,31 @@ const Page = ({ params: { id } }: PageProps) => {
 						<>
 							<hr />
 							<p className='text-center'>
-								{word.declension === '-' ? 'Keine Deklination' : mapper.extended.declension[word.declension]};{' '}
-								{word.gender === '-' ? 'Kein Geschlecht' : mapper.extended.gender[word.gender]}
+								{word.declension === '-' ? 'Keine Deklination' : MAPPER.extended.declension[word.declension]};{' '}
+								{word.gender === '-' ? 'Kein Geschlecht' : MAPPER.extended.gender[word.gender]}
 							</p>
 							{word.declension !== '-' && word.gender !== '-' ? (
 								<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 									<thead className='bg-gray-100'>
 										<tr>
 											<th />
-											{properties.numerus.map((numerus, i) => {
+											{WORD_CONSTANTS.numerus.map((numerus, i) => {
 												return (
 													<th key={i} className='px-3 py-1'>
-														{mapper.extended.numerus[numerus]}
+														{MAPPER.extended.numerus[numerus]}
 													</th>
 												);
 											})}
 										</tr>
 									</thead>
 									<tbody>
-										{properties.case.map((wordCase, i) => {
+										{WORD_CONSTANTS.wordCase.map((wordCase, i) => {
 											return (
 												<tr key={i} className='border-t'>
 													<th key={i} className='px-3 py-1 bg-gray-100'>
-														{mapper.extended.case[wordCase]}
+														{MAPPER.extended.wordCase[wordCase]}
 													</th>
-													{properties.numerus.map((numerus, i) => {
+													{WORD_CONSTANTS.numerus.map((numerus, i) => {
 														return (
 															<td key={i} className='px-3 py-1'>
 																{getForm(word, { wordCase: wordCase, numerus: numerus })}
@@ -104,39 +104,42 @@ const Page = ({ params: { id } }: PageProps) => {
 						<>
 							<hr />
 							<p className='text-center'>
-								{word.conjugation === '-' ? 'Keine Konjugation' : mapper.extended.conjugation[word.conjugation]}
+								{word.conjugation === '-' ? 'Keine Konjugation' : MAPPER.extended.conjugation[word.conjugation]}
 							</p>
 							{word.conjugation !== '-' ? (
 								<div>
-									{properties.modus.map((modus) =>
-										properties.voice.map((voice, i) => (
+									{WORD_CONSTANTS.modus.map((modus) =>
+										WORD_CONSTANTS.voice.map((voice, i) => (
 											<Fragment key={i}>
 												<p>
-													{mapper.extended.modus[modus]} {mapper.extended.voice[voice]}
+													{MAPPER.extended.modus[modus]} {MAPPER.extended.voice[voice]}
 												</p>
 												<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 													<thead className='bg-gray-100'>
 														<tr>
 															<th />
-															{properties[modus === 'ind' ? 'indTense' : 'konTense'].map((tense, i) => (
+															{WORD_CONSTANTS.tense.map((tense, i) => (
 																<th key={i} className='px-3 py-1'>
-																	{mapper.extended.tense[tense]}
+																	{MAPPER.extended.tense[tense]}
 																</th>
 															))}
 														</tr>
 													</thead>
 													<tbody>
-														{properties.numerus.map((numerus) =>
-															properties.person.map((person, i) => (
+														{WORD_CONSTANTS.numerus.map((numerus) =>
+															WORD_CONSTANTS.person.map((person, i) => (
 																<tr key={i} className='border-t'>
 																	<th className='px-3 py-1 bg-gray-100'>
-																		{mapper.short.person[person]} {mapper.extended.numerus[numerus]}
+																		{MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}
 																	</th>
-																	{properties[modus === 'ind' ? 'indTense' : 'konTense'].map((tense, i) => (
-																		<td key={i} className='px-3 py-1'>
-																			{getForm(word, { modus, numerus, person, tense, voice })}
-																		</td>
-																	))}
+																	{WORD_CONSTANTS.tense.map(
+																		(tense, i) =>
+																			(modus === 'ind' || tense !== 'fut1') && (
+																				<td key={i} className='px-3 py-1'>
+																					{getForm(word, { modus, numerus, person, tense, voice })}
+																				</td>
+																			)
+																	)}
 																</tr>
 															))
 														)}
@@ -157,24 +160,24 @@ const Page = ({ params: { id } }: PageProps) => {
 						<>
 							<hr />
 							<p className='text-center'>
-								{word.comparison === '-' ? 'Keine Deklination' : mapper.extended.comparison[word.comparison]}
+								{word.comparison === '-' ? 'Keine Deklination' : MAPPER.extended.comparison[word.comparison]}
 							</p>
 							{word.comparison !== '-' ? (
 								<div>
-									<p>{mapper.extended.type['adverb']}</p>
+									<p>{MAPPER.extended.type['adverb']}</p>
 									<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 										<thead className='bg-gray-100'>
 											<tr>
-												{properties.comparisonDegree.map((comparisonDegree, i) => (
+												{WORD_CONSTANTS.comparisonDegree.map((comparisonDegree, i) => (
 													<th key={i} className='px-3 py-1'>
-														{mapper.extended.comparisonDegree[comparisonDegree]}
+														{MAPPER.extended.comparisonDegree[comparisonDegree]}
 													</th>
 												))}
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												{properties.comparisonDegree.map((comparisonDegree, i) => (
+												{WORD_CONSTANTS.comparisonDegree.map((comparisonDegree, i) => (
 													<th key={i} className='px-3 py-1'>
 														{getForm(word, {
 															comparisonDegree,
@@ -189,28 +192,28 @@ const Page = ({ params: { id } }: PageProps) => {
 										</tbody>
 									</table>
 									<br />
-									{properties.comparisonDegree.map((comparisonDegree, i) => (
+									{WORD_CONSTANTS.comparisonDegree.map((comparisonDegree, i) => (
 										<Fragment key={i}>
-											<p>{mapper.extended.comparisonDegree[comparisonDegree]}</p>
+											<p>{MAPPER.extended.comparisonDegree[comparisonDegree]}</p>
 											<table key={i} className='w-full rounded-lg table-fixed overflow-hidden shadow'>
 												<thead className='bg-gray-100'>
 													<tr>
 														<th />
-														{properties.gender.map((gender, i) => (
+														{WORD_CONSTANTS.gender.map((gender, i) => (
 															<th key={i} className='px-3 py-1'>
-																{mapper.extended.gender[gender]}
+																{MAPPER.extended.gender[gender]}
 															</th>
 														))}
 													</tr>
 												</thead>
 												<tbody>
-													{properties.numerus.map((numerus) =>
-														properties.case.map((wordCase, i) => (
+													{WORD_CONSTANTS.numerus.map((numerus) =>
+														WORD_CONSTANTS.wordCase.map((wordCase, i) => (
 															<tr key={i} className='border-t'>
 																<th className='px-3 py-1 bg-gray-100'>
-																	{mapper.extended.case[wordCase]} {mapper.extended.numerus[numerus]}
+																	{MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
 																</th>
-																{properties.gender.map((gender, i) => (
+																{WORD_CONSTANTS.gender.map((gender, i) => (
 																	<td key={i} className='px-3 py-1'>
 																		{getForm(word, { comparisonDegree, gender, numerus, wordCase })}
 																	</td>

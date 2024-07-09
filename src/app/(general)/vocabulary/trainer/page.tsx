@@ -1,20 +1,20 @@
 'use client';
 
-import SelectButton from '@/components/SelectButton';
-import H1 from '@/components/ui/H1';
 import { lists } from '@/data/lists';
-import { words } from '@/data/words';
-import { Words, List, Word, WordInputKey, Type } from '@/data/types';
+import { APP_CONSTANTS } from '@/constants';
+import { List, Word, WordProperty, WordType } from '@/types';
 import { useEffect, useState } from 'react';
-import Button from '@/components/ui/Button';
-import Input from '@/components/ui/Input';
-import { properties } from '@/data/properties';
-import TrainerInput from '@/components/TrainerInput';
-import Checkbox from '@/components/ui/Checkbox';
-import { mapper } from '@/data/mapper';
+import { MAPPER } from '@/utils/mapper';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
+import { words } from '@/data/words';
 import ActionBar from '@/components/ActionBar';
+import Button from '@/components/Button';
+import CheckboxWithLabel from '@/components/CheckboxWithLabel';
+import H1 from '@/components/H1';
+import SelectButton from '@/components/SelectButton';
+import TrainerInput from '@/components/TrainerInput';
 import WordDisplay from '@/components/WordDisplay';
+import Input from '@/components/Input';
 
 const initialInputValues = {
 	conjugation: '',
@@ -29,23 +29,10 @@ const initialInputValues = {
 	present: ''
 };
 
-const initialPropertiesToCheck: Array<WordInputKey> = [
-	'declension',
-	'genitive',
-	'gender',
-	'conjugation',
-	'present',
-	'perfect',
-	'participle',
-	'comparison',
-	'femininum',
-	'neutrum'
-];
-
 const Page = () => {
 	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
 
-	const [remainingWords, setRemainingWords] = useState<Words>([]);
+	const [remainingWords, setRemainingWords] = useState<Word[]>([]);
 	const [activeWord, setActiveWord] = useState<Word>();
 
 	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
@@ -53,14 +40,16 @@ const Page = () => {
 	const [maxWords, setMaxWords] = useState<number>(0);
 
 	const [selectedLists, setSelectedLists] = useState<Array<List>>([]);
-	const [typesToCheck, setTypesToCheck] = useState<Array<Type>>([...properties.mainTypes, 'other']);
+	const [typesToCheck, setTypesToCheck] = useState<Array<WordType>>([...APP_CONSTANTS.mainWordTypes, 'other']);
 
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
-	const [propertiesToCheck, setPropertiesToCheck] = useState<Array<WordInputKey>>(initialPropertiesToCheck);
+	const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<Array<WordProperty>>([
+		...APP_CONSTANTS.allWordProperties
+	]);
 	const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
 
 	const [translationInput, setTranslationInput] = useState<string>('');
-	const [inputValues, setInputValues] = useState<Record<WordInputKey, string>>(initialInputValues);
+	const [inputValues, setInputValues] = useState<Record<WordProperty, string>>(initialInputValues);
 
 	useEffect(() => {
 		if (stage === 'settings') {
@@ -72,7 +61,7 @@ const Page = () => {
 				(word) =>
 					ids.includes(word.id) &&
 					(typesToCheck.includes(word.type) ||
-						(typesToCheck.includes('other') && !properties.mainTypes.includes(word.type)))
+						(typesToCheck.includes('other') && !(word.type in APP_CONSTANTS.mainWordTypes)))
 			);
 
 			setRemainingWords(remainingWords);
@@ -85,10 +74,11 @@ const Page = () => {
 	}, [maxWordsInput]);
 
 	useEffect(() => {
-		setPropertiesToCheck(
-			initialPropertiesToCheck.filter((property) => {
+		setWordPropertiesToCheck(
+			APP_CONSTANTS.allWordProperties.filter((property) => {
 				return typesToCheck.some(
-					(type) => properties.mainTypes.includes(type) && (properties.wordKeys[type] as any).includes(property)
+					(type) =>
+						type in APP_CONSTANTS.mainWordTypes && (APP_CONSTANTS.wordProperties[type] as any).includes(property)
 				);
 			})
 		);
@@ -139,9 +129,9 @@ const Page = () => {
 		setTranslationInput('');
 	};
 
-	const validKeysToCheck = activeWord
-		? properties.wordKeys[activeWord.type].filter(
-				(key) => propertiesToCheck.includes(key) && key in activeWord && (activeWord as any)[key] !== '-'
+	const validKeysToCheck: WordProperty[] = activeWord
+		? APP_CONSTANTS.wordProperties[activeWord.type].filter(
+				(key) => wordPropertiesToCheck.includes(key) && key in activeWord && (activeWord as any)[key] !== '-'
 		  )
 		: [];
 
@@ -186,7 +176,7 @@ const Page = () => {
 					<hr />
 					<p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
 					<div className='grid grid-cols-4 gap-4'>
-						{([...properties.mainTypes, 'other'] as Array<Type>).map((type, i) => (
+						{([...APP_CONSTANTS.mainWordTypes, 'other'] as Array<WordType>).map((type, i) => (
 							<SelectButton
 								key={i}
 								active={typesToCheck.includes(type)}
@@ -197,7 +187,7 @@ const Page = () => {
 											: [...prevTypesToCheck, type]
 									)
 								}
-								label={mapper.extended.type[type]}
+								label={MAPPER.extended.type[type]}
 							/>
 						))}
 					</div>
@@ -207,30 +197,30 @@ const Page = () => {
 					<hr />
 					<div className='grid grid-cols-3'>
 						<p>Wähle aus, was abgefragt werden soll:</p>
-						<Checkbox
+						<CheckboxWithLabel
 							checked={checkTranslation}
 							handleChange={() => setCheckTranslation((prevCheckTranslation) => !prevCheckTranslation)}
 							label={'Übersetzung'}
 						/>
 					</div>
 					<div className='grid grid-cols-3'>
-						{properties.mainTypes.map((type: Type) => (
+						{APP_CONSTANTS.mainWordTypes.map((type: WordType) => (
 							<div key={type}>
 								<span className={typesToCheck.includes(type) ? 'text-black' : 'text-gray-500'}>
-									{mapper.extended.type[type]}
+									{MAPPER.extended.type[type]}
 								</span>
 								:
-								{properties.wordKeys[type].map((property) => (
-									<Checkbox
+								{APP_CONSTANTS.wordProperties[type].map((property) => (
+									<CheckboxWithLabel
 										key={property}
 										disabled={!typesToCheck.includes(type)}
-										checked={propertiesToCheck.includes(property)}
+										checked={wordPropertiesToCheck.includes(property)}
 										handleChange={(checked) =>
-											setPropertiesToCheck((prev) =>
+											setWordPropertiesToCheck((prev) =>
 												checked ? [...prev, property] : prev.filter((p) => p !== property)
 											)
 										}
-										label={mapper.extended.wordKey[property]}
+										label={MAPPER.extended.wordProperty[property]}
 									/>
 								))}
 							</div>
@@ -254,7 +244,7 @@ const Page = () => {
 					</div>
 					<div className='text-center'>
 						{checkType === 'all' ? (
-							<Checkbox
+							<CheckboxWithLabel
 								checked={checkIncorrectWordsAgain}
 								handleChange={setCheckIncorrectWordsAgain}
 								label='Bei Fehlern Wörter nochmals abprüfen'
@@ -319,7 +309,7 @@ const Page = () => {
 							return (
 								<TrainerInput
 									key={i}
-									inputKey={key}
+									property={key}
 									value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
 									handleChange={(key: string, value: string) =>
 										setInputValues((prevInputValues) => ({ ...prevInputValues, [key]: value }))

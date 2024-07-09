@@ -1,8 +1,10 @@
-import { Word } from '@/data/types';
-import { getLexicalForm } from '@/utils/wordUtils';
+'use client';
+
+import { Word } from '@/types';
+import TypeIndicator from '@/components/TypeIndicator';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
-import TypeIndicator from './TypeIndicator';
+import { getLexicalForm } from '@/utils/wordUtils';
 import { capitalizeFirstLetter } from '@/utils/inputUtils';
 
 type WordRowProps = {
