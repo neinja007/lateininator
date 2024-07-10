@@ -1,20 +1,18 @@
 'use client';
 
-import { lists } from '@/data/lists';
 import { APP_CONSTANTS } from '@/constants';
-import { List, Word, WordProperty, WordType } from '@/types';
-import { useEffect, useState } from 'react';
-import { MAPPER } from '@/utils/mapper';
+import { WordProperty } from '@/types';
+import { useState } from 'react';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
-import { words } from '@/data/words';
 import ActionBar from '@/components/ActionBar';
 import Button from '@/components/Button';
-import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import H1 from '@/components/H1';
-import SelectButton from '@/components/SelectButton';
 import TrainerInput from '@/components/TrainerInput';
 import WordDisplay from '@/components/WordDisplay';
 import Input from '@/components/Input';
+import Settings from './components/Settings';
+import { useStage } from '@/hooks/useStage';
+import { useActiveWord } from '@/hooks/useActiveWord';
 
 const initialInputValues = {
 	conjugation: '',
@@ -30,17 +28,11 @@ const initialInputValues = {
 };
 
 const Page = () => {
-	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
+	const { stage, setStage } = useStage();
 
-	const [remainingWords, setRemainingWords] = useState<Word[]>([]);
-	const [activeWord, setActiveWord] = useState<Word>();
-
+	const { activeWord, maxWords, remainingWords, possibleWords, updatePossibleWords, updateActiveWord } =
+		useActiveWord();
 	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
-	const [maxWordsInput, setMaxWordsInput] = useState<string>('');
-	const [maxWords, setMaxWords] = useState<number>(0);
-
-	const [selectedLists, setSelectedLists] = useState<Array<List>>([]);
-	const [typesToCheck, setTypesToCheck] = useState<Array<WordType>>([...APP_CONSTANTS.mainWordTypes, 'other']);
 
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 	const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<Array<WordProperty>>([
@@ -50,39 +42,6 @@ const Page = () => {
 
 	const [translationInput, setTranslationInput] = useState<string>('');
 	const [inputValues, setInputValues] = useState<Record<WordProperty, string>>(initialInputValues);
-
-	useEffect(() => {
-		if (stage === 'settings') {
-			let ids: Array<number> = [];
-			selectedLists.forEach((list) => {
-				ids = ids.concat(list.words);
-			});
-			const remainingWords = words.filter(
-				(word) =>
-					ids.includes(word.id) &&
-					(typesToCheck.includes(word.type) ||
-						(typesToCheck.includes('other') && !(word.type in APP_CONSTANTS.mainWordTypes)))
-			);
-
-			setRemainingWords(remainingWords);
-			setMaxWordsInput(remainingWords.length.toString());
-		}
-	}, [selectedLists, stage, typesToCheck]);
-
-	useEffect(() => {
-		setMaxWords(maxWordsInput === '' ? 0 : parseInt(maxWordsInput));
-	}, [maxWordsInput]);
-
-	useEffect(() => {
-		setWordPropertiesToCheck(
-			APP_CONSTANTS.allWordProperties.filter((property) => {
-				return typesToCheck.some(
-					(type) =>
-						type in APP_CONSTANTS.mainWordTypes && (APP_CONSTANTS.wordProperties[type] as any).includes(property)
-				);
-			})
-		);
-	}, [typesToCheck]);
 
 	const handleContinue = () => {
 		if (stage === 'test') {
@@ -102,31 +61,27 @@ const Page = () => {
 				(!activeWord.translation || compareValues(translationInput, activeWord.translation, true));
 
 			if (allInputValuesAreCorrect || checkType === 'limited' || !checkIncorrectWordsAgain) {
-				setRemainingWords((prev) => prev.splice(prev.indexOf(activeWord), 1));
+				updatePossibleWords();
 			}
 		} else if (stage === 'settings' && checkType === 'limited') {
-			const slicedRemainingWords = remainingWords.slice(0, maxWords);
+			const slicedRemainingWords = possibleWords.slice(0, remainingWords);
 
-			setRemainingWords(slicedRemainingWords);
-			setActiveWord(slicedRemainingWords[Math.floor(Math.random() * slicedRemainingWords.length)]);
+			updatePossibleWords(slicedRemainingWords);
 
+			updateActiveWord(false);
 			setStage('test');
 		} else {
-			if (remainingWords.length === 0) {
+			if (remainingWords === 0) {
 				setStage('results');
 				return;
 			}
 
+			updateActiveWord(false);
 			setStage('test');
 
-			setActiveWord(remainingWords[Math.floor(Math.random() * remainingWords.length)]);
-			resetInputs();
+			setInputValues(initialInputValues);
+			setTranslationInput('');
 		}
-	};
-
-	const resetInputs = () => {
-		setInputValues(initialInputValues);
-		setTranslationInput('');
 	};
 
 	const validKeysToCheck: WordProperty[] = activeWord
@@ -135,147 +90,27 @@ const Page = () => {
 		  )
 		: [];
 
-	const progressPercentage = ((maxWords - remainingWords.length) / maxWords) * 100;
+	const progressPercentage = ((maxWords - remainingWords) / maxWords) * 100;
 
-	const start = remainingWords.length > 0 && maxWords > 0;
+	const start = remainingWords > 0;
 
 	return (
 		<div className='space-y-5'>
 			<H1>Vokabeltrainer</H1>
 			{stage === 'settings' && (
-				<>
-					<p>Wähle aus, welche Lektionen du lernen möchtest:</p>
-					<div className='grid grid-cols-8 gap-4'>
-						{lists.map((list, i) => (
-							<SelectButton
-								key={i}
-								active={selectedLists.includes(list)}
-								handleClick={() =>
-									setSelectedLists((prevSelectedLists) =>
-										prevSelectedLists.includes(list)
-											? prevSelectedLists.filter((t) => t !== list)
-											: [...prevSelectedLists, list]
-									)
-								}
-								label={list.name}
-							/>
-						))}
-					</div>
-					<div className='flex justify-center space-x-3'>
-						<SelectButton
-							label='Alle auswählen'
-							active={selectedLists.length === lists.length}
-							handleClick={() => setSelectedLists(lists)}
-						/>
-						<SelectButton
-							label='Alle abwählen'
-							active={selectedLists.length === 0}
-							handleClick={() => setSelectedLists([])}
-						/>
-					</div>
-					<hr />
-					<p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
-					<div className='grid grid-cols-4 gap-4'>
-						{([...APP_CONSTANTS.mainWordTypes, 'other'] as Array<WordType>).map((type, i) => (
-							<SelectButton
-								key={i}
-								active={typesToCheck.includes(type)}
-								handleClick={() =>
-									setTypesToCheck((prevTypesToCheck) =>
-										prevTypesToCheck.includes(type)
-											? prevTypesToCheck.filter((t) => t !== type)
-											: [...prevTypesToCheck, type]
-									)
-								}
-								label={MAPPER.extended.type[type]}
-							/>
-						))}
-					</div>
-					<p>
-						Es wurden <b className='text-blue-700'>{remainingWords.length} Wörter</b> ausgewählt.
-					</p>
-					<hr />
-					<div className='grid grid-cols-3'>
-						<p>Wähle aus, was abgefragt werden soll:</p>
-						<CheckboxWithLabel
-							checked={checkTranslation}
-							handleChange={() => setCheckTranslation((prevCheckTranslation) => !prevCheckTranslation)}
-							label={'Übersetzung'}
-						/>
-					</div>
-					<div className='grid grid-cols-3'>
-						{APP_CONSTANTS.mainWordTypes.map((type: WordType) => (
-							<div key={type}>
-								<span className={typesToCheck.includes(type) ? 'text-black' : 'text-gray-500'}>
-									{MAPPER.extended.type[type]}
-								</span>
-								:
-								{APP_CONSTANTS.wordProperties[type].map((property) => (
-									<CheckboxWithLabel
-										key={property}
-										disabled={!typesToCheck.includes(type)}
-										checked={wordPropertiesToCheck.includes(property)}
-										handleChange={(checked) =>
-											setWordPropertiesToCheck((prev) =>
-												checked ? [...prev, property] : prev.filter((p) => p !== property)
-											)
-										}
-										label={MAPPER.extended.wordProperty[property]}
-									/>
-								))}
-							</div>
-						))}
-					</div>
-					<hr />
-					<p>Abfrage (die Überprüfung kann auch frühzeitig beendet werden):</p>
-					<div className='flex space-x-5'>
-						<SelectButton
-							className='w-1/2 font-medium'
-							active={checkType === 'all'}
-							handleClick={() => setCheckType('all')}
-							label={`Alle verfügbaren Wörter (${remainingWords.length}) abfragen`}
-						/>
-						<SelectButton
-							className='w-1/2 font-medium'
-							active={checkType === 'limited'}
-							handleClick={() => setCheckType('limited')}
-							label='Begrenzte Anzahl abfragen'
-						/>
-					</div>
-					<div className='text-center'>
-						{checkType === 'all' ? (
-							<CheckboxWithLabel
-								checked={checkIncorrectWordsAgain}
-								handleChange={setCheckIncorrectWordsAgain}
-								label='Bei Fehlern Wörter nochmals abprüfen'
-							/>
-						) : (
-							<Input
-								label={`Anzahl der abgefragten Wörter (max. ${remainingWords.length})`}
-								handleChange={(value) =>
-									setMaxWordsInput(
-										(!isNaN(parseInt(value))
-											? parseInt(value) > remainingWords.length
-												? remainingWords.length
-												: parseInt(value) < 0
-												  ? 0
-												  : parseInt(value)
-											: value === ''
-											  ? ''
-											  : 0
-										).toString()
-									)
-								}
-								value={maxWordsInput}
-								className={'w-1/3 text-center'}
-								type='number'
-							/>
-						)}
-					</div>
-					<Button onClick={handleContinue} className='w-full' disabled={!start}>
-						<span>{!start ? 'Wähle ein paar Adjektive aus, um fortzufahren' : 'Start'}</span>
-					</Button>
-				</>
+				<Settings
+					checkTranslation={checkTranslation}
+					setCheckTranslation={setCheckTranslation}
+					wordPropertiesToCheck={wordPropertiesToCheck}
+					setWordPropertiesToCheck={setWordPropertiesToCheck}
+					checkType={checkType}
+					setCheckType={setCheckType}
+					checkIncorrectWordsAgain={checkIncorrectWordsAgain}
+					setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
+					updatePossibleWords={updatePossibleWords}
+					handleContinue={handleContinue}
+					start={start}
+				/>
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
 				<>
@@ -325,7 +160,7 @@ const Page = () => {
 			)}
 			{stage === 'results' && (
 				<>
-					<p>Es wurden {maxWords - remainingWords.length} verschiedene Wörter abgefragt.</p>
+					<p>Es wurden {maxWords - possibleWords.length} verschiedene Wörter abgefragt.</p>
 					<Button onClick={() => setStage('settings')}>Neu Laden</Button>
 				</>
 			)}
