@@ -2,13 +2,12 @@
 
 import { useState } from 'react';
 import { useResults } from '@/hooks/useResults';
-import Button from '@/components/Button';
-import DisplayModeToggle from '@/components/DisplayModeToggle';
 import H1 from '@/components/H1';
-import { ResultCount } from '@/components/ResultCount';
-import WordCards from '@/components/WordCards';
-import WordList from '@/components/WordList';
-import Input from '@/components/Input';
+import DisplayModeToggle from './components/DisplayModeToggle';
+import { ResultCount } from './components/ResultCount';
+import WordCards from './components/WordCards';
+import WordList from './components/WordList';
+import SearchBar from './components/SearchBar';
 
 const Page = () => {
 	const [query, setQuery] = useState<string>('');
@@ -21,16 +20,8 @@ const Page = () => {
 		<div className='space-y-5'>
 			<H1>Wörterbuch</H1>
 
-			<div>
-				<Input
-					label='Suche:'
-					placeholder='Wort oder Übersetzung eingeben'
-					className='w-full max-w-96 mr-4'
-					value={query}
-					handleChange={setQuery}
-				/>
-				<Button className=''>Erweiterte Suche</Button>
-			</div>
+			<SearchBar query={query} setQuery={setQuery} />
+
 			<ResultCount count={results.length} query={query} limitResults={limitResults} setLimitResults={setLimitResults} />
 			<hr />
 			{results.length > 0 && (

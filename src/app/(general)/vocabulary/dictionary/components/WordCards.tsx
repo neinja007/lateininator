@@ -1,5 +1,5 @@
 import { Word } from '@/types';
-import WordCard from '@/components/WordCard';
+import WordCard from '@/app/(general)/vocabulary/dictionary/components/WordCard';
 
 type WordCardsProps = { results: Array<Word>; query: string };
 

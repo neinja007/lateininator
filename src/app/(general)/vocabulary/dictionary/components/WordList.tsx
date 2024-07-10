@@ -1,4 +1,4 @@
-import WordRow from '@/components/WordRow';
+import WordRow from '@/app/(general)/vocabulary/dictionary/components/WordRow';
 import { Word } from '@/types';
 
 type WordListProps = { results: Array<Word>; query: string };
