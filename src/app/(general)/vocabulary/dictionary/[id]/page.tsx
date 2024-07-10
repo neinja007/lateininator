@@ -8,20 +8,14 @@ import Header from './components/Header';
 import WordInformation from './components/WordInformation';
 import TableInformation from './components/TableInformation';
 import FormTable from './components/FormTable';
+import WordNotFound from './components/WordNotFound';
 
 type PageProps = { params: { id: string } };
 
 const Page = ({ params: { id } }: PageProps) => {
 	const word = words.find((word) => word.id.toString() === id);
-	if (!word)
-		return (
-			<span>
-				Wort nicht gefunden.{' '}
-				<Link href={'/vocabulary/dictionary'} className='text-blue-500 underline'>
-					Zum Wörterbuch
-				</Link>
-			</span>
-		);
+	if (!word) return <WordNotFound />;
+
 	return (
 		<div className='space-y-5'>
 			<Header word={word} />
@@ -31,7 +25,38 @@ const Page = ({ params: { id } }: PageProps) => {
 			{word.type === 'noun' ? (
 				<>
 					{word.declension !== '-' && word.gender !== '-' ? (
-						<FormTable word={word} cols='numerus' rows='wordCase' />
+						<table className='w-full rounded-lg table-fixed overflow-hidden shadow'>
+							<thead className='bg-gray-100'>
+								<tr>
+									<th />
+									{WORD_CONSTANTS.numerus.map((numerus, i) => {
+										return (
+											<th key={i} className='px-3 py-1'>
+												{MAPPER.extended.numerus[numerus]}
+											</th>
+										);
+									})}
+								</tr>
+							</thead>
+							<tbody>
+								{WORD_CONSTANTS.wordCase.map((wordCase, i) => {
+									return (
+										<tr key={i} className='border-t'>
+											<th key={i} className='px-3 py-1 bg-gray-100'>
+												{MAPPER.extended.wordCase[wordCase]}
+											</th>
+											{WORD_CONSTANTS.numerus.map((numerus, i) => {
+												return (
+													<td key={i} className='px-3 py-1'>
+														{getForm(word, { wordCase: wordCase, numerus: numerus })}
+													</td>
+												);
+											})}
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
 					) : (
 						<p>Tabellen können nicht generiert werden, da dieses Wort nicht ordnungsgemäß dekliniert werden kann.</p>
 					)}
@@ -41,8 +66,8 @@ const Page = ({ params: { id } }: PageProps) => {
 					{word.conjugation !== '-' ? (
 						<div>
 							{WORD_CONSTANTS.modus.map((modus) =>
-								WORD_CONSTANTS.voice.map((voice, i) => (
-									<Fragment key={i}>
+								WORD_CONSTANTS.voice.map((voice) => (
+									<Fragment key={modus + '-' + voice}>
 										<p>
 											{MAPPER.extended.modus[modus]} {MAPPER.extended.voice[voice]}
 										</p>
