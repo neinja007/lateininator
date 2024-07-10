@@ -123,7 +123,8 @@ export const getForm = (
 		}
 	}
 
-	if (ending === undefined) throw new Error('Error: Ending from getForm() is undefined: ' + word + info);
+	if (ending === undefined)
+		throw new Error('Error: Ending from getForm() is undefined: ' + JSON.stringify(word) + JSON.stringify(info));
 	if (ending === '-') {
 		return word.word;
 	}
