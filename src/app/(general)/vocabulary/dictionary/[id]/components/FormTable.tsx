@@ -1,17 +1,24 @@
 import { WORD_CONSTANTS } from '@/constants';
-import { Word, WordProperty } from '@/types';
+import { Word } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 
 type FormTableProps = {
 	word: Word;
 	label?: string;
-	cols: keyof typeof WORD_CONSTANTS;
-	rows: keyof typeof WORD_CONSTANTS;
-	additionalFormInfo?: { [key: string]: string };
+	cols?: readonly string[];
+	rows?: readonly string[];
+	colKey: string;
+	rowKey: string;
+	additionalFormInfo?: { [key: string]: any };
 };
 
-const FormTable = ({ word, label, cols, rows, additionalFormInfo }: FormTableProps) => {
+const FormTable = ({ word, label, cols, rows, colKey, rowKey, additionalFormInfo }: FormTableProps) => {
+	const colMapper = MAPPER.extended[colKey as keyof typeof MAPPER.extended];
+	const rowMapper = MAPPER.extended[rowKey as keyof typeof MAPPER.extended];
+	cols = cols ? cols : WORD_CONSTANTS[colKey as keyof typeof WORD_CONSTANTS];
+	rows = rows ? rows : WORD_CONSTANTS[rowKey as keyof typeof WORD_CONSTANTS];
+
 	return (
 		<div>
 			{label && <p>{label}</p>}
@@ -19,22 +26,20 @@ const FormTable = ({ word, label, cols, rows, additionalFormInfo }: FormTablePro
 				<thead className='bg-gray-100'>
 					<tr>
 						<th />
-						{WORD_CONSTANTS[cols].map((element) => (
+						{cols.map((element) => (
 							<th key={element} className='px-3 py-1'>
-								{MAPPER.extended[cols][element as keyof (typeof MAPPER.extended)[typeof cols]]}
+								{colMapper[element as keyof typeof colMapper]}
 							</th>
 						))}
 					</tr>
 				</thead>
 				<tbody>
-					{WORD_CONSTANTS[rows].map((element) => (
+					{rows.map((element) => (
 						<tr key={element} className='border-t'>
-							<th className='px-3 py-1 bg-gray-100'>
-								{MAPPER.extended[rows][element as keyof (typeof MAPPER.extended)[typeof rows]]}
-							</th>
-							{WORD_CONSTANTS[cols].map((element2) => (
+							<th className='px-3 py-1 bg-gray-100'>{rowMapper[element as keyof typeof colMapper]}</th>
+							{cols.map((element2) => (
 								<td key={element2} className='px-3 py-1'>
-									{getForm(word, { [rows]: element, [cols]: element2, ...additionalFormInfo } as any)}
+									{getForm(word, { [rowKey]: element, [colKey]: element2, ...additionalFormInfo } as any)}
 								</td>
 							))}
 						</tr>
