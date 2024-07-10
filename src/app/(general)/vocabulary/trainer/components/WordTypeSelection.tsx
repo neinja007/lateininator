@@ -3,8 +3,7 @@ import { APP_CONSTANTS } from '@/constants';
 import { words } from '@/data/words';
 import { Word, WordProperty, WordType } from '@/types';
 import { MAPPER } from '@/utils/mapper';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { types } from 'util';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
 type WordTypeSelectionProps = {
 	validWords: Word[];
@@ -13,6 +12,7 @@ type WordTypeSelectionProps = {
 	selectedIds: number[];
 	typesToCheck: WordType[];
 	setTypesToCheck: Dispatch<SetStateAction<WordType[]>>;
+	setMaxWordsInput: Dispatch<SetStateAction<string>>;
 };
 
 const WordTypeSelection = ({
@@ -21,18 +21,22 @@ const WordTypeSelection = ({
 	setValidWords,
 	selectedIds,
 	typesToCheck,
-	setTypesToCheck
+	setTypesToCheck,
+	setMaxWordsInput
 }: WordTypeSelectionProps) => {
 	useEffect(() => {
 		setWordPropertiesToCheck(
 			APP_CONSTANTS.allWordProperties.filter((property) => {
-				return typesToCheck.some(
-					(type) =>
-						type in APP_CONSTANTS.mainWordTypes && (APP_CONSTANTS.wordProperties[type] as any).includes(property)
+				APP_CONSTANTS.wordTypes.some(
+					(type) => (APP_CONSTANTS.wordProperties[type] as any).includes(property) && typesToCheck.includes(type)
 				);
 			})
 		);
 	}, [setWordPropertiesToCheck, typesToCheck]);
+
+	useEffect(() => {
+		setMaxWordsInput(validWords.length.toString());
+	}, [setMaxWordsInput, validWords.length]);
 
 	useEffect(() => {
 		const possibleWords = words.filter(
