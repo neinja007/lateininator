@@ -10,7 +10,7 @@ const SearchBar = ({ query, setQuery }: SearchBarProps) => {
 	return (
 		<div>
 			<Input
-				label='Suche:'
+				label='Suche'
 				placeholder='Wort oder Übersetzung eingeben'
 				className='w-full max-w-96 mr-4'
 				value={query}
