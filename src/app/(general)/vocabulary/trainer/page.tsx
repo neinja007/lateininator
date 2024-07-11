@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import ActionBar from '@/components/ActionBar';
 import Button from '@/components/Button';
-import H1 from '@/components/H1';
+import Heading from '@/components/Heading';
 import TrainerInput from '@/components/TrainerInput';
 import WordDisplay from '@/components/WordDisplay';
 import Input from '@/components/Input';
@@ -92,11 +92,9 @@ const Page = () => {
 
 	const progressPercentage = ((maxWords - remainingWords) / maxWords) * 100;
 
-	const start = remainingWords > 0;
-
 	return (
 		<div className='space-y-5'>
-			<H1>Vokabeltrainer</H1>
+			<Heading>Vokabeltrainer</Heading>
 			{stage === 'settings' && (
 				<Settings
 					checkTranslation={checkTranslation}
@@ -109,7 +107,7 @@ const Page = () => {
 					setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
 					updatePossibleWords={updatePossibleWords}
 					handleContinue={handleContinue}
-					start={start}
+					start={remainingWords > 0}
 				/>
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
@@ -120,7 +118,7 @@ const Page = () => {
 						{checkTranslation && activeWord.translation && (
 							<Input
 								label='Übersetzung (mehrere Antworten durch "," trennen)'
-								readOnly={stage === 'review'}
+								disabled={stage === 'review'}
 								className={
 									'w-full' +
 									(stage === 'review'
@@ -138,25 +136,27 @@ const Page = () => {
 							/>
 						)}
 					</div>
-					<div className='grid grid-cols-3 gap-4'>
-						{validKeysToCheck.map((key, i) => {
-							const value = (activeWord as any)[key];
-							return (
-								<TrainerInput
-									key={i}
-									property={key}
-									value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
-									handleChange={(key: string, value: string) =>
-										setInputValues((prevInputValues) => ({
-											...prevInputValues,
-											[key]: value
-										}))
-									}
-									correct={stage === 'review' ? compareValues(inputValues[key], value) : null}
-								/>
-							);
-						})}
-					</div>
+					{validKeysToCheck.length > 0 && (
+						<div className='grid grid-cols-3 gap-4'>
+							{validKeysToCheck.map((key, i) => {
+								const value = (activeWord as any)[key];
+								return (
+									<TrainerInput
+										key={i}
+										property={key}
+										value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
+										handleChange={(key: string, value: string) =>
+											setInputValues((prevInputValues) => ({
+												...prevInputValues,
+												[key]: value
+											}))
+										}
+										correct={stage === 'review' ? compareValues(inputValues[key], value) : null}
+									/>
+								);
+							})}
+						</div>
+					)}
 					<hr />
 					<ActionBar setStage={setStage} handleContinue={handleContinue} progressPercentage={progressPercentage} />
 				</>

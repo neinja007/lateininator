@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import navbar from '@/styles/navbar.module.css';
+import clsx from 'clsx';
 
 type NavbarLinkProps = {
 	label: string;
@@ -10,10 +12,7 @@ type NavbarLinkProps = {
 
 const NavbarLink = ({ label, href, active }: NavbarLinkProps) => {
 	return (
-		<Link
-			className={`my-auto mx-2 font-semibold ${active ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'}`}
-			href={href}
-		>
+		<Link className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)} href={href}>
 			{label}
 		</Link>
 	);

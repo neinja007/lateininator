@@ -12,7 +12,7 @@ import { MAPPER } from '@/utils/mapper';
 import ActionBar from '@/components/ActionBar';
 import Button from '@/components/Button';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
-import H1 from '@/components/H1';
+import Heading from '@/components/Heading';
 import Select from '@/components/Select';
 import SelectButton from '@/components/SelectButton';
 import WordDisplay from '@/components/WordDisplay';
@@ -122,7 +122,7 @@ const Page = () => {
 
 	return (
 		<div className='space-y-5'>
-			<H1>Flexionstrainer: Adjektive</H1>
+			<Heading>Flexionstrainer: Adjektive</Heading>
 			{stage === 'settings' && (
 				<>
 					<p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>

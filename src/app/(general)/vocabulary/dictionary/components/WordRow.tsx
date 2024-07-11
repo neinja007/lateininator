@@ -1,7 +1,7 @@
 'use client';
 
 import { Word } from '@/types';
-import TypeIndicator from '@/components/TypeIndicator';
+import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
 import { getLexicalForm } from '@/utils/wordUtils';
@@ -39,7 +39,7 @@ const WordRow = ({ word, query }: WordRowProps) => {
 				{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
 			</td>
 			<td className='px-4 p-2'>
-				<TypeIndicator type={word.type} />
+				<Badge type={word.type} />
 			</td>
 			<td className='px-4 p-2'>
 				<div className='flex float-end'>

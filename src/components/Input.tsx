@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction, useId } from 'react';
+import ui from '@/styles/ui.module.css';
+import clsx from 'clsx';
 
 type InputProps = {
 	label?: string;
@@ -17,12 +19,7 @@ const Input = ({ label, handleChange, className, ...props }: InputProps) => {
 					<br />
 				</>
 			)}
-			<input
-				onChange={(e) => handleChange(e.target.value)}
-				id={id}
-				{...props}
-				className={`${className} h-9 p-1 px-2 border border-gray-400 rounded-lg shadow focus:outline-none focus:border-gray-700`}
-			/>
+			<input onChange={(e) => handleChange(e.target.value)} id={id} {...props} className={clsx(ui.basic, className)} />
 		</div>
 	);
 };

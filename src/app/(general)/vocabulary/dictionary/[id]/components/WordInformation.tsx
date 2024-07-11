@@ -2,6 +2,8 @@ import { words } from '@/data/words';
 import { Word } from '@/types';
 import { capitalizeFirstLetter } from '@/utils/inputUtils';
 import Link from 'next/link';
+import ui from '@/styles/ui.module.css';
+import WordInfo from '@/components/WordInfo';
 
 type WordInformationProps = { word: Word };
 
@@ -16,13 +18,13 @@ const WordInformation = ({ word }: WordInformationProps) => {
 				{word.derivative && (
 					<span>
 						Abwandlung von{' '}
-						<Link href={`/vocabulary/dictionary/${word.derivative}`} className='text-blue-500 underline'>
+						<Link href={`/vocabulary/dictionary/${word.derivative}`} className={ui.link}>
 							{words.find((parent) => parent.id == word.derivative)?.word}
 						</Link>
 					</span>
 				)}
 			</p>
-			{word.info && <p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{word.info}</p>}
+			{word.info && <WordInfo info={word.info} />}
 		</div>
 	);
 };

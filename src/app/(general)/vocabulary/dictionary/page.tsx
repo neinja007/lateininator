@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useResults } from '@/hooks/useResults';
-import H1 from '@/components/H1';
+import Heading from '@/components/Heading';
 import DisplayModeToggle from './components/DisplayModeToggle';
 import { ResultCount } from './components/ResultCount';
 import WordCards from './components/WordCards';
@@ -18,7 +18,7 @@ const Page = () => {
 
 	return (
 		<div className='space-y-5'>
-			<H1>Wörterbuch</H1>
+			<Heading>Wörterbuch</Heading>
 
 			<SearchBar query={query} setQuery={setQuery} />
 

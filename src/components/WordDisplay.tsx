@@ -1,5 +1,6 @@
 import { Word } from '@/types';
-import TypeIndicator from '@/components/TypeIndicator';
+import Badge from '@/components/Badge';
+import WordInfo from './WordInfo';
 
 type WordDisplayProps = {
 	word: Word;
@@ -8,9 +9,9 @@ type WordDisplayProps = {
 const WordDisplay = ({ word }: WordDisplayProps) => {
 	return (
 		<div>
-			{word.info && <p className='float-end border border-gray-600 bg-gray-100 px-3 p-1 rounded-lg'>{word.info}</p>}
+			{word.info && <WordInfo info={word.info} />}
 			<p className='text-2xl font-medium'>
-				{word.word} <TypeIndicator type={word.type} />
+				{word.word} <Badge text={word.type} />
 			</p>
 		</div>
 	);

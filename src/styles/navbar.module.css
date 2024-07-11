@@ -1,0 +1,18 @@
+@tailwind components;
+@tailwind utilities;
+
+.navlink {
+	@apply my-auto mx-2 font-semibold cursor-pointer;
+}
+
+.dropdown_navlink {
+	@apply my-auto font-semibold cursor-pointer p-2 px-4 border-b last:border-b-0 block;
+}
+
+.active {
+	@apply text-blue-700;
+}
+
+.inactive {
+	@apply text-gray-600 hover:text-gray-800;
+}

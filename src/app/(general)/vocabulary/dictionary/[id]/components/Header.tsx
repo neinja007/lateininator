@@ -1,5 +1,5 @@
-import H1 from '@/components/H1';
-import TypeIndicator from '@/components/TypeIndicator';
+import Heading from '@/components/Heading';
+import Badge from '@/components/Badge';
 import { Word } from '@/types';
 import { getLexicalForm } from '@/utils/wordUtils';
 import Link from 'next/link';
@@ -15,11 +15,11 @@ const Header = ({ word }: HeaderProps) => {
 			<Link className={clsx(ui.basic, 'w-fit')} href={'/vocabulary/dictionary'}>
 				<ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
 			</Link>
-			<H1>
+			<Heading>
 				{word.word} {getLexicalForm(word)}
-			</H1>
+			</Heading>
 			<div className='text-right'>
-				<TypeIndicator type={word.type} />
+				<Badge text={word.type} />
 			</div>
 		</div>
 	);

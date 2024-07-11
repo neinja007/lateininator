@@ -2,6 +2,8 @@
 
 import { Dispatch, SetStateAction } from 'react';
 import { ChevronUp } from 'react-feather';
+import navbar from '@/styles/navbar.module.css';
+import clsx from 'clsx';
 
 type NavbarDropdownProps = {
 	label: string;
@@ -14,28 +16,28 @@ type NavbarDropdownProps = {
 
 const NavbarDropdown = ({ label, children, open, handleOpen, active, mobile }: NavbarDropdownProps) => {
 	return (
-		<div className={mobile ? 'border-b last:border-b-0' : 'flex justify-center my-auto'}>
+		<div className={mobile ? 'border-b last:border-b-0 p-2' : 'flex justify-center my-auto'}>
 			<div
-				className={`font-semibold ${mobile ? `p-2 px-4 font-semibold block` : `mx-2`} ${
-					active ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'
-				} cursor-pointer`}
+				className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)}
 				onClick={() => handleOpen((prevOpen) => (prevOpen === label ? '' : label))}
 			>
 				{label}
 				<ChevronUp
 					size={20}
-					className={`inline ml-0.5 transition-transform align-text-top text-black ${
+					className={clsx(
+						'inline ml-0.5 transition-transform align-text-top text-black',
 						open !== label ? '-rotate-180' : 'rotate-0'
-					}`}
+					)}
 				/>
 			</div>
 			{open === label && (
 				<>
-					<div onClick={() => handleOpen('')} className='z-40 fixed inset-0 w-full h-full' />
+					<div onClick={() => handleOpen('')} className='z-50 fixed inset-0 w-full h-full' />
 					<div
-						className={`absolute z-50 text-center ${
-							mobile ? 'translate-x-2 -translate-y-1' : 'translate-y-8'
-						} rounded-lg border shadow bg-white`}
+						className={clsx(
+							'absolute z-[50] text-center rounded-lg border shadow bg-white',
+							mobile ? 'translate-x-2' : 'translate-y-8'
+						)}
 					>
 						{children}
 					</div>

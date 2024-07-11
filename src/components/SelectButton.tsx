@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import clsx from 'clsx';
+import Button from './Button';
 
 type SelectButtonProps = {
 	label: string;
@@ -10,17 +11,9 @@ type SelectButtonProps = {
 
 const SelectButton = ({ label, active, handleClick, className }: SelectButtonProps) => {
 	return (
-		<button
-			onClick={handleClick}
-			className={clsx(
-				`h-9 p-1 px-3 border rounded-lg shadow ${
-					active ? 'text-sky-50 bg-blue-600 border-blue-800' : 'border-gray-400'
-				} transition-colors`,
-				className
-			)}
-		>
+		<Button onClick={handleClick} className={className} color={active ? 'blue' : 'default'}>
 			{label}
-		</button>
+		</Button>
 	);
 };
 

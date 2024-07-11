@@ -3,7 +3,7 @@
 import { Word } from '@/types';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
-import TypeIndicator from '@/components/TypeIndicator';
+import Badge from '@/components/Badge';
 import { getLexicalForm } from '@/utils/wordUtils';
 import { capitalizeFirstLetter } from '@/utils/inputUtils';
 
@@ -36,7 +36,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 		>
 			<div className='p-2 px-3'>
 				<div className='float-end m-1'>
-					<TypeIndicator type={word.type} />
+					<Badge type={word.type} />
 				</div>
 				<p className='text-2xl line-clamp-1'>{highlightedWord}</p>
 				<p>{lexicalForm ? lexicalForm : <br />}</p>
