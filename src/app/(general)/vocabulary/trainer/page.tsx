@@ -5,7 +5,7 @@ import { WordProperty } from '@/types';
 import { useState } from 'react';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import ActionBar from '@/components/ActionBar';
-import Button from '@/components/common/Button';
+import Button from '@/components/Button';
 import H1 from '@/components/H1';
 import TrainerInput from '@/components/TrainerInput';
 import WordDisplay from '@/components/WordDisplay';
@@ -87,7 +87,7 @@ const Page = () => {
 	const validKeysToCheck: WordProperty[] = activeWord
 		? APP_CONSTANTS.wordProperties[activeWord.type].filter(
 				(key) => wordPropertiesToCheck.includes(key) && key in activeWord && (activeWord as any)[key] !== '-'
-		  )
+			)
 		: [];
 
 	const progressPercentage = ((maxWords - remainingWords) / maxWords) * 100;
@@ -147,7 +147,10 @@ const Page = () => {
 									property={key}
 									value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
 									handleChange={(key: string, value: string) =>
-										setInputValues((prevInputValues) => ({ ...prevInputValues, [key]: value }))
+										setInputValues((prevInputValues) => ({
+											...prevInputValues,
+											[key]: value
+										}))
 									}
 									correct={stage === 'review' ? compareValues(inputValues[key], value) : null}
 								/>

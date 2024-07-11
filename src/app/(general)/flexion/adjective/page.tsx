@@ -10,7 +10,7 @@ import { WORD_CONSTANTS } from '@/constants';
 import { isAdjective } from '@/utils/typeguards';
 import { MAPPER } from '@/utils/mapper';
 import ActionBar from '@/components/ActionBar';
-import Button from '@/components/common/Button';
+import Button from '@/components/Button';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import H1 from '@/components/H1';
 import Select from '@/components/Select';
@@ -220,11 +220,11 @@ const Page = () => {
 										? parseInt(value) > 100
 											? 100
 											: parseInt(value) < 0
-											  ? 0
-											  : parseInt(value)
+												? 0
+												: parseInt(value)
 										: value === ''
-										  ? ''
-										  : 0
+											? ''
+											: 0
 									).toString()
 								)
 							}
@@ -291,7 +291,12 @@ const Page = () => {
 														</th>
 														{WORD_CONSTANTS.gender.map((gender, i) => (
 															<td key={i} className='px-3 py-1'>
-																{getForm(activeWord, { comparisonDegree, gender, numerus, wordCase })}
+																{getForm(activeWord, {
+																	comparisonDegree,
+																	gender,
+																	numerus,
+																	wordCase
+																})}
 															</td>
 														))}
 													</tr>

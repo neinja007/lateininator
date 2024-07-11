@@ -1,4 +1,4 @@
-import Button from '@/components/common/Button';
+import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { Word, WordProperty, WordType } from '@/types';
 import { Dispatch, SetStateAction, use, useEffect, useState } from 'react';
