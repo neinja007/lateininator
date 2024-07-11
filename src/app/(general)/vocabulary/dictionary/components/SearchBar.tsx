@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import Input from '@/components/Input';
 
 type SearchBarProps = {
@@ -16,7 +16,7 @@ const SearchBar = ({ query, setQuery }: SearchBarProps) => {
 				value={query}
 				handleChange={setQuery}
 			/>
-			<Button className=''>Erweiterte Suche</Button>
+			<Button>Erweiterte Suche</Button>
 		</div>
 	);
 };

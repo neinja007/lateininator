@@ -4,17 +4,17 @@ import { Word } from '@/types';
 import { getLexicalForm } from '@/utils/wordUtils';
 import Link from 'next/link';
 import { ArrowLeft } from 'react-feather';
+import ui from '@/styles/ui.module.css';
+import { clsx } from 'clsx';
 
 type HeaderProps = { word: Word };
 
 const Header = ({ word }: HeaderProps) => {
 	return (
-		<div className='grid grid-cols-3'>
-			<div className='float-start'>
-				<Link href={'/vocabulary/dictionary'} className='text-gray-500 hover:text-blue-500'>
-					<ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
-				</Link>
-			</div>
+		<div className='grid grid-cols-3 h-12'>
+			<Link className={clsx(ui.basic, 'w-fit')} href={'/vocabulary/dictionary'}>
+				<ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
+			</Link>
 			<H1>
 				{word.word} {getLexicalForm(word)}
 			</H1>

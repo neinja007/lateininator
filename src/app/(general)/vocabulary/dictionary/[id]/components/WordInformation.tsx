@@ -12,7 +12,7 @@ const WordInformation = ({ word }: WordInformationProps) => {
 				{word.translation ? (word.translation.length === 1 ? 'Übersetzung: ' : 'Übersetzungen: ') : 'Keine Übersetzung'}
 				{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
 			</p>
-			<p>
+			<p className='text-center'>
 				{word.derivative && (
 					<span>
 						Abwandlung von{' '}

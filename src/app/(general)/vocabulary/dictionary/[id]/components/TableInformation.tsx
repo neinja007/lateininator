@@ -16,7 +16,7 @@ const ComponentName = ({ word }: ComponentNameProps) => {
 	}
 
 	return (
-		<div>
+		<div className='mb-2'>
 			<p className='text-center'>{info}</p>
 		</div>
 	);

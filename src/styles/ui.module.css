@@ -1,0 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
+.basic {
+  @apply p-1 px-3 h-9 inline-flex rounded-md border
+}

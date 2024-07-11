@@ -10,7 +10,7 @@ import { WORD_CONSTANTS } from '@/constants';
 import { isAdjective } from '@/utils/typeguards';
 import { MAPPER } from '@/utils/mapper';
 import ActionBar from '@/components/ActionBar';
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import H1 from '@/components/H1';
 import Select from '@/components/Select';

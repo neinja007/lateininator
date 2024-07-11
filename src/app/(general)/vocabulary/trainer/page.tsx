@@ -5,7 +5,7 @@ import { WordProperty } from '@/types';
 import { useState } from 'react';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import ActionBar from '@/components/ActionBar';
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import H1 from '@/components/H1';
 import TrainerInput from '@/components/TrainerInput';
 import WordDisplay from '@/components/WordDisplay';
