@@ -31,12 +31,12 @@ const WordCard = ({ word, query }: WordCardProps) => {
 
 	return (
 		<div
-			className='border text-left shadow cursor-pointer rounded-lg hover:bg-gray-100 flex flex-col'
+			className='border text-left cursor-pointer rounded-lg hover:bg-gray-100 flex flex-col'
 			onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
 		>
 			<div className='p-2 px-3'>
 				<div className='float-end m-1'>
-					<Badge type={word.type} />
+					<Badge text={word.type} />
 				</div>
 				<p className='text-2xl line-clamp-1'>{highlightedWord}</p>
 				<p>{lexicalForm ? lexicalForm : <br />}</p>
