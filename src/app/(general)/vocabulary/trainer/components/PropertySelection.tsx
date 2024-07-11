@@ -20,17 +20,15 @@ const PropertySelection = ({
 	wordPropertiesToCheck,
 	setWordPropertiesToCheck
 }: PropertySelectionProps) => {
-	useEffect(() => {
-		setWordPropertiesToCheck((prev) =>
-			prev.filter((property) =>
-				APP_CONSTANTS.wordTypes.some(
-					(type) => (APP_CONSTANTS.wordProperties[type] as any).includes(property) && typesToCheck.includes(type)
-				)
-			)
-		);
-	}, [setWordPropertiesToCheck, typesToCheck]);
+	const possibleWordProperties = APP_CONSTANTS.allWordProperties.filter((property) =>
+		APP_CONSTANTS.wordTypes.some(
+			(type) => (APP_CONSTANTS.wordProperties[type] as any).includes(property) && typesToCheck.includes(type)
+		)
+	);
 
-	console.log(wordPropertiesToCheck, APP_CONSTANTS.allWordProperties);
+	useEffect(() => {
+		setWordPropertiesToCheck((prev) => prev.filter((property) => possibleWordProperties.includes(property)));
+	}, [possibleWordProperties, setWordPropertiesToCheck, typesToCheck]);
 
 	return (
 		<>
@@ -49,18 +47,14 @@ const PropertySelection = ({
 								: 'default'
 						}
 						onClick={() => {
-							setWordPropertiesToCheck([...APP_CONSTANTS.allWordProperties]);
+							setWordPropertiesToCheck(possibleWordProperties);
 							setCheckTranslation(true);
 						}}
 					>
 						Alle auswählen
 					</Button>
 					<Button
-						color={
-							wordPropertiesToCheck.length !== APP_CONSTANTS.allWordProperties.length && !checkTranslation
-								? 'blue'
-								: 'default'
-						}
+						color={wordPropertiesToCheck.length === 0 && !checkTranslation ? 'blue' : 'default'}
 						onClick={() => {
 							setWordPropertiesToCheck([]);
 							setCheckTranslation(false);
