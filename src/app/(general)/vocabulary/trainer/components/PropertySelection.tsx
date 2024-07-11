@@ -1,8 +1,9 @@
+import Button from '@/components/Button';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { APP_CONSTANTS } from '@/constants';
 import { WordProperty, WordType } from '@/types';
 import { MAPPER } from '@/utils/mapper';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
 type PropertySelectionProps = {
 	checkTranslation: boolean;
@@ -19,6 +20,18 @@ const PropertySelection = ({
 	wordPropertiesToCheck,
 	setWordPropertiesToCheck
 }: PropertySelectionProps) => {
+	useEffect(() => {
+		setWordPropertiesToCheck((prev) =>
+			prev.filter((property) =>
+				APP_CONSTANTS.wordTypes.some(
+					(type) => (APP_CONSTANTS.wordProperties[type] as any).includes(property) && typesToCheck.includes(type)
+				)
+			)
+		);
+	}, [setWordPropertiesToCheck, typesToCheck]);
+
+	console.log(wordPropertiesToCheck, APP_CONSTANTS.allWordProperties);
+
 	return (
 		<>
 			<div className='grid grid-cols-3'>
@@ -28,6 +41,34 @@ const PropertySelection = ({
 					handleChange={() => setCheckTranslation((prevCheckTranslation) => !prevCheckTranslation)}
 					label={'Übersetzung'}
 				/>
+				<div className='grid grid-cols-2 gap-x-4'>
+					<Button
+						color={
+							wordPropertiesToCheck.length === APP_CONSTANTS.allWordProperties.length && checkTranslation
+								? 'blue'
+								: 'default'
+						}
+						onClick={() => {
+							setWordPropertiesToCheck([...APP_CONSTANTS.allWordProperties]);
+							setCheckTranslation(true);
+						}}
+					>
+						Alle auswählen
+					</Button>
+					<Button
+						color={
+							wordPropertiesToCheck.length !== APP_CONSTANTS.allWordProperties.length && !checkTranslation
+								? 'blue'
+								: 'default'
+						}
+						onClick={() => {
+							setWordPropertiesToCheck([]);
+							setCheckTranslation(false);
+						}}
+					>
+						Alle abwählen
+					</Button>
+				</div>
 			</div>
 			<div className='grid grid-cols-3'>
 				{APP_CONSTANTS.mainWordTypes.map((type: WordType) => (
