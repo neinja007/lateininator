@@ -1,10 +1,10 @@
 import { CreditCard, List } from 'react-feather';
 
-type DisplayModeToggleProps = { view: 'cards' | 'list'; setView: (view: 'cards' | 'list') => void };
+type DisplayModeProps = { view: 'cards' | 'list'; setView: (view: 'cards' | 'list') => void };
 
-const DisplayModeToggle = ({ view, setView }: DisplayModeToggleProps) => {
+const DisplayMode = ({ view, setView }: DisplayModeProps) => {
 	return (
-		<div className='flex m-2 float-end'>
+		<div className='flex mr-2 mb-4 float-end'>
 			<div
 				className={`flex cursor-pointer ${view === 'cards' ? 'text-blue-700' : 'text-gray-400'}`}
 				onClick={() => setView('cards')}
@@ -24,4 +24,4 @@ const DisplayModeToggle = ({ view, setView }: DisplayModeToggleProps) => {
 	);
 };
 
-export default DisplayModeToggle;
+export default DisplayMode;

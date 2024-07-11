@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useResults } from '@/hooks/useResults';
 import Heading from '@/components/Heading';
-import DisplayModeToggle from './components/DisplayModeToggle';
+import DisplayMode from './components/DisplayMode';
 import { ResultCount } from './components/ResultCount';
 import WordCards from './components/WordCards';
 import WordList from './components/WordList';
@@ -26,7 +26,7 @@ const Page = () => {
 			<hr />
 			{results.length > 0 && (
 				<div>
-					<DisplayModeToggle view={view} setView={setView} />
+					<DisplayMode view={view} setView={setView} />
 					{view === 'list' ? (
 						<WordList results={results} query={query} />
 					) : (
