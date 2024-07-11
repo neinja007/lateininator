@@ -24,7 +24,8 @@ const initialInputValues = {
 	neutrum: '',
 	participle: '',
 	perfect: '',
-	present: ''
+	present: '',
+	translation: ''
 };
 
 const Page = () => {
@@ -40,8 +41,7 @@ const Page = () => {
 	]);
 	const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
 
-	const [translationInput, setTranslationInput] = useState<string>('');
-	const [inputValues, setInputValues] = useState<Record<WordProperty, string>>(initialInputValues);
+	const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
 
 	const handleContinue = () => {
 		if (stage === 'test') {
@@ -58,7 +58,7 @@ const Page = () => {
 
 					return !compareValues(originalInput, correctInput);
 				}) &&
-				(!activeWord.translation || compareValues(translationInput, activeWord.translation, true));
+				(!activeWord.translation || compareValues(inputValues.translation, activeWord.translation, true));
 
 			if (allInputValuesAreCorrect || checkType === 'limited' || !checkIncorrectWordsAgain) {
 				updatePossibleWords();
@@ -80,7 +80,6 @@ const Page = () => {
 			setStage('test');
 
 			setInputValues(initialInputValues);
-			setTranslationInput('');
 		}
 	};
 
@@ -122,17 +121,17 @@ const Page = () => {
 								className={
 									'w-full' +
 									(stage === 'review'
-										? compareValues(translationInput, activeWord.translation, true)
+										? compareValues(inputValues.translation, activeWord.translation, true)
 											? ' bg-green-300 border-none'
 											: ' bg-red-300 border-none'
 										: '')
 								}
 								value={
 									stage === 'review'
-										? getInputWithCorrectValue(translationInput, activeWord.translation, true)
-										: translationInput
+										? getInputWithCorrectValue(inputValues.translation, activeWord.translation, true)
+										: inputValues.translation
 								}
-								handleChange={setTranslationInput}
+								handleChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
 							/>
 						)}
 					</div>
