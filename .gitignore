@@ -6,7 +6,6 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-.storybook
 
 # testing
 /coverage
@@ -46,14 +45,3 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
-
-*storybook.log
-/.editorconfig
-/tsconfig.json
-/postcss.config.mjs
-/next.config.mjs
-/.yarnrc.yml
-/.eslintrc.json
-/eslintrc.json
-/yarn.lock
-/.gitattributes
