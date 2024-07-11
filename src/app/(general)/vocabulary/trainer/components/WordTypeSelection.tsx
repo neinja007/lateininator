@@ -25,16 +25,6 @@ const WordTypeSelection = ({
 	setMaxWordsInput
 }: WordTypeSelectionProps) => {
 	useEffect(() => {
-		setWordPropertiesToCheck(
-			APP_CONSTANTS.allWordProperties.filter((property) => {
-				APP_CONSTANTS.wordTypes.some(
-					(type) => (APP_CONSTANTS.wordProperties[type] as any).includes(property) && typesToCheck.includes(type)
-				);
-			})
-		);
-	}, [setWordPropertiesToCheck, typesToCheck]);
-
-	useEffect(() => {
 		setMaxWordsInput(validWords.length.toString());
 	}, [setMaxWordsInput, validWords.length]);
 
