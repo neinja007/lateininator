@@ -1,4 +1,3 @@
-import { WORD_CONSTANTS } from '@/constants';
 import { words } from '@/data/words';
 import Header from './components/Header';
 import WordInformation from './components/WordInformation';
