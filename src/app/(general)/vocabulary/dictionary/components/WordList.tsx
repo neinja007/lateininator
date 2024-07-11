@@ -1,11 +1,13 @@
 import WordRow from '@/app/(general)/vocabulary/dictionary/components/WordRow';
 import { Word } from '@/types';
+import table from '@/styles/table.module.css';
+import clsx from 'clsx';
 
 type WordListProps = { results: Array<Word>; query: string };
 
 const WordList = ({ results, query }: WordListProps) => {
 	return (
-		<table className='w-full table-fixed rounded-lg overflow-hidden shadow text-left'>
+		<table className={clsx(table.table, 'text-left')}>
 			<thead>
 				<tr className='bg-gray-100'>
 					<th className='px-4 py-2'>Wort</th>
