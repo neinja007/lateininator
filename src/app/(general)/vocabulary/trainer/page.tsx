@@ -151,7 +151,7 @@ const Page = () => {
 												[key]: value
 											}))
 										}
-										correct={stage === 'review' ? compareValues(inputValues[key], value) : null}
+										correct={stage === 'review' ? compareValues(inputValues[key], value) : undefined}
 									/>
 								);
 							})}

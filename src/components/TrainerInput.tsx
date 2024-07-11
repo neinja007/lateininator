@@ -11,7 +11,7 @@ type TrainerInputProps = {
 	property: WordProperty;
 	value: string;
 	handleChange: (key: WordProperty, value: string) => void;
-	correct?: boolean | null;
+	correct?: boolean;
 };
 
 const TrainerInput = ({ correct, property, handleChange, value }: TrainerInputProps) => {
@@ -27,10 +27,13 @@ const TrainerInput = ({ correct, property, handleChange, value }: TrainerInputPr
 		<Component
 			label={MAPPER.extended.wordProperty[property]}
 			options={options}
-			className={clsx('w-full', correct === null || correct ? '!bg-green-300 border-none' : '!bg-red-300 border-none')}
+			className={clsx(
+				'w-full',
+				correct !== undefined && (correct ? '!bg-green-300 border-none' : '!bg-red-300 border-none')
+			)}
 			value={value}
 			handleChange={(value) => handleChange(property, value)}
-			disabled={correct !== null}
+			disabled={correct !== undefined}
 		/>
 	);
 };

@@ -1,6 +1,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+	.basic:not([class*='bg-']) {
+		@apply bg-white;
+	}
+}
+
 .basic {
 	@apply p-1 px-3 h-9 inline rounded-md border;
 }
