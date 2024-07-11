@@ -39,7 +39,7 @@ const WordRow = ({ word, query }: WordRowProps) => {
 				{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
 			</td>
 			<td className='px-4 p-2'>
-				<Badge type={word.type} />
+				<Badge text={word.type} />
 			</td>
 			<td className='px-4 p-2'>
 				<div className='flex float-end'>
