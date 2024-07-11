@@ -6,6 +6,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.storybook
 
 # testing
 /coverage
@@ -29,6 +30,14 @@ yarn-error.log*
 # local env files
 .env*.local
 
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # vercel
 .vercel
 
@@ -37,3 +46,14 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+*storybook.log
+/.editorconfig
+/tsconfig.json
+/postcss.config.mjs
+/next.config.mjs
+/.yarnrc.yml
+/.eslintrc.json
+/eslintrc.json
+/yarn.lock
+/.gitattributes
