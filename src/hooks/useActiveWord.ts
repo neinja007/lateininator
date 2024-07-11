@@ -24,10 +24,7 @@ export const useActiveWord = (): {
 		setRemainingWords(possibleWords.length);
 	}, [possibleWords]);
 
-	const updateActiveWord = (deletePrevActiveWord?: boolean) => {
-		if (deletePrevActiveWord) {
-			setPossibleWords(possibleWords.filter((word) => word.id !== activeWord?.id));
-		}
+	const updateActiveWord = () => {
 		setActiveWord(possibleWords[Math.floor(Math.random() * possibleWords.length)]);
 	};
 
