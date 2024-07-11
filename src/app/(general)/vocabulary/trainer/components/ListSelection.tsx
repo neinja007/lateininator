@@ -22,7 +22,21 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
 
 	return (
 		<>
-			<p>Wähle aus, welche Lektionen du lernen möchtest:</p>
+			<div className='grid grid-cols-3'>
+				<p className='col-span-2'>Wähle aus, welche Lektionen du lernen möchtest:</p>
+				<div className='grid grid-cols-2 gap-x-4'>
+					<SelectButton
+						label='Alle auswählen'
+						active={selectedLists.length === lists.length}
+						handleClick={() => setSelectedLists(lists)}
+					/>
+					<SelectButton
+						label='Alle abwählen'
+						active={selectedLists.length === 0}
+						handleClick={() => setSelectedLists([])}
+					/>
+				</div>
+			</div>
 			<div className='grid grid-cols-8 gap-4'>
 				{lists.map((list, i) => (
 					<SelectButton
@@ -34,18 +48,6 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
 						label={list.name}
 					/>
 				))}
-			</div>
-			<div className='flex justify-center space-x-3'>
-				<SelectButton
-					label='Alle auswählen'
-					active={selectedLists.length === lists.length}
-					handleClick={() => setSelectedLists(lists)}
-				/>
-				<SelectButton
-					label='Alle abwählen'
-					active={selectedLists.length === 0}
-					handleClick={() => setSelectedLists([])}
-				/>
 			</div>
 			<p>
 				Es wurden <b className='text-blue-700'>{selectedIds.length} Wörter</b> ausgewählt.
