@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const useNumberInput = (
 	max: number
 ): { value: number; inputValue: string; updateValue: (arg: string) => void } => {
-	const [value, setValue] = useState<number>(0);
+	const [value, setValue] = useState<number>(max);
 	const [inputValue, setInputValue] = useState<string>('');
 
 	const updateValue = (value: string) => {
