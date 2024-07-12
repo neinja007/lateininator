@@ -99,14 +99,20 @@ const Navbar = () => {
 					</SignedOut>
 				</div>
 				<div className='w-full my-auto block lg:hidden'>
-					<Menu className='h-9 w-11 mr-4 cursor-pointer float-end' onClick={() => setMobileLinksOpen(true)} />
+					<Menu
+						className='h-9 w-11 mr-4 select-none cursor-pointer float-end'
+						onClick={() => setMobileLinksOpen(true)}
+					/>
 				</div>
 			</div>
 			<div className='fixed inset-16 h-fit z-50 rounded-lg bg-white shadow-xl pb-1' hidden={!mobileLinksOpen}>
 				<div className='h-12 flex'>
 					<div className='my-auto w-full'>
 						<span className='pl-4 text-xl font-medium'>Navigation</span>
-						<X className='h-7 w-9 mr-4 cursor-pointer float-end' onClick={() => setMobileLinksOpen(false)} />
+						<X
+							className='h-7 w-9 mr-4 select-none cursor-pointer float-end'
+							onClick={() => setMobileLinksOpen(false)}
+						/>
 					</div>
 				</div>
 				<hr />

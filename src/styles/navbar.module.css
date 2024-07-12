@@ -2,11 +2,11 @@
 @tailwind utilities;
 
 .navlink {
-	@apply my-auto mx-2 font-semibold cursor-pointer;
+	@apply my-auto mx-2 font-semibold cursor-pointer select-none;
 }
 
 .dropdown_navlink {
-	@apply my-auto font-semibold cursor-pointer p-2 px-4 border-b last:border-b-0 block;
+	@apply my-auto font-semibold cursor-pointer select-none p-2 px-4 border-b last:border-b-0 block;
 }
 
 .active {
