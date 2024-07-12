@@ -14,3 +14,7 @@ export const isAdjective = (element: Word): element is Adjective => {
 	}
 	return false;
 };
+
+export function isKeyInObject<T extends object>(key: keyof any, obj: T): key is keyof T {
+	return key in obj;
+}

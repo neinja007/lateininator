@@ -7,9 +7,10 @@ type SelectProps = {
 	options: { [key: string]: string };
 	handleChange: Dispatch<SetStateAction<any>>;
 	className?: React.CSSProperties;
+	appendString?: string;
 } & Omit<React.ComponentProps<'select'>, 'onChange'>;
 
-const Select = ({ label, options, handleChange, className, ...props }: SelectProps) => {
+const Select = ({ label, options, handleChange, className, appendString, ...props }: SelectProps) => {
 	const id = useId();
 
 	return (
@@ -26,7 +27,7 @@ const Select = ({ label, options, handleChange, className, ...props }: SelectPro
 				</option>
 				{Object.keys(options).map((key, i) => (
 					<option key={i} value={key}>
-						{options[key]}
+						{options[key]} {appendString}
 					</option>
 				))}
 			</select>

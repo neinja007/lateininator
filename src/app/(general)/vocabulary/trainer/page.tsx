@@ -13,6 +13,8 @@ import Input from '@/components/Input';
 import Settings from './components/Settings';
 import { useStage } from '@/hooks/useStage';
 import { useActiveWord } from '@/hooks/useActiveWord';
+import { MAPPER } from '@/utils/mapper';
+import { isKeyInObject, isWordPropertiesUsingSelectInput } from '@/utils/typeguards';
 
 const initialInputValues = {
 	conjugation: '',
@@ -129,14 +131,22 @@ const Page = () => {
 						)}
 					</div>
 					{validKeysToCheck.length > 0 && (
-						<div className='grid grid-cols-3 gap-4'>
+						<div className='grid grid-cols-2 gap-4'>
 							{validKeysToCheck.map((key, i) => {
-								const value = (activeWord as any)[key];
+								let value = (activeWord as any)[key];
+
 								return (
 									<TrainerInput
 										key={i}
 										property={key}
-										value={stage === 'review' ? getInputWithCorrectValue(inputValues[key], value) : inputValues[key]}
+										value={inputValues[key]}
+										appendedString={
+											stage === 'review'
+												? isWordPropertiesUsingSelectInput(key)
+													? isKeyInObject(value, MAPPER.extended[key]) && MAPPER.extended[key][value]
+													: value
+												: undefined
+										}
 										handleChange={(key: string, value: string) =>
 											setInputValues((prevInputValues) => ({
 												...prevInputValues,

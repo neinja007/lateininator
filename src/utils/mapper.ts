@@ -15,8 +15,8 @@ export const MAPPER = {
 			a: 'A Deklination',
 			o: 'O Deklination',
 			k: 'konsonantische Deklination',
-			i: 'konsonantische Deklination (I-Stämme)',
-			m: 'konsonantische Deklination (Mischstämme)',
+			i: 'konsonantische Deklination I-Stämme',
+			m: 'konsonantische Deklination Mischstämme',
 			e: 'E Deklination',
 			u: 'U Deklination'
 		},

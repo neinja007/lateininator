@@ -10,32 +10,44 @@ import clsx from 'clsx';
 type TrainerInputProps = {
 	property: WordProperty;
 	value: string;
+	appendedString?: string;
 	handleChange: (key: WordProperty, value: string) => void;
 	correct?: boolean;
 };
 
-const TrainerInput = ({ correct, property, handleChange, value }: TrainerInputProps) => {
-	const Component = isWordPropertiesUsingSelectInput(property) ? Select : Input;
+const TrainerInput = ({ correct, property, handleChange, value, appendedString }: TrainerInputProps) => {
 	const options = isWordPropertiesUsingSelectInput(property)
 		? WORD_CONSTANTS[property].reduce((object: { [key: string]: string }, element) => {
 				object[element] = (MAPPER.extended[property] as { [key: string]: string })[element];
 				return object;
 			}, {})
 		: {};
+	const correctValueIndicator =
+		correct !== undefined && (correct ? '!bg-green-300 border-none' : '!bg-red-300 border-none');
 
-	return (
-		<Component
-			label={MAPPER.extended.wordProperty[property]}
-			options={options}
-			className={clsx(
-				'w-full',
-				correct !== undefined && (correct ? '!bg-green-300 border-none' : '!bg-red-300 border-none')
-			)}
-			value={value}
-			handleChange={(value) => handleChange(property, value)}
-			disabled={correct !== undefined}
-		/>
-	);
+	if (isWordPropertiesUsingSelectInput(property)) {
+		return (
+			<Select
+				label={MAPPER.extended.wordProperty[property]}
+				options={options}
+				className={clsx('w-full', correctValueIndicator)}
+				value={value}
+				appendString={appendedString}
+				handleChange={(value) => handleChange(property, value)}
+				disabled={correct !== undefined}
+			/>
+		);
+	} else {
+		return (
+			<Input
+				label={MAPPER.extended.wordProperty[property]}
+				className={clsx('w-full', correctValueIndicator)}
+				value={value + ' ' + appendedString}
+				handleChange={(value) => handleChange(property, value)}
+				disabled={correct !== undefined}
+			/>
+		);
+	}
 };
 
 export default TrainerInput;
