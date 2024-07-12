@@ -3,6 +3,7 @@ import SelectButton from '@/components/SelectButton';
 import Input from '@/components/Input';
 import { Word } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useNumberInput } from '@/hooks/useNumberInput';
 
 type CheckTypeSelectionProps = {
 	validWords: Word[];
@@ -22,12 +23,15 @@ const CheckTypeSelection = ({
 	updateWords
 }: CheckTypeSelectionProps) => {
 	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
+	const { value, inputValue, updateValue } = useNumberInput(validWords.length);
 
 	useEffect(() => {
-		let maxWordInput = maxWordsInput === '' ? 0 : parseInt(maxWordsInput);
-		let length = checkType === 'limited' ? maxWordInput : validWords.length;
-		updateWords(validWords.slice(0, length));
-	}, [checkType, updateWords, maxWordsInput, validWords]);
+		updateWords(validWords.slice(0, value));
+	}, [updateWords, validWords, value]);
+
+	useEffect(() => {
+		checkType === 'all' && setMaxWordsInput(validWords.length.toString());
+	}, [checkType, validWords.length, setMaxWordsInput]);
 
 	return (
 		<>
@@ -56,23 +60,9 @@ const CheckTypeSelection = ({
 				) : (
 					<Input
 						label={`Anzahl der abgefragten Wörter (max. ${validWords.length})`}
-						onChange={(value) =>
-							setMaxWordsInput(
-								(!isNaN(parseInt(value))
-									? parseInt(value) > validWords.length
-										? validWords.length
-										: parseInt(value) < 0
-											? 0
-											: parseInt(value)
-									: value === ''
-										? ''
-										: 0
-								).toString()
-							)
-						}
-						value={maxWordsInput}
+						onChange={updateValue}
+						value={inputValue}
 						className={'w-1/3 text-center'}
-						type='number'
 					/>
 				)}
 			</div>
