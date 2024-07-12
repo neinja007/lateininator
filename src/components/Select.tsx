@@ -23,11 +23,11 @@ const Select = ({ label, options, handleChange, className, appendString, ...prop
 			)}
 			<select onChange={(e) => handleChange(e.target.value)} id={id} {...props} className={clsx(ui.basic, className)}>
 				<option value={''} hidden>
-					{appendString || 'Auswählen'}
+					{(appendString && '(' + appendString + ')') || 'Auswählen'}
 				</option>
 				{Object.keys(options).map((key, i) => (
 					<option key={i} value={key}>
-						{options[key]} {appendString}
+						{options[key]} {appendString && '(' + appendString + ')'}
 					</option>
 				))}
 			</select>

@@ -42,7 +42,7 @@ const TrainerInput = ({ correct, property, handleChange, value, appendedString }
 			<Input
 				label={MAPPER.extended.wordProperty[property]}
 				className={clsx('w-full', correctValueIndicator)}
-				value={value + ' ' + appendedString}
+				value={value + ((appendedString && ' (' + appendedString + ')') || '')}
 				onChange={(value) => handleChange(property, value)}
 				disabled={correct !== undefined}
 			/>
