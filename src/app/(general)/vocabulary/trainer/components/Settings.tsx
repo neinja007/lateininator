@@ -44,7 +44,6 @@ const Settings = ({
 			<WordTypeSelection
 				validWords={validWords}
 				setValidWords={setValidWords}
-				setWordPropertiesToCheck={setWordPropertiesToCheck}
 				selectedIds={selectedIds}
 				typesToCheck={typesToCheck}
 				setMaxWordsInput={setMaxWordsInput}

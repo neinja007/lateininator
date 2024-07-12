@@ -8,7 +8,6 @@ import { Dispatch, SetStateAction, useEffect } from 'react';
 type WordTypeSelectionProps = {
 	validWords: Word[];
 	setValidWords: Dispatch<SetStateAction<Word[]>>;
-	setWordPropertiesToCheck: Dispatch<SetStateAction<WordProperty[]>>;
 	selectedIds: number[];
 	typesToCheck: WordType[];
 	setTypesToCheck: Dispatch<SetStateAction<WordType[]>>;
@@ -17,7 +16,6 @@ type WordTypeSelectionProps = {
 
 const WordTypeSelection = ({
 	validWords,
-	setWordPropertiesToCheck,
 	setValidWords,
 	selectedIds,
 	typesToCheck,
