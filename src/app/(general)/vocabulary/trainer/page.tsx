@@ -10,6 +10,8 @@ import { Stage, useStage } from '@/hooks/useStage';
 import Test from './components/Test';
 import { useActiveWord } from '@/hooks/useActiveWord';
 import { compareValues } from '@/utils/inputUtils';
+import { Result } from 'postcss';
+import Results from './components/Results';
 
 const initialInputValues = {
 	conjugation: '',
@@ -129,12 +131,7 @@ const Page = () => {
 					setStage={setStage}
 				/>
 			)}
-			{stage === 'results' && (
-				<>
-					<p>Es wurden einige verschiedene Wörter abgefragt.</p>
-					<Button onClick={() => setStage('settings')}>Neu Laden</Button>
-				</>
-			)}
+			{stage === 'results' && <Results setStage={setStage} />}
 		</div>
 	);
 };

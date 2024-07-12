@@ -10,6 +10,8 @@ import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import { MAPPER } from '@/utils/mapper';
 import { isKeyInObject, isWordPropertiesUsingSelectInput } from '@/utils/typeguards';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import TranslationInput from './test/TranslationInput';
+import PropertyInputs from './test/PropertyInputs';
 
 type TestProps = {
 	stage: Stage;
@@ -38,56 +40,21 @@ const Test = ({
 			<>
 				<WordDisplay word={activeWord} />
 				<hr />
-				<div>
-					{checkTranslation && activeWord.translation && (
-						<Input
-							label='Übersetzung (mehrere Antworten durch "," trennen)'
-							disabled={stage === 'review'}
-							className={
-								'w-full' +
-								(stage === 'review'
-									? compareValues(inputValues.translation, activeWord.translation, true)
-										? ' bg-green-300 border-none'
-										: ' bg-red-300 border-none'
-									: '')
-							}
-							value={
-								stage === 'review'
-									? getInputWithCorrectValue(inputValues.translation, activeWord.translation, true)
-									: inputValues.translation
-							}
-							onChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
-						/>
-					)}
-				</div>
+				<TranslationInput
+					checkTranslation={checkTranslation}
+					activeWord={activeWord}
+					stage={stage}
+					inputValues={inputValues}
+					setInputValues={setInputValues}
+				/>
 				{validKeysToCheck.length > 0 && (
-					<div className='grid grid-cols-2 gap-4'>
-						{validKeysToCheck.map((key, i) => {
-							let value = (activeWord as any)[key];
-
-							return (
-								<TrainerInput
-									key={i}
-									property={key}
-									value={inputValues[key]}
-									appendedString={
-										stage === 'review'
-											? isWordPropertiesUsingSelectInput(key)
-												? isKeyInObject(value, MAPPER.extended[key]) && MAPPER.extended[key][value]
-												: value
-											: undefined
-									}
-									handleChange={(key: string, value: string) =>
-										setInputValues((prevInputValues) => ({
-											...prevInputValues,
-											[key]: value
-										}))
-									}
-									correct={stage === 'review' ? compareValues(inputValues[key], value) : undefined}
-								/>
-							);
-						})}
-					</div>
+					<PropertyInputs
+						validKeysToCheck={validKeysToCheck}
+						activeWord={activeWord}
+						inputValues={inputValues}
+						setInputValues={setInputValues}
+						stage={stage}
+					/>
 				)}
 				<hr />
 				<ActionBar handleContinue={handleContinue} progressPercentage={progressPercentage} />
