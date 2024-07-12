@@ -58,7 +58,7 @@ const CheckTypeSelection = ({
 				) : (
 					<Input
 						label={`Anzahl der abgefragten Wörter (max. ${validWords.length})`}
-						handleChange={(value) =>
+						onChange={(value) =>
 							setMaxWordsInput(
 								(!isNaN(parseInt(value))
 									? parseInt(value) > validWords.length

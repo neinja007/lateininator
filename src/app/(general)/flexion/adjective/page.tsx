@@ -214,7 +214,7 @@ const Page = () => {
 							label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (Empfehlung: ${
 								testingType === 'individual' ? '20-40' : '2-4'
 							})`}
-							handleChange={(value) =>
+							onChange={(value) =>
 								setWordsToCheckInput(
 									(!isNaN(parseInt(value))
 										? parseInt(value) > 100
@@ -251,7 +251,7 @@ const Page = () => {
                   ${MAPPER.extended.numerus[individualInputForm.numerus]}
                   ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
                   `}
-								handleChange={setIndividualInputValue}
+								onChange={setIndividualInputValue}
 								value={
 									stage === 'review'
 										? getInputWithCorrectValue(individualInputValue, getForm(activeWord, { ...individualInputForm }))

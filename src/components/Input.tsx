@@ -4,11 +4,11 @@ import clsx from 'clsx';
 
 type InputProps = {
 	label?: string;
-	handleChange: Dispatch<SetStateAction<any>>;
+	onChange: Dispatch<SetStateAction<any>>;
 	className?: React.CSSProperties;
 } & React.ComponentProps<'input'>;
 
-const Input = ({ label, handleChange, className, ...props }: InputProps) => {
+const Input = ({ label, onChange, className, ...props }: InputProps) => {
 	const id = useId();
 
 	return (
@@ -19,7 +19,7 @@ const Input = ({ label, handleChange, className, ...props }: InputProps) => {
 					<br />
 				</>
 			)}
-			<input onChange={(e) => handleChange(e.target.value)} id={id} {...props} className={clsx(ui.basic, className)} />
+			<input onChange={(e) => onChange(e.target.value)} id={id} {...props} className={clsx(ui.basic, className)} />
 		</div>
 	);
 };

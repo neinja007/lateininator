@@ -125,7 +125,7 @@ const Page = () => {
 										? getInputWithCorrectValue(inputValues.translation, activeWord.translation, true)
 										: inputValues.translation
 								}
-								handleChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
+								onChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
 							/>
 						)}
 					</div>

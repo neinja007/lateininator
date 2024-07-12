@@ -14,7 +14,7 @@ const SearchBar = ({ query, setQuery }: SearchBarProps) => {
 				placeholder='Wort oder Übersetzung eingeben'
 				className='w-full max-w-96 mr-4'
 				value={query}
-				handleChange={setQuery}
+				onChange={setQuery}
 			/>
 			<Button>Erweiterte Suche</Button>
 		</div>
