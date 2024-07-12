@@ -34,14 +34,15 @@ const Page = () => {
 	const { stage, setStage } = useStage();
 
 	const { activeWord, maxWords, remainingWords, updateActiveWord, updateWords } = useActiveWord(false);
-	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
 
+	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
+
 	const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<Array<WordProperty>>([
 		...APP_CONSTANTS.allWordProperties
 	]);
-	const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
 
+	const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
 	const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
 
 	const handleContinue = () => {
@@ -82,8 +83,6 @@ const Page = () => {
 				(key) => wordPropertiesToCheck.includes(key) && key in activeWord && (activeWord as any)[key] !== '-'
 			)
 		: [];
-
-	const progressPercentage = ((maxWords - remainingWords) / maxWords) * 100;
 
 	return (
 		<div className='space-y-5'>
@@ -159,7 +158,11 @@ const Page = () => {
 						</div>
 					)}
 					<hr />
-					<ActionBar setStage={setStage} handleContinue={handleContinue} progressPercentage={progressPercentage} />
+					<ActionBar
+						setStage={setStage}
+						handleContinue={handleContinue}
+						progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+					/>
 				</>
 			)}
 			{stage === 'results' && (

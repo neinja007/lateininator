@@ -2,10 +2,10 @@ import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { Word, WordProperty, WordType } from '@/types';
 import { Dispatch, SetStateAction, useState } from 'react';
-import ListSelection from './ListSelection';
-import WordTypeSelection from './WordTypeSelection';
-import CheckTypeSelection from './CheckTypeSelection';
-import PropertySelection from './PropertySelection';
+import ListSelection from './settings/ListSelection';
+import WordTypeSelection from './settings/WordTypeSelection';
+import CheckTypeSelection from './settings/CheckTypeSelection';
+import PropertySelection from './settings/PropertySelection';
 
 type SettingsProps = {
 	checkTranslation: boolean;
