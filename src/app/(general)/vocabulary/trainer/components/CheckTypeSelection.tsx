@@ -64,11 +64,11 @@ const CheckTypeSelection = ({
 									? parseInt(value) > validWords.length
 										? validWords.length
 										: parseInt(value) < 0
-										  ? 0
-										  : parseInt(value)
+											? 0
+											: parseInt(value)
 									: value === ''
-									  ? ''
-									  : 0
+										? ''
+										: 0
 								).toString()
 							)
 						}
