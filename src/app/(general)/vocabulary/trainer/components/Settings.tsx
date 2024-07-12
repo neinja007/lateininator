@@ -17,7 +17,7 @@ type SettingsProps = {
 	setCheckType: Dispatch<SetStateAction<'all' | 'limited'>>;
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-	updateWords: (arg: Word[]) => void;
+	updateWords: (arg?: Word[]) => void;
 	start: () => void;
 	enableStart: boolean;
 };
@@ -45,7 +45,7 @@ const Settings = ({
 		let maxWordInput = maxWordsInput === '' ? 0 : parseInt(maxWordsInput);
 		let length = checkType === 'limited' ? maxWordInput : validWords.length;
 		updateWords(validWords.slice(0, length));
-	}, [maxWordsInput, checkType, updateWords, selectedIds, typesToCheck, validWords]);
+	}, [checkType, maxWordsInput, updateWords, validWords]);
 
 	return (
 		<>
