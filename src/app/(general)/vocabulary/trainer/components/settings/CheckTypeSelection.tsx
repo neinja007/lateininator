@@ -2,27 +2,33 @@ import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import SelectButton from '@/components/SelectButton';
 import Input from '@/components/Input';
 import { Word } from '@/types';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type CheckTypeSelectionProps = {
 	validWords: Word[];
-	checkType: 'all' | 'limited';
-	setCheckType: Dispatch<SetStateAction<'all' | 'limited'>>;
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
 	maxWordsInput: string;
 	setMaxWordsInput: Dispatch<SetStateAction<string>>;
+	updateWords: (arg?: Word[]) => void;
 };
 
 const CheckTypeSelection = ({
 	checkIncorrectWordsAgain,
 	setCheckIncorrectWordsAgain,
 	validWords,
-	checkType,
-	setCheckType,
 	maxWordsInput,
-	setMaxWordsInput
+	setMaxWordsInput,
+	updateWords
 }: CheckTypeSelectionProps) => {
+	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
+
+	useEffect(() => {
+		let maxWordInput = maxWordsInput === '' ? 0 : parseInt(maxWordsInput);
+		let length = checkType === 'limited' ? maxWordInput : validWords.length;
+		updateWords(validWords.slice(0, length));
+	}, [checkType, updateWords, maxWordsInput, validWords]);
+
 	return (
 		<>
 			<p>Abfrage (die Überprüfung kann auch frühzeitig beendet werden):</p>

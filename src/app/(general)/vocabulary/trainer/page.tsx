@@ -32,7 +32,6 @@ const Page = () => {
 	const { activeWord, remainingWords, maxWords, updateActiveWord, updateWords } = useActiveWord(false);
 
 	const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
-	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 
 	const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<Array<WordProperty>>([
@@ -109,8 +108,6 @@ const Page = () => {
 					setCheckTranslation={setCheckTranslation}
 					wordPropertiesToCheck={wordPropertiesToCheck}
 					setWordPropertiesToCheck={setWordPropertiesToCheck}
-					checkType={checkType}
-					setCheckType={setCheckType}
 					checkIncorrectWordsAgain={checkIncorrectWordsAgain}
 					setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
 					handleContinue={handleContinue}
@@ -121,7 +118,7 @@ const Page = () => {
 			{(stage === 'test' || stage === 'review') && activeWord && (
 				<Test
 					handleContinue={handleContinue}
-					progressPercentage={(maxWords - remainingWords) / maxWords}
+					progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
 					activeWord={activeWord}
 					validKeysToCheck={validKeysToCheck}
 					inputValues={inputValues}
