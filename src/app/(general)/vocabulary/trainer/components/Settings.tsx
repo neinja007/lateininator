@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { Word, WordProperty, WordType } from '@/types';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import CheckTypeSelection from './settings/CheckTypeSelection';
@@ -61,7 +61,6 @@ const Settings = ({
 			<CheckTypeSelection
 				checkIncorrectWordsAgain={checkIncorrectWordsAgain}
 				setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
-				maxWordsInput={maxWordsInput}
 				setMaxWordsInput={setMaxWordsInput}
 				validWords={validWords}
 				updateWords={updateWords}

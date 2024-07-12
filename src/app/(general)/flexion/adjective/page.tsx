@@ -17,19 +17,21 @@ import Select from '@/components/Select';
 import SelectButton from '@/components/SelectButton';
 import WordDisplay from '@/components/WordDisplay';
 import Input from '@/components/Input';
+import { useStage } from '@/hooks/useStage';
+import { useActiveWord } from '@/hooks/useActiveWord';
+import { useNumberInput } from '@/hooks/useNumberInput';
 
 const Page = () => {
-	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
-
-	const [activeWord, setActiveWord] = useState<Word>();
-
-	const [wordsToCheckInput, setWordsToCheckInput] = useState<string>('');
-	const [wordsToCheck, setWordsToCheck] = useState<number>(0);
-	const [wordLimit, setWordLimit] = useState<number>(0);
+	const { stage, setStage } = useStage();
+	const { activeWord, maxWords, remainingWords, updateActiveWord, updateWords } = useActiveWord(true);
 
 	const [maxUnit, setMaxUnit] = useState(lists.length);
+
 	const [selectedWords, setSelectedWords] = useState<Array<Adjective>>([]);
 	const [possibleWords, setPossibleWords] = useState<Array<Adjective>>([]);
+
+	const { inputValue, updateValue, value } = useNumberInput(possibleWords.length);
+
 	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
 
 	const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
@@ -48,8 +50,8 @@ const Page = () => {
 		wordCase: WordCase;
 	}>();
 
-	const [tableForm, setTableForm] = useState<Comparison>();
-	const [tableValues, setTableValues] = useState<any>();
+	// const [tableForm, setTableForm] = useState<Comparison>();
+	// const [tableValues, setTableValues] = useState<any>();
 
 	useEffect(() => {
 		const ids = lists
@@ -70,6 +72,24 @@ const Page = () => {
 		setPossibleWords(possibleWords);
 	}, [comparisons, maxUnit]);
 
+	useEffect(() => {
+		if (testingType === 'individual') {
+			activeWord &&
+				isAdjective(activeWord) &&
+				setIndividualInputForm({
+					comparison: activeWord.comparison as Comparison,
+					comparisonDegree: comparisonDegrees[Math.floor(Math.random() * comparisonDegrees.length)],
+					numerus: (['sin', 'plu'] as Numerus[])[Math.floor(Math.random() * 2)],
+					wordCase: (['1', '2', '3', '4', '5'] as WordCase[])[Math.floor(Math.random() * 5)],
+					gender: genders[Math.floor(Math.random() * genders.length)]
+				});
+		}
+	}, [activeWord, comparisonDegrees, genders, testingType]);
+
+	useEffect(() => {
+		updateWords(possibleWords.slice(0, value));
+	}, [possibleWords, updateWords, value]);
+
 	const handleContinue = () => {
 		if (stage === 'test') {
 			if (!activeWord) {
@@ -78,37 +98,19 @@ const Page = () => {
 
 			setStage('review');
 
-			setWordsToCheck((prev) => prev - 1);
+			updateWords();
 		} else {
-			if (wordsToCheck === 0) {
+			if (remainingWords === 0) {
 				setStage('results');
 				return;
 			}
 			setStage('test');
 
-			const newActiveWord = possibleWords[Math.floor(Math.random() * possibleWords.length)];
-			setActiveWord(newActiveWord);
-
-			if (testingType === 'individual') {
-				setIndividualInputForm({
-					comparison: newActiveWord.comparison as Comparison,
-					comparisonDegree: comparisonDegrees[Math.floor(Math.random() * comparisonDegrees.length)],
-					numerus: (['sin', 'plu'] as Numerus[])[Math.floor(Math.random() * 2)],
-					wordCase: (['1', '2', '3', '4', '5'] as WordCase[])[Math.floor(Math.random() * 5)],
-					gender: genders[Math.floor(Math.random() * genders.length)]
-				});
-			}
+			updateActiveWord();
 
 			resetInputs();
 		}
 	};
-
-	useEffect(() => {
-		const newWordsToCheck = wordsToCheckInput === '' ? 0 : parseInt(wordsToCheckInput);
-
-		setWordsToCheck(newWordsToCheck);
-		setWordLimit(newWordsToCheck);
-	}, [wordsToCheckInput]);
 
 	const resetInputs = () => {
 		if (testingType === 'individual') {
@@ -116,9 +118,9 @@ const Page = () => {
 		}
 	};
 
-	const progressPercentage = ((wordLimit - wordsToCheck) / wordLimit) * 100;
+	const progressPercentage = ((maxWords - remainingWords) / maxWords) * 100;
 
-	const start = possibleWords.length > 0 && wordsToCheck > 0;
+	const start = remainingWords > 0;
 
 	return (
 		<div className='space-y-5'>
@@ -214,23 +216,9 @@ const Page = () => {
 							label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (Empfehlung: ${
 								testingType === 'individual' ? '20-40' : '2-4'
 							})`}
-							onChange={(value) =>
-								setWordsToCheckInput(
-									(!isNaN(parseInt(value))
-										? parseInt(value) > 100
-											? 100
-											: parseInt(value) < 0
-												? 0
-												: parseInt(value)
-										: value === ''
-											? ''
-											: 0
-									).toString()
-								)
-							}
-							value={wordsToCheckInput}
+							onChange={(value) => updateValue(value)}
+							value={inputValue}
 							className={'w-full text-center'}
-							type='number'
 						/>
 					</div>
 					<Button onClick={handleContinue} className='w-full' disabled={!start}>

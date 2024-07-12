@@ -1,15 +1,8 @@
 import ActionBar from '@/components/ActionBar';
-import Input from '@/components/Input';
-import TrainerInput from '@/components/TrainerInput';
 import WordDisplay from '@/components/WordDisplay';
-import { APP_CONSTANTS } from '@/constants';
-import { useActiveWord } from '@/hooks/useActiveWord';
 import { Stage } from '@/hooks/useStage';
 import { Word, WordProperty } from '@/types';
-import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
-import { MAPPER } from '@/utils/mapper';
-import { isKeyInObject, isWordPropertiesUsingSelectInput } from '@/utils/typeguards';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
 

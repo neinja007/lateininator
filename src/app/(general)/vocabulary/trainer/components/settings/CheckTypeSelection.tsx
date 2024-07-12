@@ -9,7 +9,6 @@ type CheckTypeSelectionProps = {
 	validWords: Word[];
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-	maxWordsInput: string;
 	setMaxWordsInput: Dispatch<SetStateAction<string>>;
 	updateWords: (arg?: Word[]) => void;
 };
@@ -18,7 +17,6 @@ const CheckTypeSelection = ({
 	checkIncorrectWordsAgain,
 	setCheckIncorrectWordsAgain,
 	validWords,
-	maxWordsInput,
 	setMaxWordsInput,
 	updateWords
 }: CheckTypeSelectionProps) => {

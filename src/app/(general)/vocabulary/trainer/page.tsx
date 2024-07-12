@@ -3,14 +3,12 @@
 import { APP_CONSTANTS } from '@/constants';
 import { WordProperty } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
-import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Settings from './components/Settings';
 import { Stage, useStage } from '@/hooks/useStage';
 import Test from './components/Test';
 import { useActiveWord } from '@/hooks/useActiveWord';
 import { compareValues } from '@/utils/inputUtils';
-import { Result } from 'postcss';
 import Results from './components/Results';
 
 const initialInputValues = {

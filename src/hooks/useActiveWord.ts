@@ -30,6 +30,9 @@ export const useActiveWord = (
 			if (words) {
 				setPossibleWords(words);
 				setMaxWords(words.length);
+				if (staticPossibleWords) {
+					setRemainingWords(words.length);
+				}
 			} else {
 				if (!staticPossibleWords) {
 					setPossibleWords((prev) => prev.filter((word) => word.id !== activeWord?.id));
