@@ -33,8 +33,7 @@ const initialInputValues = {
 const Page = () => {
 	const { stage, setStage } = useStage();
 
-	const { activeWord, maxWords, remainingWords, updatePossibleWords, updateActiveWord, updateRemainingWords } =
-		useActiveWord(false);
+	const { activeWord, maxWords, remainingWords, updateActiveWord, updateWords } = useActiveWord(false);
 	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
 
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
@@ -62,8 +61,8 @@ const Page = () => {
 				}) &&
 				(!activeWord.translation || compareValues(inputValues.translation, activeWord.translation, true));
 
-			if (allInputValuesAreCorrect || checkType === 'limited' || !checkIncorrectWordsAgain) {
-				updatePossibleWords();
+			if (allInputValuesAreCorrect || !checkIncorrectWordsAgain) {
+				updateWords();
 			}
 		} else {
 			if (remainingWords === 0) {
@@ -99,7 +98,7 @@ const Page = () => {
 					setCheckType={setCheckType}
 					checkIncorrectWordsAgain={checkIncorrectWordsAgain}
 					setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
-					updatePossibleWords={updatePossibleWords}
+					updateWords={updateWords}
 					handleContinue={handleContinue}
 					start={remainingWords > 0}
 				/>

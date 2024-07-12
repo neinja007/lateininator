@@ -12,7 +12,7 @@ type CheckTypeSelectionProps = {
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
 	maxWordsInput: string;
 	setMaxWordsInput: Dispatch<SetStateAction<string>>;
-	updatePossibleWords: (arg?: Word[]) => void;
+	updateWords: (arg?: Word[] | number) => void;
 };
 
 const CheckTypeSelection = ({
@@ -23,13 +23,13 @@ const CheckTypeSelection = ({
 	setCheckType,
 	maxWordsInput,
 	setMaxWordsInput,
-	updatePossibleWords
+	updateWords
 }: CheckTypeSelectionProps) => {
 	useEffect(() => {
 		let maxWordInput = maxWordsInput === '' ? 0 : parseInt(maxWordsInput);
 		let length = checkType === 'limited' ? maxWordInput : validWords.length;
-		updatePossibleWords(validWords.slice(0, length));
-	}, [maxWordsInput, updatePossibleWords, validWords, checkType]);
+		updateWords(validWords.slice(0, length));
+	}, [maxWordsInput, validWords, checkType, updateWords]);
 
 	return (
 		<>
@@ -64,11 +64,11 @@ const CheckTypeSelection = ({
 									? parseInt(value) > validWords.length
 										? validWords.length
 										: parseInt(value) < 0
-										  ? 0
-										  : parseInt(value)
+											? 0
+											: parseInt(value)
 									: value === ''
-									  ? ''
-									  : 0
+										? ''
+										: 0
 								).toString()
 							)
 						}

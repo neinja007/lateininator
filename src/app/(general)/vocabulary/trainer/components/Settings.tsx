@@ -16,7 +16,7 @@ type SettingsProps = {
 	setCheckType: Dispatch<SetStateAction<'all' | 'limited'>>;
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-	updatePossibleWords: (arg?: Word[]) => void;
+	updateWords: (arg?: Word[] | number) => void;
 	handleContinue: () => void;
 	start: boolean;
 };
@@ -30,7 +30,7 @@ const Settings = ({
 	setCheckType,
 	checkIncorrectWordsAgain,
 	setCheckIncorrectWordsAgain,
-	updatePossibleWords,
+	updateWords,
 	handleContinue,
 	start
 }: SettingsProps) => {
@@ -70,7 +70,7 @@ const Settings = ({
 				maxWordsInput={maxWordsInput}
 				setMaxWordsInput={setMaxWordsInput}
 				validWords={validWords}
-				updatePossibleWords={updatePossibleWords}
+				updateWords={updateWords}
 			/>
 			<Button onClick={handleContinue} className='w-full' disabled={!start}>
 				<span>{!start ? 'Wähle einige Wörter aus, um fortzufahren' : 'Start'}</span>

@@ -6,12 +6,10 @@ export const useActiveWord = (
 	staticPossibleWords: boolean
 ): {
 	activeWord: Word | undefined;
-	updateActiveWord: (arg: boolean) => void;
-	possibleWords: Word[];
-	updatePossibleWords: (arg?: Word[]) => void;
 	remainingWords: number;
-	updateRemainingWords: () => void;
 	maxWords: number;
+	updateActiveWord: (arg: boolean) => void;
+	updateWords: (arg?: Word[] | number) => void;
 } => {
 	const [possibleWords, setPossibleWords] = useState<Word[]>([]);
 	const [activeWord, setActiveWord] = useState<Word>();
@@ -28,46 +26,32 @@ export const useActiveWord = (
 		setActiveWord(possibleWords[Math.floor(Math.random() * possibleWords.length)]);
 	};
 
-	const updatePossibleWords = (words?: Word[]): void => {
-		if (!words && staticPossibleWords) {
-			throw new Error('Cannot subtract from possibleWords if the words are static');
-		}
-		if (words) {
-			setPossibleWords(words);
+	const updateWords = (words?: Word[] | number) => {
+		if (typeof words === 'number') {
 			if (!staticPossibleWords) {
-				setMaxWords(words.length);
-				setRemainingWords(words.length);
-			}
-		} else {
-			setPossibleWords((prev) => prev.filter((word) => word.id !== activeWord?.id));
-		}
-	};
-
-	const updateRemainingWords = (count?: number) => {
-		if (!count && !staticPossibleWords) {
-			throw new Error('Cannot subtract from remainingWords if the words are not static');
-		}
-		if (count !== undefined) {
-			if (staticPossibleWords) {
-				setRemainingWords(count);
-				setMaxWords(count);
+				setPossibleWords((prev) => prev.slice(0, words));
+				setMaxWords(words);
+				setRemainingWords(words);
 			} else {
-				if (count > possibleWords.length)
-					throw new Error('Cannot set remainingWords to a number higher than the length of possibleWords');
-				setPossibleWords((prev) => prev.slice(0, count));
+				throw new Error('Cannot slice possibleWords if words are static');
 			}
+		} else if (words) {
+			setPossibleWords(words);
+			setMaxWords(words.length);
 		} else {
-			setPossibleWords((prev) => prev.filter((word) => word.id !== activeWord?.id));
+			if (!staticPossibleWords) {
+				setPossibleWords((prev) => prev.filter((word) => word.id !== activeWord?.id));
+			} else {
+				setRemainingWords((prev) => prev - 1);
+			}
 		}
 	};
 
 	return {
 		activeWord,
-		possibleWords,
-		updatePossibleWords,
-		updateActiveWord,
 		remainingWords,
-		updateRemainingWords,
-		maxWords
+		maxWords,
+		updateActiveWord,
+		updateWords
 	};
 };
