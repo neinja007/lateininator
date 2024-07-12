@@ -19,6 +19,7 @@ const PropertyInputs = ({ validKeysToCheck, activeWord, inputValues, setInputVal
 		<div className='grid grid-cols-2 gap-4'>
 			{validKeysToCheck.map((key, i) => {
 				let value = (activeWord as any)[key];
+				let correct = stage === 'review' ? compareValues(inputValues[key], value) : undefined;
 
 				return (
 					<TrainerInput
@@ -26,7 +27,7 @@ const PropertyInputs = ({ validKeysToCheck, activeWord, inputValues, setInputVal
 						property={key}
 						value={inputValues[key]}
 						appendedString={
-							stage === 'review'
+							stage === 'review' && correct !== true
 								? isWordPropertiesUsingSelectInput(key)
 									? isKeyInObject(value, MAPPER.extended[key]) && MAPPER.extended[key][value]
 									: value
@@ -38,7 +39,7 @@ const PropertyInputs = ({ validKeysToCheck, activeWord, inputValues, setInputVal
 								[key]: value
 							}))
 						}
-						correct={stage === 'review' ? compareValues(inputValues[key], value) : undefined}
+						correct={correct}
 					/>
 				);
 			})}
