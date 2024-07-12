@@ -251,7 +251,7 @@ const Page = () => {
                   ${MAPPER.extended.numerus[individualInputForm.numerus]}
                   ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
                   `}
-								onChange={setIndividualInputValue}
+								onChange={(value) => setIndividualInputValue(value)}
 								value={
 									stage === 'review'
 										? getInputWithCorrectValue(individualInputValue, getForm(activeWord, { ...individualInputForm }))
@@ -310,7 +310,7 @@ const Page = () => {
 						)}
 					</div>
 					<hr />
-					<ActionBar setStage={setStage} handleContinue={handleContinue} progressPercentage={progressPercentage} />
+					<ActionBar handleContinue={handleContinue} progressPercentage={progressPercentage} />
 				</>
 			)}
 		</div>
