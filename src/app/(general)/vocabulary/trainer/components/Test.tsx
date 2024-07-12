@@ -31,7 +31,6 @@ const Test = ({
 	setInputValues,
 	validKeysToCheck,
 	handleContinue,
-	setStage,
 	progressPercentage
 }: TestProps) => {
 	return (

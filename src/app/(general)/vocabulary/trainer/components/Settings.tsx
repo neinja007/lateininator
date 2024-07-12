@@ -6,7 +6,7 @@ import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import CheckTypeSelection from './settings/CheckTypeSelection';
 import PropertySelection from './settings/PropertySelection';
-import { words } from '@/data/words';
+import { Stage } from '@/hooks/useStage';
 
 type SettingsProps = {
 	checkTranslation: boolean;
@@ -18,7 +18,7 @@ type SettingsProps = {
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
 	updateWords: (arg?: Word[]) => void;
-	start: () => void;
+	handleContinue: (arg?: Stage) => void;
 	enableStart: boolean;
 };
 
@@ -30,9 +30,9 @@ const Settings = ({
 	checkType,
 	setCheckType,
 	checkIncorrectWordsAgain,
+	handleContinue,
 	setCheckIncorrectWordsAgain,
 	updateWords,
-	start,
 	enableStart
 }: SettingsProps) => {
 	const [selectedIds, setSelectedIds] = useState<Array<number>>([]);
@@ -78,7 +78,7 @@ const Settings = ({
 				setMaxWordsInput={setMaxWordsInput}
 				validWords={validWords}
 			/>
-			<Button onClick={start} className='w-full' disabled={!enableStart}>
+			<Button onClick={() => handleContinue()} className='w-full' disabled={!enableStart}>
 				<span>{!enableStart ? 'Wähle einige Wörter aus, um fortzufahren' : 'Start'}</span>
 			</Button>
 		</>

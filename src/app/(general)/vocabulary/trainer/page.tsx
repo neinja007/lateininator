@@ -1,7 +1,7 @@
 'use client';
 
 import { APP_CONSTANTS } from '@/constants';
-import { Word, WordProperty } from '@/types';
+import { WordProperty } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
 import Button from '@/components/Button';
 import Heading from '@/components/Heading';
@@ -53,6 +53,7 @@ const Page = () => {
 		(newStage?: Stage) => {
 			if (newStage) {
 				setStage(newStage);
+				return;
 			} else if (stage === 'test') {
 				if (!activeWord) {
 					throw new Error('activeWord is undefined');
@@ -110,8 +111,8 @@ const Page = () => {
 					setCheckType={setCheckType}
 					checkIncorrectWordsAgain={checkIncorrectWordsAgain}
 					setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
+					handleContinue={handleContinue}
 					updateWords={updateWords}
-					start={() => setStage('test')}
 					enableStart={remainingWords > 0}
 				/>
 			)}
