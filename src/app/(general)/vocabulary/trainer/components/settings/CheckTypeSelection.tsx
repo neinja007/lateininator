@@ -12,7 +12,6 @@ type CheckTypeSelectionProps = {
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
 	maxWordsInput: string;
 	setMaxWordsInput: Dispatch<SetStateAction<string>>;
-	updateWords: (arg?: Word[] | number) => void;
 };
 
 const CheckTypeSelection = ({
@@ -22,15 +21,8 @@ const CheckTypeSelection = ({
 	checkType,
 	setCheckType,
 	maxWordsInput,
-	setMaxWordsInput,
-	updateWords
+	setMaxWordsInput
 }: CheckTypeSelectionProps) => {
-	useEffect(() => {
-		let maxWordInput = maxWordsInput === '' ? 0 : parseInt(maxWordsInput);
-		let length = checkType === 'limited' ? maxWordInput : validWords.length;
-		updateWords(validWords.slice(0, length));
-	}, [maxWordsInput, validWords, checkType, updateWords]);
-
 	return (
 		<>
 			<p>Abfrage (die Überprüfung kann auch frühzeitig beendet werden):</p>

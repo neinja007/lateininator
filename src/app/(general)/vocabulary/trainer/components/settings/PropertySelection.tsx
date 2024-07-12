@@ -3,7 +3,7 @@ import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { APP_CONSTANTS } from '@/constants';
 import { WordProperty, WordType } from '@/types';
 import { MAPPER } from '@/utils/mapper';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 
 type PropertySelectionProps = {
 	checkTranslation: boolean;
@@ -20,10 +20,14 @@ const PropertySelection = ({
 	wordPropertiesToCheck,
 	setWordPropertiesToCheck
 }: PropertySelectionProps) => {
-	const possibleWordProperties = APP_CONSTANTS.allWordProperties.filter((property) =>
-		APP_CONSTANTS.wordTypes.some(
-			(type) => (APP_CONSTANTS.wordProperties[type] as any).includes(property) && typesToCheck.includes(type)
-		)
+	const possibleWordProperties = useMemo(
+		() =>
+			APP_CONSTANTS.allWordProperties.filter((property) =>
+				APP_CONSTANTS.wordTypes.some(
+					(type) => (APP_CONSTANTS.wordProperties[type] as any).includes(property) && typesToCheck.includes(type)
+				)
+			),
+		[typesToCheck]
 	);
 
 	useEffect(() => {

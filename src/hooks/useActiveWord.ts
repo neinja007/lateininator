@@ -1,5 +1,4 @@
 import { Word } from '@/types';
-import { stat } from 'fs';
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 
 export const useActiveWord = (
@@ -8,8 +7,8 @@ export const useActiveWord = (
 	activeWord: Word | undefined;
 	remainingWords: number;
 	maxWords: number;
-	updateActiveWord: (arg: boolean) => void;
-	updateWords: (arg?: Word[] | number) => void;
+	updateActiveWord: () => void;
+	updateWords: (arg?: Word[]) => void;
 } => {
 	const [possibleWords, setPossibleWords] = useState<Word[]>([]);
 	const [activeWord, setActiveWord] = useState<Word>();
@@ -26,16 +25,8 @@ export const useActiveWord = (
 		setActiveWord(possibleWords[Math.floor(Math.random() * possibleWords.length)]);
 	};
 
-	const updateWords = (words?: Word[] | number) => {
-		if (typeof words === 'number') {
-			if (!staticPossibleWords) {
-				setPossibleWords((prev) => prev.slice(0, words));
-				setMaxWords(words);
-				setRemainingWords(words);
-			} else {
-				throw new Error('Cannot slice possibleWords if words are static');
-			}
-		} else if (words) {
+	const updateWords = (words?: Word[]) => {
+		if (words) {
 			setPossibleWords(words);
 			setMaxWords(words.length);
 		} else {

@@ -35,7 +35,6 @@ const WordTypeSelection = ({
 				(typesToCheck.includes(word.type) ||
 					(typesToCheck.includes('other') && !APP_CONSTANTS.mainWordTypes.includes(word.type as any)))
 		);
-
 		setValidWords(possibleWords);
 	}, [selectedIds, setValidWords, typesToCheck]);
 

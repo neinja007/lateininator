@@ -1,11 +1,12 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { Word, WordProperty, WordType } from '@/types';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import CheckTypeSelection from './settings/CheckTypeSelection';
 import PropertySelection from './settings/PropertySelection';
+import { words } from '@/data/words';
 
 type SettingsProps = {
 	checkTranslation: boolean;
@@ -16,9 +17,9 @@ type SettingsProps = {
 	setCheckType: Dispatch<SetStateAction<'all' | 'limited'>>;
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-	updateWords: (arg?: Word[] | number) => void;
-	handleContinue: () => void;
-	start: boolean;
+	updateWords: (arg: Word[]) => void;
+	start: () => void;
+	enableStart: boolean;
 };
 
 const Settings = ({
@@ -31,14 +32,20 @@ const Settings = ({
 	checkIncorrectWordsAgain,
 	setCheckIncorrectWordsAgain,
 	updateWords,
-	handleContinue,
-	start
+	start,
+	enableStart
 }: SettingsProps) => {
 	const [selectedIds, setSelectedIds] = useState<Array<number>>([]);
 	const [validWords, setValidWords] = useState<Word[]>([]);
 
 	const [typesToCheck, setTypesToCheck] = useState<Array<WordType>>([...APP_CONSTANTS.mainWordTypes, 'other']);
 	const [maxWordsInput, setMaxWordsInput] = useState<string>('1');
+
+	useEffect(() => {
+		let maxWordInput = maxWordsInput === '' ? 0 : parseInt(maxWordsInput);
+		let length = checkType === 'limited' ? maxWordInput : validWords.length;
+		updateWords(validWords.slice(0, length));
+	}, [maxWordsInput, checkType, updateWords, selectedIds, typesToCheck, validWords]);
 
 	return (
 		<>
@@ -70,10 +77,9 @@ const Settings = ({
 				maxWordsInput={maxWordsInput}
 				setMaxWordsInput={setMaxWordsInput}
 				validWords={validWords}
-				updateWords={updateWords}
 			/>
-			<Button onClick={handleContinue} className='w-full' disabled={!start}>
-				<span>{!start ? 'Wähle einige Wörter aus, um fortzufahren' : 'Start'}</span>
+			<Button onClick={start} className='w-full' disabled={!enableStart}>
+				<span>{!enableStart ? 'Wähle einige Wörter aus, um fortzufahren' : 'Start'}</span>
 			</Button>
 		</>
 	);

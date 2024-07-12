@@ -1,25 +1,25 @@
 import { Dispatch, SetStateAction } from 'react';
 import Button from '@/components/Button';
 import ProgressBar from '@/components/ProgressBar';
+import { Stage } from '@/hooks/useStage';
 
 type ActionBarProps = {
-	setStage: Dispatch<SetStateAction<'settings' | 'test' | 'review' | 'results'>>;
-	handleContinue: () => void;
+	handleContinue: (arg?: Stage) => void;
 	progressPercentage: number;
 };
 
-const ActionBar = ({ setStage, handleContinue, progressPercentage }: ActionBarProps) => {
+const ActionBar = ({ handleContinue, progressPercentage }: ActionBarProps) => {
 	return (
 		<div className='flex'>
 			<Button
 				onClick={() => {
-					setStage('results');
+					handleContinue('results');
 				}}
 			>
 				Beenden
 			</Button>
 			<ProgressBar progressPercentage={progressPercentage} />
-			<Button onClick={handleContinue}>Weiter</Button>
+			<Button onClick={() => handleContinue()}>Weiter</Button>
 		</div>
 	);
 };

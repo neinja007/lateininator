@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
+export type Stage = 'settings' | 'test' | 'review' | 'results';
+
 export const useStage = (): {
-	stage: 'settings' | 'test' | 'review' | 'results';
-	setStage: React.Dispatch<React.SetStateAction<'settings' | 'test' | 'review' | 'results'>>;
+	stage: Stage;
+	setStage: React.Dispatch<React.SetStateAction<Stage>>;
 } => {
-	const [stage, setStage] = useState<'settings' | 'test' | 'review' | 'results'>('settings');
+	const [stage, setStage] = useState<Stage>('settings');
 	return { stage, setStage };
 };
