@@ -31,8 +31,8 @@ const initialInputValues = {
 const Page = () => {
 	const { stage, setStage } = useStage();
 
-	const { activeWord, maxWords, remainingWords, possibleWords, updatePossibleWords, updateActiveWord } =
-		useActiveWord();
+	const { activeWord, maxWords, remainingWords, updatePossibleWords, updateActiveWord, updateRemainingWords } =
+		useActiveWord(false);
 	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
 
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
@@ -63,13 +63,6 @@ const Page = () => {
 			if (allInputValuesAreCorrect || checkType === 'limited' || !checkIncorrectWordsAgain) {
 				updatePossibleWords();
 			}
-		} else if (stage === 'settings' && checkType === 'limited') {
-			const slicedRemainingWords = possibleWords.slice(0, remainingWords);
-
-			updatePossibleWords(slicedRemainingWords);
-
-			updateActiveWord(false);
-			setStage('test');
 		} else {
 			if (remainingWords === 0) {
 				setStage('results');
@@ -162,7 +155,7 @@ const Page = () => {
 			)}
 			{stage === 'results' && (
 				<>
-					<p>Es wurden {maxWords - possibleWords.length} verschiedene Wörter abgefragt.</p>
+					<p>Es wurden {maxWords - remainingWords} verschiedene Wörter abgefragt.</p>
 					<Button onClick={() => setStage('settings')}>Neu Laden</Button>
 				</>
 			)}
