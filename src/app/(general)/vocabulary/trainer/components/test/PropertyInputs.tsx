@@ -1,5 +1,5 @@
 import TrainerInput from '@/components/TrainerInput';
-import { Stage } from '@/hooks/useStage';
+import { Stage } from '@/types';
 import { Word, WordProperty } from '@/types';
 import { compareValues } from '@/utils/inputUtils';
 import { MAPPER } from '@/utils/mapper';

@@ -1,5 +1,5 @@
 import Input from '@/components/Input';
-import { Stage } from '@/hooks/useStage';
+import { Stage } from '@/types';
 import { Word, WordProperty } from '@/types';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import { Dispatch, SetStateAction } from 'react';
