@@ -7,12 +7,13 @@ type ButtonProps = {
 	color?: Color;
 	children: React.ReactNode;
 	className?: string & React.CSSProperties;
+	handleClick: () => void;
 	icon?: React.ReactNode;
-} & Exclude<React.ComponentProps<'button'>, 'className'>;
+} & Exclude<React.ComponentProps<'button'>, 'onClick'>;
 
-const Button = ({ color = 'default', children, className, icon, ...props }: ButtonProps) => {
+const Button = ({ color = 'default', children, className, handleClick, icon, ...props }: ButtonProps) => {
 	return (
-		<button className={clsx(ui.basic, className, 'justify-center', COLORS[color])} {...props}>
+		<button className={clsx(ui.basic, className, 'justify-center', COLORS[color])} onClick={handleClick} {...props}>
 			{children}
 		</button>
 	);
