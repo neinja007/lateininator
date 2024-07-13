@@ -20,6 +20,7 @@ import Input from '@/components/Input';
 import { useStage } from '@/hooks/useStage';
 import { useActiveWord } from '@/hooks/useActiveWord';
 import { useNumberInput } from '@/hooks/useNumberInput';
+import { getRandomItem } from '@/utils/propertyUtils';
 
 const Page = () => {
 	const { stage, setStage } = useStage();
@@ -78,10 +79,10 @@ const Page = () => {
 				isAdjective(activeWord) &&
 				setIndividualInputForm({
 					comparison: activeWord.comparison as Comparison,
-					comparisonDegree: comparisonDegrees[Math.floor(Math.random() * comparisonDegrees.length)],
-					numerus: (['sin', 'plu'] as Numerus[])[Math.floor(Math.random() * 2)],
-					wordCase: (['1', '2', '3', '4', '5'] as WordCase[])[Math.floor(Math.random() * 5)],
-					gender: genders[Math.floor(Math.random() * genders.length)]
+					comparisonDegree: getRandomItem(comparisonDegrees),
+					numerus: getRandomItem(['sin', 'plu']),
+					wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
+					gender: getRandomItem(genders)
 				});
 		}
 	}, [activeWord, comparisonDegrees, genders, testingType]);
