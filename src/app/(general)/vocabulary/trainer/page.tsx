@@ -1,15 +1,14 @@
 'use client';
 
 import { APP_CONSTANTS } from '@/constants';
-import { WordProperty } from '@/types';
+import { Word, WordProperty } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
 import Heading from '@/components/Heading';
 import Settings from './components/Settings';
-import { Stage, useStage } from '@/hooks/useStage';
 import Test from './components/Test';
-import { useActiveWord } from '@/hooks/useActiveWord';
 import { compareValues } from '@/utils/inputUtils';
 import Results from './components/Results';
+import { useGame } from '@/hooks/useGame';
 
 const initialInputValues = {
 	conjugation: '',
@@ -26,9 +25,6 @@ const initialInputValues = {
 };
 
 const Page = () => {
-	const { stage, setStage } = useStage();
-	const { activeWord, remainingWords, maxWords, updateActiveWord, updateWords } = useActiveWord(false);
-
 	const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 
@@ -37,6 +33,28 @@ const Page = () => {
 	]);
 
 	const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
+	const resetInputs = useCallback(() => setInputValues(initialInputValues), []);
+	const canContinue: (word: Word) => boolean = useCallback(
+		(word) =>
+			(word &&
+				!APP_CONSTANTS.wordProperties[word.type]
+					.filter((key) => wordPropertiesToCheck.includes(key) && key in word && (word as any)[key] !== '-')
+					.some((key) => {
+						const originalInput = (inputValues as any)[key] || '';
+						const correctInput = (word as any)[key];
+
+						return !compareValues(originalInput, correctInput);
+					}) &&
+				(!word.translation || compareValues(inputValues.translation, word.translation, true))) ||
+			!checkIncorrectWordsAgain,
+		[inputValues, checkIncorrectWordsAgain, wordPropertiesToCheck]
+	);
+
+	const { stage, activeWord, remainingWords, maxWords, updateActiveWord, updateWords, handleContinue } = useGame(
+		false,
+		() => setInputValues(initialInputValues),
+		canContinue
+	);
 
 	const validKeysToCheck: WordProperty[] = useMemo(
 		() =>
@@ -46,55 +64,6 @@ const Page = () => {
 					)
 				: [],
 		[activeWord, wordPropertiesToCheck]
-	);
-
-	const handleContinue = useCallback(
-		(newStage?: Stage) => {
-			if (newStage) {
-				setStage(newStage);
-				return;
-			} else if (stage === 'test') {
-				if (!activeWord) {
-					throw new Error('activeWord is undefined');
-				}
-
-				setStage('review');
-
-				const allInputValuesAreCorrect =
-					!validKeysToCheck.some((key) => {
-						const originalInput = (inputValues as any)[key] || '';
-						const correctInput = (activeWord as any)[key];
-
-						return !compareValues(originalInput, correctInput);
-					}) &&
-					(!activeWord.translation || compareValues(inputValues.translation, activeWord.translation, true));
-
-				if (allInputValuesAreCorrect || !checkIncorrectWordsAgain) {
-					updateWords();
-				}
-			} else {
-				if (remainingWords === 0) {
-					setStage('results');
-					return;
-				}
-
-				updateActiveWord();
-				setStage('test');
-
-				setInputValues(initialInputValues);
-			}
-		},
-		[
-			stage,
-			setStage,
-			activeWord,
-			validKeysToCheck,
-			inputValues,
-			checkIncorrectWordsAgain,
-			updateWords,
-			remainingWords,
-			updateActiveWord
-		]
 	);
 
 	return (
@@ -123,10 +92,9 @@ const Page = () => {
 					setInputValues={setInputValues}
 					stage={stage}
 					checkTranslation={checkTranslation}
-					setStage={setStage}
 				/>
 			)}
-			{stage === 'results' && <Results setStage={setStage} />}
+			{stage === 'results' && <Results handleContinue={handleContinue} />}
 		</div>
 	);
 };

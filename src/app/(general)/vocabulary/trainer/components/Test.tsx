@@ -1,7 +1,6 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Stage } from '@/hooks/useStage';
-import { Word, WordProperty } from '@/types';
+import { Stage, Word, WordProperty } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
 import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
@@ -14,7 +13,6 @@ type TestProps = {
 	checkTranslation: boolean;
 	validKeysToCheck: WordProperty[];
 	handleContinue: (newStage?: Stage) => void;
-	setStage: Dispatch<SetStateAction<Stage>>;
 	progressPercentage: number;
 };
 

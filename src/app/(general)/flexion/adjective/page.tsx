@@ -1,6 +1,6 @@
 'use client';
 
-import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/types';
+import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word, Stage } from '@/types';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
 import { Fragment, useEffect, useState } from 'react';
@@ -17,14 +17,16 @@ import Select from '@/components/Select';
 import SelectButton from '@/components/SelectButton';
 import WordDisplay from '@/components/WordDisplay';
 import Input from '@/components/Input';
-import { useStage } from '@/hooks/useStage';
-import { useActiveWord } from '@/hooks/useActiveWord';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { getRandomItem } from '@/utils/propertyUtils';
+import { useGame } from '@/hooks/useGame';
 
 const Page = () => {
-	const { stage, setStage } = useStage();
-	const { activeWord, maxWords, remainingWords, updateActiveWord, updateWords } = useActiveWord(true);
+	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
+	const { activeWord, maxWords, remainingWords, updateActiveWord, updateWords, stage, handleContinue } = useGame(
+		true,
+		testingType === 'individual' ? () => setIndividualInputValue('') : () => {}
+	);
 
 	const [maxUnit, setMaxUnit] = useState(lists.length);
 
@@ -32,8 +34,6 @@ const Page = () => {
 	const [possibleWords, setPossibleWords] = useState<Array<Adjective>>([]);
 
 	const { inputValue, updateValue, value } = useNumberInput(possibleWords.length);
-
-	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
 
 	const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
 	const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>([
@@ -86,40 +86,6 @@ const Page = () => {
 				});
 		}
 	}, [activeWord, comparisonDegrees, genders, testingType]);
-
-	useEffect(() => {
-		updateWords(possibleWords.slice(0, value));
-	}, [possibleWords, updateWords, value]);
-
-	const handleContinue = () => {
-		if (stage === 'test') {
-			if (!activeWord) {
-				throw new Error('activeWord is undefined');
-			}
-
-			setStage('review');
-
-			updateWords();
-		} else {
-			if (remainingWords === 0) {
-				setStage('results');
-				return;
-			}
-			setStage('test');
-
-			updateActiveWord();
-
-			resetInputs();
-		}
-	};
-
-	const resetInputs = () => {
-		if (testingType === 'individual') {
-			setIndividualInputValue('');
-		}
-	};
-
-	const progressPercentage = ((maxWords - remainingWords) / maxWords) * 100;
 
 	const start = remainingWords > 0;
 
@@ -222,7 +188,7 @@ const Page = () => {
 							className={'w-full text-center'}
 						/>
 					</div>
-					<Button onClick={handleContinue} className='w-full' disabled={!start}>
+					<Button handleClick={handleContinue} className='w-full' disabled={!start}>
 						<span>{!start ? 'Keine Adjektive verfügbar' : 'Start'}</span>
 					</Button>
 				</>
@@ -299,7 +265,10 @@ const Page = () => {
 						)}
 					</div>
 					<hr />
-					<ActionBar handleContinue={handleContinue} progressPercentage={progressPercentage} />
+					<ActionBar
+						handleContinue={handleContinue}
+						progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+					/>
 				</>
 			)}
 		</div>
