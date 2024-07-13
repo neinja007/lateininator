@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import CheckboxList from '@/components/CheckBoxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { APP_CONSTANTS } from '@/constants';
 import { WordProperty, WordType } from '@/types';
@@ -70,25 +71,15 @@ const PropertySelection = ({
 			</div>
 			<div className='grid grid-cols-3'>
 				{APP_CONSTANTS.mainWordTypes.map((type: WordType) => (
-					<div key={type}>
-						<span className={typesToCheck.includes(type) ? 'text-black' : 'text-gray-500'}>
-							{MAPPER.extended.type[type]}
-						</span>
-						:
-						{APP_CONSTANTS.wordProperties[type].map((property) => (
-							<CheckboxWithLabel
-								key={property}
-								disabled={!typesToCheck.includes(type)}
-								checked={wordPropertiesToCheck.includes(property)}
-								handleChange={(checked) =>
-									setWordPropertiesToCheck((prev) =>
-										checked ? [...prev, property] : prev.filter((p) => p !== property)
-									)
-								}
-								label={MAPPER.extended.property[property]}
-							/>
-						))}
-					</div>
+					<CheckboxList
+						key={type}
+						label={MAPPER.extended.type[type]}
+						disabled={!typesToCheck.includes(type)}
+						options={[...APP_CONSTANTS.wordProperties[type]] as string[]}
+						selected={wordPropertiesToCheck}
+						setSelected={setWordPropertiesToCheck as Dispatch<SetStateAction<string[]>>}
+						mapper={MAPPER.extended.property}
+					/>
 				))}
 			</div>
 		</>
