@@ -35,7 +35,6 @@ const Settings = ({
 	const [validWords, setValidWords] = useState<Word[]>([]);
 
 	const [typesToCheck, setTypesToCheck] = useState<Array<WordType>>([...APP_CONSTANTS.mainWordTypes, 'other']);
-	const [maxWordsInput, setMaxWordsInput] = useState<string>('1');
 
 	return (
 		<>
@@ -46,7 +45,6 @@ const Settings = ({
 				setValidWords={setValidWords}
 				selectedIds={selectedIds}
 				typesToCheck={typesToCheck}
-				setMaxWordsInput={setMaxWordsInput}
 				setTypesToCheck={setTypesToCheck}
 			/>
 			<hr />
@@ -61,7 +59,6 @@ const Settings = ({
 			<CheckTypeSelection
 				checkIncorrectWordsAgain={checkIncorrectWordsAgain}
 				setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
-				setMaxWordsInput={setMaxWordsInput}
 				validWords={validWords}
 				updateWords={updateWords}
 			/>

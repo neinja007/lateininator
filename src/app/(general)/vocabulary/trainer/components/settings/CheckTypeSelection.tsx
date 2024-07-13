@@ -9,7 +9,6 @@ type CheckTypeSelectionProps = {
 	validWords: Word[];
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-	setMaxWordsInput: Dispatch<SetStateAction<string>>;
 	updateWords: (arg?: Word[]) => void;
 };
 
@@ -17,7 +16,6 @@ const CheckTypeSelection = ({
 	checkIncorrectWordsAgain,
 	setCheckIncorrectWordsAgain,
 	validWords,
-	setMaxWordsInput,
 	updateWords
 }: CheckTypeSelectionProps) => {
 	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
@@ -28,8 +26,8 @@ const CheckTypeSelection = ({
 	}, [updateWords, validWords, value]);
 
 	useEffect(() => {
-		checkType === 'all' && setMaxWordsInput(validWords.length.toString());
-	}, [checkType, validWords.length, setMaxWordsInput]);
+		updateValue(validWords.length.toString());
+	}, [updateValue, validWords.length]);
 
 	return (
 		<>

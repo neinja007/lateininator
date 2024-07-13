@@ -11,7 +11,6 @@ type WordTypeSelectionProps = {
 	selectedIds: number[];
 	typesToCheck: WordType[];
 	setTypesToCheck: Dispatch<SetStateAction<WordType[]>>;
-	setMaxWordsInput: Dispatch<SetStateAction<string>>;
 };
 
 const WordTypeSelection = ({
@@ -19,13 +18,8 @@ const WordTypeSelection = ({
 	setValidWords,
 	selectedIds,
 	typesToCheck,
-	setTypesToCheck,
-	setMaxWordsInput
+	setTypesToCheck
 }: WordTypeSelectionProps) => {
-	useEffect(() => {
-		setMaxWordsInput(validWords.length.toString());
-	}, [setMaxWordsInput, validWords.length]);
-
 	useEffect(() => {
 		const possibleWords = words.filter(
 			(word) =>
