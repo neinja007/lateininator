@@ -28,7 +28,7 @@ const TrainerInput = ({ correct, property, handleChange, value, appendedString }
 	if (isWordPropertiesUsingSelectInput(property)) {
 		return (
 			<Select
-				label={MAPPER.extended.wordProperty[property]}
+				label={MAPPER.extended.property[property]}
 				options={options}
 				className={clsx('w-full', correctValueIndicator)}
 				value={value}
@@ -40,7 +40,7 @@ const TrainerInput = ({ correct, property, handleChange, value, appendedString }
 	} else {
 		return (
 			<Input
-				label={MAPPER.extended.wordProperty[property]}
+				label={MAPPER.extended.property[property]}
 				className={clsx('w-full', correctValueIndicator)}
 				value={value + ((appendedString && ' (' + appendedString + ')') || '')}
 				onChange={(value) => handleChange(property, value)}

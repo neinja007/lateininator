@@ -85,7 +85,7 @@ const PropertySelection = ({
 										checked ? [...prev, property] : prev.filter((p) => p !== property)
 									)
 								}
-								label={MAPPER.extended.wordProperty[property]}
+								label={MAPPER.extended.property[property]}
 							/>
 						))}
 					</div>
