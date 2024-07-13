@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import CheckboxList from '@/components/CheckBoxList';
+import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { APP_CONSTANTS } from '@/constants';
 import { WordProperty, WordType } from '@/types';
