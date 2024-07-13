@@ -7,7 +7,7 @@ type ButtonProps = {
 	color?: Color;
 	children: React.ReactNode;
 	className?: string & React.CSSProperties;
-	handleClick: () => void;
+	handleClick?: () => void;
 	icon?: React.ReactNode;
 } & Exclude<React.ComponentProps<'button'>, 'onClick'>;
 
