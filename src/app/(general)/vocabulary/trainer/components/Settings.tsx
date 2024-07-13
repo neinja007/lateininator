@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { Word, WordProperty, WordType } from '@/types';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import CheckTypeSelection from './settings/CheckTypeSelection';
@@ -13,8 +13,6 @@ type SettingsProps = {
 	setCheckTranslation: Dispatch<SetStateAction<boolean>>;
 	wordPropertiesToCheck: WordProperty[];
 	setWordPropertiesToCheck: Dispatch<SetStateAction<WordProperty[]>>;
-	checkType: 'all' | 'limited';
-	setCheckType: Dispatch<SetStateAction<'all' | 'limited'>>;
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
 	updateWords: (arg?: Word[]) => void;
@@ -27,8 +25,6 @@ const Settings = ({
 	setCheckTranslation,
 	wordPropertiesToCheck,
 	setWordPropertiesToCheck,
-	checkType,
-	setCheckType,
 	checkIncorrectWordsAgain,
 	handleContinue,
 	setCheckIncorrectWordsAgain,
@@ -41,12 +37,6 @@ const Settings = ({
 	const [typesToCheck, setTypesToCheck] = useState<Array<WordType>>([...APP_CONSTANTS.mainWordTypes, 'other']);
 	const [maxWordsInput, setMaxWordsInput] = useState<string>('1');
 
-	useEffect(() => {
-		let maxWordInput = maxWordsInput === '' ? 0 : parseInt(maxWordsInput);
-		let length = checkType === 'limited' ? maxWordInput : validWords.length;
-		updateWords(validWords.slice(0, length));
-	}, [checkType, maxWordsInput, updateWords, validWords]);
-
 	return (
 		<>
 			<ListSelection selectedIds={selectedIds} setSelectedIds={setSelectedIds} />
@@ -54,7 +44,6 @@ const Settings = ({
 			<WordTypeSelection
 				validWords={validWords}
 				setValidWords={setValidWords}
-				setWordPropertiesToCheck={setWordPropertiesToCheck}
 				selectedIds={selectedIds}
 				typesToCheck={typesToCheck}
 				setMaxWordsInput={setMaxWordsInput}
@@ -72,11 +61,9 @@ const Settings = ({
 			<CheckTypeSelection
 				checkIncorrectWordsAgain={checkIncorrectWordsAgain}
 				setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
-				checkType={checkType}
-				setCheckType={setCheckType}
-				maxWordsInput={maxWordsInput}
 				setMaxWordsInput={setMaxWordsInput}
 				validWords={validWords}
+				updateWords={updateWords}
 			/>
 			<Button onClick={() => handleContinue()} className='w-full' disabled={!enableStart}>
 				<span>{!enableStart ? 'Wähle einige Wörter aus, um fortzufahren' : 'Start'}</span>

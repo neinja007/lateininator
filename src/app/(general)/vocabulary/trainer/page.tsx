@@ -3,14 +3,12 @@
 import { APP_CONSTANTS } from '@/constants';
 import { WordProperty } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
-import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Settings from './components/Settings';
 import { Stage, useStage } from '@/hooks/useStage';
 import Test from './components/Test';
 import { useActiveWord } from '@/hooks/useActiveWord';
 import { compareValues } from '@/utils/inputUtils';
-import { Result } from 'postcss';
 import Results from './components/Results';
 
 const initialInputValues = {
@@ -32,7 +30,6 @@ const Page = () => {
 	const { activeWord, remainingWords, maxWords, updateActiveWord, updateWords } = useActiveWord(false);
 
 	const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
-	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
 	const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 
 	const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<Array<WordProperty>>([
@@ -109,8 +106,6 @@ const Page = () => {
 					setCheckTranslation={setCheckTranslation}
 					wordPropertiesToCheck={wordPropertiesToCheck}
 					setWordPropertiesToCheck={setWordPropertiesToCheck}
-					checkType={checkType}
-					setCheckType={setCheckType}
 					checkIncorrectWordsAgain={checkIncorrectWordsAgain}
 					setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
 					handleContinue={handleContinue}
@@ -121,7 +116,7 @@ const Page = () => {
 			{(stage === 'test' || stage === 'review') && activeWord && (
 				<Test
 					handleContinue={handleContinue}
-					progressPercentage={(maxWords - remainingWords) / maxWords}
+					progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
 					activeWord={activeWord}
 					validKeysToCheck={validKeysToCheck}
 					inputValues={inputValues}

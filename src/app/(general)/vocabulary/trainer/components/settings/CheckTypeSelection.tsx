@@ -2,27 +2,35 @@ import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import SelectButton from '@/components/SelectButton';
 import Input from '@/components/Input';
 import { Word } from '@/types';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useNumberInput } from '@/hooks/useNumberInput';
 
 type CheckTypeSelectionProps = {
 	validWords: Word[];
-	checkType: 'all' | 'limited';
-	setCheckType: Dispatch<SetStateAction<'all' | 'limited'>>;
 	checkIncorrectWordsAgain: boolean;
 	setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-	maxWordsInput: string;
 	setMaxWordsInput: Dispatch<SetStateAction<string>>;
+	updateWords: (arg?: Word[]) => void;
 };
 
 const CheckTypeSelection = ({
 	checkIncorrectWordsAgain,
 	setCheckIncorrectWordsAgain,
 	validWords,
-	checkType,
-	setCheckType,
-	maxWordsInput,
-	setMaxWordsInput
+	setMaxWordsInput,
+	updateWords
 }: CheckTypeSelectionProps) => {
+	const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
+	const { value, inputValue, updateValue } = useNumberInput(validWords.length);
+
+	useEffect(() => {
+		updateWords(validWords.slice(0, value));
+	}, [updateWords, validWords, value]);
+
+	useEffect(() => {
+		checkType === 'all' && setMaxWordsInput(validWords.length.toString());
+	}, [checkType, validWords.length, setMaxWordsInput]);
+
 	return (
 		<>
 			<p>Abfrage (die Überprüfung kann auch frühzeitig beendet werden):</p>
@@ -50,23 +58,9 @@ const CheckTypeSelection = ({
 				) : (
 					<Input
 						label={`Anzahl der abgefragten Wörter (max. ${validWords.length})`}
-						onChange={(value) =>
-							setMaxWordsInput(
-								(!isNaN(parseInt(value))
-									? parseInt(value) > validWords.length
-										? validWords.length
-										: parseInt(value) < 0
-											? 0
-											: parseInt(value)
-									: value === ''
-										? ''
-										: 0
-								).toString()
-							)
-						}
-						value={maxWordsInput}
+						onChange={updateValue}
+						value={inputValue}
 						className={'w-1/3 text-center'}
-						type='number'
 					/>
 				)}
 			</div>

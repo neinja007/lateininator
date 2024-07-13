@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import Button from '@/components/Button';
 import ProgressBar from '@/components/ProgressBar';
 import { Stage } from '@/hooks/useStage';

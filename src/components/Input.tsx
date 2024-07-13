@@ -6,7 +6,7 @@ type InputProps = {
 	label?: string;
 	onChange: Dispatch<SetStateAction<any>>;
 	className?: React.CSSProperties;
-} & React.ComponentProps<'input'>;
+} & Omit<React.ComponentProps<'input'>, 'onChange'>;
 
 const Input = ({ label, onChange, className, ...props }: InputProps) => {
 	const id = useId();
