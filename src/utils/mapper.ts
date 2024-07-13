@@ -1,6 +1,6 @@
 import { MapperType } from '@/types';
 
-export const MAPPER = {
+export const MAPPER: MapperType = {
 	extended: {
 		type: {
 			noun: 'Nomen',
@@ -66,7 +66,7 @@ export const MAPPER = {
 			kon: 'Konjunktiv'
 		},
 		voice: { act: 'Aktiv', pas: 'Passiv' },
-		wordProperty: {
+		property: {
 			conjugation: 'Konjugation',
 			comparison: 'Komparation',
 			declension: 'Deklination',
@@ -76,7 +76,14 @@ export const MAPPER = {
 			genitive: 'Genitiv Singular',
 			participle: 'Partizip Perfekt Passiv',
 			perfect: '1. Person Singular Perfekt',
-			present: '1. Person Singular Präsens'
+			present: '1. Person Singular Präsens',
+			comparisonDegree: 'Steigerungsform',
+			modus: 'Modus',
+			person: 'Person',
+			tense: 'Zeitform',
+			voice: 'Aktiv / Passiv',
+			wordCase: 'Fall',
+			numerus: 'Numerus'
 		},
 		comparisonDegree: {
 			pos: 'Positiv',
@@ -149,7 +156,7 @@ export const MAPPER = {
 			kon: 'Konj.'
 		},
 		voice: { act: 'Akt.', pas: 'Pas.' },
-		wordProperty: {
+		property: {
 			comparison: 'Komp.',
 			conjugation: 'Konj.',
 			declension: 'Dekl.',
@@ -159,7 +166,14 @@ export const MAPPER = {
 			genitive: 'Gen.',
 			participle: 'PPP',
 			perfect: 'Perf.',
-			present: 'Präs.'
+			present: 'Präs.',
+			comparisonDegree: 'Steig.',
+			modus: 'Mod.',
+			person: 'Pers.',
+			tense: 'Zeit',
+			voice: 'Akt./Pas.',
+			wordCase: 'F.',
+			numerus: 'Num.'
 		},
 		comparisonDegree: {
 			pos: 'Positiv',
@@ -167,4 +181,4 @@ export const MAPPER = {
 			sup: 'Superlativ'
 		}
 	}
-} satisfies MapperType;
+};

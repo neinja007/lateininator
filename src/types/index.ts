@@ -15,6 +15,7 @@ export type ComparisonDegree = (typeof WORD_CONSTANTS.comparisonDegree)[number];
 export type WordType = (typeof APP_CONSTANTS.wordTypes)[number];
 export type MainWordTypes = (typeof APP_CONSTANTS.mainWordTypes)[number];
 export type WordProperty = (typeof APP_CONSTANTS.allWordProperties)[number];
+export type OtherProperty = (typeof APP_CONSTANTS.otherProperties)[number];
 export type WordPropertiesUsingSelectInput = (typeof APP_CONSTANTS.wordPropertiesUsingSelectInput)[number];
 
 export type Word = Verb | Noun | Adjective | Other;
@@ -120,7 +121,7 @@ export type MapperKeys = {
 	person: Record<Person, string>;
 	modus: Record<Modus, string>;
 	voice: Record<Voice, string>;
-	wordProperty: Record<WordProperty, string>;
+	property: Record<WordProperty | OtherProperty, string>;
 	comparisonDegree: Record<ComparisonDegree, string>;
 };
 
