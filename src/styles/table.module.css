@@ -2,17 +2,19 @@
 @tailwind utilities;
 
 .table {
-  @apply w-full table-fixed overflow-hidden border
+	@apply w-full table-fixed overflow-hidden border;
 }
 
-.thead, .th {
-  @apply bg-gray-100
+.thead,
+.th {
+	@apply bg-gray-100 dark:bg-gray-800;
 }
 
-.th, .td {
-  @apply px-3 py-1
+.th,
+.td {
+	@apply px-3 py-1;
 }
 
 .tr {
-  @apply border-t
+	@apply border-t;
 }

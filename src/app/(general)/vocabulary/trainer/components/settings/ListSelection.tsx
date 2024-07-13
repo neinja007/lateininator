@@ -50,7 +50,7 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
 				))}
 			</div>
 			<p>
-				Es wurden <b className='text-blue-700'>{selectedIds.length} Wörter</b> ausgewählt.
+				Es wurden <b className='text-blue-500'>{selectedIds.length} Wörter</b> ausgewählt.
 			</p>
 		</>
 	);

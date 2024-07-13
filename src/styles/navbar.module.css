@@ -6,13 +6,13 @@
 }
 
 .dropdown_navlink {
-	@apply my-auto font-semibold cursor-pointer select-none p-2 px-4 border-b last:border-b-0 block;
+	@apply my-auto font-semibold cursor-pointer select-none p-2 px-4 border-b last:border-b-0 dark:border-gray-600 block;
 }
 
 .active {
-	@apply text-blue-700;
+	@apply text-blue-500;
 }
 
 .inactive {
-	@apply text-gray-600 hover:text-gray-800;
+	@apply text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200;
 }

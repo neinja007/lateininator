@@ -19,7 +19,7 @@ const Input = ({ label, onChange, className, ...props }: InputProps) => {
 					<br />
 				</>
 			)}
-			<input onChange={(e) => onChange(e.target.value)} id={id} {...props} className={clsx(ui.basic, className)} />
+			<input onChange={(e) => onChange(e.target.value)} id={id} {...props} className={clsx(className, ui.basic)} />
 		</div>
 	);
 };

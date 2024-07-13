@@ -139,7 +139,7 @@ const Page = () => {
 							}, {})}
 						/>
 						<span className='mt-auto mb-1.5 ml-5'>
-							Du hast <b className='text-blue-700'>{selectedWords.length} Adjektive</b> ausgewählt.
+							Du hast <b className='text-blue-500'>{selectedWords.length} Adjektive</b> ausgewählt.
 						</span>
 					</div>
 					<hr />

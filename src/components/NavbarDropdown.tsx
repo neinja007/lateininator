@@ -25,7 +25,7 @@ const NavbarDropdown = ({ label, children, open, handleOpen, active, mobile }: N
 				<ChevronUp
 					size={20}
 					className={clsx(
-						'inline ml-0.5 transition-transform align-text-top text-black',
+						'inline ml-0.5 transition-transform align-text-top text-gray-600 dark:text-gray-400',
 						open !== label ? '-rotate-180' : 'rotate-0'
 					)}
 				/>
@@ -35,7 +35,7 @@ const NavbarDropdown = ({ label, children, open, handleOpen, active, mobile }: N
 					<div onClick={() => handleOpen('')} className='z-50 fixed inset-0 w-full h-full' />
 					<div
 						className={clsx(
-							'absolute z-[50] text-center rounded-lg border shadow bg-white',
+							'absolute z-[50] text-center rounded-lg border dark:border-gray-600 shadow bg-white dark:bg-gray-900',
 							mobile ? 'translate-x-2' : 'translate-y-8'
 						)}
 					>

@@ -60,7 +60,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<div className='fixed inset-0 w-full h-16 inline-flex bg-gray-100'>
+			<div className='fixed inset-0 w-full h-16 inline-flex bg-gray-100 dark:bg-gray-800'>
 				<Logo />
 				<div className='w-full justify-end xl:justify-center gap-x-2 hidden lg:flex mr-4'>
 					{links.map((link, i) => {
@@ -92,7 +92,9 @@ const Navbar = () => {
 						}
 					})}
 					<SignedIn>
-						<UserButton showName />
+						<div className='my-auto'>
+							<UserButton showName />
+						</div>
 					</SignedIn>
 					<SignedOut>
 						<NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegments[1] === '/sign-in'} />

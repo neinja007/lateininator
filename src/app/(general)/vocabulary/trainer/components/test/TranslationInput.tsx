@@ -3,6 +3,7 @@ import { Stage } from '@/hooks/useStage';
 import { Word, WordProperty } from '@/types';
 import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import { Dispatch, SetStateAction } from 'react';
+import ui from '@/styles/ui.module.css';
 
 type TranslationInputProps = {
 	checkTranslation: boolean;
@@ -26,11 +27,11 @@ const TranslationInput = ({
 					label='Übersetzung (mehrere Antworten durch "," trennen)'
 					disabled={stage === 'review'}
 					className={
-						'w-full' +
+						'w-full ' +
 						(stage === 'review'
 							? compareValues(inputValues.translation, activeWord.translation, true)
-								? ' bg-green-300 border-none'
-								: ' bg-red-300 border-none'
+								? ui.correct
+								: ui.incorrect
 							: '')
 					}
 					value={

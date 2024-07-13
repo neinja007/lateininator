@@ -6,6 +6,7 @@ import Input from '@/components/Input';
 import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards';
 import Select from '@/components/Select';
 import clsx from 'clsx';
+import ui from '@/styles/ui.module.css';
 
 type TrainerInputProps = {
 	property: WordProperty;
@@ -22,8 +23,7 @@ const TrainerInput = ({ correct, property, handleChange, value, appendedString }
 				return object;
 			}, {})
 		: {};
-	const correctValueIndicator =
-		correct !== undefined && (correct ? '!bg-green-300 border-none' : '!bg-red-300 border-none');
+	const correctValueIndicator = correct !== undefined && (correct ? ui.correct : ui.incorrect);
 
 	if (isWordPropertiesUsingSelectInput(property)) {
 		return (

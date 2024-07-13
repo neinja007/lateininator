@@ -46,7 +46,7 @@ const WordTypeSelection = ({
 				))}
 			</div>
 			<p>
-				<b className='text-blue-700'>
+				<b className='text-blue-500'>
 					{validWords.length} von {selectedIds.length} Wörtern
 				</b>{' '}
 				stimmen mit den Wortarten überein.

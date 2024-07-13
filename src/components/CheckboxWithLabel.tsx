@@ -20,7 +20,7 @@ const CheckboxWithLabel = ({ checked, disabled, handleChange, label }: CheckboxW
 				onChange={(e) => handleChange(e.target.checked)}
 				className='mr-1'
 			/>
-			<label htmlFor={id} className={checked ? 'text-blue-700' : disabled ? 'text-gray-400' : 'text-gray-500'}>
+			<label htmlFor={id} className={checked ? 'text-blue-500' : disabled ? 'text-gray-400' : 'text-gray-500'}>
 				{label}
 			</label>
 		</div>

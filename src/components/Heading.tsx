@@ -4,7 +4,7 @@ type HeadingProps = { children: React.ReactNode; className?: React.CSSProperties
 
 const Heading = ({ children, className, ...props }: HeadingProps) => {
 	return (
-		<h1 {...props} className={clsx('text-3xl text-center font-bold text-blue-700', className)}>
+		<h1 {...props} className={clsx('text-3xl text-center font-bold text-blue-500', className)}>
 			{children}
 		</h1>
 	);
