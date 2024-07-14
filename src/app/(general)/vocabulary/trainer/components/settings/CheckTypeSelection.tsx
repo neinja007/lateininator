@@ -25,10 +25,6 @@ const CheckTypeSelection = ({
 		updateWords(validWords.slice(0, value));
 	}, [updateWords, validWords, value]);
 
-	useEffect(() => {
-		updateValue(validWords.length.toString());
-	}, [updateValue, validWords.length]);
-
 	return (
 		<>
 			<p>Abfrage (die Überprüfung kann auch frühzeitig beendet werden):</p>
