@@ -14,9 +14,9 @@
 }
 
 .correct {
-	@apply !bg-green-300 dark:!bg-green-800 border-none;
+	@apply !bg-green-400 dark:!bg-green-800 border-none;
 }
 
 .incorrect {
-	@apply !bg-red-300 dark:!bg-red-800 border-none;
+	@apply !bg-red-400 dark:!bg-red-800 border-none;
 }
