@@ -1,4 +1,4 @@
-import TrainerInput from '@/components/TrainerInput';
+import PropertyInput from '@/components/PropertyInput';
 import { Stage } from '@/types';
 import { Word, WordProperty } from '@/types';
 import { compareValues } from '@/utils/inputUtils';
@@ -22,7 +22,7 @@ const PropertyInputs = ({ validKeysToCheck, activeWord, inputValues, setInputVal
 				let correct = stage === 'review' ? compareValues(inputValues[key], value) : undefined;
 
 				return (
-					<TrainerInput
+					<PropertyInput
 						key={i}
 						property={key}
 						value={inputValues[key]}
