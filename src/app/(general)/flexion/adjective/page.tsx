@@ -84,7 +84,7 @@ const Page = () => {
 	const [maxUnit, setMaxUnit] = useState(lists.length);
 	const [validWords, setValidWords] = useState<Array<Adjective>>([]);
 
-	const { inputValue, updateValue, value } = useNumberInput(100);
+	const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
 
 	const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
 	const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>([
@@ -242,8 +242,8 @@ const Page = () => {
 					<hr />
 					<div>
 						<Input
-							label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (Empfehlung: ${
-								testingType === 'individual' ? '20-40' : '2-4'
+							label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (max. ${
+								testingType === 'individual' ? '100' : '5'
 							})`}
 							onChange={(value) => updateValue(value)}
 							value={inputValue}
