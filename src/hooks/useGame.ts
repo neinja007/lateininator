@@ -31,8 +31,12 @@ export const useGame = (
 	}, [possibleWords, staticPossibleWords]);
 
 	const handleContinue = (newStage?: Stage) => {
-		if (newStage) setStage(newStage);
-		else newStage = stage;
+		if (newStage) {
+			setStage(newStage);
+			return;
+		} else {
+			newStage = stage;
+		}
 		if (newStage === 'test') {
 			if (!activeWord) {
 				throw new Error('activeWord is undefined');
