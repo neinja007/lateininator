@@ -110,23 +110,25 @@ const Page = () => {
 	const [tableInputValues, setTableInputValues] = useState<typeof initialTableInputValues>(initialTableInputValues);
 
 	useEffect(() => {
-		const ids = lists
-			.filter((list) => list.id < maxUnit)
-			.reduce((acc: any, list) => {
-				return acc.concat(list.words);
-			}, []);
+		if (stage === 'settings') {
+			const ids = lists
+				.filter((list) => list.id < maxUnit)
+				.reduce((acc: any, list) => {
+					return acc.concat(list.words);
+				}, []);
 
-		const selectedWords: Adjective[] = words.filter(
-			(word: Word) => isAdjective(word) && ids.includes(word.id) && word.comparison !== '-'
-		) as Adjective[];
-		setValidWords(selectedWords);
+			const selectedWords: Adjective[] = words.filter(
+				(word: Word) => isAdjective(word) && ids.includes(word.id) && word.comparison !== '-'
+			) as Adjective[];
+			setValidWords(selectedWords);
 
-		const possibleWords = selectedWords
-			.filter((word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison))
-			.slice(0, value);
+			const possibleWords = selectedWords
+				.filter((word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison))
+				.slice(0, value);
 
-		updateWords(possibleWords);
-	}, [comparisons, maxUnit, updateWords, value]);
+			updateWords(possibleWords);
+		}
+	}, [comparisons, maxUnit, stage, updateWords, value]);
 
 	useEffect(() => {
 		if (!activeWord || !isAdjective(activeWord)) return;
@@ -147,8 +149,6 @@ const Page = () => {
 			});
 		}
 	}, [activeWord, comparisonDegrees, genders, testingType]);
-
-	console.log(activeWord, testingType, stage);
 
 	const start = remainingWords > 0;
 
