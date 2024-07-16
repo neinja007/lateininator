@@ -4,23 +4,27 @@ import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
 
 type TrainerInputProps = {
-	label: string;
+	customStyle?: React.CSSProperties & string;
+	label?: string;
 	value: string;
-	appendedString?: string;
+	correctValue?: string;
 	handleChange: (...args: any[]) => void;
-	correct?: boolean;
 };
 
-const TrainerInput = ({ label, correct, handleChange, value, appendedString }: TrainerInputProps) => {
-	const correctValueIndicator = correct !== undefined && (correct ? ui.correct : ui.incorrect);
+const TrainerInput = ({ customStyle, label, handleChange, value, correctValue }: TrainerInputProps) => {
+	const correct = correctValue !== undefined ? value === correctValue : undefined;
+	const correctValueIndicator = correctValue !== undefined && (correct ? ui.correct : ui.incorrect);
+
+	const showValue = correctValue !== undefined && !correct;
 	const transformedValue = value.trim()
-		? value + ((correct !== undefined && ' (' + appendedString + ')') || '')
-		: (correct !== undefined && '(' + appendedString + ')') || '';
+		? value + ((showValue && ' (' + correctValue + ')') || '')
+		: (showValue && '(' + correctValue + ')') || '';
 
 	return (
 		<Input
+			unstyled={!!customStyle}
 			label={label}
-			className={clsx('w-full', correctValueIndicator)}
+			className={clsx('w-full', correctValueIndicator, customStyle)}
 			value={transformedValue}
 			onChange={handleChange}
 			disabled={correct !== undefined}

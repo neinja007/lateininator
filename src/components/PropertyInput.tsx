@@ -41,8 +41,7 @@ const PropertyInput = ({ correct, property, handleChange, value, appendedString 
 		return (
 			<TrainerInput
 				label={MAPPER.extended.property[property]}
-				correct={correct}
-				appendedString={appendedString}
+				correctValue={appendedString}
 				value={value}
 				handleChange={(value) => handleChange(property, value)}
 			/>

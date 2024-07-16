@@ -271,12 +271,7 @@ const Page = () => {
                   `}
 								handleChange={setIndividualInputValue}
 								value={individualInputValue}
-								appendedString={getForm(activeWord, individualInputForm)}
-								correct={
-									stage === 'review'
-										? compareValues(individualInputValue, getForm(activeWord, individualInputForm))
-										: undefined
-								}
+								correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
 							/>
 						) : (
 							tableInputForm &&
@@ -305,18 +300,27 @@ const Page = () => {
 																</th>
 																{WORD_CONSTANTS.gender.map((gender, i) => (
 																	<td key={i} className='p-0 border'>
-																		<input
-																			className='w-full m-0 h-full px-1 bg-inherit focus:outline-none'
-																			type='text'
+																		<TrainerInput
+																			customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
 																			value={tableInputValues[gender][numerus][wordCase]}
-																			onChange={(e) =>
+																			correctValue={
+																				stage === 'review'
+																					? getForm(activeWord, {
+																							gender,
+																							numerus,
+																							wordCase,
+																							comparisonDegree: tableInputForm.comparisonDegree
+																						})
+																					: undefined
+																			}
+																			handleChange={(value) =>
 																				setTableInputValues((prev) => ({
 																					...prev,
 																					[gender]: {
 																						...prev[gender],
 																						[numerus]: {
 																							...prev[gender][numerus],
-																							[wordCase]: e.target.value
+																							[wordCase]: value
 																						}
 																					}
 																				}))
