@@ -22,6 +22,7 @@ import { getRandomItem } from '@/utils/propertyUtils';
 import { useGame } from '@/hooks/useGame';
 import ui from '@/styles/ui.module.css';
 import table from '@/styles/table.module.css';
+import TrainerInput from '@/components/TrainerInput';
 
 const initialTableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>> = {
 	m: {
@@ -261,28 +262,21 @@ const Page = () => {
 					<hr />
 					<div>
 						{individualInputForm && testingType === 'individual' ? (
-							<Input
+							<TrainerInput
 								label={`
                   ${MAPPER.extended.gender[individualInputForm.gender]};
                   ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]}
                   ${MAPPER.extended.numerus[individualInputForm.numerus]}
                   ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
                   `}
-								onChange={(value) => setIndividualInputValue(value)}
-								value={
+								handleChange={setIndividualInputValue}
+								value={individualInputValue}
+								appendedString={getForm(activeWord, individualInputForm)}
+								correct={
 									stage === 'review'
-										? getInputWithCorrectValue(individualInputValue, getForm(activeWord, { ...individualInputForm }))
-										: individualInputValue
+										? compareValues(individualInputValue, getForm(activeWord, individualInputForm))
+										: undefined
 								}
-								className={
-									'w-full ' +
-									(stage === 'review'
-										? compareValues(individualInputValue, getForm(activeWord, { ...individualInputForm }))
-											? ui.correct
-											: ui.incorrect
-										: '')
-								}
-								disabled={stage === 'review'}
 							/>
 						) : (
 							tableInputForm &&

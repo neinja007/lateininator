@@ -13,12 +13,15 @@ type TrainerInputProps = {
 
 const TrainerInput = ({ label, correct, handleChange, value, appendedString }: TrainerInputProps) => {
 	const correctValueIndicator = correct !== undefined && (correct ? ui.correct : ui.incorrect);
+	const transformedValue = value.trim()
+		? value + ((correct !== undefined && ' (' + appendedString + ')') || '')
+		: (correct !== undefined && '(' + appendedString + ')') || '';
 
 	return (
 		<Input
 			label={label}
 			className={clsx('w-full', correctValueIndicator)}
-			value={value + ((appendedString && ' (' + appendedString + ')') || '')}
+			value={transformedValue}
 			onChange={handleChange}
 			disabled={correct !== undefined}
 		/>
