@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignOutButton, UserButton } from '@clerk/nextjs';
 import { Menu, X } from 'react-feather';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarDropdownLink from '@/components/NavbarDropdownLink';
 import NavbarLink from '@/components/NavbarLink';
+import navbar from '@/styles/navbar.module.css';
+import clsx from 'clsx';
 
 type Link = {
 	label: string;
@@ -92,8 +94,8 @@ const Navbar = () => {
 						}
 					})}
 					<SignedIn>
-						<div className='my-auto'>
-							<UserButton showName />
+						<div className={clsx(navbar.navlink, navbar.inactive)}>
+							<SignOutButton />
 						</div>
 					</SignedIn>
 					<SignedOut>

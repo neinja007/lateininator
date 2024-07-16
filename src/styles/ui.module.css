@@ -6,7 +6,7 @@
 }
 
 .basic {
-	@apply p-1 px-3 h-9 inline rounded-md border;
+	@apply p-1 px-3 h-9 inline rounded-md border focus:outline-none;
 }
 
 .link {
