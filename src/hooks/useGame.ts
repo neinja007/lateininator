@@ -10,7 +10,6 @@ export const useGame = (
 	activeWord: Word | undefined;
 	remainingWords: number;
 	maxWords: number;
-	updateActiveWord: () => void;
 	updateWords: (arg?: Word[]) => void;
 	handleContinue: (arg?: Stage) => void;
 	stage: Stage;
@@ -80,7 +79,6 @@ export const useGame = (
 		remainingWords,
 		maxWords,
 		stage,
-		updateActiveWord,
 		updateWords,
 		handleContinue
 	};

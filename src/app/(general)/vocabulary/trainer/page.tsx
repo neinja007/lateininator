@@ -50,7 +50,7 @@ const Page = () => {
 		[inputValues, checkIncorrectWordsAgain, wordPropertiesToCheck]
 	);
 
-	const { stage, activeWord, remainingWords, maxWords, updateActiveWord, updateWords, handleContinue } = useGame(
+	const { stage, activeWord, remainingWords, maxWords, updateWords, handleContinue } = useGame(
 		false,
 		() => setInputValues(initialInputValues),
 		canContinue
