@@ -110,19 +110,19 @@ const Navbar = () => {
 				</div>
 			</div>
 			<div
-				className='fixed inset-16 h-fit z-50 rounded-lg bg-white dark:bg-black dark:border shadow-xl pb-1'
+				className='fixed inset-16 h-fit z-50 rounded-lg bg-white dark:bg-gray-900 dark:border border-gray-500 shadow-xl pb-1'
 				hidden={!mobileLinksOpen}
 			>
 				<div className='h-12 flex'>
 					<div className='my-auto w-full'>
-						<span className='pl-4 text-xl font-medium'>Navigation</span>
+						<span className='pl-4 text-2xl font-medium'>Navigation</span>
 						<X
 							className='h-7 w-9 mr-4 select-none cursor-pointer float-end'
 							onClick={() => setMobileLinksOpen(false)}
 						/>
 					</div>
 				</div>
-				<hr />
+				<hr className='border-gray-500' />
 				{links.map((link, i) => {
 					if (link.children) {
 						return (
@@ -160,8 +160,8 @@ const Navbar = () => {
 					}
 				})}
 				<SignedIn>
-					<div className='ml-2 my-2'>
-						<UserButton showName />
+					<div className={clsx(navbar.dropdown_navlink, navbar.inactive)}>
+						<SignOutButton />
 					</div>
 				</SignedIn>
 				<SignedOut>
