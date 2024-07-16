@@ -8,7 +8,7 @@ type ButtonProps = {
 	children: React.ReactNode;
 	className?: string & React.CSSProperties;
 	icon?: React.ReactNode;
-} & Exclude<React.ComponentProps<'button'>, 'onClick'>;
+} & React.ComponentProps<'button'>;
 
 const Button = ({ color = 'default', children, className, icon, ...props }: ButtonProps) => {
 	return (

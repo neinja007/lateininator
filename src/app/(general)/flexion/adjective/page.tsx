@@ -250,9 +250,9 @@ const Page = () => {
 							className={'w-full text-center'}
 						/>
 					</div>
-					<button onClick={() => handleContinue()} className='w-full' disabled={!start}>
+					<Button onClick={() => handleContinue()} className='w-full' disabled={!start}>
 						<span>{!start ? 'Keine Adjektive verfügbar' : 'Start'}</span>
-					</button>
+					</Button>
 				</>
 			)}
 			{(stage === 'test' || stage === 'review') && activeWord && (
