@@ -41,7 +41,7 @@ export const useGame = (
 
 			setStage('review');
 
-			if (staticPossibleWords || canContinue) {
+			if (staticPossibleWords || (canContinue && canContinue(activeWord))) {
 				updateWords();
 			}
 		} else {
