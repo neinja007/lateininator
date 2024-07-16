@@ -1,6 +1,6 @@
 'use client';
 
-import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/types';
+import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word, Stage } from '@/types';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
 import { Fragment, useEffect, useState } from 'react';
@@ -17,23 +17,74 @@ import Select from '@/components/Select';
 import SelectButton from '@/components/SelectButton';
 import WordDisplay from '@/components/WordDisplay';
 import Input from '@/components/Input';
-import { useStage } from '@/hooks/useStage';
-import { useActiveWord } from '@/hooks/useActiveWord';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { getRandomItem } from '@/utils/propertyUtils';
+import { useGame } from '@/hooks/useGame';
+import ui from '@/styles/ui.module.css';
+import table from '@/styles/table.module.css';
+
+const initialTableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>> = {
+	m: {
+		sin: {
+			1: '',
+			2: '',
+			3: '',
+			4: '',
+			5: ''
+		},
+		plu: {
+			1: '',
+			2: '',
+			3: '',
+			4: '',
+			5: ''
+		}
+	},
+	f: {
+		sin: {
+			1: '',
+			2: '',
+			3: '',
+			4: '',
+			5: ''
+		},
+		plu: {
+			1: '',
+			2: '',
+			3: '',
+			4: '',
+			5: ''
+		}
+	},
+	n: {
+		sin: {
+			1: '',
+			2: '',
+			3: '',
+			4: '',
+			5: ''
+		},
+		plu: {
+			1: '',
+			2: '',
+			3: '',
+			4: '',
+			5: ''
+		}
+	}
+};
 
 const Page = () => {
-	const { stage, setStage } = useStage();
-	const { activeWord, maxWords, remainingWords, updateActiveWord, updateWords } = useActiveWord(true);
+	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
+	const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue } = useGame(
+		true,
+		testingType === 'individual' ? () => setIndividualInputValue('') : () => {}
+	);
 
 	const [maxUnit, setMaxUnit] = useState(lists.length);
+	const [validWords, setValidWords] = useState<Array<Adjective>>([]);
 
-	const [selectedWords, setSelectedWords] = useState<Array<Adjective>>([]);
-	const [possibleWords, setPossibleWords] = useState<Array<Adjective>>([]);
-
-	const { inputValue, updateValue, value } = useNumberInput(possibleWords.length);
-
-	const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
+	const { inputValue, updateValue, value } = useNumberInput(100);
 
 	const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
 	const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>([
@@ -51,8 +102,11 @@ const Page = () => {
 		wordCase: WordCase;
 	}>();
 
-	// const [tableForm, setTableForm] = useState<Comparison>();
-	// const [tableValues, setTableValues] = useState<any>();
+	const [tableInputForm, setTableInputForm] = useState<{
+		comparison: Comparison;
+		comparisonDegree: ComparisonDegree;
+	}>();
+	const [tableInputValues, setTableInputValues] = useState<typeof initialTableInputValues>(initialTableInputValues);
 
 	useEffect(() => {
 		const ids = lists
@@ -64,16 +118,17 @@ const Page = () => {
 		const selectedWords: Adjective[] = words.filter(
 			(word: Word) => isAdjective(word) && ids.includes(word.id) && word.comparison !== '-'
 		) as Adjective[];
-		setSelectedWords(selectedWords);
+		setValidWords(selectedWords);
 
-		const possibleWords = selectedWords.filter(
-			(word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison)
-		);
+		const possibleWords = selectedWords
+			.filter((word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison))
+			.slice(0, value);
 
-		setPossibleWords(possibleWords);
-	}, [comparisons, maxUnit]);
+		updateWords(possibleWords);
+	}, [comparisons, maxUnit, updateWords, value]);
 
 	useEffect(() => {
+		if (!activeWord || !isAdjective(activeWord)) return;
 		if (testingType === 'individual') {
 			activeWord &&
 				isAdjective(activeWord) &&
@@ -84,42 +139,15 @@ const Page = () => {
 					wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
 					gender: getRandomItem(genders)
 				});
+		} else {
+			setTableInputForm({
+				comparison: activeWord.comparison as Comparison,
+				comparisonDegree: getRandomItem(comparisonDegrees)
+			});
 		}
 	}, [activeWord, comparisonDegrees, genders, testingType]);
 
-	useEffect(() => {
-		updateWords(possibleWords.slice(0, value));
-	}, [possibleWords, updateWords, value]);
-
-	const handleContinue = () => {
-		if (stage === 'test') {
-			if (!activeWord) {
-				throw new Error('activeWord is undefined');
-			}
-
-			setStage('review');
-
-			updateWords();
-		} else {
-			if (remainingWords === 0) {
-				setStage('results');
-				return;
-			}
-			setStage('test');
-
-			updateActiveWord();
-
-			resetInputs();
-		}
-	};
-
-	const resetInputs = () => {
-		if (testingType === 'individual') {
-			setIndividualInputValue('');
-		}
-	};
-
-	const progressPercentage = ((maxWords - remainingWords) / maxWords) * 100;
+	console.log(activeWord, testingType, stage);
 
 	const start = remainingWords > 0;
 
@@ -140,7 +168,7 @@ const Page = () => {
 							}, {})}
 						/>
 						<span className='mt-auto mb-1.5 ml-5'>
-							Du hast <b className='text-blue-500'>{selectedWords.length} Adjektive</b> ausgewählt.
+							Du hast <b className='text-blue-500'>{validWords.length} Adjektive</b> ausgewählt.
 						</span>
 					</div>
 					<hr />
@@ -222,17 +250,17 @@ const Page = () => {
 							className={'w-full text-center'}
 						/>
 					</div>
-					<Button onClick={handleContinue} className='w-full' disabled={!start}>
+					<Button handleClick={handleContinue} className='w-full' disabled={!start}>
 						<span>{!start ? 'Keine Adjektive verfügbar' : 'Start'}</span>
 					</Button>
 				</>
 			)}
-			{(stage === 'test' || stage === 'review') && activeWord && individualInputForm && (
+			{(stage === 'test' || stage === 'review') && activeWord && (
 				<>
 					<WordDisplay word={activeWord} />
 					<hr />
 					<div>
-						{testingType === 'individual' ? (
+						{individualInputForm && testingType === 'individual' ? (
 							<Input
 								label={`
                   ${MAPPER.extended.gender[individualInputForm.gender]};
@@ -250,22 +278,23 @@ const Page = () => {
 									'w-full ' +
 									(stage === 'review'
 										? compareValues(individualInputValue, getForm(activeWord, { ...individualInputForm }))
-											? 'bg-green-300 border-none'
-											: 'bg-red-300 border-none'
+											? ui.correct
+											: ui.incorrect
 										: '')
 								}
 								disabled={stage === 'review'}
 							/>
 						) : (
-							WORD_CONSTANTS.comparisonDegree.map((comparisonDegree, i) => (
-								<Fragment key={i}>
-									<p>{MAPPER.extended.comparisonDegree[comparisonDegree]}</p>
-									<table key={i} className='w-full rounded-lg table-fixed overflow-hidden shadow'>
-										<thead className='bg-gray-100'>
+							tableInputForm &&
+							testingType === 'table' && (
+								<Fragment>
+									<p>{MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}</p>
+									<table className={table.table}>
+										<thead className={table.thead}>
 											<tr>
 												<th />
 												{WORD_CONSTANTS.gender.map((gender, i) => (
-													<th key={i} className='px-3 py-1'>
+													<th key={i} className={table.th}>
 														{MAPPER.extended.gender[gender]}
 													</th>
 												))}
@@ -273,33 +302,50 @@ const Page = () => {
 										</thead>
 										<tbody>
 											{WORD_CONSTANTS.numerus.map((numerus) =>
-												WORD_CONSTANTS.wordCase.map((wordCase, i) => (
-													<tr key={i} className='border-t'>
-														<th className='px-3 py-1 bg-gray-100'>
-															{MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
-														</th>
-														{WORD_CONSTANTS.gender.map((gender, i) => (
-															<td key={i} className='px-3 py-1'>
-																{getForm(activeWord, {
-																	comparisonDegree,
-																	gender,
-																	numerus,
-																	wordCase
-																})}
-															</td>
-														))}
-													</tr>
-												))
+												WORD_CONSTANTS.wordCase.map(
+													(wordCase, i) =>
+														wordCase !== '6' && (
+															<tr key={i} className='border-t'>
+																<th className={table.th}>
+																	{MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
+																</th>
+																{WORD_CONSTANTS.gender.map((gender, i) => (
+																	<td key={i} className='p-0 border'>
+																		<input
+																			className='w-full m-0 h-full px-1 bg-inherit focus:outline-none'
+																			type='text'
+																			value={tableInputValues[gender][numerus][wordCase]}
+																			onChange={(e) =>
+																				setTableInputValues((prev) => ({
+																					...prev,
+																					[gender]: {
+																						...prev[gender],
+																						[numerus]: {
+																							...prev[gender][numerus],
+																							[wordCase]: e.target.value
+																						}
+																					}
+																				}))
+																			}
+																		/>
+																	</td>
+																))}
+															</tr>
+														)
+												)
 											)}
 										</tbody>
 									</table>
 									<br />
 								</Fragment>
-							))
+							)
 						)}
 					</div>
 					<hr />
-					<ActionBar handleContinue={handleContinue} progressPercentage={progressPercentage} />
+					<ActionBar
+						handleContinue={handleContinue}
+						progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+					/>
 				</>
 			)}
 		</div>

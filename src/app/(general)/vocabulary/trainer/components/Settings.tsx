@@ -6,7 +6,7 @@ import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import CheckTypeSelection from './settings/CheckTypeSelection';
 import PropertySelection from './settings/PropertySelection';
-import { Stage } from '@/hooks/useStage';
+import { Stage } from '@/types';
 
 type SettingsProps = {
 	checkTranslation: boolean;

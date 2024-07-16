@@ -1,16 +1,16 @@
 import Button from '@/components/Button';
-import { Stage } from '@/hooks/useStage';
+import { Stage } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
 
 type ResultsProps = {
-	setStage: Dispatch<SetStateAction<Stage>>;
+	handleContinue: (arg?: Stage) => void;
 };
 
-const Results = ({ setStage }: ResultsProps) => {
+const Results = ({ handleContinue }: ResultsProps) => {
 	return (
 		<>
 			<p>Es wurden einige verschiedene Wörter abgefragt.</p>
-			<Button onClick={() => setStage('settings')}>Neu Laden</Button>
+			<Button onClick={() => handleContinue('settings')}>Neu Laden</Button>
 		</>
 	);
 };

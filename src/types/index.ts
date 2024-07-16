@@ -128,3 +128,4 @@ export type MapperKeys = {
 export type MapperType = { short: MapperKeys; extended: MapperKeys };
 
 export type Color = 'gray' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'default';
+export type Stage = 'settings' | 'test' | 'review' | 'results';

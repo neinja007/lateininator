@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import ProgressBar from '@/components/ProgressBar';
-import { Stage } from '@/hooks/useStage';
+import { Stage } from '@/types';
 
 type ActionBarProps = {
 	handleContinue: (arg?: Stage) => void;

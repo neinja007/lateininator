@@ -109,7 +109,10 @@ const Navbar = () => {
 					/>
 				</div>
 			</div>
-			<div className='fixed inset-16 h-fit z-50 rounded-lg bg-white shadow-xl pb-1' hidden={!mobileLinksOpen}>
+			<div
+				className='fixed inset-16 h-fit z-50 rounded-lg bg-white dark:bg-black dark:border shadow-xl pb-1'
+				hidden={!mobileLinksOpen}
+			>
 				<div className='h-12 flex'>
 					<div className='my-auto w-full'>
 						<span className='pl-4 text-xl font-medium'>Navigation</span>
