@@ -78,7 +78,9 @@ const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
   const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue } = useGame(
     true,
-    testingType === 'individual' ? () => setIndividualInputValue('') : () => {}
+    testingType === 'individual'
+      ? () => setIndividualInputValue('')
+      : () => setTableInputValues(initialTableInputValues)
   );
 
   const [maxUnit, setMaxUnit] = useState(lists.length);
