@@ -21,108 +21,108 @@ export type WordPropertiesUsingSelectInput = (typeof APP_CONSTANTS.wordPropertie
 export type Word = Verb | Noun | Adjective | Other;
 
 export type Base = {
-	id: number;
-	word: string;
-	type: WordType;
-	translation?: Array<string>;
-	info?: string;
-	derivative?: number;
-	exception?: number;
+  id: number;
+  word: string;
+  type: WordType;
+  translation?: Array<string>;
+  info?: string;
+  derivative?: number;
+  exception?: number;
 };
 
 export type Noun = Base & {
-	type: 'noun';
-	pluralOnly?: boolean;
-	declension: Declension | '-';
-	genitive: string | '-';
-	gender: Gender | '-';
+  type: 'noun';
+  pluralOnly?: boolean;
+  declension: Declension | '-';
+  genitive: string | '-';
+  gender: Gender | '-';
 };
 
 export type Verb = Base & {
-	type: 'verb';
-	conjugation: Conjugation | '-';
-	present: string | '-';
-	perfect: string | '-';
-	participle: string | '-';
+  type: 'verb';
+  conjugation: Conjugation | '-';
+  present: string | '-';
+  perfect: string | '-';
+  participle: string | '-';
 };
 
 export type Adjective = Base & {
-	type: 'adjective';
-	comparison: Comparison | '-';
-	femininum: string | '-';
-	neutrum: string | '-';
+  type: 'adjective';
+  comparison: Comparison | '-';
+  femininum: string | '-';
+  neutrum: string | '-';
 };
 
 export type Other = Base & {
-	type: 'other' | 'adverb' | 'pronoun' | 'irregularVerb';
+  type: 'other' | 'adverb' | 'pronoun' | 'irregularVerb';
 };
 
 export type List = { id: number; name: string; words: Array<number> };
 
 export type ConditionalTense<M> = M extends 'ind' ? Tense : Exclude<Tense, 'fut1'>;
 export type ConditionalPerson<T, V, M> = M extends 'ind'
-	? T extends 'pres'
-		? V extends 'act'
-			? Person
-			: Exclude<Person, '4'>
-		: Exclude<Person, '4'>
-	: Exclude<Person, '4'>;
+  ? T extends 'pres'
+    ? V extends 'act'
+      ? Person
+      : Exclude<Person, '4'>
+    : Exclude<Person, '4'>
+  : Exclude<Person, '4'>;
 
 export type Endings = {
-	verb: {
-		[C in Conjugation]: {
-			[M in Modus]: {
-				[V in Voice]: {
-					[T in ConditionalTense<M>]: {
-						[N in Numerus]: {
-							[P in ConditionalPerson<T, V, M>]: string;
-						};
-					};
-				};
-			};
-		};
-	};
-	noun: {
-		[D in Declension]: {
-			[G in Gender]: {
-				[N in Numerus]: {
-					[C in Exclude<WordCase, '6'>]: string;
-				};
-			};
-		};
-	};
-	adjective: {
-		[C in Comparison]: {
-			[G in Gender]: {
-				[D in ComparisonDegree]: {
-					[N in Numerus]: {
-						[C in Exclude<WordCase, '6'>]: string;
-					};
-				};
-			};
-		};
-	};
-	adverb: {
-		[D in ComparisonDegree]: {
-			[T in Comparison | '_ns']: string;
-		};
-	};
+  verb: {
+    [C in Conjugation]: {
+      [M in Modus]: {
+        [V in Voice]: {
+          [T in ConditionalTense<M>]: {
+            [N in Numerus]: {
+              [P in ConditionalPerson<T, V, M>]: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  noun: {
+    [D in Declension]: {
+      [G in Gender]: {
+        [N in Numerus]: {
+          [C in Exclude<WordCase, '6'>]: string;
+        };
+      };
+    };
+  };
+  adjective: {
+    [C in Comparison]: {
+      [G in Gender]: {
+        [D in ComparisonDegree]: {
+          [N in Numerus]: {
+            [C in Exclude<WordCase, '6'>]: string;
+          };
+        };
+      };
+    };
+  };
+  adverb: {
+    [D in ComparisonDegree]: {
+      [T in Comparison | '_ns']: string;
+    };
+  };
 };
 
 export type MapperKeys = {
-	type: Record<WordType, string>;
-	declension: Record<Declension, string>;
-	comparison: Record<Comparison, string>;
-	wordCase: Record<WordCase, string>;
-	gender: Record<Gender, string>;
-	numerus: Record<Numerus, string>;
-	conjugation: Record<Conjugation, string>;
-	tense: Record<Tense, string>;
-	person: Record<Person, string>;
-	modus: Record<Modus, string>;
-	voice: Record<Voice, string>;
-	property: Record<WordProperty | OtherProperty, string>;
-	comparisonDegree: Record<ComparisonDegree, string>;
+  type: Record<WordType, string>;
+  declension: Record<Declension, string>;
+  comparison: Record<Comparison, string>;
+  wordCase: Record<WordCase, string>;
+  gender: Record<Gender, string>;
+  numerus: Record<Numerus, string>;
+  conjugation: Record<Conjugation, string>;
+  tense: Record<Tense, string>;
+  person: Record<Person, string>;
+  modus: Record<Modus, string>;
+  voice: Record<Voice, string>;
+  property: Record<WordProperty | OtherProperty, string>;
+  comparisonDegree: Record<ComparisonDegree, string>;
 };
 
 export type MapperType = { short: MapperKeys; extended: MapperKeys };

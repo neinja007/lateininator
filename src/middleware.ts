@@ -2,15 +2,15 @@ import { clerkMiddleware } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 const middleware = (request: NextRequest) => {
-	if (request.nextUrl.pathname === '/') {
-		return NextResponse.redirect(new URL('/dashboard', request.url));
-	}
+  if (request.nextUrl.pathname === '/') {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
 
-	clerkMiddleware();
+  clerkMiddleware();
 };
 
 export const config = {
-	matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)']
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)']
 };
 
 export default middleware;

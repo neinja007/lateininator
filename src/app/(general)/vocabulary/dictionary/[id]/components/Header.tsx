@@ -10,19 +10,19 @@ import { clsx } from 'clsx';
 type HeaderProps = { word: Word };
 
 const Header = ({ word }: HeaderProps) => {
-	return (
-		<div className='grid grid-cols-3 h-12'>
-			<Link className={clsx(ui.basic, 'w-fit')} href={'/vocabulary/dictionary'}>
-				<ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
-			</Link>
-			<Heading>
-				{word.word} {getLexicalForm(word)}
-			</Heading>
-			<div className='text-right'>
-				<Badge text={word.type} />
-			</div>
-		</div>
-	);
+  return (
+    <div className='grid h-12 grid-cols-3'>
+      <Link className={clsx(ui.basic, 'w-fit')} href={'/vocabulary/dictionary'}>
+        <ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
+      </Link>
+      <Heading>
+        {word.word} {getLexicalForm(word)}
+      </Heading>
+      <div className='text-right'>
+        <Badge text={word.type} />
+      </div>
+    </div>
+  );
 };
 
 export default Header;
