@@ -33,7 +33,6 @@ const Page = () => {
   ]);
 
   const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
-  const resetInputs = useCallback(() => setInputValues(initialInputValues), []);
   const canContinue: (word: Word) => boolean = useCallback(
     (word) =>
       (word &&
