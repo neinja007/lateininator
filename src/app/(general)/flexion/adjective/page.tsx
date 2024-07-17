@@ -347,6 +347,7 @@ const Page = () => {
           />
         </>
       )}
+      {stage === 'results' && <Results handleContinue={handleContinue} />}
     </div>
   );
 };
