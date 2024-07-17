@@ -23,6 +23,7 @@ import { useGame } from '@/hooks/useGame';
 import ui from '@/styles/ui.module.css';
 import table from '@/styles/table.module.css';
 import TrainerInput from '@/components/TrainerInput';
+import Results from '@/components/Results';
 
 const initialTableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>> = {
   m: {

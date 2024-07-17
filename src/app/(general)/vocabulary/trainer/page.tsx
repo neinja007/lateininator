@@ -7,7 +7,7 @@ import Heading from '@/components/Heading';
 import Settings from './components/Settings';
 import Test from './components/Test';
 import { compareValues } from '@/utils/inputUtils';
-import Results from './components/Results';
+import Results from '@/components/Results';
 import { useGame } from '@/hooks/useGame';
 
 const initialInputValues = {
