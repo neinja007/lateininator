@@ -1,10 +1,9 @@
 'use client';
 
-import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word, Stage } from '@/types';
+import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/types';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
 import { Fragment, useEffect, useState } from 'react';
-import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import { getForm } from '@/utils/wordUtils';
 import { WORD_CONSTANTS } from '@/constants';
 import { isAdjective } from '@/utils/typeguards';
@@ -20,7 +19,6 @@ import Input from '@/components/Input';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { getRandomItem } from '@/utils/propertyUtils';
 import { useGame } from '@/hooks/useGame';
-import ui from '@/styles/ui.module.css';
 import table from '@/styles/table.module.css';
 import TrainerInput from '@/components/TrainerInput';
 import Results from '@/components/Results';
