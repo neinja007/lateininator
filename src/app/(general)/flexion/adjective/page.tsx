@@ -173,7 +173,7 @@ const Page = () => {
               Du hast <b className='text-blue-500'>{validWords.length} Adjektive</b> ausgewählt.
             </span>
           </div>
-          <hr />
+          <hr className='border-gray-500' />
           <p>Wähle aus, wie du abgefragt werden möchtest:</p>
           <div className='flex space-x-5'>
             <SelectButton
@@ -189,7 +189,7 @@ const Page = () => {
               label='Formen einzeln abfragen'
             />
           </div>
-          <hr />
+          <hr className='border-gray-500' />
           <div className='grid grid-cols-3'>
             <p>Wähle aus, was abgefragt werden soll:</p>
             <CheckboxWithLabel
@@ -241,7 +241,7 @@ const Page = () => {
               ))}
             </div>
           </div>
-          <hr />
+          <hr className='border-gray-500' />
           <div>
             <Input
               label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (max. ${
@@ -260,7 +260,7 @@ const Page = () => {
       {(stage === 'test' || stage === 'review') && activeWord && (
         <>
           <WordDisplay word={activeWord} />
-          <hr />
+          <hr className='border-gray-500' />
           <div>
             {individualInputForm && testingType === 'individual' ? (
               <TrainerInput
@@ -340,7 +340,7 @@ const Page = () => {
               )
             )}
           </div>
-          <hr />
+          <hr className='border-gray-500' />
           <ActionBar
             handleContinue={handleContinue}
             progressPercentage={((maxWords - remainingWords) / maxWords) * 100}

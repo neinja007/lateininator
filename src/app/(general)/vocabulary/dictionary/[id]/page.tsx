@@ -16,9 +16,9 @@ const Page = ({ params: { id } }: PageProps) => {
   return (
     <div>
       <Header word={word} />
-      <hr className='my-2' />
+      <hr className='my-2 border-gray-500' />
       <WordInformation word={word} />
-      <hr className='my-2' />
+      <hr className='my-2 border-gray-500' />
       <TableInformation word={word} />
       {word.type === 'noun' ? (
         <NounTable word={word} />

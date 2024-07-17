@@ -6,7 +6,7 @@
 }
 
 .dropdown_navlink {
-  @apply my-auto font-semibold cursor-pointer select-none p-2 px-4 border-b last:border-b-0 border-gray-500 block;
+  @apply my-auto font-semibold cursor-pointer select-none p-2 px-4 border-b last:border-b-0 dark:border-gray-500 block;
 }
 
 .active {

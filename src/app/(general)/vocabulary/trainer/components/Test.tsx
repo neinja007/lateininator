@@ -30,7 +30,7 @@ const Test = ({
     activeWord && (
       <>
         <WordDisplay word={activeWord} />
-        <hr />
+        <hr className='border-gray-500' />
         <TranslationInput
           checkTranslation={checkTranslation}
           activeWord={activeWord}
@@ -47,7 +47,7 @@ const Test = ({
             stage={stage}
           />
         )}
-        <hr />
+        <hr className='border-gray-500' />
         <ActionBar handleContinue={handleContinue} progressPercentage={progressPercentage} />
       </>
     )
