@@ -11,6 +11,7 @@ type AdjectiveListSelectionProps = {
 const AdjectiveListSelection = ({ maxUnit, setMaxUnit, validWords }: AdjectiveListSelectionProps) => {
   return (
     <>
+      <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
       <div className='flex'>
         <Select
           label='Lektion'
