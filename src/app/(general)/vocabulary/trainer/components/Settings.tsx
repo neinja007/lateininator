@@ -4,7 +4,7 @@ import { Word, WordProperty, WordType } from '@/types';
 import { Dispatch, SetStateAction, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
-import CheckTypeSelection from './settings/CheckTypeSelection';
+import WordCountSelection from './settings/WordCountSelection';
 import PropertySelection from './settings/PropertySelection';
 import { Stage } from '@/types';
 
@@ -56,7 +56,7 @@ const Settings = ({
         setWordPropertiesToCheck={setWordPropertiesToCheck}
       />
       <hr className='border-gray-500' />
-      <CheckTypeSelection
+      <WordCountSelection
         checkIncorrectWordsAgain={checkIncorrectWordsAgain}
         setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
         validWords={validWords}
