@@ -5,19 +5,19 @@ import { Word } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useNumberInput } from '@/hooks/useNumberInput';
 
-type CheckTypeSelectionProps = {
+type WordCountSelectionProps = {
   validWords: Word[];
   checkIncorrectWordsAgain: boolean;
   setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
   updateWords: (arg?: Word[]) => void;
 };
 
-const CheckTypeSelection = ({
+const WordCountSelection = ({
   checkIncorrectWordsAgain,
   setCheckIncorrectWordsAgain,
   validWords,
   updateWords
-}: CheckTypeSelectionProps) => {
+}: WordCountSelectionProps) => {
   const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
   const { value, inputValue, updateValue } = useNumberInput(validWords.length);
 
@@ -62,4 +62,4 @@ const CheckTypeSelection = ({
   );
 };
 
-export default CheckTypeSelection;
+export default WordCountSelection;
