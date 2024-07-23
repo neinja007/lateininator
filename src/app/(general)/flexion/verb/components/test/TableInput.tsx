@@ -12,8 +12,8 @@ type TableInputProps = {
     modus: Modus;
   };
   tenses: Tense[];
-  tableInputValues: Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>>;
-  setTableInputValues: Dispatch<SetStateAction<Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>>>>;
+  tableInputValues: Record<Tense, Record<Numerus, Record<Person, string>>>;
+  setTableInputValues: Dispatch<SetStateAction<Record<Tense, Record<Numerus, Record<Person, string>>>>>;
   stage: 'test' | 'review';
   activeWord: Word;
 };
@@ -35,56 +35,65 @@ const TableInput = ({
         <thead className={table.thead}>
           <tr>
             <th />
-            {tenses.map((tense, i) => (
-              <th key={i} className={table.th}>
-                {MAPPER.extended.tense[tense]}
-              </th>
-            ))}
+            {tenses.map(
+              (tense, i) =>
+                (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
+                  <th key={i} className={table.th}>
+                    {MAPPER.extended.tense[tense]}
+                  </th>
+                )
+            )}
           </tr>
         </thead>
         <tbody>
           {WORD_CONSTANTS.numerus.map((numerus) =>
             WORD_CONSTANTS.person.map(
               (person) =>
-                person !== '4' && (
+                (person !== '4' || (tableInputForm.modus === 'ind' && tableInputForm.voice === 'act')) && (
                   <tr key={person} className={table.tr}>
                     <th className={table.th}>
                       {MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}
                     </th>
-                    {tenses.map(
-                      (tense) =>
+                    {tenses.map((tense) => {
+                      return (
                         (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
                           <td key={tense} className='border p-0'>
-                            <TrainerInput
-                              customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
-                              value={tableInputValues[tense][numerus][person]}
-                              correctValue={
-                                stage === 'review'
-                                  ? getForm(activeWord, {
-                                      tense,
-                                      numerus,
-                                      person,
-                                      modus: tableInputForm.modus,
-                                      voice: tableInputForm.voice
-                                    })
-                                  : undefined
-                              }
-                              handleChange={(value) =>
-                                setTableInputValues((prev) => ({
-                                  ...prev,
-                                  [tense]: {
-                                    ...prev[tense],
-                                    [numerus]: {
-                                      ...prev[tense][numerus],
-                                      [person]: value
+                            {person !== '4' ||
+                            (tense === 'pres' && tableInputForm.modus === 'ind' && tableInputForm.voice === 'act') ? (
+                              <TrainerInput
+                                customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
+                                value={tableInputValues[tense][numerus][person]}
+                                correctValue={
+                                  stage === 'review'
+                                    ? getForm(activeWord, {
+                                        tense,
+                                        numerus,
+                                        person,
+                                        modus: tableInputForm.modus,
+                                        voice: tableInputForm.voice
+                                      })
+                                    : undefined
+                                }
+                                handleChange={(value) =>
+                                  setTableInputValues((prev) => ({
+                                    ...prev,
+                                    [tense]: {
+                                      ...prev[tense],
+                                      [numerus]: {
+                                        ...prev[tense][numerus],
+                                        [person]: value
+                                      }
                                     }
-                                  }
-                                }))
-                              }
-                            />
+                                  }))
+                                }
+                              />
+                            ) : (
+                              <div className='h-8 w-full bg-red-400 dark:bg-red-800'>-</div>
+                            )}
                           </td>
                         )
-                    )}
+                      );
+                    })}
                   </tr>
                 )
             )
