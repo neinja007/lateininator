@@ -1,6 +1,6 @@
 'use client';
 
-import { WordCase, ComparisonDegree, Gender, Numerus, Word } from '@/types';
+import { WordCase, ComparisonDegree, Gender, Numerus } from '@/types';
 import { useState } from 'react';
 import { WORD_CONSTANTS } from '@/constants';
 import Heading from '@/components/Heading';

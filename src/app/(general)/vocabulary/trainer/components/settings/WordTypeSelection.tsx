@@ -1,7 +1,7 @@
 import SelectButton from '@/components/SelectButton';
 import { APP_CONSTANTS } from '@/constants';
 import { words } from '@/data/words';
-import { Word, WordProperty, WordType } from '@/types';
+import { Word, WordType } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 

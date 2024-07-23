@@ -5,7 +5,6 @@ import { MAPPER } from '@/utils/mapper';
 import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards';
 import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
-import Input from '@/components/Input';
 import TrainerInput from './TrainerInput';
 
 type PropertyInputProps = {

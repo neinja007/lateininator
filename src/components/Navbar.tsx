@@ -20,10 +20,10 @@ type Link = {
 type Dropdown = {
   label: string;
   href: string;
-  children: Array<Link>;
+  children: Link[];
 };
 
-const links: Array<Link | Dropdown> = [
+const links: (Link | Dropdown)[] = [
   { label: 'Übersicht', href: '/dashboard' },
   {
     label: 'Vokabular',

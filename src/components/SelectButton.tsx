@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react';
-import clsx from 'clsx';
 import Button from './Button';
 
 type SelectButtonProps = {
