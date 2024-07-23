@@ -1,24 +1,14 @@
 'use client';
 
-import { WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/types';
-import { words } from '@/data/words';
-import { lists } from '@/data/lists';
-import { Fragment, useEffect, useState } from 'react';
-import { getForm } from '@/utils/wordUtils';
+import { WordCase, ComparisonDegree, Gender, Numerus, Word } from '@/types';
+import { useState } from 'react';
 import { WORD_CONSTANTS } from '@/constants';
-import { isAdjective } from '@/utils/typeguards';
-import { MAPPER } from '@/utils/mapper';
-import ActionBar from '@/components/ActionBar';
 import Heading from '@/components/Heading';
-import WordDisplay from '@/components/WordDisplay';
-import { useNumberInput } from '@/hooks/useNumberInput';
-import { getRandomItem } from '@/utils/propertyUtils';
 import { useGame } from '@/hooks/useGame';
-import table from '@/styles/table.module.css';
-import TrainerInput from '@/components/TrainerInput';
 import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
+import { isAdjective } from '@/utils/typeguards';
 
 const initialTableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>> = {
   m: {
@@ -109,7 +99,7 @@ const Page = () => {
           start={start}
         />
       )}
-      {(stage === 'test' || stage === 'review') && activeWord && (
+      {(stage === 'test' || stage === 'review') && activeWord && isAdjective(activeWord) && (
         <Test
           activeWord={activeWord}
           testingType={testingType}
