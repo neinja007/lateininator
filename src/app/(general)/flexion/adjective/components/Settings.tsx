@@ -1,14 +1,9 @@
 import Button from '@/components/Button';
-import CheckboxWithLabel from '@/components/CheckboxWithLabel';
-import Input from '@/components/Input';
-import Select from '@/components/Select';
-import SelectButton from '@/components/SelectButton';
 import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Adjective, Comparison, ComparisonDegree, Gender, Word } from '@/types';
-import { MAPPER } from '@/utils/mapper';
 import { isAdjective } from '@/utils/typeguards';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import AdjectiveListSelection from './settings/AdjectiveListSelection';

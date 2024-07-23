@@ -1,36 +1,16 @@
 import ActionBar from '@/components/ActionBar';
-import TrainerInput from '@/components/TrainerInput';
 import WordDisplay from '@/components/WordDisplay';
-import { WORD_CONSTANTS } from '@/constants';
 import { Comparison, ComparisonDegree, Gender, Numerus, Stage, Word, WordCase } from '@/types';
-import { MAPPER } from '@/utils/mapper';
-import { getForm } from '@/utils/wordUtils';
-import { Dispatch, Fragment, SetStateAction } from 'react';
-import table from '@/styles/table.module.css';
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react';
 import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
+import { isAdjective } from '@/utils/typeguards';
+import { getRandomItem } from '@/utils/propertyUtils';
 
 type TestProps = {
   activeWord: Word;
   testingType: 'table' | 'individual';
-  individualInputForm:
-    | {
-        comparison: Comparison;
-        comparisonDegree: ComparisonDegree;
-        gender: Gender;
-        numerus: Numerus;
-        wordCase: WordCase;
-      }
-    | undefined;
-  individualInputValue: string;
-  setIndividualInputValue: (value: string) => void;
   stage: 'test' | 'review';
-  tableInputForm:
-    | {
-        comparison: Comparison;
-        comparisonDegree: ComparisonDegree;
-      }
-    | undefined;
   tableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>;
   setTableInputValues: Dispatch<
     SetStateAction<Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>
@@ -38,22 +18,59 @@ type TestProps = {
   maxWords: number;
   remainingWords: number;
   handleContinue: () => void;
+  genders: Gender[];
+  comparisonDegrees: ComparisonDegree[];
+  individualInputValue: string;
+  setIndividualInputValue: Dispatch<SetStateAction<string>>;
 };
 
 const Test = ({
   activeWord,
   testingType,
-  individualInputForm,
-  individualInputValue,
-  setIndividualInputValue,
   stage,
-  tableInputForm,
   tableInputValues,
   setTableInputValues,
   maxWords,
   remainingWords,
-  handleContinue
+  handleContinue,
+  genders,
+  comparisonDegrees,
+  individualInputValue,
+  setIndividualInputValue
 }: TestProps) => {
+  const [individualInputForm, setIndividualInputForm] = useState<{
+    comparison: Comparison;
+    comparisonDegree: ComparisonDegree;
+    gender: Gender;
+    numerus: Numerus;
+    wordCase: WordCase;
+  }>();
+
+  const [tableInputForm, setTableInputForm] = useState<{
+    comparison: Comparison;
+    comparisonDegree: ComparisonDegree;
+  }>();
+
+  useEffect(() => {
+    if (!activeWord || !isAdjective(activeWord)) return;
+    if (testingType === 'individual') {
+      activeWord &&
+        isAdjective(activeWord) &&
+        setIndividualInputForm({
+          comparison: activeWord.comparison as Comparison,
+          comparisonDegree: getRandomItem(comparisonDegrees),
+          numerus: getRandomItem(['sin', 'plu']),
+          wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
+          gender: getRandomItem(genders)
+        });
+    } else {
+      setTableInputForm({
+        comparison: activeWord.comparison as Comparison,
+        comparisonDegree: getRandomItem(comparisonDegrees)
+      });
+    }
+  }, [activeWord, comparisonDegrees, genders, testingType]);
+
   return (
     <>
       <WordDisplay word={activeWord} />

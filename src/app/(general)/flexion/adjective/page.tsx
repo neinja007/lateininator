@@ -1,6 +1,6 @@
 'use client';
 
-import { Adjective, WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/types';
+import { WordCase, Comparison, ComparisonDegree, Gender, Numerus, Word } from '@/types';
 import { words } from '@/data/words';
 import { lists } from '@/data/lists';
 import { Fragment, useEffect, useState } from 'react';
@@ -86,40 +86,8 @@ const Page = () => {
   const [genders, setGenders] = useState<Array<Gender>>([...WORD_CONSTANTS.gender]);
   const [checkAdverb, setCheckAdverb] = useState(true);
 
-  const [individualInputValue, setIndividualInputValue] = useState<string>('');
-  const [individualInputForm, setIndividualInputForm] = useState<{
-    comparison: Comparison;
-    comparisonDegree: ComparisonDegree;
-    gender: Gender;
-    numerus: Numerus;
-    wordCase: WordCase;
-  }>();
-
-  const [tableInputForm, setTableInputForm] = useState<{
-    comparison: Comparison;
-    comparisonDegree: ComparisonDegree;
-  }>();
   const [tableInputValues, setTableInputValues] = useState<typeof initialTableInputValues>(initialTableInputValues);
-
-  useEffect(() => {
-    if (!activeWord || !isAdjective(activeWord)) return;
-    if (testingType === 'individual') {
-      activeWord &&
-        isAdjective(activeWord) &&
-        setIndividualInputForm({
-          comparison: activeWord.comparison as Comparison,
-          comparisonDegree: getRandomItem(comparisonDegrees),
-          numerus: getRandomItem(['sin', 'plu']),
-          wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
-          gender: getRandomItem(genders)
-        });
-    } else {
-      setTableInputForm({
-        comparison: activeWord.comparison as Comparison,
-        comparisonDegree: getRandomItem(comparisonDegrees)
-      });
-    }
-  }, [activeWord, comparisonDegrees, genders, testingType]);
+  const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   const start = remainingWords > 0;
 
@@ -145,16 +113,16 @@ const Page = () => {
         <Test
           activeWord={activeWord}
           testingType={testingType}
-          individualInputForm={individualInputForm}
-          individualInputValue={individualInputValue}
-          setIndividualInputValue={setIndividualInputValue}
           stage={stage}
-          tableInputForm={tableInputForm}
           tableInputValues={tableInputValues}
           setTableInputValues={setTableInputValues}
           maxWords={maxWords}
           remainingWords={remainingWords}
           handleContinue={handleContinue}
+          comparisonDegrees={comparisonDegrees}
+          genders={genders}
+          individualInputValue={individualInputValue}
+          setIndividualInputValue={setIndividualInputValue}
         />
       )}
       {stage === 'results' && <Results handleContinue={handleContinue} />}
