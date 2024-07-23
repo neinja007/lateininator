@@ -38,6 +38,8 @@ const Test = ({
   individualInputValue,
   setIndividualInputValue
 }: TestProps) => {
+  const modus = getRandomItem(modi);
+  const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
   const [individualInputForm, setIndividualInputForm] = useState<{
     conjugation: Conjugation;
     voice: Voice;
@@ -48,8 +50,8 @@ const Test = ({
   }>({
     conjugation: activeWord.conjugation as Conjugation,
     voice: getRandomItem(voices),
-    modus: getRandomItem(modi),
-    tense: getRandomItem(tenses),
+    modus: modus,
+    tense: tense,
     numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
     person: getRandomItem([...WORD_CONSTANTS.person])
   });
@@ -65,15 +67,16 @@ const Test = ({
   useEffect(() => {
     if (!activeWord || activeWord.type !== 'verb') return;
     if (testingType === 'individual') {
-      activeWord.type === 'verb' &&
-        setIndividualInputForm({
-          conjugation: activeWord.conjugation as Conjugation,
-          voice: getRandomItem(voices),
-          modus: getRandomItem(modi),
-          tense: getRandomItem(tenses),
-          numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
-          person: getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')])
-        });
+      const modus = getRandomItem(modi);
+      const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
+      setIndividualInputForm({
+        conjugation: activeWord.conjugation as Conjugation,
+        voice: getRandomItem(voices),
+        modus: modus,
+        tense: tense,
+        numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
+        person: getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')])
+      });
     } else {
       setTableInputForm({
         voice: getRandomItem(voices),
@@ -99,6 +102,7 @@ const Test = ({
           tableInputForm &&
           testingType === 'table' && (
             <TableInput
+              tenses={tenses}
               tableInputForm={tableInputForm}
               tableInputValues={tableInputValues}
               setTableInputValues={setTableInputValues}

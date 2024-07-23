@@ -11,13 +11,21 @@ type TableInputProps = {
     voice: Voice;
     modus: Modus;
   };
+  tenses: Tense[];
   tableInputValues: Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>>;
   setTableInputValues: Dispatch<SetStateAction<Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>>>>;
   stage: 'test' | 'review';
   activeWord: Word;
 };
 
-const TableInput = ({ tableInputForm, tableInputValues, setTableInputValues, stage, activeWord }: TableInputProps) => {
+const TableInput = ({
+  tableInputForm,
+  tableInputValues,
+  setTableInputValues,
+  stage,
+  activeWord,
+  tenses
+}: TableInputProps) => {
   return (
     <>
       <p>
@@ -27,7 +35,7 @@ const TableInput = ({ tableInputForm, tableInputValues, setTableInputValues, sta
         <thead className={table.thead}>
           <tr>
             <th />
-            {WORD_CONSTANTS.tense.map((tense, i) => (
+            {tenses.map((tense, i) => (
               <th key={i} className={table.th}>
                 {MAPPER.extended.tense[tense]}
               </th>
@@ -43,7 +51,7 @@ const TableInput = ({ tableInputForm, tableInputValues, setTableInputValues, sta
                     <th className={table.th}>
                       {MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}
                     </th>
-                    {WORD_CONSTANTS.tense.map(
+                    {tenses.map(
                       (tense) =>
                         (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
                           <td key={tense} className='border p-0'>
