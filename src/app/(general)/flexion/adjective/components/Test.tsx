@@ -97,6 +97,7 @@ const Test = ({
           tableInputForm &&
           testingType === 'table' && (
             <TableInput
+              genders={genders}
               tableInputForm={tableInputForm}
               tableInputValues={tableInputValues}
               setTableInputValues={setTableInputValues}

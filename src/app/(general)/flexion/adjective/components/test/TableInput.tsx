@@ -11,6 +11,7 @@ type TableInputProps = {
     comparison: Comparison;
     comparisonDegree: ComparisonDegree;
   };
+  genders: Gender[];
   tableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>;
   setTableInputValues: Dispatch<
     SetStateAction<Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>
@@ -19,7 +20,14 @@ type TableInputProps = {
   activeWord: Word;
 };
 
-const TableInput = ({ tableInputForm, tableInputValues, setTableInputValues, stage, activeWord }: TableInputProps) => {
+const TableInput = ({
+  tableInputForm,
+  tableInputValues,
+  setTableInputValues,
+  stage,
+  activeWord,
+  genders
+}: TableInputProps) => {
   return (
     <>
       <p>{MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}</p>
@@ -27,7 +35,7 @@ const TableInput = ({ tableInputForm, tableInputValues, setTableInputValues, sta
         <thead className={table.thead}>
           <tr>
             <th />
-            {WORD_CONSTANTS.gender.map((gender, i) => (
+            {genders.map((gender, i) => (
               <th key={i} className={table.th}>
                 {MAPPER.extended.gender[gender]}
               </th>
@@ -43,7 +51,7 @@ const TableInput = ({ tableInputForm, tableInputValues, setTableInputValues, sta
                     <th className={table.th}>
                       {MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
                     </th>
-                    {WORD_CONSTANTS.gender.map((gender, i) => (
+                    {genders.map((gender, i) => (
                       <td key={i} className='border p-0'>
                         <TrainerInput
                           customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
