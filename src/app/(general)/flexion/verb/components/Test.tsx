@@ -11,8 +11,8 @@ type TestProps = {
   activeWord: Verb;
   testingType: 'table' | 'individual';
   stage: 'test' | 'review';
-  tableInputValues: Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>>;
-  setTableInputValues: Dispatch<SetStateAction<Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>>>>;
+  tableInputValues: Record<Tense, Record<Numerus, Record<Person, string>>>;
+  setTableInputValues: Dispatch<SetStateAction<Record<Tense, Record<Numerus, Record<Person, string>>>>>;
   maxWords: number;
   remainingWords: number;
   handleContinue: () => void;
