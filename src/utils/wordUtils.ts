@@ -92,7 +92,7 @@ export const getForm = (
     if (word.conjugation === '-') throw new Error('Error: Empty word properties were passed to getForm()');
     if ('modus' in info && 'voice' in info && 'tense' in info && 'numerus' in info && 'person' in info) {
       if (info.person === '4') {
-        if (info.modus === 'ind' && info.tense === 'pres' && info.voice === 'act' && info.numerus === 'sin') {
+        if (info.modus === 'ind' && info.tense === 'pres' && info.voice === 'act') {
           ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];
         } else {
           throw new Error('Error: Invalid word properties were passed to getForm()');
