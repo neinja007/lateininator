@@ -3,11 +3,11 @@ import { Dispatch, SetStateAction } from 'react';
 
 type CheckboxListProps = {
   label: string;
-  disabled: boolean;
+  disabled?: boolean;
   options: string[];
   mapper: { [key: string]: string };
   selected: string[];
-  setSelected: Dispatch<SetStateAction<string[]>>;
+  setSelected: Dispatch<SetStateAction<any[]>>;
 };
 
 const CheckboxList = ({ label, options, selected, disabled, setSelected, mapper }: CheckboxListProps) => {
