@@ -9,65 +9,75 @@ import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
 
-const initialTableInputValues: Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>> = {
+const initialTableInputValues: Record<Tense, Record<Numerus, Record<Person, string>>> = {
   pres: {
     sin: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     },
     plu: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     }
   },
   impe: {
     sin: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     },
     plu: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     }
   },
   perf: {
     sin: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     },
     plu: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     }
   },
   plus: {
     sin: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     },
     plu: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     }
   },
   fut1: {
     sin: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     },
     plu: {
       1: '',
       2: '',
-      3: ''
+      3: '',
+      4: ''
     }
   }
 };
@@ -85,7 +95,7 @@ const Page = () => {
   const [tenses, setTenses] = useState<Tense[]>([...WORD_CONSTANTS.tense]);
 
   const [tableInputValues, setTableInputValues] =
-    useState<Record<Tense, Record<Numerus, Record<Exclude<Person, '4'>, string>>>>(initialTableInputValues);
+    useState<Record<Tense, Record<Numerus, Record<Person, string>>>>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   const start = remainingWords > 0;
