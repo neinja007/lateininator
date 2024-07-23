@@ -1,5 +1,4 @@
 import { Stage, Word } from '@/types';
-import { stat } from 'fs';
 import { useCallback, useEffect, useState } from 'react';
 
 export const useGame = (
@@ -10,8 +9,8 @@ export const useGame = (
   activeWord: Word | undefined;
   remainingWords: number;
   maxWords: number;
-  updateWords: (arg?: Word[]) => void;
-  handleContinue: (arg?: Stage) => void;
+  updateWords: (count?: Word[], number?: number) => void;
+  handleContinue: (stage?: Stage) => void;
   stage: Stage;
 } => {
   const [possibleWords, setPossibleWords] = useState<Word[]>([]);
@@ -60,12 +59,19 @@ export const useGame = (
   };
 
   const updateWords = useCallback(
-    (words?: Word[]) => {
+    (words?: Word[], count?: number) => {
       if (words) {
         setPossibleWords(words);
-        setMaxWords(words.length);
-        if (staticPossibleWords) {
+        if (!staticPossibleWords) {
+          setMaxWords(words.length);
           setRemainingWords(words.length);
+        } else {
+          if (count !== undefined) {
+            setMaxWords(count);
+            setRemainingWords(count);
+          } else {
+            throw new Error('count is undefined');
+          }
         }
       } else {
         if (!staticPossibleWords) {
