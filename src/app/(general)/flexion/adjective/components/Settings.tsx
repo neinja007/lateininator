@@ -21,7 +21,7 @@ type SettingsProps = {
   genders: Gender[];
   setGenders: Dispatch<SetStateAction<Gender[]>>;
   handleContinue: () => void;
-  updateWords: (words: Adjective[]) => void;
+  updateWords: (words: Adjective[], count: number) => void;
   start: boolean;
 };
 
@@ -47,7 +47,7 @@ const Settings = ({
 
   useEffect(() => {
     const ids = lists
-      .filter((list) => list.id < maxUnit)
+      .filter((list) => list.id <= maxUnit)
       .reduce((acc: any, list) => {
         return acc.concat(list.words);
       }, []);
@@ -58,10 +58,10 @@ const Settings = ({
     setValidWords(selectedWords);
 
     const possibleWords = selectedWords
-      .filter((word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison))
+      .filter((word) => word.comparison !== '-' && comparisons.includes(word.comparison))
       .slice(0, value);
 
-    updateWords(possibleWords);
+    updateWords(possibleWords, value);
   }, [comparisons, maxUnit, updateWords, value]);
 
   return (
