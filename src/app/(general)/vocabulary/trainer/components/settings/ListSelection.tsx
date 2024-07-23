@@ -9,10 +9,10 @@ type ListSelectionProps = {
 };
 
 const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
-  const [selectedLists, setSelectedLists] = useState<Array<List>>([]);
+  const [selectedLists, setSelectedLists] = useState<List[]>([]);
 
   useEffect(() => {
-    let ids: Array<number> = [];
+    let ids: number[] = [];
     selectedLists.forEach((list) => {
       ids = ids.concat(list.words);
     });

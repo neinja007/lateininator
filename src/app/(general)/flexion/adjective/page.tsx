@@ -70,10 +70,8 @@ const Page = () => {
       : () => setTableInputValues(initialTableInputValues)
   );
 
-  const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>([
-    ...WORD_CONSTANTS.comparisonDegree
-  ]);
-  const [genders, setGenders] = useState<Array<Gender>>([...WORD_CONSTANTS.gender]);
+  const [comparisonDegrees, setComparisonDegrees] = useState<ComparisonDegree[]>([...WORD_CONSTANTS.comparisonDegree]);
+  const [genders, setGenders] = useState<Gender[]>([...WORD_CONSTANTS.gender]);
   const [checkAdverb, setCheckAdverb] = useState(true);
 
   const [tableInputValues, setTableInputValues] =

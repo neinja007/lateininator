@@ -28,7 +28,7 @@ const Page = () => {
   const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
   const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
 
-  const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<Array<WordProperty>>([
+  const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<WordProperty[]>([
     ...APP_CONSTANTS.allWordProperties
   ]);
 

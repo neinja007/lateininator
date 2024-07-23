@@ -24,7 +24,7 @@ export type Base = {
   id: number;
   word: string;
   type: WordType;
-  translation?: Array<string>;
+  translation?: string[];
   info?: string;
   derivative?: number;
   exception?: number;
@@ -57,7 +57,7 @@ export type Other = Base & {
   type: 'other' | 'adverb' | 'pronoun' | 'irregularVerb';
 };
 
-export type List = { id: number; name: string; words: Array<number> };
+export type List = { id: number; name: string; words: number[] };
 
 export type ConditionalTense<M> = M extends 'ind' ? Tense : Exclude<Tense, 'fut1'>;
 export type ConditionalPerson<T, V, M> = M extends 'ind'

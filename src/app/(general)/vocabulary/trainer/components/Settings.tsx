@@ -31,10 +31,10 @@ const Settings = ({
   updateWords,
   enableStart
 }: SettingsProps) => {
-  const [selectedIds, setSelectedIds] = useState<Array<number>>([]);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [validWords, setValidWords] = useState<Word[]>([]);
 
-  const [typesToCheck, setTypesToCheck] = useState<Array<WordType>>([...APP_CONSTANTS.mainWordTypes, 'other']);
+  const [typesToCheck, setTypesToCheck] = useState<WordType[]>([...APP_CONSTANTS.mainWordTypes, 'other']);
 
   return (
     <>

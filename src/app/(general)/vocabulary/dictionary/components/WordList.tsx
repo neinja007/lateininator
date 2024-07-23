@@ -3,7 +3,7 @@ import { Word } from '@/types';
 import table from '@/styles/table.module.css';
 import clsx from 'clsx';
 
-type WordListProps = { results: Array<Word>; query: string };
+type WordListProps = { results: Word[]; query: string };
 
 const WordList = ({ results, query }: WordListProps) => {
   return (

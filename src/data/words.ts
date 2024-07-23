@@ -1,6 +1,6 @@
 import { Word } from '@/types';
 
-export const words: Array<Word> = [
+export const words: Word[] = [
   { id: 1, word: 'schola', type: 'noun', translation: ['schule'], genitive: 'scholae', gender: 'f', declension: 'a' },
   { id: 2, word: 'et', type: 'other', translation: ['und'] },
   { id: 3, word: 'amicus', type: 'noun', translation: ['freund'], genitive: 'amici', gender: 'm', declension: 'o' },

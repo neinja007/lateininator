@@ -1,4 +1,4 @@
-export const compareValues = (input: string, correctInput: string | Array<string>, translation?: boolean): boolean => {
+export const compareValues = (input: string, correctInput: string | string[], translation?: boolean): boolean => {
   if (translation && typeof correctInput === 'object') {
     return input.split(',').some((translation) => {
       return correctInput.some((correctInput) => {
@@ -14,7 +14,7 @@ export const compareValues = (input: string, correctInput: string | Array<string
 
 export const getInputWithCorrectValue = (
   input: string,
-  correctValue: string | Array<string>,
+  correctValue: string | string[],
   translation?: true
 ): string => {
   if (translation && typeof correctValue === 'object') {

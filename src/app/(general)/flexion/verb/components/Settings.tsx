@@ -37,12 +37,12 @@ const Settings = ({
   tenses,
   voices
 }: SettingsProps) => {
-  const [validWords, setValidWords] = useState<Array<Verb>>([]);
+  const [validWords, setValidWords] = useState<Verb[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
 
   const [maxUnit, setMaxUnit] = useState(lists.length);
 
-  const [conjugations, setConjugations] = useState<Array<Conjugation>>([...WORD_CONSTANTS.conjugation]);
+  const [conjugations, setConjugations] = useState<Conjugation[]>([...WORD_CONSTANTS.conjugation]);
 
   useEffect(() => {
     const ids = lists

@@ -38,12 +38,12 @@ const Settings = ({
   updateWords,
   start
 }: SettingsProps) => {
-  const [validWords, setValidWords] = useState<Array<Adjective>>([]);
+  const [validWords, setValidWords] = useState<Adjective[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
 
   const [maxUnit, setMaxUnit] = useState(lists.length);
 
-  const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
+  const [comparisons, setComparisons] = useState<Comparison[]>([...WORD_CONSTANTS.comparison]);
 
   useEffect(() => {
     const ids = lists
