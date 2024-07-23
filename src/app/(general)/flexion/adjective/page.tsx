@@ -80,12 +80,6 @@ const Page = () => {
       : () => setTableInputValues(initialTableInputValues)
   );
 
-  const [maxUnit, setMaxUnit] = useState(lists.length);
-  const [validWords, setValidWords] = useState<Array<Adjective>>([]);
-
-  const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
-
-  const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
   const [comparisonDegrees, setComparisonDegrees] = useState<Array<ComparisonDegree>>([
     ...WORD_CONSTANTS.comparisonDegree
   ]);
@@ -106,27 +100,6 @@ const Page = () => {
     comparisonDegree: ComparisonDegree;
   }>();
   const [tableInputValues, setTableInputValues] = useState<typeof initialTableInputValues>(initialTableInputValues);
-
-  useEffect(() => {
-    if (stage === 'settings') {
-      const ids = lists
-        .filter((list) => list.id < maxUnit)
-        .reduce((acc: any, list) => {
-          return acc.concat(list.words);
-        }, []);
-
-      const selectedWords: Adjective[] = words.filter(
-        (word: Word) => isAdjective(word) && ids.includes(word.id) && word.comparison !== '-'
-      ) as Adjective[];
-      setValidWords(selectedWords);
-
-      const possibleWords = selectedWords
-        .filter((word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison))
-        .slice(0, value);
-
-      updateWords(possibleWords);
-    }
-  }, [comparisons, maxUnit, stage, updateWords, value]);
 
   useEffect(() => {
     if (!activeWord || !isAdjective(activeWord)) return;
@@ -155,22 +128,16 @@ const Page = () => {
       <Heading>Flexionstrainer: Adjektive</Heading>
       {stage === 'settings' && (
         <Settings
-          maxUnit={maxUnit}
-          setMaxUnit={setMaxUnit}
-          validWords={validWords}
           testingType={testingType}
           setTestingType={setTestingType}
           checkAdverb={checkAdverb}
           setCheckAdverb={setCheckAdverb}
-          comparisons={comparisons}
-          setComparisons={setComparisons}
           comparisonDegrees={comparisonDegrees}
           setComparisonDegrees={setComparisonDegrees}
           genders={genders}
           setGenders={setGenders}
-          updateValue={updateValue}
-          inputValue={inputValue}
           handleContinue={handleContinue}
+          updateWords={updateWords}
           start={start}
         />
       )}

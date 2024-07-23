@@ -5,49 +5,66 @@ import Select from '@/components/Select';
 import SelectButton from '@/components/SelectButton';
 import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
-import { Comparison, ComparisonDegree, Gender, Word } from '@/types';
+import { words } from '@/data/words';
+import { useNumberInput } from '@/hooks/useNumberInput';
+import { Adjective, Comparison, ComparisonDegree, Gender, Word } from '@/types';
 import { MAPPER } from '@/utils/mapper';
-import { Dispatch, SetStateAction } from 'react';
+import { isAdjective } from '@/utils/typeguards';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type SettingsProps = {
-  maxUnit: number;
-  setMaxUnit: Dispatch<SetStateAction<number>>;
-  validWords: Word[];
   testingType: 'table' | 'individual';
   setTestingType: Dispatch<SetStateAction<'table' | 'individual'>>;
   checkAdverb: boolean;
   setCheckAdverb: Dispatch<SetStateAction<boolean>>;
-  comparisons: Comparison[];
-  setComparisons: Dispatch<SetStateAction<Comparison[]>>;
   comparisonDegrees: ComparisonDegree[];
   setComparisonDegrees: Dispatch<SetStateAction<ComparisonDegree[]>>;
   genders: Gender[];
   setGenders: Dispatch<SetStateAction<Gender[]>>;
-  updateValue: (value: string) => void;
-  inputValue: string;
   handleContinue: () => void;
+  updateWords: (words: Adjective[]) => void;
   start: boolean;
 };
 
 const Settings = ({
-  maxUnit,
-  setMaxUnit,
-  validWords,
   testingType,
   setTestingType,
   checkAdverb,
   setCheckAdverb,
-  comparisons,
-  setComparisons,
   comparisonDegrees,
   setComparisonDegrees,
   genders,
   setGenders,
-  updateValue,
-  inputValue,
   handleContinue,
+  updateWords,
   start
 }: SettingsProps) => {
+  const [validWords, setValidWords] = useState<Array<Adjective>>([]);
+  const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
+
+  const [maxUnit, setMaxUnit] = useState(lists.length);
+
+  const [comparisons, setComparisons] = useState<Array<Comparison>>([...WORD_CONSTANTS.comparison]);
+
+  useEffect(() => {
+    const ids = lists
+      .filter((list) => list.id < maxUnit)
+      .reduce((acc: any, list) => {
+        return acc.concat(list.words);
+      }, []);
+
+    const selectedWords: Adjective[] = words.filter(
+      (word: Word) => isAdjective(word) && ids.includes(word.id) && word.comparison !== '-'
+    ) as Adjective[];
+    setValidWords(selectedWords);
+
+    const possibleWords = selectedWords
+      .filter((word) => 'comparison' in word && word.comparison !== '-' && comparisons.includes(word.comparison))
+      .slice(0, value);
+
+    updateWords(possibleWords);
+  }, [comparisons, maxUnit, updateWords, value]);
+
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
