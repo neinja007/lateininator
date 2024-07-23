@@ -1,14 +1,14 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Comparison, ComparisonDegree, Gender, Numerus, Stage, Word, WordCase } from '@/types';
-import { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react';
+import { Adjective, Comparison, ComparisonDegree, Gender, Numerus, WordCase } from '@/types';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { isAdjective } from '@/utils/typeguards';
 import { getRandomItem } from '@/utils/propertyUtils';
 
 type TestProps = {
-  activeWord: Word;
+  activeWord: Adjective;
   testingType: 'table' | 'individual';
   stage: 'test' | 'review';
   tableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>;
@@ -44,12 +44,21 @@ const Test = ({
     gender: Gender;
     numerus: Numerus;
     wordCase: WordCase;
-  }>();
+  }>({
+    comparison: activeWord.comparison as Comparison,
+    comparisonDegree: getRandomItem(comparisonDegrees),
+    numerus: getRandomItem(['sin', 'plu']),
+    wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
+    gender: getRandomItem(genders)
+  });
 
   const [tableInputForm, setTableInputForm] = useState<{
     comparison: Comparison;
     comparisonDegree: ComparisonDegree;
-  }>();
+  }>({
+    comparison: activeWord.comparison as Comparison,
+    comparisonDegree: getRandomItem(comparisonDegrees)
+  });
 
   useEffect(() => {
     if (!activeWord || !isAdjective(activeWord)) return;
