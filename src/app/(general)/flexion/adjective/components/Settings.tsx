@@ -11,6 +11,10 @@ import { Adjective, Comparison, ComparisonDegree, Gender, Word } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { isAdjective } from '@/utils/typeguards';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import AdjectiveListSelection from './settings/AdjectiveListSelection';
+import TestingTypeSelection from './settings/TestingTypeSelection';
+import TestingFormSelection from './settings/TestingFormSelection';
+import WordCountSelection from './settings/WordCountSelection';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -67,100 +71,22 @@ const Settings = ({
 
   return (
     <>
-      <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
-      <div className='flex'>
-        <Select
-          label='Lektion'
-          value={maxUnit}
-          handleChange={setMaxUnit}
-          options={lists.reduce((acc: any, list) => {
-            acc[list.id] = list.name;
-            return acc;
-          }, {})}
-        />
-        <span className='mb-1.5 ml-5 mt-auto'>
-          Du hast <b className='text-blue-500'>{validWords.length} Adjektive</b> ausgewählt.
-        </span>
-      </div>
+      <AdjectiveListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} />
       <hr className='border-gray-500' />
-      <p>Wähle aus, wie du abgefragt werden möchtest:</p>
-      <div className='flex space-x-5'>
-        <SelectButton
-          className='w-1/2 font-medium'
-          active={testingType === 'table'}
-          handleClick={() => setTestingType('table')}
-          label='Formen mit Tabellen abfragen'
-        />
-        <SelectButton
-          className='w-1/2 font-medium'
-          active={testingType === 'individual'}
-          handleClick={() => setTestingType('individual')}
-          label='Formen einzeln abfragen'
-        />
-      </div>
+      <TestingTypeSelection testingType={testingType} setTestingType={setTestingType} />
       <hr className='border-gray-500' />
-      <div className='grid grid-cols-3'>
-        <p>Wähle aus, was abgefragt werden soll:</p>
-        <CheckboxWithLabel
-          checked={checkAdverb}
-          handleChange={() => setCheckAdverb((prev) => !prev)}
-          label={'Adverbien'}
-        />
-      </div>
-      <div className='grid grid-cols-3'>
-        <div>
-          Deklination:
-          {WORD_CONSTANTS.comparison.map((comparison) => (
-            <CheckboxWithLabel
-              key={comparison}
-              checked={comparisons.includes(comparison)}
-              handleChange={(checked) =>
-                setComparisons((prev) => (checked ? [...prev, comparison] : prev.filter((p) => p !== comparison)))
-              }
-              label={MAPPER.extended.comparison[comparison]}
-            />
-          ))}
-        </div>
-        <div>
-          Steigerungsform:
-          {WORD_CONSTANTS.comparisonDegree.map((comparisonDegree) => (
-            <CheckboxWithLabel
-              key={comparisonDegree}
-              checked={comparisonDegrees.includes(comparisonDegree)}
-              handleChange={(checked) =>
-                setComparisonDegrees((prev) =>
-                  checked ? [...prev, comparisonDegree] : prev.filter((p) => p !== comparisonDegree)
-                )
-              }
-              label={MAPPER.extended.comparisonDegree[comparisonDegree]}
-            />
-          ))}
-        </div>
-        <div>
-          Geschlecht:
-          {WORD_CONSTANTS.gender.map((gender) => (
-            <CheckboxWithLabel
-              key={gender}
-              checked={genders.includes(gender)}
-              handleChange={(checked) =>
-                setGenders((prev) => (checked ? [...prev, gender] : prev.filter((p) => p !== gender)))
-              }
-              label={MAPPER.extended.gender[gender]}
-            />
-          ))}
-        </div>
-      </div>
+      <TestingFormSelection
+        checkAdverb={checkAdverb}
+        setCheckAdverb={setCheckAdverb}
+        comparisons={comparisons}
+        setComparisons={setComparisons}
+        comparisonDegrees={comparisonDegrees}
+        setComparisonDegrees={setComparisonDegrees}
+        genders={genders}
+        setGenders={setGenders}
+      />
       <hr className='border-gray-500' />
-      <div>
-        <Input
-          label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (max. ${
-            testingType === 'individual' ? '100' : '5'
-          })`}
-          onChange={(value) => updateValue(value)}
-          value={inputValue}
-          className={'w-full text-center'}
-        />
-      </div>
+      <WordCountSelection testingType={testingType} inputValue={inputValue} updateValue={updateValue} />
       <Button onClick={() => handleContinue()} className='w-full' disabled={!start}>
         <span>{!start ? 'Keine Adjektive verfügbar' : 'Start'}</span>
       </Button>
