@@ -7,6 +7,8 @@ import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import { Dispatch, Fragment, SetStateAction } from 'react';
 import table from '@/styles/table.module.css';
+import IndividualInput from './test/IndividualInput';
+import TableInput from './test/TableInput';
 
 type TestProps = {
   activeWord: Word;
@@ -58,80 +60,23 @@ const Test = ({
       <hr className='border-gray-500' />
       <div>
         {individualInputForm && testingType === 'individual' ? (
-          <TrainerInput
-            label={`
-                  ${MAPPER.extended.gender[individualInputForm.gender]};
-                  ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]}
-                  ${MAPPER.extended.numerus[individualInputForm.numerus]}
-                  ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
-                  `}
-            handleChange={setIndividualInputValue}
-            value={individualInputValue}
-            correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
+          <IndividualInput
+            individualInputForm={individualInputForm}
+            individualInputValue={individualInputValue}
+            setIndividualInputValue={setIndividualInputValue}
+            stage={stage}
+            activeWord={activeWord}
           />
         ) : (
           tableInputForm &&
           testingType === 'table' && (
-            <Fragment>
-              <p>{MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}</p>
-              <table className={table.table}>
-                <thead className={table.thead}>
-                  <tr>
-                    <th />
-                    {WORD_CONSTANTS.gender.map((gender, i) => (
-                      <th key={i} className={table.th}>
-                        {MAPPER.extended.gender[gender]}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {WORD_CONSTANTS.numerus.map((numerus) =>
-                    WORD_CONSTANTS.wordCase.map(
-                      (wordCase, i) =>
-                        wordCase !== '6' && (
-                          <tr key={i} className='border-t'>
-                            <th className={table.th}>
-                              {MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
-                            </th>
-                            {WORD_CONSTANTS.gender.map((gender, i) => (
-                              <td key={i} className='border p-0'>
-                                <TrainerInput
-                                  customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
-                                  value={tableInputValues[gender][numerus][wordCase]}
-                                  correctValue={
-                                    stage === 'review'
-                                      ? getForm(activeWord, {
-                                          gender,
-                                          numerus,
-                                          wordCase,
-                                          comparisonDegree: tableInputForm.comparisonDegree
-                                        })
-                                      : undefined
-                                  }
-                                  handleChange={(value) =>
-                                    setTableInputValues((prev) => ({
-                                      ...prev,
-                                      [gender]: {
-                                        ...prev[gender],
-                                        [numerus]: {
-                                          ...prev[gender][numerus],
-                                          [wordCase]: value
-                                        }
-                                      }
-                                    }))
-                                  }
-                                />
-                              </td>
-                            ))}
-                          </tr>
-                        )
-                    )
-                  )}
-                </tbody>
-              </table>
-              <br />
-            </Fragment>
+            <TableInput
+              tableInputForm={tableInputForm}
+              tableInputValues={tableInputValues}
+              setTableInputValues={setTableInputValues}
+              stage={stage}
+              activeWord={activeWord}
+            />
           )
         )}
       </div>
