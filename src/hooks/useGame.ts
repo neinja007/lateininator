@@ -67,6 +67,7 @@ export const useGame = (
           setRemainingWords(words.length);
         } else {
           if (count !== undefined) {
+            if (possibleWords.length === 0) count = 0;
             setMaxWords(count);
             setRemainingWords(count);
           } else {
@@ -81,7 +82,7 @@ export const useGame = (
         }
       }
     },
-    [activeWord?.id, staticPossibleWords]
+    [activeWord?.id, possibleWords.length, staticPossibleWords]
   );
 
   return {
