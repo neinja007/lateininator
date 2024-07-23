@@ -34,7 +34,8 @@ const Page = () => {
       : () => setTableInputValues(initialTableInputValues)
   );
 
-  const [tableInputValues, setTableInputValues] = useState<typeof initialTableInputValues>(initialTableInputValues);
+  const [tableInputValues, setTableInputValues] =
+    useState<Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   const start = remainingWords > 0;
