@@ -12,7 +12,7 @@ export const ResultCount = ({ count, query, limitResults, setLimitResults }: Res
       <b className='text-blue-500'>
         {count === 30 ? 'über 30' : count} {count === 1 ? 'Ergebnis' : 'Ergebnisse'}
       </b>{' '}
-      für <i className='text-blue-500'>{query.trim()}</i> gefunden
+      {query.trim() && "für"} <i className='text-blue-500'>{query.trim()}</i> gefunden
       {limitResults && ', von denen die ersten 30 angezeigt werden'}.{' '}
       <button className='text-blue-500 underline' onClick={() => setLimitResults(!limitResults)}>
         {limitResults ? 'Alle Ergebnisse anzeigen' : 'Ergebnisse auf 30 beschränken'}
