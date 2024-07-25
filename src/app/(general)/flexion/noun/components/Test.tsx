@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { getRandomItem } from '@/utils/propertyUtils';
-import { SetTableInputValues, TableInputValues } from '../types';
+import { IndividualInputForm, SetTableInputValues, TableInputValues } from '../types';
 
 type TestProps = {
   activeWord: Noun;
@@ -32,10 +32,7 @@ const Test = ({
   individualInputValue,
   setIndividualInputValue
 }: TestProps) => {
-  const [individualInputForm, setIndividualInputForm] = useState<{
-    numerus: Numerus;
-    wordCase: WordCase;
-  }>({
+  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
     numerus: getRandomItem(['sin', 'plu']),
     wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase
   });

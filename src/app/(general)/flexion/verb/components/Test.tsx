@@ -6,13 +6,14 @@ import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { getRandomItem } from '@/utils/propertyUtils';
 import { WORD_CONSTANTS } from '@/constants';
+import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 
 type TestProps = {
   activeWord: Verb;
   testingType: 'table' | 'individual';
   stage: 'test' | 'review';
-  tableInputValues: Record<Tense, Record<Numerus, Record<Person, string>>>;
-  setTableInputValues: Dispatch<SetStateAction<Record<Tense, Record<Numerus, Record<Person, string>>>>>;
+  tableInputValues: TableInputValues;
+  setTableInputValues: SetTableInputValues;
   maxWords: number;
   remainingWords: number;
   handleContinue: () => void;
@@ -40,14 +41,7 @@ const Test = ({
 }: TestProps) => {
   const modus = getRandomItem(modi);
   const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
-  const [individualInputForm, setIndividualInputForm] = useState<{
-    conjugation: Conjugation;
-    voice: Voice;
-    modus: Modus;
-    tense: Tense;
-    numerus: Numerus;
-    person: Person;
-  }>({
+  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
     conjugation: activeWord.conjugation as Conjugation,
     voice: getRandomItem(voices),
     modus: modus,
@@ -56,10 +50,7 @@ const Test = ({
     person: getRandomItem([...WORD_CONSTANTS.person])
   });
 
-  const [tableInputForm, setTableInputForm] = useState<{
-    voice: Voice;
-    modus: Modus;
-  }>({
+  const [tableInputForm, setTableInputForm] = useState<TableInputForm>({
     voice: getRandomItem(voices),
     modus: getRandomItem(modi)
   });
