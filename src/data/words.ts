@@ -21,7 +21,8 @@ export const words: Word[] = [
     translation: ['schlecht'],
     comparison: 'a_o',
     femininum: 'mala',
-    neutrum: 'malum'
+    neutrum: 'malum',
+    exception: 1
   },
   {
     id: 7,

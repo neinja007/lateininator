@@ -1,5 +1,7 @@
 import { endings } from '@/data/endings';
+import { irregularWords } from '@/data/irregularWords';
 import { Word, Person, Numerus, Tense, Voice, Modus, WordCase, ComparisonDegree, Gender } from '@/types';
+import { use } from 'react';
 
 export const getLexicalForm = (word: Word) => {
   if (word.type === 'noun') {
@@ -13,10 +15,12 @@ export const getLexicalForm = (word: Word) => {
 
 export const getBase = (
   word: Word,
-  info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean }
+  info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean },
+  customBases?: { [key: string]: string }
 ): string => {
   const { baseType, superlative } = info;
   let base = '';
+
   if (word.type === 'noun') {
     if (word.declension === 'o') {
       base = word.genitive.substring(0, word.genitive.length - 1);
@@ -72,7 +76,9 @@ export const getForm = (
       }
 ): string => {
   let ending: string | undefined = undefined;
+  const customEndings = word.exception ? irregularWords[word.exception] : undefined;
 
+  let useCustomEnding = false;
   if (word.type === 'noun') {
     if (word.declension === '-' || word.gender === '-')
       throw new Error('Error: Empty word properties were passed to getForm()');
@@ -107,7 +113,13 @@ export const getForm = (
     if (word.comparison === '-') throw new Error('Error: Empty word properties were passed to getForm()');
     if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
       if (info.adverb) {
-        ending = endings.adverb[info.comparisonDegree][word.word.endsWith('ns') ? '_ns' : word.comparison];
+        console.log(customEndings);
+        if (customEndings && customEndings?.adverb?.[info.comparisonDegree]) {
+          useCustomEnding = true;
+          ending = customEndings.adverb[info.comparisonDegree];
+        } else {
+          ending = endings.adverb[info.comparisonDegree][word.word.endsWith('ns') ? '_ns' : word.comparison];
+        }
       } else {
         if (info.wordCase === '6') {
           ending = endings.adjective[word.comparison][info.gender][info.comparisonDegree][info.numerus][1];
@@ -143,6 +155,16 @@ export const getForm = (
   } else if (word.type === 'adjective' && 'comparisonDegree' in info) {
     if (info.comparisonDegree === 'sup') {
       superlative = true;
+    }
+  }
+
+  if (useCustomEnding) {
+    return ending;
+  }
+
+  if (customEndings?.customBases) {
+    if (word.type === 'adjective' && 'comparisonDegree' in info && customEndings.customBases[info.comparisonDegree]) {
+      return customEndings.customBases[info.comparisonDegree] + ending;
     }
   }
 
