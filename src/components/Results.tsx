@@ -7,10 +7,11 @@ type ResultsProps = {
 
 const Results = ({ handleContinue }: ResultsProps) => {
   return (
-    <>
-      <p>Es wurden einige verschiedene Wörter abgefragt.</p>
-      <Button onClick={() => handleContinue('settings')}>Neu Laden</Button>
-    </>
+    <div className='flex justify-center'>
+      <Button onClick={() => handleContinue('settings')} color='gray'>
+        Neu Laden
+      </Button>
+    </div>
   );
 };
 
