@@ -11,6 +11,7 @@ const ActionBar = ({ handleContinue, progressPercentage }: ActionBarProps) => {
   return (
     <div className='flex'>
       <Button
+        color='red'
         onClick={() => {
           handleContinue('results');
         }}
@@ -18,7 +19,9 @@ const ActionBar = ({ handleContinue, progressPercentage }: ActionBarProps) => {
         Beenden
       </Button>
       <ProgressBar progressPercentage={progressPercentage} />
-      <Button onClick={() => handleContinue()}>Weiter</Button>
+      <Button onClick={() => handleContinue()} color='green'>
+        Weiter
+      </Button>
     </div>
   );
 };
