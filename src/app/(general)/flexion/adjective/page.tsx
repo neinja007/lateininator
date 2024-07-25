@@ -9,8 +9,10 @@ import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
 import { isAdjective } from '@/utils/typeguards';
+import { TableInputValues } from './types';
 
-const initialTableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>> = {
+const initialTableInputValues: TableInputValues = {
+  adverb: '',
   m: {
     sin: {
       1: '',
@@ -109,6 +111,7 @@ const Page = () => {
           handleContinue={handleContinue}
           comparisonDegrees={comparisonDegrees}
           genders={genders}
+          checkAdverb={checkAdverb}
           individualInputValue={individualInputValue}
           setIndividualInputValue={setIndividualInputValue}
         />

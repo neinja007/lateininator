@@ -18,6 +18,7 @@ type TableInputProps = {
   >;
   stage: 'test' | 'review';
   activeWord: Word;
+  checkAdverb: boolean;
 };
 
 const TableInput = ({
@@ -30,7 +31,26 @@ const TableInput = ({
 }: TableInputProps) => {
   return (
     <>
-      <p>{MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}</p>
+      <p>{`${MAPPER.extended.comparison[tableInputForm.comparison]} ${MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}`}</p>
+      {checkAdverb && (
+        <div className='mb-4'>
+          <TrainerInput
+            label='Adverb'
+            value={tableInputValues.adverb}
+            handleChange={(value) => setTableInputValues((prev) => ({ ...prev, adverb: value }))}
+            correctValue={
+              stage === 'review'
+                ? getForm(activeWord, {
+                    numerus: 'sin',
+                    wordCase: '1',
+                    adverb: true,
+                    comparisonDegree: tableInputForm.comparisonDegree
+                  })
+                : undefined
+            }
+          />
+        </div>
+      )}
       <table className={table.table}>
         <thead className={table.thead}>
           <tr>

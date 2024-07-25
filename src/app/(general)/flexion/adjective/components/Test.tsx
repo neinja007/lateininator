@@ -22,6 +22,7 @@ type TestProps = {
   comparisonDegrees: ComparisonDegree[];
   individualInputValue: string;
   setIndividualInputValue: Dispatch<SetStateAction<string>>;
+  checkAdverb: boolean;
 };
 
 const Test = ({
@@ -36,16 +37,11 @@ const Test = ({
   genders,
   comparisonDegrees,
   individualInputValue,
-  setIndividualInputValue
+  setIndividualInputValue,
+  checkAdverb
 }: TestProps) => {
-  const [individualInputForm, setIndividualInputForm] = useState<{
-    comparison: Comparison;
-    comparisonDegree: ComparisonDegree;
-    gender: Gender;
-    numerus: Numerus;
-    wordCase: WordCase;
-  }>({
-    comparison: activeWord.comparison as Comparison,
+  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
+    adverb: Math.random() < 0.04,
     comparisonDegree: getRandomItem(comparisonDegrees),
     numerus: getRandomItem(['sin', 'plu']),
     wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
@@ -63,15 +59,13 @@ const Test = ({
   useEffect(() => {
     if (!activeWord || !isAdjective(activeWord)) return;
     if (testingType === 'individual') {
-      activeWord &&
-        isAdjective(activeWord) &&
-        setIndividualInputForm({
-          comparison: activeWord.comparison as Comparison,
-          comparisonDegree: getRandomItem(comparisonDegrees),
-          numerus: getRandomItem(['sin', 'plu']),
-          wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
-          gender: getRandomItem(genders)
-        });
+      setIndividualInputForm({
+        adverb: Math.random() < 0.04,
+        comparisonDegree: getRandomItem(comparisonDegrees),
+        numerus: getRandomItem(['sin', 'plu']),
+        wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
+        gender: getRandomItem(genders)
+      });
     } else {
       setTableInputForm({
         comparison: activeWord.comparison as Comparison,
@@ -97,6 +91,7 @@ const Test = ({
           tableInputForm &&
           testingType === 'table' && (
             <TableInput
+              checkAdverb={checkAdverb}
               genders={genders}
               tableInputForm={tableInputForm}
               tableInputValues={tableInputValues}

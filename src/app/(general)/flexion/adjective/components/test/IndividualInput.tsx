@@ -14,7 +14,7 @@ type IndividualInputProps = {
   individualInputValue: string;
   setIndividualInputValue: (value: string) => void;
   stage: 'test' | 'review';
-  activeWord: Word;
+  activeWord: Adjective;
 };
 
 const IndividualInput = ({
@@ -26,12 +26,17 @@ const IndividualInput = ({
 }: IndividualInputProps) => {
   return (
     <TrainerInput
-      label={`
+      label={
+        !individualInputForm.adverb
+          ? `
                   ${MAPPER.extended.gender[individualInputForm.gender]};
                   ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]}
+                  ${activeWord.comparison !== '-' ? MAPPER.extended.comparison[activeWord.comparison] : '-'}
                   ${MAPPER.extended.numerus[individualInputForm.numerus]}
                   ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
-                  `}
+                  `
+          : `Adverb ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]} ${activeWord.comparison !== '-' ? MAPPER.extended.comparison[activeWord.comparison] : '-'}`
+      }
       handleChange={setIndividualInputValue}
       value={individualInputValue}
       correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
