@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
 import { getLexicalForm } from '@/utils/wordUtils';
 import { capitalizeFirstLetter } from '@/utils/inputUtils';
+import { MAPPER } from '@/utils/mapper';
 
 type WordRowProps = {
   word: Word;
@@ -39,7 +40,7 @@ const WordRow = ({ word, query }: WordRowProps) => {
         {word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
       </td>
       <td className='p-2 px-4'>
-        <Badge text={word.type} />
+        <Badge text={MAPPER.extended.type[word.type]} />
       </td>
       <td className='p-2 px-4'>
         <div className='float-end flex'>

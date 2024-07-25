@@ -6,6 +6,7 @@ import { ChevronRight } from 'react-feather';
 import Badge from '@/components/Badge';
 import { getLexicalForm } from '@/utils/wordUtils';
 import { capitalizeFirstLetter } from '@/utils/inputUtils';
+import { MAPPER } from '@/utils/mapper';
 
 type WordCardProps = {
   word: Word;
@@ -36,7 +37,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
     >
       <div className='p-2 px-3'>
         <div className='float-end m-1'>
-          <Badge text={word.type} />
+          <Badge text={MAPPER.extended.type[word.type]} />
         </div>
         <p className='line-clamp-1 text-2xl'>{highlightedWord}</p>
         <p>{lexicalForm ? lexicalForm : <br />}</p>
