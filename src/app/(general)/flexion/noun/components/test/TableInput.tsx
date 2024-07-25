@@ -3,12 +3,12 @@ import { WORD_CONSTANTS } from '@/constants';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import table from '@/styles/table.module.css';
-import { Noun, Numerus, Word, WordCase } from '@/types';
-import { Dispatch, SetStateAction } from 'react';
+import { Noun } from '@/types';
+import { SetTableInputValues, TableInputValues } from '../../types';
 
 type TableInputProps = {
-  tableInputValues: Record<Numerus, Record<Exclude<WordCase, '6'>, string>>;
-  setTableInputValues: Dispatch<SetStateAction<Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>;
+  tableInputValues: TableInputValues;
+  setTableInputValues: SetTableInputValues;
   stage: 'test' | 'review';
   activeWord: Noun;
 };
