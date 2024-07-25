@@ -74,8 +74,7 @@ const Page = () => {
   const [genders, setGenders] = useState<Gender[]>([...WORD_CONSTANTS.gender]);
   const [checkAdverb, setCheckAdverb] = useState(true);
 
-  const [tableInputValues, setTableInputValues] =
-    useState<Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>(initialTableInputValues);
+  const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   const start = remainingWords > 0;
