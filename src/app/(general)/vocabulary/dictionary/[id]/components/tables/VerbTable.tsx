@@ -19,11 +19,14 @@ const VerbTable = ({ word }: VerbTableProps) => {
               <thead className={table.thead}>
                 <tr>
                   <th />
-                  {WORD_CONSTANTS.tense.map((tense, i) => (
-                    <th key={i} className={table.th}>
-                      {MAPPER.extended.tense[tense]}
-                    </th>
-                  ))}
+                  {WORD_CONSTANTS.tense.map(
+                    (tense, i) =>
+                      (modus === 'ind' || tense !== 'fut1') && (
+                        <th key={i} className={table.th}>
+                          {MAPPER.extended.tense[tense]}
+                        </th>
+                      )
+                  )}
                 </tr>
               </thead>
               <tbody>
