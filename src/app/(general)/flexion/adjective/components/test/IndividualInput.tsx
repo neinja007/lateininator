@@ -1,5 +1,5 @@
 import TrainerInput from '@/components/TrainerInput';
-import { Adjective, Comparison, ComparisonDegree, Gender, Numerus, Word, WordCase } from '@/types';
+import { Adjective } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import { IndividualInputForm } from '../../types';
