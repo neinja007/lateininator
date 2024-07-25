@@ -52,7 +52,7 @@ const Page = () => {
           start={start}
         />
       )}
-      {(stage === 'test' || stage === 'review') && activeWord && (
+      {(stage === 'test' || stage === 'review') && activeWord && activeWord.type === 'noun' && (
         <Test
           activeWord={activeWord}
           testingType={testingType}
