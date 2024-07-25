@@ -1,21 +1,15 @@
 import TrainerInput from '@/components/TrainerInput';
-import { Conjugation, Modus, Numerus, Person, Tense, Voice, Word } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
+import { IndividualInputForm } from '../../types';
+import { Verb } from '@/types';
 
 type IndividualInputProps = {
-  individualInputForm: {
-    tense: Tense;
-    numerus: Numerus;
-    person: Person;
-    conjugation: Conjugation;
-    voice: Voice;
-    modus: Modus;
-  };
+  individualInputForm: IndividualInputForm;
   individualInputValue: string;
   setIndividualInputValue: (value: string) => void;
   stage: 'test' | 'review';
-  activeWord: Word;
+  activeWord: Verb;
 };
 
 const IndividualInput = ({

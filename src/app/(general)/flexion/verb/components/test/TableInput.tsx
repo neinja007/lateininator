@@ -3,17 +3,14 @@ import { WORD_CONSTANTS } from '@/constants';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import table from '@/styles/table.module.css';
-import { Modus, Numerus, Person, Tense, Voice, Word } from '@/types';
-import { Dispatch, SetStateAction } from 'react';
+import { Modus, Tense, Voice, Word } from '@/types';
+import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
 
 type TableInputProps = {
-  tableInputForm: {
-    voice: Voice;
-    modus: Modus;
-  };
+  tableInputForm: TableInputForm;
   tenses: Tense[];
-  tableInputValues: Record<Tense, Record<Numerus, Record<Person, string>>>;
-  setTableInputValues: Dispatch<SetStateAction<Record<Tense, Record<Numerus, Record<Person, string>>>>>;
+  tableInputValues: TableInputValues;
+  setTableInputValues: SetTableInputValues;
   stage: 'test' | 'review';
   activeWord: Word;
 };
