@@ -42,7 +42,6 @@ const Test = ({
   const modus = getRandomItem(modi);
   const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
-    conjugation: activeWord.conjugation as Conjugation,
     voice: getRandomItem(voices),
     modus: modus,
     tense: tense,
@@ -61,7 +60,6 @@ const Test = ({
       const modus = getRandomItem(modi);
       const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
       setIndividualInputForm({
-        conjugation: activeWord.conjugation as Conjugation,
         voice: getRandomItem(voices),
         modus: modus,
         tense: tense,
