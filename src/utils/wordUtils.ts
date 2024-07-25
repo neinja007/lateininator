@@ -21,7 +21,7 @@ export const getBase = (
 
   if (word.type === 'noun') {
     if (word.declension === 'o') {
-      base = word.genitive.substring(0, word.genitive.length - 1);
+      base = word.genitive.substring(0, word.genitive.length - (word.pluralOnly ? 4 : 1));
     } else {
       base = word.genitive.substring(0, word.genitive.length - 2);
     }
@@ -80,7 +80,8 @@ export const getForm = (
   if (word.type === 'noun') {
     if (word.declension === '-' || word.gender === '-')
       throw new Error('Error: Empty word properties were passed to getForm()');
-    if ('numerus' in info && 'wordCase' in info) {
+    else if (word.pluralOnly && info.numerus === 'sin') return '-';
+    else if ('numerus' in info && 'wordCase' in info) {
       if (info.wordCase === '6') {
         ending = endings.noun[word.declension][word.gender][info.numerus][1];
 
