@@ -12,11 +12,10 @@ const SearchBar = ({ query, setQuery }: SearchBarProps) => {
       <Input
         label='Suche'
         placeholder='Wort oder Übersetzung eingeben'
-        className='mr-4 w-full max-w-96'
+        className='mr-4 w-full'
         value={query}
         onChange={setQuery}
       />
-      <Button>Erweiterte Suche</Button>
     </div>
   );
 };
