@@ -57,14 +57,21 @@ const Test = ({
   useEffect(() => {
     if (!activeWord || activeWord.type !== 'verb') return;
     if (testingType === 'individual') {
-      const modus = getRandomItem(modi);
-      const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
+      const person =
+        Math.random() < 0.04 ? '4' : getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')]);
+      const modus = person === '4' ? 'ind' : getRandomItem(modi);
+      const tense =
+        person === '4'
+          ? 'pres'
+          : modus === 'kon'
+            ? getRandomItem(tenses.filter((tense) => tense !== 'fut1'))
+            : getRandomItem(tenses);
       setIndividualInputForm({
-        voice: getRandomItem(voices),
+        person: person,
+        voice: person !== '4' ? getRandomItem(voices) : 'act',
         modus: modus,
         tense: tense,
-        numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
-        person: getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')])
+        numerus: getRandomItem([...WORD_CONSTANTS.numerus])
       });
     } else {
       setTableInputForm({
