@@ -30,14 +30,15 @@ const VerbTable = ({ word }: VerbTableProps) => {
                 {WORD_CONSTANTS.numerus.map((numerus) =>
                   WORD_CONSTANTS.person.map(
                     (person) =>
-                      person !== '4' && (
+                      (person !== '4' || (modus === 'ind' && voice === 'act')) && (
                         <tr key={person} className={table.tr}>
                           <th className={table.th}>
                             {MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}
                           </th>
                           {WORD_CONSTANTS.tense.map(
                             (tense) =>
-                              (modus === 'ind' || tense !== 'fut1') && (
+                              (modus === 'ind' || tense !== 'fut1') &&
+                              (person !== '4' || tense === 'pres') && (
                                 <td key={tense} className={table.td}>
                                   {getForm(word, { modus, numerus, person, tense, voice })}
                                 </td>
