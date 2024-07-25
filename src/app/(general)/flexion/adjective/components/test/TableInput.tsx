@@ -30,7 +30,10 @@ const TableInput = ({
 }: TableInputProps) => {
   return (
     <>
-      <p>{`${MAPPER.extended.comparison[tableInputForm.comparison]} ${MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}`}</p>
+      <p>
+        {MAPPER.extended.comparison[tableInputForm.comparison]}{' '}
+        {MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}
+      </p>
       {checkAdverb && (
         <div className='mb-4'>
           <TrainerInput
