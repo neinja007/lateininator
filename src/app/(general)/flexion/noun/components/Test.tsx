@@ -1,17 +1,18 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Numerus, Word, WordCase } from '@/types';
+import { Noun, Numerus, Word, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { getRandomItem } from '@/utils/propertyUtils';
+import { SetTableInputValues, TableInputValues } from '../types';
 
 type TestProps = {
-  activeWord: Word;
+  activeWord: Noun;
   testingType: 'table' | 'individual';
   stage: 'test' | 'review';
-  tableInputValues: Record<Numerus, Record<Exclude<WordCase, '6'>, string>>;
-  setTableInputValues: Dispatch<SetStateAction<Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>;
+  tableInputValues: TableInputValues;
+  setTableInputValues: SetTableInputValues;
   maxWords: number;
   remainingWords: number;
   handleContinue: () => void;
