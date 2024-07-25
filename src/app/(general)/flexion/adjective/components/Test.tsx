@@ -6,7 +6,7 @@ import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { isAdjective } from '@/utils/typeguards';
 import { getRandomItem } from '@/utils/propertyUtils';
-import { IndividualInputForm, SetTableInputValues, TableInputValues } from '../types';
+import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 
 type TestProps = {
   activeWord: Adjective;
@@ -47,10 +47,7 @@ const Test = ({
     gender: getRandomItem(genders)
   });
 
-  const [tableInputForm, setTableInputForm] = useState<{
-    comparison: Comparison;
-    comparisonDegree: ComparisonDegree;
-  }>({
+  const [tableInputForm, setTableInputForm] = useState<TableInputForm>({
     comparison: activeWord.comparison as Comparison,
     comparisonDegree: getRandomItem(comparisonDegrees)
   });

@@ -12,3 +12,7 @@ export type IndividualInputForm = {
   numerus: Numerus;
   wordCase: WordCase;
 };
+export type TableInputForm = {
+  comparison: Comparison;
+  comparisonDegree: ComparisonDegree;
+};

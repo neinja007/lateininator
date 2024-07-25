@@ -3,14 +3,11 @@ import { WORD_CONSTANTS } from '@/constants';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import table from '@/styles/table.module.css';
-import { Comparison, ComparisonDegree, Gender, Word } from '@/types';
-import { SetTableInputValues, TableInputValues } from '../../types';
+import { Gender, Word } from '@/types';
+import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
 
 type TableInputProps = {
-  tableInputForm: {
-    comparison: Comparison;
-    comparisonDegree: ComparisonDegree;
-  };
+  tableInputForm: TableInputForm;
   genders: Gender[];
   tableInputValues: TableInputValues;
   setTableInputValues: SetTableInputValues;
