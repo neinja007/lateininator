@@ -52,7 +52,7 @@ const Test = ({
   return (
     <>
       <WordDisplay word={activeWord} />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <div>
         {individualInputForm && testingType === 'individual' ? (
           <IndividualInput
@@ -73,7 +73,7 @@ const Test = ({
           )
         )}
       </div>
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <ActionBar handleContinue={handleContinue} progressPercentage={((maxWords - remainingWords) / maxWords) * 100} />
     </>
   );

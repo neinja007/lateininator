@@ -39,7 +39,7 @@ const Settings = ({
   return (
     <>
       <ListSelection selectedIds={selectedIds} setSelectedIds={setSelectedIds} />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <WordTypeSelection
         validWords={validWords}
         setValidWords={setValidWords}
@@ -47,7 +47,7 @@ const Settings = ({
         typesToCheck={typesToCheck}
         setTypesToCheck={setTypesToCheck}
       />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <PropertySelection
         checkTranslation={checkTranslation}
         setCheckTranslation={setCheckTranslation}
@@ -55,7 +55,7 @@ const Settings = ({
         wordPropertiesToCheck={wordPropertiesToCheck}
         setWordPropertiesToCheck={setWordPropertiesToCheck}
       />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <WordCountSelection
         checkIncorrectWordsAgain={checkIncorrectWordsAgain}
         setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}

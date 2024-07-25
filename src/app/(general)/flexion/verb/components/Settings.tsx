@@ -66,9 +66,9 @@ const Settings = ({
   return (
     <>
       <ListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <TestingTypeSelection testingType={testingType} setTestingType={setTestingType} />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <TestingFormSelection
         conjugations={conjugations}
         setConjugations={setConjugations}
@@ -79,7 +79,7 @@ const Settings = ({
         voices={voices}
         setVoices={setVoices}
       />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <WordCountSelection testingType={testingType} inputValue={inputValue} updateValue={updateValue} />
       <Button onClick={() => handleContinue()} className='w-full' disabled={!start}>
         <span>{!start ? 'Keine Verben verfügbar' : 'Start'}</span>

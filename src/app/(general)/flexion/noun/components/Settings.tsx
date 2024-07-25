@@ -54,16 +54,16 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
   return (
     <>
       <AdjectiveListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <TestingTypeSelection testingType={testingType} setTestingType={setTestingType} />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <TestingFormSelection
         declensions={declensions}
         setDeclensions={setDeclensions}
         genders={genders}
         setGenders={setGenders}
       />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       <WordCountSelection testingType={testingType} inputValue={inputValue} updateValue={updateValue} />
       <Button onClick={() => handleContinue()} className='w-full' disabled={!start}>
         <span>{!start ? 'Keine Nomen verfügbar' : 'Start'}</span>

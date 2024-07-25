@@ -122,7 +122,7 @@ const Navbar = () => {
             />
           </div>
         </div>
-        <hr className='border-gray-500' />
+        <hr className='dark:border-gray-500' />
         {links.map((link, i) => {
           if (link.children) {
             return (

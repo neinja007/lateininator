@@ -23,7 +23,7 @@ const Page = () => {
       <SearchBar query={query} setQuery={setQuery} />
 
       <ResultCount count={results.length} query={query} limitResults={limitResults} setLimitResults={setLimitResults} />
-      <hr className='border-gray-500' />
+      <hr className='dark:border-gray-500' />
       {results.length > 0 && (
         <div>
           <DisplayMode view={view} setView={setView} />
