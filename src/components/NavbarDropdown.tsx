@@ -16,7 +16,7 @@ type NavbarDropdownProps = {
 
 const NavbarDropdown = ({ label, children, open, handleOpen, active, mobile }: NavbarDropdownProps) => {
   return (
-    <div className={mobile ? 'border-b border-gray-500 p-2 last:border-b-0' : 'my-auto flex justify-center'}>
+    <div className={mobile ? 'border-b p-2 last:border-b-0 dark:border-gray-500' : 'my-auto flex justify-center'}>
       <div
         className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)}
         onClick={() => handleOpen((prevOpen) => (prevOpen === label ? '' : label))}
