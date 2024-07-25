@@ -2,12 +2,10 @@ import TrainerInput from '@/components/TrainerInput';
 import { Noun, Numerus, Word, WordCase } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
+import { IndividualInputForm } from '../../types';
 
 type IndividualInputProps = {
-  individualInputForm: {
-    numerus: Numerus;
-    wordCase: WordCase;
-  };
+  individualInputForm: IndividualInputForm;
   individualInputValue: string;
   setIndividualInputValue: (value: string) => void;
   stage: 'test' | 'review';
