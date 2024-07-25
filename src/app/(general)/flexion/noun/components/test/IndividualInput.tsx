@@ -1,5 +1,5 @@
 import TrainerInput from '@/components/TrainerInput';
-import { Numerus, Word, WordCase } from '@/types';
+import { Noun, Numerus, Word, WordCase } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 
@@ -11,7 +11,7 @@ type IndividualInputProps = {
   individualInputValue: string;
   setIndividualInputValue: (value: string) => void;
   stage: 'test' | 'review';
-  activeWord: Word;
+  activeWord: Noun;
 };
 
 const IndividualInput = ({
@@ -23,7 +23,7 @@ const IndividualInput = ({
 }: IndividualInputProps) => {
   return (
     <TrainerInput
-      label={`${MAPPER.extended.wordCase[individualInputForm.wordCase]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
+      label={`${activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'} ${MAPPER.extended.wordCase[individualInputForm.wordCase]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
       handleChange={setIndividualInputValue}
       value={individualInputValue}
       correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}

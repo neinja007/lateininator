@@ -6,15 +6,14 @@ import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { isAdjective } from '@/utils/typeguards';
 import { getRandomItem } from '@/utils/propertyUtils';
+import { IndividualInputForm, SetTableInputValues, TableInputValues } from '../types';
 
 type TestProps = {
   activeWord: Adjective;
   testingType: 'table' | 'individual';
   stage: 'test' | 'review';
-  tableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>;
-  setTableInputValues: Dispatch<
-    SetStateAction<Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>
-  >;
+  tableInputValues: TableInputValues;
+  setTableInputValues: SetTableInputValues;
   maxWords: number;
   remainingWords: number;
   handleContinue: () => void;

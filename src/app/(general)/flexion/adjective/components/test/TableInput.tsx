@@ -3,8 +3,8 @@ import { WORD_CONSTANTS } from '@/constants';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import table from '@/styles/table.module.css';
-import { Comparison, ComparisonDegree, Gender, Numerus, Word, WordCase } from '@/types';
-import { Dispatch, SetStateAction } from 'react';
+import { Comparison, ComparisonDegree, Gender, Word } from '@/types';
+import { SetTableInputValues, TableInputValues } from '../../types';
 
 type TableInputProps = {
   tableInputForm: {
@@ -12,10 +12,8 @@ type TableInputProps = {
     comparisonDegree: ComparisonDegree;
   };
   genders: Gender[];
-  tableInputValues: Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>;
-  setTableInputValues: Dispatch<
-    SetStateAction<Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>
-  >;
+  tableInputValues: TableInputValues;
+  setTableInputValues: SetTableInputValues;
   stage: 'test' | 'review';
   activeWord: Word;
   checkAdverb: boolean;
@@ -27,7 +25,8 @@ const TableInput = ({
   setTableInputValues,
   stage,
   activeWord,
-  genders
+  genders,
+  checkAdverb
 }: TableInputProps) => {
   return (
     <>

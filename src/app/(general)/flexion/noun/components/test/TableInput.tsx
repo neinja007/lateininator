@@ -3,19 +3,20 @@ import { WORD_CONSTANTS } from '@/constants';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import table from '@/styles/table.module.css';
-import { Numerus, Word, WordCase } from '@/types';
+import { Noun, Numerus, Word, WordCase } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
 
 type TableInputProps = {
   tableInputValues: Record<Numerus, Record<Exclude<WordCase, '6'>, string>>;
   setTableInputValues: Dispatch<SetStateAction<Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>>;
   stage: 'test' | 'review';
-  activeWord: Word;
+  activeWord: Noun;
 };
 
 const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }: TableInputProps) => {
   return (
     <>
+      <p>{activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'}</p>
       <table className={table.table}>
         <thead className={table.thead}>
           <tr>
