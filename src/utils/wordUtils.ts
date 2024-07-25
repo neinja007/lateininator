@@ -1,7 +1,6 @@
 import { endings } from '@/data/endings';
 import { irregularWords } from '@/data/irregularWords';
 import { Word, Person, Numerus, Tense, Voice, Modus, WordCase, ComparisonDegree, Gender } from '@/types';
-import { use } from 'react';
 
 export const getLexicalForm = (word: Word) => {
   if (word.type === 'noun') {
@@ -15,8 +14,7 @@ export const getLexicalForm = (word: Word) => {
 
 export const getBase = (
   word: Word,
-  info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean },
-  customBases?: { [key: string]: string }
+  info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean }
 ): string => {
   const { baseType, superlative } = info;
   let base = '';
@@ -93,10 +91,12 @@ export const getForm = (
       } else {
         ending = endings.noun[word.declension][word.gender][info.numerus][info.wordCase];
       }
+    } else {
+      throw new Error('Error: Invalid word properties were passed to getForm()');
     }
   } else if (word.type === 'verb') {
     if (word.conjugation === '-') throw new Error('Error: Empty word properties were passed to getForm()');
-    if ('modus' in info && 'voice' in info && 'tense' in info && 'numerus' in info && 'person' in info) {
+    else if ('modus' in info && 'voice' in info && 'tense' in info && 'numerus' in info && 'person' in info) {
       if (info.person === '4') {
         if (info.modus === 'ind' && info.tense === 'pres' && info.voice === 'act') {
           ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];
@@ -108,10 +108,12 @@ export const getForm = (
       } else if (info.modus === 'ind') {
         ending = endings.verb[word.conjugation][info.modus][info.voice][info.tense][info.numerus][info.person];
       }
+    } else {
+      throw new Error('Error: Invalid word properties were passed to getForm()');
     }
   } else if (word.type === 'adjective') {
     if (word.comparison === '-') throw new Error('Error: Empty word properties were passed to getForm()');
-    if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
+    else if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
       if (info.adverb) {
         console.log(customEndings);
         if (customEndings && customEndings?.adverb?.[info.comparisonDegree]) {
@@ -132,6 +134,8 @@ export const getForm = (
           ending = endings.adjective[word.comparison][info.gender][info.comparisonDegree][info.numerus][info.wordCase];
         }
       }
+    } else {
+      throw new Error('Error: Invalid word properties were passed to getForm()');
     }
   }
 
