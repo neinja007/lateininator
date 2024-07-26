@@ -1,14 +1,16 @@
 import Select from '@/components/Select';
 import { lists } from '@/data/lists';
-import { Word } from '@/types';
+import { MainWordType, Word, WordType } from '@/types';
+import { MAPPER } from '@/utils/mapper';
 
-type ListSelectionProps = {
+type WordSelectionProps = {
   maxUnit: number;
   setMaxUnit: (arg: number) => void;
   validWords: Word[];
+  type: string;
 };
 
-const ListSelection = ({ maxUnit, setMaxUnit, validWords }: ListSelectionProps) => {
+const WordSelection = ({ maxUnit, setMaxUnit, validWords, type }: WordSelectionProps) => {
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
@@ -23,11 +25,15 @@ const ListSelection = ({ maxUnit, setMaxUnit, validWords }: ListSelectionProps) 
           }, {})}
         />
         <span className='mb-1.5 ml-5 mt-auto'>
-          Du hast <b className='text-blue-500'>{validWords.length} Verben</b> ausgewählt.
+          Du hast{' '}
+          <b className='text-blue-500'>
+            {validWords.length} {type}
+          </b>{' '}
+          ausgewählt.
         </span>
       </div>
     </>
   );
 };
 
-export default ListSelection;
+export default WordSelection;

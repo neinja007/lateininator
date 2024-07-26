@@ -5,10 +5,9 @@ import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Noun, Word } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import AdjectiveListSelection from './settings/ListSelection';
-import TestingTypeSelection from './settings/TestingTypeSelection';
 import TestingFormSelection from './settings/TestingFormSelection';
-import WordCountSelection from './settings/WordCountSelection';
+import WordCount from '../../components/WordLimit';
+import WordSelection from '../../components/WordSelection';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -53,9 +52,9 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
 
   return (
     <>
-      <AdjectiveListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} />
+      <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Nomen' />
       <hr className='dark:border-gray-500' />
-      <TestingTypeSelection
+      <WordCount
         testingType={testingType}
         setTestingType={setTestingType}
         inputValue={inputValue}

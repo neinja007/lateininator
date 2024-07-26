@@ -2,11 +2,13 @@ import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
 import { Conjugation, Modus, Numerus, Person, Tense, Verb, Voice } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { getRandomItem } from '@/utils/propertyUtils';
 import { WORD_CONSTANTS } from '@/constants';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
+import TrainerInput from '@/components/TrainerInput';
+import { MAPPER } from '@/utils/mapper';
+import { getForm } from '@/utils/wordUtils';
 
 type TestProps = {
   activeWord: Verb;
@@ -88,12 +90,11 @@ const Test = ({
       <hr className='dark:border-gray-500' />
       <div>
         {testingType === 'individual' ? (
-          <IndividualInput
-            individualInputForm={individualInputForm}
-            individualInputValue={individualInputValue}
-            setIndividualInputValue={setIndividualInputValue}
-            stage={stage}
-            activeWord={activeWord}
+          <TrainerInput
+            label={`${MAPPER.extended.person[individualInputForm.person]} ${MAPPER.extended.numerus[individualInputForm.numerus]}; ${MAPPER.extended.modus[individualInputForm.modus]} ${MAPPER.extended.tense[individualInputForm.tense]} ${MAPPER.extended.voice[individualInputForm.voice]}`}
+            handleChange={setIndividualInputValue}
+            value={individualInputValue}
+            correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
           />
         ) : (
           <TableInput

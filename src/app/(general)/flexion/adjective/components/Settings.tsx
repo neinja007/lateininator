@@ -6,10 +6,9 @@ import { useNumberInput } from '@/hooks/useNumberInput';
 import { Adjective, Comparison, ComparisonDegree, Gender, Word } from '@/types';
 import { isAdjective } from '@/utils/typeguards';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import AdjectiveListSelection from './settings/AdjectiveListSelection';
-import TestingTypeSelection from './settings/TestingTypeSelection';
 import TestingFormSelection from './settings/TestingFormSelection';
-import WordCountSelection from './settings/WordCountSelection';
+import WordCount from '../../components/WordLimit';
+import WordSelection from '../../components/WordSelection';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -66,9 +65,14 @@ const Settings = ({
 
   return (
     <>
-      <AdjectiveListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} />
+      <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
       <hr className='dark:border-gray-500' />
-      <TestingTypeSelection testingType={testingType} setTestingType={setTestingType} />
+      <WordCount
+        testingType={testingType}
+        setTestingType={setTestingType}
+        inputValue={inputValue}
+        updateValue={updateValue}
+      />
       <hr className='dark:border-gray-500' />
       <TestingFormSelection
         checkAdverb={checkAdverb}
@@ -80,9 +84,7 @@ const Settings = ({
         genders={genders}
         setGenders={setGenders}
       />
-      <hr className='dark:border-gray-500' />
-      <WordCountSelection testingType={testingType} inputValue={inputValue} updateValue={updateValue} />
-      <Button onClick={() => handleContinue()} className='w-full' disabled={!start}>
+      <Button onClick={() => handleContinue()} className='w-full' disabled={!start} color={start ? 'green' : 'gray'}>
         <span>{!start ? 'Keine Adjektive verfügbar' : 'Start'}</span>
       </Button>
     </>

@@ -1,14 +1,14 @@
 import SelectButton from '@/components/SelectButton';
-import WordCountSelection from './WordCountSelection';
+import Input from '@/components/Input';
 
-type TestingTypeSelectionProps = {
+type WordLimitProps = {
   testingType: 'table' | 'individual';
   setTestingType: (arg: 'table' | 'individual') => void;
   inputValue: string;
   updateValue: (arg: string) => void;
 };
 
-const TestingTypeSelection = ({ testingType, setTestingType, inputValue, updateValue }: TestingTypeSelectionProps) => {
+const WordLimit = ({ testingType, setTestingType, inputValue, updateValue }: WordLimitProps) => {
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
@@ -26,9 +26,18 @@ const TestingTypeSelection = ({ testingType, setTestingType, inputValue, updateV
           label='Formen einzeln abfragen'
         />
       </div>
-      <WordCountSelection testingType={testingType} inputValue={inputValue} updateValue={updateValue} />
+      <div className='flex justify-center'>
+        <Input
+          label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (max. ${
+            testingType === 'individual' ? '100' : '5'
+          })`}
+          onChange={(value) => updateValue(value)}
+          value={inputValue}
+          className={'w-full text-center'}
+        />
+      </div>
     </>
   );
 };
 
-export default TestingTypeSelection;
+export default WordLimit;

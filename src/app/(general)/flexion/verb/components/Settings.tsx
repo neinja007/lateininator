@@ -5,10 +5,9 @@ import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Conjugation, Modus, Tense, Verb, Voice, Word } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import ListSelection from './settings/ListSelection';
-import TestingTypeSelection from './settings/TestingTypeSelection';
 import TestingFormSelection from './settings/TestingFormSelection';
-import WordCountSelection from './settings/WordCountSelection';
+import WordCount from '../../components/WordLimit';
+import WordSelection from '../../components/WordSelection';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -65,9 +64,14 @@ const Settings = ({
 
   return (
     <>
-      <ListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} />
+      <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
       <hr className='dark:border-gray-500' />
-      <TestingTypeSelection testingType={testingType} setTestingType={setTestingType} />
+      <WordCount
+        testingType={testingType}
+        setTestingType={setTestingType}
+        inputValue={inputValue}
+        updateValue={updateValue}
+      />
       <hr className='dark:border-gray-500' />
       <TestingFormSelection
         conjugations={conjugations}
@@ -79,9 +83,7 @@ const Settings = ({
         voices={voices}
         setVoices={setVoices}
       />
-      <hr className='dark:border-gray-500' />
-      <WordCountSelection testingType={testingType} inputValue={inputValue} updateValue={updateValue} />
-      <Button onClick={() => handleContinue()} className='w-full' disabled={!start}>
+      <Button onClick={() => handleContinue()} className='w-full' disabled={!start} color={start ? 'green' : 'gray'}>
         <span>{!start ? 'Keine Verben verfügbar' : 'Start'}</span>
       </Button>
     </>

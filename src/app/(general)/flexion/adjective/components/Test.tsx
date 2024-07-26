@@ -2,11 +2,13 @@ import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
 import { Adjective, Comparison, ComparisonDegree, Gender, Numerus, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { isAdjective } from '@/utils/typeguards';
 import { getRandomItem } from '@/utils/propertyUtils';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
+import TrainerInput from '@/components/TrainerInput';
+import { MAPPER } from '@/utils/mapper';
+import { getForm } from '@/utils/wordUtils';
 
 type TestProps = {
   activeWord: Adjective;
@@ -76,12 +78,21 @@ const Test = ({
       <hr className='dark:border-gray-500' />
       <div>
         {individualInputForm && testingType === 'individual' ? (
-          <IndividualInput
-            individualInputForm={individualInputForm}
-            individualInputValue={individualInputValue}
-            setIndividualInputValue={setIndividualInputValue}
-            stage={stage}
-            activeWord={activeWord}
+          <TrainerInput
+            label={
+              !individualInputForm.adverb
+                ? `
+                  ${MAPPER.extended.gender[individualInputForm.gender]};
+                  ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]}
+                  ${activeWord.comparison !== '-' ? MAPPER.extended.comparison[activeWord.comparison] : '-'}
+                  ${MAPPER.extended.numerus[individualInputForm.numerus]}
+                  ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
+                  `
+                : `Adverb ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]} ${activeWord.comparison !== '-' ? MAPPER.extended.comparison[activeWord.comparison] : '-'}`
+            }
+            handleChange={setIndividualInputValue}
+            value={individualInputValue}
+            correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
           />
         ) : (
           tableInputForm &&

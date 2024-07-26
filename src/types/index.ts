@@ -13,7 +13,7 @@ export type Comparison = (typeof WORD_CONSTANTS.comparison)[number];
 export type ComparisonDegree = (typeof WORD_CONSTANTS.comparisonDegree)[number];
 
 export type WordType = (typeof APP_CONSTANTS.wordTypes)[number];
-export type MainWordTypes = (typeof APP_CONSTANTS.mainWordTypes)[number];
+export type MainWordType = (typeof APP_CONSTANTS.mainWordTypes)[number];
 export type WordProperty = (typeof APP_CONSTANTS.allWordProperties)[number];
 export type OtherProperty = (typeof APP_CONSTANTS.otherProperties)[number];
 export type WordPropertiesUsingSelectInput = (typeof APP_CONSTANTS.wordPropertiesUsingSelectInput)[number];

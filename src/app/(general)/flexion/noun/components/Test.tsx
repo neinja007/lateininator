@@ -2,10 +2,12 @@ import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
 import { Noun, Numerus, Word, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import IndividualInput from './test/IndividualInput';
 import TableInput from './test/TableInput';
 import { getRandomItem } from '@/utils/propertyUtils';
 import { IndividualInputForm, SetTableInputValues, TableInputValues } from '../types';
+import TrainerInput from '@/components/TrainerInput';
+import { MAPPER } from '@/utils/mapper';
+import { getForm } from '@/utils/wordUtils';
 
 type TestProps = {
   activeWord: Noun;
@@ -53,12 +55,11 @@ const Test = ({
       <hr className='dark:border-gray-500' />
       <div>
         {individualInputForm && testingType === 'individual' ? (
-          <IndividualInput
-            individualInputForm={individualInputForm}
-            individualInputValue={individualInputValue}
-            setIndividualInputValue={setIndividualInputValue}
-            stage={stage}
-            activeWord={activeWord}
+          <TrainerInput
+            label={`${activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'} ${MAPPER.extended.wordCase[individualInputForm.wordCase]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
+            handleChange={setIndividualInputValue}
+            value={individualInputValue}
+            correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
           />
         ) : (
           testingType === 'table' && (
