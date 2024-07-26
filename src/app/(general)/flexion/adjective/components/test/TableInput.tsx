@@ -27,7 +27,7 @@ const TableInput = ({
 }: TableInputProps) => {
   return (
     <>
-      <p>
+      <p className='text-center font-bold'>
         {MAPPER.extended.comparison[tableInputForm.comparison]}{' '}
         {MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}
       </p>

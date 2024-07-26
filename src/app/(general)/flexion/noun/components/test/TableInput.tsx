@@ -16,7 +16,9 @@ type TableInputProps = {
 const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }: TableInputProps) => {
   return (
     <>
-      <p>{activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'}</p>
+      <p className='text-center font-bold'>
+        {activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'}
+      </p>
       <table className={table.table}>
         <thead className={table.thead}>
           <tr>
@@ -35,7 +37,7 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }
                 <tr key={wordCase} className={table.tr}>
                   <th className={table.th}>{MAPPER.extended.wordCase[wordCase]}</th>
                   {WORD_CONSTANTS.numerus.map((numerus, i) => (
-                    <td key={i} className='border p-0'>
+                    <td key={i} className='border p-0 dark:border-gray-500'>
                       <TrainerInput
                         customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
                         value={tableInputValues[numerus][wordCase]}

@@ -25,7 +25,7 @@ const TableInput = ({
 }: TableInputProps) => {
   return (
     <>
-      <p>
+      <p className='text-center font-bold'>
         {MAPPER.extended.modus[tableInputForm.modus]} {MAPPER.extended.voice[tableInputForm.voice]}
       </p>
       <table className={table.table}>
@@ -54,7 +54,7 @@ const TableInput = ({
                     {tenses.map((tense) => {
                       return (
                         (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
-                          <td key={tense} className='border p-0'>
+                          <td key={tense} className='border p-0 dark:border-gray-500'>
                             {person !== '4' ||
                             (tense === 'pres' && tableInputForm.modus === 'ind' && tableInputForm.voice === 'act') ? (
                               <TrainerInput
