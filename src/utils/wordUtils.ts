@@ -27,7 +27,7 @@ export const getBase = (
     }
   } else if (word.type === 'verb') {
     if (baseType === 'present' || baseType === 'word') {
-      base = word.word.substring(0, word.present.length - 2);
+      base = word.word.substring(0, word.word.length - 3);
     } else if (baseType === 'perfect') {
       base = word.perfect.substring(0, word.perfect.length - 1);
     } else if (baseType === 'participle') {
