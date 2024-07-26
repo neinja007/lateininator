@@ -27,7 +27,7 @@ const PropertyInputs = ({ validKeysToCheck, activeWord, inputValues, setInputVal
             property={key}
             value={inputValues[key]}
             appendedString={
-              stage === 'review' && correct !== true
+              stage === 'review'
                 ? isWordPropertiesUsingSelectInput(key)
                   ? isKeyInObject(value, MAPPER.extended[key]) && MAPPER.extended[key][value]
                   : value

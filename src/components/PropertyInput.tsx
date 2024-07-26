@@ -31,7 +31,7 @@ const PropertyInput = ({ correct, property, handleChange, value, appendedString 
         options={options}
         className={clsx('w-full', correctValueIndicator)}
         value={value}
-        appendString={appendedString}
+        appendString={correct === false ? appendedString : undefined}
         handleChange={(value) => handleChange(property, value)}
         disabled={correct !== undefined}
       />
