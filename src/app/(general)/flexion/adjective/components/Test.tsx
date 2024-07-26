@@ -1,6 +1,6 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Adjective, Comparison, ComparisonDegree, Gender, Numerus, WordCase } from '@/types';
+import { Adjective, Comparison, ComparisonDegree, Gender, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { isAdjective } from '@/utils/typeguards';

@@ -1,6 +1,6 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Noun, Numerus, Word, WordCase } from '@/types';
+import { Noun, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { getRandomItem } from '@/utils/propertyUtils';
