@@ -66,6 +66,7 @@ const Test = ({
           : modus === 'kon'
             ? getRandomItem(tenses.filter((tense) => tense !== 'fut1'))
             : getRandomItem(tenses);
+
       setIndividualInputForm({
         person: person,
         voice: person !== '4' ? getRandomItem(voices) : 'act',
@@ -86,7 +87,7 @@ const Test = ({
       <WordDisplay word={activeWord} />
       <hr className='dark:border-gray-500' />
       <div>
-        {individualInputForm && testingType === 'individual' ? (
+        {testingType === 'individual' ? (
           <IndividualInput
             individualInputForm={individualInputForm}
             individualInputValue={individualInputValue}
@@ -95,17 +96,14 @@ const Test = ({
             activeWord={activeWord}
           />
         ) : (
-          tableInputForm &&
-          testingType === 'table' && (
-            <TableInput
-              tenses={tenses}
-              tableInputForm={tableInputForm}
-              tableInputValues={tableInputValues}
-              setTableInputValues={setTableInputValues}
-              stage={stage}
-              activeWord={activeWord}
-            />
-          )
+          <TableInput
+            tenses={tenses}
+            tableInputForm={tableInputForm}
+            tableInputValues={tableInputValues}
+            setTableInputValues={setTableInputValues}
+            stage={stage}
+            activeWord={activeWord}
+          />
         )}
       </div>
       <hr className='dark:border-gray-500' />

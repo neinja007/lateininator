@@ -8,8 +8,9 @@ import { useGame } from '@/hooks/useGame';
 import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
+import { TableInputValues } from './types';
 
-const initialTableInputValues: Record<Tense, Record<Numerus, Record<Person, string>>> = {
+const initialTableInputValues: TableInputValues = {
   pres: {
     sin: {
       1: '',
@@ -94,8 +95,7 @@ const Page = () => {
   const [modi, setModi] = useState<Modus[]>([...WORD_CONSTANTS.modus]);
   const [tenses, setTenses] = useState<Tense[]>([...WORD_CONSTANTS.tense]);
 
-  const [tableInputValues, setTableInputValues] =
-    useState<Record<Tense, Record<Numerus, Record<Person, string>>>>(initialTableInputValues);
+  const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   const start = remainingWords > 0;
@@ -124,18 +124,18 @@ const Page = () => {
         activeWord.conjugation !== '-' && (
           <Test
             activeWord={activeWord}
-            testingType={testingType}
             stage={stage}
-            tableInputValues={tableInputValues}
-            setTableInputValues={setTableInputValues}
-            maxWords={maxWords}
-            remainingWords={remainingWords}
-            handleContinue={handleContinue}
+            testingType={testingType}
             modi={modi}
             voices={voices}
             tenses={tenses}
+            tableInputValues={tableInputValues}
+            setTableInputValues={setTableInputValues}
             individualInputValue={individualInputValue}
             setIndividualInputValue={setIndividualInputValue}
+            maxWords={maxWords}
+            remainingWords={remainingWords}
+            handleContinue={handleContinue}
           />
         )}
       {stage === 'results' && <Results handleContinue={handleContinue} />}

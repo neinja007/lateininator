@@ -33,8 +33,8 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
         return acc.concat(list.words);
       }, []);
 
-    const selectedWords: Noun[] = words.filter(
-      (word: Word) => word.type === 'noun' && ids.includes(word.id) && word.declension !== '-'
+    const selectedWords = words.filter(
+      (word) => word.type === 'noun' && ids.includes(word.id) && word.declension !== '-'
     ) as Noun[];
     setValidWords(selectedWords);
 

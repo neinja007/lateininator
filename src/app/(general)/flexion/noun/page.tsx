@@ -1,14 +1,14 @@
 'use client';
 
-import { WordCase, Numerus } from '@/types';
 import { useState } from 'react';
 import Heading from '@/components/Heading';
 import { useGame } from '@/hooks/useGame';
 import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
+import { TableInputValues } from './types';
 
-const initialTableInputValues: Record<Numerus, Record<Exclude<WordCase, '6'>, string>> = {
+const initialTableInputValues: TableInputValues = {
   sin: {
     1: '',
     2: '',
@@ -34,8 +34,7 @@ const Page = () => {
       : () => setTableInputValues(initialTableInputValues)
   );
 
-  const [tableInputValues, setTableInputValues] =
-    useState<Record<Numerus, Record<Exclude<WordCase, '6'>, string>>>(initialTableInputValues);
+  const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   const start = remainingWords > 0;
@@ -54,16 +53,16 @@ const Page = () => {
       )}
       {(stage === 'test' || stage === 'review') && activeWord && activeWord.type === 'noun' && (
         <Test
+          stage={stage}
           activeWord={activeWord}
           testingType={testingType}
-          stage={stage}
-          maxWords={maxWords}
-          remainingWords={remainingWords}
-          handleContinue={handleContinue}
           individualInputValue={individualInputValue}
           setIndividualInputValue={setIndividualInputValue}
           tableInputValues={tableInputValues}
           setTableInputValues={setTableInputValues}
+          maxWords={maxWords}
+          remainingWords={remainingWords}
+          handleContinue={handleContinue}
         />
       )}
       {stage === 'results' && <Results handleContinue={handleContinue} />}
