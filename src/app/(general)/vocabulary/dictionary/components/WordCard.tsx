@@ -32,7 +32,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 
   return (
     <div
-      className='flex cursor-pointer select-none flex-col rounded-lg border text-left hover:bg-gray-100 dark:border-gray-500 dark:hover:bg-gray-800'
+      className='flex cursor-pointer select-none flex-col rounded-lg bg-gray-100 text-left shadow hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <div className='p-2 px-3'>
