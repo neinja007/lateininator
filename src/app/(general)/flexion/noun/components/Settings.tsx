@@ -55,7 +55,12 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
     <>
       <AdjectiveListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} />
       <hr className='dark:border-gray-500' />
-      <TestingTypeSelection testingType={testingType} setTestingType={setTestingType} />
+      <TestingTypeSelection
+        testingType={testingType}
+        setTestingType={setTestingType}
+        inputValue={inputValue}
+        updateValue={updateValue}
+      />
       <hr className='dark:border-gray-500' />
       <TestingFormSelection
         declensions={declensions}
@@ -63,10 +68,8 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
         genders={genders}
         setGenders={setGenders}
       />
-      <hr className='dark:border-gray-500' />
-      <WordCountSelection testingType={testingType} inputValue={inputValue} updateValue={updateValue} />
-      <Button onClick={() => handleContinue()} className='w-full' disabled={!start}>
-        <span>{!start ? 'Keine Nomen verfügbar' : 'Start'}</span>
+      <Button onClick={() => handleContinue()} className={'w-full'} disabled={!start} color={start ? 'green' : 'gray'}>
+        {!start ? 'Keine Nomen verfügbar' : 'Start'}
       </Button>
     </>
   );
