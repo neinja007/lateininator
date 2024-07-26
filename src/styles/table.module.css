@@ -2,7 +2,7 @@
 @tailwind utilities;
 
 .table {
-	@apply w-full table-fixed overflow-hidden border;
+	@apply w-full table-fixed overflow-hidden border dark:border-gray-500;
 }
 
 .thead,
@@ -16,5 +16,5 @@
 }
 
 .tr {
-	@apply border-t;
+	@apply border-t dark:border-gray-500;
 }
