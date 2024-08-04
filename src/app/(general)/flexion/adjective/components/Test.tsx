@@ -3,7 +3,6 @@ import WordDisplay from '@/components/WordDisplay';
 import { Adjective, Comparison, ComparisonDegree, Gender, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
-import { isAdjective } from '@/utils/typeguards';
 import { getRandomItem } from '@/utils/propertyUtils';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 import TrainerInput from '@/components/TrainerInput';
@@ -56,7 +55,7 @@ const Test = ({
   });
 
   useEffect(() => {
-    if (!activeWord || !isAdjective(activeWord)) return;
+    if (!activeWord || activeWord.type !== 'adjective') return;
     if (testingType === 'individual') {
       setIndividualInputForm({
         adverb: Math.random() < 0.04,

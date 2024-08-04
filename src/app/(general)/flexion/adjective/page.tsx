@@ -1,6 +1,5 @@
 'use client';
-
-import { WordCase, ComparisonDegree, Gender, Numerus } from '@/types';
+import { ComparisonDegree, Gender } from '@/types';
 import { useState } from 'react';
 import { WORD_CONSTANTS } from '@/constants';
 import Heading from '@/components/Heading';
@@ -8,7 +7,6 @@ import { useGame } from '@/hooks/useGame';
 import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
-import { isAdjective } from '@/utils/typeguards';
 import { TableInputValues } from './types';
 
 const initialTableInputValues: TableInputValues = {
@@ -99,7 +97,7 @@ const Page = () => {
           start={start}
         />
       )}
-      {(stage === 'test' || stage === 'review') && activeWord && isAdjective(activeWord) && (
+      {(stage === 'test' || stage === 'review') && activeWord && activeWord.type === 'adjective' && (
         <Test
           activeWord={activeWord}
           testingType={testingType}

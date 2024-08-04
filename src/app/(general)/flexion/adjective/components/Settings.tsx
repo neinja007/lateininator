@@ -4,7 +4,6 @@ import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Adjective, Comparison, ComparisonDegree, Gender, Word } from '@/types';
-import { isAdjective } from '@/utils/typeguards';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
@@ -52,7 +51,7 @@ const Settings = ({
       }, []);
 
     const selectedWords: Adjective[] = words.filter(
-      (word: Word) => isAdjective(word) && ids.includes(word.id) && word.comparison !== '-'
+      (word: Word) => word.type === 'adjective' && ids.includes(word.id) && word.comparison !== '-'
     ) as Adjective[];
     setValidWords(selectedWords);
 
