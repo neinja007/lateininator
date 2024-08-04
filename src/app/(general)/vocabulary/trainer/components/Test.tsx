@@ -51,7 +51,6 @@ const Test = ({
               stage={stage}
             />
           )}
-          <hr className='dark:border-gray-500' />
           <ActionBar form handleContinue={handleContinue} progressPercentage={progressPercentage} />
         </form>
       </>
