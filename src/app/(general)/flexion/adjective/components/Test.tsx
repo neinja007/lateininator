@@ -9,6 +9,7 @@ import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputVal
 import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
+import { useTestForm } from '@/hooks/useTestForm';
 
 type TestProps = {
   activeWord: Adjective;
@@ -72,11 +73,13 @@ const Test = ({
     }
   }, [activeWord, comparisonDegrees, genders, testingType]);
 
+  const { submit } = useTestForm(handleContinue);
+
   return (
     <>
       <WordDisplay word={activeWord} />
       <hr className='dark:border-gray-500' />
-      <div>
+      <form onSubmit={submit} className='space-y-8'>
         {individualInputForm && testingType === 'individual' ? (
           <TrainerInput
             label={
@@ -108,9 +111,12 @@ const Test = ({
             />
           )
         )}
-      </div>
-      <hr className='dark:border-gray-500' />
-      <ActionBar handleContinue={handleContinue} progressPercentage={((maxWords - remainingWords) / maxWords) * 100} />
+        <ActionBar
+          form
+          handleContinue={handleContinue}
+          progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+        />
+      </form>
     </>
   );
 };

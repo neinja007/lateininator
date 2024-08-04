@@ -8,6 +8,7 @@ import { IndividualInputForm, SetTableInputValues, TableInputValues } from '../t
 import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
+import { useTestForm } from '@/hooks/useTestForm';
 
 type TestProps = {
   activeWord: Noun;
@@ -49,11 +50,13 @@ const Test = ({
     }
   }, [activeWord, testingType]);
 
+  const { submit } = useTestForm(handleContinue);
+
   return (
     <>
       <WordDisplay word={activeWord} />
       <hr className='dark:border-gray-500' />
-      <div>
+      <form onSubmit={submit} className='space-y-8'>
         {individualInputForm && testingType === 'individual' ? (
           <TrainerInput
             label={`${activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'} ${MAPPER.extended.wordCase[individualInputForm.wordCase]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
@@ -71,9 +74,12 @@ const Test = ({
             />
           )
         )}
-      </div>
-      <hr className='dark:border-gray-500' />
-      <ActionBar handleContinue={handleContinue} progressPercentage={((maxWords - remainingWords) / maxWords) * 100} />
+        <ActionBar
+          form
+          handleContinue={handleContinue}
+          progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+        />
+      </form>
     </>
   );
 };
