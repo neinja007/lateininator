@@ -26,8 +26,8 @@ const TableInput = ({
   checkAdverb
 }: TableInputProps) => {
   return (
-    <>
-      <p className='text-center font-bold'>
+    <div>
+      <p className='mb-2 text-center font-bold'>
         {MAPPER.extended.comparison[tableInputForm.comparison]}{' '}
         {MAPPER.extended.comparisonDegree[tableInputForm.comparisonDegree]}
       </p>
@@ -66,12 +66,12 @@ const TableInput = ({
             WORD_CONSTANTS.wordCase.map(
               (wordCase, i) =>
                 wordCase !== '6' && (
-                  <tr key={i} className='border-t'>
+                  <tr key={i} className={table.tr}>
                     <th className={table.th}>
                       {MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
                     </th>
                     {genders.map((gender, i) => (
-                      <td key={i} className='border p-0'>
+                      <td key={i} className='border border-gray-500 p-0'>
                         <TrainerInput
                           customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
                           value={tableInputValues[gender][numerus][wordCase]}
@@ -106,8 +106,7 @@ const TableInput = ({
           )}
         </tbody>
       </table>
-      <br />
-    </>
+    </div>
   );
 };
 

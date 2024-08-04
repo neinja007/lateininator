@@ -3,7 +3,7 @@ import { WORD_CONSTANTS } from '@/constants';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import table from '@/styles/table.module.css';
-import { Modus, Tense, Voice, Word } from '@/types';
+import { Tense, Word } from '@/types';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
 
 type TableInputProps = {
@@ -24,8 +24,8 @@ const TableInput = ({
   tenses
 }: TableInputProps) => {
   return (
-    <>
-      <p className='text-center font-bold'>
+    <div>
+      <p className='mb-2 text-center font-bold'>
         {MAPPER.extended.modus[tableInputForm.modus]} {MAPPER.extended.voice[tableInputForm.voice]}
       </p>
       <table className={table.table}>
@@ -97,8 +97,7 @@ const TableInput = ({
           )}
         </tbody>
       </table>
-      <br />
-    </>
+    </div>
   );
 };
 
