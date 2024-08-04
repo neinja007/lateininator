@@ -2,7 +2,7 @@
 @tailwind utilities;
 
 .table {
-	@apply w-full table-fixed overflow-hidden border dark:border-gray-500;
+  @apply w-full table-fixed border dark:border-gray-500;
 }
 
 .thead,
