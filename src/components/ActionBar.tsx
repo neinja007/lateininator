@@ -3,11 +3,12 @@ import ProgressBar from '@/components/ProgressBar';
 import { Stage } from '@/types';
 
 type ActionBarProps = {
+  form?: boolean;
   handleContinue: (arg?: Stage) => void;
   progressPercentage: number;
 };
 
-const ActionBar = ({ handleContinue, progressPercentage }: ActionBarProps) => {
+const ActionBar = ({ handleContinue, progressPercentage, form }: ActionBarProps) => {
   return (
     <div className='flex'>
       <Button
@@ -15,11 +16,12 @@ const ActionBar = ({ handleContinue, progressPercentage }: ActionBarProps) => {
         onClick={() => {
           handleContinue('results');
         }}
+        type='button'
       >
         Beenden
       </Button>
       <ProgressBar progressPercentage={progressPercentage} />
-      <Button onClick={() => handleContinue()} color='green'>
+      <Button onClick={form ? undefined : () => handleContinue()} color='green' type={form ? 'submit' : 'button'}>
         Weiter
       </Button>
     </div>
