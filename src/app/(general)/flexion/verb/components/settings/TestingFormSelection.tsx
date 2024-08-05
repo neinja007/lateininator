@@ -1,4 +1,5 @@
 import CheckboxList from '@/components/CheckboxList';
+import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants';
 import { Conjugation, Modus, Tense, Voice } from '@/types';
 import { MAPPER } from '@/utils/mapper';
@@ -13,6 +14,8 @@ type TestingFormSelectionProps = {
   setTenses: Dispatch<SetStateAction<Tense[]>>;
   conjugations: Conjugation[];
   setConjugations: Dispatch<SetStateAction<Conjugation[]>>;
+  checkImperative: boolean;
+  setCheckImperative: Dispatch<SetStateAction<boolean>>;
 };
 
 const TestingFormSelection = ({
@@ -23,11 +26,21 @@ const TestingFormSelection = ({
   tenses,
   voices,
   conjugations,
-  setConjugations
+  setConjugations,
+  checkImperative,
+  setCheckImperative
 }: TestingFormSelectionProps) => {
   return (
     <>
-      <p>Wähle aus, was abgefragt werden soll:</p>
+      <div className='grid grid-cols-3'>
+        <p>Wähle aus, was abgefragt werden soll:</p>
+
+        <CheckboxWithLabel
+          checked={checkImperative}
+          handleChange={() => setCheckImperative((prev) => !prev)}
+          label={'Imperative'}
+        />
+      </div>
       <div className='grid grid-cols-4'>
         <CheckboxList
           options={[...WORD_CONSTANTS.conjugation]}

@@ -18,6 +18,8 @@ type SettingsProps = {
   setModi: Dispatch<SetStateAction<Modus[]>>;
   tenses: Tense[];
   setTenses: Dispatch<SetStateAction<Tense[]>>;
+  checkImperative: boolean;
+  setCheckImperative: Dispatch<SetStateAction<boolean>>;
   handleContinue: () => void;
   updateWords: (words: Verb[], count: number) => void;
   start: boolean;
@@ -34,7 +36,9 @@ const Settings = ({
   setTenses,
   setVoices,
   tenses,
-  voices
+  voices,
+  checkImperative,
+  setCheckImperative
 }: SettingsProps) => {
   const [validWords, setValidWords] = useState<Verb[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
@@ -74,6 +78,8 @@ const Settings = ({
       />
       <hr className='dark:border-gray-500' />
       <TestingFormSelection
+        checkImperative={checkImperative}
+        setCheckImperative={setCheckImperative}
         conjugations={conjugations}
         setConjugations={setConjugations}
         modi={modi}

@@ -13,6 +13,7 @@ type TableInputProps = {
   setTableInputValues: SetTableInputValues;
   stage: 'test' | 'review';
   activeWord: Word;
+  checkImperative: boolean;
 };
 
 const TableInput = ({
@@ -21,7 +22,8 @@ const TableInput = ({
   setTableInputValues,
   stage,
   activeWord,
-  tenses
+  tenses,
+  checkImperative
 }: TableInputProps) => {
   return (
     <div>
@@ -46,7 +48,8 @@ const TableInput = ({
           {WORD_CONSTANTS.numerus.map((numerus) =>
             WORD_CONSTANTS.person.map(
               (person) =>
-                (person !== '4' || (tableInputForm.modus === 'ind' && tableInputForm.voice === 'act')) && (
+                (person !== '4' ||
+                  (tableInputForm.modus === 'ind' && tableInputForm.voice === 'act' && checkImperative)) && (
                   <tr key={person} className={table.tr}>
                     <th className={table.th}>
                       {MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}

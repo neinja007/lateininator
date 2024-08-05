@@ -25,6 +25,7 @@ type TestProps = {
   tenses: Tense[];
   individualInputValue: string;
   setIndividualInputValue: Dispatch<SetStateAction<string>>;
+  checkImperative: boolean;
 };
 
 const Test = ({
@@ -40,7 +41,8 @@ const Test = ({
   voices,
   tenses,
   individualInputValue,
-  setIndividualInputValue
+  setIndividualInputValue,
+  checkImperative
 }: TestProps) => {
   const modus = getRandomItem(modi);
   const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
@@ -61,7 +63,9 @@ const Test = ({
     if (!activeWord || activeWord.type !== 'verb') return;
     if (testingType === 'individual') {
       const person =
-        Math.random() < 0.04 ? '4' : getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')]);
+        checkImperative && Math.random() < 0.04
+          ? '4'
+          : getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')]);
       const modus = person === '4' ? 'ind' : getRandomItem(modi);
       const tense =
         person === '4'
@@ -83,7 +87,7 @@ const Test = ({
         modus: getRandomItem(modi)
       });
     }
-  }, [activeWord, modi, tenses, testingType, voices]);
+  }, [activeWord, checkImperative, modi, tenses, testingType, voices]);
 
   const { submit } = useTestForm(handleContinue);
 
@@ -101,6 +105,7 @@ const Test = ({
           />
         ) : (
           <TableInput
+            checkImperative={checkImperative}
             tenses={tenses}
             tableInputForm={tableInputForm}
             tableInputValues={tableInputValues}
