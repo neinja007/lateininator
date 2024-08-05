@@ -1,6 +1,6 @@
 'use client';
 
-import { Numerus, Tense, Person, Voice, Modus } from '@/types';
+import { Tense, Voice, Modus } from '@/types';
 import { useState } from 'react';
 import { WORD_CONSTANTS } from '@/constants';
 import Heading from '@/components/Heading';
@@ -94,6 +94,7 @@ const Page = () => {
   const [voices, setVoices] = useState<Voice[]>([...WORD_CONSTANTS.voice]);
   const [modi, setModi] = useState<Modus[]>([...WORD_CONSTANTS.modus]);
   const [tenses, setTenses] = useState<Tense[]>([...WORD_CONSTANTS.tense]);
+  const [checkImperative, setCheckImperative] = useState<boolean>(true);
 
   const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
@@ -105,6 +106,8 @@ const Page = () => {
       <Heading>Flexionstrainer: Verben</Heading>
       {stage === 'settings' && (
         <Settings
+          checkImperative={checkImperative}
+          setCheckImperative={setCheckImperative}
           testingType={testingType}
           setTestingType={setTestingType}
           voices={voices}
@@ -123,6 +126,7 @@ const Page = () => {
         activeWord.type === 'verb' &&
         activeWord.conjugation !== '-' && (
           <Test
+            checkImperative={checkImperative}
             activeWord={activeWord}
             stage={stage}
             testingType={testingType}
