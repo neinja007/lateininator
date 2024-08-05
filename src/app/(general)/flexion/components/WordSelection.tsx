@@ -1,7 +1,6 @@
 import Select from '@/components/Select';
 import { lists } from '@/data/lists';
-import { MainWordType, Word, WordType } from '@/types';
-import { MAPPER } from '@/utils/mapper';
+import { Word } from '@/types';
 
 type WordSelectionProps = {
   maxUnit: number;
