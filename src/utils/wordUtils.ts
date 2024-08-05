@@ -116,7 +116,6 @@ export const getForm = (
     if (word.comparison === '-') throw new Error('Error: Empty word properties were passed to getForm()');
     else if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
       if (info.adverb) {
-        console.log(customEndings);
         if (customEndings && customEndings?.adverb?.[info.comparisonDegree]) {
           useCustomEnding = true;
           ending = customEndings.adverb[info.comparisonDegree];
