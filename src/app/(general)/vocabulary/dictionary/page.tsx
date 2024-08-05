@@ -8,6 +8,7 @@ import { ResultCount } from './components/ResultCount';
 import WordCards from './components/WordCards';
 import WordList from './components/WordList';
 import SearchBar from './components/SearchBar';
+import Hr from '@/components/Hr';
 
 const Page = () => {
   const [query, setQuery] = useState<string>('');
@@ -23,7 +24,7 @@ const Page = () => {
       <SearchBar query={query} setQuery={setQuery} />
 
       <ResultCount count={results.length} query={query} limitResults={limitResults} setLimitResults={setLimitResults} />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       {results.length > 0 && (
         <div>
           <DisplayMode view={view} setView={setView} />

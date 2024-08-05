@@ -9,6 +9,7 @@ import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/mapper';
 import { getForm } from '@/utils/wordUtils';
 import { useTestForm } from '@/hooks/useTestForm';
+import Hr from '@/components/Hr';
 
 type TestProps = {
   activeWord: Noun;
@@ -55,7 +56,7 @@ const Test = ({
   return (
     <>
       <WordDisplay word={activeWord} />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <form onSubmit={submit} className='space-y-8'>
         {individualInputForm && testingType === 'individual' ? (
           <TrainerInput

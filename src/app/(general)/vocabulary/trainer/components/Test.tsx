@@ -5,6 +5,7 @@ import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
 import ActionBar from '@/components/ActionBar';
 import { useTestForm } from '@/hooks/useTestForm';
+import Hr from '@/components/Hr';
 
 type TestProps = {
   stage: Stage;
@@ -33,7 +34,7 @@ const Test = ({
     activeWord && (
       <>
         <WordDisplay word={activeWord} />
-        <hr className='dark:border-gray-500' />
+        <Hr />
         <form onSubmit={submit} className='space-y-5'>
           <TranslationInput
             checkTranslation={checkTranslation}

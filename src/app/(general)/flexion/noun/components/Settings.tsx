@@ -53,14 +53,14 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
   return (
     <>
       <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Nomen' />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <WordCount
         testingType={testingType}
         setTestingType={setTestingType}
         inputValue={inputValue}
         updateValue={updateValue}
       />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <TestingFormSelection
         declensions={declensions}
         setDeclensions={setDeclensions}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut, SignOutButton, UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs';
 import { Menu, X } from 'react-feather';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
@@ -10,6 +10,7 @@ import NavbarDropdownLink from '@/components/NavbarDropdownLink';
 import NavbarLink from '@/components/NavbarLink';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
+import Hr from './Hr';
 
 type Link = {
   label: string;
@@ -122,7 +123,7 @@ const Navbar = () => {
             />
           </div>
         </div>
-        <hr className='dark:border-gray-500' />
+        <Hr />
         {links.map((link, i) => {
           if (link.children) {
             return (

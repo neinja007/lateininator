@@ -7,6 +7,7 @@ import WordTypeSelection from './settings/WordTypeSelection';
 import WordCountSelection from './settings/WordCountSelection';
 import PropertySelection from './settings/PropertySelection';
 import { Stage } from '@/types';
+import Hr from '@/components/Hr';
 
 type SettingsProps = {
   checkTranslation: boolean;
@@ -39,7 +40,7 @@ const Settings = ({
   return (
     <>
       <ListSelection selectedIds={selectedIds} setSelectedIds={setSelectedIds} />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <WordTypeSelection
         validWords={validWords}
         setValidWords={setValidWords}
@@ -47,7 +48,7 @@ const Settings = ({
         typesToCheck={typesToCheck}
         setTypesToCheck={setTypesToCheck}
       />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <PropertySelection
         checkTranslation={checkTranslation}
         setCheckTranslation={setCheckTranslation}
@@ -55,7 +56,7 @@ const Settings = ({
         wordPropertiesToCheck={wordPropertiesToCheck}
         setWordPropertiesToCheck={setWordPropertiesToCheck}
       />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <WordCountSelection
         checkIncorrectWordsAgain={checkIncorrectWordsAgain}
         setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}

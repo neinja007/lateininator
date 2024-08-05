@@ -8,6 +8,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
+import Hr from '@/components/Hr';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -65,14 +66,14 @@ const Settings = ({
   return (
     <>
       <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <WordCount
         testingType={testingType}
         setTestingType={setTestingType}
         inputValue={inputValue}
         updateValue={updateValue}
       />
-      <hr className='dark:border-gray-500' />
+      <Hr />
       <TestingFormSelection
         checkAdverb={checkAdverb}
         setCheckAdverb={setCheckAdverb}

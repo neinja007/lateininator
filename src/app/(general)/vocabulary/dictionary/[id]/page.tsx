@@ -6,6 +6,7 @@ import WordNotFound from './components/WordNotFound';
 import NounTable from './components/tables/NounTable';
 import VerbTable from './components/tables/VerbTable';
 import AdjectiveTable from './components/tables/AdjectiveTable';
+import Hr from '@/components/Hr';
 
 type PageProps = { params: { id: string } };
 
@@ -14,11 +15,11 @@ const Page = ({ params: { id } }: PageProps) => {
   if (!word) return <WordNotFound />;
 
   return (
-    <div>
+    <div className='space-y-3'>
       <Header word={word} />
-      <hr className='my-2 dark:border-gray-500' />
+      <Hr />
       <WordInformation word={word} />
-      <hr className='my-2 dark:border-gray-500' />
+      <Hr />
       <TableInformation word={word} />
       {word.type === 'noun' ? (
         <NounTable word={word} />
