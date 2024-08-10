@@ -4,7 +4,6 @@ import Input from '@/components/Input';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 type WordCountSelectionProps = {
-  validWords: Word[];
   checkIncorrectWordsAgain: boolean;
   setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
   remainingWords: number;
@@ -29,7 +28,7 @@ const WordCountSelection = ({
           className='w-1/2 font-medium'
           active={checkType === 'all'}
           handleClick={() => setCheckType('all')}
-          label={`Alle verfügbaren Wörter (${validWords.length}) abfragen`}
+          label={`Alle verfügbaren Wörter (${remainingWords}) abfragen`}
         />
         <SelectButton
           className='w-1/2 font-medium'
@@ -47,7 +46,7 @@ const WordCountSelection = ({
           />
         ) : (
           <Input
-            label={`Anzahl der abgefragten Wörter (max. ${validWords.length})`}
+            label={`Anzahl der abgefragten Wörter (max. ${remainingWords})`}
             onChange={updateValue}
             value={inputValue}
             className={'w-1/3 text-center'}
