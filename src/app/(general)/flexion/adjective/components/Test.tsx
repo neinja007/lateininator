@@ -57,9 +57,9 @@ const Test = ({
 
   useEffect(() => {
     if (!activeWord || activeWord.type !== 'adjective') return;
-    if (testingType === 'individual') {
+    if (testingType === 'individual' || genders.length === 0) {
       setIndividualInputForm({
-        adverb: Math.random() < 0.04,
+        adverb: genders.length === 0 || Math.random() < 0.04,
         comparisonDegree: getRandomItem(comparisonDegrees),
         numerus: getRandomItem(['sin', 'plu']),
         wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
@@ -80,7 +80,7 @@ const Test = ({
       <WordDisplay word={activeWord} />
       <Hr />
       <form onSubmit={submit} className='space-y-8'>
-        {individualInputForm && testingType === 'individual' ? (
+        {individualInputForm && (testingType === 'individual' || genders.length === 0) ? (
           <TrainerInput
             label={
               !individualInputForm.adverb
