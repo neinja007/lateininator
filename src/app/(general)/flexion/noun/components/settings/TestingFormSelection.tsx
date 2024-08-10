@@ -19,23 +19,28 @@ const TestingFormSelection = ({
   setDeclensions,
   validWords
 }: TestingFormSelectionProps) => {
+  const declensionsNotToCheck = declensions.filter(
+    (declension) => !validWords.some((word) => word.declension === declension)
+  );
+
+  const gendersNotToCheck = genders.filter((gender) => !validWords.some((word) => word.gender === gender));
+
   return (
     <>
       <p>Wähle aus, was abgefragt werden soll:</p>
       <div className='grid grid-cols-2'>
         <CheckboxList
           options={[...WORD_CONSTANTS.declension]}
-          disabledOptions={[...WORD_CONSTANTS.declension].filter(
-            (declension) => !validWords.some((word) => word.declension === declension)
-          )}
-          selected={declensions.filter((declension) => validWords.some((word) => word.declension === declension))}
+          disabledOptions={declensionsNotToCheck}
+          selected={declensions.filter((declension) => !declensionsNotToCheck.includes(declension))}
           setSelected={setDeclensions}
           label='Deklination'
           mapper={MAPPER.extended.declension}
         />
         <CheckboxList
           options={[...WORD_CONSTANTS.gender]}
-          selected={genders}
+          disabledOptions={gendersNotToCheck}
+          selected={genders.filter((gender) => !gendersNotToCheck.includes(gender))}
           setSelected={setGenders}
           label='Geschlecht'
           mapper={MAPPER.extended.gender}
