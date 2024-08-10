@@ -64,8 +64,15 @@ const Settings = ({
         validWords={validWords}
         updateWords={updateWords}
       />
-      <Button onClick={() => handleContinue()} className='w-full' disabled={!enableStart}>
-        <span>{!enableStart ? 'Wähle einige Wörter aus, um fortzufahren' : 'Start'}</span>
+      <Button
+        onClick={() => {
+          handleContinue();
+        }}
+        className='w-full'
+        disabled={!enableStart}
+        color={enableStart ? 'green' : 'default'}
+      >
+        <span>{!enableStart ? 'Trainer kann nicht gestartet werden.' : 'Start'}</span>
       </Button>
     </>
   );
