@@ -38,6 +38,12 @@ const Settings = ({
   const [typesToCheck, setTypesToCheck] = useState<WordType[]>([...APP_CONSTANTS.mainWordTypes, 'other']);
   const enableStart = remainingWords > 0 && (wordPropertiesToCheck.length > 0 || checkTranslation);
 
+
+  useEffect(() => {
+    updateWords(
+      validWords.slice(0, value).filter((word) => !typesToExclude.includes(transformWordTypeToMainWordType(word.type)))
+    );
+  }, [typesToExclude, updateWords, validWords, value]);
   return (
     <>
       <ListSelection selectedIds={selectedIds} setSelectedIds={setSelectedIds} />
@@ -61,8 +67,9 @@ const Settings = ({
       <WordCountSelection
         checkIncorrectWordsAgain={checkIncorrectWordsAgain}
         setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
-        validWords={validWords}
-        updateWords={updateWords}
+        remainingWords={remainingWords}
+        inputValue={inputValue}
+        updateValue={updateValue}
       />
       <Button
         onClick={() => {

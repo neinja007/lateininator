@@ -1,29 +1,25 @@
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import SelectButton from '@/components/SelectButton';
 import Input from '@/components/Input';
-import { Word } from '@/types';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useNumberInput } from '@/hooks/useNumberInput';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 type WordCountSelectionProps = {
   validWords: Word[];
   checkIncorrectWordsAgain: boolean;
   setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-  updateWords: (arg?: Word[]) => void;
+  remainingWords: number;
+  inputValue: string;
+  updateValue: (value: string) => void;
 };
 
 const WordCountSelection = ({
   checkIncorrectWordsAgain,
   setCheckIncorrectWordsAgain,
-  validWords,
-  updateWords
+  remainingWords,
+  inputValue,
+  updateValue
 }: WordCountSelectionProps) => {
   const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
-  const { value, inputValue, updateValue } = useNumberInput(validWords.length);
-
-  useEffect(() => {
-    updateWords(validWords.slice(0, value));
-  }, [updateWords, validWords, value]);
 
   return (
     <>
