@@ -32,7 +32,7 @@ const TestingFormSelection = ({
         <CheckboxList
           options={[...WORD_CONSTANTS.declension]}
           disabledOptions={declensionsNotToCheck}
-          selected={declensions.filter((declension) => !declensionsNotToCheck.includes(declension))}
+          selected={declensions}
           setSelected={setDeclensions}
           label='Deklination'
           mapper={MAPPER.extended.declension}
@@ -40,7 +40,7 @@ const TestingFormSelection = ({
         <CheckboxList
           options={[...WORD_CONSTANTS.gender]}
           disabledOptions={gendersNotToCheck}
-          selected={genders.filter((gender) => !gendersNotToCheck.includes(gender))}
+          selected={genders}
           setSelected={setGenders}
           label='Geschlecht'
           mapper={MAPPER.extended.gender}

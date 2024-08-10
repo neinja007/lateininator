@@ -27,7 +27,7 @@ const CheckboxList = ({
         <CheckboxWithLabel
           key={option}
           disabled={disabled || disabledOptions?.includes(option)}
-          checked={selected.includes(option)}
+          checked={selected.includes(option) && !disabledOptions?.includes(option)}
           handleChange={(checked) =>
             setSelected((prev) => (checked ? [...prev, option] : prev.filter((p) => p !== option)))
           }
