@@ -42,18 +42,9 @@ const Test = ({
   setIndividualInputValue,
   checkAdverb
 }: TestProps) => {
-  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
-    adverb: Math.random() < 0.04,
-    comparisonDegree: getRandomItem(comparisonDegrees),
-    numerus: getRandomItem(['sin', 'plu']),
-    wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
-    gender: getRandomItem(genders)
-  });
+  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
 
-  const [tableInputForm, setTableInputForm] = useState<TableInputForm>({
-    comparison: activeWord.comparison as Comparison,
-    comparisonDegree: getRandomItem(comparisonDegrees)
-  });
+  const [tableInputForm, setTableInputForm] = useState<TableInputForm>();
 
   useEffect(() => {
     if (!activeWord || activeWord.type !== 'adjective') return;
