@@ -63,6 +63,7 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
       />
       <Hr />
       <TestingFormSelection
+        validWords={validWords}
         declensions={declensions}
         setDeclensions={setDeclensions}
         genders={genders}
