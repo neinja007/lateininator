@@ -1,7 +1,7 @@
 import Heading from '@/components/Heading';
 import Badge from '@/components/Badge';
 import { Word } from '@/types';
-import { getLexicalForm } from '@/utils/wordUtils';
+import { getLexicalForm } from '@/utils/formUtils';
 import Link from 'next/link';
 import { ArrowLeft } from 'react-feather';
 import ui from '@/styles/ui.module.css';

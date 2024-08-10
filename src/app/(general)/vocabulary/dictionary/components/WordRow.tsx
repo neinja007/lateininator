@@ -4,7 +4,7 @@ import { Word } from '@/types';
 import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
-import { getLexicalForm } from '@/utils/wordUtils';
+import { getLexicalForm } from '@/utils/formUtils';
 import { capitalizeFirstLetter } from '@/utils/inputUtils';
 import { MAPPER } from '@/utils/mapper';
 

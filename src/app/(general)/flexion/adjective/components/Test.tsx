@@ -7,7 +7,7 @@ import { getRandomItem } from '@/utils/propertyUtils';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/mapper';
-import { getForm } from '@/utils/wordUtils';
+import { getForm } from '@/utils/formUtils';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
 

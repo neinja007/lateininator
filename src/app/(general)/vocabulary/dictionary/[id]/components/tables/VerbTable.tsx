@@ -1,6 +1,6 @@
 import { WORD_CONSTANTS } from '@/constants';
 import { MAPPER } from '@/utils/mapper';
-import { getForm } from '@/utils/wordUtils';
+import { getForm } from '@/utils/formUtils';
 import table from '@/styles/table.module.css';
 import { Word } from '@/types';
 

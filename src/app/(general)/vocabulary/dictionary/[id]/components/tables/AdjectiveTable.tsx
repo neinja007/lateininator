@@ -1,7 +1,7 @@
 import { WORD_CONSTANTS } from '@/constants';
 import { Word } from '@/types';
 import { MAPPER } from '@/utils/mapper';
-import { getForm } from '@/utils/wordUtils';
+import { getForm } from '@/utils/formUtils';
 import { Fragment } from 'react';
 import table from '@/styles/table.module.css';
 
