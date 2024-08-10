@@ -41,7 +41,7 @@ const TestingFormSelection = ({
           options={[...WORD_CONSTANTS.comparison]}
           selected={comparisons}
           setSelected={setComparisons}
-          label='Deklination'
+          label='Komparation'
           mapper={MAPPER.extended.comparison}
         />
         <CheckboxList
