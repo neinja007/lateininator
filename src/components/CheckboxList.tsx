@@ -13,7 +13,7 @@ type CheckboxListProps = {
 const CheckboxList = ({ label, options, selected, disabled, setSelected, mapper }: CheckboxListProps) => {
   return (
     <div>
-      <span className={disabled ? 'text-gray-500' : ''}>{label}</span>:
+      <span className={disabled ? 'text-gray-500' : ''}>{label}:</span>
       {options.map((option) => (
         <CheckboxWithLabel
           key={option}
