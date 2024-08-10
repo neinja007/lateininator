@@ -54,6 +54,7 @@ const Settings = ({
         selectedIds={selectedIds}
         typesToCheck={typesToCheck}
         setTypesToCheck={setTypesToCheck}
+        typesToExclude={typesToExclude}
       />
       <Hr />
       <PropertySelection

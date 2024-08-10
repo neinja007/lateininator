@@ -1,7 +1,7 @@
-import SelectButton from '@/components/SelectButton';
+import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { words } from '@/data/words';
-import { Word, WordType } from '@/types';
+import { MainWordType, Word, WordType } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 
@@ -11,6 +11,7 @@ type WordTypeSelectionProps = {
   selectedIds: number[];
   typesToCheck: WordType[];
   setTypesToCheck: Dispatch<SetStateAction<WordType[]>>;
+  typesToExclude: (MainWordType | 'other')[];
 };
 
 const WordTypeSelection = ({
@@ -18,7 +19,8 @@ const WordTypeSelection = ({
   setValidWords,
   selectedIds,
   typesToCheck,
-  setTypesToCheck
+  setTypesToCheck,
+  typesToExclude
 }: WordTypeSelectionProps) => {
   useEffect(() => {
     const possibleWords = words.filter(
@@ -35,14 +37,21 @@ const WordTypeSelection = ({
       <p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
       <div className='grid grid-cols-4 gap-4'>
         {([...APP_CONSTANTS.mainWordTypes, 'other'] as WordType[]).map((type, i) => (
-          <SelectButton
+          <Button
             key={i}
-            active={typesToCheck.includes(type)}
-            handleClick={() =>
+            color={
+              typesToCheck.includes(type)
+                ? typesToExclude.includes(type as MainWordType | 'other')
+                  ? 'orange'
+                  : 'blue'
+                : 'default'
+            }
+            onClick={() =>
               setTypesToCheck((prev) => (prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]))
             }
-            label={MAPPER.extended.type[type]}
-          />
+          >
+            {MAPPER.extended.type[type]}
+          </Button>
         ))}
       </div>
       <p>
