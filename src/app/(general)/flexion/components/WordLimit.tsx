@@ -1,30 +1,33 @@
-import SelectButton from '@/components/SelectButton';
 import Input from '@/components/Input';
+import Button from '@/components/Button';
 
 type WordLimitProps = {
   testingType: 'table' | 'individual';
   setTestingType: (arg: 'table' | 'individual') => void;
   inputValue: string;
   updateValue: (arg: string) => void;
+  warningForTables?: boolean;
 };
 
-const WordLimit = ({ testingType, setTestingType, inputValue, updateValue }: WordLimitProps) => {
+const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, warningForTables }: WordLimitProps) => {
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
       <div className='flex space-x-5'>
-        <SelectButton
+        <Button
           className='w-1/2 font-medium'
-          active={testingType === 'table'}
-          handleClick={() => setTestingType('table')}
-          label='Formen mit Tabellen abfragen'
-        />
-        <SelectButton
+          color={testingType === 'table' ? (warningForTables ? 'orange' : 'blue') : 'default'}
+          onClick={() => setTestingType('table')}
+        >
+          Formen mit Tabellen abfragen
+        </Button>
+        <Button
           className='w-1/2 font-medium'
-          active={testingType === 'individual'}
-          handleClick={() => setTestingType('individual')}
-          label='Formen einzeln abfragen'
-        />
+          color={testingType === 'individual' ? 'blue' : 'default'}
+          onClick={() => setTestingType('individual')}
+        >
+          Formen einzeln abfragen
+        </Button>
       </div>
       <div className='flex justify-center'>
         <Input
