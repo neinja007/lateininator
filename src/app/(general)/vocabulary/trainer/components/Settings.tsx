@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { MainWordType, Word, WordProperty, WordType } from '@/types';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import WordCountSelection from './settings/WordCountSelection';
@@ -41,13 +41,16 @@ const Settings = ({
 
   const { value, inputValue, updateValue } = useNumberInput(validWords.length);
 
-  const typesToExclude: (MainWordType | 'other')[] = APP_CONSTANTS.mainWordTypes.filter(
-    (type) =>
-      !APP_CONSTANTS.wordProperties[type].some((type) => wordPropertiesToCheck.includes(type)) && !checkTranslation
-  );
-  if (!checkTranslation) {
-    typesToExclude.push('other');
-  }
+  const typesToExclude: (MainWordType | 'other')[] = useMemo(() => {
+    const newTypesToExclude: (MainWordType | 'other')[] = APP_CONSTANTS.mainWordTypes.filter(
+      (type) =>
+        !APP_CONSTANTS.wordProperties[type].some((type) => wordPropertiesToCheck.includes(type)) && !checkTranslation
+    );
+    if (!checkTranslation) {
+      newTypesToExclude.push('other');
+    }
+    return newTypesToExclude;
+  }, [checkTranslation, wordPropertiesToCheck]);
 
   useEffect(() => {
     updateWords(
