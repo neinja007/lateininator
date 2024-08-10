@@ -118,7 +118,7 @@ const Page = () => {
           setTenses={setTenses}
           handleContinue={handleContinue}
           updateWords={updateWords}
-          start={start}
+          remainingWords={remainingWords}
         />
       )}
       {(stage === 'test' || stage === 'review') &&

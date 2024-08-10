@@ -23,7 +23,7 @@ type SettingsProps = {
   setCheckImperative: Dispatch<SetStateAction<boolean>>;
   handleContinue: () => void;
   updateWords: (words: Verb[], count: number) => void;
-  start: boolean;
+  remainingWords: number;
 };
 
 const Settings = ({
@@ -31,7 +31,7 @@ const Settings = ({
   setTestingType,
   handleContinue,
   updateWords,
-  start,
+  remainingWords,
   modi,
   setModi,
   setTenses,
@@ -67,6 +67,13 @@ const Settings = ({
     updateWords(possibleWords, value);
   }, [conjugations, maxUnit, updateWords, value]);
 
+  const enableStart =
+    remainingWords > 0 &&
+    modi.length > 0 &&
+    tenses.length > 0 &&
+    (modi.includes('ind') || tenses.length > 1 || !tenses.includes('fut1')) &&
+    voices.length > 0;
+
   return (
     <>
       <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
@@ -91,8 +98,13 @@ const Settings = ({
         setVoices={setVoices}
         validWords={validWords}
       />
-      <Button onClick={() => handleContinue()} className='w-full' disabled={!start} color={start ? 'green' : 'gray'}>
-        <span>{!start ? 'Keine Verben verfügbar' : 'Start'}</span>
+      <Button
+        onClick={() => handleContinue()}
+        className='w-full'
+        disabled={!enableStart}
+        color={enableStart ? 'green' : 'gray'}
+      >
+        <span>{!enableStart ? 'Keine Verben verfügbar' : 'Start'}</span>
       </Button>
     </>
   );
