@@ -1,13 +1,15 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
-import { Word, WordProperty, WordType } from '@/types';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { MainWordType, Word, WordProperty, WordType } from '@/types';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import WordCountSelection from './settings/WordCountSelection';
 import PropertySelection from './settings/PropertySelection';
 import { Stage } from '@/types';
 import Hr from '@/components/Hr';
+import { useNumberInput } from '@/hooks/useNumberInput';
+import { transformWordTypeToMainWordType } from '@/utils/wordUtils';
 
 type SettingsProps = {
   checkTranslation: boolean;
@@ -36,14 +38,25 @@ const Settings = ({
   const [validWords, setValidWords] = useState<Word[]>([]);
 
   const [typesToCheck, setTypesToCheck] = useState<WordType[]>([...APP_CONSTANTS.mainWordTypes, 'other']);
-  const enableStart = remainingWords > 0 && (wordPropertiesToCheck.length > 0 || checkTranslation);
 
+  const { value, inputValue, updateValue } = useNumberInput(validWords.length);
+
+  const typesToExclude: (MainWordType | 'other')[] = APP_CONSTANTS.mainWordTypes.filter(
+    (type) =>
+      !APP_CONSTANTS.wordProperties[type].some((type) => wordPropertiesToCheck.includes(type)) && !checkTranslation
+  );
+  if (!checkTranslation) {
+    typesToExclude.push('other');
+  }
 
   useEffect(() => {
     updateWords(
       validWords.slice(0, value).filter((word) => !typesToExclude.includes(transformWordTypeToMainWordType(word.type)))
     );
   }, [typesToExclude, updateWords, validWords, value]);
+
+  const enableStart = remainingWords > 0 && (wordPropertiesToCheck.length > 0 || checkTranslation);
+
   return (
     <>
       <ListSelection selectedIds={selectedIds} setSelectedIds={setSelectedIds} />
