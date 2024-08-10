@@ -1,7 +1,7 @@
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants';
-import { Comparison, ComparisonDegree, Gender } from '@/types';
+import { Adjective, Comparison, ComparisonDegree, Gender } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -14,6 +14,7 @@ type TestingFormSelectionProps = {
   setComparisonDegrees: Dispatch<SetStateAction<ComparisonDegree[]>>;
   genders: Gender[];
   setGenders: Dispatch<SetStateAction<Gender[]>>;
+  validWords: Adjective[];
 };
 
 const TestingFormSelection = ({
@@ -24,8 +25,13 @@ const TestingFormSelection = ({
   comparisonDegrees,
   setComparisonDegrees,
   genders,
-  setGenders
+  setGenders,
+  validWords
 }: TestingFormSelectionProps) => {
+  const comparisonsNotToCheck = comparisons.filter((comparison) => {
+    return !validWords.some((word) => word.comparison === comparison);
+  });
+
   return (
     <>
       <div className='grid grid-cols-3'>
@@ -39,6 +45,7 @@ const TestingFormSelection = ({
       <div className='grid grid-cols-3'>
         <CheckboxList
           options={[...WORD_CONSTANTS.comparison]}
+          disabledOptions={comparisonsNotToCheck}
           selected={comparisons}
           setSelected={setComparisons}
           label='Komparation'
