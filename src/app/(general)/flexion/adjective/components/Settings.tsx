@@ -21,7 +21,7 @@ type SettingsProps = {
   setGenders: Dispatch<SetStateAction<Gender[]>>;
   handleContinue: () => void;
   updateWords: (words: Adjective[], count: number) => void;
-  start: boolean;
+  remainingWords: number;
 };
 
 const Settings = ({
@@ -35,7 +35,7 @@ const Settings = ({
   setGenders,
   handleContinue,
   updateWords,
-  start
+  remainingWords
 }: SettingsProps) => {
   const [validWords, setValidWords] = useState<Adjective[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
@@ -63,6 +63,8 @@ const Settings = ({
     updateWords(possibleWords, value);
   }, [comparisons, maxUnit, updateWords, value]);
 
+  const enableStart = remainingWords > 0 && comparisonDegrees.length > 0 && (genders.length > 0 || checkAdverb);
+
   return (
     <>
       <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
@@ -72,6 +74,7 @@ const Settings = ({
         setTestingType={setTestingType}
         inputValue={inputValue}
         updateValue={updateValue}
+        warningForTables={genders.length === 0}
       />
       <Hr />
       <TestingFormSelection
@@ -83,9 +86,15 @@ const Settings = ({
         setComparisonDegrees={setComparisonDegrees}
         genders={genders}
         setGenders={setGenders}
+        validWords={validWords}
       />
-      <Button onClick={() => handleContinue()} className='w-full' disabled={!start} color={start ? 'green' : 'gray'}>
-        <span>{!start ? 'Keine Adjektive verfügbar' : 'Start'}</span>
+      <Button
+        onClick={() => handleContinue()}
+        className='w-full'
+        disabled={!enableStart}
+        color={enableStart ? 'green' : 'gray'}
+      >
+        <span>{!enableStart ? 'Keine Adjektive verfügbar' : 'Start'}</span>
       </Button>
     </>
   );
