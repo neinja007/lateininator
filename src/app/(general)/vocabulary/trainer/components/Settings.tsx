@@ -18,7 +18,7 @@ type SettingsProps = {
   setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
   updateWords: (arg?: Word[]) => void;
   handleContinue: (arg?: Stage) => void;
-  enableStart: boolean;
+  remainingWords: number;
 };
 
 const Settings = ({
@@ -30,12 +30,13 @@ const Settings = ({
   handleContinue,
   setCheckIncorrectWordsAgain,
   updateWords,
-  enableStart
+  remainingWords
 }: SettingsProps) => {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [validWords, setValidWords] = useState<Word[]>([]);
 
   const [typesToCheck, setTypesToCheck] = useState<WordType[]>([...APP_CONSTANTS.mainWordTypes, 'other']);
+  const enableStart = remainingWords > 0 && (wordPropertiesToCheck.length > 0 || checkTranslation);
 
   return (
     <>

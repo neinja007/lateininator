@@ -78,7 +78,7 @@ const Page = () => {
           setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
           handleContinue={handleContinue}
           updateWords={updateWords}
-          enableStart={remainingWords > 0}
+          remainingWords={remainingWords}
         />
       )}
       {(stage === 'test' || stage === 'review') && activeWord && (
