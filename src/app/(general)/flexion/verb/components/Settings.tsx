@@ -89,6 +89,7 @@ const Settings = ({
         setTenses={setTenses}
         voices={voices}
         setVoices={setVoices}
+        validWords={validWords}
       />
       <Button onClick={() => handleContinue()} className='w-full' disabled={!start} color={start ? 'green' : 'gray'}>
         <span>{!start ? 'Keine Verben verfügbar' : 'Start'}</span>
