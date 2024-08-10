@@ -94,7 +94,7 @@ const Page = () => {
           setGenders={setGenders}
           handleContinue={handleContinue}
           updateWords={updateWords}
-          start={start}
+          remainingWords={remainingWords}
         />
       )}
       {(stage === 'test' || stage === 'review') && activeWord && activeWord.type === 'adjective' && (
