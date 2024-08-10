@@ -1,7 +1,7 @@
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants';
-import { Conjugation, Modus, Tense, Voice } from '@/types';
+import { Conjugation, Modus, Tense, Verb, Voice } from '@/types';
 import { MAPPER } from '@/utils/mapper';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -16,6 +16,7 @@ type TestingFormSelectionProps = {
   setConjugations: Dispatch<SetStateAction<Conjugation[]>>;
   checkImperative: boolean;
   setCheckImperative: Dispatch<SetStateAction<boolean>>;
+  validWords: Verb[];
 };
 
 const TestingFormSelection = ({
@@ -28,22 +29,31 @@ const TestingFormSelection = ({
   conjugations,
   setConjugations,
   checkImperative,
-  setCheckImperative
+  setCheckImperative,
+  validWords
 }: TestingFormSelectionProps) => {
+  const conjugationsNotToCheck = conjugations.filter(
+    (conjugation) => !validWords.some((word) => word.conjugation === conjugation)
+  );
+
+  const disableImperative = !modi.includes('ind') || !voices.includes('act') || !tenses.includes('pres');
+
   return (
     <>
       <div className='grid grid-cols-3'>
         <p>Wähle aus, was abgefragt werden soll:</p>
 
         <CheckboxWithLabel
-          checked={checkImperative}
+          checked={checkImperative && !disableImperative}
           handleChange={() => setCheckImperative((prev) => !prev)}
+          disabled={disableImperative}
           label={'Imperative'}
         />
       </div>
       <div className='grid grid-cols-4'>
         <CheckboxList
           options={[...WORD_CONSTANTS.conjugation]}
+          disabledOptions={conjugationsNotToCheck}
           selected={conjugations}
           setSelected={setConjugations}
           label='Konjugation'
