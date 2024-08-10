@@ -58,8 +58,7 @@ const TableInput = ({
                       return (
                         (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
                           <td key={tense} className='border p-0 dark:border-gray-500'>
-                            {person !== '4' ||
-                            (tense === 'pres' && tableInputForm.modus === 'ind' && tableInputForm.voice === 'act') ? (
+                            {person !== '4' || tense === 'pres' ? (
                               <TrainerInput
                                 customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
                                 value={tableInputValues[tense][numerus][person]}
