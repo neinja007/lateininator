@@ -4279,5 +4279,185 @@ export const words: Word[] = [
     comparison: 'a_o',
     femininum: 'ultima',
     neutrum: 'ultimum'
+  },
+  {
+    id: 548,
+    word: 'convenire',
+    type: 'verb',
+    translation: ['zusammenkommen', 'zusammen kommen'],
+    conjugation: 'i',
+    present: 'convenio',
+    perfect: 'conveni',
+    participle: 'conventum'
+  },
+  {
+    id: 549,
+    word: 'mulier',
+    type: 'noun',
+    translation: ['frau'],
+    genitive: 'mulieris',
+    gender: 'f',
+    declension: 'k'
+  },
+  {
+    id: 550,
+    word: 'finis',
+    type: 'noun',
+    translation: ['grenze', 'ende'],
+    gender: 'm',
+    declension: 'm',
+    info: "Singular von 'fines'",
+    genitive: 'finis'
+  },
+  {
+    id: 551,
+    word: 'fines',
+    type: 'noun',
+    translation: ['gebiet', 'gebiete'],
+    gender: 'm',
+    declension: 'm',
+    genitive: 'finium',
+    info: "Plural von 'finis'",
+    pluralOnly: true
+  },
+  {
+    id: 552,
+    word: 'regnum',
+    declension: 'o',
+    type: 'noun',
+    gender: 'n',
+    genitive: 'regni',
+    translation: ['königreich', 'reich', 'herrschaft']
+  },
+  {
+    id: 553,
+    word: 'augere',
+    type: 'verb',
+    conjugation: 'e',
+    present: 'augeo',
+    perfect: 'auxi',
+    participle: 'auctum',
+    translation: ['vergrößern', 'vermehren', 'steigern']
+  },
+  {
+    id: 554,
+    word: 'donum',
+    type: 'noun',
+    gender: 'n',
+    declension: 'o',
+    genitive: 'doni',
+    translation: ['geschenk']
+  },
+  {
+    id: 555,
+    word: 'mihi gaudio est',
+    type: 'other',
+    translation: ['ich freue mich', 'es bereitet mir freude']
+  },
+  {
+    id: 556,
+    word: 'ingens',
+    type: 'adjective',
+    comparison: 'kon',
+    femininum: 'ingens',
+    neutrum: 'ingens',
+    translation: ['riesig', 'gewaltig']
+  },
+  {
+    id: 557,
+    word: 'antea',
+    type: 'adverb',
+    translation: ['früher', 'vorher']
+  },
+  {
+    id: 558,
+    word: 'clades',
+    type: 'noun',
+    translation: ['niederlage'],
+    genitive: 'cladis',
+    declension: 'm',
+    gender: 'f'
+  },
+
+  {
+    id: 559,
+    word: 'classis',
+    type: 'noun',
+    translation: ['flotte'],
+    genitive: 'classis',
+    declension: 'm',
+    gender: 'f'
+  },
+  {
+    id: 560,
+    word: 'animadvertere',
+    type: 'verb',
+    translation: ['bemerken', 'wahrnehmen'],
+    conjugation: 'k',
+    present: 'animadverto',
+    perfect: 'animadverti',
+    participle: 'animadversum'
+  },
+  {
+    id: 561,
+    word: 'cedere',
+    type: 'verb',
+    translation: ['weggehen', 'weichen'],
+    conjugation: 'k',
+    present: 'cedo',
+    perfect: 'cessi',
+    participle: 'cessum'
+  },
+  {
+    id: 562,
+    word: 'claudere',
+    type: 'verb',
+    translation: ['einschließen', 'schließen'],
+    conjugation: 'k',
+    present: 'claudo',
+    perfect: 'clausi',
+    participle: 'clausum'
+  },
+  {
+    id: 563,
+    word: 'custos',
+    type: 'noun',
+    translation: ['wächter'],
+    genitive: 'custodis',
+    declension: 'k',
+    gender: 'm'
+  },
+  {
+    id: 564,
+    word: 'ponere',
+    type: 'verb',
+    translation: ['stellen', 'legen'],
+    conjugation: 'k',
+    present: 'pono',
+    perfect: 'posui',
+    participle: 'positum'
+  },
+  {
+    id: 565,
+    word: 'enim',
+    info: 'nachgestellt',
+    type: 'other',
+    translation: ['denn', 'nämlich']
+  },
+  {
+    id: 566,
+    word: 'auferre',
+    type: 'irregularVerb',
+    translation: ['wegbringen', 'wegnehmen'],
+    info: 'irreguläres Verb'
+  },
+  {
+    id: 567,
+    word: 'serva',
+    type: 'noun',
+    translation: ['sklavin'],
+    genitive: 'servae',
+    declension: 'a',
+    gender: 'f'
   }
 ];
