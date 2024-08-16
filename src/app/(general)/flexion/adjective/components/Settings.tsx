@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
@@ -8,7 +7,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
-import Hr from '@/components/Hr';
+import ContinueButton from '@/components/ContinueButton';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -22,6 +21,7 @@ type SettingsProps = {
   handleContinue: () => void;
   updateWords: (words: Adjective[], count: number) => void;
   remainingWords: number;
+  currentSettingsStage: number;
 };
 
 const Settings = ({
@@ -35,7 +35,8 @@ const Settings = ({
   setGenders,
   handleContinue,
   updateWords,
-  remainingWords
+  remainingWords,
+  currentSettingsStage
 }: SettingsProps) => {
   const [validWords, setValidWords] = useState<Adjective[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
@@ -67,34 +68,32 @@ const Settings = ({
 
   return (
     <>
-      <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
-      <Hr />
-      <WordCount
-        testingType={testingType}
-        setTestingType={setTestingType}
-        inputValue={inputValue}
-        updateValue={updateValue}
-        warningForTables={genders.length === 0}
-      />
-      <Hr />
-      <TestingFormSelection
-        checkAdverb={checkAdverb}
-        setCheckAdverb={setCheckAdverb}
-        comparisons={comparisons}
-        setComparisons={setComparisons}
-        comparisonDegrees={comparisonDegrees}
-        setComparisonDegrees={setComparisonDegrees}
-        genders={genders}
-        setGenders={setGenders}
-        validWords={validWords}
-      />
-      <Button
-        onClick={() => handleContinue()}
-        className='w-full'
-        disabled={!enableStart}
-        color={enableStart ? 'green' : 'gray'}
-      >
-        <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
+      {currentSettingsStage === 1 && (
+        <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
+      )}
+      {currentSettingsStage === 2 && (
+        <TestingFormSelection
+          checkAdverb={checkAdverb}
+          setCheckAdverb={setCheckAdverb}
+          comparisons={comparisons}
+          setComparisons={setComparisons}
+          comparisonDegrees={comparisonDegrees}
+          setComparisonDegrees={setComparisonDegrees}
+          genders={genders}
+          setGenders={setGenders}
+          validWords={validWords}
+        />
+      )}
+      {currentSettingsStage === 3 && (
+        <WordCount
+          testingType={testingType}
+          setTestingType={setTestingType}
+          inputValue={inputValue}
+          updateValue={updateValue}
+          warningForTables={genders.length === 0}
+        />
+      )}
+      <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
     </>
   );
 };

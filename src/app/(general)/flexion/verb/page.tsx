@@ -85,11 +85,12 @@ const initialTableInputValues: TableInputValues = {
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
-  const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue } = useGame(
+  const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue, currentSettingsStage } = useGame(
     true,
     testingType === 'individual'
       ? () => setIndividualInputValue('')
-      : () => setTableInputValues(initialTableInputValues)
+      : () => setTableInputValues(initialTableInputValues),
+    3
   );
   const [voices, setVoices] = useState<Voice[]>([...WORD_CONSTANTS.voice]);
   const [modi, setModi] = useState<Modus[]>([...WORD_CONSTANTS.modus]);
@@ -106,6 +107,7 @@ const Page = () => {
       <Heading>Flexionstrainer: Verben</Heading>
       {stage === 'settings' && (
         <Settings
+          currentSettingsStage={currentSettingsStage}
           checkImperative={checkImperative}
           setCheckImperative={setCheckImperative}
           testingType={testingType}

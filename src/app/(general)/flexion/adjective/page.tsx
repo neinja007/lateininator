@@ -63,11 +63,12 @@ const initialTableInputValues: TableInputValues = {
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
-  const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue } = useGame(
+  const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue, currentSettingsStage } = useGame(
     true,
     testingType === 'individual'
       ? () => setIndividualInputValue('')
-      : () => setTableInputValues(initialTableInputValues)
+      : () => setTableInputValues(initialTableInputValues),
+    3
   );
 
   const [comparisonDegrees, setComparisonDegrees] = useState<ComparisonDegree[]>([...WORD_CONSTANTS.comparisonDegree]);
@@ -77,13 +78,12 @@ const Page = () => {
   const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
-  const start = remainingWords > 0;
-
   return (
     <div className='space-y-5'>
       <Heading>Flexionstrainer: Adjektive</Heading>
       {stage === 'settings' && (
         <Settings
+          currentSettingsStage={currentSettingsStage}
           testingType={testingType}
           setTestingType={setTestingType}
           checkAdverb={checkAdverb}

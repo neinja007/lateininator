@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
@@ -8,7 +7,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
-import Hr from '@/components/Hr';
+import ContinueButton from '@/components/ContinueButton';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -16,9 +15,17 @@ type SettingsProps = {
   handleContinue: () => void;
   updateWords: (words: Noun[], count: number) => void;
   start: boolean;
+  currentSettingsStage: number;
 };
 
-const Settings = ({ testingType, setTestingType, handleContinue, updateWords, start }: SettingsProps) => {
+const Settings = ({
+  testingType,
+  setTestingType,
+  handleContinue,
+  updateWords,
+  start,
+  currentSettingsStage
+}: SettingsProps) => {
   const [validWords, setValidWords] = useState<Noun[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
 
@@ -53,22 +60,17 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
 
   return (
     <>
-      <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Nomen' />
-      <Hr />
-      <WordCount
-        testingType={testingType}
-        setTestingType={setTestingType}
-        inputValue={inputValue}
-        updateValue={updateValue}
-      />
-      <Hr />
-      <TestingFormSelection
-        validWords={validWords}
-        declensions={declensions}
-        setDeclensions={setDeclensions}
-        genders={genders}
-        setGenders={setGenders}
-      />
+      {currentSettingsStage === 1 && (
+        <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Nomen' />
+      )}
+      {currentSettingsStage === 2 && (
+        <TestingFormSelection
+          validWords={validWords}
+          declensions={declensions}
+          setDeclensions={setDeclensions}
+          genders={genders}
+          setGenders={setGenders}
+        />
       )}
       {currentSettingsStage === 3 && (
         <WordCount

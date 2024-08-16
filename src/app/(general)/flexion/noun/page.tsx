@@ -27,11 +27,12 @@ const initialTableInputValues: TableInputValues = {
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
-  const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue } = useGame(
+  const { activeWord, maxWords, remainingWords, updateWords, stage, handleContinue, currentSettingsStage } = useGame(
     true,
     testingType === 'individual'
       ? () => setIndividualInputValue('')
-      : () => setTableInputValues(initialTableInputValues)
+      : () => setTableInputValues(initialTableInputValues),
+    3
   );
 
   const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
@@ -44,6 +45,7 @@ const Page = () => {
       <Heading>Flexionstrainer: Nomen</Heading>
       {stage === 'settings' && (
         <Settings
+          currentSettingsStage={currentSettingsStage}
           testingType={testingType}
           setTestingType={setTestingType}
           handleContinue={handleContinue}

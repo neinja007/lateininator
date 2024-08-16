@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
@@ -8,7 +7,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
-import Hr from '@/components/Hr';
+import ContinueButton from '@/components/ContinueButton';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -24,9 +23,11 @@ type SettingsProps = {
   handleContinue: () => void;
   updateWords: (words: Verb[], count: number) => void;
   remainingWords: number;
+  currentSettingsStage: number;
 };
 
 const Settings = ({
+  currentSettingsStage,
   testingType,
   setTestingType,
   handleContinue,
@@ -76,35 +77,33 @@ const Settings = ({
 
   return (
     <>
-      <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
-      <Hr />
-      <WordCount
-        testingType={testingType}
-        setTestingType={setTestingType}
-        inputValue={inputValue}
-        updateValue={updateValue}
-      />
-      <Hr />
-      <TestingFormSelection
-        checkImperative={checkImperative}
-        setCheckImperative={setCheckImperative}
-        conjugations={conjugations}
-        setConjugations={setConjugations}
-        modi={modi}
-        setModi={setModi}
-        tenses={tenses}
-        setTenses={setTenses}
-        voices={voices}
-        setVoices={setVoices}
-        validWords={validWords}
-      />
-      <Button
-        onClick={() => handleContinue()}
-        className='w-full'
-        disabled={!enableStart}
-        color={enableStart ? 'green' : 'gray'}
-      >
-        <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
+      {currentSettingsStage === 1 && (
+        <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
+      )}
+      {currentSettingsStage === 2 && (
+        <TestingFormSelection
+          checkImperative={checkImperative}
+          setCheckImperative={setCheckImperative}
+          conjugations={conjugations}
+          setConjugations={setConjugations}
+          modi={modi}
+          setModi={setModi}
+          tenses={tenses}
+          setTenses={setTenses}
+          voices={voices}
+          setVoices={setVoices}
+          validWords={validWords}
+        />
+      )}
+      {currentSettingsStage === 3 && (
+        <WordCount
+          testingType={testingType}
+          setTestingType={setTestingType}
+          inputValue={inputValue}
+          updateValue={updateValue}
+        />
+      )}
+      <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
     </>
   );
 };
