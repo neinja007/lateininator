@@ -8,7 +8,7 @@ type ResultsProps = {
 const Results = ({ handleContinue }: ResultsProps) => {
   return (
     <div className='flex justify-center'>
-      <Button onClick={() => handleContinue('settings')} color='gray'>
+      <Button onClick={() => handleContinue()} color='gray'>
         Neu Laden
       </Button>
     </div>

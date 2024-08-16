@@ -9,9 +9,11 @@ type WordCountSelectionProps = {
   remainingWords: number;
   inputValue: string;
   updateValue: (value: string) => void;
+  maxWords: number;
 };
 
 const WordCountSelection = ({
+  maxWords,
   checkIncorrectWordsAgain,
   setCheckIncorrectWordsAgain,
   remainingWords,
@@ -28,7 +30,7 @@ const WordCountSelection = ({
           className='w-1/2 font-medium'
           active={checkType === 'all'}
           handleClick={() => setCheckType('all')}
-          label={`Alle verfügbaren Wörter (${remainingWords}) abfragen`}
+          label={`Alle verfügbaren Wörter (${maxWords}) abfragen`}
         />
         <SelectButton
           className='w-1/2 font-medium'
@@ -46,7 +48,7 @@ const WordCountSelection = ({
           />
         ) : (
           <Input
-            label={`Anzahl der abgefragten Wörter (max. ${remainingWords})`}
+            label={`Anzahl der abgefragten Wörter (max. ${maxWords})`}
             onChange={updateValue}
             value={inputValue}
             className={'w-1/3 text-center'}

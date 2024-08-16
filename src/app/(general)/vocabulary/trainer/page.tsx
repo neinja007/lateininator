@@ -49,9 +49,10 @@ const Page = () => {
     [inputValues, checkIncorrectWordsAgain, wordPropertiesToCheck]
   );
 
-  const { stage, activeWord, remainingWords, maxWords, updateWords, handleContinue } = useGame(
+  const { stage, activeWord, remainingWords, maxWords, updateWords, handleContinue, currentSettingsStage } = useGame(
     false,
     () => setInputValues(initialInputValues),
+    4,
     canContinue
   );
 
@@ -70,6 +71,7 @@ const Page = () => {
       <Heading>Vokabeltrainer</Heading>
       {stage === 'settings' && (
         <Settings
+          currentSettingsStage={currentSettingsStage}
           checkTranslation={checkTranslation}
           setCheckTranslation={setCheckTranslation}
           wordPropertiesToCheck={wordPropertiesToCheck}

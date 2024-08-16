@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 export const useGame = (
   staticPossibleWords: boolean,
   resetInputs: () => void,
+  settingsStages: number,
   canContinue?: (word: Word) => boolean
 ): {
   activeWord: Word | undefined;
@@ -12,12 +13,14 @@ export const useGame = (
   updateWords: (count?: Word[], number?: number) => void;
   handleContinue: (stage?: Stage) => void;
   stage: Stage;
+  currentSettingsStage: number;
 } => {
   const [possibleWords, setPossibleWords] = useState<Word[]>([]);
   const [activeWord, setActiveWord] = useState<Word>();
   const [remainingWords, setRemainingWords] = useState<number>(0);
   const [maxWords, setMaxWords] = useState<number>(0);
   const [stage, setStage] = useState<Stage>('settings');
+  const [currentSettingsStage, setCurrentSettingsStage] = useState<number>(1);
 
   const updateActiveWord = useCallback(() => {
     setActiveWord(possibleWords[Math.floor(Math.random() * possibleWords.length)]);
@@ -36,7 +39,15 @@ export const useGame = (
     } else {
       newStage = stage;
     }
-    if (newStage === 'test') {
+    if (newStage === 'settings') {
+      if (currentSettingsStage === settingsStages) {
+        setStage('test');
+        updateActiveWord();
+        resetInputs();
+      } else {
+        setCurrentSettingsStage(currentSettingsStage + 1);
+      }
+    } else if (newStage === 'test') {
       if (!activeWord) {
         throw new Error('activeWord is undefined');
       }
@@ -46,15 +57,18 @@ export const useGame = (
       if (staticPossibleWords || (canContinue && canContinue(activeWord))) {
         updateWords();
       }
-    } else {
+    } else if (newStage === 'review') {
       if (remainingWords === 0) {
         setStage('results');
         return;
       }
       setStage('test');
-
       updateActiveWord();
       resetInputs();
+    } else if (newStage === 'results') {
+      setCurrentSettingsStage(1);
+      updateWords([], 0);
+      setStage('settings');
     }
   };
 
@@ -86,6 +100,7 @@ export const useGame = (
   );
 
   return {
+    currentSettingsStage,
     activeWord,
     remainingWords,
     maxWords,
