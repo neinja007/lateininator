@@ -69,9 +69,16 @@ const Settings = ({ testingType, setTestingType, handleContinue, updateWords, st
         genders={genders}
         setGenders={setGenders}
       />
-      <Button onClick={() => handleContinue()} className={'w-full'} disabled={!start} color={start ? 'green' : 'gray'}>
-        {!start ? 'Keine Nomen verfügbar' : 'Start'}
-      </Button>
+      )}
+      {currentSettingsStage === 3 && (
+        <WordCount
+          testingType={testingType}
+          setTestingType={setTestingType}
+          inputValue={inputValue}
+          updateValue={updateValue}
+        />
+      )}
+      <ContinueButton enableStart={start} handleContinue={handleContinue} />
     </>
   );
 };

@@ -104,8 +104,7 @@ const Settings = ({
         disabled={!enableStart}
         color={enableStart ? 'green' : 'gray'}
       >
-        <span>{!enableStart ? 'Keine Verben verfügbar' : 'Start'}</span>
-      </Button>
+        <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
     </>
   );
 };

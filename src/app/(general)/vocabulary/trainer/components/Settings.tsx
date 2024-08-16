@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { MainWordType, Word, WordProperty, WordType } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
@@ -9,6 +8,7 @@ import PropertySelection from './settings/PropertySelection';
 import { Stage } from '@/types';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { transformWordTypeToMainWordType } from '@/utils/wordUtils';
+import ContinueButton from '@/components/ContinueButton';
 
 type SettingsProps = {
   checkTranslation: boolean;
@@ -100,16 +100,7 @@ const Settings = ({
           maxWords={maximumValidWords}
         />
       )}
-      <Button
-        onClick={() => {
-          handleContinue();
-        }}
-        className='w-full'
-        disabled={!enableStart}
-        color={enableStart ? 'green' : 'default'}
-      >
-        <span>{!enableStart ? 'Prüfen Sie bitte ihre Einstellungen' : 'Weiter'}</span>
-      </Button>
+      <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
     </>
   );
 };
