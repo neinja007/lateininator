@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs';
@@ -96,7 +95,7 @@ const Navbar = () => {
           })}
           <SignedIn>
             <div className={clsx(navbar.navlink, navbar.inactive)}>
-              <SignOutButton />
+              <SignOutButton>Abmelden</SignOutButton>
             </div>
           </SignedIn>
           <SignedOut>
@@ -162,7 +161,7 @@ const Navbar = () => {
         })}
         <SignedIn>
           <div className={clsx(navbar.dropdown_navlink, navbar.inactive)}>
-            <SignOutButton />
+            <SignOutButton>Abmelden</SignOutButton>
           </div>
         </SignedIn>
         <SignedOut>
