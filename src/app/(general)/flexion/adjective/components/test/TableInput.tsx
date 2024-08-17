@@ -1,10 +1,11 @@
 import TrainerInput from '@/components/TrainerInput';
 import { WORD_CONSTANTS } from '@/constants';
-import { MAPPER } from '@/utils/mapper';
-import { getForm } from '@/utils/formUtils';
+import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
-import { Gender, Word } from '@/types';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
+import { Word } from '@/types/word';
+import { Gender } from '@/types/word_constants';
+import { getForm } from '@/utils/word_utils/getForm';
 
 type TableInputProps = {
   tableInputForm: TableInputForm;

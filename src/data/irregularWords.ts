@@ -1,4 +1,4 @@
-import { Endings } from '@/types';
+import { Endings } from '@/types/endings';
 
 type FullyPartial<T> = {
   [P in keyof T]?: T[P] extends object ? FullyPartial<T[P]> : T[P];

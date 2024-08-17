@@ -1,54 +1,8 @@
 import { endings } from '@/data/endings';
 import { irregularWords } from '@/data/irregularWords';
-import { Word, Person, Numerus, Tense, Voice, Modus, WordCase, ComparisonDegree, Gender } from '@/types';
-
-export const getLexicalForm = (word: Word) => {
-  if (word.type === 'noun') {
-    if (word.declension === '-' || word.gender === '-') return;
-    return `-${endings.noun[word.declension][word.gender].sin[2]}, ${word.gender}.`;
-  } else if (word.type === 'verb') {
-    if (word.conjugation === '-') return;
-    return `-${endings.verb[word.conjugation].ind.act.pres.sin[1]}, ${word.conjugation}.`;
-  }
-};
-
-export const getBase = (
-  word: Word,
-  info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean }
-): string => {
-  const { baseType, superlative } = info;
-  let base = '';
-
-  if (word.type === 'noun') {
-    if (word.declension === 'o') {
-      base = word.genitive.substring(0, word.genitive.length - (word.pluralOnly ? 4 : 1));
-    } else {
-      base = word.genitive.substring(0, word.genitive.length - 2);
-    }
-  } else if (word.type === 'verb') {
-    if (baseType === 'present' || baseType === 'word') {
-      base = word.word.substring(0, word.word.length - 3);
-    } else if (baseType === 'perfect') {
-      base = word.perfect.substring(0, word.perfect.length - 1);
-    } else if (baseType === 'participle') {
-      base = word.participle.substring(0, word.participle.length - 2);
-    }
-  } else if (word.type === 'adjective') {
-    if (superlative) {
-      base = word.word.substring(0, word.word.length - 2);
-      if (word.word.endsWith('er')) {
-        base += 'errim';
-      } else if (word.word.endsWith('ilis')) {
-        base += 'illim';
-      } else {
-        base += 'issim';
-      }
-    } else {
-      base = word.femininum.substring(0, word.femininum.length - (word.comparison === 'a_o' ? 1 : 2));
-    }
-  }
-  return base;
-};
+import { getBase } from './getBase';
+import { Word } from '@/types/word';
+import { Modus, Voice, Tense, Numerus, Person, WordCase, ComparisonDegree, Gender } from '@/types/word_constants';
 
 export const getForm = (
   word: Word,

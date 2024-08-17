@@ -1,9 +1,11 @@
 import Input from '@/components/Input';
-import { Stage } from '@/types';
-import { Word, WordProperty } from '@/types';
-import { compareValues, getInputWithCorrectValue } from '@/utils/inputUtils';
 import { Dispatch, SetStateAction } from 'react';
 import ui from '@/styles/ui.module.css';
+import { WordProperty } from '@/types/app_constants';
+import { Stage } from '@/types/other';
+import { Word } from '@/types/word';
+import { compareValues } from '@/utils/word_utils/compareValues';
+import { getInputWithCorrectValue } from '@/utils/word_utils/getInputWithCorrectValue';
 
 type TranslationInputProps = {
   checkTranslation: boolean;

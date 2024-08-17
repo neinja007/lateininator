@@ -1,4 +1,4 @@
-import { Modus, Numerus, Person, Tense, Voice } from '@/types';
+import { Tense, Numerus, Person, Voice, Modus } from '@/types/word_constants';
 import { Dispatch, SetStateAction } from 'react';
 
 export type TableInputValues = Record<Tense, Record<Numerus, Record<Person, string>>>;

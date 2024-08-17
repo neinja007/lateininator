@@ -1,4 +1,4 @@
-import { Word } from '@/types';
+import { Word } from '@/types/word';
 
 export const words: Word[] = [
   { id: 1, word: 'schola', type: 'noun', translation: ['schule'], genitive: 'scholae', gender: 'f', declension: 'a' },

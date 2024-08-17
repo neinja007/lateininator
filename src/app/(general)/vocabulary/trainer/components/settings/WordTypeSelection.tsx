@@ -1,8 +1,9 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants';
 import { words } from '@/data/words';
-import { MainWordType, Word, WordType } from '@/types';
-import { MAPPER } from '@/utils/mapper';
+import { MainWordType, WordType } from '@/types/app_constants';
+import { Word } from '@/types/word';
+import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 
 type WordTypeSelectionProps = {

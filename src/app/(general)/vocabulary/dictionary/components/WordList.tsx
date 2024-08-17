@@ -1,6 +1,6 @@
 import WordRow from '@/app/(general)/vocabulary/dictionary/components/WordRow';
-import { Word } from '@/types';
 import table from '@/styles/table.module.css';
+import { Word } from '@/types/word';
 import clsx from 'clsx';
 
 type WordListProps = { results: Word[]; query: string };

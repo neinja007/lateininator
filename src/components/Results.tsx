@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import { Stage } from '@/types';
+import { Stage } from '@/types/other';
 
 type ResultsProps = {
   handleContinue: (arg?: Stage) => void;

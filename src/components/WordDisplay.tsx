@@ -1,7 +1,7 @@
-import { Word } from '@/types';
 import Badge from '@/components/Badge';
 import WordInfo from './WordInfo';
-import { MAPPER } from '@/utils/mapper';
+import { MAPPER } from '@/utils/other/mapper';
+import { Word } from '@/types/word';
 
 type WordDisplayProps = {
   word: Word;

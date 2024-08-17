@@ -1,9 +1,9 @@
 import { words } from '@/data/words';
-import { Word } from '@/types';
-import { capitalizeFirstLetter } from '@/utils/inputUtils';
 import Link from 'next/link';
 import ui from '@/styles/ui.module.css';
 import WordInfo from '@/components/WordInfo';
+import { Word } from '@/types/word';
+import { capitalizeFirstLetter } from '@/utils/helpers/capitalizeFirstLetter';
 
 type WordInformationProps = { word: Word };
 

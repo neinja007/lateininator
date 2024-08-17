@@ -1,5 +1,5 @@
 import { COLORS } from '@/constants';
-import { Color } from '@/types';
+import { Color } from '@/types/other';
 
 type BadgeProps = { color?: Color; text: string };
 

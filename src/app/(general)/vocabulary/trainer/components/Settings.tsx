@@ -1,14 +1,15 @@
 import { APP_CONSTANTS } from '@/constants';
-import { MainWordType, Word, WordProperty, WordType } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import WordCountSelection from './settings/WordCountSelection';
 import PropertySelection from './settings/PropertySelection';
-import { Stage } from '@/types';
 import { useNumberInput } from '@/hooks/useNumberInput';
-import { transformWordTypeToMainWordType } from '@/utils/wordUtils';
 import ContinueButton from '@/components/ContinueButton';
+import { WordProperty, WordType, MainWordType } from '@/types/app_constants';
+import { Stage } from '@/types/other';
+import { Word } from '@/types/word';
+import { transformWordTypeToMainWordType } from '@/utils/word_utils/transformWordTypeToMainWordType';
 
 type SettingsProps = {
   checkTranslation: boolean;

@@ -1,5 +1,4 @@
 'use client';
-import { ComparisonDegree, Gender } from '@/types';
 import { useState } from 'react';
 import { WORD_CONSTANTS } from '@/constants';
 import Heading from '@/components/Heading';
@@ -8,6 +7,7 @@ import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
 import { TableInputValues } from './types';
+import { ComparisonDegree, Gender } from '@/types/word_constants';
 
 const initialTableInputValues: TableInputValues = {
   adverb: '',

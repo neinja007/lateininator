@@ -1,12 +1,12 @@
 'use client';
 
-import { Word } from '@/types';
 import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
-import { getLexicalForm } from '@/utils/formUtils';
-import { capitalizeFirstLetter } from '@/utils/inputUtils';
-import { MAPPER } from '@/utils/mapper';
+import { MAPPER } from '@/utils/other/mapper';
+import { Word } from '@/types/word';
+import { capitalizeFirstLetter } from '@/utils/helpers/capitalizeFirstLetter';
+import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
 
 type WordRowProps = {
   word: Word;

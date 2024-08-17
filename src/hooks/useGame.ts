@@ -1,4 +1,5 @@
-import { Stage, Word } from '@/types';
+import { Stage } from '@/types/other';
+import { Word } from '@/types/word';
 import { useCallback, useEffect, useState } from 'react';
 
 export const useGame = (

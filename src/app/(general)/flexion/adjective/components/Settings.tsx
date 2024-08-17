@@ -2,12 +2,13 @@ import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
-import { Adjective, Comparison, ComparisonDegree, Gender, Word } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
 import ContinueButton from '@/components/ContinueButton';
+import { Adjective, Word } from '@/types/word';
+import { ComparisonDegree, Gender, Comparison } from '@/types/word_constants';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';

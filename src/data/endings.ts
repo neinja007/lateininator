@@ -1,4 +1,4 @@
-import { Endings } from '../types';
+import { Endings } from '@/types/endings';
 
 export const endings = {
   verb: {

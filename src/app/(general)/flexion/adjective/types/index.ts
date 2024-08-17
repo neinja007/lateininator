@@ -1,4 +1,4 @@
-import { Comparison, ComparisonDegree, Gender, Numerus, WordCase } from '@/types';
+import { Gender, Numerus, WordCase, ComparisonDegree, Comparison } from '@/types/word_constants';
 import { Dispatch, SetStateAction } from 'react';
 
 export type TableInputValues = Record<Gender, Record<Numerus, Record<Exclude<WordCase, '6'>, string>>> & {

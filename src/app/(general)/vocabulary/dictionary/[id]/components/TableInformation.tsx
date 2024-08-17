@@ -1,5 +1,5 @@
-import { Word } from '@/types';
-import { MAPPER } from '@/utils/mapper';
+import { Word } from '@/types/word';
+import { MAPPER } from '@/utils/other/mapper';
 
 type ComponentNameProps = { word: Word };
 

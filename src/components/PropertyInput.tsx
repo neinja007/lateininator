@@ -1,11 +1,11 @@
-import { WordProperty } from '@/types';
 import Select from '@/components/Select';
 import { WORD_CONSTANTS } from '@/constants';
-import { MAPPER } from '@/utils/mapper';
-import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards';
+import { MAPPER } from '@/utils/other/mapper';
 import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
 import TrainerInput from './TrainerInput';
+import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
+import { WordProperty } from '@/types/app_constants';
 
 type PropertyInputProps = {
   property: WordProperty;

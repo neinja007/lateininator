@@ -1,15 +1,16 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Noun, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
-import { getRandomItem } from '@/utils/propertyUtils';
 import { IndividualInputForm, SetTableInputValues, TableInputValues } from '../types';
 import TrainerInput from '@/components/TrainerInput';
-import { MAPPER } from '@/utils/mapper';
-import { getForm } from '@/utils/formUtils';
+import { MAPPER } from '@/utils/other/mapper';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
+import { Noun } from '@/types/word';
+import { WordCase } from '@/types/word_constants';
+import { getRandomItem } from '@/utils/helpers/getRandomItem';
+import { getForm } from '@/utils/word_utils/getForm';
 
 type TestProps = {
   activeWord: Noun;

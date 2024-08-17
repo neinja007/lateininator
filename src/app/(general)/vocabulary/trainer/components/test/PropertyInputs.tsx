@@ -1,9 +1,11 @@
 import PropertyInput from '@/components/PropertyInput';
-import { Stage } from '@/types';
-import { Word, WordProperty } from '@/types';
-import { compareValues } from '@/utils/inputUtils';
-import { MAPPER } from '@/utils/mapper';
-import { isWordPropertiesUsingSelectInput, isKeyInObject } from '@/utils/typeguards';
+import { WordProperty } from '@/types/app_constants';
+import { Stage } from '@/types/other';
+import { Word } from '@/types/word';
+import { MAPPER } from '@/utils/other/mapper';
+import { isKeyInObject } from '@/utils/typeguards/isKeyInObject';
+import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
+import { compareValues } from '@/utils/word_utils/compareValues';
 import { Dispatch, SetStateAction } from 'react';
 
 type PropertyInputsProps = {

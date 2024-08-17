@@ -2,12 +2,12 @@ import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
-import { Noun } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
 import ContinueButton from '@/components/ContinueButton';
+import { Noun } from '@/types/word';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';

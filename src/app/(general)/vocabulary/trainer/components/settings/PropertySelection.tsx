@@ -2,8 +2,8 @@ import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { APP_CONSTANTS } from '@/constants';
-import { WordProperty, WordType } from '@/types';
-import { MAPPER } from '@/utils/mapper';
+import { WordProperty, WordType } from '@/types/app_constants';
+import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 
 type PropertySelectionProps = {

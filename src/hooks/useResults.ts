@@ -1,5 +1,5 @@
 import { words } from '@/data/words';
-import { Word } from '@/types';
+import { Word } from '@/types/word';
 import { useEffect, useState } from 'react';
 
 export const useResults = (query: string, limited: boolean): Word[] => {

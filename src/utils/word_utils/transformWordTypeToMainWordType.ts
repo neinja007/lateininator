@@ -1,5 +1,5 @@
 import { APP_CONSTANTS } from '@/constants';
-import { MainWordType, WordType } from '@/types';
+import { WordType, MainWordType } from '@/types/app_constants';
 
 export const transformWordTypeToMainWordType = (wordType: WordType): MainWordType | 'other' => {
   if (!APP_CONSTANTS.mainWordTypes.includes(wordType as MainWordType)) {

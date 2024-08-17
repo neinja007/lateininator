@@ -2,8 +2,9 @@ import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants';
-import { Conjugation, Modus, Tense, Verb, Voice } from '@/types';
-import { MAPPER } from '@/utils/mapper';
+import { Verb } from '@/types/word';
+import { Voice, Modus, Tense, Conjugation } from '@/types/word_constants';
+import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
 
 type TestingFormSelectionProps = {

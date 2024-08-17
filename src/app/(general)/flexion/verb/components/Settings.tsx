@@ -2,12 +2,13 @@ import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
-import { Conjugation, Modus, Tense, Verb, Voice, Word } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
 import ContinueButton from '@/components/ContinueButton';
+import { Verb, Word } from '@/types/word';
+import { Voice, Modus, Tense, Conjugation } from '@/types/word_constants';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';

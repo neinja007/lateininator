@@ -1,4 +1,4 @@
-import { Color } from '@/types';
+import { Color } from '@/types/other';
 
 const wordCase = ['1', '2', '3', '4', '5', '6'] as const;
 const person = ['1', '2', '3', '4'] as const;

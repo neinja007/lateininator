@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import { lists } from '@/data/lists';
-import { List } from '@/types';
+import { List } from '@/types/other';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type ListSelectionProps = {

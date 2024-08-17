@@ -1,4 +1,4 @@
-import { MapperType } from '@/types';
+import { MapperType } from '@/types/mapper';
 
 export const MAPPER: MapperType = {
   extended: {

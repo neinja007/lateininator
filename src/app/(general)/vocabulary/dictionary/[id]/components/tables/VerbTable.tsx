@@ -1,8 +1,8 @@
 import { WORD_CONSTANTS } from '@/constants';
-import { MAPPER } from '@/utils/mapper';
-import { getForm } from '@/utils/formUtils';
+import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
-import { Word } from '@/types';
+import { Word } from '@/types/word';
+import { getForm } from '@/utils/word_utils/getForm';
 
 type VerbTableProps = { word: Word };
 

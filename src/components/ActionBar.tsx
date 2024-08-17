@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import ProgressBar from '@/components/ProgressBar';
-import { Stage } from '@/types';
+import { Stage } from '@/types/other';
 
 type ActionBarProps = {
   form?: boolean;

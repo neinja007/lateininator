@@ -1,11 +1,13 @@
 import WordDisplay from '@/components/WordDisplay';
-import { Stage, Word, WordProperty } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
 import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
 import ActionBar from '@/components/ActionBar';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
+import { WordProperty } from '@/types/app_constants';
+import { Stage } from '@/types/other';
+import { Word } from '@/types/word';
 
 type TestProps = {
   stage: Stage;
