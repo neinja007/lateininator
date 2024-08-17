@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants';
@@ -42,13 +43,54 @@ const TestingFormSelection = ({
     <>
       <div className='grid grid-cols-3'>
         <p>Wähle aus, was abgefragt werden soll:</p>
-
         <CheckboxWithLabel
           checked={checkImperative && !disableImperative}
           handleChange={() => setCheckImperative((prev) => !prev)}
           disabled={disableImperative}
           label={'Imperative'}
         />
+        <div className='grid grid-cols-2 gap-x-4'>
+          <Button
+            color={
+              conjugations.length === WORD_CONSTANTS.conjugation.length &&
+              modi.length === WORD_CONSTANTS.modus.length &&
+              tenses.length === WORD_CONSTANTS.tense.length &&
+              voices.length === WORD_CONSTANTS.voice.length &&
+              checkImperative
+                ? 'blue'
+                : 'default'
+            }
+            onClick={() => {
+              setConjugations([...WORD_CONSTANTS.conjugation]);
+              setModi([...WORD_CONSTANTS.modus]);
+              setTenses([...WORD_CONSTANTS.tense]);
+              setVoices([...WORD_CONSTANTS.voice]);
+              setCheckImperative(true);
+            }}
+          >
+            Alle auswählen
+          </Button>
+          <Button
+            color={
+              conjugations.length === 0 &&
+              modi.length === 0 &&
+              tenses.length === 0 &&
+              voices.length === 0 &&
+              !checkImperative
+                ? 'blue'
+                : 'default'
+            }
+            onClick={() => {
+              setConjugations([]);
+              setModi([]);
+              setTenses([]);
+              setVoices([]);
+              setCheckImperative(false);
+            }}
+          >
+            Alle abwählen
+          </Button>
+        </div>
       </div>
       <div className='grid grid-cols-4'>
         <CheckboxList

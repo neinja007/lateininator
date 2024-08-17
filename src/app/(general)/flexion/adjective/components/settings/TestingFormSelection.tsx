@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants';
@@ -41,6 +42,41 @@ const TestingFormSelection = ({
           handleChange={() => setCheckAdverb((prev) => !prev)}
           label={'Adverbien'}
         />
+        <div className='grid grid-cols-2 gap-x-4'>
+          <Button
+            color={
+              comparisons.length === WORD_CONSTANTS.comparison.length &&
+              comparisonDegrees.length === WORD_CONSTANTS.comparisonDegree.length &&
+              genders.length === WORD_CONSTANTS.gender.length &&
+              checkAdverb
+                ? 'blue'
+                : 'default'
+            }
+            onClick={() => {
+              setComparisons([...WORD_CONSTANTS.comparison]);
+              setComparisonDegrees([...WORD_CONSTANTS.comparisonDegree]);
+              setGenders([...WORD_CONSTANTS.gender]);
+              setCheckAdverb(true);
+            }}
+          >
+            Alle auswählen
+          </Button>
+          <Button
+            color={
+              comparisons.length === 0 && comparisonDegrees.length === 0 && genders.length === 0 && !checkAdverb
+                ? 'blue'
+                : 'default'
+            }
+            onClick={() => {
+              setComparisons([]);
+              setComparisonDegrees([]);
+              setGenders([]);
+              setCheckAdverb(false);
+            }}
+          >
+            Alle abwählen
+          </Button>
+        </div>
       </div>
       <div className='grid grid-cols-3'>
         <CheckboxList
