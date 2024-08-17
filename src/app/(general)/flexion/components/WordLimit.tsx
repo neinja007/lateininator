@@ -1,5 +1,6 @@
 import Input from '@/components/Input';
 import Button from '@/components/Button';
+import { useEffect } from 'react';
 
 type WordLimitProps = {
   testingType: 'table' | 'individual';
@@ -9,7 +10,13 @@ type WordLimitProps = {
   disableTables?: boolean;
 };
 
-const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, warningForTables }: WordLimitProps) => {
+const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, disableTables }: WordLimitProps) => {
+  useEffect(() => {
+    if (disableTables && testingType === 'table') {
+      setTestingType('individual');
+    }
+  }, [disableTables, setTestingType, testingType]);
+
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
