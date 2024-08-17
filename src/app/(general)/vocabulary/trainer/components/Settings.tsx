@@ -59,7 +59,7 @@ const Settings = ({
 
   useEffect(() => {
     updateWords(
-      validWords.slice(0, value).filter((word) => !typesToExclude.includes(transformWordTypeToMainWordType(word.type)))
+      validWords.filter((word) => !typesToExclude.includes(transformWordTypeToMainWordType(word.type))).slice(0, value)
     );
   }, [typesToExclude, updateWords, validWords, value]);
 
