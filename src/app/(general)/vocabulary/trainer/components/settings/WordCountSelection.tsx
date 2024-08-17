@@ -6,7 +6,6 @@ import { Dispatch, SetStateAction, useState } from 'react';
 type WordCountSelectionProps = {
   checkIncorrectWordsAgain: boolean;
   setCheckIncorrectWordsAgain: Dispatch<SetStateAction<boolean>>;
-  remainingWords: number;
   inputValue: string;
   updateValue: (value: string) => void;
   maxWords: number;
@@ -16,7 +15,6 @@ const WordCountSelection = ({
   maxWords,
   checkIncorrectWordsAgain,
   setCheckIncorrectWordsAgain,
-  remainingWords,
   inputValue,
   updateValue
 }: WordCountSelectionProps) => {

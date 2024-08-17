@@ -94,7 +94,6 @@ const Settings = ({
         <WordCountSelection
           checkIncorrectWordsAgain={checkIncorrectWordsAgain}
           setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
-          remainingWords={remainingWords}
           inputValue={inputValue}
           updateValue={updateValue}
           maxWords={maximumValidWords}
