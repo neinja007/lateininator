@@ -38,8 +38,6 @@ const Page = () => {
   const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
-  const start = remainingWords > 0;
-
   return (
     <div className='space-y-5'>
       <Heading>Flexionstrainer: Nomen</Heading>
@@ -50,7 +48,7 @@ const Page = () => {
           setTestingType={setTestingType}
           handleContinue={handleContinue}
           updateWords={updateWords}
-          start={start}
+          remainingWords={remainingWords}
         />
       )}
       {(stage === 'test' || stage === 'review') && activeWord && activeWord.type === 'noun' && (

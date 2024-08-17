@@ -14,7 +14,7 @@ type SettingsProps = {
   setTestingType: Dispatch<SetStateAction<'table' | 'individual'>>;
   handleContinue: () => void;
   updateWords: (words: Noun[], count: number) => void;
-  start: boolean;
+  remainingWords: number;
   currentSettingsStage: number;
 };
 
@@ -23,7 +23,7 @@ const Settings = ({
   setTestingType,
   handleContinue,
   updateWords,
-  start,
+  remainingWords,
   currentSettingsStage
 }: SettingsProps) => {
   const [validWords, setValidWords] = useState<Noun[]>([]);
@@ -80,7 +80,7 @@ const Settings = ({
           updateValue={updateValue}
         />
       )}
-      <ContinueButton enableStart={start} handleContinue={handleContinue} />
+      <ContinueButton enableStart={remainingWords > 0} handleContinue={handleContinue} />
     </>
   );
 };
