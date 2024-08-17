@@ -1,7 +1,7 @@
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import SelectButton from '@/components/SelectButton';
 import Input from '@/components/Input';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type WordCountSelectionProps = {
   checkIncorrectWordsAgain: boolean;
@@ -19,6 +19,14 @@ const WordCountSelection = ({
   updateValue
 }: WordCountSelectionProps) => {
   const [checkType, setCheckType] = useState<'all' | 'limited'>('all');
+
+  useEffect(() => {
+    if (checkType === 'all') {
+      updateValue(maxWords.toString());
+    } else {
+      setCheckIncorrectWordsAgain(false);
+    }
+  }, [checkType, maxWords, setCheckIncorrectWordsAgain, updateValue]);
 
   return (
     <>
