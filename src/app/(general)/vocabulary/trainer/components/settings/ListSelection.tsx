@@ -45,7 +45,7 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
               setSelectedLists((prev) => (prev.includes(list) ? prev.filter((t) => t !== list) : [...prev, list]))
             }
           >
-            list.name
+            {list.name}
           </Button>
         ))}
       </div>
