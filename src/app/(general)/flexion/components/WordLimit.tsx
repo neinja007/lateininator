@@ -6,7 +6,7 @@ type WordLimitProps = {
   setTestingType: (arg: 'table' | 'individual') => void;
   inputValue: string;
   updateValue: (arg: string) => void;
-  warningForTables?: boolean;
+  disableTables?: boolean;
 };
 
 const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, warningForTables }: WordLimitProps) => {
@@ -15,8 +15,9 @@ const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, warni
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
       <div className='flex space-x-5'>
         <Button
+          disabled={disableTables}
           className='w-1/2 font-medium'
-          color={testingType === 'table' ? (warningForTables ? 'orange' : 'blue') : 'default'}
+          color={testingType === 'table' ? 'blue' : 'default'}
           onClick={() => setTestingType('table')}
         >
           Formen mit Tabellen abfragen

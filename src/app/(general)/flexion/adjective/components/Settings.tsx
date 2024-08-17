@@ -90,7 +90,7 @@ const Settings = ({
           setTestingType={setTestingType}
           inputValue={inputValue}
           updateValue={updateValue}
-          warningForTables={genders.length === 0}
+          disableTables={genders.length === 0}
         />
       )}
       <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
