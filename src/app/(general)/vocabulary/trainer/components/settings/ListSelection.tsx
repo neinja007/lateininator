@@ -1,4 +1,4 @@
-import SelectButton from '@/components/SelectButton';
+import Button from '@/components/Button';
 import { lists } from '@/data/lists';
 import { List } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -25,28 +25,28 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
       <div className='grid grid-cols-3'>
         <p className='col-span-2'>Wähle aus, welche Lektionen du lernen möchtest:</p>
         <div className='grid grid-cols-2 gap-x-4'>
-          <SelectButton
-            label='Alle auswählen'
-            active={selectedLists.length === lists.length}
-            handleClick={() => setSelectedLists(lists)}
-          />
-          <SelectButton
-            label='Alle abwählen'
-            active={selectedLists.length === 0}
-            handleClick={() => setSelectedLists([])}
-          />
+          <Button
+            color={selectedLists.length === lists.length ? 'blue' : 'default'}
+            onClick={() => setSelectedLists(lists)}
+          >
+            Alle auswählen
+          </Button>
+          <Button color={selectedLists.length === 0 ? 'blue' : 'default'} onClick={() => setSelectedLists([])}>
+            Alle abwählen
+          </Button>
         </div>
       </div>
       <div className='grid grid-cols-8 gap-4'>
         {lists.map((list, i) => (
-          <SelectButton
+          <Button
             key={i}
-            active={selectedLists.includes(list)}
-            handleClick={() =>
+            color={selectedLists.includes(list) ? 'blue' : 'default'}
+            onClick={() =>
               setSelectedLists((prev) => (prev.includes(list) ? prev.filter((t) => t !== list) : [...prev, list]))
             }
-            label={list.name}
-          />
+          >
+            list.name
+          </Button>
         ))}
       </div>
       <p>
