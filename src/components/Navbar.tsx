@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='fixed inset-0 inline-flex h-16 w-full bg-gray-100 dark:bg-gray-800'>
+      <div className='fixed inset-0 inline-flex h-16 w-full bg-gray-100 dark:bg-gray-950'>
         <Logo />
         <div className='mr-4 hidden w-full justify-end gap-x-2 lg:flex xl:justify-center'>
           {links.map((link, i) => {
