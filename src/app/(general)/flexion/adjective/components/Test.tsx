@@ -1,15 +1,16 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Adjective, Comparison, ComparisonDegree, Gender, WordCase } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
-import { getRandomItem } from '@/utils/propertyUtils';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/other/mapper';
-import { getForm } from '@/utils/formUtils';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
+import {Adjective} from "@/types/word";
+import {Comparison, ComparisonDegree, Gender, WordCase} from "@/types/word_constants";
+import {getRandomItem} from "@/utils/helpers/getRandomItem";
+import {getForm} from "@/utils/word_utils/getForm";
 
 type TestProps = {
   activeWord: Adjective;
