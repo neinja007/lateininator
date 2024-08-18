@@ -15,13 +15,13 @@ const Select = ({ label, options, handleChange, className, appendString, ...prop
 
   return (
     <div className='inline'>
-      {label && (
-        <>
-          <label htmlFor={id}>{label}</label>
-          <br />
-        </>
-      )}
-      <select onChange={(e) => handleChange(e.target.value)} id={id} {...props} className={clsx(ui.basic, className)}>
+      {label && <label htmlFor={id}>{label}</label>}
+      <select
+        onChange={(e) => handleChange(e.target.value)}
+        id={id}
+        {...props}
+        className={clsx(ui.basic, className, 'mt-1')}
+      >
         <option value={''} hidden>
           {(appendString && '(' + appendString + ')') || 'Auswählen'}
         </option>

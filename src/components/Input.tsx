@@ -14,17 +14,12 @@ const Input = ({ label, onChange, className, unstyled, ...props }: InputProps) =
 
   return (
     <div className='inline'>
-      {label && (
-        <>
-          <label htmlFor={id}>{label}</label>
-          <br />
-        </>
-      )}
+      {label && <label htmlFor={id}>{label}</label>}
       <input
         onChange={(e) => onChange(e.target.value)}
         id={id}
         {...props}
-        className={clsx(className, !unstyled && ui.basic)}
+        className={clsx(className, !unstyled && ui.basic, 'mt-1')}
       />
     </div>
   );
