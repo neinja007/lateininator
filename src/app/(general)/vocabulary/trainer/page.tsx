@@ -36,17 +36,16 @@ const Page = () => {
   const [checkTranslation, setCheckTranslation] = useState<boolean>(true);
   const canContinue: (word: Word) => boolean = useCallback(
     (word) =>
-      (word &&
-        !APP_CONSTANTS.wordProperties[word.type]
-          .filter((key) => wordPropertiesToCheck.includes(key) && key in word && (word as any)[key] !== '-')
-          .some((key) => {
-            const originalInput = (inputValues as any)[key] || '';
-            const correctInput = (word as any)[key];
+      (word && !checkIncorrectWordsAgain) ||
+      (APP_CONSTANTS.wordProperties[word.type]
+        .filter((key) => wordPropertiesToCheck.includes(key) && key in word && (word as any)[key] !== '-')
+        .every((key) => {
+          const originalInput = (inputValues as any)[key] || '';
+          const correctInput = (word as any)[key];
 
-            return !compareValues(originalInput, correctInput);
-          }) &&
-        (!word.translation || compareValues(inputValues.translation, word.translation, true))) ||
-      !checkIncorrectWordsAgain,
+          return compareValues(originalInput, correctInput);
+        }) &&
+        (!word.translation || compareValues(inputValues.translation, word.translation, true))),
     [inputValues, checkIncorrectWordsAgain, wordPropertiesToCheck]
   );
 
