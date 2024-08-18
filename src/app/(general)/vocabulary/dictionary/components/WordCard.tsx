@@ -32,7 +32,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
 
   return (
     <div
-      className='flex cursor-pointer select-none flex-col rounded-lg bg-gray-100 text-left shadow hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
+      className='flex cursor-pointer select-none flex-col rounded-lg bg-gray-100 text-left shadow hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800'
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <div className='p-2 px-3'>
@@ -44,7 +44,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
         <br />
         <p>{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}</p>
       </div>
-      <div className='mt-auto w-full rounded-b-lg bg-blue-200 p-2 px-3 text-center dark:bg-blue-900'>
+      <div className='mt-auto w-full rounded-b-lg bg-blue-200 p-2 px-3 text-center dark:bg-blue-950'>
         Wort ansehen <ChevronRight size={16} className='inline' />
       </div>
     </div>
