@@ -23,7 +23,7 @@ const Input = ({ label, onChange, className, unstyled, ...props }: InputProps) =
         onChange={(e) => onChange(e.target.value)}
         id={id}
         {...props}
-        className={clsx(className, !unstyled && ui.basic, 'mt-1')}
+        className={clsx(className, !unstyled && ui.basic, !unstyled && 'mt-1')}
       />
     </div>
   );
