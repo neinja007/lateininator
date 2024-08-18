@@ -19,7 +19,7 @@ const RootLayout = ({
     <ClerkProvider localization={deDE}>
       <html lang='en'>
         <body className={rubik.className}>
-          <div className='min-h-screen px-4 pt-24 dark:bg-black dark:text-white'>
+          <div className='min-h-screen px-4 pt-24 dark:bg-black dark:text-gray-300'>
             <Navbar />
             {children}
           </div>
