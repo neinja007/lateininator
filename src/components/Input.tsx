@@ -14,7 +14,11 @@ const Input = ({ label, onChange, className, unstyled, ...props }: InputProps) =
 
   return (
     <div className='inline'>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && (
+        <label htmlFor={id} className='block'>
+          {label}
+        </label>
+      )}
       <input
         onChange={(e) => onChange(e.target.value)}
         id={id}

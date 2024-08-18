@@ -15,7 +15,11 @@ const Select = ({ label, options, handleChange, className, appendString, ...prop
 
   return (
     <div className='inline'>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && (
+        <label htmlFor={id} className='block'>
+          {label}
+        </label>
+      )}
       <select
         onChange={(e) => handleChange(e.target.value)}
         id={id}
