@@ -18,11 +18,13 @@ export const MAPPER: MapperType = {
       i: 'konsonantische Deklination I-Stämme',
       m: 'konsonantische Deklination Mischstämme',
       e: 'E Deklination',
-      u: 'U Deklination'
+      u: 'U Deklination',
+      '-': 'keine Deklination'
     },
     comparison: {
-      a_o: 'A/O Deklination',
-      kon: 'konsonantische Deklination'
+      a_o: 'A/O Komparation',
+      kon: 'konsonantische Komparation',
+      '-': 'keine Komparation'
     },
     wordCase: {
       1: 'Nominativ',
@@ -35,7 +37,8 @@ export const MAPPER: MapperType = {
     gender: {
       m: 'maskulin',
       f: 'feminin',
-      n: 'neutrum'
+      n: 'neutrum',
+      '-': 'kein Geschlecht'
     },
     numerus: {
       sin: 'Singular',
@@ -46,7 +49,8 @@ export const MAPPER: MapperType = {
       e: 'E Konjugation',
       k: 'konsonantische Konjugation',
       i: 'I Konjugation',
-      m: 'Mischkonjugation'
+      m: 'Mischkonjugation',
+      '-': 'keine Konjugation'
     },
     tense: {
       pres: 'Präsens',
@@ -108,11 +112,13 @@ export const MAPPER: MapperType = {
       i: 'kons. Dekl. I',
       m: 'kons. Dekl. Misch.',
       e: 'E Dekl.',
-      u: 'U Dekl.'
+      u: 'U Dekl.',
+      '-': 'keine Dekl.'
     },
     comparison: {
       a_o: 'A/O Dekl.',
-      kon: 'kons. Dekl.'
+      kon: 'kons. Dekl.',
+      '-': 'keine Dekl.'
     },
     wordCase: {
       1: '1. F.',
@@ -125,7 +131,8 @@ export const MAPPER: MapperType = {
     gender: {
       m: 'm.',
       f: 'f.',
-      n: 'n.'
+      n: 'n.',
+      '-': 'kein Geschl.'
     },
     numerus: {
       sin: 'Sg.',
@@ -136,7 +143,8 @@ export const MAPPER: MapperType = {
       e: 'E Konj.',
       k: 'kons. Konj.',
       i: 'I Konj.',
-      m: 'Mischkonj.'
+      m: 'Mischkonj.',
+      '-': 'keine Konj.'
     },
     tense: {
       pres: 'Präs.',
