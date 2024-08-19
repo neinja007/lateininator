@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 type InputProps = {
   label?: string;
-  onChange: Dispatch<SetStateAction<any>>;
+  onChange?: Dispatch<SetStateAction<any>>;
   className?: React.CSSProperties;
   unstyled?: boolean;
 } & Omit<React.ComponentProps<'input'>, 'onChange'>;
@@ -20,7 +20,7 @@ const Input = ({ label, onChange, className, unstyled, ...props }: InputProps) =
         </label>
       )}
       <input
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
         id={id}
         {...props}
         className={clsx(className, !unstyled && ui.basic, !unstyled && 'mt-1')}
