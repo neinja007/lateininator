@@ -8,27 +8,28 @@ import Hr from '@/components/Hr';
 import { WordProperty } from '@/types/app_constants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
+import { APP_CONSTANTS } from '@/constants';
 
 type TestProps = {
-  stage: Stage;
+  stage: 'test' | 'review';
   activeWord: Word;
   inputValues: Record<WordProperty | 'translation', string>;
   setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
-  checkTranslation: boolean;
-  validKeysToCheck: WordProperty[];
+  wordPropertiesToCheck: WordProperty[];
   handleContinue: (newStage?: Stage) => void;
   progressPercentage: number;
+  checkTranslation: boolean;
 };
 
 const Test = ({
   stage,
   activeWord,
   inputValues,
-  checkTranslation,
   setInputValues,
-  validKeysToCheck,
+  wordPropertiesToCheck,
   handleContinue,
-  progressPercentage
+  progressPercentage,
+  checkTranslation
 }: TestProps) => {
   const { submit } = useTestForm(handleContinue);
 
@@ -38,16 +39,19 @@ const Test = ({
         <WordDisplay word={activeWord} />
         <Hr />
         <form onSubmit={submit} className='space-y-5'>
-          <TranslationInput
-            checkTranslation={checkTranslation}
-            activeWord={activeWord}
-            stage={stage}
-            inputValues={inputValues}
-            setInputValues={setInputValues}
-          />
-          {validKeysToCheck.length > 0 && (
+          {checkTranslation && (
+            <TranslationInput
+              correctTranslations={activeWord.translation}
+              stage={stage}
+              inputValues={inputValues}
+              setInputValues={setInputValues}
+            />
+          )}
+          {wordPropertiesToCheck.length > 0 && (
             <PropertyInputs
-              validKeysToCheck={validKeysToCheck}
+              wordPropertiesToCheck={APP_CONSTANTS.wordProperties[activeWord.type].filter((key) =>
+                wordPropertiesToCheck.includes(key)
+              )}
               activeWord={activeWord}
               inputValues={inputValues}
               setInputValues={setInputValues}
