@@ -1,5 +1,5 @@
 import { WordType } from './app_constants';
-import { Comparison, Declension, Gender, Conjugation } from './word_constants';
+import { OptionalComparison, OptionalDeclension, OptionalConjugation, OptionalGender } from './word_constants';
 
 export type Word = Verb | Noun | Adjective | Other;
 
@@ -15,25 +15,25 @@ export type Base = {
 
 export type Adjective = Base & {
   type: 'adjective';
-  comparison: Comparison | '-';
-  femininum: string | '-';
-  neutrum: string | '-';
+  comparison: OptionalComparison;
+  femininum: string;
+  neutrum: string;
 };
 
 export type Noun = Base & {
   type: 'noun';
   pluralOnly?: boolean;
-  declension: Declension | '-';
-  genitive: string | '-';
-  gender: Gender | '-';
+  declension: OptionalDeclension;
+  genitive: string;
+  gender: OptionalGender;
 };
 
 export type Verb = Base & {
   type: 'verb';
-  conjugation: Conjugation | '-';
-  present: string | '-';
-  perfect: string | '-';
-  participle: string | '-';
+  conjugation: OptionalConjugation;
+  present: string;
+  perfect: string;
+  participle: string;
 };
 
 export type Other = Base & {
