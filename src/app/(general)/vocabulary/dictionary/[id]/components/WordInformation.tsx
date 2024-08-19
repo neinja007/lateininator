@@ -3,7 +3,6 @@ import Link from 'next/link';
 import ui from '@/styles/ui.module.css';
 import WordInfo from '@/components/WordInfo';
 import { Word } from '@/types/word';
-import { capitalizeFirstLetter } from '@/utils/helpers/capitalizeFirstLetter';
 
 type WordInformationProps = { word: Word };
 
@@ -12,7 +11,7 @@ const WordInformation = ({ word }: WordInformationProps) => {
     <div className='grid grid-cols-3'>
       <p>
         {word.translation ? (word.translation.length === 1 ? 'Übersetzung: ' : 'Übersetzungen: ') : 'Keine Übersetzung'}
-        {word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
+        {word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}
       </p>
       <p className='text-center'>
         {word.derivative && (

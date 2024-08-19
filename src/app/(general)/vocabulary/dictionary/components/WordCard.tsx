@@ -1,11 +1,9 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
 import Badge from '@/components/Badge';
 import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';
-import { capitalizeFirstLetter } from '@/utils/helpers/capitalizeFirstLetter';
 import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
 
 type WordCardProps = {
@@ -42,7 +40,7 @@ const WordCard = ({ word, query }: WordCardProps) => {
         <p className='line-clamp-1 text-2xl'>{highlightedWord}</p>
         <p>{lexicalForm ? lexicalForm : <br />}</p>
         <br />
-        <p>{word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}</p>
+        <p>{word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}</p>
       </div>
       <div className='mt-auto w-full rounded-b-lg bg-blue-200 p-2 px-3 text-center dark:bg-blue-950'>
         Wort ansehen <ChevronRight size={16} className='inline' />

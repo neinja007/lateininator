@@ -1,11 +1,9 @@
 'use client';
-
 import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
 import { ChevronRight } from 'react-feather';
 import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';
-import { capitalizeFirstLetter } from '@/utils/helpers/capitalizeFirstLetter';
 import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
 
 type WordRowProps = {
@@ -36,9 +34,7 @@ const WordRow = ({ word, query }: WordRowProps) => {
       <td className='p-2 px-4'>
         {highlightedWord} <i>{getLexicalForm(word)}</i>
       </td>
-      <td className='p-2 px-4'>
-        {word.translation?.map((translation) => capitalizeFirstLetter(translation)).join(', ')}
-      </td>
+      <td className='p-2 px-4'>{word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}</td>
       <td className='p-2 px-4'>
         <Badge text={MAPPER.extended.type[word.type]} />
       </td>
