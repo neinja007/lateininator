@@ -10,7 +10,7 @@
 }
 
 .basic {
-	@apply p-1 px-3 h-9 inline rounded-md focus:outline-none disabled:opacity-50;
+	@apply p-1 px-3 h-9 inline rounded-md focus:outline-none;
 }
 
 .link {
