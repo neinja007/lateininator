@@ -7,27 +7,29 @@ type TrainerInputProps = {
   customStyle?: React.CSSProperties & string;
   label?: string;
   value: string;
-  correctValue?: string;
+  correctValue: string;
   handleChange: (...args: any[]) => void;
+  stage: 'test' | 'review';
 };
 
-const TrainerInput = ({ customStyle, label, handleChange, value, correctValue }: TrainerInputProps) => {
-  const correct = correctValue !== undefined ? value === correctValue : undefined;
-  const correctValueIndicator = correctValue !== undefined && (correct ? ui.correct : ui.incorrect);
+const TrainerInput = ({ customStyle, label, handleChange, value, correctValue, stage }: TrainerInputProps) => {
+  const inputIsCorrect = value === correctValue;
+  const correctValueIndicator = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
 
-  const showValue = correctValue !== undefined && !correct;
-  const transformedValue = value.trim()
-    ? value + ((showValue && ' (' + correctValue + ')') || '')
-    : (showValue && '(' + correctValue + ')') || '';
+  const valueWithCorrectValue = !inputIsCorrect
+    ? value.trim()
+      ? value + ' (' + correctValue + ')'
+      : '(' + correctValue + ')'
+    : correctValue;
 
   return (
     <Input
       unstyled={!!customStyle}
       label={label}
       className={clsx('w-full', correctValueIndicator, customStyle)}
-      value={transformedValue}
+      value={stage === 'test' ? value : valueWithCorrectValue}
       onChange={handleChange}
-      disabled={correct !== undefined}
+      disabled={stage === 'review'}
     />
   );
 };
