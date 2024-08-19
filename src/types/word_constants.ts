@@ -13,7 +13,7 @@ export type Gender = (typeof WORD_CONSTANTS.gender)[number];
 export type Conjugation = (typeof WORD_CONSTANTS.conjugation)[number];
 export type Comparison = (typeof WORD_CONSTANTS.comparison)[number];
 
-export type OptionalDeclension = (typeof WORD_CONSTANTS.optionalDeclension)[number];
-export type OptionalGender = (typeof WORD_CONSTANTS.optionalGender)[number];
-export type OptionalConjugation = (typeof WORD_CONSTANTS.optionalConjugation)[number];
-export type OptionalComparison = (typeof WORD_CONSTANTS.optionalComparison)[number];
+export type OptionalDeclension = (typeof WORD_CONSTANTS.optional.declension)[number];
+export type OptionalGender = (typeof WORD_CONSTANTS.optional.gender)[number];
+export type OptionalConjugation = (typeof WORD_CONSTANTS.optional.conjugation)[number];
+export type OptionalComparison = (typeof WORD_CONSTANTS.optional.comparison)[number];
