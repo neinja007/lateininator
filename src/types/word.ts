@@ -7,7 +7,7 @@ export type Base = {
   id: number;
   word: string;
   type: WordType;
-  translation?: string[];
+  translation: string[];
   info?: string;
   derivative?: number;
   exception?: number;
