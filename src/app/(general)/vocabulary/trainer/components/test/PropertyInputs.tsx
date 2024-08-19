@@ -1,47 +1,44 @@
-import PropertyInput from '@/components/PropertyInput';
+import PropertyInput from './PropertyInput';
 import { WordProperty } from '@/types/app_constants';
-import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
-import { MAPPER } from '@/utils/other/mapper';
-import { isKeyInObject } from '@/utils/typeguards/isKeyInObject';
-import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
 import { compareValues } from '@/utils/word_utils/compareValues';
 import { Dispatch, SetStateAction } from 'react';
 
 type PropertyInputsProps = {
-  validKeysToCheck: WordProperty[];
+  wordPropertiesToCheck: WordProperty[];
   activeWord: Word;
   inputValues: Record<WordProperty, string>;
   setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
-  stage: Stage;
+  stage: 'test' | 'review';
 };
 
-const PropertyInputs = ({ validKeysToCheck, activeWord, inputValues, setInputValues, stage }: PropertyInputsProps) => {
+const PropertyInputs = ({
+  wordPropertiesToCheck,
+  activeWord,
+  inputValues,
+  setInputValues,
+  stage
+}: PropertyInputsProps) => {
   return (
     <div className='grid grid-cols-2 gap-4'>
-      {validKeysToCheck.map((key, i) => {
-        let value = (activeWord as any)[key];
-        let correct = stage === 'review' ? compareValues(inputValues[key], value) : undefined;
+      {wordPropertiesToCheck.map((key, i) => {
+        let correctValue = (activeWord as any)[key];
+        let isInputCorrect = stage === 'review' ? compareValues(inputValues[key], correctValue) : undefined;
 
         return (
           <PropertyInput
+            isInputCorrect={!!isInputCorrect}
+            stage={stage}
             key={i}
             property={key}
-            value={inputValues[key]}
-            appendedString={
-              stage === 'review'
-                ? isWordPropertiesUsingSelectInput(key)
-                  ? isKeyInObject(value, MAPPER.extended[key]) && MAPPER.extended[key][value]
-                  : value
-                : undefined
-            }
+            inputValue={inputValues[key]}
             handleChange={(key: string, value: string) =>
               setInputValues((prevInputValues) => ({
                 ...prevInputValues,
                 [key]: value
               }))
             }
-            correct={correct}
+            correctValue={correctValue}
           />
         );
       })}
