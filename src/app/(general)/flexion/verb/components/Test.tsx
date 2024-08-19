@@ -103,7 +103,8 @@ const Test = ({
             label={`${MAPPER.extended.person[individualInputForm.person]} ${MAPPER.extended.numerus[individualInputForm.numerus]}; ${MAPPER.extended.modus[individualInputForm.modus]} ${MAPPER.extended.tense[individualInputForm.tense]} ${MAPPER.extended.voice[individualInputForm.voice]}`}
             handleChange={setIndividualInputValue}
             value={individualInputValue}
-            correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
+            correctValue={getForm(activeWord, individualInputForm)}
+            stage={stage}
           />
         ) : (
           <TableInput

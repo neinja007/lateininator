@@ -41,14 +41,10 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }
                       <TrainerInput
                         customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
                         value={tableInputValues[numerus][wordCase]}
-                        correctValue={
-                          stage === 'review'
-                            ? getForm(activeWord, {
-                                numerus,
-                                wordCase
-                              })
-                            : undefined
-                        }
+                        correctValue={getForm(activeWord, {
+                          numerus,
+                          wordCase
+                        })}
                         handleChange={(value) =>
                           setTableInputValues((prev) => ({
                             ...prev,
@@ -58,6 +54,7 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }
                             }
                           }))
                         }
+                        stage={stage}
                       />
                     </td>
                   ))}

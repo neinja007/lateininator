@@ -64,7 +64,8 @@ const Test = ({
             label={`${activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'} ${MAPPER.extended.wordCase[individualInputForm.wordCase]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
             handleChange={setIndividualInputValue}
             value={individualInputValue}
-            correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
+            correctValue={getForm(activeWord, individualInputForm)}
+            stage={stage}
           />
         ) : (
           testingType === 'table' && (

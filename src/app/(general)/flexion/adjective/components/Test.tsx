@@ -87,7 +87,8 @@ const Test = ({
             }
             handleChange={setIndividualInputValue}
             value={individualInputValue}
-            correctValue={stage === 'review' ? getForm(activeWord, individualInputForm) : undefined}
+            correctValue={getForm(activeWord, individualInputForm)}
+            stage={stage}
           />
         ) : (
           tableInputForm &&

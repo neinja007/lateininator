@@ -63,17 +63,13 @@ const TableInput = ({
                               <TrainerInput
                                 customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
                                 value={tableInputValues[tense][numerus][person]}
-                                correctValue={
-                                  stage === 'review'
-                                    ? getForm(activeWord, {
-                                        tense,
-                                        numerus,
-                                        person,
-                                        modus: tableInputForm.modus,
-                                        voice: tableInputForm.voice
-                                      })
-                                    : undefined
-                                }
+                                correctValue={getForm(activeWord, {
+                                  tense,
+                                  numerus,
+                                  person,
+                                  modus: tableInputForm.modus,
+                                  voice: tableInputForm.voice
+                                })}
                                 handleChange={(value) =>
                                   setTableInputValues((prev) => ({
                                     ...prev,
@@ -86,6 +82,7 @@ const TableInput = ({
                                     }
                                   }))
                                 }
+                                stage={stage}
                               />
                             ) : (
                               <div className='h-8 w-full bg-red-400 dark:bg-red-800'>-</div>

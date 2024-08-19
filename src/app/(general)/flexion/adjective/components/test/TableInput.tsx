@@ -38,16 +38,13 @@ const TableInput = ({
             label='Adverb'
             value={tableInputValues.adverb}
             handleChange={(value) => setTableInputValues((prev) => ({ ...prev, adverb: value }))}
-            correctValue={
-              stage === 'review'
-                ? getForm(activeWord, {
-                    numerus: 'sin',
-                    wordCase: '1',
-                    adverb: true,
-                    comparisonDegree: tableInputForm.comparisonDegree
-                  })
-                : undefined
-            }
+            correctValue={getForm(activeWord, {
+              numerus: 'sin',
+              wordCase: '1',
+              adverb: true,
+              comparisonDegree: tableInputForm.comparisonDegree
+            })}
+            stage={stage}
           />
         </div>
       )}
@@ -76,16 +73,12 @@ const TableInput = ({
                         <TrainerInput
                           customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
                           value={tableInputValues[gender][numerus][wordCase]}
-                          correctValue={
-                            stage === 'review'
-                              ? getForm(activeWord, {
-                                  gender,
-                                  numerus,
-                                  wordCase,
-                                  comparisonDegree: tableInputForm.comparisonDegree
-                                })
-                              : undefined
-                          }
+                          correctValue={getForm(activeWord, {
+                            gender,
+                            numerus,
+                            wordCase,
+                            comparisonDegree: tableInputForm.comparisonDegree
+                          })}
                           handleChange={(value) =>
                             setTableInputValues((prev) => ({
                               ...prev,
@@ -98,6 +91,7 @@ const TableInput = ({
                               }
                             }))
                           }
+                          stage={stage}
                         />
                       </td>
                     ))}
