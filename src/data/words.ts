@@ -352,7 +352,13 @@ export const words: Word[] = [
   { id: 69, word: 'ibi', type: 'other', translation: ['dort'] },
   { id: 70, word: 'statua', type: 'noun', translation: ['statue'], genitive: 'statuae', gender: 'f', declension: 'a' },
   { id: 71, word: 'vir', type: 'noun', translation: ['mann'], genitive: 'viri', gender: 'm', declension: 'o' },
-  { id: 72, word: '-ne', type: 'other', info: 'Fragepartikel (wird an Wort angehängt; habesne = hast du?)' },
+  {
+    id: 72,
+    word: '-ne',
+    type: 'other',
+    info: 'Fragepartikel (wird an Wort angehängt; habesne = hast du?)',
+    translation: []
+  },
   { id: 73, word: 'certe', type: 'adverb', translation: ['sicherlich', 'sicher'] },
   {
     id: 74,
@@ -4464,7 +4470,8 @@ export const words: Word[] = [
     id: 568,
     word: 'praeter',
     info: 'mit Akkusativ',
-    type: 'other'
+    type: 'other',
+    translation: ['außer']
   },
   {
     id: 569,
