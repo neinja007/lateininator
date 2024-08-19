@@ -4459,5 +4459,206 @@ export const words: Word[] = [
     genitive: 'servae',
     declension: 'a',
     gender: 'f'
+  },
+  {
+    id: 568,
+    word: 'praeter',
+    info: 'mit Akkusativ',
+    type: 'other'
+  },
+  {
+    id: 569,
+    word: 'discordia',
+    type: 'noun',
+    translation: ['zwietracht', 'streit'],
+    declension: 'a',
+    gender: 'f',
+    genitive: 'discordiae'
+  },
+  {
+    id: 570,
+    word: 'contoversia',
+    type: 'noun',
+    translation: ['auseinandersetzung'],
+    declension: 'a',
+    gender: 'f',
+    genitive: 'controversiae'
+  },
+  {
+    id: 571,
+    word: 'iacere',
+    type: 'verb',
+    translation: ['werfen', 'schleudern'],
+    conjugation: 'm',
+    present: 'iacio',
+    perfect: 'ieci',
+    participle: 'iactum'
+  },
+  {
+    id: 572,
+    word: 'Venus',
+    type: 'noun',
+    translation: ['Venus'],
+    genitive: 'Veneris',
+    gender: 'f',
+    declension: 'k'
+  },
+  {
+    id: 573,
+    word: 'certare',
+    type: 'verb',
+    translation: ['wetteifern', 'streiten'],
+    conjugation: 'a',
+    present: 'certo',
+    perfect: 'certavi',
+    participle: 'certatum'
+  },
+  {
+    id: 574,
+    word: 'iudicare',
+    type: 'verb',
+    translation: ['urteilen', 'beurteilen', 'richten'],
+    conjugation: 'a',
+    present: 'iudico',
+    perfect: 'iudicavi',
+    participle: 'iudicatum'
+  },
+  {
+    id: 575,
+    word: 'deligere',
+    type: 'verb',
+    translation: ['auswählen'],
+    conjugation: 'k',
+    present: 'deligo',
+    perfect: 'delegi',
+    participle: 'delectum'
+  },
+  {
+    id: 576,
+    word: 'praemium',
+    type: 'noun',
+    translation: ['belohnung', 'preis'],
+    declension: 'o',
+    gender: 'n',
+    genitive: 'praemii'
+  },
+  {
+    id: 577,
+    word: 'praeterea',
+    type: 'adverb',
+    translation: ['außerdem']
+  },
+  {
+    id: 578,
+    word: 'dives',
+    type: 'adjective',
+    translation: ['reich'],
+    comparison: 'kon',
+    femininum: 'dives',
+    neutrum: 'dives'
+  },
+  {
+    id: 579,
+    word: 'fortitudo',
+    type: 'noun',
+    translation: ['tapferkeit'],
+    declension: 'k',
+    gender: 'f',
+    genitive: 'fortitudinis'
+  },
+  {
+    id: 580,
+    word: 'quia',
+    type: 'other',
+    translation: ['weil']
+  },
+  {
+    id: 581,
+    word: 'Graecia',
+    type: 'noun',
+    translation: ['Griechenland'],
+    declension: 'a',
+    gender: 'f',
+    genitive: 'Graeciae'
+  },
+  {
+    id: 582,
+    word: 'decernere',
+    type: 'verb',
+    translation: ['beschließen'],
+    conjugation: 'k',
+    present: 'decerno',
+    perfect: 'decrevi',
+    participle: 'decretum'
+  },
+  {
+    id: 583,
+    word: 'eo',
+    type: 'adverb',
+    translation: ['dorthin']
+  },
+  {
+    id: 584,
+    word: 'fides',
+    type: 'noun',
+    translation: ['treue', 'vertrauen', 'schutz'],
+    declension: 'e',
+    gender: 'f',
+    genitive: 'fidei'
+  },
+
+  {
+    id: 585,
+    word: 'mandare',
+    type: 'verb',
+    translation: ['anvertrauen'],
+    conjugation: 'a',
+    present: 'mando',
+    perfect: 'mandavi',
+    participle: 'mandatum'
+  },
+  {
+    id: 586,
+    word: 'occasio',
+    type: 'noun',
+    translation: ['gelegenheit'],
+    declension: 'k',
+    gender: 'f',
+    genitive: 'occasionis'
+  },
+  {
+    id: 587,
+    word: 'iungere',
+    type: 'verb',
+    translation: ['verbinden'],
+    conjugation: 'k',
+    present: 'iungo',
+    perfect: 'iunxi',
+    participle: 'iunctum'
+  },
+  {
+    id: 588,
+    word: 'maritus',
+    type: 'noun',
+    translation: ['ehemann', 'gatte'],
+    declension: 'o',
+    gender: 'm',
+    genitive: 'mariti'
+  },
+  {
+    id: 589,
+    word: 'aut ... aut',
+    type: 'other',
+    translation: ['entweder ... oder', 'entweder oder']
+  },
+  { id: 590, word: 'eiusmodi', type: 'other', translation: ['derartig'], info: '(= huiusmodi)' },
+  {
+    id: 591,
+    word: 'Troia',
+    type: 'noun',
+    translation: ['Troja'],
+    declension: 'a',
+    gender: 'f',
+    genitive: 'Troiae'
   }
 ];

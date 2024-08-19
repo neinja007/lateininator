@@ -104,5 +104,10 @@ export const lists: List[] = [
     id: 20,
     name: 'Lektion 20',
     words: generateSequentialNumbers(548, 567)
+  },
+  {
+    id: 21,
+    name: 'Lektion 21',
+    words: generateSequentialNumbers(568, 591)
   }
 ];
