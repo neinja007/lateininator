@@ -1,15 +1,15 @@
 import { Word } from '@/types/word';
 
 export const words: Word[] = [
-  { id: 1, word: 'schola', type: 'noun', translation: ['schule'], genitive: 'scholae', gender: 'f', declension: 'a' },
+  { id: 1, word: 'schola', type: 'noun', translation: ['Schule'], genitive: 'scholae', gender: 'f', declension: 'a' },
   { id: 2, word: 'et', type: 'other', translation: ['und'] },
-  { id: 3, word: 'amicus', type: 'noun', translation: ['freund'], genitive: 'amici', gender: 'm', declension: 'o' },
+  { id: 3, word: 'amicus', type: 'noun', translation: ['Freund'], genitive: 'amici', gender: 'm', declension: 'o' },
   { id: 4, word: 'sed', type: 'other', translation: ['aber', 'sondern'] },
   {
     id: 5,
     word: 'discipulus',
     type: 'noun',
-    translation: ['schüler'],
+    translation: ['Schüler'],
     genitive: 'discipuli',
     gender: 'm',
     declension: 'o'
@@ -48,7 +48,7 @@ export const words: Word[] = [
   { id: 11, word: 'nunc', type: 'adverb', translation: ['nun', 'jetzt'] },
   { id: 12, word: 'hic', type: 'adverb', translation: ['hier'], info: 'Adverb' },
   { id: 13, word: 'non', type: 'other', translation: ['nicht'] },
-  { id: 14, word: 'pensum', type: 'noun', translation: ['aufgabe'], genitive: 'pensi', gender: 'n', declension: 'o' },
+  { id: 14, word: 'pensum', type: 'noun', translation: ['Aufgabe'], genitive: 'pensi', gender: 'n', declension: 'o' },
   {
     id: 15,
     word: 'magnus',
@@ -132,20 +132,14 @@ export const words: Word[] = [
     perfect: 'laudavi',
     participle: 'laudatum'
   },
-  { id: 27, word: 'amica', type: 'noun', translation: ['freundin'], genitive: 'amicae', gender: 'f', declension: 'a' },
+  { id: 27, word: 'amica', type: 'noun', translation: ['Freundin'], genitive: 'amicae', gender: 'f', declension: 'a' },
   { id: 28, word: 'meus/a/um', type: 'pronoun', translation: ['mein'] },
-  {
-    id: 29,
-    word: 'esse',
-    type: 'irregularVerb',
-    translation: ['sein', 'zu sein'],
-    info: 'irreguläres Verb'
-  },
+  { id: 29, word: 'esse', type: 'irregularVerb', translation: ['sein', 'zu sein'], info: 'irreguläres Verb' },
   {
     id: 30,
     word: 'discipula',
     type: 'noun',
-    translation: ['schülerin'],
+    translation: ['Schülerin'],
     genitive: 'discipulae',
     gender: 'f',
     declension: 'a'
@@ -178,7 +172,7 @@ export const words: Word[] = [
     id: 38,
     word: 'lingua',
     type: 'noun',
-    translation: ['sprache', 'zunge'],
+    translation: ['Sprache', 'Zunge'],
     genitive: 'linguae',
     gender: 'f',
     declension: 'a'
@@ -201,7 +195,7 @@ export const words: Word[] = [
     femininum: 'graeca',
     neutrum: 'graecum'
   },
-  { id: 41, word: 'liber', type: 'noun', translation: ['buch'], genitive: 'libri', gender: 'm', declension: 'o' },
+  { id: 41, word: 'liber', type: 'noun', translation: ['Buch'], genitive: 'libri', gender: 'm', declension: 'o' },
   { id: 42, word: 'quam', type: 'other', translation: ['wie'] },
   {
     id: 43,
@@ -212,7 +206,7 @@ export const words: Word[] = [
     femininum: 'pulchra',
     neutrum: 'pulchrum'
   },
-  { id: 44, word: 'verbum', type: 'noun', translation: ['wort'], genitive: 'verbi', gender: 'n', declension: 'o' },
+  { id: 44, word: 'verbum', type: 'noun', translation: ['Wort'], genitive: 'verbi', gender: 'n', declension: 'o' },
   {
     id: 45,
     word: 'docere',
@@ -238,12 +232,12 @@ export const words: Word[] = [
     id: 48,
     word: 'puer',
     type: 'noun',
-    translation: ['bub', 'junge'],
+    translation: ['Bub', 'Junge'],
     genitive: 'pueri',
     gender: 'm',
     declension: 'o'
   },
-  { id: 49, word: 'puella', type: 'noun', translation: ['mädchen'], genitive: 'puellae', gender: 'f', declension: 'a' },
+  { id: 49, word: 'puella', type: 'noun', translation: ['Mädchen'], genitive: 'puellae', gender: 'f', declension: 'a' },
   { id: 50, word: 'quod', type: 'other', translation: ['weil'], info: 'als Konjunktion' },
   { id: 51, word: 'quis?', type: 'other', translation: ['wer', 'wer?'] },
   {
@@ -266,7 +260,7 @@ export const words: Word[] = [
     perfect: 'spectavi',
     participle: 'spectatum'
   },
-  { id: 54, word: 'oculus', type: 'noun', translation: ['auge'], genitive: 'oculi', gender: 'm', declension: 'o' },
+  { id: 54, word: 'oculus', type: 'noun', translation: ['Auge'], genitive: 'oculi', gender: 'm', declension: 'o' },
   { id: 55, word: 'tuus/a/um', type: 'pronoun', translation: ['dein'] },
   { id: 56, word: 'ubi?', type: 'other', translation: ['wo', 'wo?'] },
   {
@@ -315,12 +309,12 @@ export const words: Word[] = [
     id: 64,
     word: 'magister',
     type: 'noun',
-    translation: ['lehrer'],
+    translation: ['Lehrer'],
     genitive: 'magistri',
     gender: 'm',
     declension: 'o'
   },
-  { id: 65, word: 'roma', type: 'noun', translation: ['rom'], genitive: 'romae', gender: 'f', declension: 'a' },
+  { id: 65, word: 'roma', type: 'noun', translation: ['Rom'], genitive: 'romae', gender: 'f', declension: 'a' },
   {
     id: 66,
     word: 'clarus',
@@ -344,14 +338,14 @@ export const words: Word[] = [
     id: 68,
     word: 'spectaculum',
     type: 'noun',
-    translation: ['schauspiel'],
+    translation: ['Schauspiel'],
     genitive: 'spectaculi',
     gender: 'n',
     declension: 'o'
   },
   { id: 69, word: 'ibi', type: 'other', translation: ['dort'] },
-  { id: 70, word: 'statua', type: 'noun', translation: ['statue'], genitive: 'statuae', gender: 'f', declension: 'a' },
-  { id: 71, word: 'vir', type: 'noun', translation: ['mann'], genitive: 'viri', gender: 'm', declension: 'o' },
+  { id: 70, word: 'statua', type: 'noun', translation: ['Statue'], genitive: 'statuae', gender: 'f', declension: 'a' },
+  { id: 71, word: 'vir', type: 'noun', translation: ['Mann'], genitive: 'viri', gender: 'm', declension: 'o' },
   {
     id: 72,
     word: '-ne',
@@ -364,7 +358,7 @@ export const words: Word[] = [
     id: 74,
     word: 'forum',
     type: 'noun',
-    translation: ['forum', 'marktplatz'],
+    translation: ['Forum', 'Marktplatz'],
     genitive: 'fori',
     gender: 'n',
     declension: 'o'
@@ -379,15 +373,15 @@ export const words: Word[] = [
     neutrum: 'romanum'
   },
   { id: 76, word: 'per', type: 'other', translation: ['durch'], info: 'mit Akkusativ' },
-  { id: 77, word: 'templum', type: 'noun', translation: ['tempel'], genitive: 'templi', gender: 'n', declension: 'o' },
+  { id: 77, word: 'templum', type: 'noun', translation: ['Tempel'], genitive: 'templi', gender: 'n', declension: 'o' },
   { id: 78, word: 'tam', type: 'other', translation: ['so'] },
-  { id: 79, word: 'deus', type: 'noun', translation: ['gott'], genitive: 'dei', gender: 'm', declension: 'o' },
-  { id: 80, word: 'dea', type: 'noun', translation: ['göttin'], genitive: 'deae', gender: 'f', declension: 'a' },
+  { id: 79, word: 'deus', type: 'noun', translation: ['Gott'], genitive: 'dei', gender: 'm', declension: 'o' },
+  { id: 80, word: 'dea', type: 'noun', translation: ['Göttin'], genitive: 'deae', gender: 'f', declension: 'a' },
   { id: 81, word: 'ante', type: 'other', translation: ['vor'], info: 'mit Akkusativ' },
   { id: 82, word: 'post', type: 'other', translation: ['nach', 'hinter'], info: 'mit Akkusativ' },
   { id: 83, word: 'solum', type: 'adverb', translation: ['nur'] },
   { id: 84, word: 'ad', type: 'other', translation: ['an', 'zu', 'bei'], info: 'mit Akkusativ' },
-  { id: 85, word: 'via', type: 'noun', translation: ['weg', 'straße'], genitive: 'viae', gender: 'f', declension: 'a' },
+  { id: 85, word: 'via', type: 'noun', translation: ['Weg', 'Straße'], genitive: 'viae', gender: 'f', declension: 'a' },
   {
     id: 86,
     word: 'ambulare',
@@ -404,7 +398,7 @@ export const words: Word[] = [
     id: 89,
     word: 'aedificium',
     type: 'noun',
-    translation: ['gebäude'],
+    translation: ['Gebäude'],
     genitive: 'aedificii',
     gender: 'n',
     declension: 'o'
@@ -420,18 +414,12 @@ export const words: Word[] = [
     participle: 'visum'
   },
   { id: 91, word: '-que', type: 'other', translation: ['und'], info: 'an wort angehängt (z.B. Gaiusque)' },
-  {
-    id: 92,
-    word: 'de',
-    type: 'other',
-    translation: ['von', 'über'],
-    info: 'Präposition mit Ablativ'
-  },
+  { id: 92, word: 'de', type: 'other', translation: ['von', 'über'], info: 'Präposition mit Ablativ' },
   {
     id: 93,
     word: 'terra',
     type: 'noun',
-    translation: ['erde', 'land'],
+    translation: ['Erde', 'Land'],
     genitive: 'terrae',
     gender: 'f',
     declension: 'a'
@@ -484,40 +472,19 @@ export const words: Word[] = [
     femininum: 'nova',
     neutrum: 'novum'
   },
-  {
-    id: 99,
-    word: 'alius/a/ud',
-    type: 'other',
-    translation: ['ein anderer']
-  },
-  {
-    id: 100,
-    word: 'alius - alius',
-    type: 'other',
-    translation: ['der eine - der andere', 'der eine der andere']
-  },
+  { id: 99, word: 'alius/a/ud', type: 'other', translation: ['ein anderer'] },
+  { id: 100, word: 'alius - alius', type: 'other', translation: ['der eine - der andere', 'der eine der andere'] },
   {
     id: 101,
     word: 'gladius',
     type: 'noun',
-    translation: ['schwert'],
+    translation: ['Schwert'],
     genitive: 'gladii',
     gender: 'm',
     declension: 'o'
   },
-  {
-    id: 102,
-    word: 'postremo',
-    type: 'adverb',
-    translation: ['schließlich', 'endlich']
-  },
-  {
-    id: 103,
-    word: 'cum',
-    type: 'other',
-    translation: ['mit'],
-    info: 'Präposition mit Ablativ'
-  },
+  { id: 102, word: 'postremo', type: 'adverb', translation: ['schließlich', 'endlich'] },
+  { id: 103, word: 'cum', type: 'other', translation: ['mit'], info: 'Präposition mit Ablativ' },
   {
     id: 104,
     word: 'superare',
@@ -528,31 +495,11 @@ export const words: Word[] = [
     perfect: 'superavi',
     participle: 'superatum'
   },
-  {
-    id: 105,
-    word: 'si',
-    type: 'other',
-    translation: ['wenn', 'falls'],
-    info: 'als Konjunktion'
-  },
-  {
-    id: 106,
-    word: 'bene',
-    type: 'adverb',
-    translation: ['gut']
-  },
-  {
-    id: 107,
-    word: 'vita',
-    type: 'noun',
-    translation: ['leben'],
-    genitive: 'vitae',
-    gender: 'f',
-    declension: 'a'
-  },
+  { id: 105, word: 'si', type: 'other', translation: ['wenn', 'falls'], info: 'als Konjunktion' },
+  { id: 106, word: 'bene', type: 'adverb', translation: ['gut'] },
+  { id: 107, word: 'vita', type: 'noun', translation: ['Leben'], genitive: 'vitae', gender: 'f', declension: 'a' },
   {
     id: 108,
-
     word: 'donare',
     type: 'verb',
     translation: ['schenken'],
@@ -561,66 +508,14 @@ export const words: Word[] = [
     perfect: 'donavi',
     participle: 'donatum'
   },
-  {
-    id: 109,
-
-    word: 'pro',
-    type: 'other',
-    translation: ['für'],
-    info: 'Präposition mit Ablativ'
-  },
-  {
-    id: 110,
-    word: 'suus/a/um',
-    type: 'other',
-    translation: ['sein', 'ihr']
-  },
-  {
-    id: 111,
-    word: 'a',
-    type: 'other',
-    translation: ['von'],
-    info: 'Vor Vokal: ab; Präposition mit Ablativ'
-  },
-  {
-    id: 112,
-    word: 'prae',
-    type: 'other',
-    translation: ['vor'],
-    info: 'Präposition mit Ablativ'
-  },
-  {
-    id: 113,
-    word: 'neque',
-    type: 'other',
-    translation: ['und nicht'],
-    info: '= nec'
-  },
-  {
-    id: 114,
-    word: 'sine',
-    type: 'other',
-    translation: ['ohne'],
-    info: 'Präposition mit Ablativ'
-  },
-  {
-    id: 115,
-    word: 'femina',
-    type: 'noun',
-    translation: ['frau'],
-    genitive: 'feminae',
-    gender: 'f',
-    declension: 'a'
-  },
-  {
-    id: 116,
-    word: 'gaudium',
-    type: 'noun',
-    translation: ['freude'],
-    genitive: 'gaudii',
-    gender: 'n',
-    declension: 'o'
-  },
+  { id: 109, word: 'pro', type: 'other', translation: ['für'], info: 'Präposition mit Ablativ' },
+  { id: 110, word: 'suus/a/um', type: 'other', translation: ['sein', 'ihr'] },
+  { id: 111, word: 'a', type: 'other', translation: ['von'], info: 'Vor Vokal: ab; Präposition mit Ablativ' },
+  { id: 112, word: 'prae', type: 'other', translation: ['vor'], info: 'Präposition mit Ablativ' },
+  { id: 113, word: 'neque', type: 'other', translation: ['und nicht'], info: '= nec' },
+  { id: 114, word: 'sine', type: 'other', translation: ['ohne'], info: 'Präposition mit Ablativ' },
+  { id: 115, word: 'femina', type: 'noun', translation: ['Frau'], genitive: 'feminae', gender: 'f', declension: 'a' },
+  { id: 116, word: 'gaudium', type: 'noun', translation: ['Freude'], genitive: 'gaudii', gender: 'n', declension: 'o' },
   {
     id: 117,
     word: 'narrare',
@@ -636,7 +531,7 @@ export const words: Word[] = [
     word: 'romani',
     type: 'noun',
     pluralOnly: true,
-    translation: ['die römer', 'römer'],
+    translation: ['Die Römer', 'Römer'],
     info: 'nur Plural',
     genitive: 'romanorum',
     gender: 'm',
@@ -646,189 +541,56 @@ export const words: Word[] = [
     id: 119,
     word: 'copia',
     type: 'noun',
-    translation: ['menge', 'vorrat'],
+    translation: ['Menge', 'Vorrat'],
     info: 'nicht copiae; im Singular',
     genitive: 'copiae',
     gender: 'f',
     declension: 'a'
   },
-  {
-    id: 120,
-    word: 'e',
-    type: 'other',
-    translation: ['aus', 'von'],
-    info: 'Vor Vokal: ex; Präposition mit Ablativ'
-  },
-  {
-    id: 121,
-    word: 'mihi',
-    type: 'other',
-    translation: ['mir'],
-    info: 'Dativ'
-  },
-  {
-    id: 122,
-    word: 'tu',
-    type: 'other',
-    translation: ['du']
-  },
+  { id: 120, word: 'e', type: 'other', translation: ['aus', 'von'], info: 'Vor Vokal: ex; Präposition mit Ablativ' },
+  { id: 121, word: 'mihi', type: 'other', translation: ['mir'], info: 'Dativ' },
+  { id: 122, word: 'tu', type: 'other', translation: ['du'] },
   {
     id: 123,
     word: 'graeci',
     type: 'noun',
     pluralOnly: true,
-    translation: ['die griechen', 'griechen'],
+    translation: ['Die Griechen', 'Griechen'],
     info: 'nur Plural',
     genitive: 'graecorum',
     gender: 'm',
     declension: 'o'
   },
-  {
-    id: 124,
-    word: 'ita',
-    type: 'other',
-    translation: ['so']
-  },
-  {
-    id: 125,
-    word: 'inquit',
-    type: 'other',
-    translation: ['er sagt', 'sie sagt', 'sagt']
-  },
-  {
-    id: 126,
-    word: 'num?',
-    type: 'other',
-    translation: ['etwa', 'etwa?']
-  },
-  {
-    id: 127,
-    word: 'vester/tra/trum',
-    type: 'other',
-    translation: ['euer', 'eure']
-  },
-  {
-    id: 128,
-    word: 'quoque',
-    type: 'other',
-    translation: ['auch'],
-    info: 'nachgestellt'
-  },
-  {
-    id: 129,
-    word: 'nobis',
-    type: 'other',
-    translation: ['uns'],
-    info: 'Dativ'
-  },
-  {
-    id: 130,
-    word: 'vobis',
-    type: 'other',
-    translation: ['euch'],
-    info: 'Dativ'
-  },
-  {
-    id: 131,
-    word: 'noster/tra/trum',
-    type: 'other',
-    translation: ['unser', 'unsere']
-  },
-  {
-    id: 132,
-    word: 'tibi',
-    type: 'other',
-    translation: ['dir'],
-    info: 'Dativ'
-  },
-  {
-    id: 133,
-    word: 'in',
-    type: 'other',
-    translation: ['in', 'auf'],
-    info: 'mit Ablativ, Frage WO?'
-  },
+  { id: 124, word: 'ita', type: 'other', translation: ['so'] },
+  { id: 125, word: 'inquit', type: 'other', translation: ['er sagt', 'sie sagt', 'sagt'] },
+  { id: 126, word: 'num?', type: 'other', translation: ['etwa', 'etwa?'] },
+  { id: 127, word: 'vester/tra/trum', type: 'other', translation: ['euer', 'eure'] },
+  { id: 128, word: 'quoque', type: 'other', translation: ['auch'], info: 'nachgestellt' },
+  { id: 129, word: 'nobis', type: 'other', translation: ['uns'], info: 'Dativ' },
+  { id: 130, word: 'vobis', type: 'other', translation: ['euch'], info: 'Dativ' },
+  { id: 131, word: 'noster/tra/trum', type: 'other', translation: ['unser', 'unsere'] },
+  { id: 132, word: 'tibi', type: 'other', translation: ['dir'], info: 'Dativ' },
+  { id: 133, word: 'in', type: 'other', translation: ['in', 'auf'], info: 'mit Ablativ, Frage WO?' },
   {
     id: 134,
     word: 'animus',
     type: 'noun',
-    translation: ['sinn', 'geist', 'mut'],
+    translation: ['Sinn', 'Geist', 'Mut'],
     genitive: 'animi',
     gender: 'm',
     declension: 'o'
   },
-  {
-    id: 135,
-    word: 'in animo habere',
-    type: 'other',
-    translation: ['vorhaben']
-  },
-  {
-    id: 136,
-    word: 'nos',
-    type: 'other',
-    translation: ['wir'],
-    info: 'Nominativ'
-  },
-  {
-    id: 137,
-    word: 'nos',
-    type: 'other',
-    translation: ['uns'],
-    info: 'Akkusativ'
-  },
-  {
-    id: 138,
-    word: 'vos',
-    type: 'other',
-    translation: ['ihr'],
-    info: 'Nominativ'
-  },
-  {
-    id: 139,
-    word: 'vos',
-    type: 'other',
-    translation: ['euch'],
-    info: 'Akkusativ'
-  },
-  {
-    id: 140,
-    word: 'quis nostrum',
-    type: 'other',
-    translation: ['wer von uns']
-  },
-  {
-    id: 141,
-    word: 'quis vestrum',
-    type: 'other',
-    translation: ['wer von euch']
-  },
-  {
-    id: 142,
-    word: 'nobiscum',
-    type: 'other',
-    translation: ['mit uns']
-  },
-  {
-    id: 143,
-    word: 'sibi',
-    type: 'other',
-    translation: ['sich'],
-    info: 'Dativ'
-  },
-  {
-    id: 144,
-    word: 'vobiscum',
-    type: 'other',
-    translation: ['mit euch']
-  },
-  {
-    id: 145,
-    word: 'in',
-    type: 'other',
-    translation: ['in', 'nach', 'gegen'],
-    info: 'mit Akkusativ, Frage WOHIN?'
-  },
+  { id: 135, word: 'in animo habere', type: 'other', translation: ['vorhaben'] },
+  { id: 136, word: 'nos', type: 'other', translation: ['wir'], info: 'Nominativ' },
+  { id: 137, word: 'nos', type: 'other', translation: ['uns'], info: 'Akkusativ' },
+  { id: 138, word: 'vos', type: 'other', translation: ['ihr'], info: 'Nominativ' },
+  { id: 139, word: 'vos', type: 'other', translation: ['euch'], info: 'Akkusativ' },
+  { id: 140, word: 'quis nostrum', type: 'other', translation: ['wer von uns'] },
+  { id: 141, word: 'quis vestrum', type: 'other', translation: ['wer von euch'] },
+  { id: 142, word: 'nobiscum', type: 'other', translation: ['mit uns'] },
+  { id: 143, word: 'sibi', type: 'other', translation: ['sich'], info: 'Dativ' },
+  { id: 144, word: 'vobiscum', type: 'other', translation: ['mit euch'] },
+  { id: 145, word: 'in', type: 'other', translation: ['in', 'nach', 'gegen'], info: 'mit Akkusativ, Frage WOHIN?' },
   {
     id: 146,
     word: 'manere',
@@ -849,27 +611,9 @@ export const words: Word[] = [
     perfect: 'properavi',
     participle: 'properatum'
   },
-  {
-    id: 148,
-    word: 'aqua',
-    type: 'noun',
-    translation: ['wasser'],
-    genitive: 'aquae',
-    gender: 'f',
-    declension: 'a'
-  },
-  {
-    id: 149,
-    word: 'iterum',
-    type: 'adverb',
-    translation: ['wieder', 'wiederum']
-  },
-  {
-    id: 150,
-    word: 'minime',
-    type: 'adverb',
-    translation: ['keineswegs', 'nein']
-  },
+  { id: 148, word: 'aqua', type: 'noun', translation: ['Wasser'], genitive: 'aquae', gender: 'f', declension: 'a' },
+  { id: 149, word: 'iterum', type: 'adverb', translation: ['wieder', 'wiederum'] },
+  { id: 150, word: 'minime', type: 'adverb', translation: ['keineswegs', 'nein'] },
   {
     id: 151,
     word: 'licet',
@@ -885,7 +629,7 @@ export const words: Word[] = [
     id: 152,
     word: 'otium',
     type: 'noun',
-    translation: ['freizeit', 'erholung', 'muße'],
+    translation: ['Freizeit', 'Erholung', 'Muße'],
     genitive: 'otii',
     gender: 'n',
     declension: 'o'
@@ -897,20 +641,8 @@ export const words: Word[] = [
     translation: ['unter ... hin', 'unter hin', 'unter'],
     info: 'mit Akkusativ, Frage WOHIN?'
   },
-  {
-    id: 154,
-    word: 'me',
-    type: 'other',
-    translation: ['mich'],
-    info: 'Akkusativ'
-  },
-  {
-    id: 155,
-    word: 'sub',
-    type: 'other',
-    translation: ['unter'],
-    info: 'mit Ablativ, Frage WO?'
-  },
+  { id: 154, word: 'me', type: 'other', translation: ['mich'], info: 'Akkusativ' },
+  { id: 155, word: 'sub', type: 'other', translation: ['unter'], info: 'mit Ablativ, Frage WO?' },
   {
     id: 156,
     word: 'terrere',
@@ -921,20 +653,8 @@ export const words: Word[] = [
     perfect: 'terrui',
     participle: 'territum'
   },
-  {
-    id: 157,
-    word: 'te',
-    type: 'other',
-    translation: ['dich'],
-    info: 'Akkusativ'
-  },
-  {
-    id: 158,
-    word: 'se',
-    type: 'other',
-    translation: ['sich'],
-    info: 'Akkusativ'
-  },
+  { id: 157, word: 'te', type: 'other', translation: ['dich'], info: 'Akkusativ' },
+  { id: 158, word: 'se', type: 'other', translation: ['sich'], info: 'Akkusativ' },
   {
     id: 159,
     word: 'delectare',
@@ -945,27 +665,9 @@ export const words: Word[] = [
     perfect: 'delectavi',
     participle: 'delectatum'
   },
-  {
-    id: 160,
-    word: 'nonne?',
-    type: 'other',
-    translation: ['nicht', 'nicht?']
-  },
-  {
-    id: 161,
-    word: 'ego',
-    type: 'other',
-    translation: ['ich']
-  },
-  {
-    id: 162,
-    word: 'filia',
-    type: 'noun',
-    translation: ['tochter'],
-    genitive: 'filiae',
-    gender: 'f',
-    declension: 'a'
-  },
+  { id: 160, word: 'nonne?', type: 'other', translation: ['nicht', 'nicht?'] },
+  { id: 161, word: 'ego', type: 'other', translation: ['ich'] },
+  { id: 162, word: 'filia', type: 'noun', translation: ['Tochter'], genitive: 'filiae', gender: 'f', declension: 'a' },
   {
     id: 163,
     word: 'appropinquare',
@@ -981,7 +683,7 @@ export const words: Word[] = [
     word: 'liberi',
     type: 'noun',
     pluralOnly: true,
-    translation: ['die kinder', 'kinder'],
+    translation: ['Die Kinder', 'Kinder'],
     info: 'nur Plural',
     genitive: 'liberorum',
     gender: 'm',
@@ -994,12 +696,7 @@ export const words: Word[] = [
     translation: ['aber'],
     info: 'autem muss im lateinischen Satz immer an die zweite Stelle'
   },
-  {
-    id: 166,
-    word: 'deinde',
-    type: 'other',
-    translation: ['dann']
-  },
+  { id: 166, word: 'deinde', type: 'other', translation: ['dann'] },
   {
     id: 167,
     word: 'portare',
@@ -1010,24 +707,8 @@ export const words: Word[] = [
     perfect: 'portavi',
     participle: 'portatum'
   },
-  {
-    id: 168,
-    word: 'annus',
-    type: 'noun',
-    translation: ['jahr'],
-    genitive: 'anni',
-    gender: 'm',
-    declension: 'o'
-  },
-  {
-    id: 169,
-    word: 'oppidum',
-    type: 'noun',
-    translation: ['stadt'],
-    genitive: 'oppidi',
-    gender: 'n',
-    declension: 'o'
-  },
+  { id: 168, word: 'annus', type: 'noun', translation: ['Jahr'], genitive: 'anni', gender: 'm', declension: 'o' },
+  { id: 169, word: 'oppidum', type: 'noun', translation: ['Stadt'], genitive: 'oppidi', gender: 'n', declension: 'o' },
   {
     id: 170,
     word: 'aedificare',
@@ -1048,32 +729,10 @@ export const words: Word[] = [
     perfect: 'regnavi',
     participle: 'regnatum'
   },
-  {
-    id: 172,
-    word: 'posse',
-    type: 'irregularVerb',
-    translation: ['können'],
-    info: 'irreguläres Verb'
-  },
-  {
-    id: 173,
-    word: 'dis',
-    type: 'other',
-    translation: ['den göttern'],
-    info: '= deis; 3./ 6. Fall Plural'
-  },
-  {
-    id: 174,
-    word: 'sex',
-    type: 'other',
-    translation: ['sechs']
-  },
-  {
-    id: 175,
-    word: 'duodecim',
-    type: 'other',
-    translation: ['zwölf']
-  },
+  { id: 172, word: 'posse', type: 'irregularVerb', translation: ['können'], info: 'irreguläres Verb' },
+  { id: 173, word: 'dis', type: 'other', translation: ['den göttern'], info: '= deis; 3./ 6. Fall Plural' },
+  { id: 174, word: 'sex', type: 'other', translation: ['sechs'] },
+  { id: 175, word: 'duodecim', type: 'other', translation: ['zwölf'] },
   {
     id: 176,
     word: 'gratus',
@@ -1087,7 +746,7 @@ export const words: Word[] = [
     id: 177,
     word: 'auxilium',
     type: 'noun',
-    translation: ['hilfe'],
+    translation: ['Hilfe'],
     genitive: 'auxilii',
     gender: 'n',
     declension: 'o'
@@ -1101,41 +760,11 @@ export const words: Word[] = [
     femininum: 'magnifica',
     neutrum: 'magnificum'
   },
-  {
-    id: 179,
-    word: 'trans',
-    type: 'other',
-    translation: ['über', 'jenseits von'],
-    info: 'Präposition mit Akkusativ'
-  },
-  {
-    id: 180,
-    word: 'di',
-    type: 'other',
-    translation: ['die götter', 'götter'],
-    info: '= dei (= dii); 1. Fall Plural'
-  },
-  {
-    id: 181,
-    word: 'tamen',
-    type: 'other',
-    translation: ['dennoch', 'trotzdem']
-  },
-  {
-    id: 182,
-    word: 'duo/duae/duo',
-    type: 'other',
-    translation: ['zwei']
-  },
-  {
-    id: 183,
-    word: 'filius',
-    type: 'noun',
-    translation: ['sohn'],
-    genitive: 'filii',
-    gender: 'm',
-    declension: 'o'
-  },
+  { id: 179, word: 'trans', type: 'other', translation: ['über', 'jenseits von'], info: 'Präposition mit Akkusativ' },
+  { id: 180, word: 'di', type: 'other', translation: ['die götter', 'götter'], info: '= dei (= dii); 1. Fall Plural' },
+  { id: 181, word: 'tamen', type: 'other', translation: ['dennoch', 'trotzdem'] },
+  { id: 182, word: 'duo/duae/duo', type: 'other', translation: ['zwei'] },
+  { id: 183, word: 'filius', type: 'noun', translation: ['Sohn'], genitive: 'filii', gender: 'm', declension: 'o' },
   {
     id: 184,
     word: 'parvus',
@@ -1145,19 +774,8 @@ export const words: Word[] = [
     femininum: 'parva',
     neutrum: 'parvum'
   },
-  {
-    id: 185,
-    word: 'paulo post',
-    type: 'other',
-    translation: ['wenig später']
-  },
-  {
-    id: 186,
-    word: 'post',
-    type: 'other',
-    translation: ['später'],
-    info: 'Präposition nach Ablativ'
-  },
+  { id: 185, word: 'paulo post', type: 'other', translation: ['wenig später'] },
+  { id: 186, word: 'post', type: 'other', translation: ['später'], info: 'Präposition nach Ablativ' },
   {
     id: 187,
     word: 'venire',
@@ -1209,25 +827,9 @@ export const words: Word[] = [
     perfect: 'audivi',
     participle: 'audivitum'
   },
-  {
-    id: 192,
-    word: 'nam',
-    type: 'other',
-    translation: ['denn', 'nämlich']
-  },
-  {
-    id: 193,
-    word: 'dum',
-    type: 'other',
-    translation: ['während'],
-    info: 'erfordert Präsens'
-  },
-  {
-    id: 194,
-    word: 'subito',
-    type: 'adverb',
-    translation: ['plötzlich']
-  },
+  { id: 192, word: 'nam', type: 'other', translation: ['denn', 'nämlich'] },
+  { id: 193, word: 'dum', type: 'other', translation: ['während'], info: 'erfordert Präsens' },
+  { id: 194, word: 'subito', type: 'adverb', translation: ['plötzlich'] },
   {
     id: 195,
     word: 'rapere',
@@ -1238,18 +840,13 @@ export const words: Word[] = [
     perfect: 'rapui',
     participle: 'raptum'
   },
-  {
-    id: 196,
-    word: 'domum',
-    type: 'other',
-    translation: ['nach hause']
-  },
+  { id: 196, word: 'domum', type: 'other', translation: ['nach hause'] },
   {
     id: 197,
     word: 'arma',
     type: 'noun',
     pluralOnly: true,
-    translation: ['waffen'],
+    translation: ['Waffen'],
     info: 'nur Plural',
     genitive: 'armorum',
     gender: 'n',
@@ -1285,17 +882,12 @@ export const words: Word[] = [
     perfect: 'reliqui',
     participle: 'relictum'
   },
-  {
-    id: 201,
-    word: 'domi',
-    type: 'other',
-    translation: ['zu hause']
-  },
+  { id: 201, word: 'domi', type: 'other', translation: ['zu hause'] },
   {
     id: 202,
     word: 'iniuria',
     type: 'noun',
-    translation: ['unrecht'],
+    translation: ['Unrecht'],
     genitive: 'iniuriae',
     gender: 'f',
     declension: 'a'
@@ -1310,28 +902,9 @@ export const words: Word[] = [
     perfect: 'toleravi',
     participle: 'toleratum'
   },
-  {
-    id: 204,
-    word: 'bellum',
-    type: 'noun',
-    translation: ['krieg'],
-    genitive: 'belli',
-    gender: 'n',
-    declension: 'o'
-  },
-  {
-    id: 205,
-    word: 'bellum gerere',
-    type: 'other',
-    translation: ['krieg führen']
-  },
-  {
-    id: 206,
-    word: 'inter',
-    type: 'other',
-    translation: ['zwischen'],
-    info: 'Präposition mit Akkusativ'
-  },
+  { id: 204, word: 'bellum', type: 'noun', translation: ['Krieg'], genitive: 'belli', gender: 'n', declension: 'o' },
+  { id: 205, word: 'bellum gerere', type: 'other', translation: ['krieg führen'] },
+  { id: 206, word: 'inter', type: 'other', translation: ['zwischen'], info: 'Präposition mit Akkusativ' },
   {
     id: 207,
     word: 'contendere',
@@ -1342,25 +915,9 @@ export const words: Word[] = [
     perfect: 'contendi',
     participle: 'contentum'
   },
-  {
-    id: 208,
-    word: 'necesse est',
-    type: 'other',
-    translation: ['es ist notwendig']
-  },
-  {
-    id: 209,
-    word: 'ut',
-    type: 'other',
-    translation: ['wie', 'als']
-  },
-  {
-    id: 210,
-    word: 'apud',
-    type: 'other',
-    translation: ['bei'],
-    info: 'Präposition mit Akkusativ'
-  },
+  { id: 208, word: 'necesse est', type: 'other', translation: ['es ist notwendig'] },
+  { id: 209, word: 'ut', type: 'other', translation: ['wie', 'als'] },
+  { id: 210, word: 'apud', type: 'other', translation: ['bei'], info: 'Präposition mit Akkusativ' },
   {
     id: 211,
     word: 'legere',
@@ -1375,7 +932,7 @@ export const words: Word[] = [
     id: 212,
     word: 'consilium',
     type: 'noun',
-    translation: ['beschluss', 'plan', 'rat'],
+    translation: ['Beschluss', 'Plan', 'Rat'],
     genitive: 'consilii',
     gender: 'n',
     declension: 'o'
@@ -1394,32 +951,19 @@ export const words: Word[] = [
     id: 214,
     word: 'nuntius',
     type: 'noun',
-    translation: ['bote', 'nachricht'],
+    translation: ['Bote', 'Nachricht'],
     genitive: 'nuntii',
     gender: 'm',
     declension: 'o'
   },
-  {
-    id: 215,
-    word: 'populus',
-    type: 'noun',
-    translation: ['volk'],
-    genitive: 'populi',
-    gender: 'm',
-    declension: 'o'
-  },
-  {
-    id: 216,
-    word: 'tres/tres/tria',
-    type: 'other',
-    translation: ['drei']
-  },
+  { id: 215, word: 'populus', type: 'noun', translation: ['Volk'], genitive: 'populi', gender: 'm', declension: 'o' },
+  { id: 216, word: 'tres/tres/tria', type: 'other', translation: ['drei'] },
   {
     id: 217,
     word: 'castra',
     type: 'noun',
     pluralOnly: true,
-    translation: ['lager'],
+    translation: ['Lager'],
     info: 'nur Plural, im Deutschen Singular',
     genitive: 'castrorum',
     gender: 'n',
@@ -1446,12 +990,7 @@ export const words: Word[] = [
     perfect: 'commisi',
     participle: 'commissum'
   },
-  {
-    id: 220,
-    word: 'nisi',
-    type: 'other',
-    translation: ['wenn nicht', 'falls nicht']
-  },
+  { id: 220, word: 'nisi', type: 'other', translation: ['wenn nicht', 'falls nicht'] },
   {
     id: 221,
     word: 'parere',
@@ -1462,30 +1001,9 @@ export const words: Word[] = [
     perfect: 'parui',
     participle: '-'
   },
-  {
-    id: 222,
-    word: 'servus',
-    type: 'noun',
-    translation: ['sklave'],
-    genitive: 'servi',
-    gender: 'm',
-    declension: 'o'
-  },
-  {
-    id: 223,
-    word: 'non iam',
-    type: 'other',
-    translation: ['nicht mehr']
-  },
-  {
-    id: 224,
-    word: 'culpa',
-    type: 'noun',
-    translation: ['schuld'],
-    genitive: 'culpae',
-    gender: 'f',
-    declension: 'a'
-  },
+  { id: 222, word: 'servus', type: 'noun', translation: ['Sklave'], genitive: 'servi', gender: 'm', declension: 'o' },
+  { id: 223, word: 'non iam', type: 'other', translation: ['nicht mehr'] },
+  { id: 224, word: 'culpa', type: 'noun', translation: ['Schuld'], genitive: 'culpae', gender: 'f', declension: 'a' },
   {
     id: 225,
     word: 'nullus',
@@ -1500,31 +1018,18 @@ export const words: Word[] = [
     id: 226,
     word: 'exemplum',
     type: 'noun',
-    translation: ['beispiel'],
+    translation: ['Beispiel'],
     genitive: 'exempli',
     gender: 'n',
     declension: 'o'
   },
-  {
-    id: 227,
-    word: 'hora',
-    type: 'noun',
-    translation: ['stunde'],
-    genitive: 'horae',
-    gender: 'f',
-    declension: 'a'
-  },
-  {
-    id: 228,
-    word: 'maxime',
-    type: 'adverb',
-    translation: ['sehr', 'am meisten']
-  },
+  { id: 227, word: 'hora', type: 'noun', translation: ['Stunde'], genitive: 'horae', gender: 'f', declension: 'a' },
+  { id: 228, word: 'maxime', type: 'adverb', translation: ['sehr', 'am meisten'] },
   {
     id: 229,
     word: 'familia',
     type: 'noun',
-    translation: ['familie'],
+    translation: ['Familie'],
     genitive: 'familiae',
     gender: 'f',
     declension: 'a'
@@ -1533,7 +1038,7 @@ export const words: Word[] = [
     id: 230,
     word: 'expellere',
     type: 'verb',
-    translation: ['vertreiben', 'verjagen'],
+    translation: ['Vertreiben', 'Verjagen'],
     conjugation: 'k',
     present: 'expello',
     perfect: 'expuli',
@@ -1549,13 +1054,7 @@ export const words: Word[] = [
     perfect: 'feci',
     participle: 'factum'
   },
-  {
-    id: 232,
-    word: 'neque - neque',
-    type: 'other',
-    translation: ['weder - noch', 'weder noch'],
-    info: '=nec - nec'
-  },
+  { id: 232, word: 'neque - neque', type: 'other', translation: ['weder - noch', 'weder noch'], info: '=nec - nec' },
   {
     id: 233,
     word: 'dormire',
@@ -1583,24 +1082,9 @@ export const words: Word[] = [
     translation: ['ein', 'einzig'],
     info: '2. Fall: unius, 3. Fall: uni'
   },
-  {
-    id: 236,
-    word: 'duo/duae/duo',
-    type: 'other',
-    translation: ['zwei']
-  },
-  {
-    id: 237,
-    word: 'primus/a/um',
-    type: 'other',
-    translation: ['der erste', 'erster']
-  },
-  {
-    id: 238,
-    word: 'quem?',
-    type: 'other',
-    translation: ['wen', 'wen?']
-  },
+  { id: 236, word: 'duo/duae/duo', type: 'other', translation: ['zwei'] },
+  { id: 237, word: 'primus/a/um', type: 'other', translation: ['der Erste', 'Erster'] },
+  { id: 238, word: 'quem?', type: 'other', translation: ['wen', 'wen?'] },
   {
     id: 239,
     word: 'expugnare',
@@ -1611,15 +1095,7 @@ export const words: Word[] = [
     perfect: 'expugnavi',
     participle: 'expugnatum'
   },
-  {
-    id: 240,
-    word: 'nox',
-    type: 'noun',
-    translation: ['nacht'],
-    genitive: 'noctis',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 240, word: 'nox', type: 'noun', translation: ['Nacht'], genitive: 'noctis', gender: 'f', declension: 'k' },
   {
     id: 241,
     word: 'constituere',
@@ -1630,12 +1106,7 @@ export const words: Word[] = [
     perfect: 'constitui',
     participle: 'constitutum'
   },
-  {
-    id: 242,
-    word: 'clam',
-    type: 'adverb',
-    translation: ['heimlich']
-  },
+  { id: 242, word: 'clam', type: 'adverb', translation: ['heimlich'] },
   {
     id: 243,
     word: 'ascendere',
@@ -1646,20 +1117,12 @@ export const words: Word[] = [
     perfect: 'ascendi',
     participle: 'ascensum'
   },
-  {
-    id: 244,
-    word: 'homo',
-    type: 'noun',
-    translation: ['mensch'],
-    genitive: 'hominis',
-    gender: 'm',
-    declension: 'k'
-  },
+  { id: 244, word: 'homo', type: 'noun', translation: ['Mensch'], genitive: 'hominis', gender: 'm', declension: 'k' },
   {
     id: 245,
     word: 'canis',
     type: 'noun',
-    translation: ['hündin'],
+    translation: ['Hündin'],
     info: 'in diesem Fall: feminin (canis kann auch maskulin sein)',
     genitive: 'canis',
     gender: 'f',
@@ -1669,7 +1132,7 @@ export const words: Word[] = [
     id: 246,
     word: 'canis',
     type: 'noun',
-    translation: ['hund'],
+    translation: ['Hund'],
     info: 'in diesem Fall: maskulin (canis kann auch feminin sein)',
     genitive: 'canis',
     gender: 'm',
@@ -1679,7 +1142,7 @@ export const words: Word[] = [
     id: 247,
     word: 'iuno',
     type: 'noun',
-    translation: ['juno'],
+    translation: ['Juno'],
     info: 'griechisch: Hera',
     genitive: 'iunonis',
     gender: 'f',
@@ -1704,12 +1167,7 @@ export const words: Word[] = [
     perfect: 'timui',
     participle: '-'
   },
-  {
-    id: 250,
-    word: 'quamquam',
-    type: 'other',
-    translation: ['obwohl']
-  },
+  { id: 250, word: 'quamquam', type: 'other', translation: ['obwohl'] },
   {
     id: 251,
     word: 'carere',
@@ -1721,21 +1179,8 @@ export const words: Word[] = [
     perfect: 'carui',
     participle: '-'
   },
-  {
-    id: 252,
-    word: 'vox',
-    type: 'noun',
-    translation: ['stimme'],
-    genitive: 'vocis',
-    gender: 'f',
-    declension: 'k'
-  },
-  {
-    id: 253,
-    word: 'statim',
-    type: 'adverb',
-    translation: ['sofort', 'sogleich']
-  },
+  { id: 252, word: 'vox', type: 'noun', translation: ['Stimme'], genitive: 'vocis', gender: 'f', declension: 'k' },
+  { id: 253, word: 'statim', type: 'adverb', translation: ['sofort', 'sogleich'] },
   {
     id: 254,
     word: 'ceteri/ae/a',
@@ -1757,20 +1202,12 @@ export const words: Word[] = [
     id: 256,
     word: 'gloria',
     type: 'noun',
-    translation: ['ruhm', 'ehre'],
+    translation: ['Ruhm', 'Ehre'],
     genitive: 'gloriae',
     gender: 'f',
     declension: 'a'
   },
-  {
-    id: 257,
-    word: 'nomen',
-    type: 'noun',
-    translation: ['name'],
-    genitive: 'nominis',
-    gender: 'n',
-    declension: 'k'
-  },
+  { id: 257, word: 'nomen', type: 'noun', translation: ['Name'], genitive: 'nominis', gender: 'n', declension: 'k' },
   {
     id: 258,
     word: 'accipere',
@@ -1786,30 +1223,14 @@ export const words: Word[] = [
     word: 'galli',
     type: 'noun',
     pluralOnly: true,
-    translation: ['gallier', 'die gallier'],
+    translation: ['Gallier', 'Die Gallier'],
     info: 'nur Plural',
     genitive: 'gallorum',
     gender: 'm',
     declension: 'o'
   },
-  {
-    id: 260,
-    word: 'flumen',
-    type: 'noun',
-    translation: ['fluss'],
-    genitive: 'fluminis',
-    gender: 'n',
-    declension: 'k'
-  },
-  {
-    id: 261,
-    word: 'miles',
-    type: 'noun',
-    translation: ['soldat'],
-    genitive: 'militis',
-    gender: 'm',
-    declension: 'k'
-  },
+  { id: 260, word: 'flumen', type: 'noun', translation: ['Fluss'], genitive: 'fluminis', gender: 'n', declension: 'k' },
+  { id: 261, word: 'miles', type: 'noun', translation: ['Soldat'], genitive: 'militis', gender: 'm', declension: 'k' },
   {
     id: 262,
     word: 'fugere',
@@ -1855,7 +1276,7 @@ export const words: Word[] = [
     id: 266,
     word: 'imperator',
     type: 'noun',
-    translation: ['feldherr', 'kaiser'],
+    translation: ['Feldherr', 'Kaiser'],
     genitive: 'imperatoris',
     gender: 'm',
     declension: 'k'
@@ -1870,30 +1291,17 @@ export const words: Word[] = [
     perfect: 'vici',
     participle: 'victum'
   },
-  {
-    id: 268,
-    word: 'pars',
-    type: 'noun',
-    translation: ['teil'],
-    genitive: 'partis',
-    gender: 'f',
-    declension: 'm'
-  },
+  { id: 268, word: 'pars', type: 'noun', translation: ['Teil'], genitive: 'partis', gender: 'f', declension: 'm' },
   {
     id: 269,
     word: 'timor',
     type: 'noun',
-    translation: ['furcht', 'angst'],
+    translation: ['Furcht', 'Angst'],
     genitive: 'timoris',
     gender: 'm',
     declension: 'k'
   },
-  {
-    id: 270,
-    word: 'ne ... quidem',
-    type: 'other',
-    translation: ['nicht einmal ...', 'nicht einmal']
-  },
+  { id: 270, word: 'ne ... quidem', type: 'other', translation: ['nicht einmal ...', 'nicht einmal'] },
   {
     id: 271,
     word: 'prohibere',
@@ -1918,25 +1326,17 @@ export const words: Word[] = [
     id: 273,
     word: 'porta',
     type: 'noun',
-    translation: ['tor', 'tür'],
+    translation: ['Tor', 'Tür'],
     genitive: 'portae',
     gender: 'f',
     declension: 'a'
   },
-  {
-    id: 274,
-    word: 'urbs',
-    type: 'noun',
-    translation: ['stadt'],
-    genitive: 'urbis',
-    gender: 'f',
-    declension: 'm'
-  },
+  { id: 274, word: 'urbs', type: 'noun', translation: ['Stadt'], genitive: 'urbis', gender: 'f', declension: 'm' },
   {
     id: 275,
     word: 'summus',
     type: 'adjective',
-    translation: ['der höchste', 'sehr hoch'],
+    translation: ['der Höchste', 'sehr hoch'],
     comparison: 'a_o',
     femininum: 'summa',
     neutrum: 'summum'
@@ -1945,7 +1345,7 @@ export const words: Word[] = [
     id: 276,
     word: 'honor',
     type: 'noun',
-    translation: ['ehre', 'ansehen'],
+    translation: ['Ehre', 'Ansehen'],
     genitive: 'honoris',
     gender: 'm',
     declension: 'k'
@@ -1954,46 +1354,15 @@ export const words: Word[] = [
     id: 277,
     word: 'virtus',
     type: 'noun',
-    translation: ['tapferkeit', 'tugend'],
+    translation: ['Tapferkeit', 'Tugend'],
     genitive: 'virtutis',
     gender: 'f',
     declension: 'k'
   },
-  {
-    id: 278,
-    word: 'facere',
-    type: 'other',
-    translation: ['zu etwas machen'],
-    info: 'mit doppeltem Akkusativ'
-  },
-  {
-    id: 279,
-    word: 'patria',
-    type: 'noun',
-    translation: ['heimat'],
-    genitive: 'patriae',
-    gender: 'f',
-    declension: 'a'
-  },
-  {
-    id: 280,
-
-    word: 'pax',
-    type: 'noun',
-    translation: ['friede'],
-    genitive: 'pacis',
-    gender: 'f',
-    declension: 'k'
-  },
-  {
-    id: 281,
-    word: 'hostis',
-    type: 'noun',
-    translation: ['feind'],
-    genitive: 'hostis',
-    gender: 'm',
-    declension: 'm'
-  },
+  { id: 278, word: 'facere', type: 'other', translation: ['zu etwas machen'], info: 'mit doppeltem Akkusativ' },
+  { id: 279, word: 'patria', type: 'noun', translation: ['Heimat'], genitive: 'patriae', gender: 'f', declension: 'a' },
+  { id: 280, word: 'pax', type: 'noun', translation: ['Friede'], genitive: 'pacis', gender: 'f', declension: 'k' },
+  { id: 281, word: 'hostis', type: 'noun', translation: ['Feind'], genitive: 'hostis', gender: 'm', declension: 'm' },
   {
     id: 282,
     word: 'liberare',
@@ -2010,7 +1379,7 @@ export const words: Word[] = [
     word: 'copiae',
     type: 'noun',
     pluralOnly: true,
-    translation: ['truppen'],
+    translation: ['Truppen'],
     info: 'nicht copia; im Plural',
     genitive: 'copiarum',
     gender: 'f',
@@ -2027,24 +1396,8 @@ export const words: Word[] = [
     perfect: 'duxi',
     participle: 'ductum'
   },
-  {
-    id: 285,
-    word: 'navis',
-    type: 'noun',
-    translation: ['schiff'],
-    genitive: 'navis',
-    gender: 'f',
-    declension: 'm'
-  },
-  {
-    id: 286,
-    word: 'mare',
-    type: 'noun',
-    translation: ['meer'],
-    genitive: 'maris',
-    gender: 'n',
-    declension: 'i'
-  },
+  { id: 285, word: 'navis', type: 'noun', translation: ['Schiff'], genitive: 'navis', gender: 'f', declension: 'm' },
+  { id: 286, word: 'mare', type: 'noun', translation: ['Meer'], genitive: 'maris', gender: 'n', declension: 'i' },
   {
     id: 287,
     word: 'audere',
@@ -2065,20 +1418,12 @@ export const words: Word[] = [
     perfect: 'amisi',
     participle: 'amissum'
   },
-  {
-    id: 289,
-    word: 'pugna',
-    type: 'noun',
-    translation: ['kampf'],
-    genitive: 'pugnae',
-    gender: 'f',
-    declension: 'a'
-  },
+  { id: 289, word: 'pugna', type: 'noun', translation: ['Kampf'], genitive: 'pugnae', gender: 'f', declension: 'a' },
   {
     id: 290,
     word: 'iuppiter',
     type: 'noun',
-    translation: ['jupiter'],
+    translation: ['Jupiter'],
     info: 'griechisch: Zeus',
     genitive: 'iovis',
     gender: 'm',
@@ -2088,41 +1433,15 @@ export const words: Word[] = [
     id: 291,
     word: 'litus',
     type: 'noun',
-    translation: ['küste', 'strand'],
+    translation: ['Küste', 'Strand'],
     genitive: 'litoris',
     gender: 'n',
     declension: 'k'
   },
-  {
-    id: 292,
-    word: 'eius',
-    type: 'other',
-    translation: ['dessen', 'deren'],
-    info: '2. Fall Singular'
-  },
-  {
-    id: 293,
-    word: 'eorum',
-    type: 'other',
-    translation: ['deren'],
-    info: '2. Fall Singular'
-  },
-  {
-    id: 294,
-    word: 'earum',
-    type: 'other',
-    translation: ['deren'],
-    info: '2. Fall Singular'
-  },
-  {
-    id: 295,
-    word: 'iussum',
-    type: 'noun',
-    translation: ['befehl'],
-    genitive: 'iussi',
-    gender: 'n',
-    declension: 'o'
-  },
+  { id: 292, word: 'eius', type: 'other', translation: ['dessen', 'deren'], info: '2. Fall Singular' },
+  { id: 293, word: 'eorum', type: 'other', translation: ['deren'], info: '2. Fall Singular' },
+  { id: 294, word: 'earum', type: 'other', translation: ['deren'], info: '2. Fall Singular' },
+  { id: 295, word: 'iussum', type: 'noun', translation: ['Befehl'], genitive: 'iussi', gender: 'n', declension: 'o' },
   {
     id: 296,
     word: 'conficere',
@@ -2143,23 +1462,13 @@ export const words: Word[] = [
     perfect: '-',
     participle: '-'
   },
-  {
-    id: 298,
-    word: 'idem',
-    type: 'other',
-    translation: ['derselbe', 'dasselbe']
-  },
-  {
-    id: 299,
-    word: 'eadem',
-    type: 'other',
-    translation: ['dieselbe']
-  },
+  { id: 298, word: 'idem', type: 'other', translation: ['derselbe', 'dasselbe'] },
+  { id: 299, word: 'eadem', type: 'other', translation: ['dieselbe'] },
   {
     id: 300,
     word: 'locus',
     type: 'noun',
-    translation: ['ort', 'stelle', 'platz'],
+    translation: ['Ort', 'Stelle', 'Platz'],
     genitive: 'loci',
     gender: 'm',
     declension: 'o'
@@ -2178,7 +1487,7 @@ export const words: Word[] = [
     id: 302,
     word: 'virgo',
     type: 'noun',
-    translation: ['mädchen', 'jungfrau'],
+    translation: ['Mädchen', 'Jungfrau'],
     genitive: 'virginis',
     gender: 'f',
     declension: 'k'
@@ -2193,20 +1502,12 @@ export const words: Word[] = [
     perfect: 'lusi',
     participle: 'lusum'
   },
-  {
-    id: 304,
-    word: 'taurus',
-    type: 'noun',
-    translation: ['stier'],
-    genitive: 'tauri',
-    gender: 'm',
-    declension: 'o'
-  },
+  { id: 304, word: 'taurus', type: 'noun', translation: ['Stier'], genitive: 'tauri', gender: 'm', declension: 'o' },
   {
     id: 305,
     word: 'multitudo',
     type: 'noun',
-    translation: ['menge'],
+    translation: ['Menge'],
     genitive: 'multitudinis',
     gender: 'f',
     declension: 'k'
@@ -2225,17 +1526,12 @@ export const words: Word[] = [
     id: 307,
     word: 'pulchritudo',
     type: 'noun',
-    translation: ['schönheit'],
+    translation: ['Schönheit'],
     genitive: 'pulchritudinis',
     gender: 'f',
     declension: 'k'
   },
-  {
-    id: 308,
-    word: 'primo',
-    type: 'adverb',
-    translation: ['zuerst']
-  },
+  { id: 308, word: 'primo', type: 'adverb', translation: ['zuerst'] },
   {
     id: 309,
     word: 'tangere',
@@ -2250,44 +1546,16 @@ export const words: Word[] = [
     id: 310,
     word: 'corpus',
     type: 'noun',
-    translation: ['körper'],
+    translation: ['Körper'],
     genitive: 'corporis',
     gender: 'n',
     declension: 'k'
   },
-  {
-    id: 311,
-    word: 'mox',
-    type: 'adverb',
-    translation: ['bald']
-  },
-  {
-    id: 312,
-    word: 'is',
-    type: 'other',
-    translation: ['dieser', 'er']
-  },
-  {
-    id: 313,
-    word: 'insula',
-    type: 'noun',
-    translation: ['insel'],
-    genitive: 'insulae',
-    gender: 'f',
-    declension: 'a'
-  },
-  {
-    id: 314,
-    word: 'ea',
-    type: 'other',
-    translation: ['diese', 'sie']
-  },
-  {
-    id: 315,
-    word: 'id',
-    type: 'other',
-    translation: ['dieses', 'es']
-  },
+  { id: 311, word: 'mox', type: 'adverb', translation: ['bald'] },
+  { id: 312, word: 'is', type: 'other', translation: ['dieser', 'er'] },
+  { id: 313, word: 'insula', type: 'noun', translation: ['Insel'], genitive: 'insulae', gender: 'f', declension: 'a' },
+  { id: 314, word: 'ea', type: 'other', translation: ['diese', 'sie'] },
+  { id: 315, word: 'id', type: 'other', translation: ['dieses', 'es'] },
   {
     id: 316,
     word: 'vocare',
@@ -2308,33 +1576,9 @@ export const words: Word[] = [
     perfect: 'imperavi',
     participle: 'imperatum'
   },
-  {
-    id: 318,
-    word: 'mons',
-    type: 'noun',
-    translation: ['berg'],
-    genitive: 'montis',
-    gender: 'm',
-    declension: 'm'
-  },
-  {
-    id: 319,
-    word: 'rex',
-    type: 'noun',
-    translation: ['könig'],
-    genitive: 'regis',
-    gender: 'm',
-    declension: 'k'
-  },
-  {
-    id: 320,
-    word: 'pater',
-    type: 'noun',
-    translation: ['vater'],
-    genitive: 'patris',
-    gender: 'm',
-    declension: 'k'
-  },
+  { id: 318, word: 'mons', type: 'noun', translation: ['Berg'], genitive: 'montis', gender: 'm', declension: 'm' },
+  { id: 319, word: 'rex', type: 'noun', translation: ['König'], genitive: 'regis', gender: 'm', declension: 'k' },
+  { id: 320, word: 'pater', type: 'noun', translation: ['Vater'], genitive: 'patris', gender: 'm', declension: 'k' },
   {
     id: 321,
     word: 'debere',
@@ -2350,7 +1594,7 @@ export const words: Word[] = [
     id: 322,
     word: 'caput',
     type: 'noun',
-    translation: ['kopf', 'haupt'],
+    translation: ['Kopf', 'Haupt'],
     genitive: 'capitis',
     gender: 'n',
     declension: 'k'
@@ -2359,7 +1603,7 @@ export const words: Word[] = [
     id: 323,
     word: 'periculum',
     type: 'noun',
-    translation: ['gefahr'],
+    translation: ['Gefahr'],
     genitive: 'periculi',
     gender: 'n',
     declension: 'o'
@@ -2397,7 +1641,7 @@ export const words: Word[] = [
     id: 327,
     word: 'adulescens',
     type: 'noun',
-    translation: ['junger mann'],
+    translation: ['Junger mann'],
     genitive: 'adulescentis',
     gender: 'm',
     declension: 'm'
@@ -2412,12 +1656,7 @@ export const words: Word[] = [
     perfect: 'iuvi',
     participle: 'iutum'
   },
-  {
-    id: 329,
-    word: 'nemo',
-    type: 'other',
-    translation: ['niemand']
-  },
+  { id: 329, word: 'nemo', type: 'other', translation: ['niemand'] },
   {
     id: 330,
     word: 'invenire',
@@ -2439,26 +1678,13 @@ export const words: Word[] = [
     perfect: 'quaesivi',
     participle: 'quaesitum'
   },
-  {
-    id: 332,
-    word: 'cura',
-    type: 'noun',
-    translation: ['sorge'],
-    genitive: 'curae',
-    gender: 'f',
-    declension: 'a'
-  },
-  {
-    id: 333,
-    word: 'quomodo',
-    type: 'other',
-    translation: ['wie']
-  },
+  { id: 332, word: 'cura', type: 'noun', translation: ['Sorge'], genitive: 'curae', gender: 'f', declension: 'a' },
+  { id: 333, word: 'quomodo', type: 'other', translation: ['wie'] },
   {
     id: 334,
     word: 'modus',
     type: 'noun',
-    translation: ['art', 'weise'],
+    translation: ['Art', 'Weise'],
     genitive: 'modi',
     gender: 'm',
     declension: 'o'
@@ -2473,31 +1699,10 @@ export const words: Word[] = [
     perfect: 'dedi',
     participle: 'datum'
   },
-  {
-    id: 336,
-    word: 'medius/a/um',
-    type: 'other',
-    translation: ['der mittlere', 'in der mitte']
-  },
-  {
-    id: 337,
-    word: 'medio in labyrintho',
-    type: 'other',
-    translation: ['mitten im labyrinth']
-  },
-  {
-    id: 338,
-    word: 'paratus/a/um',
-    type: 'other',
-    translation: ['bereit']
-  },
-  {
-    id: 339,
-    word: 'atque',
-    type: 'other',
-    translation: ['und'],
-    info: '= ac'
-  },
+  { id: 336, word: 'medius/a/um', type: 'other', translation: ['der Mittlere', 'in der mitte'] },
+  { id: 337, word: 'medio in labyrintho', type: 'other', translation: ['mitten im labyrinth'] },
+  { id: 338, word: 'paratus/a/um', type: 'other', translation: ['bereit'] },
+  { id: 339, word: 'atque', type: 'other', translation: ['und'], info: '= ac' },
   {
     id: 340,
     word: 'quaerere',
@@ -2514,52 +1719,18 @@ export const words: Word[] = [
     word: 'parentes',
     type: 'noun',
     pluralOnly: true,
-    translation: ['eltern'],
+    translation: ['Eltern'],
     info: 'nur Plural',
     genitive: 'parentium',
     gender: 'm',
     declension: 'm'
   },
-  {
-    id: 342,
-    word: 'qui',
-    type: 'other',
-    translation: ['welcher', 'der']
-  },
-  {
-    id: 343,
-    word: 'quae',
-    type: 'other',
-    translation: ['welche', 'die']
-  },
-  {
-    id: 344,
-    word: 'quod',
-    type: 'other',
-    translation: ['welches', 'das'],
-    info: 'als Pronomen'
-  },
-  {
-    id: 345,
-    word: 'nihil',
-    type: 'other',
-    translation: ['nichts']
-  },
-  {
-    id: 346,
-    word: 'nihil nisi',
-    type: 'other',
-    translation: ['nichts außer', 'nur']
-  },
-  {
-    id: 347,
-    word: 'amor',
-    type: 'noun',
-    translation: ['liebe'],
-    genitive: 'amoris',
-    gender: 'm',
-    declension: 'k'
-  },
+  { id: 342, word: 'qui', type: 'other', translation: ['welcher', 'der'] },
+  { id: 343, word: 'quae', type: 'other', translation: ['welche', 'die'] },
+  { id: 344, word: 'quod', type: 'other', translation: ['welches', 'das'], info: 'als Pronomen' },
+  { id: 345, word: 'nihil', type: 'other', translation: ['nichts'] },
+  { id: 346, word: 'nihil nisi', type: 'other', translation: ['nichts außer', 'nur'] },
+  { id: 347, word: 'amor', type: 'noun', translation: ['Liebe'], genitive: 'amoris', gender: 'm', declension: 'k' },
   {
     id: 348,
     word: 'coniungere',
@@ -2574,63 +1745,34 @@ export const words: Word[] = [
     id: 349,
     word: 'dies',
     type: 'noun',
-    translation: ['tag'],
+    translation: ['Tag'],
     info: 'in diesem Fall: maskulin (dies kann auch feminin sein)',
     genitive: 'diei',
     gender: 'm',
     declension: 'e'
   },
-  {
-    id: 350,
-    word: 'opus',
-    type: 'noun',
-    translation: ['werk'],
-    genitive: 'operis',
-    gender: 'n',
-    declension: 'k'
-  },
+  { id: 350, word: 'opus', type: 'noun', translation: ['Werk'], genitive: 'operis', gender: 'n', declension: 'k' },
   {
     id: 351,
     word: 'meridies',
     type: 'noun',
-    translation: ['mittag'],
+    translation: ['Mittag'],
     genitive: 'meridiei',
     gender: 'm',
     declension: 'e'
   },
-  {
-    id: 352,
-    word: 'sol',
-    type: 'noun',
-    translation: ['sonne'],
-    genitive: 'solis',
-    gender: 'm',
-    declension: 'k'
-  },
-  {
-    id: 353,
-    word: 'caelum',
-    type: 'noun',
-    translation: ['himmel'],
-    genitive: 'caeli',
-    gender: 'n',
-    declension: 'o'
-  },
+  { id: 352, word: 'sol', type: 'noun', translation: ['Sonne'], genitive: 'solis', gender: 'm', declension: 'k' },
+  { id: 353, word: 'caelum', type: 'noun', translation: ['Himmel'], genitive: 'caeli', gender: 'n', declension: 'o' },
   {
     id: 354,
     word: 'metus',
     type: 'noun',
-    translation: ['furcht', 'angst'],
+    translation: ['Furcht', 'Angst'],
     genitive: 'metus',
     gender: 'm',
     declension: 'u'
   },
-  {
-    id: 355,
-    word: 'denique',
-    type: 'adverb',
-    translation: ['schließlich', 'endlich']
-  },
+  { id: 355, word: 'denique', type: 'adverb', translation: ['schließlich', 'endlich'] },
   {
     id: 356,
     word: 'neglegere',
@@ -2702,38 +1844,22 @@ export const words: Word[] = [
     perfect: 'petivi',
     participle: 'petitum'
   },
-  {
-    id: 363,
-    word: 'manus',
-    type: 'noun',
-    translation: ['hand'],
-    genitive: 'manus',
-    gender: 'f',
-    declension: 'u'
-  },
+  { id: 363, word: 'manus', type: 'noun', translation: ['Hand'], genitive: 'manus', gender: 'f', declension: 'u' },
   {
     id: 364,
     word: 'artificium',
     type: 'noun',
-    translation: ['kunstwerk'],
+    translation: ['Kunstwerk'],
     genitive: 'artificii',
     gender: 'n',
     declension: 'o'
   },
-  {
-    id: 365,
-    word: 'res',
-    type: 'noun',
-    translation: ['sache'],
-    genitive: 'rei',
-    gender: 'f',
-    declension: 'e'
-  },
+  { id: 365, word: 'res', type: 'noun', translation: ['Sache'], genitive: 'rei', gender: 'f', declension: 'e' },
   {
     id: 366,
     word: 'ars',
     type: 'noun',
-    translation: ['kunst', 'technik'],
+    translation: ['Kunst', 'Technik'],
     genitive: 'artis',
     gender: 'f',
     declension: 'm'
@@ -2742,7 +1868,7 @@ export const words: Word[] = [
     id: 367,
     word: 'casus',
     type: 'noun',
-    translation: ['fall', 'zufall', 'unglücksfall'],
+    translation: ['Fall', 'Zufall', 'Unglücksfall'],
     genitive: 'casus',
     gender: 'm',
     declension: 'u'
@@ -2758,7 +1884,7 @@ export const words: Word[] = [
     id: 369,
     word: 'prudentia',
     type: 'noun',
-    translation: ['klugheit'],
+    translation: ['Klugheit'],
     genitive: 'prudentiae',
     gender: 'f',
     declension: 'a'
@@ -2783,21 +1909,8 @@ export const words: Word[] = [
     perfect: 'reddidi',
     participle: 'redditum'
   },
-  {
-    id: 372,
-    word: 'poena',
-    type: 'noun',
-    translation: ['strafe'],
-    genitive: 'poenae',
-    gender: 'f',
-    declension: 'a'
-  },
-  {
-    id: 373,
-    word: 'poenas solvere',
-    type: 'other',
-    translation: ['eine strafe verbüßen', 'strafe verbüßen']
-  },
+  { id: 372, word: 'poena', type: 'noun', translation: ['Strafe'], genitive: 'poenae', gender: 'f', declension: 'a' },
+  { id: 373, word: 'poenas solvere', type: 'other', translation: ['eine strafe verbüßen', 'strafe verbüßen'] },
   {
     id: 374,
     word: 'stare',
@@ -2808,47 +1921,11 @@ export const words: Word[] = [
     perfect: 'steti',
     participle: 'statum'
   },
-  {
-    id: 375,
-    word: 'arbor',
-    type: 'noun',
-    translation: ['baum'],
-    genitive: 'arboris',
-    gender: 'f',
-    declension: 'k'
-  },
-  {
-    id: 376,
-    word: 'sitis',
-    type: 'noun',
-    translation: ['durst'],
-    genitive: 'sitis',
-    gender: 'f',
-    declension: 'i'
-  },
-  {
-    id: 377,
-    word: 'fames',
-    type: 'noun',
-    translation: ['hunger'],
-    genitive: 'famis',
-    gender: 'f',
-    declension: 'k'
-  },
-  {
-    id: 378,
-    word: 'cum',
-    type: 'other',
-    translation: ['wenn', 'sooft', 'als'],
-    info: 'als Konjunktion'
-  },
-  {
-    id: 379,
-    word: 'hic',
-    type: 'other',
-    translation: ['dieser'],
-    info: 'als Pronomen'
-  },
+  { id: 375, word: 'arbor', type: 'noun', translation: ['Baum'], genitive: 'arboris', gender: 'f', declension: 'k' },
+  { id: 376, word: 'sitis', type: 'noun', translation: ['Durst'], genitive: 'sitis', gender: 'f', declension: 'i' },
+  { id: 377, word: 'fames', type: 'noun', translation: ['Hunger'], genitive: 'famis', gender: 'f', declension: 'k' },
+  { id: 378, word: 'cum', type: 'other', translation: ['wenn', 'sooft', 'als'], info: 'als Konjunktion' },
+  { id: 379, word: 'hic', type: 'other', translation: ['dieser'], info: 'als Pronomen' },
   {
     id: 380,
     word: 'bibere',
@@ -2872,41 +1949,19 @@ export const words: Word[] = [
     id: 382,
     word: 'scelus',
     type: 'noun',
-    translation: ['verbrechen'],
+    translation: ['Verbrechen'],
     genitive: 'sceleris',
     gender: 'n',
     declension: 'k'
   },
-  {
-    id: 383,
-    word: 'mors',
-    type: 'noun',
-    translation: ['tod'],
-    genitive: 'mortis',
-    gender: 'f',
-    declension: 'm'
-  },
-  {
-    id: 384,
-    word: 'contra',
-    type: 'other',
-    translation: ['gegen'],
-    info: 'mit Akkusativ'
-  },
-  {
-    id: 385,
-    word: 'natura',
-    type: 'noun',
-    translation: ['natur'],
-    genitive: 'naturae',
-    gender: 'f',
-    declension: 'a'
-  },
+  { id: 383, word: 'mors', type: 'noun', translation: ['Tod'], genitive: 'mortis', gender: 'f', declension: 'm' },
+  { id: 384, word: 'contra', type: 'other', translation: ['gegen'], info: 'mit Akkusativ' },
+  { id: 385, word: 'natura', type: 'noun', translation: ['Natur'], genitive: 'naturae', gender: 'f', declension: 'a' },
   {
     id: 386,
     word: 'genus',
     type: 'noun',
-    translation: ['art', 'geschlecht'],
+    translation: ['Art', 'Geschlecht'],
     genitive: 'generis',
     gender: 'n',
     declension: 'k'
@@ -2921,59 +1976,36 @@ export const words: Word[] = [
     perfect: 'punivi',
     participle: 'punitum'
   },
-  {
-    id: 388,
-    word: 'saxum',
-    type: 'noun',
-    translation: ['fels'],
-    genitive: 'saxi',
-    gender: 'n',
-    declension: 'o'
-  },
+  { id: 388, word: 'saxum', type: 'noun', translation: ['Fels'], genitive: 'saxi', gender: 'n', declension: 'o' },
   {
     id: 389,
     word: 'vis',
     type: 'noun',
-    translation: ['kraft', 'gewalt'],
+    translation: ['Kraft', 'Gewalt'],
     info: 'Singular von vires, ohne Genitiv und Dativ',
     genitive: '-',
     gender: 'f',
     declension: 'k'
   },
-  {
-    id: 390,
-    word: 'haec',
-    type: 'other',
-    translation: ['diese']
-  },
+  { id: 390, word: 'haec', type: 'other', translation: ['diese'] },
   {
     id: 391,
     word: 'vires',
     type: 'noun',
     pluralOnly: true,
-    translation: ['die kräfte', 'kräfte'],
+    translation: ['Die kräfte', 'Kräfte'],
     info: 'Plural von vis',
     genitive: 'virium',
     gender: 'f',
     declension: 'm'
   },
-  {
-    id: 392,
-    word: 'paene',
-    type: 'adverb',
-    translation: ['fast', 'beinahe']
-  },
-  {
-    id: 393,
-    word: 'hoc',
-    type: 'other',
-    translation: ['dieses']
-  },
+  { id: 392, word: 'paene', type: 'adverb', translation: ['fast', 'beinahe'] },
+  { id: 393, word: 'hoc', type: 'other', translation: ['dieses'] },
   {
     id: 394,
     word: 'cena',
     type: 'noun',
-    translation: ['mahlzeit', 'mahl'],
+    translation: ['Mahlzeit', 'Mahl'],
     genitive: 'cenae',
     gender: 'f',
     declension: 'a'
@@ -3006,33 +2038,14 @@ export const words: Word[] = [
     id: 398,
     word: 'facinus',
     type: 'noun',
-    translation: ['tat', 'untat'],
+    translation: ['Tat', 'Untat'],
     genitive: 'facinoris',
     gender: 'n',
     declension: 'k'
   },
-  {
-    id: 399,
-    word: 'ille',
-    type: 'other',
-    translation: ['jener']
-  },
-  {
-    id: 400,
-    word: 'in matrimonium ducere',
-    type: 'other',
-    translation: ['heiraten'],
-    info: 'vom Mann aus'
-  },
-  {
-    id: 401,
-    word: 'dolor',
-    type: 'noun',
-    translation: ['schmerz'],
-    genitive: 'doloris',
-    gender: 'm',
-    declension: 'k'
-  },
+  { id: 399, word: 'ille', type: 'other', translation: ['jener'] },
+  { id: 400, word: 'in matrimonium ducere', type: 'other', translation: ['heiraten'], info: 'vom Mann aus' },
+  { id: 401, word: 'dolor', type: 'noun', translation: ['Schmerz'], genitive: 'doloris', gender: 'm', declension: 'k' },
   {
     id: 402,
     word: 'flere',
@@ -3053,17 +2066,12 @@ export const words: Word[] = [
     perfect: 'dolui',
     participle: '-'
   },
-  {
-    id: 404,
-    word: 'ipse/ipsa/ipsum',
-    type: 'other',
-    translation: ['selbst']
-  },
+  { id: 404, word: 'ipse/ipsa/ipsum', type: 'other', translation: ['selbst'] },
   {
     id: 405,
     word: 'regina',
     type: 'noun',
-    translation: ['königin'],
+    translation: ['Königin'],
     genitive: 'reginae',
     gender: 'f',
     declension: 'a'
@@ -3078,39 +2086,11 @@ export const words: Word[] = [
     perfect: 'movi',
     participle: 'motum'
   },
-  {
-    id: 407,
-    word: 'postquam',
-    type: 'other',
-    translation: ['nachdem'],
-    info: 'mit Perfekt'
-  },
-  {
-    id: 408,
-    word: 'cuncti/cunctae',
-    type: 'other',
-    translation: ['alle'],
-    info: 'maskulin / feminin; im Plural'
-  },
-  {
-    id: 409,
-    word: 'cuncta',
-    type: 'other',
-    translation: ['alles'],
-    info: 'im Plural'
-  },
-  {
-    id: 410,
-    word: 'illa',
-    type: 'other',
-    translation: ['jene']
-  },
-  {
-    id: 411,
-    word: 'frustra',
-    type: 'adverb',
-    translation: ['vergeblich']
-  },
+  { id: 407, word: 'postquam', type: 'other', translation: ['nachdem'], info: 'mit Perfekt' },
+  { id: 408, word: 'cuncti/cunctae', type: 'other', translation: ['alle'], info: 'maskulin / feminin; im Plural' },
+  { id: 409, word: 'cuncta', type: 'other', translation: ['alles'], info: 'im Plural' },
+  { id: 410, word: 'illa', type: 'other', translation: ['jene'] },
+  { id: 411, word: 'frustra', type: 'adverb', translation: ['vergeblich'] },
   {
     id: 412,
     word: 'desinere',
@@ -3158,7 +2138,7 @@ export const words: Word[] = [
     id: 417,
     word: 'condicio',
     type: 'noun',
-    translation: ['bedingung'],
+    translation: ['Bedingung'],
     genitive: 'condicionis',
     gender: 'f',
     declension: 'k'
@@ -3167,7 +2147,7 @@ export const words: Word[] = [
     id: 418,
     word: 'uxor',
     type: 'noun',
-    translation: ['gattin', 'ehefrau'],
+    translation: ['Gattin', 'Ehefrau'],
     genitive: 'uxoris',
     gender: 'f',
     declension: 'k'
@@ -3176,23 +2156,13 @@ export const words: Word[] = [
     id: 419,
     word: 'iter',
     type: 'noun',
-    translation: ['weg', 'reise'],
+    translation: ['Weg', 'Reise'],
     genitive: 'itineris',
     gender: 'n',
     declension: 'k'
   },
-  {
-    id: 420,
-    word: 'iter facere',
-    type: 'other',
-    translation: ['reisen', 'marschieren']
-  },
-  {
-    id: 421,
-    word: 'illud',
-    type: 'other',
-    translation: ['jenes']
-  },
+  { id: 420, word: 'iter facere', type: 'other', translation: ['reisen', 'marschieren'] },
+  { id: 421, word: 'illud', type: 'other', translation: ['jenes'] },
   {
     id: 422,
     word: 'vertere',
@@ -3203,15 +2173,7 @@ export const words: Word[] = [
     perfect: 'verti',
     participle: 'versum'
   },
-  {
-    id: 423,
-    word: 'domus',
-    type: 'noun',
-    translation: ['haus'],
-    genitive: 'domus',
-    gender: 'f',
-    declension: 'u'
-  },
+  { id: 423, word: 'domus', type: 'noun', translation: ['Haus'], genitive: 'domus', gender: 'f', declension: 'u' },
   {
     id: 424,
     word: 'longus',
@@ -3221,39 +2183,18 @@ export const words: Word[] = [
     femininum: 'longa',
     neutrum: 'longum'
   },
-  {
-    id: 425,
-    word: 'lux',
-    type: 'noun',
-    translation: ['licht'],
-    genitive: 'lucis',
-    gender: 'f',
-    declension: 'k'
-  },
-  {
-    id: 426,
-    word: 'et ... et',
-    type: 'other',
-    translation: ['sowohl als auch', 'sowohl ... als auch']
-  },
+  { id: 425, word: 'lux', type: 'noun', translation: ['Licht'], genitive: 'lucis', gender: 'f', declension: 'k' },
+  { id: 426, word: 'et ... et', type: 'other', translation: ['sowohl als auch', 'sowohl ... als auch'] },
   {
     id: 427,
     word: 'animal',
     type: 'noun',
-    translation: ['tier', 'lebewesen'],
+    translation: ['Tier', 'Lebewesen'],
     genitive: 'animalis',
     gender: 'n',
     declension: 'i'
   },
-  {
-    id: 428,
-    word: 'carmen',
-    type: 'noun',
-    translation: ['lied'],
-    genitive: 'carminis',
-    gender: 'n',
-    declension: 'k'
-  },
+  { id: 428, word: 'carmen', type: 'noun', translation: ['Lied'], genitive: 'carminis', gender: 'n', declension: 'k' },
   {
     id: 429,
     word: 'canere',
@@ -3264,35 +2205,22 @@ export const words: Word[] = [
     perfect: 'cecini',
     participle: '-'
   },
-  {
-    id: 430,
-    word: 'olim',
-    type: 'adverb',
-    translation: ['einst']
-  },
+  { id: 430, word: 'olim', type: 'adverb', translation: ['einst'] },
   {
     id: 431,
     word: 'matrimonium',
     type: 'noun',
-    translation: ['ehe'],
+    translation: ['Ehe'],
     genitive: 'matrimonii',
     gender: 'n',
     declension: 'o'
   },
-  {
-    id: 432,
-    word: 'natio',
-    type: 'noun',
-    translation: ['volk'],
-    genitive: 'nationis',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 432, word: 'natio', type: 'noun', translation: ['Volk'], genitive: 'nationis', gender: 'f', declension: 'k' },
   {
     id: 433,
     word: 'exercitus',
     type: 'noun',
-    translation: ['heer'],
+    translation: ['Heer'],
     genitive: 'exercitus',
     gender: 'm',
     declension: 'u'
@@ -3306,15 +2234,7 @@ export const words: Word[] = [
     femininum: 'brevis',
     neutrum: 'breve'
   },
-  {
-    id: 435,
-    word: 'tempus',
-    type: 'noun',
-    translation: ['zeit'],
-    genitive: 'temporis',
-    gender: 'n',
-    declension: 'k'
-  },
+  { id: 435, word: 'tempus', type: 'noun', translation: ['Zeit'], genitive: 'temporis', gender: 'n', declension: 'k' },
   {
     id: 436,
     word: 'agere',
@@ -3325,12 +2245,7 @@ export const words: Word[] = [
     perfect: 'egi',
     participle: 'actum'
   },
-  {
-    id: 437,
-    word: 'vitam agere',
-    type: 'other',
-    translation: ['das leben verbringen']
-  },
+  { id: 437, word: 'vitam agere', type: 'other', translation: ['das leben verbringen'] },
   {
     id: 438,
     word: 'exercere',
@@ -3354,7 +2269,7 @@ export const words: Word[] = [
     id: 440,
     word: 'ager',
     type: 'noun',
-    translation: ['feld'],
+    translation: ['Feld'],
     info: 'im Plural: Gebiet(e)',
     genitive: 'agri',
     gender: 'm',
@@ -3388,12 +2303,7 @@ export const words: Word[] = [
     femininum: 'nobilis',
     neutrum: 'nobile'
   },
-  {
-    id: 444,
-    word: 'se recipere',
-    type: 'other',
-    translation: ['sich zurückziehen', 'zurückziehen']
-  },
+  { id: 444, word: 'se recipere', type: 'other', translation: ['sich zurückziehen', 'zurückziehen'] },
   {
     id: 445,
     word: 'continere',
@@ -3408,7 +2318,7 @@ export const words: Word[] = [
     id: 446,
     word: 'cupiditas',
     type: 'noun',
-    translation: ['begierde', 'gier'],
+    translation: ['Begierde', 'Gier'],
     genitive: 'cupiditatis',
     gender: 'f',
     declension: 'k'
@@ -3422,15 +2332,7 @@ export const words: Word[] = [
     femininum: 'adducta',
     neutrum: 'adductum'
   },
-  {
-    id: 448,
-    word: 'senatus',
-    type: 'noun',
-    translation: ['senat'],
-    genitive: 'senatus',
-    gender: 'm',
-    declension: 'u'
-  },
+  { id: 448, word: 'senatus', type: 'noun', translation: ['Senat'], genitive: 'senatus', gender: 'm', declension: 'u' },
   {
     id: 449,
     word: 'cognoscere',
@@ -3450,15 +2352,7 @@ export const words: Word[] = [
     femininum: 'atrox',
     neutrum: 'atrox'
   },
-  {
-    id: 451,
-    word: 'crux',
-    type: 'noun',
-    translation: ['kreuz'],
-    genitive: 'crucis',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 451, word: 'crux', type: 'noun', translation: ['Kreuz'], genitive: 'crucis', gender: 'f', declension: 'k' },
   {
     id: 452,
     word: 'natus',
@@ -3481,7 +2375,7 @@ export const words: Word[] = [
     id: 454,
     word: 'gladiator',
     type: 'noun',
-    translation: ['gladiator'],
+    translation: ['Gladiator'],
     genitive: 'gladiatoris',
     gender: 'm',
     declension: 'k'
@@ -3527,7 +2421,7 @@ export const words: Word[] = [
     id: 459,
     word: 'littera',
     type: 'noun',
-    translation: ['buchstabe'],
+    translation: ['Buchstabe'],
     info: 'nur Singular!',
     genitive: 'litterae',
     gender: 'f',
@@ -3553,73 +2447,40 @@ export const words: Word[] = [
     id: 462,
     word: 'nobilitas',
     type: 'noun',
-    translation: ['adel'],
+    translation: ['Adel'],
     genitive: 'nobilitatis',
     gender: 'f',
     declension: 'k'
   },
-  {
-    id: 463,
-    word: 'ius',
-    type: 'noun',
-    translation: ['recht'],
-    genitive: 'iuris',
-    gender: 'n',
-    declension: 'k'
-  },
-  {
-    id: 464,
-    word: 'oratio',
-    type: 'noun',
-    translation: ['rede'],
-    genitive: 'orationis',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 463, word: 'ius', type: 'noun', translation: ['Recht'], genitive: 'iuris', gender: 'n', declension: 'k' },
+  { id: 464, word: 'oratio', type: 'noun', translation: ['Rede'], genitive: 'orationis', gender: 'f', declension: 'k' },
   {
     id: 465,
     word: 'iudicium',
     type: 'noun',
-    translation: ['urteil'],
+    translation: ['Urteil'],
     genitive: 'iudicii',
     gender: 'n',
     declension: 'o'
   },
-  {
-    id: 466,
-    word: 'sponte sua',
-    type: 'other',
-    translation: ['freiwillig']
-  },
+  { id: 466, word: 'sponte sua', type: 'other', translation: ['freiwillig'] },
   {
     id: 467,
     word: 'exilium',
     type: 'noun',
-    translation: ['exil', 'verbannung'],
+    translation: ['Exil', 'Verbannung'],
     genitive: 'exilii',
     gender: 'n',
     declension: 'o'
   },
-  {
-    id: 468,
-    word: 'ire',
-    type: 'irregularVerb',
-    translation: ['gehen'],
-    info: 'irreguläres Verb'
-  },
-  {
-    id: 469,
-    word: 'romae',
-    type: 'other',
-    translation: ['in rom'],
-    info: 'Lokativ'
-  },
+  { id: 468, word: 'ire', type: 'irregularVerb', translation: ['gehen'], info: 'irreguläres Verb' },
+  { id: 469, word: 'romae', type: 'other', translation: ['in rom'], info: 'Lokativ' },
   {
     id: 470,
     word: 'litterae',
     type: 'noun',
     pluralOnly: true,
-    translation: ['wissenschaft', 'brief'],
+    translation: ['Wissenschaft', 'Brief'],
     info: 'nur Plural',
     genitive: 'litterarum',
     gender: 'f',
@@ -3650,7 +2511,7 @@ export const words: Word[] = [
     id: 473,
     word: 'consul',
     type: 'noun',
-    translation: ['konsul'],
+    translation: ['Konsul'],
     genitive: 'consulis',
     gender: 'm',
     declension: 'k'
@@ -3669,24 +2530,13 @@ export const words: Word[] = [
     id: 475,
     word: 'senator',
     type: 'noun',
-    translation: ['senator'],
+    translation: ['Senator'],
     genitive: 'senatoris',
     gender: 'm',
     declension: 'k'
   },
-  {
-    id: 476,
-    word: 'fere',
-    type: 'other',
-    translation: ['ungefähr', 'fast']
-  },
-  {
-    id: 477,
-    word: 'exire',
-    type: 'irregularVerb',
-    translation: ['hinausgehen'],
-    info: 'irreguläres Verb'
-  },
+  { id: 476, word: 'fere', type: 'other', translation: ['ungefähr', 'fast'] },
+  { id: 477, word: 'exire', type: 'irregularVerb', translation: ['hinausgehen'], info: 'irreguläres Verb' },
   {
     id: 478,
     word: 'iubere',
@@ -3698,15 +2548,7 @@ export const words: Word[] = [
     perfect: 'iussi',
     participle: 'iussum'
   },
-  {
-    id: 479,
-    word: 'socius',
-    type: 'noun',
-    translation: ['gefährte'],
-    genitive: 'socii',
-    gender: 'm',
-    declension: 'o'
-  },
+  { id: 479, word: 'socius', type: 'noun', translation: ['Gefährte'], genitive: 'socii', gender: 'm', declension: 'o' },
   {
     id: 480,
     word: 'comprehendere',
@@ -3722,7 +2564,7 @@ export const words: Word[] = [
     id: 481,
     word: 'iuvenis',
     type: 'noun',
-    translation: ['junger mann'],
+    translation: ['Junger mann'],
     info: '30-45 Jahre',
     genitive: 'iuvenis',
     gender: 'm',
@@ -3738,12 +2580,7 @@ export const words: Word[] = [
     perfect: 'affeci',
     participle: 'affectum'
   },
-  {
-    id: 483,
-    word: 'priusquam',
-    type: 'other',
-    translation: ['bevor']
-  },
+  { id: 483, word: 'priusquam', type: 'other', translation: ['bevor'] },
   {
     id: 484,
     word: 'adire',
@@ -3755,7 +2592,7 @@ export const words: Word[] = [
     id: 485,
     word: 'orator',
     type: 'noun',
-    translation: ['redner'],
+    translation: ['Redner'],
     genitive: 'oratoris',
     gender: 'm',
     declension: 'k'
@@ -3764,7 +2601,7 @@ export const words: Word[] = [
     id: 486,
     word: 'res publica',
     type: 'noun',
-    translation: ['staat'],
+    translation: ['Staat'],
     genitive: 'res publicae',
     gender: 'f',
     declension: 'a'
@@ -3773,7 +2610,7 @@ export const words: Word[] = [
     id: 487,
     word: 'iustitia',
     type: 'noun',
-    translation: ['gerechtigkeit'],
+    translation: ['Gerechtigkeit'],
     genitive: 'iustitiae',
     gender: 'f',
     declension: 'a'
@@ -3782,7 +2619,7 @@ export const words: Word[] = [
     id: 488,
     word: 'incola',
     type: 'noun',
-    translation: ['bewohner', 'einwohner'],
+    translation: ['Bewohner', 'Einwohner'],
     genitive: 'incolae',
     gender: 'f',
     declension: 'a'
@@ -3791,7 +2628,7 @@ export const words: Word[] = [
     id: 489,
     word: 'provincia',
     type: 'noun',
-    translation: ['provinz'],
+    translation: ['Provinz'],
     genitive: 'provinciae',
     gender: 'f',
     declension: 'a'
@@ -3801,7 +2638,7 @@ export const words: Word[] = [
     word: 'divitiae',
     type: 'noun',
     pluralOnly: true,
-    translation: ['reichtum'],
+    translation: ['Reichtum'],
     genitive: 'divitiarum',
     gender: 'f',
     declension: 'a'
@@ -3810,35 +2647,19 @@ export const words: Word[] = [
     id: 491,
     word: 'iulius caesar',
     type: 'noun',
-    translation: ['gaius julius caesar'],
+    translation: ['Gaius julius caesar'],
     genitive: 'iulii caesaris',
     gender: 'm',
     declension: 'k'
   },
-  {
-    id: 492,
-    word: 'pauci/ae/a',
-    type: 'other',
-    translation: ['wenige']
-  },
-  {
-    id: 493,
-    word: 'totus',
-    type: 'pronoun',
-    translation: ['ganz'],
-    info: '2. Fall: totius, 3. Fall: toti'
-  },
-  {
-    id: 494,
-    word: 'at',
-    type: 'other',
-    translation: ['aber']
-  },
+  { id: 492, word: 'pauci/ae/a', type: 'other', translation: ['wenige'] },
+  { id: 493, word: 'totus', type: 'pronoun', translation: ['ganz'], info: '2. Fall: totius, 3. Fall: toti' },
+  { id: 494, word: 'at', type: 'other', translation: ['aber'] },
   {
     id: 495,
     word: 'auctoritas',
     type: 'noun',
-    translation: ['ansehen', 'einfluss'],
+    translation: ['Ansehen', 'Einfluss'],
     genitive: 'auctoritatis',
     gender: 'f',
     declension: 'k'
@@ -3867,32 +2688,14 @@ export const words: Word[] = [
     id: 498,
     word: 'proelium',
     type: 'noun',
-    translation: ['schlacht'],
+    translation: ['Schlacht'],
     genitive: 'proelii',
     gender: 'n',
     declension: 'o'
   },
-  {
-    id: 499,
-    word: 'qui',
-    type: 'other',
-    translation: ['dieser'],
-    info: 'am Satzanfang'
-  },
-  {
-    id: 500,
-    word: 'quae',
-    type: 'other',
-    translation: ['diese'],
-    info: 'am Satzanfang'
-  },
-  {
-    id: 501,
-    word: 'quod',
-    type: 'other',
-    translation: ['dieses'],
-    info: 'am Satzanfang'
-  },
+  { id: 499, word: 'qui', type: 'other', translation: ['dieser'], info: 'am Satzanfang' },
+  { id: 500, word: 'quae', type: 'other', translation: ['diese'], info: 'am Satzanfang' },
+  { id: 501, word: 'quod', type: 'other', translation: ['dieses'], info: 'am Satzanfang' },
   {
     id: 502,
     word: 'prudens',
@@ -3926,7 +2729,7 @@ export const words: Word[] = [
     id: 505,
     word: 'frumentum',
     type: 'noun',
-    translation: ['getreide'],
+    translation: ['Getreide'],
     genitive: 'frumenti',
     gender: 'n',
     declension: 'o'
@@ -3935,7 +2738,7 @@ export const words: Word[] = [
     id: 506,
     word: 'concilium',
     type: 'noun',
-    translation: ['versammlung'],
+    translation: ['Versammlung'],
     genitive: 'concilii',
     gender: 'n',
     declension: 'o'
@@ -3953,7 +2756,7 @@ export const words: Word[] = [
     id: 508,
     word: 'servitus',
     type: 'noun',
-    translation: ['sklaverei'],
+    translation: ['Sklaverei'],
     genitive: 'servitutis',
     gender: 'f',
     declension: 'k'
@@ -3962,41 +2765,24 @@ export const words: Word[] = [
     id: 509,
     word: 'aetas',
     type: 'noun',
-    translation: ['alter', 'zeitalter', 'zeit'],
+    translation: ['Alter', 'Zeitalter', 'Zeit'],
     genitive: 'aetatis',
     gender: 'f',
     declension: 'k'
   },
-  {
-    id: 510,
-    word: 'aut',
-    type: 'other',
-    translation: ['oder']
-  },
-  {
-    id: 511,
-    word: 'ubi',
-    type: 'other',
-    translation: ['sobald'],
-    info: 'mit Perfekt'
-  },
+  { id: 510, word: 'aut', type: 'other', translation: ['oder'] },
+  { id: 511, word: 'ubi', type: 'other', translation: ['sobald'], info: 'mit Perfekt' },
   {
     id: 512,
     word: 'prior',
     type: 'adjective',
-    translation: ['der frhere', 'die frhere', 'das frhere'],
+    translation: ['der Frühere', 'die Frühere', 'das Frühere'],
     info: 'Komparativ',
     comparison: 'kon',
     femininum: 'prior',
     neutrum: 'prius'
   },
-  {
-    id: 513,
-    word: 'quam',
-    type: 'other',
-    translation: ['als'],
-    info: 'nach Komparativ'
-  },
+  { id: 513, word: 'quam', type: 'other', translation: ['als'], info: 'nach Komparativ' },
   {
     id: 514,
     word: 'acer',
@@ -4020,7 +2806,7 @@ export const words: Word[] = [
     id: 516,
     word: 'civitas',
     type: 'noun',
-    translation: ['stamm', 'gemeinde', 'staat'],
+    translation: ['Stamm', 'Gemeinde', 'Staat'],
     genitive: 'civitatis',
     gender: 'f',
     declension: 'k'
@@ -4029,7 +2815,7 @@ export const words: Word[] = [
     id: 517,
     word: 'gallia',
     type: 'noun',
-    translation: ['gallien'],
+    translation: ['Gallien'],
     info: 'heutiges Frankreich',
     genitive: 'galliae',
     gender: 'f',
@@ -4045,35 +2831,22 @@ export const words: Word[] = [
     perfect: 'tradidi',
     participle: 'traditum'
   },
-  {
-    id: 519,
-    word: 'se tradere',
-    type: 'other',
-    translation: ['sich ergeben']
-  },
+  { id: 519, word: 'se tradere', type: 'other', translation: ['sich ergeben'] },
   {
     id: 520,
     word: 'amicitia',
     type: 'noun',
-    translation: ['freundschaft'],
+    translation: ['Freundschaft'],
     genitive: 'amicitiae',
     gender: 'f',
     declension: 'a'
   },
-  {
-    id: 521,
-    word: 'legio',
-    type: 'noun',
-    translation: ['legion'],
-    genitive: 'legionis',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 521, word: 'legio', type: 'noun', translation: ['Legion'], genitive: 'legionis', gender: 'f', declension: 'k' },
   {
     id: 522,
     word: 'maximus',
     type: 'adjective',
-    translation: ['der größte, sehr groß'],
+    translation: ['der Größte, sehr groß'],
     comparison: 'a_o',
     femininum: 'maxima',
     neutrum: 'maximum'
@@ -4082,7 +2855,7 @@ export const words: Word[] = [
     id: 523,
     word: 'potestas',
     type: 'noun',
-    translation: ['macht'],
+    translation: ['Macht'],
     genitive: 'potestatis',
     gender: 'f',
     declension: 'k'
@@ -4091,7 +2864,7 @@ export const words: Word[] = [
     id: 524,
     word: 'dictator',
     type: 'noun',
-    translation: ['diktator'],
+    translation: ['Diktator'],
     genitive: 'dictatoris',
     gender: 'm',
     declension: 'k'
@@ -4105,15 +2878,7 @@ export const words: Word[] = [
     femininum: 'perpetua',
     neutrum: 'perpetuum'
   },
-  {
-    id: 526,
-    word: 'civis',
-    type: 'noun',
-    translation: ['brger'],
-    genitive: 'civis',
-    gender: 'm',
-    declension: 'm'
-  },
+  { id: 526, word: 'civis', type: 'noun', translation: ['Brger'], genitive: 'civis', gender: 'm', declension: 'm' },
   {
     id: 527,
     word: 'persuadere',
@@ -4124,58 +2889,33 @@ export const words: Word[] = [
     perfect: 'persuasi',
     participle: 'persuasum'
   },
-  {
-    id: 528,
-    word: 'persuadeo tibi',
-    type: 'other',
-    translation: ['ich berrede dich']
-  },
+  { id: 528, word: 'persuadeo tibi', type: 'other', translation: ['ich berrede dich'] },
   {
     id: 529,
     word: 'mos',
     type: 'noun',
-    translation: ['sitte', 'brauch'],
+    translation: ['Sitte', 'Brauch'],
     genitive: 'moris',
     gender: 'm',
     declension: 'k'
   },
-  {
-    id: 530,
-    word: 'lex',
-    type: 'noun',
-    translation: ['gesetz'],
-    genitive: 'legis',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 530, word: 'lex', type: 'noun', translation: ['Gesetz'], genitive: 'legis', gender: 'f', declension: 'k' },
   {
     id: 531,
     word: 'libertas',
     type: 'noun',
-    translation: ['freiheit'],
+    translation: ['Freiheit'],
     genitive: 'libertatis',
     gender: 'f',
     declension: 'k'
   },
-  {
-    id: 532,
-    word: 'melior',
-    type: 'other',
-    translation: ['besser'],
-    info: 'm. / f.'
-  },
-  {
-    id: 533,
-    word: 'melius',
-    type: 'other',
-    translation: ['besser'],
-    info: 'n.'
-  },
+  { id: 532, word: 'melior', type: 'other', translation: ['besser'], info: 'm. / f.' },
+  { id: 533, word: 'melius', type: 'other', translation: ['besser'], info: 'n.' },
   {
     id: 534,
     word: 'caedes',
     type: 'noun',
-    translation: ['ermordung', 'mord'],
+    translation: ['Ermordung', 'Mord'],
     genitive: 'caedis',
     gender: 'f',
     declension: 'm'
@@ -4199,13 +2939,7 @@ export const words: Word[] = [
     femininum: 'facilis',
     neutrum: 'facile'
   },
-  {
-    id: 537,
-    word: 'plurimi/ae/a',
-    type: 'other',
-    translation: ['die meisten'],
-    info: 'Superlativ von multi/ae/a'
-  },
+  { id: 537, word: 'plurimi/ae/a', type: 'other', translation: ['die meisten'], info: 'Superlativ von multi/ae/a' },
   {
     id: 538,
     word: 'statuere',
@@ -4225,39 +2959,11 @@ export const words: Word[] = [
     femininum: 'futura',
     neutrum: 'futurum'
   },
-  {
-    id: 540,
-    word: 'adesse',
-    type: 'irregularVerb',
-    translation: ['da sein', 'anwesend sein']
-  },
-  {
-    id: 541,
-    word: 'quidem',
-    type: 'other',
-    translation: ['zwar', 'freilich']
-  },
-  {
-    id: 542,
-    word: 'iste',
-    type: 'other',
-    translation: ['dieser', 'dieser da'],
-    info: 'abschätzig gemeint'
-  },
-  {
-    id: 543,
-    word: 'ista',
-    type: 'other',
-    translation: ['diese', 'diese da'],
-    info: 'abschätzig gemeint'
-  },
-  {
-    id: 544,
-    word: 'istud',
-    type: 'other',
-    translation: ['dieses', 'dieses da'],
-    info: 'abschätzig gemeint'
-  },
+  { id: 540, word: 'adesse', type: 'irregularVerb', translation: ['da sein', 'anwesend sein'] },
+  { id: 541, word: 'quidem', type: 'other', translation: ['zwar', 'freilich'] },
+  { id: 542, word: 'iste', type: 'other', translation: ['dieser', 'dieser da'], info: 'abschätzig gemeint' },
+  { id: 543, word: 'ista', type: 'other', translation: ['diese', 'diese da'], info: 'abschätzig gemeint' },
+  { id: 544, word: 'istud', type: 'other', translation: ['dieses', 'dieses da'], info: 'abschätzig gemeint' },
   {
     id: 545,
     word: 'defendere',
@@ -4268,20 +2974,12 @@ export const words: Word[] = [
     perfect: 'defendi',
     participle: 'defensum'
   },
-  {
-    id: 546,
-    word: 'vulnus',
-    type: 'noun',
-    translation: ['wunde'],
-    genitive: 'vulneris',
-    gender: 'n',
-    declension: 'k'
-  },
+  { id: 546, word: 'vulnus', type: 'noun', translation: ['Wunde'], genitive: 'vulneris', gender: 'n', declension: 'k' },
   {
     id: 547,
     word: 'ultimus',
     type: 'adjective',
-    translation: ['der letzte', 'die letzte', 'das letzte'],
+    translation: ['der Letzte', 'die Letzte', 'das Letzte'],
     comparison: 'a_o',
     femininum: 'ultima',
     neutrum: 'ultimum'
@@ -4296,20 +2994,12 @@ export const words: Word[] = [
     perfect: 'conveni',
     participle: 'conventum'
   },
-  {
-    id: 549,
-    word: 'mulier',
-    type: 'noun',
-    translation: ['frau'],
-    genitive: 'mulieris',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 549, word: 'mulier', type: 'noun', translation: ['Frau'], genitive: 'mulieris', gender: 'f', declension: 'k' },
   {
     id: 550,
     word: 'finis',
     type: 'noun',
-    translation: ['grenze', 'ende'],
+    translation: ['Grenze', 'Ende'],
     gender: 'm',
     declension: 'm',
     info: "Singular von 'fines'",
@@ -4319,7 +3009,7 @@ export const words: Word[] = [
     id: 551,
     word: 'fines',
     type: 'noun',
-    translation: ['gebiet', 'gebiete'],
+    translation: ['Gebiet', 'Gebiete'],
     gender: 'm',
     declension: 'm',
     genitive: 'finium',
@@ -4333,7 +3023,7 @@ export const words: Word[] = [
     type: 'noun',
     gender: 'n',
     genitive: 'regni',
-    translation: ['königreich', 'reich', 'herrschaft']
+    translation: ['Königreich', 'Reich', 'Herrschaft']
   },
   {
     id: 553,
@@ -4345,21 +3035,8 @@ export const words: Word[] = [
     participle: 'auctum',
     translation: ['vergrößern', 'vermehren', 'steigern']
   },
-  {
-    id: 554,
-    word: 'donum',
-    type: 'noun',
-    gender: 'n',
-    declension: 'o',
-    genitive: 'doni',
-    translation: ['geschenk']
-  },
-  {
-    id: 555,
-    word: 'mihi gaudio est',
-    type: 'other',
-    translation: ['ich freue mich', 'es bereitet mir freude']
-  },
+  { id: 554, word: 'donum', type: 'noun', gender: 'n', declension: 'o', genitive: 'doni', translation: ['Geschenk'] },
+  { id: 555, word: 'mihi gaudio est', type: 'other', translation: ['ich freue mich', 'es bereitet mir freude'] },
   {
     id: 556,
     word: 'ingens',
@@ -4369,27 +3046,21 @@ export const words: Word[] = [
     neutrum: 'ingens',
     translation: ['riesig', 'gewaltig']
   },
-  {
-    id: 557,
-    word: 'antea',
-    type: 'adverb',
-    translation: ['früher', 'vorher']
-  },
+  { id: 557, word: 'antea', type: 'adverb', translation: ['früher', 'vorher'] },
   {
     id: 558,
     word: 'clades',
     type: 'noun',
-    translation: ['niederlage'],
+    translation: ['Niederlage'],
     genitive: 'cladis',
     declension: 'm',
     gender: 'f'
   },
-
   {
     id: 559,
     word: 'classis',
     type: 'noun',
-    translation: ['flotte'],
+    translation: ['Flotte'],
     genitive: 'classis',
     declension: 'm',
     gender: 'f'
@@ -4428,7 +3099,7 @@ export const words: Word[] = [
     id: 563,
     word: 'custos',
     type: 'noun',
-    translation: ['wächter'],
+    translation: ['Wächter'],
     genitive: 'custodis',
     declension: 'k',
     gender: 'm'
@@ -4443,13 +3114,7 @@ export const words: Word[] = [
     perfect: 'posui',
     participle: 'positum'
   },
-  {
-    id: 565,
-    word: 'enim',
-    info: 'nachgestellt',
-    type: 'other',
-    translation: ['denn', 'nämlich']
-  },
+  { id: 565, word: 'enim', info: 'nachgestellt', type: 'other', translation: ['denn', 'nämlich'] },
   {
     id: 566,
     word: 'auferre',
@@ -4457,27 +3122,13 @@ export const words: Word[] = [
     translation: ['wegbringen', 'wegnehmen'],
     info: 'irreguläres Verb'
   },
-  {
-    id: 567,
-    word: 'serva',
-    type: 'noun',
-    translation: ['sklavin'],
-    genitive: 'servae',
-    declension: 'a',
-    gender: 'f'
-  },
-  {
-    id: 568,
-    word: 'praeter',
-    info: 'mit Akkusativ',
-    type: 'other',
-    translation: ['außer']
-  },
+  { id: 567, word: 'serva', type: 'noun', translation: ['Sklavin'], genitive: 'servae', declension: 'a', gender: 'f' },
+  { id: 568, word: 'praeter', info: 'mit Akkusativ', type: 'other', translation: ['außer'] },
   {
     id: 569,
     word: 'discordia',
     type: 'noun',
-    translation: ['zwietracht', 'streit'],
+    translation: ['Zwietracht', 'Streit'],
     declension: 'a',
     gender: 'f',
     genitive: 'discordiae'
@@ -4486,7 +3137,7 @@ export const words: Word[] = [
     id: 570,
     word: 'contoversia',
     type: 'noun',
-    translation: ['auseinandersetzung'],
+    translation: ['Auseinandersetzung'],
     declension: 'a',
     gender: 'f',
     genitive: 'controversiae'
@@ -4501,15 +3152,7 @@ export const words: Word[] = [
     perfect: 'ieci',
     participle: 'iactum'
   },
-  {
-    id: 572,
-    word: 'Venus',
-    type: 'noun',
-    translation: ['Venus'],
-    genitive: 'Veneris',
-    gender: 'f',
-    declension: 'k'
-  },
+  { id: 572, word: 'Venus', type: 'noun', translation: ['Venus'], genitive: 'Veneris', gender: 'f', declension: 'k' },
   {
     id: 573,
     word: 'certare',
@@ -4544,17 +3187,12 @@ export const words: Word[] = [
     id: 576,
     word: 'praemium',
     type: 'noun',
-    translation: ['belohnung', 'preis'],
+    translation: ['Belohnung', 'Preis'],
     declension: 'o',
     gender: 'n',
     genitive: 'praemii'
   },
-  {
-    id: 577,
-    word: 'praeterea',
-    type: 'adverb',
-    translation: ['außerdem']
-  },
+  { id: 577, word: 'praeterea', type: 'adverb', translation: ['außerdem'] },
   {
     id: 578,
     word: 'dives',
@@ -4568,17 +3206,12 @@ export const words: Word[] = [
     id: 579,
     word: 'fortitudo',
     type: 'noun',
-    translation: ['tapferkeit'],
+    translation: ['Tapferkeit'],
     declension: 'k',
     gender: 'f',
     genitive: 'fortitudinis'
   },
-  {
-    id: 580,
-    word: 'quia',
-    type: 'other',
-    translation: ['weil']
-  },
+  { id: 580, word: 'quia', type: 'other', translation: ['weil'] },
   {
     id: 581,
     word: 'Graecia',
@@ -4598,22 +3231,16 @@ export const words: Word[] = [
     perfect: 'decrevi',
     participle: 'decretum'
   },
-  {
-    id: 583,
-    word: 'eo',
-    type: 'adverb',
-    translation: ['dorthin']
-  },
+  { id: 583, word: 'eo', type: 'adverb', translation: ['dorthin'] },
   {
     id: 584,
     word: 'fides',
     type: 'noun',
-    translation: ['treue', 'vertrauen', 'schutz'],
+    translation: ['Treue', 'Vertrauen', 'Schutz'],
     declension: 'e',
     gender: 'f',
     genitive: 'fidei'
   },
-
   {
     id: 585,
     word: 'mandare',
@@ -4628,7 +3255,7 @@ export const words: Word[] = [
     id: 586,
     word: 'occasio',
     type: 'noun',
-    translation: ['gelegenheit'],
+    translation: ['Gelegenheit'],
     declension: 'k',
     gender: 'f',
     genitive: 'occasionis'
@@ -4647,25 +3274,12 @@ export const words: Word[] = [
     id: 588,
     word: 'maritus',
     type: 'noun',
-    translation: ['ehemann', 'gatte'],
+    translation: ['Ehemann', 'Gatte'],
     declension: 'o',
     gender: 'm',
     genitive: 'mariti'
   },
-  {
-    id: 589,
-    word: 'aut ... aut',
-    type: 'other',
-    translation: ['entweder ... oder', 'entweder oder']
-  },
+  { id: 589, word: 'aut ... aut', type: 'other', translation: ['entweder ... oder', 'entweder oder'] },
   { id: 590, word: 'eiusmodi', type: 'other', translation: ['derartig'], info: '(= huiusmodi)' },
-  {
-    id: 591,
-    word: 'Troia',
-    type: 'noun',
-    translation: ['Troja'],
-    declension: 'a',
-    gender: 'f',
-    genitive: 'Troiae'
-  }
+  { id: 591, word: 'Troia', type: 'noun', translation: ['Troja'], declension: 'a', gender: 'f', genitive: 'Troiae' }
 ];
