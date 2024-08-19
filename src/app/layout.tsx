@@ -3,6 +3,7 @@ import { Rubik } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { deDE } from '@clerk/localizations';
+import { Analytics } from '@vercel/analytics/react';
 
 const rubik = Rubik({ subsets: ['latin'] });
 
@@ -23,6 +24,7 @@ const RootLayout = ({
             <Navbar />
             {children}
           </div>
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
