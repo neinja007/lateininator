@@ -30,10 +30,12 @@ export const WORD_CONSTANTS = {
   conjugation,
   comparison,
   comparisonDegree,
-  optionalDeclension,
-  optionalGender,
-  optionalConjugation,
-  optionalComparison
+  optional: {
+    declension: optionalDeclension,
+    gender: optionalGender,
+    conjugation: optionalConjugation,
+    comparison: optionalComparison
+  }
 } as const;
 
 const wordProperties = {
