@@ -2,49 +2,47 @@ import Input from '@/components/Input';
 import { Dispatch, SetStateAction } from 'react';
 import ui from '@/styles/ui.module.css';
 import { WordProperty } from '@/types/app_constants';
-import { Stage } from '@/types/other';
-import { Word } from '@/types/word';
 import { compareValues } from '@/utils/word_utils/compareValues';
-import { getInputWithCorrectValue } from '@/utils/word_utils/getInputWithCorrectValue';
+import clsx from 'clsx';
 
 type TranslationInputProps = {
-  checkTranslation: boolean;
-  activeWord: Word;
-  stage: Stage;
+  correctTranslations: string[];
+  stage: 'test' | 'review';
   inputValues: Record<WordProperty | 'translation', string>;
   setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
 };
 
-const TranslationInput = ({
-  checkTranslation,
-  activeWord,
-  stage,
-  inputValues,
-  setInputValues
-}: TranslationInputProps) => {
+const TranslationInput = ({ correctTranslations, stage, inputValues, setInputValues }: TranslationInputProps) => {
+  const correctValueIndicatorClasses =
+    stage === 'review'
+      ? compareValues(inputValues.translation, correctTranslations, true)
+        ? ui.correct
+        : ui.incorrect
+      : '';
+
+  let inputWithCorrectValueAppended: string;
+
+  const formattedCorrectTranslations =
+    correctTranslations.length > 0 ? correctTranslations.join(', ') : 'Keine Übersetzung';
+
+  if (!inputValues.translation.trim()) {
+    inputWithCorrectValueAppended = `(${formattedCorrectTranslations})`;
+  } else if (compareValues(inputValues.translation, correctTranslations, true)) {
+    inputWithCorrectValueAppended = `${inputValues.translation} (${formattedCorrectTranslations})`;
+  } else {
+    inputWithCorrectValueAppended = `${inputValues.translation} (${formattedCorrectTranslations})`;
+  }
+
+  const displayedValue = stage === 'review' ? inputWithCorrectValueAppended : inputValues.translation;
+
   return (
-    <div>
-      {checkTranslation && activeWord.translation && (
-        <Input
-          label='Übersetzung (mehrere Antworten durch "," trennen)'
-          disabled={stage === 'review'}
-          className={
-            'w-full ' +
-            (stage === 'review'
-              ? compareValues(inputValues.translation, activeWord.translation, true)
-                ? ui.correct
-                : ui.incorrect
-              : '')
-          }
-          value={
-            stage === 'review'
-              ? getInputWithCorrectValue(inputValues.translation, activeWord.translation, true)
-              : inputValues.translation
-          }
-          onChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
-        />
-      )}
-    </div>
+    <Input
+      label='Übersetzung (mehrere Antworten durch "," trennen)'
+      className={clsx('w-full', correctValueIndicatorClasses)}
+      disabled={stage === 'review'}
+      value={displayedValue}
+      onChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
+    />
   );
 };
 
