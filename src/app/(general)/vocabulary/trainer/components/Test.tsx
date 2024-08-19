@@ -8,7 +8,6 @@ import Hr from '@/components/Hr';
 import { WordProperty } from '@/types/app_constants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
-import { APP_CONSTANTS } from '@/constants';
 
 type TestProps = {
   stage: 'test' | 'review';
@@ -49,9 +48,7 @@ const Test = ({
           )}
           {wordPropertiesToCheck.length > 0 && (
             <PropertyInputs
-              wordPropertiesToCheck={APP_CONSTANTS.wordProperties[activeWord.type].filter((key) =>
-                wordPropertiesToCheck.includes(key)
-              )}
+              wordPropertiesToCheck={wordPropertiesToCheck}
               activeWord={activeWord}
               inputValues={inputValues}
               setInputValues={setInputValues}

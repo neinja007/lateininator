@@ -78,7 +78,9 @@ const Page = () => {
           handleContinue={handleContinue}
           progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
           activeWord={activeWord}
-          wordPropertiesToCheck={wordPropertiesToCheck}
+          wordPropertiesToCheck={APP_CONSTANTS.wordProperties[activeWord.type].filter((key) =>
+            wordPropertiesToCheck.includes(key)
+          )}
           inputValues={inputValues}
           setInputValues={setInputValues}
           stage={stage}
