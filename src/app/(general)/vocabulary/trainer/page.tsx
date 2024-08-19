@@ -1,7 +1,7 @@
 'use client';
 
 import { APP_CONSTANTS } from '@/constants';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import Heading from '@/components/Heading';
 import Settings from './components/Settings';
 import Test from './components/Test';
@@ -56,14 +56,6 @@ const Page = () => {
     canContinue
   );
 
-  const validKeysToCheck: WordProperty[] = useMemo(
-    () =>
-      activeWord
-        ? APP_CONSTANTS.wordProperties[activeWord.type].filter((key) => wordPropertiesToCheck.includes(key))
-        : [],
-    [activeWord, wordPropertiesToCheck]
-  );
-
   return (
     <div className='space-y-5'>
       <Heading>Vokabeltrainer</Heading>
@@ -86,7 +78,7 @@ const Page = () => {
           handleContinue={handleContinue}
           progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
           activeWord={activeWord}
-          validKeysToCheck={validKeysToCheck}
+          wordPropertiesToCheck={wordPropertiesToCheck}
           inputValues={inputValues}
           setInputValues={setInputValues}
           stage={stage}
