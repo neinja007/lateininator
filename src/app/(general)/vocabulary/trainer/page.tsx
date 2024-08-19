@@ -59,9 +59,7 @@ const Page = () => {
   const validKeysToCheck: WordProperty[] = useMemo(
     () =>
       activeWord
-        ? APP_CONSTANTS.wordProperties[activeWord.type].filter(
-            (key) => wordPropertiesToCheck.includes(key) && key in activeWord && (activeWord as any)[key] !== '-'
-          )
+        ? APP_CONSTANTS.wordProperties[activeWord.type].filter((key) => wordPropertiesToCheck.includes(key))
         : [],
     [activeWord, wordPropertiesToCheck]
   );
