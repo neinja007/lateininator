@@ -1,4 +1,4 @@
-import { APP_CONSTANTS } from '@/constants';
+import { APP_CONSTANTS } from '@/constants/appConstants';
 import { WordType, MainWordType } from '@/types/appConstants';
 
 export const transformWordTypeToMainWordType = (wordType: WordType): MainWordType | 'other' => {
