@@ -3281,5 +3281,218 @@ export const words: Word[] = [
   },
   { id: 589, word: 'aut ... aut', type: 'other', translation: ['entweder ... oder', 'entweder oder'] },
   { id: 590, word: 'eiusmodi', type: 'other', translation: ['derartig'], info: '(= huiusmodi)' },
-  { id: 591, word: 'Troia', type: 'noun', translation: ['Troja'], declension: 'a', gender: 'f', genitive: 'Troiae' }
+  { id: 591, word: 'Troia', type: 'noun', translation: ['Troja'], declension: 'a', gender: 'f', genitive: 'Troiae' },
+  {
+    id: 592,
+    word: 'ira',
+    type: 'noun',
+    translation: ['Zorn'],
+    declension: 'a',
+    gender: 'f',
+    genitive: 'irae'
+  },
+  {
+    id: 593,
+    word: 'moenia',
+    type: 'noun',
+    pluralOnly: true,
+    translation: ['Stadtmauern', 'Mauern'],
+    declension: 'm',
+    gender: 'n',
+    genitive: 'moenium'
+  },
+  {
+    id: 594,
+    word: 'altus',
+    type: 'adjective',
+    translation: ['hoch', 'tief'],
+    comparison: 'kon',
+    femininum: 'alta',
+    neutrum: 'altum'
+  },
+  {
+    id: 595,
+    word: 'ut',
+    type: 'other',
+    info: 'mit Konjunktiv',
+    translation: ['dass', 'sodass', 'damit']
+  },
+  {
+    id: 596,
+    word: 'Troiani',
+    type: 'noun',
+    pluralOnly: true,
+    translation: ['Trojaner'],
+    declension: 'o',
+    gender: 'm',
+    genitive: 'Troianorum'
+  },
+  {
+    id: 597,
+    word: 'tenere',
+    type: 'verb',
+    translation: ['halten'],
+    conjugation: 'e',
+    present: 'teneo',
+    perfect: 'tenui',
+    participle: 'tentum'
+  },
+  {
+    id: 598,
+    word: 'abstinere',
+    type: 'verb',
+    translation: ['fernhalten', 'sich fernhalten', 'sich fernhalten von'],
+    conjugation: 'e',
+    present: 'abstineo',
+    perfect: 'abstinui',
+    participle: 'abstentum'
+  },
+  {
+    id: 599,
+    word: 'imperium',
+    type: 'noun',
+    translation: ['Befehl', 'Herrschaft', 'Reich'],
+    declension: 'o',
+    gender: 'n',
+    genitive: 'imperii'
+  },
+  {
+    id: 600,
+    word: 'obtinere',
+    type: 'verb',
+    translation: ['besitzen', 'innehaben'],
+    conjugation: 'e',
+    present: 'obtineo',
+    perfect: 'obtinui',
+    participle: 'obtentum'
+  },
+  {
+    id: 601,
+    word: 'incendere',
+    type: 'verb',
+    translation: ['anzünden'],
+    conjugation: 'k',
+    present: 'incendo',
+    perfect: 'incendi',
+    participle: 'incensum'
+  },
+  {
+    id: 602,
+    word: 'ne',
+    type: 'other',
+    info: 'mit Konjunktiv',
+    translation: ['dass nicht', 'damit nicht']
+  },
+  {
+    id: 603,
+    word: 'putare',
+    type: 'verb',
+    translation: ['glauben', 'halten für'],
+    conjugation: 'a',
+    present: 'puto',
+    perfect: 'putavi',
+    participle: 'putatum'
+  },
+  {
+    id: 604,
+    word: 'interesse',
+    type: 'verb',
+    translation: ['beiwohnen', 'teilnehmen', 'teilnehmen an'],
+    conjugation: '-',
+    present: 'intersum',
+    perfect: 'interfui',
+    participle: 'interfuturus',
+    info: 'mit Dativ'
+  },
+  {
+    id: 605,
+    word: 'complures',
+    type: 'adjective',
+    femininum: 'complures',
+    neutrum: 'complura',
+    translation: ['mehrere'],
+    comparison: 'kon'
+  },
+  {
+    id: 606,
+    word: 'caedere',
+    type: 'verb',
+    translation: ['fällen', 'töten'],
+    conjugation: 'k',
+    present: 'caedo',
+    perfect: 'cecidi',
+    participle: 'caesum'
+  },
+  {
+    id: 607,
+    word: 'deponere',
+    type: 'verb',
+    translation: ['ablegen', 'weglegen'],
+    conjugation: 'k',
+    present: 'depono',
+    perfect: 'deposui',
+    participle: 'depositum'
+  },
+  {
+    id: 608,
+    word: 'equus',
+    type: 'noun',
+    translation: ['Pferd'],
+    declension: 'o',
+    gender: 'm',
+    genitive: 'equi'
+  },
+  {
+    id: 609,
+    word: 'trahere',
+    type: 'verb',
+    translation: ['ziehen'],
+    conjugation: 'k',
+    present: 'traho',
+    perfect: 'traxi',
+    participle: 'tractum'
+  },
+  {
+    id: 610,
+    word: 'magis',
+    type: 'adverb',
+    translation: ['mehr']
+  },
+  {
+    id: 611,
+    word: 'preces',
+    type: 'noun',
+    pluralOnly: true,
+    translation: ['Bitten', 'die Bitten'],
+    declension: 'k',
+    gender: 'f',
+    genitive: 'precum'
+  },
+  {
+    id: 612,
+    word: 'aurum',
+    type: 'noun',
+    translation: ['Gold'],
+    declension: 'o',
+    gender: 'n',
+    genitive: 'auri'
+  },
+  {
+    id: 613,
+    word: 'frater',
+    type: 'noun',
+    translation: ['Bruder'],
+    declension: 'k',
+    gender: 'm',
+    genitive: 'fratris'
+  },
+  {
+    id: 614,
+    word: 'Apollo',
+    type: 'noun',
+    translation: ['Apoll'],
+    declension: 'k',
+    gender: 'm',
+    genitive: 'Apollinis'
+  }
 ];
