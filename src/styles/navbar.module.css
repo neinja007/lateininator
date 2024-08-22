@@ -2,7 +2,7 @@
 @tailwind utilities;
 
 .navlink {
-  @apply my-auto mx-2 font-semibold cursor-pointer select-none;
+  @apply my-auto mx-2 font-semibold cursor-pointer select-none transition-colors;
 }
 
 .dropdown_navlink {
