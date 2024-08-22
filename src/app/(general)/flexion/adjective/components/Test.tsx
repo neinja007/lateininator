@@ -96,9 +96,9 @@ const Test = ({
             <TableInput
               checkAdverb={checkAdverb}
               genders={genders}
-              tableInputForm={tableInputForm}
-              tableInputValues={tableInputValues}
-              setTableInputValues={setTableInputValues}
+              form={tableInputForm}
+              values={tableInputValues}
+              setValues={setTableInputValues}
               stage={stage}
               activeWord={activeWord}
             />
