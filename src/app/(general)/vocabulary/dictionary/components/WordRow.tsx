@@ -28,7 +28,7 @@ const WordRow = ({ word, query }: WordRowProps) => {
 
   return (
     <tr
-      className='cursor-pointer select-none border-t hover:bg-gray-100 dark:border-gray-500 dark:hover:bg-gray-800'
+      className='cursor-pointer select-none border-t transition-colors hover:bg-blue-100 dark:border-gray-500 dark:hover:bg-blue-950'
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <td className='p-2 px-4'>
