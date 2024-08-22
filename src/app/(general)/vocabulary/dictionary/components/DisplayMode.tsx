@@ -6,7 +6,7 @@ const DisplayMode = ({ view, setView }: DisplayModeProps) => {
   return (
     <div className='float-end mb-4 mr-2 flex'>
       <div
-        className={`flex cursor-pointer select-none ${view === 'cards' ? 'text-blue-500' : 'text-gray-400'}`}
+        className={`flex cursor-pointer select-none transition-colors ${view === 'cards' ? 'text-blue-500' : 'text-gray-400'}`}
         onClick={() => setView('cards')}
       >
         Kartenansicht{' '}
@@ -15,7 +15,7 @@ const DisplayMode = ({ view, setView }: DisplayModeProps) => {
         </div>
       </div>
       <div
-        className={`flex cursor-pointer select-none ${view === 'list' ? 'text-blue-500' : 'text-gray-400'}`}
+        className={`flex cursor-pointer select-none transition-colors ${view === 'list' ? 'text-blue-500' : 'text-gray-400'}`}
         onClick={() => setView('list')}
       >
         Listenansicht <List className='ml-2' />
