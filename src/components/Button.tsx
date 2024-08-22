@@ -13,7 +13,13 @@ type ButtonProps = {
 const Button = ({ color = 'default', children, className, icon, ...props }: ButtonProps) => {
   return (
     <button
-      className={clsx(ui.basic, className, 'justify-center', COLORS[color], props.disabled && 'disabled:opacity-50')}
+      className={clsx(
+        ui.basic,
+        className,
+        'justify-center transition-colors',
+        COLORS[color],
+        props.disabled && 'disabled:opacity-50'
+      )}
       {...props}
     >
       {children}
