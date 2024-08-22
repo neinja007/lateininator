@@ -59,6 +59,7 @@ const allWordProperties = [
   'femininum',
   'neutrum'
 ] as const;
+
 const otherProperties = ['comparisonDegree', 'wordCase', 'person', 'numerus', 'modus', 'voice', 'tense'] as const;
 const wordTypes = ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun', 'irregularVerb'] as const;
 const mainWordTypes = ['noun', 'verb', 'adjective'] as const;
