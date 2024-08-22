@@ -32,6 +32,16 @@ export const routes: (Route | Dropdown)[] = [
       { label: 'Adjektive', href: '/adjective' }
     ]
   },
-  { label: 'Grammatik', href: '/grammar' },
+  {
+    label: 'Grammatik',
+    href: '/grammar',
+    children: [
+      { label: 'Zusammenfassungen', href: '/summaries' },
+      {
+        label: 'Übungen',
+        href: '/exercises'
+      }
+    ]
+  },
   { label: 'Kompetenz', href: '/competence' }
 ];
