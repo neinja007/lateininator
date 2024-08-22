@@ -12,7 +12,13 @@ type HeaderProps = { word: Word };
 const Header = ({ word }: HeaderProps) => {
   return (
     <div className='grid h-12 grid-cols-3'>
-      <Link className={clsx(ui.basic, 'w-fit !pl-2')} href={'/vocabulary/dictionary'}>
+      <Link
+        className={clsx(
+          ui.basic,
+          'hover w-fit bg-gray-100 !pl-2 transition-colors hover:bg-gray-200 dark:bg-gray-900 hover:dark:bg-gray-800'
+        )}
+        href={'/vocabulary/dictionary'}
+      >
         <ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
       </Link>
       <Heading>
