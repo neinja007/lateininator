@@ -3,12 +3,12 @@ import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import TestingFormSelection from './settings/TestingFormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
 import ContinueButton from '@/components/ContinueButton';
 import { Adjective, Word } from '@/types/word';
 import { ComparisonDegree, Gender, Comparison } from '@/types/word_constants';
+import FormSelection from './settings/FormSelection';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -73,7 +73,7 @@ const Settings = ({
         <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
       )}
       {currentSettingsStage === 2 && (
-        <TestingFormSelection
+        <FormSelection
           checkAdverb={checkAdverb}
           setCheckAdverb={setCheckAdverb}
           comparisons={comparisons}

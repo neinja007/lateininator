@@ -7,7 +7,7 @@ import { Comparison, ComparisonDegree, Gender } from '@/types/word_constants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
 
-type TestingFormSelectionProps = {
+type FormSelectionProps = {
   checkAdverb: boolean;
   setCheckAdverb: Dispatch<SetStateAction<boolean>>;
   comparisons: Comparison[];
@@ -19,7 +19,7 @@ type TestingFormSelectionProps = {
   validWords: Adjective[];
 };
 
-const TestingFormSelection = ({
+const FormSelection = ({
   checkAdverb,
   setCheckAdverb,
   comparisons,
@@ -29,7 +29,7 @@ const TestingFormSelection = ({
   genders,
   setGenders,
   validWords
-}: TestingFormSelectionProps) => {
+}: FormSelectionProps) => {
   const comparisonsNotToCheck = comparisons.filter((comparison) => {
     return !validWords.some((word) => word.comparison === comparison);
   });
@@ -107,4 +107,4 @@ const TestingFormSelection = ({
   );
 };
 
-export default TestingFormSelection;
+export default FormSelection;
