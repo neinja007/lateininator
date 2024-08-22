@@ -10,7 +10,7 @@ import {
   WordCase,
   Comparison,
   ComparisonDegree
-} from './word_constants';
+} from './wordConstants';
 
 export type ConditionalTense<M> = M extends 'ind' ? Tense : Exclude<Tense, 'fut1'>;
 export type ConditionalPerson<T, V, M> = M extends 'ind'

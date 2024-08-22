@@ -1,4 +1,4 @@
-import { Numerus, WordCase } from '@/types/word_constants';
+import { Numerus, WordCase } from '@/types/wordConstants';
 import { Dispatch, SetStateAction } from 'react';
 
 export type TableInputValues = Record<Numerus, Record<Exclude<WordCase, '6'>, string>>;

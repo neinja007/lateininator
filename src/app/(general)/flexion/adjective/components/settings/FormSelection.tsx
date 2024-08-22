@@ -3,7 +3,7 @@ import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { Adjective } from '@/types/word';
-import { Comparison, ComparisonDegree, Gender } from '@/types/word_constants';
+import { Comparison, ComparisonDegree, Gender } from '@/types/wordConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
 

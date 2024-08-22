@@ -6,7 +6,7 @@ import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
 import ContinueButton from '@/components/ContinueButton';
 import { Adjective, Word } from '@/types/word';
-import { ComparisonDegree, Gender, Comparison } from '@/types/word_constants';
+import { ComparisonDegree, Gender, Comparison } from '@/types/wordConstants';
 import FormSelection from './settings/FormSelection';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 

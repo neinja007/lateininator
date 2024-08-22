@@ -3,7 +3,7 @@ import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
 import { Word } from '@/types/word';
-import { Tense } from '@/types/word_constants';
+import { Tense } from '@/types/wordConstants';
 import { getForm } from '@/utils/word_utils/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 

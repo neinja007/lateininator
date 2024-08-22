@@ -1,5 +1,5 @@
-import { WordType } from './app_constants';
-import { OptionalComparison, OptionalDeclension, OptionalConjugation, OptionalGender } from './word_constants';
+import { WordType } from './appConstants';
+import { OptionalComparison, OptionalDeclension, OptionalConjugation, OptionalGender } from './wordConstants';
 
 export type Word = Verb | Noun | Adjective | Other;
 

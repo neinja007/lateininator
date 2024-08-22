@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 import { words } from '@/data/words';
-import { MainWordType, WordType } from '@/types/app_constants';
+import { MainWordType, WordType } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction, useEffect } from 'react';

@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { Noun } from '@/types/word';
-import { Gender, Declension } from '@/types/word_constants';
+import { Gender, Declension } from '@/types/wordConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
 

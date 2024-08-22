@@ -1,5 +1,5 @@
 import { APP_CONSTANTS } from '@/constants';
-import { WordProperty, WordPropertiesUsingSelectInput } from '@/types/app_constants';
+import { WordProperty, WordPropertiesUsingSelectInput } from '@/types/appConstants';
 
 export const isWordPropertiesUsingSelectInput = (element: WordProperty): element is WordPropertiesUsingSelectInput => {
   return APP_CONSTANTS.wordPropertiesUsingSelectInput.includes(element as WordPropertiesUsingSelectInput);

@@ -7,7 +7,7 @@ import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
 import ContinueButton from '@/components/ContinueButton';
 import { Verb, Word } from '@/types/word';
-import { Voice, Modus, Tense, Conjugation } from '@/types/word_constants';
+import { Voice, Modus, Tense, Conjugation } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type SettingsProps = {

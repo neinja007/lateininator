@@ -6,7 +6,7 @@ import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
 import { TableInputValues } from './types';
-import { ComparisonDegree, Gender } from '@/types/word_constants';
+import { ComparisonDegree, Gender } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 const initialTableInputValues: TableInputValues = {

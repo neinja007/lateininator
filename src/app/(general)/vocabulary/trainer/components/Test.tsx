@@ -5,7 +5,7 @@ import PropertyInputs from './test/PropertyInputs';
 import ActionBar from '@/components/ActionBar';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
-import { WordProperty } from '@/types/app_constants';
+import { WordProperty } from '@/types/appConstants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
 

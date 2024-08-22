@@ -5,7 +5,7 @@ import WordCountSelection from './settings/WordCountSelection';
 import PropertySelection from './settings/PropertySelection';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import ContinueButton from '@/components/ContinueButton';
-import { WordProperty, WordType, MainWordType } from '@/types/app_constants';
+import { WordProperty, WordType, MainWordType } from '@/types/appConstants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
 import { transformWordTypeToMainWordType } from '@/utils/word_utils/transformWordTypeToMainWordType';

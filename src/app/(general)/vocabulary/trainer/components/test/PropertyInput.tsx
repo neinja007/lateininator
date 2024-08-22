@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
 import TrainerInput from '../../../../../../components/TrainerInput';
 import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
-import { WordProperty } from '@/types/app_constants';
+import { WordProperty } from '@/types/appConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type PropertyInputProps = {

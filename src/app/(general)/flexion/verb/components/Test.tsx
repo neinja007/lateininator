@@ -8,7 +8,7 @@ import { MAPPER } from '@/utils/other/mapper';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
 import { Verb } from '@/types/word';
-import { Modus, Voice, Tense } from '@/types/word_constants';
+import { Modus, Voice, Tense } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word_utils/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';

@@ -3,7 +3,7 @@ import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { Verb } from '@/types/word';
-import { Voice, Modus, Tense, Conjugation } from '@/types/word_constants';
+import { Voice, Modus, Tense, Conjugation } from '@/types/wordConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
 

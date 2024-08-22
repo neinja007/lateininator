@@ -1,4 +1,4 @@
-import { WordType, WordProperty, OtherProperty } from './app_constants';
+import { WordType, WordProperty, OtherProperty } from './appConstants';
 import {
   WordCase,
   Numerus,
@@ -11,7 +11,7 @@ import {
   OptionalComparison,
   OptionalGender,
   OptionalConjugation
-} from './word_constants';
+} from './wordConstants';
 
 export type MapperKeys = {
   type: Record<WordType, string>;

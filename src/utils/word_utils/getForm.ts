@@ -2,7 +2,7 @@ import { endings } from '@/data/endings';
 import { irregularWords } from '@/data/irregularWords';
 import { getBase } from './getBase';
 import { Word } from '@/types/word';
-import { Modus, Voice, Tense, Numerus, Person, WordCase, ComparisonDegree, Gender } from '@/types/word_constants';
+import { Modus, Voice, Tense, Numerus, Person, WordCase, ComparisonDegree, Gender } from '@/types/wordConstants';
 
 export const getForm = (
   word: Word,
