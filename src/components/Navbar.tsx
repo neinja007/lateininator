@@ -10,44 +10,7 @@ import NavbarLink from '@/components/NavbarLink';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
 import Hr from './Hr';
-
-type Link = {
-  label: string;
-  href: string;
-  children?: never;
-};
-
-type Dropdown = {
-  label: string;
-  href: string;
-  children: Link[];
-};
-
-const links: (Link | Dropdown)[] = [
-  { label: 'Übersicht', href: '/dashboard' },
-  {
-    label: 'Vokabular',
-    href: '/vocabulary',
-    children: [
-      {
-        label: 'Trainer',
-        href: '/trainer'
-      },
-      { label: 'Wörterbuch', href: '/dictionary' }
-    ]
-  },
-  {
-    label: 'Flexion',
-    href: '/flexion',
-    children: [
-      { label: 'Nomen', href: '/noun' },
-      { label: 'Verben', href: '/verb' },
-      { label: 'Adjektive', href: '/adjective' }
-    ]
-  },
-  { label: 'Grammatik', href: '/grammar' },
-  { label: 'Kompetenz', href: '/competence' }
-];
+import { Dropdown, routes } from '@/data/routes';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -65,22 +28,22 @@ const Navbar = () => {
       <div className='fixed inset-0 inline-flex h-16 w-full bg-gray-100 dark:bg-gray-950'>
         <Logo />
         <div className='mr-4 hidden w-full justify-end gap-x-2 lg:flex xl:justify-center'>
-          {links.map((link, i) => {
-            if (link.children) {
+          {routes.map((route, i) => {
+            if (route.children) {
               return (
                 <NavbarDropdown
                   key={i}
-                  label={link.label}
+                  label={route.label}
                   open={open}
                   handleOpen={setOpen}
-                  active={pathnameSegments[1] === link.href}
+                  active={pathnameSegments[1] === route.href}
                 >
-                  {(link as Dropdown).children.map((child, i) => {
+                  {(route as Dropdown).children.map((child, i) => {
                     return (
                       <NavbarDropdownLink
                         key={i}
                         label={child.label}
-                        href={link.href + child.href}
+                        href={route.href + child.href}
                         active={pathnameSegments[2] === child.href}
                       />
                     );
@@ -89,7 +52,7 @@ const Navbar = () => {
               );
             } else {
               return (
-                <NavbarLink key={i} label={link.label} href={link.href} active={pathnameSegments[1] === link.href} />
+                <NavbarLink key={i} label={route.label} href={route.href} active={pathnameSegments[1] === route.href} />
               );
             }
           })}
@@ -123,7 +86,7 @@ const Navbar = () => {
           </div>
         </div>
         <Hr />
-        {links.map((link, i) => {
+        {routes.map((link, i) => {
           if (link.children) {
             return (
               <NavbarDropdown
