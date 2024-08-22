@@ -2,7 +2,6 @@ import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
-import { WORD_CONSTANTS } from '@/constants';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/other/mapper';
@@ -12,6 +11,7 @@ import { Verb } from '@/types/word';
 import { Modus, Voice, Tense } from '@/types/word_constants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word_utils/getForm';
+import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type TestProps = {
   activeWord: Verb;

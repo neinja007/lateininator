@@ -1,9 +1,9 @@
 import { Route } from '@/data/routes';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { ChevronsRight } from 'react-feather';
 import { routeLinkColors } from '../constants/colors';
 import { Color } from '@/types/other';
+import { ChevronsRight } from 'lucide-react';
 
 type RouteLinkProps = { route: Route; color?: Color };
 

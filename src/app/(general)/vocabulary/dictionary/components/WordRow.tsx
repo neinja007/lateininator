@@ -1,10 +1,10 @@
 'use client';
 import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
-import { ChevronRight } from 'react-feather';
 import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';
 import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
+import { ChevronRight } from 'lucide-react';
 
 type WordRowProps = {
   word: Word;

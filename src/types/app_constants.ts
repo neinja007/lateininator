@@ -1,4 +1,4 @@
-import { APP_CONSTANTS } from '@/constants';
+import { APP_CONSTANTS } from '@/constants/appConstants';
 
 export type WordType = (typeof APP_CONSTANTS.wordTypes)[number];
 export type MainWordType = (typeof APP_CONSTANTS.mainWordTypes)[number];

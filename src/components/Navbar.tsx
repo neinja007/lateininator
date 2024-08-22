@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs';
-import { Menu, X } from 'react-feather';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarDropdownLink from '@/components/NavbarDropdownLink';
@@ -11,6 +10,7 @@ import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
 import Hr from './Hr';
 import { Dropdown, routes } from '@/data/routes';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');

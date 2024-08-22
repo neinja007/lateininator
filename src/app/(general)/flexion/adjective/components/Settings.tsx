@@ -1,4 +1,3 @@
-import { WORD_CONSTANTS } from '@/constants';
 import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
@@ -9,6 +8,7 @@ import ContinueButton from '@/components/ContinueButton';
 import { Adjective, Word } from '@/types/word';
 import { ComparisonDegree, Gender, Comparison } from '@/types/word_constants';
 import FormSelection from './settings/FormSelection';
+import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';

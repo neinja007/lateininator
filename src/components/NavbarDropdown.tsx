@@ -1,9 +1,9 @@
 'use client';
 
 import { Dispatch, SetStateAction } from 'react';
-import { ChevronUp } from 'react-feather';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
+import { ChevronUp } from 'lucide-react';
 
 type NavbarDropdownProps = {
   label: string;

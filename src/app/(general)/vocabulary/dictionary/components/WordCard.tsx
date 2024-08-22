@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { ChevronRight } from 'react-feather';
+import { ChevronRight } from 'lucide-react';
 import Badge from '@/components/Badge';
 import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';

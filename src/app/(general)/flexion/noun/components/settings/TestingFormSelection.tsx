@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
-import { WORD_CONSTANTS } from '@/constants';
+import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { Noun } from '@/types/word';
 import { Gender, Declension } from '@/types/word_constants';
 import { MAPPER } from '@/utils/other/mapper';

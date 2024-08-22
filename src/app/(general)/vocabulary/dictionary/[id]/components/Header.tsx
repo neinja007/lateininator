@@ -1,11 +1,11 @@
 import Heading from '@/components/Heading';
 import Badge from '@/components/Badge';
 import Link from 'next/link';
-import { ArrowLeft } from 'react-feather';
 import ui from '@/styles/ui.module.css';
 import { clsx } from 'clsx';
 import { Word } from '@/types/word';
 import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
+import { ArrowLeft } from 'lucide-react';
 
 type HeaderProps = { word: Word };
 

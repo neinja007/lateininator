@@ -1,4 +1,3 @@
-import { APP_CONSTANTS } from '@/constants';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import ListSelection from './settings/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
@@ -10,6 +9,7 @@ import { WordProperty, WordType, MainWordType } from '@/types/app_constants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
 import { transformWordTypeToMainWordType } from '@/utils/word_utils/transformWordTypeToMainWordType';
+import { APP_CONSTANTS } from '@/constants/appConstants';
 
 type SettingsProps = {
   checkTranslation: boolean;

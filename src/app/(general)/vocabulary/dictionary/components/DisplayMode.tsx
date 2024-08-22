@@ -1,4 +1,4 @@
-import { CreditCard, List } from 'react-feather';
+import { CreditCard, List } from 'lucide-react';
 
 type DisplayModeProps = { view: 'cards' | 'list'; setView: (view: 'cards' | 'list') => void };
 

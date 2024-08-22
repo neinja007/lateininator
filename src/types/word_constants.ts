@@ -1,4 +1,4 @@
-import { WORD_CONSTANTS } from '@/constants';
+import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 export type WordCase = (typeof WORD_CONSTANTS.wordCase)[number];
 export type Person = (typeof WORD_CONSTANTS.person)[number];

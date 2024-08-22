@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
-import { APP_CONSTANTS } from '@/constants';
+import { APP_CONSTANTS } from '@/constants/appConstants';
 import { WordProperty, WordType } from '@/types/app_constants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';

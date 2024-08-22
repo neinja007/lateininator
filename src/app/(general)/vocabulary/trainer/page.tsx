@@ -1,6 +1,5 @@
 'use client';
 
-import { APP_CONSTANTS } from '@/constants';
 import { useCallback, useState } from 'react';
 import Heading from '@/components/Heading';
 import Settings from './components/Settings';
@@ -10,6 +9,7 @@ import { useGame } from '@/hooks/useGame';
 import { compareValues } from '@/utils/word_utils/compareValues';
 import { WordProperty } from '@/types/app_constants';
 import { Word } from '@/types/word';
+import { APP_CONSTANTS } from '@/constants/appConstants';
 
 const initialInputValues = {
   conjugation: '',

@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import { APP_CONSTANTS } from '@/constants';
+import { APP_CONSTANTS } from '@/constants/appConstants';
 import { words } from '@/data/words';
 import { MainWordType, WordType } from '@/types/app_constants';
 import { Word } from '@/types/word';
