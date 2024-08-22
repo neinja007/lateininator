@@ -7,7 +7,7 @@ import RouteLink from './components/RouteLink';
 const Page = () => {
   return (
     <div>
-      <Heading className='mb-3'>Übersicht</Heading>
+      <Heading className='mb-3 md:mb-6 lg:mb-12'>Übersicht</Heading>
       <p className='mb-2 text-center text-lg font-bold'>Latein Lernen</p>
       <div className='grid grid-cols-4 items-center gap-y-2'>
         {routes
