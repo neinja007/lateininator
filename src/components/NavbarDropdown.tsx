@@ -35,7 +35,7 @@ const NavbarDropdown = ({ label, children, open, handleOpen, active, mobile }: N
           <div onClick={() => handleOpen('')} className='fixed inset-0 z-50 h-full w-full' />
           <div
             className={clsx(
-              'absolute z-[50] rounded-lg border bg-white text-center shadow dark:border-gray-500 dark:bg-gray-900',
+              'absolute z-[50] rounded-lg border bg-white text-center shadow dark:border-gray-500 dark:bg-gray-900 dark:shadow-gray-500',
               mobile ? 'translate-x-2' : 'translate-y-8'
             )}
           >
