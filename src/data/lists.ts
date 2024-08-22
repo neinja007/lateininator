@@ -1,8 +1,5 @@
 import { List } from '@/types/other';
-
-const generateSequentialNumbers = (start: number, end: number): number[] => {
-  return Array.from({ length: end - start + 1 }, (_, i) => i + start);
-};
+import { generateSequentialNumbers } from '../utils/helpers/generateSequentialNumbers';
 
 export const lists: List[] = [
   {
