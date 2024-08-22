@@ -1,19 +1,25 @@
 import { Route } from '@/data/routes';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { ChevronsRight } from 'react-feather';
+import { routeLinkColors } from '../constants/colors';
+import { Color } from '@/types/other';
 
-type RouteLinkProps = { route: Route };
+type RouteLinkProps = { route: Route; color?: Color };
 
-const RouteLink = ({ route }: RouteLinkProps) => {
+const RouteLink = ({ route, color }: RouteLinkProps) => {
   return (
     <Link
       href={route.href}
-      className='group flex w-full items-center justify-center rounded-lg border p-3 transition-transform hover:border-blue-500 hover:bg-blue-200 dark:border-gray-700 dark:hover:bg-blue-950'
+      className={clsx(
+        'group flex w-full items-center justify-center rounded-lg border p-3 transition-transform dark:border-gray-700',
+        routeLinkColors[!color || color === 'default' ? 'gray' : color]
+      )}
     >
-      <span className='transition-colors group-hover:font-medium group-hover:text-blue-950 group-hover:dark:text-blue-200'>
+      <span className='transition-colors group-hover:font-medium group-hover:text-gray-950 group-hover:dark:text-gray-200'>
         {route.label}
       </span>{' '}
-      <ChevronsRight className='ml-2 w-0 text-blue-950 transition-all group-hover:w-6 dark:text-blue-200' />
+      <ChevronsRight className='ml-2 w-0 text-gray-950 transition-all group-hover:w-6 dark:text-gray-200' />
     </Link>
   );
 };

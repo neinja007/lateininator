@@ -19,7 +19,7 @@ const Page = () => {
                 {route.children
                   .map((childRoute) => ({ ...childRoute, href: route.href + childRoute.href }))
                   .map((route, i) => {
-                    return <RouteLink key={i} route={route} />;
+                    return <RouteLink key={i} route={route} color={route.color} />;
                   })}
               </div>
             </Fragment>
@@ -27,9 +27,9 @@ const Page = () => {
       </div>
       <p className='mb-2 mt-10 text-center text-lg font-bold'>Sonstiges</p>
       <div className='col-span-3 flex items-center justify-between gap-2'>
-        <RouteLink route={routes.find((route) => route.label === 'Kompetenz') as Route} />
+        <RouteLink route={routes.find((route) => route.label === 'Kompetenz') as Route} color='orange' />
         <SignedOut>
-          <RouteLink route={{ href: '/sign-in', label: 'Anmelden' }} />
+          <RouteLink route={{ href: '/sign-in', label: 'Anmelden' }} color='green' />
         </SignedOut>
         {/* <RouteLink route={{ href: '/premium', label: 'Premium' }} /> */}
       </div>
