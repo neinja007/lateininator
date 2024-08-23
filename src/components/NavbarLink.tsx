@@ -8,12 +8,12 @@ type NavbarLinkProps = {
   label: string;
   href: string;
   active: boolean;
+  dropdown?: boolean;
 };
 
-const NavbarLink = ({ label, href, active }: NavbarLinkProps) => {
+const NavbarLink = ({ dropdown, route, active }: NavbarLinkProps) => {
   return (
-    <Link className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)} href={href}>
-      {label}
+      className={clsx(dropdown ? navbar.dropdown_navlink : navbar.navlink, active ? navbar.active : navbar.inactive)}
     </Link>
   );
 };
