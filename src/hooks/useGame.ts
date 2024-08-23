@@ -49,16 +49,15 @@ export const useGame = (
         setCurrentSettingsStage(currentSettingsStage + 1);
       }
     } else if (newStage === 'test') {
+      setStage('review');
+    } else if (newStage === 'review') {
       if (!activeWord) {
         throw new Error('activeWord is undefined');
       }
-
-      setStage('review');
-
       if (staticPossibleWords || (canContinue && canContinue(activeWord))) {
         updateWords();
       }
-    } else if (newStage === 'review') {
+
       if (remainingWords === 0) {
         setStage('results');
         return;
