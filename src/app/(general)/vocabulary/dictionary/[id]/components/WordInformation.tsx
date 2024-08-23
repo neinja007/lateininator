@@ -10,8 +10,8 @@ const WordInformation = ({ word }: WordInformationProps) => {
   return (
     <div className='grid grid-cols-3'>
       <p>
-        {word.translation ? (word.translation.length === 1 ? 'Übersetzung: ' : 'Übersetzungen: ') : 'Keine Übersetzung'}
-        {word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}
+        {word.translation.length === 0 ? null : word.translation.length === 1 ? 'Übersetzung:' : 'Übersetzungen:'}{' '}
+        <b>{word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}</b>
       </p>
       <p className='text-center'>
         {word.derivative && (
