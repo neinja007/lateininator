@@ -31,16 +31,16 @@ const WordCountSelection = ({
   return (
     <>
       <p>Abfrage (die Überprüfung kann auch frühzeitig beendet werden):</p>
-      <div className='flex space-x-5'>
+      <div className='gap-5 space-y-2 md:flex md:space-y-0'>
         <Button
-          className='w-1/2 font-medium'
+          className='w-full font-medium'
           color={checkType === 'all' ? 'blue' : 'default'}
           onClick={() => setCheckType('all')}
         >
           Alle verfügbaren Wörter {maxWords} abfragen
         </Button>
         <Button
-          className='w-1/2 font-medium'
+          className='w-full font-medium'
           color={checkType === 'limited' ? 'blue' : 'default'}
           onClick={() => setCheckType('limited')}
         >
