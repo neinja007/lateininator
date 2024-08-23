@@ -4,9 +4,10 @@ import { Dispatch, SetStateAction } from 'react';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
 import { ChevronUp } from 'lucide-react';
+import { Route } from '@/data/routes';
 
 type NavbarDropdownProps = {
-  label: string;
+  route: Route;
   children: React.ReactNode;
   open: string;
   handleOpen: Dispatch<SetStateAction<string>>;
@@ -14,23 +15,23 @@ type NavbarDropdownProps = {
   mobile?: boolean;
 };
 
-const NavbarDropdown = ({ label, children, open, handleOpen, active, mobile }: NavbarDropdownProps) => {
+const NavbarDropdown = ({ route, children, open, handleOpen, active, mobile }: NavbarDropdownProps) => {
   return (
     <div className={mobile ? 'border-b p-2 last:border-b-0 dark:border-gray-500' : 'my-auto flex justify-center'}>
       <div
         className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)}
-        onClick={() => handleOpen((prevOpen) => (prevOpen === label ? '' : label))}
+        onClick={() => handleOpen((prevOpen) => (prevOpen === route.label ? '' : route.label))}
       >
-        {label}
+        <route.icon className='w-5' /> {route.label}
         <ChevronUp
           size={20}
           className={clsx(
-            'ml-0.5 inline align-text-top text-gray-600 transition-transform dark:text-gray-400',
-            open !== label ? '-rotate-180' : 'rotate-0'
+            'ml-0 inline align-text-top transition-transform',
+            open !== route.label ? '-rotate-180' : 'rotate-0'
           )}
         />
       </div>
-      {open === label && (
+      {open === route.label && (
         <>
           <div onClick={() => handleOpen('')} className='fixed inset-0 z-50 h-full w-full' />
           <div
