@@ -6,6 +6,8 @@ import TrainerInput from '../../../../../../components/TrainerInput';
 import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
 import { WordProperty } from '@/types/appConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { compareValues } from '@/utils/word_utils/compareValues';
+import { Check } from 'lucide-react';
 
 type PropertyInputProps = {
   property: WordProperty;
@@ -25,29 +27,36 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
   let isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
   const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
 
-  if (isWordPropertiesUsingSelectInput(property)) {
-    return (
-      <Select
-        label={MAPPER.extended.property[property]}
-        options={options}
-        className={clsx('w-full', stage === 'review' && correctValueIndicatorClasses)}
-        value={inputValue}
-        appendString={stage === 'review' && !isInputCorrect ? correctValue : undefined}
-        handleChange={(value) => handleChange(property, value)}
-        disabled={stage === 'review'}
-      />
-    );
-  } else {
-    return (
-      <TrainerInput
-        label={MAPPER.extended.property[property]}
-        correctValue={correctValue}
-        value={inputValue}
-        handleChange={(value) => handleChange(property, value)}
-        stage={stage}
-      />
-    );
-  }
+  return (
+    <div className='flex items-end'>
+      <div className='block w-full flex-grow'>
+        {isWordPropertiesUsingSelectInput(property) ? (
+          <Select
+            label={MAPPER.extended.property[property]}
+            options={options}
+            className={clsx('w-full', stage === 'review' && correctValueIndicatorClasses)}
+            value={inputValue}
+            appendString={stage === 'review' && !isInputCorrect ? correctValue : undefined}
+            handleChange={(value) => handleChange(property, value)}
+            disabled={stage === 'review'}
+          />
+        ) : (
+          <TrainerInput
+            label={MAPPER.extended.property[property]}
+            correctValue={correctValue}
+            value={inputValue}
+            handleChange={(value) => handleChange(property, value)}
+            stage={stage}
+          />
+        )}
+      </div>
+      {stage === 'review' && !isInputCorrect && (
+        <button type='button' className={'m-1.5 w-5 flex-shrink'} onClick={() => handleChange(property, correctValue)}>
+          <Check />
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default PropertyInput;
