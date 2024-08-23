@@ -10,7 +10,7 @@ type ActionBarProps = {
 
 const ActionBar = ({ handleContinue, progressPercentage, form }: ActionBarProps) => {
   return (
-    <div className='grid grid-cols-2 gap-3 sm:flex'>
+    <div className='mt-8 grid grid-cols-2 gap-3 sm:flex'>
       <Button
         color='red'
         className={'order-2'}
