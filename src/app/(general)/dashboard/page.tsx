@@ -1,7 +1,6 @@
 import Heading from '@/components/Heading';
 import { Route, routes } from '@/data/routes';
 import { SignedOut } from '@clerk/nextjs';
-import { Fragment } from 'react';
 import RouteLink from './components/RouteLink';
 import { LogIn } from 'lucide-react';
 
@@ -10,25 +9,23 @@ const Page = () => {
     <div>
       <Heading className='mb-3 md:mb-6 lg:mb-12'>Übersicht</Heading>
       <p className='mb-2 text-center text-lg font-bold'>Latein Lernen</p>
-      <div className='grid grid-cols-4 items-center gap-y-2'>
-        {routes
-          .filter((route) => !!route.children)
-          .map((route) => (
-            <Fragment key={route.label}>
-              <div className='flex items-center gap-x-2 font-bold text-gray-600 dark:text-gray-400'>
-                <route.icon className='w-5' /> {route.label}
-              </div>
-              <div className='col-span-3 flex items-center justify-between gap-2'>
-                {route.children &&
-                  route.children
-                    .map((childRoute) => ({ ...childRoute, href: route.href + childRoute.href }))
-                    .map((route, i) => {
-                      return <RouteLink key={i} route={route} color={route.color} />;
-                    })}
-              </div>
-            </Fragment>
-          ))}
-      </div>
+      {routes
+        .filter((route) => !!route.children)
+        .map((route) => (
+          <div key={route.label} className='mb-5 grid-cols-4 items-center md:mb-2 md:grid'>
+            <div className='flex items-center gap-x-2 font-bold text-gray-600 dark:text-gray-400'>
+              <route.icon className='w-5' /> {route.label}
+            </div>
+            <div className='col-span-3 items-center justify-between gap-x-2 sm:flex'>
+              {route.children &&
+                route.children
+                  .map((childRoute) => ({ ...childRoute, href: route.href + childRoute.href }))
+                  .map((route, i) => {
+                    return <RouteLink key={i} route={route} color={route.color} />;
+                  })}
+            </div>
+          </div>
+        ))}
       <p className='mb-2 mt-10 text-center text-lg font-bold'>Sonstiges</p>
       <div className='col-span-3 flex items-center justify-between gap-2'>
         <RouteLink route={routes.find((route) => route.label === 'Kompetenz') as Route} color='orange' />

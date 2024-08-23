@@ -12,7 +12,7 @@ const RouteLink = ({ route, color }: RouteLinkProps) => {
     <Link
       href={route.href}
       className={clsx(
-        'group flex w-full items-center justify-center rounded-lg border p-3 transition-transform dark:border-gray-700',
+        'group mt-2 flex w-full items-center justify-center rounded-lg border p-3 transition-transform md:mt-0 dark:border-gray-700',
         routeLinkColors[!color || color === 'default' ? 'gray' : color]
       )}
     >
