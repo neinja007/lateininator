@@ -9,8 +9,12 @@
 	@apply border border-gray-500;
 }
 
+.basic:not([class*="flex"]) {
+  @apply inline
+}
+
 .basic {
-	@apply p-1 px-3 h-9 inline rounded-md focus:outline-none;
+	@apply p-1 px-3 h-9 rounded-md focus:outline-none;
 }
 
 .link {
