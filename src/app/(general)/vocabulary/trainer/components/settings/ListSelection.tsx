@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import { lists } from '@/data/lists';
 import { List } from '@/types/other';
+import { Book } from 'lucide-react';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type ListSelectionProps = {
@@ -36,7 +37,7 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
           </Button>
         </div>
       </div>
-      <div className='grid grid-cols-8 gap-4'>
+      <div className='grid grid-cols-7 gap-4'>
         {lists.map((list, i) => (
           <Button
             key={i}
@@ -44,7 +45,9 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
             onClick={() =>
               setSelectedLists((prev) => (prev.includes(list) ? prev.filter((t) => t !== list) : [...prev, list]))
             }
+            className={'flex items-center gap-x-2'}
           >
+            <Book className='w-4' />
             {list.name}
           </Button>
         ))}
