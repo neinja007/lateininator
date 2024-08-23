@@ -11,22 +11,24 @@ type HeaderProps = { word: Word };
 
 const Header = ({ word }: HeaderProps) => {
   return (
-    <div className='grid h-12 grid-cols-3'>
+    <div className='min-h-12 grid-cols-2 justify-center sm:flex sm:gap-4 md:grid lg:grid-cols-3'>
       <Link
         className={clsx(
           ui.basic,
-          'hover w-fit bg-gray-100 !pl-2 transition-colors hover:bg-gray-200 dark:bg-gray-900 hover:dark:bg-gray-800'
+          'hover w-fit bg-gray-100 text-center transition-colors hover:bg-gray-200 md:!pl-2 dark:bg-gray-900 hover:dark:bg-gray-800'
         )}
         href={'/vocabulary/dictionary'}
       >
         <ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
       </Link>
       <Heading>
-        {word.word} {getLexicalForm(word)}
+        <span className='mt-4 flex justify-center sm:mt-0 sm:justify-end lg:justify-center'>
+          {word.word} {getLexicalForm(word)}
+          <div className='md:text-right'>
+            <Badge text={word.type} />
+          </div>
+        </span>
       </Heading>
-      <div className='text-right'>
-        <Badge text={word.type} />
-      </div>
     </div>
   );
 };
