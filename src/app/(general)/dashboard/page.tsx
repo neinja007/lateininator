@@ -3,6 +3,7 @@ import { Route, routes } from '@/data/routes';
 import { SignedOut } from '@clerk/nextjs';
 import { Fragment } from 'react';
 import RouteLink from './components/RouteLink';
+import { LogIn } from 'lucide-react';
 
 const Page = () => {
   return (
@@ -16,11 +17,12 @@ const Page = () => {
             <Fragment key={route.label}>
               <div>{route.label}:</div>
               <div className='col-span-3 flex items-center justify-between gap-2'>
-                {route.children
-                  .map((childRoute) => ({ ...childRoute, href: route.href + childRoute.href }))
-                  .map((route, i) => {
-                    return <RouteLink key={i} route={route} color={route.color} />;
-                  })}
+                {route.children &&
+                  route.children
+                    .map((childRoute) => ({ ...childRoute, href: route.href + childRoute.href }))
+                    .map((route, i) => {
+                      return <RouteLink key={i} route={route} color={route.color} />;
+                    })}
               </div>
             </Fragment>
           ))}
@@ -29,7 +31,7 @@ const Page = () => {
       <div className='col-span-3 flex items-center justify-between gap-2'>
         <RouteLink route={routes.find((route) => route.label === 'Kompetenz') as Route} color='orange' />
         <SignedOut>
-          <RouteLink route={{ href: '/sign-in', label: 'Anmelden' }} color='green' />
+          <RouteLink route={{ href: '/sign-in', label: 'Anmelden', icon: LogIn }} color='green' />
         </SignedOut>
         {/* <RouteLink route={{ href: '/premium', label: 'Premium' }} /> */}
       </div>
