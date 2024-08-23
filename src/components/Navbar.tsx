@@ -9,6 +9,7 @@ import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
 import { routes } from '@/data/routes';
 import { LogIn, LogOut, Menu } from 'lucide-react';
+import { useMaxWidth } from '@/hooks/useMaxWidth';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -20,18 +21,7 @@ const Navbar = () => {
     setMobileLinksOpen(false);
   }, [pathname]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024) {
-        setMobileLinksOpen(false);
-      }
-    };
-    addEventListener('resize', handleResize);
-
-    return () => {
-      removeEventListener('resize', handleResize);
-    };
-  }, []);
+  useMaxWidth(1024, () => setMobileLinksOpen(false));
 
   return (
     <>
