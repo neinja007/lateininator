@@ -3493,6 +3493,6 @@ export const words: Word[] = [
     translation: ['Apoll'],
     declension: 'k',
     gender: 'm',
-    genitive: 'Apollinis'
+    genitive: 'apollinis'
   }
 ];
