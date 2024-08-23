@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
-import { COLORS } from '@/constants';
+import { COLORS } from '@/constants/other';
 import { Color } from '@/types/other';
 
 type ButtonProps = {
