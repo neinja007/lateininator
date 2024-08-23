@@ -37,14 +37,16 @@ const PropertySelection = ({
 
   return (
     <>
-      <div className='grid grid-cols-3'>
-        <p>Wähle aus, was abgefragt werden soll:</p>
-        <CheckboxWithLabel
-          checked={checkTranslation}
-          handleChange={() => setCheckTranslation((prevCheckTranslation) => !prevCheckTranslation)}
-          label={'Übersetzung'}
-        />
-        <div className='grid grid-cols-2 gap-x-4'>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3'>
+        <p className='sm:mb-3'>Wähle aus, was abgefragt werden soll:</p>
+        <div className='my-2 justify-center sm:my-0 sm:flex lg:block'>
+          <CheckboxWithLabel
+            checked={checkTranslation}
+            handleChange={() => setCheckTranslation((prevCheckTranslation) => !prevCheckTranslation)}
+            label={'Übersetzung'}
+          />
+        </div>
+        <div className='grid grid-cols-2 gap-x-4 sm:col-span-2 lg:col-span-1'>
           <Button
             color={
               wordPropertiesToCheck.length === APP_CONSTANTS.allWordProperties.length && checkTranslation
@@ -69,7 +71,7 @@ const PropertySelection = ({
           </Button>
         </div>
       </div>
-      <div className='grid grid-cols-3'>
+      <div className='grid gap-y-3 sm:grid-cols-2 md:grid-cols-3'>
         {APP_CONSTANTS.mainWordTypes.map((type: WordType) => (
           <CheckboxList
             key={type}
