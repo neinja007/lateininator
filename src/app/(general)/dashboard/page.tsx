@@ -15,7 +15,9 @@ const Page = () => {
           .filter((route) => !!route.children)
           .map((route) => (
             <Fragment key={route.label}>
-              <div>{route.label}:</div>
+              <div className='flex items-center gap-x-2 font-bold text-gray-400'>
+                <route.icon className='w-5' /> {route.label}
+              </div>
               <div className='col-span-3 flex items-center justify-between gap-2'>
                 {route.children &&
                   route.children
