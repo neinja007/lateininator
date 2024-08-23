@@ -4,6 +4,7 @@ import ui from '@/styles/ui.module.css';
 import { WordProperty } from '@/types/appConstants';
 import { compareValues } from '@/utils/word_utils/compareValues';
 import clsx from 'clsx';
+import { Check } from 'lucide-react';
 
 type TranslationInputProps = {
   correctTranslations: string[];
@@ -13,12 +14,9 @@ type TranslationInputProps = {
 };
 
 const TranslationInput = ({ correctTranslations, stage, inputValues, setInputValues }: TranslationInputProps) => {
-  const correctValueIndicatorClasses =
-    stage === 'review'
-      ? compareValues(inputValues.translation, correctTranslations, true)
-        ? ui.correct
-        : ui.incorrect
-      : '';
+  const inputIsCorrect = compareValues(inputValues.translation, correctTranslations, true);
+
+  const correctValueIndicatorClasses = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
 
   let inputWithCorrectValueAppended: string;
 
@@ -27,7 +25,7 @@ const TranslationInput = ({ correctTranslations, stage, inputValues, setInputVal
 
   if (!inputValues.translation.trim()) {
     inputWithCorrectValueAppended = `(${formattedCorrectTranslations})`;
-  } else if (compareValues(inputValues.translation, correctTranslations, true)) {
+  } else if (inputIsCorrect) {
     inputWithCorrectValueAppended = `${inputValues.translation} (${formattedCorrectTranslations})`;
   } else {
     inputWithCorrectValueAppended = `${inputValues.translation} (${formattedCorrectTranslations})`;
@@ -36,13 +34,26 @@ const TranslationInput = ({ correctTranslations, stage, inputValues, setInputVal
   const displayedValue = stage === 'review' ? inputWithCorrectValueAppended : inputValues.translation;
 
   return (
-    <Input
-      label='Übersetzung (mehrere Antworten durch "," trennen)'
-      className={clsx('w-full', correctValueIndicatorClasses)}
-      disabled={stage === 'review'}
-      value={displayedValue}
-      onChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
-    />
+    <div className='flex items-end'>
+      <div className='block w-full'>
+        <Input
+          label='Übersetzung (mehrere Antworten durch "," trennen)'
+          className={clsx('w-full', correctValueIndicatorClasses)}
+          disabled={stage === 'review'}
+          value={displayedValue}
+          onChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
+        />
+      </div>
+      {stage === 'review' && !inputIsCorrect && (
+        <button
+          type='button'
+          className={'m-1.5 w-5 flex-shrink'}
+          onClick={() => setInputValues((prev) => ({ ...prev, translation: correctTranslations.join(', ') }))}
+        >
+          <Check />
+        </button>
+      )}
+    </div>
   );
 };
 
