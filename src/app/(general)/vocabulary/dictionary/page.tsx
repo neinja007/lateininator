@@ -9,11 +9,14 @@ import WordCards from './components/WordCards';
 import WordList from './components/WordList';
 import SearchBar from './components/SearchBar';
 import Hr from '@/components/Hr';
+import { useWidth } from '@/hooks/useWidth';
 
 const Page = () => {
   const [query, setQuery] = useState<string>('');
   const [view, setView] = useState<'cards' | 'list'>('cards');
   const [limitResults, setLimitResults] = useState<boolean>(true);
+
+  useWidth('md', () => setView('cards'));
 
   const results = useResults(query, limitResults);
 
