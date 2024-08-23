@@ -12,24 +12,17 @@ type PropertyInputProps = {
   inputValue: string;
   handleChange: (key: WordProperty, value: string) => void;
   correctValue: string;
-  isInputCorrect: boolean;
   stage: 'test' | 'review';
 };
 
-const PropertyInput = ({
-  stage,
-  correctValue,
-  property,
-  handleChange,
-  inputValue,
-  isInputCorrect
-}: PropertyInputProps) => {
+const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue }: PropertyInputProps) => {
   const options = isWordPropertiesUsingSelectInput(property)
     ? WORD_CONSTANTS.optional[property].reduce((object: { [key: string]: string }, element) => {
         object[element] = (MAPPER.extended[property] as { [key: string]: string })[element];
         return object;
       }, {})
     : {};
+  let isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
   const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
 
   if (isWordPropertiesUsingSelectInput(property)) {
