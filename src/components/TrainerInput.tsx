@@ -2,6 +2,7 @@ import React from 'react';
 import Input from '@/components/Input';
 import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
+import { compareValues } from '@/utils/word_utils/compareValues';
 
 type TrainerInputProps = {
   customStyle?: React.CSSProperties & string;
@@ -13,7 +14,7 @@ type TrainerInputProps = {
 };
 
 const TrainerInput = ({ customStyle, label, handleChange, value, correctValue, stage }: TrainerInputProps) => {
-  const inputIsCorrect = value === correctValue;
+  const inputIsCorrect = compareValues(value, correctValue);
   const correctValueIndicator = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
 
   const valueWithCorrectValue = !inputIsCorrect
