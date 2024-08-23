@@ -23,8 +23,8 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
 
   return (
     <>
-      <div className='grid grid-cols-3'>
-        <p className='col-span-2'>Wähle aus, welche Lektionen du lernen möchtest:</p>
+      <div className='grid-cols-2 md:grid lg:grid-cols-3'>
+        <p className='mb-3 lg:col-span-2'>Wähle aus, welche Lektionen du lernen möchtest:</p>
         <div className='grid grid-cols-2 gap-x-4'>
           <Button
             color={selectedLists.length === lists.length ? 'blue' : 'default'}
@@ -37,7 +37,7 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
           </Button>
         </div>
       </div>
-      <div className='grid grid-cols-7 gap-4'>
+      <div className='grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5 md:gap-4 lg:grid-cols-7'>
         {lists.map((list, i) => (
           <Button
             key={i}
