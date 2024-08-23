@@ -1,4 +1,4 @@
-import { Color } from '@/types/other';
+import { Breakpoint, Color } from '@/types/other';
 
 export const COLORS: { [C in Color]: React.CSSProperties & string } = {
   gray: 'bg-gray-500 text-white border-none hover:bg-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700',
@@ -9,4 +9,11 @@ export const COLORS: { [C in Color]: React.CSSProperties & string } = {
   blue: 'bg-blue-500 text-white border-none hover:bg-blue-400 dark:bg-blue-800 dark:hover:bg-blue-700',
   purple: 'bg-purple-500 text-white border-none hover:bg-purple-400 dark:bg-purple-800 dark:hover:bg-purple-700',
   default: 'bg-white text-black hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800'
+};
+
+export const BREAKPOINTS: { [B in Breakpoint]: number } = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280
 };
