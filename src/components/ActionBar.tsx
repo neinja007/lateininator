@@ -10,9 +10,10 @@ type ActionBarProps = {
 
 const ActionBar = ({ handleContinue, progressPercentage, form }: ActionBarProps) => {
   return (
-    <div className='flex'>
+    <div className='grid grid-cols-2 gap-3 sm:flex'>
       <Button
         color='red'
+        className={'order-2'}
         onClick={() => {
           handleContinue('results');
         }}
@@ -21,7 +22,12 @@ const ActionBar = ({ handleContinue, progressPercentage, form }: ActionBarProps)
         Beenden
       </Button>
       <ProgressBar progressPercentage={progressPercentage} />
-      <Button onClick={form ? undefined : () => handleContinue()} color='green' type={form ? 'submit' : 'button'}>
+      <Button
+        onClick={form ? undefined : () => handleContinue()}
+        color='green'
+        type={form ? 'submit' : 'button'}
+        className={'order-3'}
+      >
         Weiter
       </Button>
     </div>

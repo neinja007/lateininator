@@ -19,7 +19,7 @@ const PropertyInputs = ({
   stage
 }: PropertyInputsProps) => {
   return (
-    <div className='grid gap-4 md:grid-cols-2'>
+    <div className='mb-8 mt-4 grid gap-4 md:grid-cols-2'>
       {wordPropertiesToCheck.map((key, i) => {
         let correctValue = (activeWord as any)[key];
 

@@ -37,7 +37,7 @@ const Test = ({
       <>
         <WordDisplay word={activeWord} />
         <Hr />
-        <form onSubmit={submit} className='space-y-5'>
+        <form onSubmit={submit}>
           {checkTranslation && (
             <TranslationInput
               correctTranslations={activeWord.translation}
