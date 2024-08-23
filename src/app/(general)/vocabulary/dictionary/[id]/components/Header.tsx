@@ -24,7 +24,7 @@ const Header = ({ word }: HeaderProps) => {
       <Heading>
         <span className='mt-4 flex justify-center sm:mt-0 sm:justify-end lg:justify-center'>
           {word.word} {getLexicalForm(word)}
-          <div className='md:text-right'>
+          <div className='ml-3 md:text-right'>
             <Badge text={word.type} />
           </div>
         </span>
