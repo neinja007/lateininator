@@ -1,4 +1,3 @@
-import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
@@ -6,6 +5,7 @@ import { Word } from '@/types/word';
 import { Gender } from '@/types/wordConstants';
 import { getForm } from '@/utils/word_utils/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import TableTrainerInput from '../../../components/TableTrainerInput';
 
 type TableInputProps = {
   form: TableInputForm;
@@ -25,7 +25,7 @@ const TableInput = ({ form, setValues, values, stage, activeWord, genders, check
       </p>
       {checkAdverb && (
         <div className='mb-4'>
-          <TrainerInput
+          <TableTrainerInput
             label='Adverb'
             value={values.adverb}
             handleChange={(value) => setValues((prev) => ({ ...prev, adverb: value }))}
@@ -60,31 +60,29 @@ const TableInput = ({ form, setValues, values, stage, activeWord, genders, check
                       {MAPPER.extended.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
                     </th>
                     {genders.map((gender, i) => (
-                      <td key={i} className='border border-gray-500 p-0'>
-                        <TrainerInput
-                          customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
-                          value={values[gender][numerus][wordCase]}
-                          correctValue={getForm(activeWord, {
-                            gender,
-                            numerus,
-                            wordCase,
-                            comparisonDegree: form.comparisonDegree
-                          })}
-                          handleChange={(value) =>
-                            setValues((prev) => ({
-                              ...prev,
-                              [gender]: {
-                                ...prev[gender],
-                                [numerus]: {
-                                  ...prev[gender][numerus],
-                                  [wordCase]: value
-                                }
+                      <TableTrainerInput
+                        key={gender}
+                        value={values[gender][numerus][wordCase]}
+                        correctValue={getForm(activeWord, {
+                          gender,
+                          numerus,
+                          wordCase,
+                          comparisonDegree: form.comparisonDegree
+                        })}
+                        handleChange={(value) =>
+                          setValues((prev) => ({
+                            ...prev,
+                            [gender]: {
+                              ...prev[gender],
+                              [numerus]: {
+                                ...prev[gender][numerus],
+                                [wordCase]: value
                               }
-                            }))
-                          }
-                          stage={stage}
-                        />
-                      </td>
+                            }
+                          }))
+                        }
+                        stage={stage}
+                      />
                     ))}
                   </tr>
                 )
