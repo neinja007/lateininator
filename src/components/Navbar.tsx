@@ -20,6 +20,19 @@ const Navbar = () => {
     setMobileLinksOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setMobileLinksOpen(false);
+      }
+    };
+    addEventListener('resize', handleResize);
+
+    return () => {
+      removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
       <div className='fixed inset-0 h-16 w-full bg-gray-100 lg:flex dark:bg-gray-950'>
