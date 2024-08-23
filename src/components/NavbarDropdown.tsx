@@ -12,12 +12,11 @@ type NavbarDropdownProps = {
   open: string;
   handleOpen: Dispatch<SetStateAction<string>>;
   active: boolean;
-  mobile?: boolean;
 };
 
-const NavbarDropdown = ({ route, children, open, handleOpen, active, mobile }: NavbarDropdownProps) => {
+const NavbarDropdown = ({ route, children, open, handleOpen, active }: NavbarDropdownProps) => {
   return (
-    <div className={mobile ? 'border-b p-2 last:border-b-0 dark:border-gray-500' : 'my-auto flex justify-center'}>
+    <div className='flex justify-start lg:justify-center'>
       <div
         className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)}
         onClick={() => handleOpen((prevOpen) => (prevOpen === route.label ? '' : route.label))}
@@ -36,8 +35,7 @@ const NavbarDropdown = ({ route, children, open, handleOpen, active, mobile }: N
           <div onClick={() => handleOpen('')} className='fixed inset-0 z-50 h-full w-full' />
           <div
             className={clsx(
-              'absolute z-[50] rounded-lg border bg-white text-center shadow dark:border-gray-500 dark:bg-gray-900 dark:shadow-gray-500',
-              mobile ? 'translate-x-2' : 'translate-y-8'
+              'absolute z-50 translate-y-9 rounded-lg border bg-white text-center shadow lg:translate-y-12 dark:border-gray-500 dark:bg-gray-900 dark:shadow-gray-500'
             )}
           >
             {children}
