@@ -4,18 +4,16 @@ import { usePathname } from 'next/navigation';
 import { SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
-import NavbarDropdownLink from '@/components/NavbarDropdownLink';
 import NavbarLink from '@/components/NavbarLink';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
 import Hr from './Hr';
-import { Dropdown, routes } from '@/data/routes';
-import { Menu, X } from 'lucide-react';
+import { routes } from '@/data/routes';
+import { LogIn, LogOut, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
   const pathname = usePathname();
-  const pathnameSegments = pathname.split('/').map((segment) => '/' + segment);
   const [mobileLinksOpen, setMobileLinksOpen] = useState(false);
 
   useEffect(() => {
@@ -32,37 +30,30 @@ const Navbar = () => {
             if (route.children) {
               return (
                 <NavbarDropdown
+                  route={route}
                   key={i}
-                  label={route.label}
                   open={open}
                   handleOpen={setOpen}
-                  active={pathnameSegments[1] === route.href}
+                  active={pathname.startsWith(route.href)}
                 >
-                  {(route as Dropdown).children.map((child, i) => {
-                    return (
-                      <NavbarDropdownLink
-                        key={i}
-                        label={child.label}
-                        href={route.href + child.href}
-                        active={pathnameSegments[2] === child.href}
-                      />
-                    );
-                  })}
+                  {route.children
+                    .map((child) => ({ ...child, href: route.href + child.href }))
+                    .map((child, i) => {
+                      return <NavbarLink dropdown key={i} route={child} active={pathname === child.href} />;
+                    })}
                 </NavbarDropdown>
               );
             } else {
-              return (
-                <NavbarLink key={i} label={route.label} href={route.href} active={pathnameSegments[1] === route.href} />
-              );
+              return <NavbarLink key={i} route={route} active={pathname === route.href} />;
             }
           })}
           <SignedIn>
             <div className={clsx(navbar.navlink, navbar.inactive)}>
-              <SignOutButton>Abmelden</SignOutButton>
+              <LogOut className='w-5' /> <SignOutButton>Abmelden</SignOutButton>
             </div>
           </SignedIn>
           <SignedOut>
-            <NavbarLink label='Anmelden' href='/sign-in' active={pathnameSegments[1] === '/sign-in'} />
+            <NavbarLink route={{ href: '/sign-in', label: 'Anmelden', icon: LogIn }} active={pathname === '/sign-in'} />
           </SignedOut>
         </div>
         <div className='my-auto block w-full lg:hidden'>
@@ -86,40 +77,28 @@ const Navbar = () => {
           </div>
         </div>
         <Hr />
-        {routes.map((link, i) => {
-          if (link.children) {
+        {routes.map((route, i) => {
+          if (route.children) {
             return (
               <NavbarDropdown
+                route={route}
                 key={i}
-                label={link.label}
                 open={open}
                 handleOpen={(open) => {
                   setOpen(open);
                 }}
-                active={pathnameSegments[1] === link.href}
+                active={pathname.startsWith(route.href)}
                 mobile
               >
-                {(link as Dropdown).children.map((child, i) => {
-                  return (
-                    <NavbarDropdownLink
-                      key={i}
-                      label={child.label}
-                      href={link.href + child.href}
-                      active={pathnameSegments[2] === child.href}
-                    />
-                  );
-                })}
+                {route.children
+                  .map((child) => ({ ...child, href: route.href + child.href }))
+                  .map((child, i) => {
+                    return <NavbarLink dropdown key={i} route={child} active={pathname === child.href} />;
+                  })}
               </NavbarDropdown>
             );
           } else {
-            return (
-              <NavbarDropdownLink
-                key={i}
-                label={link.label}
-                href={link.href}
-                active={pathnameSegments[1] === link.href}
-              />
-            );
+            return <NavbarLink key={i} route={route} active={pathname === route.href} />;
           }
         })}
         <SignedIn>
@@ -128,7 +107,11 @@ const Navbar = () => {
           </div>
         </SignedIn>
         <SignedOut>
-          <NavbarDropdownLink label='Anmelden' href='/sign-in' active={pathnameSegments[1] === '/sign-in'} />
+          <NavbarLink
+            dropdown
+            route={{ href: '/sign-in', label: 'Anmelden', icon: LogIn }}
+            active={pathname === '/sign-in'}
+          />
         </SignedOut>
       </div>
       <div
