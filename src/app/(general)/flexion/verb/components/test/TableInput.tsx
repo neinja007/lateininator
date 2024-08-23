@@ -1,4 +1,3 @@
-import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
@@ -6,6 +5,7 @@ import { Word } from '@/types/word';
 import { Tense } from '@/types/wordConstants';
 import { getForm } from '@/utils/word_utils/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import TableTrainerInput from '../../../components/TableTrainerInput';
 
 type TableInputProps = {
   tableInputForm: TableInputForm;
@@ -56,39 +56,35 @@ const TableInput = ({
                       {MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}
                     </th>
                     {tenses.map((tense) => {
-                      return (
-                        (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
-                          <td key={tense} className='border p-0 dark:border-gray-500'>
-                            {person !== '4' || tense === 'pres' ? (
-                              <TrainerInput
-                                customStyle='w-full m-0 h-8 px-1 bg-inherit focus:outline-none'
-                                value={tableInputValues[tense][numerus][person]}
-                                correctValue={getForm(activeWord, {
-                                  tense,
-                                  numerus,
-                                  person,
-                                  modus: tableInputForm.modus,
-                                  voice: tableInputForm.voice
-                                })}
-                                handleChange={(value) =>
-                                  setTableInputValues((prev) => ({
-                                    ...prev,
-                                    [tense]: {
-                                      ...prev[tense],
-                                      [numerus]: {
-                                        ...prev[tense][numerus],
-                                        [person]: value
-                                      }
-                                    }
-                                  }))
+                      return ((tableInputForm.modus === 'ind' || tense !== 'fut1') && person !== '4') ||
+                        tense === 'pres' ? (
+                        <TableTrainerInput
+                          value={tableInputValues[tense][numerus][person]}
+                          correctValue={getForm(activeWord, {
+                            tense,
+                            numerus,
+                            person,
+                            modus: tableInputForm.modus,
+                            voice: tableInputForm.voice
+                          })}
+                          handleChange={(value) =>
+                            setTableInputValues((prev) => ({
+                              ...prev,
+                              [tense]: {
+                                ...prev[tense],
+                                [numerus]: {
+                                  ...prev[tense][numerus],
+                                  [person]: value
                                 }
-                                stage={stage}
-                              />
-                            ) : (
-                              <div className='h-8 w-full bg-red-400 dark:bg-red-800'>-</div>
-                            )}
-                          </td>
-                        )
+                              }
+                            }))
+                          }
+                          stage={stage}
+                        />
+                      ) : (
+                        <td className='border border-gray-500 p-0'>
+                          <div className='h-8 w-full bg-red-400 pl-2 dark:bg-red-800'>-</div>
+                        </td>
                       );
                     })}
                   </tr>
