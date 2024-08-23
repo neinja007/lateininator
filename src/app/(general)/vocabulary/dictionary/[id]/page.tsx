@@ -7,6 +7,8 @@ import NounTable from './components/tables/NounTable';
 import VerbTable from './components/tables/VerbTable';
 import AdjectiveTable from './components/tables/AdjectiveTable';
 import Hr from '@/components/Hr';
+import { APP_CONSTANTS } from '@/constants/appConstants';
+import { MainWordType } from '@/types/appConstants';
 
 type PageProps = { params: { id: string } };
 
@@ -19,16 +21,20 @@ const Page = ({ params: { id } }: PageProps) => {
       <Header word={word} />
       <Hr />
       <WordInformation word={word} />
-      <Hr />
-      <TableInformation word={word} />
-      {word.type === 'noun' ? (
-        <NounTable word={word} />
-      ) : word.type === 'verb' ? (
-        <VerbTable word={word} />
-      ) : word.type === 'adjective' ? (
-        <AdjectiveTable word={word} />
-      ) : (
-        false
+      {APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType) && (
+        <>
+          <Hr />
+          <TableInformation word={word} />
+          {word.type === 'noun' ? (
+            <NounTable word={word} />
+          ) : word.type === 'verb' ? (
+            <VerbTable word={word} />
+          ) : word.type === 'adjective' ? (
+            <AdjectiveTable word={word} />
+          ) : (
+            false
+          )}
+        </>
       )}
     </div>
   );
