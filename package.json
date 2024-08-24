@@ -18,7 +18,8 @@
     "next": "^14.2.6",
     "react": "^18",
     "react-dom": "^18",
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.4",
+    "stripe": "^16.8.0"
   },
   "devDependencies": {
     "@types/node": "^20",
