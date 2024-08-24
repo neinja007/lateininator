@@ -14,7 +14,11 @@ type NavbarLinkProps = {
 const NavbarLink = ({ dropdown, route, active }: NavbarLinkProps) => {
   return (
     <Link
-      className={clsx(dropdown ? navbar.dropdown_navlink : navbar.navlink, active ? navbar.active : navbar.inactive)}
+      className={clsx(
+        dropdown ? navbar.dropdown_navlink : navbar.navlink,
+        active ? navbar.active : navbar.inactive,
+        route.label === 'Premium' && 'text-pink-600 dark:text-pink-400'
+      )}
       href={route.href}
     >
       <route.icon className='w-5' /> {route.label}
