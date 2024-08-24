@@ -44,13 +44,7 @@ const TestingFormSelection = ({
     <>
       <div className='grid grid-cols-3'>
         <p>Wähle aus, was abgefragt werden soll:</p>
-        <CheckboxWithLabel
-          checked={checkImperative && !disableImperative}
-          handleChange={() => setCheckImperative((prev) => !prev)}
-          disabled={disableImperative}
-          label={'Imperative'}
-        />
-        <div className='grid grid-cols-2 gap-x-4'>
+            label={'Imperativ'}
           <Button
             color={
               conjugations.length === WORD_CONSTANTS.conjugation.length &&
