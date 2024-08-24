@@ -40,8 +40,8 @@ const Page = () => {
           color='sky'
           description='Für Angemeldete User'
           owned={!!user}
-          loading={!user}
-          highest={dbUser ? !dbUser.premium : true}
+          loading={!user.isLoaded}
+          highest={dbUser.isLoaded ? !dbUser.user?.premium || false : true}
         />
         <Card
           title='Premium'
@@ -49,9 +49,9 @@ const Page = () => {
           price={5}
           color='pink'
           description='Für Supporter'
-          owned={dbUser ? dbUser.premium : false}
-          loading={!dbUser}
-          highest={dbUser ? dbUser.premium : false}
+          owned={dbUser.isLoaded ? dbUser.user?.premium || false : false}
+          loading={!dbUser.isLoaded}
+          highest={dbUser.isLoaded ? dbUser.user?.premium || false : false}
         />
       </div>
     </div>
