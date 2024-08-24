@@ -67,6 +67,6 @@ export const routes: Route[] = [
     label: 'Premium',
     href: '/premium',
     icon: Gem,
-    color: 'purple'
+    color: 'pink'
   }
 ];
