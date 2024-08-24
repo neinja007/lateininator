@@ -1,7 +1,8 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
@@ -20,6 +21,8 @@ const Navbar = () => {
   }, [pathname]);
 
   useWidth('lg', () => setMobileLinksOpen(false), true);
+
+  const user = useUser();
 
   return (
     <>
@@ -58,7 +61,11 @@ const Navbar = () => {
           })}
           <SignedIn>
             <NavbarLink
-              route={{ href: '/account/manage', label: 'Profil', icon: User }}
+              route={{
+                href: '/account/manage',
+                label: user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil',
+                icon: User
+              }}
               active={pathname === '/account/manage'}
             />
           </SignedIn>
