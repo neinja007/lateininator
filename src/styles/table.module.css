@@ -2,7 +2,11 @@
 @tailwind utilities;
 
 .table {
-  @apply w-full min-w-[800px] table-fixed border dark:border-gray-500;
+  @apply w-full table-fixed border dark:border-gray-500;
+}
+
+.container {
+  @apply overflow-y-scroll;
 }
 
 .thead,
