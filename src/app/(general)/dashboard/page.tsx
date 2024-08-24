@@ -30,7 +30,7 @@ const Page = () => {
       <div className='col-span-3 flex items-center justify-between gap-2'>
         <RouteLink route={routes.find((route) => route.label === 'Kompetenz') as Route} />
         <SignedOut>
-          <RouteLink route={{ href: '/sign-in', label: 'Anmelden', icon: LogIn, color: 'green' }} />
+          <RouteLink route={{ href: '/account/sign-in', label: 'Anmelden', icon: LogIn, color: 'green' }} />
         </SignedOut>
         <RouteLink route={routes.find((route) => route.label === 'Premium') as Route} />
       </div>
