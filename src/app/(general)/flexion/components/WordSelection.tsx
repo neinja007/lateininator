@@ -13,7 +13,7 @@ const WordSelection = ({ maxUnit, setMaxUnit, validWords, type }: WordSelectionP
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
-      <div className='flex'>
+      <div className='sm:flex'>
         <Select
           label='Lektion'
           value={maxUnit}
@@ -23,7 +23,7 @@ const WordSelection = ({ maxUnit, setMaxUnit, validWords, type }: WordSelectionP
             return acc;
           }, {})}
         />
-        <span className='mb-1.5 ml-5 mt-auto'>
+        <span className='mb-1.5 mt-2 block sm:ml-5 sm:mt-auto'>
           Du hast{' '}
           <b className='text-blue-500'>
             {validWords.length} {type}
