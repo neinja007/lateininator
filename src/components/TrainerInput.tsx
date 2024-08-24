@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '@/components/Input';
 import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
-import { compareValues } from '@/utils/word_utils/compareValues';
+import { compareValues } from '@/utils/word/compareValues';
 
 type TrainerInputProps = {
   customStyle?: React.CSSProperties & string;

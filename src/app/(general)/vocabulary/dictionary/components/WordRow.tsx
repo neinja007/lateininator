@@ -3,7 +3,7 @@ import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
 import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';
-import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
+import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import { ChevronRight } from 'lucide-react';
 
 type WordRowProps = {

@@ -8,7 +8,7 @@ import ContinueButton from '@/components/ContinueButton';
 import { WordProperty, WordType, MainWordType } from '@/types/appConstants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
-import { transformWordTypeToMainWordType } from '@/utils/word_utils/transformWordTypeToMainWordType';
+import { transformWordTypeToMainWordType } from '@/utils/word/transformWordTypeToMainWordType';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 
 type SettingsProps = {

@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import Badge from '@/components/Badge';
 import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';
-import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
+import { getLexicalForm } from '@/utils/word/getLexicalForm';
 
 type WordCardProps = {
   word: Word;

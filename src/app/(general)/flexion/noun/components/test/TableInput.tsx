@@ -2,7 +2,7 @@ import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
 import { SetTableInputValues, TableInputValues } from '../../types';
 import { Noun } from '@/types/word';
-import { getForm } from '@/utils/word_utils/getForm';
+import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
 

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import ui from '@/styles/ui.module.css';
 import { clsx } from 'clsx';
 import { Word } from '@/types/word';
-import { getLexicalForm } from '@/utils/word_utils/getLexicalForm';
+import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import { ArrowLeft } from 'lucide-react';
 
 type HeaderProps = { word: Word };

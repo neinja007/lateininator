@@ -2,7 +2,7 @@ import Input from '@/components/Input';
 import { Dispatch, SetStateAction } from 'react';
 import ui from '@/styles/ui.module.css';
 import { WordProperty } from '@/types/appConstants';
-import { compareValues } from '@/utils/word_utils/compareValues';
+import { compareValues } from '@/utils/word/compareValues';
 import clsx from 'clsx';
 import { Check } from 'lucide-react';
 

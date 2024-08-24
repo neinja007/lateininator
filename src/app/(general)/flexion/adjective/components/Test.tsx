@@ -10,7 +10,7 @@ import Hr from '@/components/Hr';
 import { Adjective } from '@/types/word';
 import { Comparison, ComparisonDegree, Gender, WordCase } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
-import { getForm } from '@/utils/word_utils/getForm';
+import { getForm } from '@/utils/word/getForm';
 
 type TestProps = {
   activeWord: Adjective;

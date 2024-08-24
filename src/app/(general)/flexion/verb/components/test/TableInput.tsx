@@ -3,7 +3,7 @@ import table from '@/styles/table.module.css';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
 import { Word } from '@/types/word';
 import { Tense } from '@/types/wordConstants';
-import { getForm } from '@/utils/word_utils/getForm';
+import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
 

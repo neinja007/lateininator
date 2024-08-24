@@ -1,7 +1,7 @@
 import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
 import { Word } from '@/types/word';
-import { getForm } from '@/utils/word_utils/getForm';
+import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type NounTableProps = { word: Word };

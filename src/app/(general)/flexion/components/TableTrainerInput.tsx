@@ -1,5 +1,5 @@
 import TrainerInput from '@/components/TrainerInput';
-import { compareValues } from '@/utils/word_utils/compareValues';
+import { compareValues } from '@/utils/word/compareValues';
 import { Check } from 'lucide-react';
 
 type TableTrainerInputProps = {

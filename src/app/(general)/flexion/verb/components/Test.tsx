@@ -10,7 +10,7 @@ import Hr from '@/components/Hr';
 import { Verb } from '@/types/word';
 import { Modus, Voice, Tense } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
-import { getForm } from '@/utils/word_utils/getForm';
+import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type TestProps = {

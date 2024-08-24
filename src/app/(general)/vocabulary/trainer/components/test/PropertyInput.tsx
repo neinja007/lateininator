@@ -6,7 +6,7 @@ import TrainerInput from '../../../../../../components/TrainerInput';
 import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
 import { WordProperty } from '@/types/appConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
-import { compareValues } from '@/utils/word_utils/compareValues';
+import { compareValues } from '@/utils/word/compareValues';
 import { Check } from 'lucide-react';
 
 type PropertyInputProps = {

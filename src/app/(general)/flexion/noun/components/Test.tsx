@@ -10,7 +10,7 @@ import Hr from '@/components/Hr';
 import { Noun } from '@/types/word';
 import { WordCase } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
-import { getForm } from '@/utils/word_utils/getForm';
+import { getForm } from '@/utils/word/getForm';
 
 type TestProps = {
   activeWord: Noun;

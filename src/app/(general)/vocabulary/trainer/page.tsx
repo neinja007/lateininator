@@ -6,7 +6,7 @@ import Settings from './components/Settings';
 import Test from './components/Test';
 import Results from '@/components/Results';
 import { useGame } from '@/hooks/useGame';
-import { compareValues } from '@/utils/word_utils/compareValues';
+import { compareValues } from '@/utils/word/compareValues';
 import { WordProperty } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { APP_CONSTANTS } from '@/constants/appConstants';
