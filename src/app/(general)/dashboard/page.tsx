@@ -1,8 +1,8 @@
 import Heading from '@/components/Heading';
 import { Route, routes } from '@/data/routes';
-import { SignedOut } from '@clerk/nextjs';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 import RouteLink from './components/RouteLink';
-import { LogIn } from 'lucide-react';
+import { LogIn, User } from 'lucide-react';
 
 const Page = () => {
   return (
@@ -32,6 +32,9 @@ const Page = () => {
         <SignedOut>
           <RouteLink route={{ href: '/account/sign-in', label: 'Anmelden', icon: LogIn, color: 'green' }} />
         </SignedOut>
+        <SignedIn>
+          <RouteLink route={{ href: '/account/manage', label: 'Profil Verwalten', icon: User, color: 'green' }} />
+        </SignedIn>
         <RouteLink route={routes.find((route) => route.label === 'Premium') as Route} />
       </div>
     </div>
