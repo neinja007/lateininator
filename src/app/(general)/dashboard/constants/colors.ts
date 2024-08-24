@@ -6,6 +6,7 @@ export const routeLinkColors: { [C in Exclude<Color, 'default'>]: string & React
   yellow: 'hover:border-yellow-500 hover:bg-yellow-200 dark:hover:bg-yellow-900',
   orange: 'hover:border-orange-500 hover:bg-orange-200 dark:hover:bg-orange-950',
   red: 'hover:border-red-500 hover:bg-red-200 dark:hover:bg-red-950',
+  pink: 'hover:border-pink-500 hover:bg-pink-200 dark:hover:bg-pink-950',
   purple: 'hover:border-purple-500 hover:bg-purple-200 dark:hover:bg-purple-950',
   gray: 'hover:border-gray-500 hover:bg-gray-200 dark:hover:bg-gray-950'
 };
