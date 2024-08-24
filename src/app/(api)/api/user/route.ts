@@ -11,7 +11,7 @@ export const POST = async (req: NextRequest) => {
 
   try {
     const emailAdress = user.primaryEmailAddress?.emailAddress || user.emailAddresses[0].emailAddress;
-    const username = user.username || user.fullName || user.firstName + ' ' + user.lastName;
+    const username = user.fullName || user.firstName + ' ' + user.lastName || user.username;
 
     if (!emailAdress || !username) {
       console.error('Email or username not found');
@@ -28,6 +28,7 @@ export const POST = async (req: NextRequest) => {
 
     const newUser = await prisma.user.create({
       data: {
+        id: user.id,
         email: emailAdress,
         name: username
       }
