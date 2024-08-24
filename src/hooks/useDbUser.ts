@@ -2,17 +2,40 @@ import { useUser } from '@clerk/nextjs';
 import { User } from '@prisma/client';
 import { useEffect, useState } from 'react';
 
-export const useDbUser = (): [any, User | undefined] => {
+export const useDbUser = (): [
+  { isLoaded: boolean; isSignedIn: boolean; user: ReturnType<typeof useUser>['user'] },
+  { isLoaded: boolean; isSignedIn: boolean; user: User | undefined }
+] => {
   const { isLoaded, isSignedIn, user } = useUser();
-  const [dbUser, setDbUser] = useState<User>();
+  const [dbUserData, setDbUserData] = useState<User>();
+  const [dbUserLoading, setDbUserLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (isLoaded && isSignedIn) {
-      fetch('/api/user')
-        .then((response) => response.json())
-        .then((data) => setDbUser(data));
+    if (isLoaded) {
+      fetch('/api/user', { method: 'GET' })
+        .then((response) => {
+          setDbUserLoading(false);
+          if (response.ok) {
+            return response.json();
+          } else {
+            setDbUserData(undefined);
+          }
+        })
+        .then((data) => setDbUserData(data));
     }
   }, [isLoaded]);
 
-  return [isLoaded ? user : undefined, dbUser];
+  const clerkUser = {
+    isLoaded,
+    isSignedIn: !!isSignedIn,
+    user
+  };
+
+  const dbUser = {
+    isLoaded: !dbUserLoading,
+    isSignedIn: !!dbUserData,
+    user: dbUserData
+  };
+
+  return [clerkUser, dbUser];
 };
