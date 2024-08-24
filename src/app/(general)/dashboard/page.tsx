@@ -33,7 +33,7 @@ const Page = () => {
           <RouteLink route={{ href: '/account/sign-in', label: 'Anmelden', icon: LogIn, color: 'green' }} />
         </SignedOut>
         <SignedIn>
-          <RouteLink route={{ href: '/account/manage', label: 'Profil Verwalten', icon: User, color: 'green' }} />
+          <RouteLink route={{ href: '/account/manage', label: 'Konto Verwalten', icon: User, color: 'green' }} />
         </SignedIn>
         <RouteLink route={routes.find((route) => route.label === 'Premium') as Route} />
       </div>
