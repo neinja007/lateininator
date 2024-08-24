@@ -20,17 +20,17 @@ const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, disab
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
-      <div className='flex space-x-5'>
+      <div className='gap-5 space-y-2 md:flex md:space-y-0'>
         <Button
           disabled={disableTables}
-          className='w-1/2 font-medium'
+          className='w-full font-medium'
           color={testingType === 'table' ? 'blue' : 'default'}
           onClick={() => setTestingType('table')}
         >
           Formen mit Tabellen abfragen
         </Button>
         <Button
-          className='w-1/2 font-medium'
+          className='w-full font-medium'
           color={testingType === 'individual' ? 'blue' : 'default'}
           onClick={() => setTestingType('individual')}
         >
