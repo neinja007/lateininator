@@ -2,6 +2,22 @@ import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
+export const GET = async () => {
+  const clerkUser = await currentUser();
+  if (!clerkUser) {
+    console.error('Unauthorized user');
+    return NextResponse.json({ status: 401, body: { message: 'Unauthorized' } });
+  }
+
+  try {
+    const user = await prisma.user.findUnique({ where: { id: clerkUser.id } });
+    return NextResponse.json(user, { status: 200 });
+  } catch (error: any) {
+    console.error(error);
+    return NextResponse.json({ message: error }, { status: 500 });
+  }
+};
+
 export const POST = async () => {
   const user = await currentUser();
   if (!user) {
