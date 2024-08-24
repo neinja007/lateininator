@@ -34,7 +34,7 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
           <Select
             label={MAPPER.extended.property[property]}
             options={options}
-            className={clsx('w-full', stage === 'review' && correctValueIndicatorClasses)}
+            className={clsx('w-full opacity-100', stage === 'review' && correctValueIndicatorClasses)}
             value={inputValue}
             appendString={stage === 'review' && !isInputCorrect ? correctValue : undefined}
             handleChange={(value) => handleChange(property, value)}
