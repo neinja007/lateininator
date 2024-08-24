@@ -1,8 +1,8 @@
 import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export const POST = async (req: NextRequest) => {
+export const POST = async () => {
   const user = await currentUser();
   if (!user) {
     console.error('Unauthorized user');
@@ -11,9 +11,8 @@ export const POST = async (req: NextRequest) => {
 
   try {
     const emailAdress = user.primaryEmailAddress?.emailAddress || user.emailAddresses[0].emailAddress;
-    const username = user.fullName || user.firstName + ' ' + user.lastName || user.username;
 
-    if (!emailAdress || !username) {
+    if (!emailAdress || !user.fullName) {
       console.error('Email or username not found');
       return NextResponse.json({ status: 400, body: { message: 'Email or username not found' } });
     }
@@ -30,7 +29,7 @@ export const POST = async (req: NextRequest) => {
       data: {
         id: user.id,
         email: emailAdress,
-        name: username
+        name: user.fullName
       }
     });
 
