@@ -5,6 +5,7 @@ import {
   BookOpenText,
   CircleDot,
   Crosshair,
+  Gem,
   LayoutDashboard,
   Newspaper,
   PencilLine,
@@ -61,5 +62,11 @@ export const routes: Route[] = [
       }
     ]
   },
-  { label: 'Kompetenz', href: '/competence', color: 'orange', icon: Crosshair }
+  { label: 'Kompetenz', href: '/competence', color: 'orange', icon: Crosshair },
+  {
+    label: 'Premium',
+    href: '/premium',
+    icon: Gem,
+    color: 'purple'
+  }
 ];
