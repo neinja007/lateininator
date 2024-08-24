@@ -32,7 +32,7 @@ const Page = () => {
         <SignedOut>
           <RouteLink route={{ href: '/sign-in', label: 'Anmelden', icon: LogIn }} color='green' />
         </SignedOut>
-        {/* <RouteLink route={{ href: '/premium', label: 'Premium' }} /> */}
+        <RouteLink route={routes.find((route) => route.label === 'Premium') as Route} />
       </div>
     </div>
   );
