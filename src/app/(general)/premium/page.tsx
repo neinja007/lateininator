@@ -21,9 +21,9 @@ const Page = () => {
   const [user, dbUser] = useDbUser();
 
   return (
-    <div>
+    <>
       <Heading>Lateininator Premium</Heading>
-      <div className='my-5 grid grid-cols-3 gap-x-2'>
+      <div className='my-5 grid gap-x-3 gap-y-5 lg:grid-cols-3'>
         <Card
           title='Basic'
           features={features.slice(0, 2)}
@@ -54,7 +54,7 @@ const Page = () => {
           highest={dbUser.isLoaded ? dbUser.user?.premium || false : false}
         />
       </div>
-    </div>
+    </>
   );
 };
 
