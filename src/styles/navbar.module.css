@@ -6,7 +6,7 @@
 }
 
 .dropdown_navlink {
-  @apply my-2 lg:my-auto font-semibold cursor-pointer select-none p-2 gap-x-2 border-b last:border-b-0 dark:border-gray-500 flex items-center;
+  @apply lg:my-auto font-semibold cursor-pointer select-none p-2 px-3 gap-x-2 border-b last:border-b-0 dark:border-gray-500 flex items-center;
 }
 
 .active {
