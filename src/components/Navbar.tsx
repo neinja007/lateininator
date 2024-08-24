@@ -1,14 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
-import navbar from '@/styles/navbar.module.css';
-import clsx from 'clsx';
 import { routes } from '@/data/routes';
-import { LogIn, LogOut, Menu } from 'lucide-react';
+import { LogIn, Menu, User } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 
 const Navbar = () => {
@@ -59,12 +57,16 @@ const Navbar = () => {
             }
           })}
           <SignedIn>
-            <div className={clsx(navbar.navlink, navbar.inactive)}>
-              <LogOut className='w-5' /> <SignOutButton>Abmelden</SignOutButton>
-            </div>
+            <NavbarLink
+              route={{ href: '/account/manage', label: 'Profil', icon: User }}
+              active={pathname === '/account/manage'}
+            />
           </SignedIn>
           <SignedOut>
-            <NavbarLink route={{ href: '/sign-in', label: 'Anmelden', icon: LogIn }} active={pathname === '/sign-in'} />
+            <NavbarLink
+              route={{ href: '/account/sign-in', label: 'Anmelden', icon: LogIn }}
+              active={pathname === '/account/sign-in'}
+            />
           </SignedOut>
         </div>
       </div>
