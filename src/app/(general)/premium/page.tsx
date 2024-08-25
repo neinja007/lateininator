@@ -14,7 +14,7 @@ const features = [
   'Automatisches Abfragen',
   'Statistiken',
   'Fehleranalyse',
-  'Supporte die Entwickler'
+  'Supporte uns'
 ];
 
 const Page = () => {
