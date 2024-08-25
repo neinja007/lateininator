@@ -5,6 +5,7 @@ import getStripe from '@/utils/stripe/get-stripe';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './components/CheckoutForm';
 import { useEffect, useState } from 'react';
+import { monthlyPrice } from '@/constants/other';
 
 const stripePromise = getStripe();
 
@@ -20,7 +21,7 @@ const Page = () => {
         stripe={stripePromise}
         options={{
           mode: 'subscription',
-          amount: 500,
+          amount: monthlyPrice * 100,
           currency: 'eur',
           captureMethod: 'automatic',
           appearance: {
