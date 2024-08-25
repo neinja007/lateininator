@@ -88,7 +88,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
               </span>
               {color === 'pink' && <br />}
               {!owned &&
-                (!!price ? (
+                (price ? (
                   <span className={color !== 'pink' ? 'text-xl' : '-mt-2 text-sm'}>
                     {color === 'pink' && 'danach'} {price}{' '}
                     <span className={color !== 'pink' ? 'text-xl' : 'text-xs'}>€</span>/Monat
