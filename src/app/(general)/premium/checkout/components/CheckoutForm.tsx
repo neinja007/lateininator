@@ -1,3 +1,4 @@
+import { monthlyPrice } from '@/constants/other';
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -69,6 +70,7 @@ const CheckoutForm = () => {
           >
             {loading ? 'Wird geladen...' : '7-Tage Testlauf starten'}
           </button>
+          {stripe && !loading && <div className='mt-1 text-white'>danach {monthlyPrice}€/Monat</div>}
         </div>
       </form>
     </div>
