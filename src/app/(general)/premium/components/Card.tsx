@@ -64,7 +64,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
         <br />
         <button
           className={clsx(
-            'mt-4 min-h-12 w-full px-4 text-lg font-medium backdrop-brightness-75 transition-colors',
+            'mt-4 min-h-12 w-full px-4 text-lg font-medium leading-tight backdrop-brightness-75 transition-colors',
             owned ? 'opacity-50' : color !== 'pink' && 'flex items-center justify-between'
           )}
         >
@@ -72,24 +72,21 @@ const Card = ({ features, price, title, color, owned, description, href, loading
             'Wird geladen...'
           ) : (
             <>
-              <span className='text-xl'>
+              <span className='block text-xl'>
                 {owned ? (
                   <span className='flex items-center justify-center'>
                     <Check className='mr-3 h-6 w-6' />
                     Schon erworben
                   </span>
                 ) : color === 'pink' ? (
-                  <span>
-                    7 Tage um <b>0€</b> Testen
-                  </span>
+                  <span>7 Tage kostentlos Testen</span>
                 ) : (
                   'Erwerben' + (price ? ':' : '')
                 )}
               </span>
-              {color === 'pink' && <br />}
               {!owned &&
                 (price ? (
-                  <span className={color !== 'pink' ? 'text-xl' : '-mt-2 text-sm'}>
+                  <span className={color !== 'pink' ? 'text-xl' : 'text-sm'}>
                     {color === 'pink' && 'danach'} {price}{' '}
                     <span className={color !== 'pink' ? 'text-xl' : 'text-xs'}>€</span>/Monat
                   </span>
