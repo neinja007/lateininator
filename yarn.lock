@@ -613,6 +613,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stripe/stripe-js@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "@stripe/stripe-js@npm:4.3.0"
+  checksum: 10c0/43ec28d0bf5d9fa68ba9394bb90ada96142594448115ae906b7dbb4a8bc47f629dac9fbf685ef0b592d303365344d23f97171fa808a4a98187e622d942e0984f
+  languageName: node
+  linkType: hard
+
 "@swc/counter@npm:^0.1.3":
   version: 0.1.3
   resolution: "@swc/counter@npm:0.1.3"
@@ -2912,6 +2919,7 @@ __metadata:
     "@clerk/nextjs": "npm:^5.1.5"
     "@neondatabase/serverless": "npm:^0.9.4"
     "@prisma/client": "npm:^5.18.0"
+    "@stripe/stripe-js": "npm:^4.3.0"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
