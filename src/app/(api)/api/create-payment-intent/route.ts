@@ -1,8 +1,8 @@
 import { monthlyPrice } from '@/constants/other';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: monthlyPrice * 100,
