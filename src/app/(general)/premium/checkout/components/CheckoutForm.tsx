@@ -62,10 +62,10 @@ const CheckoutForm = () => {
       <form onSubmit={handleSubmit}>
         {clientSecret && <PaymentElement options={{ layout: 'tabs' }} onReady={() => setLoading(false)} />}
         {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
-        <div className='flex justify-center'>
+        <div className='text-center'>
           <button
             type='submit'
-            className='mt-5 rounded-lg bg-purple-700 px-3 py-1.5 text-white shadow-md shadow-purple-300 transition-all hover:bg-purple-600 hover:shadow-white disabled:animate-pulse disabled:opacity-50'
+            className='mt-5 rounded-lg bg-purple-700 px-3 py-1.5 font-bold text-white shadow-md shadow-purple-300 transition-all hover:bg-purple-600 hover:shadow-white disabled:animate-pulse disabled:opacity-50'
             disabled={!stripe || loading}
           >
             {loading ? 'Wird geladen...' : '7-Tage Testlauf starten'}
