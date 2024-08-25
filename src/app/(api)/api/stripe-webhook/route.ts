@@ -1,7 +1,7 @@
 // app/api/stripe-webhook/route.js
 
 import { prisma } from '@/utils/other/client';
-import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -12,11 +12,6 @@ export const POST = async (req: NextRequest) => {
 
   const payload = await req.text();
   const sig = req.headers.get('stripe-signature');
-
-  const user = await currentUser();
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
 
   let event;
 
@@ -35,7 +30,7 @@ export const POST = async (req: NextRequest) => {
 
     event = stripe.webhooks.constructEvent(payload, sig, webhookSecret);
   } catch (err: any) {
-    console.error(`Webhook signature verification failed.`, err.message);
+    console.error(`Webhook signature verification failed.` /*err.message*/);
     return NextResponse.json({ error: 'Webhook Error' }, { status: 400 });
   }
 
@@ -45,12 +40,25 @@ export const POST = async (req: NextRequest) => {
         const paymentIntent = event.data.object;
         console.log('PaymentIntent was successful!', paymentIntent);
 
+        const userId = paymentIntent.metadata.userId;
+        if (!userId) {
+          console.error('No userId found in metadata!');
+          return NextResponse.json({ error: 'No userId found in metadata!' }, { status: 400 });
+        }
+
+        let state = 'error';
         try {
-          await prisma.user.update({ where: { id: user.id }, data: { premium: true } });
+          await prisma.user.update({
+            where: { id: userId },
+            data: { premium: true }
+          });
+          state = 'success';
         } catch (error: any) {
           console.error(error);
-          return NextResponse.json({ error: error.message }, { status: 500 });
+          redirect('/premium/success?state=error');
         }
+
+        redirect('/premium/success?state=' + state);
       }
       break;
     case 'payment_intent.payment_failed':
