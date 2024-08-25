@@ -8,9 +8,6 @@ import { useEffect, useState } from 'react';
 
 const stripePromise = getStripe();
 
-// q: how can i specify that there is a trial period (to stripe, not the user. im scared that ill charge far too much)
-// a: https://stripe.com/docs/billing/subscriptions/trials
-
 const Page = () => {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -25,6 +22,7 @@ const Page = () => {
           mode: 'subscription',
           amount: 500,
           currency: 'eur',
+          captureMethod: 'automatic',
           appearance: {
             theme: darkMode ? 'night' : 'stripe',
             labels: 'above',
