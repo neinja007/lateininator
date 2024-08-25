@@ -39,6 +39,7 @@ const Page = () => {
           title='Full'
           features={features.slice(0, 6)}
           price={0}
+          href='/account/sign-in'
           color='sky'
           description='Für Angemeldete User'
           owned={user.isSignedIn}
