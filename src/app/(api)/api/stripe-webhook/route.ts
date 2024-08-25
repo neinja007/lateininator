@@ -21,7 +21,19 @@ export const POST = async (req: NextRequest) => {
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(payload, sig!, process.env.STRIPE_WEBHOOK_SECRET!);
+    if (!sig) {
+      console.error('No signature found in headers!');
+      return NextResponse.json({ error: 'No signature found in headers!' }, { status: 400 });
+    }
+
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+    if (!webhookSecret) {
+      console.error('STRIPE_WEBHOOK_SECRET is not set!');
+      return NextResponse.json({ error: 'STRIPE_WEBHOOK_SECRET is not set!' }, { status: 500 });
+    }
+
+    event = stripe.webhooks.constructEvent(payload, sig, webhookSecret);
   } catch (err: any) {
     console.error(`Webhook signature verification failed.`, err.message);
     return NextResponse.json({ error: 'Webhook Error' }, { status: 400 });
