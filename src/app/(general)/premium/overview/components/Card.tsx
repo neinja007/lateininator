@@ -37,7 +37,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
         className={clsx(
           'overflow-hidden rounded-2xl border-2 border-gray-500 bg-gradient-to-b shadow-lg transition-all hover:border-white',
           colors[color].container,
-          owned && !highest && 'cursor-default opacity-50',
+          owned && (color !== 'pink' || !highest) && 'cursor-default opacity-50',
           loading && 'animate-pulse',
           highest && 'border-sky-500'
         )}
