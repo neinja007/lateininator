@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-const URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://lateininator.vercel.app';
-
 const Page = () => {
   const [responseStatus, setResponseStatus] = useState<number>();
   const [response, setResponse] = useState<User>();
@@ -14,7 +12,7 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch(URL + '/api/user', {
+    fetch(window.location.origin + '/api/user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +42,7 @@ const Page = () => {
           Sie werden in Kürze weitergeleitet. Sollte dies nicht der Fall sein, bitten wir Sie, unseren{' '}
           <Link className='text-blue-500 hover:underline' href={'mailto:support@lateininator.com'}>
             Support
-          </Link>
+          </Link>{' '}
           zu kontaktieren.
         </p>
       </div>
