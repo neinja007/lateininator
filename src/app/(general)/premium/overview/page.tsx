@@ -2,7 +2,7 @@
 import Heading from '@/components/Heading';
 import Card from './components/Card';
 import { useDbUser } from '@/hooks/useDbUser';
-import getStripe from '@/utils/stripe/get-stripe';
+import { monthlyPrice } from '@/constants/other';
 
 const features = [
   'Wörterbuch',
@@ -17,8 +17,6 @@ const features = [
   'Fehleranalyse',
   'Supporte uns'
 ];
-
-const stripePromise = getStripe();
 
 const Page = () => {
   const [user, dbUser] = useDbUser();
@@ -52,13 +50,13 @@ const Page = () => {
         <Card
           title='Premium'
           features={features}
-          price={5}
+          price={monthlyPrice}
           color='pink'
           description='Für Supporter'
           owned={userIsPremium}
           loading={!dbUser.isLoaded}
           highest={userIsPremium}
-          href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_URL}
+          href={'/premium/checkout'}
         />
       </div>
     </>
