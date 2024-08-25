@@ -47,3 +47,5 @@ next-env.d.ts
 /stripe.exe
 /prisma/.env
 .env
+/anchor.toml
+/tmp
