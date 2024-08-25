@@ -5,7 +5,7 @@ const Page = () => {
     <div>
       <Heading>Lateininator Premium</Heading>
       <p className='mt-5 text-center'>
-        Vielen Dank für deinen Einkauf! Du kannst von nun an alle Premium-Funktionen nutzen.
+        Vielen Dank für Ihren Einkauf! Sie können von nun an alle Premium-Funktionen nutzen.
       </p>
     </div>
   );
