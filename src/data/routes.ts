@@ -65,7 +65,7 @@ export const routes: Route[] = [
   { label: 'Kompetenz', href: '/competence', color: 'orange', icon: Crosshair },
   {
     label: 'Premium',
-    href: '/premium',
+    href: '/premium/overview',
     icon: Gem,
     color: 'pink'
   }
