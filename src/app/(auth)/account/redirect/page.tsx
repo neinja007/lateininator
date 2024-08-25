@@ -30,8 +30,6 @@ const Page = () => {
       });
   }, []);
 
-  console.log(response, responseStatus);
-
   if (responseStatus === 200) {
     router.push('/dashboard');
   }
