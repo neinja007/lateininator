@@ -18,3 +18,5 @@ export const BREAKPOINTS: { [B in Breakpoint]: number } = {
   lg: 1024,
   xl: 1280
 };
+
+export const monthlyPrice = 5;
