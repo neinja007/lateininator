@@ -1,14 +1,11 @@
 import { monthlyPrice } from '@/constants/other';
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState<string>();
   const [errorMessage, setErrorMessage] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
-
-  const router = useRouter();
 
   const stripe = useStripe();
   const elements = useElements();
