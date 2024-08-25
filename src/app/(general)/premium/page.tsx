@@ -20,6 +20,8 @@ const features = [
 const Page = () => {
   const [user, dbUser] = useDbUser();
 
+  const userIsPremium = dbUser.isLoaded ? dbUser.user?.premium || false : false;
+
   return (
     <>
       <Heading>Lateininator Premium</Heading>
@@ -31,7 +33,7 @@ const Page = () => {
           color='gray'
           owned
           description='Für Alle'
-          highest={!user}
+          highest={!user.isSignedIn}
         />
         <Card
           title='Full'
@@ -39,9 +41,9 @@ const Page = () => {
           price={0}
           color='sky'
           description='Für Angemeldete User'
-          owned={!!user}
+          owned={user.isSignedIn}
           loading={!user.isLoaded}
-          highest={dbUser.isLoaded ? !dbUser.user?.premium || false : true}
+          highest={!userIsPremium && user.isSignedIn}
         />
         <Card
           title='Premium'
@@ -49,9 +51,9 @@ const Page = () => {
           price={5}
           color='pink'
           description='Für Supporter'
-          owned={dbUser.isLoaded ? dbUser.user?.premium || false : false}
+          owned={userIsPremium}
           loading={!dbUser.isLoaded}
-          highest={dbUser.isLoaded ? dbUser.user?.premium || false : false}
+          highest={userIsPremium}
         />
       </div>
     </>
