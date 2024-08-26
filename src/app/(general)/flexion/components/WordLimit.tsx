@@ -2,6 +2,7 @@ import Input from '@/components/Input';
 import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
 import { useWidth } from '@/hooks/useWidth';
+import { Breakpoint } from '@/types/other';
 
 type WordLimitProps = {
   testingType: 'table' | 'individual';
@@ -9,9 +10,17 @@ type WordLimitProps = {
   inputValue: string;
   updateValue: (arg: string) => void;
   disableTables?: boolean;
+  disableTablesOnBreakpoint?: Breakpoint;
 };
 
-const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, disableTables }: WordLimitProps) => {
+const WordLimit = ({
+  disableTablesOnBreakpoint,
+  testingType,
+  setTestingType,
+  inputValue,
+  updateValue,
+  disableTables
+}: WordLimitProps) => {
   const [disableTablesBecauseOfWidth, setDisableTablesBecauseOfWidth] = useState(false);
 
   useEffect(() => {
@@ -21,7 +30,7 @@ const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, disab
   }, [disableTables, setTestingType, testingType]);
 
   useWidth(
-    'md',
+    disableTablesOnBreakpoint,
     () => {
       if (testingType === 'table') {
         setTestingType('individual');
