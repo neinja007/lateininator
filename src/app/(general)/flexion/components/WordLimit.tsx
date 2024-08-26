@@ -1,6 +1,7 @@
 import Input from '@/components/Input';
 import Button from '@/components/Button';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useWidth } from '@/hooks/useWidth';
 
 type WordLimitProps = {
   testingType: 'table' | 'individual';
@@ -11,18 +12,38 @@ type WordLimitProps = {
 };
 
 const WordLimit = ({ testingType, setTestingType, inputValue, updateValue, disableTables }: WordLimitProps) => {
+  const [disableTablesBecauseOfWidth, setDisableTablesBecauseOfWidth] = useState(false);
+
   useEffect(() => {
     if (disableTables && testingType === 'table') {
       setTestingType('individual');
     }
   }, [disableTables, setTestingType, testingType]);
 
+  useWidth(
+    'md',
+    () => {
+      if (testingType === 'table') {
+        setTestingType('individual');
+      }
+      !disableTablesBecauseOfWidth && setDisableTablesBecauseOfWidth(true);
+    },
+    () => {
+      setDisableTablesBecauseOfWidth(false);
+    }
+  );
+
   return (
     <>
-      <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
+      <p>Wählen Sie aus, wie Sie abgefragt werden möchten.</p>
+      {disableTablesBecauseOfWidth && (
+        <p className='text-yellow-500'>
+          Aufgrund eines zu engen Displays können wir die Formen nicht in der Tabellenform abfragen.
+        </p>
+      )}
       <div className='gap-5 space-y-2 md:flex md:space-y-0'>
         <Button
-          disabled={disableTables}
+          disabled={disableTables || disableTablesBecauseOfWidth}
           className='w-full font-medium'
           color={testingType === 'table' ? 'blue' : 'default'}
           onClick={() => setTestingType('table')}
