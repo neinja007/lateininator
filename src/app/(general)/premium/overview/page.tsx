@@ -11,8 +11,9 @@ const features = [
   'Grammatikartikel',
   'Grammatikübungen',
   'Vokabeltrainer',
-  'alle Flexionstrainer',
-  'Wörterbuch',
+  'Deklinationstrainer',
+  'Konjugationstrainer',
+  'Komparationstrainer',
   'Kompetenzbereich',
   'Automatisches Abfragen',
   'Statistiken',
@@ -65,7 +66,7 @@ const Page = () => {
         {(!onlyShowNextRank || !user.isSignedIn || !user.isLoaded) && (
           <Card
             title='Full'
-            features={features.slice(0, 6)}
+            features={features.slice(0, 7)}
             price={0}
             href='/account/sign-in'
             color='sky'
