@@ -1,11 +1,10 @@
-import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
-import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { Verb } from '@/types/word';
 import { Voice, Modus, Tense, Conjugation } from '@/types/wordConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
+import FormSelection from '../../../components/FormSelection';
 
 type TestingFormSelectionProps = {
   voices: Voice[];
@@ -41,92 +40,68 @@ const TestingFormSelection = ({
   const disableImperative = !modi.includes('ind') || !voices.includes('act') || !tenses.includes('pres');
 
   return (
-    <>
-      <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3'>
-        <p>Wähle aus, was abgefragt werden soll:</p>
-        <div className='block justify-end sm:flex lg:justify-start'>
-          <CheckboxWithLabel
-            checked={checkImperative && !disableImperative}
-            handleChange={() => setCheckImperative((prev) => !prev)}
-            disabled={disableImperative}
-            label={'Imperativ'}
-          />
-        </div>
-        <div className='col-span-2 mt-2 grid grid-cols-2 gap-x-4 lg:col-span-1'>
-          <Button
-            color={
-              conjugations.length === WORD_CONSTANTS.conjugation.length &&
-              modi.length === WORD_CONSTANTS.modus.length &&
-              tenses.length === WORD_CONSTANTS.tense.length &&
-              voices.length === WORD_CONSTANTS.voice.length &&
-              checkImperative
-                ? 'blue'
-                : 'default'
-            }
-            onClick={() => {
-              setConjugations([...WORD_CONSTANTS.conjugation]);
-              setModi([...WORD_CONSTANTS.modus]);
-              setTenses([...WORD_CONSTANTS.tense]);
-              setVoices([...WORD_CONSTANTS.voice]);
-              setCheckImperative(true);
-            }}
-          >
-            Alle auswählen
-          </Button>
-          <Button
-            color={
-              conjugations.length === 0 &&
-              modi.length === 0 &&
-              tenses.length === 0 &&
-              voices.length === 0 &&
-              !checkImperative
-                ? 'blue'
-                : 'default'
-            }
-            onClick={() => {
-              setConjugations([]);
-              setModi([]);
-              setTenses([]);
-              setVoices([]);
-              setCheckImperative(false);
-            }}
-          >
-            Alle abwählen
-          </Button>
-        </div>
-      </div>
-      <div className='grid grid-cols-2 gap-y-2 sm:grid-cols-4'>
-        <CheckboxList
-          options={[...WORD_CONSTANTS.conjugation]}
-          disabledOptions={conjugationsNotToCheck}
-          selected={conjugations}
-          setSelected={setConjugations}
-          label='Konjugation'
-          mapper={MAPPER.extended.conjugation}
-        />
-        <CheckboxList
-          options={[...WORD_CONSTANTS.modus]}
-          selected={modi}
-          setSelected={setModi}
-          label='Modus'
-          mapper={MAPPER.extended.modus}
-        />
-        <CheckboxList
-          options={[...WORD_CONSTANTS.tense]}
-          selected={tenses}
-          setSelected={setTenses}
-          label='Zeitformen'
-          mapper={MAPPER.extended.tense}
-        />
-        <CheckboxList
-          options={[...WORD_CONSTANTS.voice]}
-          selected={voices}
-          setSelected={setVoices}
-          label='Aktiv / Passiv'
-          mapper={MAPPER.extended.voice}
-        />
-      </div>
-    </>
+    <FormSelection
+      titleOption={{
+        checked: checkImperative && !disableImperative,
+        handleChange: () => setCheckImperative((prev) => !prev),
+        disabled: disableImperative,
+        label: 'Imperativ'
+      }}
+      selectAll={() => {
+        setConjugations([...WORD_CONSTANTS.conjugation]);
+        setModi([...WORD_CONSTANTS.modus]);
+        setTenses([...WORD_CONSTANTS.tense]);
+        setVoices([...WORD_CONSTANTS.voice]);
+        setCheckImperative(true);
+      }}
+      selectAllActive={
+        conjugations.length === WORD_CONSTANTS.conjugation.length &&
+        modi.length === WORD_CONSTANTS.modus.length &&
+        tenses.length === WORD_CONSTANTS.tense.length &&
+        voices.length === WORD_CONSTANTS.voice.length &&
+        checkImperative
+      }
+      selectNone={() => {
+        setConjugations([]);
+        setModi([]);
+        setTenses([]);
+        setVoices([]);
+        setCheckImperative(false);
+      }}
+      selectNoneActive={
+        conjugations.length === 0 && modi.length === 0 && tenses.length === 0 && voices.length === 0 && !checkImperative
+      }
+    >
+      <CheckboxList
+        options={[...WORD_CONSTANTS.conjugation]}
+        disabledOptions={conjugationsNotToCheck}
+        selected={conjugations}
+        setSelected={setConjugations}
+        label='Konjugation'
+        mapper={MAPPER.extended.conjugation}
+      />
+      <CheckboxList
+        options={[...WORD_CONSTANTS.modus]}
+        selected={modi}
+        setSelected={setModi}
+        label='Modus'
+        mapper={MAPPER.extended.modus}
+      />
+      <CheckboxList
+        options={[...WORD_CONSTANTS.tense]}
+        selected={tenses}
+        setSelected={setTenses}
+        label='Zeitformen'
+        mapper={MAPPER.extended.tense}
+      />
+      <CheckboxList
+        options={[...WORD_CONSTANTS.voice]}
+        selected={voices}
+        setSelected={setVoices}
+        label='Aktiv / Passiv'
+        mapper={MAPPER.extended.voice}
+      />
+    </FormSelection>
   );
 };
 
