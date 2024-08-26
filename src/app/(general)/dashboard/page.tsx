@@ -27,7 +27,7 @@ const Page = () => {
           </div>
         ))}
       <p className='mb-2 mt-10 text-center text-lg font-bold'>Sonstiges</p>
-      <div className='col-span-3 flex items-center justify-between gap-2'>
+      <div className='col-span-3 items-center justify-between gap-2 sm:flex'>
         <RouteLink route={routes.find((route) => route.label === 'Kompetenz') as Route} />
         <SignedOut>
           <RouteLink route={{ href: '/account/sign-in', label: 'Anmelden', icon: LogIn, color: 'green' }} />
