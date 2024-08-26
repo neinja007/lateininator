@@ -1,5 +1,5 @@
 import { BREAKPOINTS } from '@/constants/other';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export const useWidth = (
   width: 'sm' | 'md' | 'lg' | 'xl',
@@ -7,18 +7,21 @@ export const useWidth = (
   onExit?: () => void,
   max?: boolean
 ): void => {
+  const handleResize = useCallback(() => {
+    if (max ? window.innerWidth > BREAKPOINTS[width] : window.innerWidth < BREAKPOINTS[width]) {
+      onReachWidth();
+    } else {
+      onExit && onExit();
+    }
+  }, [max, onExit, onReachWidth, width]);
+
   useEffect(() => {
-    const handleResize = () => {
-      if (max ? window.innerWidth > BREAKPOINTS[width] : window.innerWidth < BREAKPOINTS[width]) {
-        onReachWidth();
-      } else {
-        onExit && onExit();
-      }
-    };
     addEventListener('resize', handleResize);
+
+    handleResize();
 
     return () => {
       removeEventListener('resize', handleResize);
     };
-  }, [width, onReachWidth, max, onExit]);
+  }, [handleResize]);
 };
