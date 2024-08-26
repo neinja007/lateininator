@@ -1,15 +1,13 @@
 'use client';
 import getStripe from '@/utils/stripe/get-stripe';
-import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { useIsDarkTheme } from '@/hooks/useIsDarkTheme';
 
 const stripePromise = getStripe();
 
 const Page = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches), []);
+  const darkMode = useIsDarkTheme();
 
   const user = useUser();
 
