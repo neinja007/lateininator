@@ -1,6 +1,8 @@
 'use client';
+
+import LoadingHeading from '@/components/LoadingHeading';
 import { User } from '@prisma/client';
-import { Check, LoaderPinwheel } from 'lucide-react';
+import { Check } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -35,9 +37,7 @@ const Page = () => {
   if (!response) {
     return (
       <div>
-        <p className='mb-4 flex animate-pulse items-center justify-center text-4xl'>
-          <LoaderPinwheel className='mr-3 h-8 w-8 animate-spin' /> Ihr Profil wird eingerichtet...
-        </p>
+        <LoadingHeading>Ihr Profil wird eingerichtet...</LoadingHeading>
         <p>
           Sie werden in Kürze weitergeleitet. Sollte dies nicht der Fall sein, bitten wir Sie, unseren{' '}
           <Link className='text-blue-500 hover:underline' href={'mailto:support@lateininator.com'}>
