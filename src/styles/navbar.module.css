@@ -2,11 +2,11 @@
 @tailwind utilities;
 
 .navlink {
-  @apply py-2 lg:my-auto mx-2 font-semibold cursor-pointer select-none transition-colors flex gap-x-1 items-center;
+  @apply py-2 xl:my-auto mx-2 font-semibold cursor-pointer select-none transition-colors flex gap-x-1 items-center;
 }
 
 .dropdown_navlink {
-  @apply lg:my-auto font-semibold cursor-pointer select-none p-2 px-3 gap-x-2 border-b last:border-b-0 dark:border-gray-500 flex items-center;
+  @apply xl:my-auto font-semibold cursor-pointer select-none p-2 px-3 gap-x-2 border-b last:border-b-0 dark:border-gray-500 flex items-center;
 }
 
 .active {

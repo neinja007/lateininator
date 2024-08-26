@@ -16,7 +16,7 @@ type NavbarDropdownProps = {
 
 const NavbarDropdown = ({ route, children, open, handleOpen, active }: NavbarDropdownProps) => {
   return (
-    <div className='flex justify-start lg:justify-center'>
+    <div className='flex justify-start xl:justify-center'>
       <div
         className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)}
         onClick={() => handleOpen((prevOpen) => (prevOpen === route.label ? '' : route.label))}
@@ -35,7 +35,7 @@ const NavbarDropdown = ({ route, children, open, handleOpen, active }: NavbarDro
           <div onClick={() => handleOpen('')} className='fixed inset-0 z-50 h-full w-full' />
           <div
             className={clsx(
-              'absolute z-50 translate-y-9 rounded-lg border bg-white text-center shadow lg:translate-y-12 dark:border-gray-500 dark:bg-gray-900 dark:shadow-gray-500'
+              'absolute z-50 translate-y-9 rounded-lg border bg-white text-center shadow xl:translate-y-12 dark:border-gray-500 dark:bg-gray-900 dark:shadow-gray-500'
             )}
           >
             {children}

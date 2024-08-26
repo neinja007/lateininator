@@ -27,16 +27,16 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='fixed inset-0 z-50 h-16 w-full bg-gray-100 lg:flex dark:bg-gray-950'>
+      <div className='fixed inset-0 z-50 h-16 w-full bg-gray-100 xl:flex dark:bg-gray-950'>
         <Menu
-          className='float-end m-3 h-9 w-11 cursor-pointer select-none lg:hidden'
+          className='float-end m-3 h-9 w-11 cursor-pointer select-none xl:hidden'
           onClick={() => setMobileLinksOpen((prev) => !prev)}
         />
         <Logo />
         <div
           className={clsx(
-            'mr-4 mt-16 w-full justify-end bg-gray-100 pb-1 lg:mt-0 xl:justify-center dark:bg-gray-950',
-            mobileLinksOpen ? 'block' : 'hidden lg:flex'
+            'mr-4 mt-16 w-full justify-end bg-gray-100 pb-1 xl:mt-0 2xl:justify-center dark:bg-gray-950',
+            mobileLinksOpen ? 'block' : 'hidden xl:flex'
           )}
         >
           {routes.map((route, i) => {
