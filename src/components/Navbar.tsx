@@ -21,7 +21,12 @@ const Navbar = () => {
     setMobileLinksOpen(false);
   }, [pathname]);
 
-  useWidth('lg', () => setMobileLinksOpen(false), true);
+  useWidth(
+    'lg',
+    () => setMobileLinksOpen(false),
+    () => {},
+    true
+  );
 
   const user = useUser();
 
