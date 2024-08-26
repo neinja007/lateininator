@@ -62,6 +62,7 @@ const FormSelection = ({
         setGenders([]);
         setCheckAdverb(false);
       }}
+      columns={3}
     >
       <CheckboxList
         options={[...WORD_CONSTANTS.comparison]}
