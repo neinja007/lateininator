@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
+import clsx from 'clsx';
 
 type FormSelectionProps = {
   titleOption?: {
@@ -13,6 +14,7 @@ type FormSelectionProps = {
   selectNoneActive: boolean;
   selectNone: () => void;
   children: React.ReactNode;
+  columns?: 2 | 3 | 4;
 };
 
 const FormSelection = ({
@@ -21,8 +23,15 @@ const FormSelection = ({
   selectNone,
   selectNoneActive,
   titleOption,
-  children
+  children,
+  columns = 4
 }: FormSelectionProps) => {
+  const columnClasses = {
+    2: 'sm:grid-cols-2',
+    3: 'sm:grid-cols-3',
+    4: 'sm:grid-cols-4'
+  };
+
   return (
     <>
       <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3'>
@@ -43,7 +52,7 @@ const FormSelection = ({
           </Button>
         </div>
       </div>
-      <div className='grid grid-cols-2 gap-y-2 sm:grid-cols-4'>{children}</div>
+      <div className={clsx('grid grid-cols-2 gap-y-2', columnClasses[columns])}>{children}</div>
     </>
   );
 };
