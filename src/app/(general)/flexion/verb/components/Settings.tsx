@@ -102,6 +102,7 @@ const Settings = ({
           setTestingType={setTestingType}
           inputValue={inputValue}
           updateValue={updateValue}
+          disableTablesOnBreakpoint='lg'
         />
       )}
       <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />
