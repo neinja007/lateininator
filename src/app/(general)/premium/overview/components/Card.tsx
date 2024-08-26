@@ -21,11 +21,11 @@ const colors: { [C in 'gray' | 'sky' | 'pink']: { container: string } } = {
   },
   sky: {
     container:
-      'bg-sky-500 dark:bg-sky-600 hover:bg-sky-400 hover:dark:bg-sky-500 hover:border-sky-800 hover:shadow-sky-700 hover:dark:shadow-sky-300 dark:shadow-sky-800'
+      'bg-sky-500 dark:bg-sky-800 hover:bg-sky-400 hover:dark:bg-sky-500 hover:border-sky-800 hover:shadow-sky-700 hover:dark:shadow-sky-300 dark:shadow-sky-800'
   },
   pink: {
     container:
-      'bg-pink-500 dark:bg-pink-600 hover:dark:bg-pink-700 hover:bg-pink-400 hover:border-pink-800 hover:shadow-pink-700 hover:dark:shadow-pink-300 dark:shadow-pink-800'
+      'bg-pink-500 dark:bg-pink-800 hover:dark:bg-pink-700 hover:bg-pink-400 hover:border-pink-800 hover:shadow-pink-700 hover:dark:shadow-pink-300 dark:shadow-pink-800'
   }
 };
 
@@ -38,9 +38,9 @@ const Card = ({ features, price, title, color, owned, description, href, loading
       <Link
         href={owned ? '' : href || ''}
         className={clsx(
-          'overflow-hidden rounded-2xl border-2 border-gray-500 bg-gradient-to-b shadow-lg shadow-gray-500 transition-all hover:dark:border-white',
+          'overflow-hidden rounded-2xl border-gray-500 bg-gradient-to-b shadow-lg shadow-gray-500 transition-all hover:dark:border-white',
           colors[color].container,
-          owned && (color !== 'pink' || !highest) && 'cursor-default opacity-50',
+          owned && (color !== 'pink' || !highest) && 'cursor-default opacity-25',
           loading && 'animate-pulse',
           highest && 'border-sky-500'
         )}
