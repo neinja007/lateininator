@@ -5,7 +5,6 @@ import { NextResponse } from 'next/server';
 export const GET = async () => {
   const clerkUser = await currentUser();
   if (!clerkUser) {
-    console.error('Unauthorized user');
     return NextResponse.json({ status: 401, body: { message: 'Unauthorized' } });
   }
 
@@ -21,7 +20,6 @@ export const GET = async () => {
 export const POST = async () => {
   const user = await currentUser();
   if (!user) {
-    console.error('Unauthorized user');
     return NextResponse.json({ status: 401, body: { message: 'Unauthorized' } });
   }
 
