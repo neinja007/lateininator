@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='fixed inset-0 h-16 w-full bg-gray-100 lg:flex dark:bg-gray-950'>
+      <div className='fixed inset-0 z-50 h-16 w-full bg-gray-100 lg:flex dark:bg-gray-950'>
         <Menu
           className='float-end m-3 h-9 w-11 cursor-pointer select-none lg:hidden'
           onClick={() => setMobileLinksOpen((prev) => !prev)}

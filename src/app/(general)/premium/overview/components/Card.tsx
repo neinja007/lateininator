@@ -31,7 +31,7 @@ const colors: { [C in 'gray' | 'sky' | 'pink']: { container: string } } = {
 
 const Card = ({ features, price, title, color, owned, description, href, loading, highest }: CardProps) => {
   return (
-    <div className='-z-10 flex flex-col'>
+    <div className='flex flex-col'>
       <div className={clsx('mb-2 h-6 text-center', owned && (highest ? 'text-sky-500' : 'opacity-50'))}>
         {highest ? 'Dein Rang' : description}:
       </div>
