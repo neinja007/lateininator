@@ -88,6 +88,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@clerk/themes@npm:^2.1.21":
+  version: 2.1.21
+  resolution: "@clerk/themes@npm:2.1.21"
+  dependencies:
+    "@clerk/types": "npm:4.14.0"
+    tslib: "npm:2.4.1"
+  checksum: 10c0/d30da8ba7efd91de140f02e169bf28b3e360f9c591a48f2d6f51b15a7c0350a478b2f659b237a02991e2be6f2e9cdd08917d282aeb687125de59d7b9ee5ac0d3
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:4.14.0":
+  version: 4.14.0
+  resolution: "@clerk/types@npm:4.14.0"
+  dependencies:
+    csstype: "npm:3.1.1"
+  checksum: 10c0/384dfeaaf8ef4d634aec3a5ec33042307b0141535a77a247da180b595215fa59d91da8c2269dd3d8165e2bd6b93ed9994520db65a97efc223249682752ac5ad4
+  languageName: node
+  linkType: hard
+
 "@clerk/types@npm:4.7.0":
   version: 4.7.0
   resolution: "@clerk/types@npm:4.7.0"
@@ -2930,6 +2949,7 @@ __metadata:
   dependencies:
     "@clerk/localizations": "npm:^2.4.4"
     "@clerk/nextjs": "npm:^5.1.5"
+    "@clerk/themes": "npm:^2.1.21"
     "@neondatabase/serverless": "npm:^0.9.4"
     "@prisma/client": "npm:^5.18.0"
     "@stripe/react-stripe-js": "npm:^2.8.0"
