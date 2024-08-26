@@ -4,7 +4,7 @@ import { Verb } from '@/types/word';
 import { Voice, Modus, Tense, Conjugation } from '@/types/wordConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
-import FormSelection from '../../../components/FormSelection';
+import FormSelectionWrapper from '../../../components/FormSelectionWrapper';
 
 type TestingFormSelectionProps = {
   voices: Voice[];
@@ -40,7 +40,7 @@ const TestingFormSelection = ({
   const disableImperative = !modi.includes('ind') || !voices.includes('act') || !tenses.includes('pres');
 
   return (
-    <FormSelection
+    <FormSelectionWrapper
       titleOption={{
         checked: checkImperative && !disableImperative,
         handleChange: () => setCheckImperative((prev) => !prev),
@@ -101,7 +101,7 @@ const TestingFormSelection = ({
         label='Aktiv / Passiv'
         mapper={MAPPER.extended.voice}
       />
-    </FormSelection>
+    </FormSelectionWrapper>
   );
 };
 

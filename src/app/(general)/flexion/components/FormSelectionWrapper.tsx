@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import clsx from 'clsx';
 
-type FormSelectionProps = {
+type FormSelectionWrapperProps = {
   titleOption?: {
     checked: boolean;
     handleChange: () => void;
@@ -17,7 +17,7 @@ type FormSelectionProps = {
   columns?: 2 | 3 | 4;
 };
 
-const FormSelection = ({
+const FormSelectionWrapper = ({
   selectAll,
   selectAllActive,
   selectNone,
@@ -25,7 +25,7 @@ const FormSelection = ({
   titleOption,
   children,
   columns = 4
-}: FormSelectionProps) => {
+}: FormSelectionWrapperProps) => {
   const columnClasses = {
     2: 'sm:grid-cols-2',
     3: 'sm:grid-cols-3',
@@ -57,4 +57,4 @@ const FormSelection = ({
   );
 };
 
-export default FormSelection;
+export default FormSelectionWrapper;

@@ -4,7 +4,7 @@ import { Noun } from '@/types/word';
 import { Gender, Declension } from '@/types/wordConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
-import FormSelection from '../../../components/FormSelection';
+import FormSelectionWrapper from '../../../components/FormSelectionWrapper';
 
 type TestingFormSelectionProps = {
   genders: Gender[];
@@ -28,7 +28,7 @@ const TestingFormSelection = ({
   const gendersNotToCheck = genders.filter((gender) => !validWords.some((word) => word.gender === gender));
 
   return (
-    <FormSelection
+    <FormSelectionWrapper
       selectAll={() => {
         setDeclensions([...WORD_CONSTANTS.declension]);
         setGenders([...WORD_CONSTANTS.gender]);
@@ -59,7 +59,7 @@ const TestingFormSelection = ({
         label='Geschlecht'
         mapper={MAPPER.extended.gender}
       />
-    </FormSelection>
+    </FormSelectionWrapper>
   );
 };
 
