@@ -2,7 +2,7 @@ import { lists } from '@/data/lists';
 import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import TestingFormSelection from './settings/TestingFormSelection';
+import FormSelection from './settings/FormSelection';
 import WordCount from '../../components/WordLimit';
 import WordSelection from '../../components/WordSelection';
 import ContinueButton from '@/components/ContinueButton';
@@ -82,7 +82,7 @@ const Settings = ({
         <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
       )}
       {currentSettingsStage === 2 && (
-        <TestingFormSelection
+        <FormSelection
           checkImperative={checkImperative}
           setCheckImperative={setCheckImperative}
           conjugations={conjugations}

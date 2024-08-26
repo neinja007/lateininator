@@ -6,7 +6,7 @@ import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
 import FormSelectionWrapper from '../../../components/FormSelectionWrapper';
 
-type TestingFormSelectionProps = {
+type FormSelectionProps = {
   voices: Voice[];
   setVoices: Dispatch<SetStateAction<Voice[]>>;
   modi: Modus[];
@@ -20,7 +20,7 @@ type TestingFormSelectionProps = {
   validWords: Verb[];
 };
 
-const TestingFormSelection = ({
+const FormSelection = ({
   modi,
   setModi,
   setTenses,
@@ -32,7 +32,7 @@ const TestingFormSelection = ({
   checkImperative,
   setCheckImperative,
   validWords
-}: TestingFormSelectionProps) => {
+}: FormSelectionProps) => {
   const conjugationsNotToCheck = conjugations.filter(
     (conjugation) => !validWords.some((word) => word.conjugation === conjugation)
   );
@@ -105,4 +105,4 @@ const TestingFormSelection = ({
   );
 };
 
-export default TestingFormSelection;
+export default FormSelection;

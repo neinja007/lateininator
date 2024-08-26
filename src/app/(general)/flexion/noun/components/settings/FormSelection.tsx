@@ -6,7 +6,7 @@ import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction } from 'react';
 import FormSelectionWrapper from '../../../components/FormSelectionWrapper';
 
-type TestingFormSelectionProps = {
+type FormSelectionProps = {
   genders: Gender[];
   setGenders: Dispatch<SetStateAction<Gender[]>>;
   declensions: Declension[];
@@ -14,13 +14,7 @@ type TestingFormSelectionProps = {
   validWords: Noun[];
 };
 
-const TestingFormSelection = ({
-  genders,
-  setGenders,
-  declensions,
-  setDeclensions,
-  validWords
-}: TestingFormSelectionProps) => {
+const FormSelection = ({ genders, setGenders, declensions, setDeclensions, validWords }: FormSelectionProps) => {
   const declensionsNotToCheck = declensions.filter(
     (declension) => !validWords.some((word) => word.declension === declension)
   );
@@ -63,4 +57,4 @@ const TestingFormSelection = ({
   );
 };
 
-export default TestingFormSelection;
+export default FormSelection;
