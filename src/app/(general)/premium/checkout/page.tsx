@@ -1,11 +1,7 @@
 'use client';
-
 import Heading from '@/components/Heading';
 import getStripe from '@/utils/stripe/get-stripe';
-import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from './components/CheckoutForm';
 import { useEffect, useState } from 'react';
-import { monthlyPrice } from '@/constants/other';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 
@@ -27,7 +23,7 @@ const Page = () => {
   return (
     <div>
       <Heading>Lateininator Premium</Heading>
-      <Elements
+      {/* <Elements
         stripe={stripePromise}
         options={{
           locale: 'de',
@@ -47,7 +43,8 @@ const Page = () => {
         }}
       >
         <CheckoutForm />
-      </Elements>
+      </Elements> */}
+      Noch nicht verfügbar...
     </div>
   );
 };
