@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignOutButton, useUser } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
 import { routes } from '@/data/routes';
-import { LogIn, Menu, User } from 'lucide-react';
+import { LogIn, LogOut, Menu, User } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
+import clsx from 'clsx';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -33,10 +34,10 @@ const Navbar = () => {
         />
         <Logo />
         <div
-          className={
-            'mr-4 mt-16 w-full justify-end bg-gray-100 pb-1 lg:mt-0 xl:justify-center dark:bg-gray-950 ' +
-            (mobileLinksOpen ? 'block' : 'hidden lg:flex')
-          }
+          className={clsx(
+            'mr-4 mt-16 w-full justify-end bg-gray-100 pb-1 lg:mt-0 xl:justify-center dark:bg-gray-950',
+            mobileLinksOpen ? 'block' : 'hidden lg:flex'
+          )}
         >
           {routes.map((route, i) => {
             if (route.children) {
@@ -60,14 +61,37 @@ const Navbar = () => {
             }
           })}
           <SignedIn>
-            <NavbarLink
+            <NavbarDropdown
+              active={pathname.startsWith('/account')}
+              open={open}
+              handleOpen={setOpen}
               route={{
-                href: '/account/manage',
-                label: user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil',
-                icon: User
+                href: '/account',
+                icon: User,
+                label: user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil'
               }}
-              active={pathname === '/account/manage'}
-            />
+            >
+              <NavbarLink
+                route={{
+                  href: '/account/manage',
+                  label: 'Konto Verwalten',
+                  icon: User
+                }}
+                active={pathname === '/account/manage'}
+                dropdown
+              />
+              <SignOutButton>
+                <NavbarLink
+                  route={{
+                    href: '/account/sign-out',
+                    label: 'Abmelden',
+                    icon: LogOut
+                  }}
+                  active={false}
+                  dropdown
+                />
+              </SignOutButton>
+            </NavbarDropdown>
           </SignedIn>
           <SignedOut>
             <NavbarLink
