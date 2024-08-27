@@ -5,6 +5,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { deDE } from '@clerk/localizations';
 import { Analytics } from '@vercel/analytics/react';
 import '@/app/globals.css';
+import Hr from '@/components/Hr';
+import Footer from '@/components/Footer';
 
 const rubik = Rubik({ subsets: ['latin'] });
 
@@ -23,7 +25,11 @@ const RootLayout = ({
         <body className={rubik.className + ' dark:bg-black dark:text-gray-300'}>
           <div className='min-h-screen px-4 pt-24'>
             <Navbar />
-            {children}
+            <div className='container mx-auto max-w-[1024px] pb-16'>
+              {children}
+              <Hr className='my-4' />
+              <Footer />
+            </div>
           </div>
           <Analytics />
         </body>
