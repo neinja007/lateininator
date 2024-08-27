@@ -6,8 +6,11 @@ type LoadingHeadingProps = {
 
 const LoadingHeading = ({ children }: LoadingHeadingProps) => {
   return (
-    <h1 className='mb-4 flex animate-pulse items-center justify-center text-4xl'>
-      <LoaderPinwheel className='mr-3 h-8 w-8 animate-spin' /> {children}
+    <h1 className='mb-4 text-center text-4xl'>
+      <span className='inline-block'>
+        <LoaderPinwheel className='mr-2 inline-block h-8 w-8 animate-spin align-middle' />
+        <span className='align-middle'>{children}</span>
+      </span>
     </h1>
   );
 };
