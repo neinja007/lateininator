@@ -22,7 +22,7 @@ const Navbar = () => {
   }, [pathname]);
 
   useWidth(
-    'lg',
+    'xl',
     () => setMobileLinksOpen(false),
     () => {},
     true
