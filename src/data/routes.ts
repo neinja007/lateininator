@@ -7,10 +7,13 @@ import {
   Crosshair,
   Gem,
   LayoutDashboard,
+  LogIn,
+  LogOut,
   Newspaper,
   PencilLine,
   Replace,
   SpellCheck,
+  User,
   X
 } from 'lucide-react';
 
@@ -20,6 +23,7 @@ export type Route = {
   icon: typeof X;
   color?: Color;
   children?: Route[];
+  authStatus?: 'signedIn' | 'signedOut';
 };
 
 export const routes: Route[] = [
@@ -68,5 +72,31 @@ export const routes: Route[] = [
     href: '/premium/overview',
     icon: Gem,
     color: 'pink'
+  },
+  {
+    label: '{name}',
+    href: '/account',
+    authStatus: 'signedIn',
+    icon: User,
+    children: [
+      {
+        label: 'Konto Verwalten',
+        href: '/manage',
+        authStatus: 'signedIn',
+        icon: User
+      },
+      {
+        label: 'Abmelden',
+        href: '/sign-out',
+        authStatus: 'signedIn',
+        icon: LogOut
+      }
+    ]
+  },
+  {
+    label: 'Anmelden',
+    href: '/account/sign-in',
+    authStatus: 'signedOut',
+    icon: LogIn
   }
 ];
