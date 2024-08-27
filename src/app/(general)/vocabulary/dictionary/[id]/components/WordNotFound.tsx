@@ -1,14 +1,23 @@
 import Link from 'next/link';
 import ui from '@/styles/ui.module.css';
+import Heading from '@/components/Heading';
 
 const WordNotFound = () => {
   return (
-    <span>
-      Wort nicht gefunden.{' '}
-      <Link href={'/vocabulary/dictionary'} className={ui.link}>
-        Zum Wörterbuch
-      </Link>
-    </span>
+    <div>
+      <Heading>Das Wort wurde nicht gefunden.</Heading>
+      <div>
+        Wenn Sie denken, das dies ein Fehler ist, so melden Sie diesen bitte bei unserem{' '}
+        <Link className='text-blue-500 hover:underline' href={'mailto:support@lateininator.com'}>
+          Support
+        </Link>
+        . Andernfalls können Sie{' '}
+        <Link href={'/vocabulary/dictionary'} className={ui.link}>
+          hier zum Wörterbuch zurückkehren
+        </Link>
+        .
+      </div>
+    </div>
   );
 };
 
