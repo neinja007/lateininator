@@ -129,9 +129,9 @@ export const MAPPER: MapperType = {
       6: '6. F.'
     },
     gender: {
-      m: 'm.',
-      f: 'f.',
-      n: 'n.',
+      m: 'mask.',
+      f: 'fem.',
+      n: 'neut.',
       '-': 'kein Geschl.'
     },
     numerus: {
