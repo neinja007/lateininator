@@ -15,9 +15,10 @@ const RouteLink = ({ route }: RouteLinkProps) => {
         routeLinkColors[!route.color || route.color === 'default' ? 'gray' : route.color]
       )}
     >
-      <span className='flex items-center gap-x-3 transition-colors group-hover:font-medium group-hover:text-gray-950 group-hover:dark:text-gray-200'>
-        <route.icon className='w-5 transition-transform group-hover:rotate-12' /> {route.label}
-      </span>{' '}
+      <span className='flex items-center gap-x-3 truncate transition-colors group-hover:font-medium group-hover:text-gray-950 group-hover:dark:text-gray-200'>
+        <route.icon className='w-5 flex-shrink-0 transition-transform group-hover:rotate-12' />
+        {route.label}
+      </span>
       <ChevronsRight className='ml-2 w-0 text-gray-950 transition-all group-hover:w-6 dark:text-gray-200' />
     </Link>
   );
