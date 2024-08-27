@@ -24,15 +24,15 @@ export const POST = async () => {
   }
 
   try {
-    const emailAdress = user.primaryEmailAddress?.emailAddress || user.emailAddresses[0].emailAddress;
+    const emailAddress = user.primaryEmailAddress?.emailAddress || user.emailAddresses[0].emailAddress;
 
-    if (!emailAdress || !user.fullName) {
+    if (!emailAddress || !user.fullName) {
       console.error('Email or username not found');
       return NextResponse.json({ status: 400, body: { message: 'Email or username not found' } });
     }
 
     const userExists = await prisma.user.findUnique({
-      where: { email: emailAdress }
+      where: { email: emailAddress }
     });
 
     if (userExists) {
@@ -42,7 +42,7 @@ export const POST = async () => {
     const newUser = await prisma.user.create({
       data: {
         id: user.id,
-        email: emailAdress,
+        email: emailAddress,
         name: user.fullName
       }
     });

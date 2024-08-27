@@ -48,10 +48,10 @@ const Page = () => {
     return (
       <div>
         <p className='mb-4 flex items-center justify-center text-4xl'>
-          <Check className='mr-3 h-8 w-8' /> Ihr profil wurde erfolgreich eingerichtet.
+          <Check className='mr-3 h-8 w-8' /> Ihr Profil wurde erfolgreich eingerichtet.
         </p>
         <p>
-          Clicken Sie <Link href={'/dashboard'}>hier</Link>, um zur Startseite des Lateininators zu gelangen.
+          Klicken Sie <Link href={'/dashboard'}>hier</Link>, um zur Startseite des Lateininators zu gelangen.
         </p>
       </div>
     );
