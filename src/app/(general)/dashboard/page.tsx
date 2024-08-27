@@ -10,7 +10,7 @@ const Page = () => {
       <Heading className='mb-3 md:mb-6 lg:mb-12'>Übersicht</Heading>
       <p className='mb-2 text-center text-lg font-bold'>Latein Lernen</p>
       {routes
-        .filter((route) => !!route.children)
+        .filter((route) => !!route.children && !route.authStatus)
         .map((route) => (
           <div key={route.label} className='mb-5 grid-cols-4 items-center md:mb-2 md:grid'>
             <div className='flex items-center gap-x-2 font-bold text-gray-600 dark:text-gray-400'>
