@@ -2,11 +2,11 @@ import '@/app/globals.css';
 import Footer from '@/components/Footer';
 import Hr from '@/components/Hr';
 
-type MainLayoutProps = {
+type LayoutProps = {
   children: React.ReactNode;
 };
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <div className='container mx-auto max-w-[1024px] pb-16'>
@@ -18,4 +18,4 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   );
 };
 
-export default MainLayout;
+export default Layout;
