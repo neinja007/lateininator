@@ -35,14 +35,11 @@ const TableInput = ({
         <thead className={table.thead}>
           <tr>
             <th />
-            {tenses.map(
-              (tense, i) =>
-                (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
-                  <th key={i} className={table.th}>
-                    {MAPPER.extended.tense[tense]}
-                  </th>
-                )
-            )}
+            {tenses.map((tense, i) => (
+              <th key={i} className={table.th}>
+                {MAPPER.extended.tense[tense]}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -55,10 +52,10 @@ const TableInput = ({
                     <th className={table.th}>
                       {MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}
                     </th>
-                    {tenses.map((tense) => {
-                      return ((tableInputForm.modus === 'ind' || tense !== 'fut1') && person !== '4') ||
-                        tense === 'pres' ? (
+                    {tenses.map((tense) =>
+                      ((tableInputForm.modus === 'ind' || tense !== 'fut1') && person !== '4') || tense === 'pres' ? (
                         <TableTrainerInput
+                          key={tense}
                           value={tableInputValues[tense][numerus][person]}
                           correctValue={getForm(activeWord, {
                             tense,
@@ -82,11 +79,11 @@ const TableInput = ({
                           stage={stage}
                         />
                       ) : (
-                        <td className='border border-gray-500 p-0'>
+                        <td className='border border-gray-500 p-0' key={tense}>
                           <div className='h-8 w-full bg-red-400 pl-2 dark:bg-red-800'>-</div>
                         </td>
-                      );
-                    })}
+                      )
+                    )}
                   </tr>
                 )
             )
