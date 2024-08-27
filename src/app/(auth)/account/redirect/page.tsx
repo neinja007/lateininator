@@ -1,5 +1,6 @@
 'use client';
 
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 import LoadingHeading from '@/components/LoadingHeading';
 import { User } from '@prisma/client';
 import { Check } from 'lucide-react';
@@ -39,10 +40,7 @@ const Page = () => {
         <LoadingHeading>Ihr Profil wird eingerichtet...</LoadingHeading>
         <p>
           Sie werden in Kürze weitergeleitet. Sollte dies nicht der Fall sein, bitten wir Sie, unseren{' '}
-          <Link className='text-blue-500 hover:underline' href={'mailto:support@lateininator.com'}>
-            Support
-          </Link>{' '}
-          zu kontaktieren.
+          <LinkToSupportEmail /> zu kontaktieren.
         </p>
       </div>
     );
@@ -74,10 +72,7 @@ const Page = () => {
         </p>
         <p>
           Wir bitten Sie, eine Nachricht an unseren
-          <Link className='text-blue-500 hover:underline' href={'mailto:support@lateininator.com'}>
-            Support
-          </Link>{' '}
-          zu schicken.
+          <LinkToSupportEmail /> zu schicken.
         </p>
       </div>
     );

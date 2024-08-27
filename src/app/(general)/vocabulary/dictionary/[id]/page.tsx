@@ -3,12 +3,12 @@ import Header from './components/Header';
 import WordInformation from './components/WordInformation';
 import TableInformation from './components/TableInformation';
 import WordNotFound from './components/WordNotFound';
-import NounTable from './components/tables/NounTable';
 import VerbTable from './components/tables/VerbTable';
 import AdjectiveTable from './components/tables/AdjectiveTable';
 import Hr from '@/components/Hr';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 import { MainWordType } from '@/types/appConstants';
+import NounTable from './components/tables/NounTable';
 
 type PageProps = { params: { id: string } };
 

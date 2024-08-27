@@ -1,7 +1,7 @@
 'use client';
 import Heading from '@/components/Heading';
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 import { useDbUser } from '@/hooks/useDbUser';
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -33,10 +33,7 @@ const Page = () => {
         {actualState === 'error' && (
           <span className='text-yellow-500'>
             Die Bezahlung war leider nicht erfolgreich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns unter{' '}
-            <Link className='text-blue-500 hover:underline' href={'mailto:support@lateininator.com'}>
-              support@lateininator.com
-            </Link>
-            , falls das Problem weiterhin besteht.
+            <LinkToSupportEmail>support@lateininator.com</LinkToSupportEmail>, falls das Problem weiterhin besteht.
           </span>
         )}
 
