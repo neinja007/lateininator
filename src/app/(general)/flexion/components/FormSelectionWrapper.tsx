@@ -52,7 +52,7 @@ const FormSelectionWrapper = ({
           </Button>
         </div>
       </div>
-      <div className={clsx('grid grid-cols-2 gap-y-2', columnClasses[columns])}>{children}</div>
+      <div className={clsx('grid grid-cols-2 gap-y-2 *:pr-4', columnClasses[columns])}>{children}</div>
     </>
   );
 };
