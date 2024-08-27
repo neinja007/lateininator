@@ -1,5 +1,3 @@
-// app/api/stripe-webhook/route.js
-
 import { prisma } from '@/utils/other/client';
 import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
