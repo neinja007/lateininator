@@ -2,14 +2,14 @@ import Select from '@/components/Select';
 import { lists } from '@/data/lists';
 import { Word } from '@/types/word';
 
-type WordSelectionProps = {
+type ListSelectionProps = {
   maxUnit: number;
   setMaxUnit: (arg: number) => void;
   validWords: Word[];
   type: string;
 };
 
-const WordSelection = ({ maxUnit, setMaxUnit, validWords, type }: WordSelectionProps) => {
+const ListSelection = ({ maxUnit, setMaxUnit, validWords, type }: ListSelectionProps) => {
   return (
     <>
       <p>Wähle eine Lektion aus. Wörter zur Abfrage werden von dieser und von vorherigen Lektionen ausgewählt.</p>
@@ -35,4 +35,4 @@ const WordSelection = ({ maxUnit, setMaxUnit, validWords, type }: WordSelectionP
   );
 };
 
-export default WordSelection;
+export default ListSelection;

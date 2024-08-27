@@ -4,7 +4,7 @@ import { useNumberInput } from '@/hooks/useNumberInput';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import FormSelection from './settings/FormSelection';
 import WordCount from '../../components/WordLimit';
-import WordSelection from '../../components/WordSelection';
+import ListSelection from '../../components/ListSelection';
 import ContinueButton from '@/components/ContinueButton';
 import { Verb, Word } from '@/types/word';
 import { Voice, Modus, Tense, Conjugation } from '@/types/wordConstants';
@@ -79,7 +79,7 @@ const Settings = ({
   return (
     <>
       {currentSettingsStage === 1 && (
-        <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
+        <ListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
       )}
       {currentSettingsStage === 2 && (
         <FormSelection

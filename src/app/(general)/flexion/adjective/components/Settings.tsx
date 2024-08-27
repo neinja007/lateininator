@@ -3,7 +3,7 @@ import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import WordCount from '../../components/WordLimit';
-import WordSelection from '../../components/WordSelection';
+import ListSelection from '../../components/ListSelection';
 import ContinueButton from '@/components/ContinueButton';
 import { Adjective, Word } from '@/types/word';
 import { ComparisonDegree, Gender, Comparison } from '@/types/wordConstants';
@@ -70,7 +70,7 @@ const Settings = ({
   return (
     <>
       {currentSettingsStage === 1 && (
-        <WordSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
+        <ListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Adjektive' />
       )}
       {currentSettingsStage === 2 && (
         <FormSelection
