@@ -86,7 +86,7 @@ const Page = () => {
             owned={userIsPremium}
             loading={!dbUser.isLoaded}
             highest={userIsPremium}
-            href={'/premium/checkout'}
+            href={!dbUser.isLoaded || user.isSignedIn ? '/premium/checkout' : '/account/sign-in'}
           />
         )}
       </div>
