@@ -82,7 +82,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
                     Schon erworben
                   </span>
                 ) : color === 'pink' ? (
-                  <span>7 Tage kostentlos Testen</span>
+                  <span>7 Tage kostenlos testen</span>
                 ) : (
                   'Erwerben' + (price ? ':' : '')
                 )}
