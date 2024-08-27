@@ -92,7 +92,7 @@ const Settings = ({
           inputValue={inputValue}
           updateValue={updateValue}
           disableTables={genders.length === 0}
-          disableTablesOnBreakpoint='md'
+          disableTablesBreakpoint='md'
         />
       )}
       <ContinueButton enableStart={enableStart} handleContinue={handleContinue} />

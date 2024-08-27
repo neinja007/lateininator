@@ -10,11 +10,11 @@ type WordLimitProps = {
   inputValue: string;
   updateValue: (arg: string) => void;
   disableTables?: boolean;
-  disableTablesOnBreakpoint?: Breakpoint;
+  disableTablesBreakpoint?: Breakpoint;
 };
 
 const WordLimit = ({
-  disableTablesOnBreakpoint,
+  disableTablesBreakpoint,
   testingType,
   setTestingType,
   inputValue,
@@ -30,7 +30,7 @@ const WordLimit = ({
   }, [disableTables, setTestingType, testingType]);
 
   useWidth(
-    disableTablesOnBreakpoint,
+    disableTablesBreakpoint,
     () => {
       if (testingType === 'table') {
         setTestingType('individual');
