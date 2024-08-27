@@ -1,4 +1,3 @@
-import '@/app/globals.css';
 import Footer from '@/components/Footer';
 import Hr from '@/components/Hr';
 

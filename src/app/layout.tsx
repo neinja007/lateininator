@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { deDE } from '@clerk/localizations';
 import { Analytics } from '@vercel/analytics/react';
+import '@/app/globals.css';
 
 const rubik = Rubik({ subsets: ['latin'] });
 
