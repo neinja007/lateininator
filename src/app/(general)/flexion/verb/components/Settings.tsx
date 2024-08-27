@@ -62,9 +62,9 @@ const Settings = ({
     ) as Verb[];
     setValidWords(selectedWords);
 
-    const possibleWords = selectedWords
-      .filter((word) => word.conjugation !== '-' && conjugations.includes(word.conjugation))
-      .slice(0, value);
+    const possibleWords = selectedWords.filter(
+      (word) => word.conjugation !== '-' && conjugations.includes(word.conjugation)
+    );
 
     updateWords(possibleWords, value);
   }, [conjugations, maxUnit, updateWords, value]);

@@ -41,19 +41,17 @@ const Settings = ({
       }, []);
 
     const selectedWords = words.filter(
-      (word) => word.type === 'noun' && ids.includes(word.id) && word.declension !== '-'
+      (word) => word.type === 'noun' && ids.includes(word.id) && word.declension !== '-' && word.gender !== '-'
     ) as Noun[];
     setValidWords(selectedWords);
 
-    const possibleWords = selectedWords
-      .filter(
-        (word) =>
-          word.declension !== '-' &&
-          word.gender !== '-' &&
-          declensions.includes(word.declension) &&
-          genders.includes(word.gender)
-      )
-      .slice(0, value);
+    const possibleWords = selectedWords.filter(
+      (word) =>
+        word.declension !== '-' &&
+        word.gender !== '-' &&
+        declensions.includes(word.declension) &&
+        genders.includes(word.gender)
+    );
 
     updateWords(possibleWords, value);
   }, [declensions, genders, maxUnit, updateWords, value]);

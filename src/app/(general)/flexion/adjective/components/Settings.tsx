@@ -58,9 +58,9 @@ const Settings = ({
     ) as Adjective[];
     setValidWords(selectedWords);
 
-    const possibleWords = selectedWords
-      .filter((word) => word.comparison !== '-' && comparisons.includes(word.comparison))
-      .slice(0, value);
+    const possibleWords = selectedWords.filter(
+      (word) => word.comparison !== '-' && comparisons.includes(word.comparison)
+    );
 
     updateWords(possibleWords, value);
   }, [comparisons, maxUnit, updateWords, value]);
