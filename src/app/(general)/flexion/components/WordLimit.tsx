@@ -75,6 +75,7 @@ const WordLimit = ({
           onChange={(value) => updateValue(value)}
           value={inputValue}
           className={'w-full text-center'}
+          type='number'
         />
       </div>
     </>

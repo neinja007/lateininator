@@ -60,6 +60,7 @@ const WordCountSelection = ({
             onChange={updateValue}
             value={inputValue}
             className={'w-1/3 text-center'}
+            type='number'
           />
         )}
       </div>
