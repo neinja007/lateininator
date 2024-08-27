@@ -15,9 +15,9 @@ const NavbarLink = ({ dropdown, route, active }: NavbarLinkProps) => {
   return (
     <Link
       className={clsx(
+        route.label === 'Premium' && 'text-pink-600 hover:text-pink-500 dark:text-pink-400',
         dropdown ? navbar.dropdown_navlink : navbar.navlink,
-        active ? navbar.active : navbar.inactive,
-        route.label === 'Premium' && 'text-pink-600 dark:text-pink-400'
+        route.label !== 'Premium' && (active ? navbar.active : navbar.inactive)
       )}
       href={route.href}
     >
