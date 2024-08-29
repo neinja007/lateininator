@@ -112,5 +112,5 @@ export const lists: List[] = [
     name: 'Lektion 22',
     words: generateSequentialNumbers(592, 614)
   }
-  // { id: 22, name: 'Test', words: [72, 151, 17, 3] }
+  // { id: 50, name: 'Test', words: [72, 151, 17, 3] }
 ];
