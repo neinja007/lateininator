@@ -14,8 +14,8 @@ const features = [
   'Deklinationstrainer',
   'Konjugationstrainer',
   'Komparationstrainer',
-  'Kompetenzbereich',
-  'Automatisches Abfragen',
+  'Kompetenzanalyse',
+  'Gezieltes Abfragen',
   'Statistiken',
   'Fehleranalyse',
   'Unterstütze uns'
