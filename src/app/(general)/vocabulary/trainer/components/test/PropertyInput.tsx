@@ -36,7 +36,7 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
             options={options}
             className={clsx('w-full opacity-100', stage === 'review' && correctValueIndicatorClasses)}
             value={inputValue}
-            appendString={stage === 'review' && !isInputCorrect ? correctValue : undefined}
+            appendString={stage === 'review' && !isInputCorrect ? options[correctValue] : undefined}
             handleChange={(value) => handleChange(property, value)}
             disabled={stage === 'review'}
           />
