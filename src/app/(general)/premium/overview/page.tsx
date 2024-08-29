@@ -1,4 +1,5 @@
 'use client';
+
 import Heading from '@/components/Heading';
 import Card from './components/Card';
 import { useDbUser } from '@/hooks/useDbUser';
