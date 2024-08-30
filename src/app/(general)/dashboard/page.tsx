@@ -1,6 +1,6 @@
 import Heading from '@/components/Heading';
 import { routes } from '@/data/routes';
-import RouteLink from './components/RouteLink';
+import FancyLink from '@/components/FancyLink';
 import { makeAuthStateDependent } from '@/utils/other/makeAuthStateDependent';
 import { Fragment } from 'react';
 
@@ -21,18 +21,18 @@ const Page = () => {
                 route.children
                   .map((childRoute) => ({ ...childRoute, href: route.href + childRoute.href }))
                   .map((route, i) => {
-                    return <RouteLink key={i} route={route} />;
+                    return <FancyLink key={i} route={route} />;
                   })}
             </div>
           </div>
         ))}
-      <p className='mb-2 mt-10 text-center text-lg font-bold'>Verwaltung</p>
+      <p className='mb-2 mt-10 text-center text-lg font-bold'>Benutzer</p>
       <div className='col-span-3 items-center justify-between gap-2 sm:flex'>
         {routes
           .find((route) => route.label === '{name}')
           ?.children?.map((child, i) => (
             <Fragment key={i}>
-              {makeAuthStateDependent(<RouteLink route={{ ...child, href: '/user' + child.href }} />, child.authStatus)}
+              {makeAuthStateDependent(<FancyLink route={{ ...child, href: '/user' + child.href }} />, child.authStatus)}
             </Fragment>
           ))}
       </div>
