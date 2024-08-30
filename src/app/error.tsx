@@ -10,7 +10,7 @@ type PageProps = {
 
 const Page = ({ error, reset }: PageProps) => {
   return (
-    <div>
+    <div className='mb-16'>
       <Heading className={'text-orange-500'}>Ein Fehler ist aufgetreten ({error.name})</Heading>
       <div>
         <div className='flex justify-between'>
