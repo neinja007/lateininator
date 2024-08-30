@@ -8,10 +8,26 @@ datasource db {
 }
 
 model User {
-  id        String   @id
-  email     String   @unique
-  name      String
-  points    Int      @default(0)
-  createdAt DateTime @default(now())
-  premium   Boolean  @default(false)
+  id          String       @id
+  email       String       @unique
+  name        String
+  points      Int          @default(0)
+  createdAt   DateTime     @default(now())
+  premium     Boolean      @default(false)
+  collections Collection[]
+}
+
+model Collection {
+  id    Int    @id @default(autoincrement())
+  name  String
+  lists List[]
+
+  User User[]
+}
+
+model List {
+  id           Int        @id @default(autoincrement())
+  name         String
+  collection   Collection @relation(fields: [collectionId], references: [id])
+  collectionId Int
 }
