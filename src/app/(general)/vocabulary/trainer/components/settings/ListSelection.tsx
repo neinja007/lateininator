@@ -37,8 +37,8 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
           </Button>
         </div>
       </div>
-      <div className='grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5 md:gap-4 lg:grid-cols-7'>
-        {lists.map((list, i) => (
+      <div className='grid h-44 max-h-96 min-h-44 resize-y grid-cols-2 gap-2 overflow-hidden overflow-y-scroll scroll-smooth py-5 pr-4 sm:grid-cols-4 md:grid-cols-5 md:gap-4'>
+        {[...lists, ...lists, ...lists].map((list, i) => (
           <Button
             key={i}
             color={selectedLists.includes(list) ? 'blue' : 'default'}
