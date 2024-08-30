@@ -1,6 +1,6 @@
 import { Color } from '@/types/other';
 
-export const routeLinkColors: { [C in Exclude<Color, 'default'>]: string & React.CSSProperties } = {
+export const fancyLinkColors: { [C in Exclude<Color, 'default'>]: string & React.CSSProperties } = {
   blue: 'hover:border-blue-500 hover:bg-blue-200 dark:hover:bg-blue-950',
   green: 'hover:border-green-500 hover:bg-green-200 dark:hover:bg-green-950',
   yellow: 'hover:border-yellow-500 hover:bg-yellow-200 dark:hover:bg-yellow-900',
