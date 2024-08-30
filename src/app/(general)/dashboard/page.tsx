@@ -32,10 +32,7 @@ const Page = () => {
           .find((route) => route.label === '{name}')
           ?.children?.map((child, i) => (
             <Fragment key={i}>
-              {makeAuthStateDependent(
-                <RouteLink route={{ ...child, href: '/account' + child.href }} />,
-                child.authStatus
-              )}
+              {makeAuthStateDependent(<RouteLink route={{ ...child, href: '/user' + child.href }} />, child.authStatus)}
             </Fragment>
           ))}
       </div>

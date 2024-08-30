@@ -75,7 +75,7 @@ export const routes: Route[] = [
   },
   {
     label: '{name}',
-    href: '/account',
+    href: '/user',
     authStatus: 'signedIn',
     icon: User,
     children: [
@@ -86,7 +86,7 @@ export const routes: Route[] = [
   },
   {
     label: 'Anmelden',
-    href: '/account/sign-in',
+    href: '/auth/sign-in',
     authStatus: 'signedOut',
     icon: LogIn
   }
