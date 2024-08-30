@@ -14,7 +14,7 @@ const Page = () => {
   const router = useRouter();
 
   if (!user.isSignedIn) {
-    router.push('/account/sign-in');
+    router.push('/auth/sign-in');
   }
 
   return (

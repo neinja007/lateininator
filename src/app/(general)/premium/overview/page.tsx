@@ -69,7 +69,7 @@ const Page = () => {
             title='Full'
             features={features.slice(0, 7)}
             price={0}
-            href='/account/sign-in'
+            href='/auth/sign-in'
             color='sky'
             description='Für Angemeldete Benutzer'
             owned={user.isSignedIn}
@@ -87,7 +87,7 @@ const Page = () => {
             owned={userIsPremium}
             loading={!dbUser.isLoaded}
             highest={userIsPremium}
-            href={!dbUser.isLoaded || user.isSignedIn ? '/premium/checkout' : '/account/sign-in'}
+            href={!dbUser.isLoaded || user.isSignedIn ? '/premium/checkout' : '/auth/sign-in'}
           />
         )}
       </div>
