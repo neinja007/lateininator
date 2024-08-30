@@ -8,8 +8,8 @@ import ContinueButton from '@/components/ContinueButton';
 import { WordProperty, WordType, MainWordType } from '@/types/appConstants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
-import { transformWordTypeToMainWordType } from '@/utils/word/transformWordTypeToMainWordType';
 import { APP_CONSTANTS } from '@/constants/appConstants';
+import { transformTypeToMainType } from '@/utils/word/transformTypeToMainType';
 
 type SettingsProps = {
   checkTranslation: boolean;
@@ -53,14 +53,14 @@ const Settings = ({
   }, [checkTranslation, wordPropertiesToCheck]);
 
   const maximumValidWords = validWords.filter(
-    (word) => !typesToExclude.includes(transformWordTypeToMainWordType(word.type))
+    (word) => !typesToExclude.includes(transformTypeToMainType(word.type))
   ).length;
 
   const { value, inputValue, updateValue } = useNumberInput(maximumValidWords);
 
   useEffect(() => {
     updateWords(
-      validWords.filter((word) => !typesToExclude.includes(transformWordTypeToMainWordType(word.type))).slice(0, value)
+      validWords.filter((word) => !typesToExclude.includes(transformTypeToMainType(word.type))).slice(0, value)
     );
   }, [typesToExclude, updateWords, validWords, value]);
 
