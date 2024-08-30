@@ -1,3 +1,5 @@
+'use client';
+
 import { useIsDarkTheme } from '@/hooks/useIsDarkTheme';
 import { SignedOut, RedirectToSignIn, SignedIn, UserProfile } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
