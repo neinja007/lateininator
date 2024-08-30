@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
@@ -74,7 +74,7 @@ const Navbar = () => {
               element = <NavbarLink key={i} route={route} active={pathname === route.href} />;
             }
 
-            return makeAuthStateDependent(element, route.authStatus);
+            return <Fragment key={i}>{makeAuthStateDependent(element, route.authStatus)}</Fragment>;
           })}
         </div>
       </div>
