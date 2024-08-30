@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
@@ -10,6 +10,7 @@ import { routes } from '@/data/routes';
 import { Menu } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
+import { makeAuthStateDependent } from '@/utils/other/makeAuthStateDependent';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -72,13 +73,8 @@ const Navbar = () => {
             } else {
               element = <NavbarLink key={i} route={route} active={pathname === route.href} />;
             }
-            if (route.authStatus === 'signedIn') {
-              return <SignedIn key={i}>{element}</SignedIn>;
-            } else if (route.authStatus === 'signedOut') {
-              return <SignedOut key={i}>{element}</SignedOut>;
-            } else {
-              return element;
-            }
+
+            return makeAuthStateDependent(element, route.authStatus);
           })}
         </div>
       </div>
