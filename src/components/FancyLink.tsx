@@ -1,18 +1,18 @@
 import { Route } from '@/data/routes';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { routeLinkColors } from '../constants/colors';
+import { fancyLinkColors } from '../app/(general)/dashboard/constants/colors';
 import { ChevronsRight } from 'lucide-react';
 
-type RouteLinkProps = { route: Route };
+type FancyLinkProps = { route: Route };
 
-const RouteLink = ({ route }: RouteLinkProps) => {
+const FancyLink = ({ route }: FancyLinkProps) => {
   return (
     <Link
       href={route.href}
       className={clsx(
         'group mt-2 flex w-full items-center justify-center rounded-lg border p-3 transition-transform md:mt-0 dark:border-gray-700',
-        routeLinkColors[!route.color || route.color === 'default' ? 'gray' : route.color]
+        fancyLinkColors[!route.color || route.color === 'default' ? 'gray' : route.color]
       )}
     >
       <span className='flex items-center gap-x-3 truncate transition-colors group-hover:font-medium group-hover:text-gray-950 group-hover:dark:text-gray-200'>
@@ -24,4 +24,4 @@ const RouteLink = ({ route }: RouteLinkProps) => {
   );
 };
 
-export default RouteLink;
+export default FancyLink;
