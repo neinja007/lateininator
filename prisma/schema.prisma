@@ -21,8 +21,7 @@ model Collection {
   id    Int    @id @default(autoincrement())
   name  String
   lists List[]
-
-  User User[]
+  User  User[]
 }
 
 model List {
