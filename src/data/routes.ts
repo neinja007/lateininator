@@ -8,14 +8,12 @@ import {
   LayoutDashboard,
   LineChart,
   LogIn,
-  LogOut,
   Newspaper,
   PencilLine,
   Replace,
   Settings,
   SpellCheck,
   User,
-  Vault,
   WholeWord,
   X
 } from 'lucide-react';
@@ -70,16 +68,6 @@ export const routes: Route[] = [
     ]
   },
   {
-    label: 'Verwaltung',
-    href: '/settings',
-    icon: Settings,
-    children: [
-      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord },
-      { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings },
-      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart }
-    ]
-  },
-  {
     label: 'Premium',
     href: '/premium/overview',
     icon: Gem,
@@ -91,18 +79,9 @@ export const routes: Route[] = [
     authStatus: 'signedIn',
     icon: User,
     children: [
-      {
-        label: 'Konto Verwalten',
-        href: '/manage',
-        authStatus: 'signedIn',
-        icon: Vault
-      },
-      {
-        label: 'Abmelden',
-        href: '/sign-out',
-        authStatus: 'signedIn',
-        icon: LogOut
-      }
+      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord },
+      { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings },
+      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart }
     ]
   },
   {
