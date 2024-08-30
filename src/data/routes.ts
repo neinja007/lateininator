@@ -4,16 +4,19 @@ import {
   BookMarked,
   BookOpenText,
   CircleDot,
-  Crosshair,
   Gem,
   LayoutDashboard,
+  LineChart,
   LogIn,
   LogOut,
   Newspaper,
   PencilLine,
   Replace,
+  Settings,
   SpellCheck,
   User,
+  Vault,
+  WholeWord,
   X
 } from 'lucide-react';
 
@@ -66,7 +69,16 @@ export const routes: Route[] = [
       }
     ]
   },
-  { label: 'Kompetenz', href: '/competence', color: 'orange', icon: Crosshair },
+  {
+    label: 'Verwaltung',
+    href: '/settings',
+    icon: Settings,
+    children: [
+      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord },
+      { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings },
+      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart }
+    ]
+  },
   {
     label: 'Premium',
     href: '/premium/overview',
@@ -83,7 +95,7 @@ export const routes: Route[] = [
         label: 'Konto Verwalten',
         href: '/manage',
         authStatus: 'signedIn',
-        icon: User
+        icon: Vault
       },
       {
         label: 'Abmelden',
