@@ -19,11 +19,12 @@ model User {
 }
 
 model Collection {
-  id      Int    @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   name    String
   lists   List[]
   user    User[]
-  owner   User   @relation("owner", fields: [ownerId], references: [id])
+  private Boolean @default(true)
+  owner   User    @relation("owner", fields: [ownerId], references: [id])
   ownerId String
 }
 
