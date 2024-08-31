@@ -44,9 +44,12 @@ model Word {
   exception    Json?    @db.JsonB
   base         Word[]   @relation("derivative")
 
-  noun      Noun?
-  verb      Verb?
-  adjective Adjective?
+  noun        Noun?      @relation("noun", fields: [nounId], references: [id])
+  nounId      Int?       @unique
+  verb        Verb?      @relation(fields: [verbId], references: [id])
+  verbId      Int?       @unique
+  adjective   Adjective? @relation(fields: [adjectiveId], references: [id])
+  adjectiveId Int?       @unique
 }
 
 model Noun {
@@ -56,8 +59,7 @@ model Noun {
   genitive   String
   gender     Gender
 
-  word   Word @relation(fields: [wordId], references: [id])
-  wordId Int  @unique
+  word Word? @relation("noun")
 }
 
 model Verb {
@@ -67,8 +69,7 @@ model Verb {
   perfect     String
   participle  String
 
-  word   Word @relation(fields: [wordId], references: [id])
-  wordId Int  @unique
+  word Word?
 }
 
 model Adjective {
@@ -77,8 +78,7 @@ model Adjective {
   femininum  String
   neutrum    String
 
-  word   Word @relation(fields: [wordId], references: [id])
-  wordId Int  @unique
+  word Word?
 }
 
 enum Declension {
