@@ -34,8 +34,8 @@ model List {
 
 model Word {
   id           Int      @id @default(autoincrement())
-  list         List     @relation(fields: [listId], references: [id])
-  listId       Int
+  list         List?    @relation(fields: [listId], references: [id])
+  listId       Int?
   word         String
   translation  String[]
   info         String?
