@@ -34,6 +34,7 @@ model List {
 
 model Word {
   id           Int      @id @default(autoincrement())
+  type         Type
   list         List?    @relation(fields: [listId], references: [id])
   listId       Int?
   name         String
@@ -112,4 +113,13 @@ enum Comparison {
   A_O
   K
   NONE
+}
+
+enum Type {
+  NOUN
+  VERB
+  ADJECTIVE
+  ADVERB
+  OTHER
+  PRONOUN
 }
