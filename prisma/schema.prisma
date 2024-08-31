@@ -41,7 +41,7 @@ model Word {
   info         String?
   derivative   Word?    @relation("derivative", fields: [derivativeId], references: [id])
   derivativeId Int?
-  exception    Json     @db.JsonB
+  exception    Json?    @db.JsonB
   base         Word[]   @relation("derivative")
 
   noun      Noun?
