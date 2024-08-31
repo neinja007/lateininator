@@ -43,4 +43,69 @@ model Word {
   derivativeId Int?
   exception    Json     @db.JsonB
   base         Word[]   @relation("derivative")
+
+  noun      Noun?
+  verb      Verb?
+  adjective Adjective?
+}
+
+model Noun {
+  id         Int        @id @default(autoincrement())
+  pluralOnly Boolean    @default(false)
+  declension Declension
+  genitive   String
+  gender     Gender
+
+  word   Word @relation(fields: [wordId], references: [id])
+  wordId Int  @unique
+}
+
+model Verb {
+  id          Int         @id @default(autoincrement())
+  conjugation Conjugation
+  present     String
+  perfect     String
+  participle  String
+
+  word   Word @relation(fields: [wordId], references: [id])
+  wordId Int  @unique
+}
+
+model Adjective {
+  id         Int        @id @default(autoincrement())
+  comparison Comparison
+  femininum  String
+  neutrum    String
+
+  word   Word @relation(fields: [wordId], references: [id])
+  wordId Int  @unique
+}
+
+enum Declension {
+  A
+  O
+  K
+  M
+  I
+  E
+  U
+}
+
+enum Conjugation {
+  A
+  E
+  K
+  I
+  M
+}
+
+enum Gender {
+  M
+  F
+  N
+}
+
+enum Comparison {
+  A_O
+  K
 }
