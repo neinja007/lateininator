@@ -14,7 +14,7 @@ model User {
   points           Int          @default(0)
   createdAt        DateTime     @default(now())
   premium          Boolean      @default(false)
-  collections      Collection[] @relation("saved")
+  savedCollections Collection[] @relation("saved")
   ownedCollections Collection[] @relation("owner")
 }
 
