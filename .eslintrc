@@ -1,6 +1,6 @@
 {
 	"plugins": ["react"],
-	"extends": ["next/core-web-vitals", "eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime"],
+	"extends": ["next/core-web-vitals", "eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:@tanstack/eslint-plugin-query/recommended"],
 	"rules": {
 		"no-undef": "off",
 		"no-unused-vars": "off"
