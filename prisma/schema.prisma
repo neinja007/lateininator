@@ -29,4 +29,18 @@ model List {
   name         String
   collection   Collection @relation(fields: [collectionId], references: [id])
   collectionId Int
+  words        Word[]
+}
+
+model Word {
+  id           Int      @id @default(autoincrement())
+  list         List     @relation(fields: [listId], references: [id])
+  listId       Int
+  word         String
+  translation  String[]
+  info         String?
+  derivative   Word?    @relation("derivative", fields: [derivativeId], references: [id])
+  derivativeId Int?
+  exception    Json     @db.JsonB
+  base         Word[]   @relation("derivative")
 }
