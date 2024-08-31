@@ -1,5 +1,5 @@
 import Heading from '@/components/Heading';
-import { routes } from '@/data/routes';
+import { routes } from '@/constants/routes';
 import FancyLink from '@/components/FancyLink';
 import { makeAuthStateDependent } from '@/utils/other/makeAuthStateDependent';
 import { Fragment } from 'react';

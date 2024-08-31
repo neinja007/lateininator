@@ -1,4 +1,4 @@
-import { Route } from '@/data/routes';
+import { Route } from '@/constants/routes';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { fancyLinkColors } from '../app/(general)/dashboard/constants/colors';

@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from 'react';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
 import { ChevronUp } from 'lucide-react';
-import { Route } from '@/data/routes';
+import { Route } from '@/constants/routes';
 
 type NavbarDropdownProps = {
   route: Route;

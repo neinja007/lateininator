@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
-import { Route } from '@/data/routes';
+import { Route } from '@/constants/routes';
 
 type NavbarLinkProps = {
   route: Route;

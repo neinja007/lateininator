@@ -6,7 +6,7 @@ import { useUser } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
-import { routes } from '@/data/routes';
+import { routes } from '@/constants/routes';
 import { Menu } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
