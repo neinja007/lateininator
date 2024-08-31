@@ -34,7 +34,7 @@ const Page = ({ error, reset }: PageProps) => {
             Fehlermeldung Kopieren
           </button>
         </div>
-        <pre className='my-4 rounded-lg border border-gray-500 p-4 text-red-500'>{error.message}</pre>
+        <div className='my-4 rounded-lg border border-gray-500 p-4 font-mono text-red-500'>{error.message}</div>
       </div>
       <div className='flex items-center justify-between'>
         <span>Wir Danken für Ihre Unterstützung. Sie können hier versuchen, den Fehler rückgängig zu machen:</span>
