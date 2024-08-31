@@ -14,7 +14,7 @@ model User {
   points           Int          @default(0)
   createdAt        DateTime     @default(now())
   premium          Boolean      @default(false)
-  collections      Collection[]
+  collections      Collection[] @relation("saved")
   ownedCollections Collection[] @relation("owner")
 }
 
@@ -22,7 +22,7 @@ model Collection {
   id      Int     @id @default(autoincrement())
   name    String
   lists   List[]
-  user    User[]
+  user    User[]  @relation("saved")
   private Boolean @default(true)
   owner   User    @relation("owner", fields: [ownerId], references: [id])
   ownerId String  @default("user_lateininator")
