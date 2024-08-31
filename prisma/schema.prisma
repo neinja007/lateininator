@@ -25,7 +25,7 @@ model Collection {
   user    User[]
   private Boolean @default(true)
   owner   User    @relation("owner", fields: [ownerId], references: [id])
-  ownerId String
+  ownerId String  @default("user_lateininator")
 }
 
 model List {
