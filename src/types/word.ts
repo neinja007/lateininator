@@ -1,7 +1,24 @@
 import { WordType } from './appConstants';
+import { Endings } from './endings';
 import { OptionalComparison, OptionalDeclension, OptionalConjugation, OptionalGender } from './wordConstants';
 
 export type Word = Verb | Noun | Adjective | Other;
+
+type FullyPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? FullyPartial<T[P]> : T[P];
+};
+
+type Exception = {
+  [key: number]: {
+    adverb?: {
+      [key in 'pos' | 'comp' | 'sup']?: string;
+    };
+  } & FullyPartial<Endings> & {
+      customBases?: {
+        [K in 'pos' | 'comp' | 'sup']?: string;
+      };
+    };
+};
 
 export type Base = {
   id: number;
@@ -10,7 +27,7 @@ export type Base = {
   translation: string[];
   info?: string;
   derivative?: number;
-  exception?: number;
+  exception?: Exception;
 };
 
 export type Adjective = Base & {
