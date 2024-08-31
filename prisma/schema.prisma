@@ -36,7 +36,7 @@ model Word {
   id           Int      @id @default(autoincrement())
   list         List?    @relation(fields: [listId], references: [id])
   listId       Int?
-  word         String
+  name         String
   translation  String[]
   info         String?
   derivative   Word?    @relation("derivative", fields: [derivativeId], references: [id])
