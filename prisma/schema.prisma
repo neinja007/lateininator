@@ -89,6 +89,7 @@ enum Declension {
   I
   E
   U
+  NONE
 }
 
 enum Conjugation {
@@ -97,15 +98,18 @@ enum Conjugation {
   K
   I
   M
+  NONE
 }
 
 enum Gender {
   M
   F
   N
+  NONE
 }
 
 enum Comparison {
   A_O
   K
+  NONE
 }
