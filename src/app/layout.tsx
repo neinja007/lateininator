@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Lateininator',
   description: 'Die #1 Latein-Lern-App'
 };
+
 const RootLayout = ({
   children
 }: Readonly<{
