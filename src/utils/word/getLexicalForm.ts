@@ -1,12 +1,15 @@
 import { endings } from '@/constants/endings';
 import { Word } from '@/types/word';
+import { isNoun } from '../typeguards/isNoun';
+import { isVerb } from '../typeguards/isVerb';
 
 export const getLexicalForm = (word: Word) => {
-  if (word.type === 'noun') {
-    if (word.declension === '-' || word.gender === '-') return;
-    return `-${endings.noun[word.declension][word.gender].sin[2]}, ${word.gender}.`;
-  } else if (word.type === 'verb') {
-    if (word.conjugation === '-') return;
-    return `-${endings.verb[word.conjugation].ind.act.pres.sin[1]}, ${word.conjugation}.`;
+  if (isNoun(word)) {
+    word.noun;
+    if (word.noun.declension === 'NONE' || word.noun.gender === 'NONE') return;
+    return `-${endings.noun[word.noun.declension][word.noun.gender].sin[2]}, ${word.noun.gender}.`;
+  } else if (isVerb(word)) {
+    if (word.verb.conjugation === 'NONE') return;
+    return `-${endings.verb[word.verb.conjugation].ind.act.pres.sin[1]}, ${word.verb.conjugation}.`;
   }
 };
