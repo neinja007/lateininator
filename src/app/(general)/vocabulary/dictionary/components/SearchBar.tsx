@@ -5,9 +5,10 @@ type SearchBarProps = {
   query: string;
   setQuery: (query: string) => void;
   onSearch?: () => void;
+  isFetched: boolean;
 };
 
-const SearchBar = ({ query, setQuery, onSearch }: SearchBarProps) => {
+const SearchBar = ({ query, setQuery, onSearch, isFetched }: SearchBarProps) => {
   return (
     <div className='flex items-end justify-between'>
       <div className='flex-grow'>
@@ -19,7 +20,7 @@ const SearchBar = ({ query, setQuery, onSearch }: SearchBarProps) => {
           onChange={setQuery}
         />
       </div>
-      <Button className={'ml-4'} onClick={onSearch}>
+      <Button className='ml-4' onClick={onSearch} disabled={!isFetched}>
         Suchen
       </Button>
     </div>
