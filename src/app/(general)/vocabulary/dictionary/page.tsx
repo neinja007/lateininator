@@ -34,9 +34,9 @@ const Page = () => {
       <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} />
 
       <ResultCount count={wordsQuery.data ? wordsQuery.data.length : 0} query={query} />
-      <Hr />
       {wordsQuery.isSuccess && wordsQuery.data.length > 0 && (
         <div>
+          <Hr />
           <DisplayMode view={view} setView={setView} />
           {view === 'list' ? (
             <WordList results={wordsQuery.data} query={query} loading={wordsQuery.isLoading} />
