@@ -13,6 +13,6 @@ export const getLexicalForm = (word: Word) => {
     return `-${endings.verb[word.verb.conjugation].ind.act.pres.sin[1]}, ${word.verb.conjugation.toLowerCase()}.`;
   } else if (isAdjective(word)) {
     if (word.adjective.comparison === 'NONE') return;
-    return `-${endings.adjective[word.adjective.comparison].M.pos.sin[2]}, ${word.adjective.comparison.toLowerCase()}.`;
+    return `-${endings.adjective[word.adjective.comparison].M.pos.sin[2]}, ${word.adjective.comparison === 'A_O' ? 'a/o' : 'k'}.`;
   }
 };
