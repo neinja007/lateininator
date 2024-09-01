@@ -13,7 +13,7 @@ const SearchBar = ({ query, setQuery, onSearch }: SearchBarProps) => {
       <div className='flex-grow'>
         <Input
           label='Suche'
-          placeholder='Wort oder Übersetzung eingeben'
+          placeholder='Lateinisches Wort eingeben'
           className='mr-4 w-full'
           value={query}
           onChange={setQuery}
