@@ -5,8 +5,8 @@ import { isVerb } from '../typeguards/isVerb';
 import { isAdjective } from '../typeguards/isAdjective';
 
 export const getLexicalForm = (word: Word) => {
+  console.log(word);
   if (isNoun(word)) {
-    word.noun;
     if (word.noun.declension === 'NONE' || word.noun.gender === 'NONE') return;
     return `-${endings.noun[word.noun.declension][word.noun.gender].sin[2]}, ${word.noun.gender}.`;
   } else if (isVerb(word)) {
