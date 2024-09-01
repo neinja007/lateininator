@@ -1,5 +1,4 @@
 import WordRow from '@/app/(general)/vocabulary/dictionary/components/WordRow';
-import { placeholderWord } from '@/constants/placeholderData';
 import table from '@/styles/table.module.css';
 import { Word } from '@/types/word';
 import clsx from 'clsx';
@@ -7,8 +6,6 @@ import clsx from 'clsx';
 type WordListProps = { results: Word[]; query: string; loading: boolean };
 
 const WordList = ({ results, query, loading }: WordListProps) => {
-  results = loading ? [...Array(1000).map(() => placeholderWord)] : results;
-
   return (
     <table className={clsx(table.table, 'text-left')}>
       <thead>
@@ -21,7 +18,7 @@ const WordList = ({ results, query, loading }: WordListProps) => {
       </thead>
       <tbody>
         {results.map((word, i) => (
-          <WordRow key={i} word={word} query={query} />
+          <WordRow key={i} word={word} query={query} loading={loading} />
         ))}
       </tbody>
     </table>
