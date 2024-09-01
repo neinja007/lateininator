@@ -1,13 +1,13 @@
 import { Adjective, Noun, Verb, Word } from '@/types/word';
 
 export const placeholderWord: Word & Noun & Verb & Adjective = {
-  info: '',
+  info: 'wird geladen...',
   translation: [],
   type: 'OTHER',
   list: [],
   derivative: null,
   id: Math.random() * 100000,
-  name: '',
+  name: 'wird geladen...',
   exception: {},
   noun: {
     declension: 'NONE',
