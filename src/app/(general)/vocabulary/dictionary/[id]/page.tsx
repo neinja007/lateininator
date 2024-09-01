@@ -1,5 +1,4 @@
 'use client';
-
 import Header from './components/Header';
 import WordInformation from './components/WordInformation';
 import TableInformation from './components/TableInformation';
@@ -16,6 +15,7 @@ import { isNoun } from '@/utils/typeguards/isNoun';
 import { isVerb } from '@/utils/typeguards/isVerb';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { useQuery } from '@tanstack/react-query';
+import BackToDictionaryButton from './components/BackToDictionaryButton';
 
 type PageProps = { params: { id: string } };
 
@@ -36,7 +36,13 @@ const Page = ({ params: { id } }: PageProps) => {
       </div>
     );
 
-  if (status === 'pending') return <div className='animate-pulse'>Wort wird geladen...</div>;
+  if (status === 'pending')
+    return (
+      <div className='grid grid-cols-3 items-center'>
+        <BackToDictionaryButton />
+        <div className='inline animate-pulse text-center'>Wort wird geladen...</div>
+      </div>
+    );
 
   return (
     <div className='space-y-3'>
