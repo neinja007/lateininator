@@ -2,7 +2,7 @@ import { Endings } from '@/types/endings';
 
 export const endings = {
   verb: {
-    a: {
+    A: {
       ind: {
         act: {
           pres: {
@@ -234,7 +234,7 @@ export const endings = {
         }
       }
     },
-    e: {
+    E: {
       ind: {
         act: {
           pres: {
@@ -466,7 +466,7 @@ export const endings = {
         }
       }
     },
-    k: {
+    K: {
       ind: {
         act: {
           pres: {
@@ -698,7 +698,7 @@ export const endings = {
         }
       }
     },
-    i: {
+    I: {
       ind: {
         act: {
           pres: {
@@ -930,7 +930,7 @@ export const endings = {
         }
       }
     },
-    m: {
+    M: {
       ind: {
         act: {
           pres: {
@@ -1164,8 +1164,8 @@ export const endings = {
     }
   },
   noun: {
-    a: {
-      m: {
+    A: {
+      M: {
         sin: {
           1: '-',
           2: 'ae',
@@ -1181,7 +1181,7 @@ export const endings = {
           5: 'is'
         }
       },
-      f: {
+      F: {
         sin: {
           1: '-',
           2: 'ae',
@@ -1197,7 +1197,7 @@ export const endings = {
           5: 'is'
         }
       },
-      n: {
+      N: {
         sin: {
           1: '-',
           2: 'ae',
@@ -1214,8 +1214,8 @@ export const endings = {
         }
       }
     },
-    o: {
-      m: {
+    O: {
+      M: {
         sin: {
           1: 'us',
           2: 'i',
@@ -1231,7 +1231,7 @@ export const endings = {
           5: 'is'
         }
       },
-      f: {
+      F: {
         sin: {
           1: '-',
           2: 'i',
@@ -1247,7 +1247,7 @@ export const endings = {
           5: 'is'
         }
       },
-      n: {
+      N: {
         sin: {
           1: '-',
           2: 'i',
@@ -1264,8 +1264,8 @@ export const endings = {
         }
       }
     },
-    k: {
-      m: {
+    K: {
+      M: {
         sin: {
           1: '-',
           2: 'is',
@@ -1281,7 +1281,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      f: {
+      F: {
         sin: {
           1: '-',
           2: 'is',
@@ -1297,7 +1297,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      n: {
+      N: {
         sin: {
           1: '-',
           2: 'is',
@@ -1314,8 +1314,8 @@ export const endings = {
         }
       }
     },
-    m: {
-      m: {
+    M: {
+      M: {
         sin: {
           1: '-',
           2: 'is',
@@ -1331,7 +1331,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      f: {
+      F: {
         sin: {
           1: '-',
           2: 'is',
@@ -1347,7 +1347,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      n: {
+      N: {
         sin: {
           1: '-',
           2: 'is',
@@ -1364,8 +1364,8 @@ export const endings = {
         }
       }
     },
-    i: {
-      m: {
+    I: {
+      M: {
         sin: {
           1: '-',
           2: 'is',
@@ -1381,7 +1381,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      f: {
+      F: {
         sin: {
           1: '-',
           2: 'is',
@@ -1397,7 +1397,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      n: {
+      N: {
         sin: {
           1: '-',
           2: 'is',
@@ -1414,8 +1414,8 @@ export const endings = {
         }
       }
     },
-    e: {
-      m: {
+    E: {
+      M: {
         sin: {
           1: '-',
           2: 'ei',
@@ -1431,7 +1431,7 @@ export const endings = {
           5: 'ebus'
         }
       },
-      f: {
+      F: {
         sin: {
           1: '-',
           2: 'ei',
@@ -1447,7 +1447,7 @@ export const endings = {
           5: 'ebus'
         }
       },
-      n: {
+      N: {
         sin: {
           1: '-',
           2: 'ei',
@@ -1464,8 +1464,8 @@ export const endings = {
         }
       }
     },
-    u: {
-      m: {
+    U: {
+      M: {
         sin: {
           1: '-',
           2: 'us',
@@ -1481,7 +1481,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      f: {
+      F: {
         sin: {
           1: '-',
           2: 'us',
@@ -1497,7 +1497,7 @@ export const endings = {
           5: 'ibus'
         }
       },
-      n: {
+      N: {
         sin: {
           1: '-',
           2: 'us',
@@ -1516,8 +1516,8 @@ export const endings = {
     }
   },
   adjective: {
-    a_o: {
-      m: {
+    A_O: {
+      M: {
         pos: {
           sin: {
             1: 'us',
@@ -1567,7 +1567,7 @@ export const endings = {
           }
         }
       },
-      f: {
+      F: {
         pos: {
           sin: {
             1: 'a',
@@ -1617,7 +1617,7 @@ export const endings = {
           }
         }
       },
-      n: {
+      N: {
         pos: {
           sin: {
             1: 'um',
@@ -1668,8 +1668,8 @@ export const endings = {
         }
       }
     },
-    kon: {
-      m: {
+    K: {
+      M: {
         pos: {
           sin: {
             1: '-',
@@ -1719,7 +1719,7 @@ export const endings = {
           }
         }
       },
-      f: {
+      F: {
         pos: {
           sin: {
             1: '-',
@@ -1769,7 +1769,7 @@ export const endings = {
           }
         }
       },
-      n: {
+      N: {
         pos: {
           sin: {
             1: '-',
@@ -1823,18 +1823,18 @@ export const endings = {
   },
   adverb: {
     pos: {
-      a_o: 'e',
-      kon: 'iter',
+      A_O: 'e',
+      K: 'iter',
       _ns: 'nter'
     },
     comp: {
-      a_o: 'ius',
-      kon: 'ius',
+      A_O: 'ius',
+      K: 'ius',
       _ns: 'ius'
     },
     sup: {
-      a_o: 'e',
-      kon: 'e',
+      A_O: 'e',
+      K: 'e',
       _ns: 'e'
     }
   }
