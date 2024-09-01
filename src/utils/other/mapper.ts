@@ -3,28 +3,27 @@ import { MapperType } from '@/types/mapper';
 export const MAPPER: MapperType = {
   extended: {
     type: {
-      noun: 'Nomen',
-      verb: 'Verb',
-      adjective: 'Adjektiv',
-      other: 'Sonstiges',
-      adverb: 'Adverb',
-      irregularVerb: 'Irreguläres Verb',
-      pronoun: 'Pronomen'
+      NOUN: 'Nomen',
+      VERB: 'Verb',
+      ADJECTIVE: 'Adjektiv',
+      OTHER: 'Sonstiges',
+      ADVERB: 'Adverb',
+      PRONOUN: 'Pronomen'
     },
     declension: {
-      a: 'A Deklination',
-      o: 'O Deklination',
-      k: 'konsonantische Deklination',
-      i: 'konsonantische Deklination I-Stämme',
-      m: 'konsonantische Deklination Mischstämme',
-      e: 'E Deklination',
-      u: 'U Deklination',
-      '-': 'keine Deklination'
+      A: 'A Deklination',
+      O: 'O Deklination',
+      K: 'konsonantische Deklination',
+      I: 'konsonantische Deklination I-Stämme',
+      M: 'konsonantische Deklination Mischstämme',
+      E: 'E Deklination',
+      U: 'U Deklination',
+      NONE: 'keine Deklination'
     },
     comparison: {
-      a_o: 'A/O Komparation',
-      kon: 'konsonantische Komparation',
-      '-': 'keine Komparation'
+      A_O: 'A/O Komparation',
+      K: 'konsonantische Komparation',
+      NONE: 'keine Komparation'
     },
     wordCase: {
       1: 'Nominativ',
@@ -35,22 +34,22 @@ export const MAPPER: MapperType = {
       6: 'Vokativ'
     },
     gender: {
-      m: 'maskulin',
-      f: 'feminin',
-      n: 'neutrum',
-      '-': 'kein Geschlecht'
+      M: 'maskulin',
+      F: 'feminin',
+      N: 'neutrum',
+      NONE: 'kein Geschlecht'
     },
     numerus: {
       sin: 'Singular',
       plu: 'Plural'
     },
     conjugation: {
-      a: 'A Konjugation',
-      e: 'E Konjugation',
-      k: 'konsonantische Konjugation',
-      i: 'I Konjugation',
-      m: 'Mischkonjugation',
-      '-': 'keine Konjugation'
+      A: 'A Konjugation',
+      E: 'E Konjugation',
+      K: 'konsonantische Konjugation',
+      I: 'I Konjugation',
+      M: 'Mischkonjugation',
+      NONE: 'keine Konjugation'
     },
     tense: {
       pres: 'Präsens',
@@ -97,28 +96,27 @@ export const MAPPER: MapperType = {
   },
   short: {
     type: {
-      noun: 'Nomen',
-      verb: 'Verb',
-      adjective: 'Adj.',
-      other: 'Sonst.',
-      adverb: 'Adv.',
-      irregularVerb: 'Irr. Verb',
-      pronoun: 'Pron.'
+      NOUN: 'Nomen',
+      VERB: 'Verb',
+      ADJECTIVE: 'Adj.',
+      OTHER: 'Sonst.',
+      ADVERB: 'Adv.',
+      PRONOUN: 'Pron.'
     },
     declension: {
-      a: 'A Dekl.',
-      o: 'O Dekl.',
-      k: 'kons. Dekl.',
-      i: 'kons. Dekl. I',
-      m: 'kons. Dekl. Misch.',
-      e: 'E Dekl.',
-      u: 'U Dekl.',
-      '-': 'keine Dekl.'
+      A: 'A Dekl.',
+      O: 'O Dekl.',
+      K: 'kons. Dekl.',
+      I: 'kons. Dekl. I',
+      M: 'kons. Dekl. Misch.',
+      E: 'E Dekl.',
+      U: 'U Dekl.',
+      NONE: 'keine Dekl.'
     },
     comparison: {
-      a_o: 'A/O Dekl.',
-      kon: 'kons. Dekl.',
-      '-': 'keine Dekl.'
+      A_O: 'A/O Dekl.',
+      K: 'kons. Dekl.',
+      NONE: 'keine Dekl.'
     },
     wordCase: {
       1: '1. F.',
@@ -129,22 +127,22 @@ export const MAPPER: MapperType = {
       6: '6. F.'
     },
     gender: {
-      m: 'mask.',
-      f: 'fem.',
-      n: 'neut.',
-      '-': 'kein Geschl.'
+      M: 'mask.',
+      F: 'fem.',
+      N: 'neut.',
+      NONE: 'kein Geschl.'
     },
     numerus: {
       sin: 'Sg.',
       plu: 'Pl.'
     },
     conjugation: {
-      a: 'A Konj.',
-      e: 'E Konj.',
-      k: 'kons. Konj.',
-      i: 'I Konj.',
-      m: 'Mischkonj.',
-      '-': 'keine Konj.'
+      A: 'A Konj.',
+      E: 'E Konj.',
+      K: 'kons. Konj.',
+      I: 'I Konj.',
+      M: 'Mischkonj.',
+      NONE: 'keine Konj.'
     },
     tense: {
       pres: 'Präs.',
