@@ -1,7 +1,5 @@
 'use client';
-
 import { useState } from 'react';
-import { useResults } from '@/hooks/useResults';
 import Heading from '@/components/Heading';
 import DisplayMode from './components/DisplayMode';
 import { ResultCount } from './components/ResultCount';
@@ -10,31 +8,40 @@ import WordList from './components/WordList';
 import SearchBar from './components/SearchBar';
 import Hr from '@/components/Hr';
 import { useWidth } from '@/hooks/useWidth';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { Word } from '@/types/word';
 
 const Page = () => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [query, setQuery] = useState<string>('');
   const [view, setView] = useState<'cards' | 'list'>('cards');
-  const [limitResults, setLimitResults] = useState<boolean>(true);
 
   useWidth('md', () => setView('cards'));
 
-  const results = useResults(query, limitResults);
+  const wordsQuery = useQuery<Word[]>({
+    queryKey: ['words', query],
+    queryFn: ({ queryKey }) =>
+      axios.get('/api/words', { params: { query: queryKey[1] || undefined } }).then((res) => res.data)
+  });
+
+  const handleSearch = () => setQuery(searchTerm);
 
   return (
     <div className='space-y-5'>
       <Heading>Wörterbuch</Heading>
 
-      <SearchBar query={query} setQuery={setQuery} />
+      <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} />
 
-      <ResultCount count={results.length} query={query} limitResults={limitResults} setLimitResults={setLimitResults} />
+      <ResultCount count={wordsQuery.data ? wordsQuery.data.length : 0} query={query} />
       <Hr />
-      {results.length > 0 && (
+      {wordsQuery.isSuccess && wordsQuery.data.length > 0 && (
         <div>
           <DisplayMode view={view} setView={setView} />
           {view === 'list' ? (
-            <WordList results={results} query={query} />
+            <WordList results={wordsQuery.data} query={query} loading={wordsQuery.isLoading} />
           ) : (
-            <WordCards results={results} query={query} />
+            <WordCards results={wordsQuery.data} query={query} loading={wordsQuery.isLoading} />
           )}
         </div>
       )}
