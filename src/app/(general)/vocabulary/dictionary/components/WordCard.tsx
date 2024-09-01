@@ -42,12 +42,12 @@ const WordCard = ({ word, query, loading }: WordCardProps) => {
     >
       <div className='p-2 px-3'>
         <div className='float-end m-1'>{!loading && <Badge text={MAPPER.extended.type[word.type]} />}</div>
-        <p className='line-clamp-1 h-8 text-2xl'>
+        <div className='line-clamp-1 h-8 text-2xl'>
           {loading ? <Skeleton customSize className='h-7 w-32' pulse /> : highlightedWord}
-        </p>
-        <p className='h-6'>{loading ? <Skeleton customSize className={'h-full w-14'} pulse /> : lexicalForm}</p>
+        </div>
+        <div className='h-6'>{loading ? <Skeleton customSize className={'h-full w-14'} pulse /> : lexicalForm}</div>
         <br />
-        <p className='h-6'>
+        <div className='h-6'>
           {loading ? (
             <Skeleton customSize className={'h-6 w-44'} pulse />
           ) : word.translation.length > 0 ? (
@@ -55,7 +55,7 @@ const WordCard = ({ word, query, loading }: WordCardProps) => {
           ) : (
             'Keine Übersetzung'
           )}
-        </p>
+        </div>
       </div>
       <div
         className={clsx(
