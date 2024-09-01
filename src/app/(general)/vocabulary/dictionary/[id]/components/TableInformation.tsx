@@ -17,7 +17,7 @@ const ComponentName = ({ word }: ComponentNameProps) => {
   } else if (isAdjective(word)) {
     info =
       word.adjective.comparison === 'NONE'
-        ? 'Keine Deklination'
+        ? 'Keine Komparation'
         : MAPPER.extended.comparison[word.adjective.comparison];
   }
 
