@@ -40,7 +40,7 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
       <td className='p-2 px-4'>
         {loading ? <Skeleton customSize className={'h-6 w-32'} pulse /> : highlightedWord} <i>{getLexicalForm(word)}</i>
       </td>
-      <td className='p-2 px-4'>
+      <td className='line-clamp-1 p-2 px-4'>
         {loading ? (
           <div className='flex'>
             <Skeleton pulse />, <Skeleton className={'ml-2'} pulse />
