@@ -9,7 +9,7 @@ type ComponentNameProps = { word: Word };
 const ComponentName = ({ word }: ComponentNameProps) => {
   let info = '';
   if (isNoun(word)) {
-    info = `${word.noun.declension === 'NONE' ? 'Keine Deklination' : MAPPER.extended.declension[word.noun.declension]}; ${
+    info = `${word.noun.declension === 'NONE' ? 'Keine Deklination' : MAPPER.extended.declension[word.noun.declension]} - ${
       word.noun.gender === 'NONE' ? 'Kein Geschlecht' : MAPPER.extended.gender[word.noun.gender]
     }`;
   } else if (isVerb(word)) {
@@ -23,7 +23,7 @@ const ComponentName = ({ word }: ComponentNameProps) => {
 
   return (
     <div className='mb-2'>
-      <p className='text-center'>{info}</p>
+      <p className='text-center font-bold'>{info}</p>
     </div>
   );
 };
