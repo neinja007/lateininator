@@ -20,7 +20,7 @@ const Page = () => {
 
   useWidth('md', () => setView('cards'));
 
-  const { data, isFetched, isSuccess } = useQuery<Word[]>({
+  const { data, isFetched, isSuccess, error } = useQuery<Word[]>({
     placeholderData: [...Array(12)].map(() => placeholderWord),
     queryKey: ['words', query],
     queryFn: ({ queryKey }) =>
@@ -35,7 +35,7 @@ const Page = () => {
 
       <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} isFetched={isFetched} />
 
-      <ResultCount count={data ? data.length : 0} query={query} isFetched={isFetched} />
+      <ResultCount count={data ? data.length : 0} error={error} query={query} isFetched={isFetched} />
       {isSuccess && data.length > 0 && (
         <div>
           <Hr className={'mb-4'} />
