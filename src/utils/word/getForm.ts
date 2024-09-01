@@ -1,4 +1,4 @@
-import { endings } from '@/data/endings';
+import { endings } from '@/constants/endings';
 import { irregularWords } from '@/data/irregularWords';
 import { getBase } from './getBase';
 import { Word } from '@/types/word';

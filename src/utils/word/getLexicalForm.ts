@@ -1,4 +1,4 @@
-import { endings } from '@/data/endings';
+import { endings } from '@/constants/endings';
 import { Word } from '@/types/word';
 
 export const getLexicalForm = (word: Word) => {
