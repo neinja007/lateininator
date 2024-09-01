@@ -19,6 +19,11 @@ export const GET = async (request: NextRequest) => {
             contains: query,
             mode: 'insensitive'
           }
+        },
+        include: {
+          adjective: true,
+          noun: true,
+          verb: true
         }
       });
 
@@ -29,7 +34,13 @@ export const GET = async (request: NextRequest) => {
     }
   } else {
     try {
-      const words = await prisma.word.findMany();
+      const words = await prisma.word.findMany({
+        include: {
+          adjective: true,
+          noun: true,
+          verb: true
+        }
+      });
 
       return NextResponse.json(words);
     } catch (error: any) {
