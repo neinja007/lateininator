@@ -1,27 +1,12 @@
 import { Gender, Prisma } from '@prisma/client';
-import { ConditionalPerson, ConditionalTense, Endings } from './endings';
+import { ConditionalPerson, ConditionalTense } from './endings';
 import { ComparisonDegree, Modus, Numerus, Voice, WordCase } from './wordConstants';
-
-type FullyPartial<T> = {
-  [P in keyof T]?: T[P] extends object ? FullyPartial<T[P]> : T[P];
-};
-
-type Exception = {
-  adverb?: {
-    [key in 'pos' | 'comp' | 'sup']?: string;
-  };
-} & FullyPartial<Endings> & {
-    customBases?: {
-      [K in 'pos' | 'comp' | 'sup']?: string;
-    };
-  };
 
 type NounException = {
   [N in Numerus]: {
     [C in Exclude<WordCase, '6'>]: string;
   };
 };
-
 type VerbException = {
   [M in Modus]: {
     [V in Voice]: {
