@@ -1,3 +1,5 @@
+import { Type } from '@prisma/client';
+
 const wordProperties = {
   noun: ['declension', 'genitive', 'gender'],
   verb: ['conjugation', 'present', 'perfect', 'participle'],
@@ -20,8 +22,8 @@ const allWordProperties = [
   'neutrum'
 ] as const;
 const otherProperties = ['comparisonDegree', 'wordCase', 'person', 'numerus', 'modus', 'voice', 'tense'] as const;
-const wordTypes = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER', 'ADVERB', 'PRONOUN'] as const;
-const mainWordTypes = ['NOUN', 'VERB', 'ADJECTIVE'] as const;
+const wordTypes = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER', 'ADVERB', 'PRONOUN'] as Type[];
+const mainWordTypes = ['NOUN', 'VERB', 'ADJECTIVE'] satisfies Type[];
 const wordPropertiesUsingSelectInput = ['declension', 'conjugation', 'comparison', 'gender'] as const;
 
 export const APP_CONSTANTS = {
