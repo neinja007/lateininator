@@ -125,6 +125,6 @@ enum Type {
   VERB
   ADJECTIVE
   ADVERB
-  OTHER
   PRONOUN
+  OTHER
 }

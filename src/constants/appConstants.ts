@@ -20,8 +20,8 @@ const allWordProperties = [
   'neutrum'
 ] as const;
 const otherProperties = ['comparisonDegree', 'wordCase', 'person', 'numerus', 'modus', 'voice', 'tense'] as const;
-const wordTypes = ['noun', 'verb', 'adjective', 'other', 'adverb', 'pronoun', 'irregularVerb'] as const;
-const mainWordTypes = ['noun', 'verb', 'adjective'] as const;
+const wordTypes = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER', 'ADVERB', 'PRONOUN'] as const;
+const mainWordTypes = ['NOUN', 'VERB', 'ADJECTIVE'] as const;
 const wordPropertiesUsingSelectInput = ['declension', 'conjugation', 'comparison', 'gender'] as const;
 
 export const APP_CONSTANTS = {

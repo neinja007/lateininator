@@ -6,15 +6,15 @@ const voice = ['act', 'pas'] as const;
 const tense = ['pres', 'perf', 'plus', 'fut1', 'impe'] as const;
 const comparisonDegree = ['pos', 'comp', 'sup'] as const;
 
-const declension = ['a', 'e', 'i', 'k', 'm', 'o', 'u'] as const;
-const gender = ['m', 'f', 'n'] as const;
-const conjugation = ['a', 'e', 'i', 'k', 'm'] as const;
-const comparison = ['a_o', 'kon'] as const;
+const declension = ['A', 'E', 'I', 'K', 'M', 'O', 'U'] as const;
+const gender = ['M', 'F', 'N'] as const;
+const conjugation = ['A', 'E', 'I', 'K', 'M'] as const;
+const comparison = ['A_O', 'K'] as const;
 
-const optionalDeclension = ['-', ...declension] as const;
-const optionalGender = ['-', ...gender] as const;
-const optionalConjugation = ['-', ...conjugation] as const;
-const optionalComparison = ['-', ...comparison] as const;
+const optionalDeclension = ['NONE', ...declension] as const;
+const optionalGender = ['NONE', ...gender] as const;
+const optionalConjugation = ['NONE', ...conjugation] as const;
+const optionalComparison = ['NONE', ...comparison] as const;
 
 export const WORD_CONSTANTS = {
   wordCase,
