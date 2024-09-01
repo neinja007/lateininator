@@ -29,6 +29,7 @@ const Page = ({ error, reset }: PageProps) => {
                     JSON.stringify({
                       error: error.message,
                       digest: error.digest,
+                      name: error.name,
                       global: true
                     })
                   )
