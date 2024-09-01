@@ -5,13 +5,16 @@ import Badge from '@/components/Badge';
 import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';
 import { getLexicalForm } from '@/utils/word/getLexicalForm';
+import clsx from 'clsx';
+import Skeleton from '@/components/Skeleton';
 
 type WordCardProps = {
   word: Word;
   query?: string;
+  loading: boolean;
 };
 
-const WordCard = ({ word, query }: WordCardProps) => {
+const WordCard = ({ word, query, loading }: WordCardProps) => {
   const router = useRouter();
 
   let highlightedWord: React.ReactNode = <span>{word.name}</span>;
@@ -30,19 +33,36 @@ const WordCard = ({ word, query }: WordCardProps) => {
 
   return (
     <div
-      className='flex cursor-pointer select-none flex-col overflow-hidden rounded-lg border border-gray-300 text-left shadow transition-colors selection:bg-gray-100 hover:border-blue-300 hover:bg-gray-200 dark:border-gray-900 dark:bg-gray-900 hover:dark:border-blue-700 dark:hover:bg-gray-800'
+      className={clsx(
+        'flex select-none flex-col overflow-hidden rounded-lg border border-gray-300 text-left shadow transition-colors selection:bg-gray-100 dark:border-gray-900 dark:bg-gray-900',
+        !loading &&
+          'cursor-pointer hover:border-blue-300 hover:bg-gray-200 hover:dark:border-blue-700 dark:hover:bg-gray-800'
+      )}
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <div className='p-2 px-3'>
-        <div className='float-end m-1'>
-          <Badge text={MAPPER.extended.type[word.type]} />
-        </div>
-        <p className='line-clamp-1 text-2xl'>{highlightedWord}</p>
-        <p>{lexicalForm ? lexicalForm : <br />}</p>
+        <div className='float-end m-1'>{!loading && <Badge text={MAPPER.extended.type[word.type]} />}</div>
+        <p className='line-clamp-1 h-8 text-2xl'>
+          {loading ? <Skeleton customSize className='h-7 w-32' pulse /> : highlightedWord}
+        </p>
+        <p className='h-6'>{loading ? <Skeleton customSize className={'h-full w-14'} pulse /> : lexicalForm}</p>
         <br />
-        <p>{word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}</p>
+        <p className='h-6'>
+          {loading ? (
+            <Skeleton customSize className={'h-6 w-44'} pulse />
+          ) : word.translation.length > 0 ? (
+            word.translation.join(', ')
+          ) : (
+            'Keine Übersetzung'
+          )}
+        </p>
       </div>
-      <div className='mt-auto w-full bg-blue-200 p-2 px-3 text-center dark:bg-blue-950'>
+      <div
+        className={clsx(
+          'mt-auto w-full bg-blue-200 p-2 px-3 text-center dark:bg-blue-950',
+          loading && 'text-gray-500 dark:text-gray-700'
+        )}
+      >
         Wort ansehen <ChevronRight size={16} className='inline' />
       </div>
     </div>

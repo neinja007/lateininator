@@ -5,13 +5,16 @@ import { MAPPER } from '@/utils/other/mapper';
 import { Word } from '@/types/word';
 import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import { ChevronRight } from 'lucide-react';
+import clsx from 'clsx';
+import Skeleton from '@/components/Skeleton';
 
 type WordRowProps = {
   word: Word;
   query?: string;
+  loading: boolean;
 };
 
-const WordRow = ({ word, query }: WordRowProps) => {
+const WordRow = ({ word, query, loading }: WordRowProps) => {
   const router = useRouter();
 
   let highlightedWord: React.ReactNode = <span>{word.name}</span>;
@@ -28,18 +31,36 @@ const WordRow = ({ word, query }: WordRowProps) => {
 
   return (
     <tr
-      className='cursor-pointer select-none border-t transition-colors hover:bg-blue-100 dark:border-gray-500 dark:hover:bg-blue-950'
+      className={clsx(
+        'select-none border-t transition-colors dark:border-gray-500',
+        !loading && 'cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-950'
+      )}
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <td className='p-2 px-4'>
-        {highlightedWord} <i>{getLexicalForm(word)}</i>
-      </td>
-      <td className='p-2 px-4'>{word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}</td>
-      <td className='p-2 px-4'>
-        <Badge text={MAPPER.extended.type[word.type]} />
+        {loading ? <Skeleton customSize className={'h-6 w-32'} pulse /> : highlightedWord} <i>{getLexicalForm(word)}</i>
       </td>
       <td className='p-2 px-4'>
-        <div className='float-end flex'>
+        {loading ? (
+          <div className='flex'>
+            <Skeleton pulse />, <Skeleton className={'ml-2'} pulse />
+            , <Skeleton className={'ml-2'} pulse />
+          </div>
+        ) : word.translation.length > 0 ? (
+          word.translation.join(', ')
+        ) : (
+          'Keine Übersetzung'
+        )}
+      </td>
+      <td className='p-2 px-4'>
+        {loading ? (
+          <Skeleton customSize className={'h-6 w-20'} pulse />
+        ) : (
+          <Badge text={MAPPER.extended.type[word.type]} />
+        )}
+      </td>
+      <td className='p-2 px-4'>
+        <div className={clsx('float-end flex', loading && 'animate-pulse text-gray-400 dark:text-gray-600')}>
           Wort ansehen <ChevronRight size={16} className='m-1' />
         </div>
       </td>
