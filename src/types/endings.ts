@@ -1,5 +1,16 @@
-import { Conjugation, Declension, Gender, Comparison } from '@prisma/client';
-import { Tense, Person, Modus, Voice, Numerus, WordCase, ComparisonDegree } from './wordConstants';
+import {
+  Tense,
+  Person,
+  Modus,
+  Voice,
+  Numerus,
+  WordCase,
+  ComparisonDegree,
+  Comparison,
+  Conjugation,
+  Declension,
+  Gender
+} from './wordConstants';
 
 export type ConditionalTense<M> = M extends 'ind' ? Tense : Exclude<Tense, 'fut1'>;
 export type ConditionalPerson<T, V, M> = M extends 'ind'
