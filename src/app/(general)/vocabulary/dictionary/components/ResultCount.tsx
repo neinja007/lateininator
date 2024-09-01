@@ -1,10 +1,21 @@
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
+
 type ResultCountProps = {
   count: number;
   query: string;
   isFetched: boolean;
+  error: Error | null;
 };
 
-export const ResultCount = ({ count, query, isFetched }: ResultCountProps) => {
+export const ResultCount = ({ count, query, isFetched, error }: ResultCountProps) => {
+  if (error) {
+    return (
+      <div className='text-red-500'>
+        Ein Fehler ist aufgetreten ({error.name}). Versuchen Sie es später noch einmal, oder kontaktieren Sie unseren{' '}
+        <LinkToSupportEmail />.
+      </div>
+    );
+  }
   if (!isFetched) {
     return <div className='animate-pulse'>Wörter werden geladen...</div>;
   }
