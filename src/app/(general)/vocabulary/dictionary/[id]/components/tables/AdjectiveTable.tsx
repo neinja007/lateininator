@@ -11,7 +11,7 @@ type AdjectiveTableProps = { word: Word };
 const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
   return (
     <div>
-      <p>{MAPPER.extended.type['adverb']}</p>
+      <p>{MAPPER.extended.type.ADVERB}</p>
       <div className={table.container}>
         <table className={clsx(table.table, 'min-w-[450px]')}>
           <thead className={table.thead}>
@@ -30,7 +30,7 @@ const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
                   {getForm(word, {
                     comparisonDegree,
                     adverb: true,
-                    gender: 'm',
+                    gender: 'M',
                     numerus: 'sin',
                     wordCase: '1'
                   })}
