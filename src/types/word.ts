@@ -1,18 +1,17 @@
 import { Gender, Prisma } from '@prisma/client';
-import { ConditionalPerson, ConditionalTense } from './endings';
-import { ComparisonDegree, Modus, Numerus, Voice, WordCase } from './wordConstants';
+import { ComparisonDegree, Modus, Numerus, Person, Tense, Voice, WordCase } from './wordConstants';
 
 type NounException = {
   [N in Numerus]: {
-    [C in Exclude<WordCase, '6'>]: string;
+    [C in WordCase]: string;
   };
 };
 type VerbException = {
   [M in Modus]: {
     [V in Voice]: {
-      [T in ConditionalTense<M>]: {
+      [T in Tense]: {
         [N in Numerus]: {
-          [P in ConditionalPerson<T, V, M>]: string;
+          [P in Person]: string;
         };
       };
     };
@@ -22,7 +21,7 @@ type AdjectiveException = {
   [G in Exclude<Gender, 'NONE'>]: {
     [D in ComparisonDegree]: {
       [N in Numerus]: {
-        [C in Exclude<WordCase, '6'>]: string;
+        [C in WordCase]: string;
       };
     };
   };
@@ -65,7 +64,7 @@ type GetWordType<Type extends Prisma.WordDefaultArgs> = Omit<
         : {};
 };
 
-export type NounType = GetWordType<typeof wordWithNoun>;
+type NounType = GetWordType<typeof wordWithNoun>;
 type VerbType = GetWordType<typeof wordWithVerb>;
 type AdjectiveType = GetWordType<typeof wordWithAdjective>;
 
