@@ -1,3 +1,5 @@
+import { Comparison, Conjugation, Declension, Gender } from '@prisma/client';
+
 const wordCase = ['1', '2', '3', '4', '5', '6'] as const;
 const person = ['1', '2', '3', '4'] as const;
 const numerus = ['sin', 'plu'] as const;
@@ -6,15 +8,15 @@ const voice = ['act', 'pas'] as const;
 const tense = ['pres', 'perf', 'plus', 'fut1', 'impe'] as const;
 const comparisonDegree = ['pos', 'comp', 'sup'] as const;
 
-const declension = ['A', 'E', 'I', 'K', 'M', 'O', 'U'] as const;
-const gender = ['M', 'F', 'N'] as const;
-const conjugation = ['A', 'E', 'I', 'K', 'M'] as const;
-const comparison = ['A_O', 'K'] as const;
+const declension = ['A', 'E', 'I', 'K', 'M', 'O', 'U'] satisfies Declension[];
+const gender = ['M', 'F', 'N'] satisfies Gender[];
+const conjugation = ['A', 'E', 'I', 'K', 'M'] satisfies Conjugation[];
+const comparison = ['A_O', 'K'] satisfies Comparison[];
 
-const optionalDeclension = ['NONE', ...declension] as const;
-const optionalGender = ['NONE', ...gender] as const;
-const optionalConjugation = ['NONE', ...conjugation] as const;
-const optionalComparison = ['NONE', ...comparison] as const;
+const optionalDeclension = ['NONE', ...declension] as Declension[];
+const optionalGender = ['NONE', ...gender] as Gender[];
+const optionalConjugation = ['NONE', ...conjugation] as Conjugation[];
+const optionalComparison = ['NONE', ...comparison] as Comparison[];
 
 export const WORD_CONSTANTS = {
   wordCase,
