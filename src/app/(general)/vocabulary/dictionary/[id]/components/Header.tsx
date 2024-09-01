@@ -3,6 +3,7 @@ import Badge from '@/components/Badge';
 import { Word } from '@/types/word';
 import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import BackToDictionaryButton from './BackToDictionaryButton';
+import { MAPPER } from '@/utils/other/mapper';
 
 type HeaderProps = { word: Word };
 
@@ -14,7 +15,7 @@ const Header = ({ word }: HeaderProps) => {
         <span className='mt-4 flex justify-center sm:mt-0 sm:justify-end lg:justify-center'>
           {word.name} {getLexicalForm(word)}
           <div className='ml-3 md:text-right'>
-            <Badge text={word.type} />
+            <Badge text={MAPPER.extended.type[word.type]} />
           </div>
         </span>
       </Heading>
