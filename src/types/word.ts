@@ -60,7 +60,9 @@ type GetWordType<Type extends Prisma.WordDefaultArgs> = Omit<
     ? NounException
     : Type extends typeof wordWithVerb
       ? VerbException
-      : AdjectiveException;
+      : Type extends typeof wordWithAdjective
+        ? AdjectiveException
+        : {};
 };
 
 export type Noun = GetWordType<typeof wordWithNoun>;
