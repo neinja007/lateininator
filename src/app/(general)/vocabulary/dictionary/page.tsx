@@ -11,6 +11,7 @@ import { useWidth } from '@/hooks/useWidth';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Word } from '@/types/word';
+import { placeholderWord } from '@/constants/placeholderData';
 
 const Page = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -19,7 +20,8 @@ const Page = () => {
 
   useWidth('md', () => setView('cards'));
 
-  const wordsQuery = useQuery<Word[]>({
+  const { data, isFetched, isSuccess } = useQuery<Word[]>({
+    placeholderData: [...Array(12)].map(() => placeholderWord),
     queryKey: ['words', query],
     queryFn: ({ queryKey }) =>
       axios.get('/api/words', { params: { query: queryKey[1] || undefined } }).then((res) => res.data)
@@ -31,17 +33,17 @@ const Page = () => {
     <div className='space-y-5'>
       <Heading>Wörterbuch</Heading>
 
-      <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} />
+      <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} isFetched={isFetched} />
 
-      <ResultCount count={wordsQuery.data ? wordsQuery.data.length : 0} query={query} />
-      {wordsQuery.isSuccess && wordsQuery.data.length > 0 && (
+      <ResultCount count={data ? data.length : 0} query={query} isFetched={isFetched} />
+      {isSuccess && data.length > 0 && (
         <div>
-          <Hr />
+          <Hr className={'mb-4'} />
           <DisplayMode view={view} setView={setView} />
           {view === 'list' ? (
-            <WordList results={wordsQuery.data} query={query} loading={wordsQuery.isLoading} />
+            <WordList results={data} query={query} loading={!isFetched} />
           ) : (
-            <WordCards results={wordsQuery.data} query={query} loading={wordsQuery.isLoading} />
+            <WordCards results={data} query={query} loading={!isFetched} />
           )}
         </div>
       )}
