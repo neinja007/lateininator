@@ -14,14 +14,14 @@ type WordCardProps = {
 const WordCard = ({ word, query }: WordCardProps) => {
   const router = useRouter();
 
-  let highlightedWord: React.ReactNode = <span>{word.word}</span>;
+  let highlightedWord: React.ReactNode = <span>{word.name}</span>;
   if (query !== '' && query) {
-    const indexOfQuery = word.word.indexOf(query);
+    const indexOfQuery = word.name.indexOf(query);
     highlightedWord = (
       <span>
-        {word.word.slice(0, indexOfQuery)}
+        {word.name.slice(0, indexOfQuery)}
         <span className='text-blue-500'>{query}</span>
-        {word.word.slice(indexOfQuery + query.length)}
+        {word.name.slice(indexOfQuery + query.length)}
       </span>
     );
   }
