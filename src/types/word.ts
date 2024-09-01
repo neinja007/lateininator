@@ -65,7 +65,11 @@ type GetWordType<Type extends Prisma.WordDefaultArgs> = Omit<
         : {};
 };
 
-export type Noun = GetWordType<typeof wordWithNoun>;
-export type Verb = GetWordType<typeof wordWithVerb>;
-export type Adjective = GetWordType<typeof wordWithAdjective>;
+export type NounType = GetWordType<typeof wordWithNoun>;
+type VerbType = GetWordType<typeof wordWithVerb>;
+type AdjectiveType = GetWordType<typeof wordWithAdjective>;
+
+export type Noun = NounType & { noun: NonNullable<NounType['noun']> };
+export type Verb = VerbType & { verb: NonNullable<VerbType['verb']> };
+export type Adjective = AdjectiveType & { adjective: NonNullable<AdjectiveType['adjective']> };
 export type Word = GetWordType<{}>;
