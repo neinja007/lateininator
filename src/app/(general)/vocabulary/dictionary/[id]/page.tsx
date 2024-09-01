@@ -1,20 +1,42 @@
-import { words } from '@/data/words';
+'use client';
+
 import Header from './components/Header';
 import WordInformation from './components/WordInformation';
 import TableInformation from './components/TableInformation';
-import WordNotFound from './components/WordNotFound';
 import VerbTable from './components/tables/VerbTable';
 import AdjectiveTable from './components/tables/AdjectiveTable';
 import Hr from '@/components/Hr';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 import { MainWordType } from '@/types/appConstants';
 import NounTable from './components/tables/NounTable';
+import axios from 'axios';
+import { Word } from '@/types/word';
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
+import { isNoun } from '@/utils/typeguards/isNoun';
+import { isVerb } from '@/utils/typeguards/isVerb';
+import { isAdjective } from '@/utils/typeguards/isAdjective';
+import { useQuery } from '@tanstack/react-query';
 
 type PageProps = { params: { id: string } };
 
 const Page = ({ params: { id } }: PageProps) => {
-  const word = words.find((word) => word.id.toString() === id);
-  if (!word) return <WordNotFound />;
+  const {
+    data: word,
+    error,
+    status
+  } = useQuery<Word>({
+    queryKey: ['words', id],
+    queryFn: ({ queryKey }) => axios.get('/api/words', { params: { id: queryKey[1] } }).then((res) => res.data)
+  });
+
+  if (status === 'error')
+    return (
+      <div className='text-red-500'>
+        Ein Fehler ist aufgetreten ({error.name}). Bitte melden Sie diesen unserem <LinkToSupportEmail />.
+      </div>
+    );
+
+  if (status === 'pending') return <div className='animate-pulse'>Wort wird geladen...</div>;
 
   return (
     <div className='space-y-3'>
@@ -25,11 +47,11 @@ const Page = ({ params: { id } }: PageProps) => {
         <>
           <Hr />
           <TableInformation word={word} />
-          {word.type === 'noun' ? (
+          {isNoun(word) ? (
             <NounTable word={word} />
-          ) : word.type === 'verb' ? (
+          ) : isVerb(word) ? (
             <VerbTable word={word} />
-          ) : word.type === 'adjective' ? (
+          ) : isAdjective(word) ? (
             <AdjectiveTable word={word} />
           ) : (
             false
