@@ -1,4 +1,7 @@
 import { Word } from '@/types/word';
+import { isNoun } from '../typeguards/isNoun';
+import { isVerb } from '../typeguards/isVerb';
+import { isAdjective } from '../typeguards/isAdjective';
 
 export const getBase = (
   word: Word,
@@ -7,32 +10,35 @@ export const getBase = (
   const { baseType, superlative } = info;
   let base = '';
 
-  if (word.type === 'noun') {
-    if (word.declension === 'o') {
-      base = word.genitive.substring(0, word.genitive.length - (word.pluralOnly ? 4 : 1));
+  if (isNoun(word)) {
+    if (word.noun.declension === 'O') {
+      base = word.noun.genitive.substring(0, word.noun.genitive.length - (word.noun.pluralOnly ? 4 : 1));
     } else {
-      base = word.genitive.substring(0, word.genitive.length - 2);
+      base = word.noun.genitive.substring(0, word.noun.genitive.length - 2);
     }
-  } else if (word.type === 'verb') {
+  } else if (isVerb(word)) {
     if (baseType === 'present' || baseType === 'word') {
-      base = word.word.substring(0, word.word.length - 3);
+      base = word.name.substring(0, word.name.length - 3);
     } else if (baseType === 'perfect') {
-      base = word.perfect.substring(0, word.perfect.length - 1);
+      base = word.verb.perfect.substring(0, word.verb.perfect.length - 1);
     } else if (baseType === 'participle') {
-      base = word.participle.substring(0, word.participle.length - 2);
+      base = word.verb.participle.substring(0, word.verb.participle.length - 2);
     }
-  } else if (word.type === 'adjective') {
+  } else if (isAdjective(word)) {
     if (superlative) {
-      base = word.word.substring(0, word.word.length - 2);
-      if (word.word.endsWith('er')) {
+      base = word.name.substring(0, word.name.length - 2);
+      if (word.name.endsWith('er')) {
         base += 'errim';
-      } else if (word.word.endsWith('ilis')) {
+      } else if (word.name.endsWith('ilis')) {
         base += 'illim';
       } else {
         base += 'issim';
       }
     } else {
-      base = word.femininum.substring(0, word.femininum.length - (word.comparison === 'a_o' ? 1 : 2));
+      base = word.adjective.femininum.substring(
+        0,
+        word.adjective.femininum.length - (word.adjective.comparison === 'A_O' ? 1 : 2)
+      );
     }
   }
   return base;
