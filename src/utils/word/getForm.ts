@@ -37,7 +37,7 @@ export const getForm = (
       throw new Error('Error: Empty word properties were passed to getForm()');
     else if (word.noun.pluralOnly && info.numerus === 'sin') return '-';
     else if ('numerus' in info && 'wordCase' in info) {
-      customEnding = word.exception[info.numerus][info.wordCase];
+      customEnding = word.exception[info.numerus]?.[info.wordCase];
       if (customEnding) return customEnding;
 
       if (info.wordCase === '6') {
@@ -62,7 +62,7 @@ export const getForm = (
       ) {
         throw new Error('Error: Invalid word properties were passed to getForm()');
       } else {
-        customEnding = word.exception[info.modus][info.voice][info.tense][info.numerus][info.person];
+        customEnding = word.exception[info.modus]?.[info.voice]?.[info.tense]?.[info.numerus]?.[info.person];
         if (customEnding) return customEnding;
 
         ending =
@@ -75,12 +75,12 @@ export const getForm = (
     if (word.adjective.comparison === 'NONE') throw new Error('Error: Empty word properties were passed to getForm()');
     else if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
       if (info.adverb) {
-        customEnding = word.exception.adverb[info.comparisonDegree];
+        customEnding = word.exception.adverb?.[info.comparisonDegree];
         if (customEnding) return customEnding;
 
         ending = endings.adverb[info.comparisonDegree][word.name.endsWith('ns') ? '_ns' : word.adjective.comparison];
       } else {
-        customEnding = word.exception[info.gender][info.comparisonDegree][info.numerus][info.wordCase];
+        customEnding = word.exception[info.gender]?.[info.comparisonDegree]?.[info.numerus]?.[info.wordCase];
         if (customEnding) return customEnding;
 
         if (info.wordCase === '6') {

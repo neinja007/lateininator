@@ -1,12 +1,17 @@
 import { Gender, Prisma } from '@prisma/client';
 import { ComparisonDegree, Modus, Numerus, Person, Tense, Voice, WordCase } from './wordConstants';
 
-type NounException = {
+type FullyPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? FullyPartial<T[P]> : T[P];
+};
+
+type NounException = FullyPartial<{
   [N in Numerus]: {
     [C in WordCase]: string;
   };
-};
-type VerbException = {
+}>;
+
+type VerbException = FullyPartial<{
   [M in Modus]: {
     [V in Voice]: {
       [T in Tense]: {
@@ -16,20 +21,23 @@ type VerbException = {
       };
     };
   };
-};
-type AdjectiveException = {
-  [G in Exclude<Gender, 'NONE'>]: {
-    [D in ComparisonDegree]: {
-      [N in Numerus]: {
-        [C in WordCase]: string;
+}>;
+
+type AdjectiveException = FullyPartial<
+  {
+    [G in Exclude<Gender, 'NONE'>]: {
+      [D in ComparisonDegree]: {
+        [N in Numerus]: {
+          [C in WordCase]: string;
+        };
       };
     };
-  };
-} & {
-  adverb: {
-    [D in ComparisonDegree]?: string;
-  };
-};
+  } & {
+    adverb: {
+      [D in ComparisonDegree]?: string;
+    };
+  }
+>;
 
 const wordWithList = Prisma.validator<Prisma.WordDefaultArgs>()({
   include: { list: true }
