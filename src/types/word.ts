@@ -1,58 +1,84 @@
-import { WordType } from './appConstants';
-import { Endings } from './endings';
-import { OptionalComparison, OptionalDeclension, OptionalConjugation, OptionalGender } from './wordConstants';
-
-export type Word = Verb | Noun | Adjective | Other;
+import { Gender, Prisma } from '@prisma/client';
+import { ConditionalPerson, ConditionalTense, Endings } from './endings';
+import { ComparisonDegree, Modus, Numerus, Voice, WordCase } from './wordConstants';
 
 type FullyPartial<T> = {
   [P in keyof T]?: T[P] extends object ? FullyPartial<T[P]> : T[P];
 };
 
 type Exception = {
-  [key: number]: {
-    adverb?: {
-      [key in 'pos' | 'comp' | 'sup']?: string;
+  adverb?: {
+    [key in 'pos' | 'comp' | 'sup']?: string;
+  };
+} & FullyPartial<Endings> & {
+    customBases?: {
+      [K in 'pos' | 'comp' | 'sup']?: string;
     };
-  } & FullyPartial<Endings> & {
-      customBases?: {
-        [K in 'pos' | 'comp' | 'sup']?: string;
+  };
+
+type NounException = {
+  [N in Numerus]: {
+    [C in Exclude<WordCase, '6'>]: string;
+  };
+};
+
+type VerbException = {
+  [M in Modus]: {
+    [V in Voice]: {
+      [T in ConditionalTense<M>]: {
+        [N in Numerus]: {
+          [P in ConditionalPerson<T, V, M>]: string;
+        };
       };
     };
+  };
+};
+type AdjectiveException = {
+  [G in Exclude<Gender, 'NONE'>]: {
+    [D in ComparisonDegree]: {
+      [N in Numerus]: {
+        [C in Exclude<WordCase, '6'>]: string;
+      };
+    };
+  };
+} & {
+  adverb: {
+    [D in ComparisonDegree]?: string;
+  };
 };
 
-export type Base = {
-  id: number;
-  word: string;
-  type: WordType;
-  translation: string[];
-  info?: string;
-  derivative?: number;
-  exception?: Exception;
+const wordWithList = Prisma.validator<Prisma.WordDefaultArgs>()({
+  include: { list: true }
+});
+
+const wordWithDerivative = Prisma.validator<Prisma.WordDefaultArgs>()({
+  include: { derivative: true }
+});
+
+const wordWithNoun = Prisma.validator<Prisma.WordDefaultArgs>()({
+  include: { noun: true, derivative: true }
+});
+
+const wordWithVerb = Prisma.validator<Prisma.WordDefaultArgs>()({
+  include: { verb: true, derivative: true }
+});
+
+const wordWithAdjective = Prisma.validator<Prisma.WordDefaultArgs>()({
+  include: { adjective: true, derivative: true }
+});
+
+type GetWordType<Type extends Prisma.WordDefaultArgs> = Omit<
+  Prisma.WordGetPayload<Type & typeof wordWithList & typeof wordWithDerivative>,
+  'nounId' | 'verbId' | 'adjectiveId' | 'derivativeId' | 'listId' | 'exception'
+> & {
+  exception: Type extends typeof wordWithNoun
+    ? NounException
+    : Type extends typeof wordWithVerb
+      ? VerbException
+      : AdjectiveException;
 };
 
-export type Adjective = Base & {
-  type: 'adjective';
-  comparison: OptionalComparison;
-  femininum: string;
-  neutrum: string;
-};
-
-export type Noun = Base & {
-  type: 'noun';
-  pluralOnly?: boolean;
-  declension: OptionalDeclension;
-  genitive: string;
-  gender: OptionalGender;
-};
-
-export type Verb = Base & {
-  type: 'verb';
-  conjugation: OptionalConjugation;
-  present: string;
-  perfect: string;
-  participle: string;
-};
-
-export type Other = Base & {
-  type: 'other' | 'adverb' | 'pronoun' | 'irregularVerb';
-};
+export type Noun = GetWordType<typeof wordWithNoun>;
+export type Verb = GetWordType<typeof wordWithVerb>;
+export type Adjective = GetWordType<typeof wordWithAdjective>;
+export type Word = GetWordType<{}>;
