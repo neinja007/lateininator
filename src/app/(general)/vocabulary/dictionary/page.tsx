@@ -38,7 +38,7 @@ const Page = () => {
       <ResultCount count={data ? data.length : 0} error={error} query={query} isFetched={isFetched} />
       {isSuccess && data.length > 0 && (
         <div>
-          <Hr className={'mb-4'} />
+          <Hr className='mb-4' />
           <DisplayMode view={view} setView={setView} />
           {view === 'list' ? (
             <WordList results={data} query={query} loading={!isFetched} />

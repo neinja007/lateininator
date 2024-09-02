@@ -58,7 +58,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
               {features.map((feature, i) => (
                 <div key={i} className='flex items-center'>
                   <Check className='mr-3 h-8 w-8 text-green-400 dark:text-green-500' />
-                  <span className={'text-base font-medium uppercase tracking-wider'}>{feature}</span>
+                  <span className='text-base font-medium uppercase tracking-wider'>{feature}</span>
                 </div>
               ))}
             </>

@@ -51,7 +51,7 @@ const Page = () => {
           <Check className='mr-3 h-8 w-8' /> Ihr Profil wurde erfolgreich eingerichtet.
         </p>
         <p>
-          Klicken Sie <Link href={'/dashboard'}>hier</Link>, um zur Startseite des Lateininators zu gelangen.
+          Klicken Sie <Link href='/dashboard'>hier</Link>, um zur Startseite des Lateininators zu gelangen.
         </p>
       </div>
     );

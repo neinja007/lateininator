@@ -11,7 +11,7 @@ type PageProps = {
 const Page = ({ error, reset }: PageProps) => {
   return (
     <div className='mb-16'>
-      <Heading className={'text-orange-500'}>Ein Fehler ist aufgetreten ({error.name})</Heading>
+      <Heading className='text-orange-500'>Ein Fehler ist aufgetreten ({error.name})</Heading>
       <div>
         <div className='flex justify-between'>
           <span>
@@ -39,7 +39,7 @@ const Page = ({ error, reset }: PageProps) => {
       </div>
       <div className='flex items-center justify-between'>
         <span>Wir Danken für Ihre Unterstützung. Sie können hier versuchen, den Fehler rückgängig zu machen:</span>
-        <Button onClick={reset} className={'float-end'} color='red'>
+        <Button onClick={reset} className='float-end' color='red'>
           Nochmal versuchen
         </Button>
       </div>

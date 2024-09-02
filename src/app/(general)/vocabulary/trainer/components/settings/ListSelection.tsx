@@ -45,7 +45,7 @@ const ListSelection = ({ selectedIds, setSelectedIds }: ListSelectionProps) => {
             onClick={() =>
               setSelectedLists((prev) => (prev.includes(list) ? prev.filter((t) => t !== list) : [...prev, list]))
             }
-            className={'flex items-center gap-x-2'}
+            className='flex items-center gap-x-2'
           >
             <Book className='w-4' />
             {list.name}

@@ -43,7 +43,7 @@ const PropertySelection = ({
           <CheckboxWithLabel
             checked={checkTranslation}
             handleChange={() => setCheckTranslation((prevCheckTranslation) => !prevCheckTranslation)}
-            label={'Übersetzung'}
+            label='Übersetzung'
           />
         </div>
         <div className='grid grid-cols-2 gap-x-4 sm:col-span-2 lg:col-span-1'>

@@ -47,7 +47,7 @@ const TranslationInput = ({ correctTranslations, stage, inputValues, setInputVal
       {stage === 'review' && !inputIsCorrect && (
         <button
           type='button'
-          className={'m-1.5 w-5 flex-shrink'}
+          className='m-1.5 w-5 flex-shrink'
           onClick={() => setInputValues((prev) => ({ ...prev, translation: correctTranslations.join(', ') }))}
         >
           <Check />

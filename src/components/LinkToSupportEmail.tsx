@@ -6,7 +6,7 @@ type LinkToSupportEmailProps = {
 
 const LinkToSupportEmail = ({ children }: LinkToSupportEmailProps) => {
   return (
-    <Link className='text-blue-500 hover:underline' href={'mailto:support@lateininator.com'}>
+    <Link className='text-blue-500 hover:underline' href='mailto:support@lateininator.com'>
       {children ? children : 'Support'}
     </Link>
   );

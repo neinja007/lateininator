@@ -11,7 +11,7 @@ const Page = () => {
       </p>
       <p className='mt-2'>
         Ansonsten können Sie{' '}
-        <Link className='text-blue-500 hover:underline' href={'/dashboard'}>
+        <Link className='text-blue-500 hover:underline' href='/dashboard'>
           hier zurück zur Homepage gelangen
         </Link>
         .

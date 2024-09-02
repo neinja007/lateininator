@@ -51,7 +51,7 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
         )}
       </div>
       {stage === 'review' && !isInputCorrect && (
-        <button type='button' className={'m-1.5 w-5 flex-shrink'} onClick={() => handleChange(property, correctValue)}>
+        <button type='button' className='m-1.5 w-5 flex-shrink' onClick={() => handleChange(property, correctValue)}>
           <Check />
         </button>
       )}

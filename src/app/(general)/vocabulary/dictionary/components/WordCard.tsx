@@ -45,11 +45,11 @@ const WordCard = ({ word, query, loading }: WordCardProps) => {
         <div className='line-clamp-1 h-8 text-2xl'>
           {loading ? <Skeleton customSize className='h-7 w-32' pulse /> : highlightedWord}
         </div>
-        <div className='h-6'>{loading ? <Skeleton customSize className={'h-full w-14'} pulse /> : lexicalForm}</div>
+        <div className='h-6'>{loading ? <Skeleton customSize className='h-full w-14' pulse /> : lexicalForm}</div>
         <br />
         <div className='h-6'>
           {loading ? (
-            <Skeleton customSize className={'h-6 w-44'} pulse />
+            <Skeleton customSize className='h-6 w-44' pulse />
           ) : word.translation.length > 0 ? (
             word.translation.join(', ')
           ) : (

@@ -10,7 +10,7 @@ const WordNotFound = () => {
       <div>
         Wenn Sie denken, das dies ein Fehler ist, so melden Sie diesen bitte bei unserem <LinkToSupportEmail /> .
         Andernfalls können Sie{' '}
-        <Link href={'/vocabulary/dictionary'} className={ui.link}>
+        <Link href='/vocabulary/dictionary' className={ui.link}>
           hier zum Wörterbuch zurückkehren
         </Link>
         .

@@ -38,13 +38,13 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <td className='p-2 px-4'>
-        {loading ? <Skeleton customSize className={'h-6 w-32'} pulse /> : highlightedWord} <i>{getLexicalForm(word)}</i>
+        {loading ? <Skeleton customSize className='h-6 w-32' pulse /> : highlightedWord} <i>{getLexicalForm(word)}</i>
       </td>
       <td className='line-clamp-1 p-2 px-4'>
         {loading ? (
           <div className='flex'>
-            <Skeleton pulse />, <Skeleton className={'ml-2'} pulse />
-            , <Skeleton className={'ml-2'} pulse />
+            <Skeleton pulse />, <Skeleton className='ml-2' pulse />
+            , <Skeleton className='ml-2' pulse />
           </div>
         ) : word.translation.length > 0 ? (
           word.translation.join(', ')
@@ -54,7 +54,7 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
       </td>
       <td className='p-2 px-4'>
         {loading ? (
-          <Skeleton customSize className={'h-6 w-20'} pulse />
+          <Skeleton customSize className='h-6 w-20' pulse />
         ) : (
           <Badge text={MAPPER.extended.type[word.type]} />
         )}
