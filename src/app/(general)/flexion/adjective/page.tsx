@@ -10,55 +10,11 @@ import { ComparisonDegree, Gender } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 const initialTableInputValues: TableInputValues = {
-  adverb: '',
-  m: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: ''
-    }
-  },
-  f: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: ''
-    }
-  },
-  n: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: ''
-    }
-  }
+  ...(WORD_CONSTANTS.gender.reduce(
+    (acc, cur) => ({ ...acc, [cur]: WORD_CONSTANTS.wordCase.reduce((acc, cur) => ({ ...acc, [cur]: '' }), {}) }),
+    {}
+  ) as TableInputValues),
+  adverb: ''
 };
 
 const Page = () => {
