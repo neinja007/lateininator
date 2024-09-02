@@ -1,13 +1,12 @@
 import { Type } from '@prisma/client';
 
 const wordProperties = {
-  noun: ['declension', 'genitive', 'gender'],
-  verb: ['conjugation', 'present', 'perfect', 'participle'],
-  irregularVerb: ['present', 'participle', 'perfect'],
-  adjective: ['comparison', 'femininum', 'neutrum'],
-  other: [],
-  adverb: [],
-  pronoun: []
+  NOUN: ['declension', 'genitive', 'gender'],
+  VERB: ['conjugation', 'present', 'perfect', 'participle'],
+  ADJECTIVE: ['comparison', 'femininum', 'neutrum'],
+  OTHER: [],
+  ADVERB: [],
+  PRONOUN: []
 } as const;
 const allWordProperties = [
   'declension',
