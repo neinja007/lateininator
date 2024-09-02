@@ -26,7 +26,10 @@ const Page = ({ params: { id } }: PageProps) => {
     status
   } = useQuery<Word>({
     queryKey: ['words', id],
-    queryFn: ({ queryKey }) => axios.get('/api/words', { params: { id: queryKey[1] } }).then((res) => res.data)
+    queryFn: ({ queryKey }) =>
+      axios
+        .get('/api/words', { params: { id: queryKey[1], include: ['derivative', 'noun', 'verb', 'adjective'] } })
+        .then((res) => res.data)
   });
 
   if (status === 'error')
