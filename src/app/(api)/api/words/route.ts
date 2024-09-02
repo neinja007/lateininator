@@ -5,6 +5,11 @@ export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('query');
   const id = searchParams.get('id');
+  const include = searchParams.getAll('include[]');
+
+  if (!include.every((param) => ['adjective', 'noun', 'verb', 'derivative'].includes(param))) {
+    return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
+  }
 
   if (query && id) {
     return NextResponse.json({ error: 'Invalid searchParams (cannot read both id and query)' }, { status: 400 });
@@ -18,6 +23,13 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Invalid query (must be string)' }, { status: 400 });
   }
 
+  const inclusionObject = {
+    adjective: include.includes('adjective'),
+    noun: include.includes('noun'),
+    verb: include.includes('verb'),
+    derivative: include.includes('derivative')
+  };
+
   if (query) {
     try {
       const words = await prisma.word.findMany({
@@ -27,12 +39,7 @@ export const GET = async (request: NextRequest) => {
             mode: 'insensitive'
           }
         },
-        include: {
-          adjective: true,
-          noun: true,
-          verb: true,
-          derivative: true
-        }
+        include: inclusionObject
       });
 
       return NextResponse.json(words);
@@ -46,12 +53,7 @@ export const GET = async (request: NextRequest) => {
         where: {
           id: parseInt(id)
         },
-        include: {
-          adjective: true,
-          noun: true,
-          verb: true,
-          derivative: true
-        }
+        include: inclusionObject
       });
 
       if (!word) {
@@ -66,12 +68,7 @@ export const GET = async (request: NextRequest) => {
   } else {
     try {
       const words = await prisma.word.findMany({
-        include: {
-          adjective: true,
-          noun: true,
-          verb: true,
-          derivative: true
-        }
+        include: inclusionObject
       });
 
       return NextResponse.json(words);
