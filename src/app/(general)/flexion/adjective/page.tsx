@@ -8,6 +8,7 @@ import Test from './components/Test';
 import { TableInputValues } from './types';
 import { ComparisonDegree, Gender } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { isAdjective } from '@/utils/typeguards/isAdjective';
 
 const initialTableInputValues: TableInputValues = {
   ...(WORD_CONSTANTS.gender.reduce(
@@ -53,7 +54,7 @@ const Page = () => {
           remainingWords={remainingWords}
         />
       )}
-      {(stage === 'test' || stage === 'review') && activeWord && activeWord.type === 'adjective' && (
+      {(stage === 'test' || stage === 'review') && activeWord && isAdjective(activeWord) && (
         <Test
           activeWord={activeWord}
           testingType={testingType}
