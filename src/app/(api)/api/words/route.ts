@@ -1,13 +1,19 @@
 import { prisma } from '@/utils/other/client';
 import { NextRequest, NextResponse } from 'next/server';
+import { getIncludedDataObject } from '../../utils/getIncludedDataObject';
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('query');
   const id = searchParams.get('id');
-  const include = searchParams.getAll('include[]');
+  const includedDataObject = getIncludedDataObject(searchParams.getAll('include'), [
+    'adjective',
+    'noun',
+    'verb',
+    'derivative'
+  ]);
 
-  if (!include.every((param) => ['adjective', 'noun', 'verb', 'derivative'].includes(param))) {
+  if (!includedDataObject) {
     return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
   }
 
@@ -23,13 +29,6 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Invalid query (must be string)' }, { status: 400 });
   }
 
-  const inclusionObject = {
-    adjective: include.includes('adjective'),
-    noun: include.includes('noun'),
-    verb: include.includes('verb'),
-    derivative: include.includes('derivative')
-  };
-
   if (query) {
     try {
       const words = await prisma.word.findMany({
@@ -39,7 +38,7 @@ export const GET = async (request: NextRequest) => {
             mode: 'insensitive'
           }
         },
-        include: inclusionObject
+        include: includedDataObject
       });
 
       return NextResponse.json(words);
@@ -53,7 +52,7 @@ export const GET = async (request: NextRequest) => {
         where: {
           id: parseInt(id)
         },
-        include: inclusionObject
+        include: includedDataObject
       });
 
       if (!word) {
@@ -68,7 +67,7 @@ export const GET = async (request: NextRequest) => {
   } else {
     try {
       const words = await prisma.word.findMany({
-        include: inclusionObject
+        include: includedDataObject
       });
 
       return NextResponse.json(words);
