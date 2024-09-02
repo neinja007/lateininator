@@ -8,7 +8,7 @@ export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('query');
   const id = searchParams.get('id');
-  const includedDataObject = getIncludedDataObject<Prisma.WordInclude<DefaultArgs>>(searchParams.getAll('include'), [
+  const includedDataObject = getIncludedDataObject<Prisma.WordInclude<DefaultArgs>>(searchParams.getAll('include[]'), [
     'adjective',
     'noun',
     'verb',
