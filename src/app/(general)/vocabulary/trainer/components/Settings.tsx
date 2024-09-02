@@ -5,7 +5,7 @@ import WordCountSelection from './settings/WordCountSelection';
 import PropertySelection from './settings/PropertySelection';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import ContinueButton from '@/components/ContinueButton';
-import { WordProperty, WordType, MainWordType } from '@/types/appConstants';
+import { WordProperty, WordType, MainWordTypeWithOther } from '@/types/appConstants';
 import { Stage } from '@/types/other';
 import { Word } from '@/types/word';
 import { APP_CONSTANTS } from '@/constants/appConstants';
@@ -36,18 +36,18 @@ const Settings = ({
   remainingWords,
   currentSettingsStage
 }: SettingsProps) => {
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [selectedWords, setSelectedWords] = useState<Word[]>([]);
   const [validWords, setValidWords] = useState<Word[]>([]);
 
-  const [typesToCheck, setTypesToCheck] = useState<WordType[]>([...APP_CONSTANTS.mainWordTypes, 'other']);
+  const [typesToCheck, setTypesToCheck] = useState<WordType[]>([...APP_CONSTANTS.mainWordTypes, 'OTHER']);
 
-  const typesToExclude: (MainWordType | 'other')[] = useMemo(() => {
-    const newTypesToExclude: (MainWordType | 'other')[] = APP_CONSTANTS.mainWordTypes.filter(
+  const typesToExclude: MainWordTypeWithOther[] = useMemo(() => {
+    const newTypesToExclude: MainWordTypeWithOther[] = APP_CONSTANTS.mainWordTypes.filter(
       (type) =>
         !APP_CONSTANTS.wordProperties[type].some((type) => wordPropertiesToCheck.includes(type)) && !checkTranslation
     );
     if (!checkTranslation) {
-      newTypesToExclude.push('other');
+      newTypesToExclude.push('OTHER');
     }
     return newTypesToExclude;
   }, [checkTranslation, wordPropertiesToCheck]);
@@ -65,18 +65,20 @@ const Settings = ({
   }, [typesToExclude, updateWords, validWords, value]);
 
   const enableStart =
-    (currentSettingsStage === 1 && selectedIds.length > 0) ||
+    (currentSettingsStage === 1 && selectedWords.length > 0) ||
     remainingWords > 0 ||
     (currentSettingsStage === 3 && (wordPropertiesToCheck.length > 0 || checkTranslation));
 
   return (
     <>
-      {currentSettingsStage === 1 && <ListSelection selectedIds={selectedIds} setSelectedIds={setSelectedIds} />}
+      {currentSettingsStage === 1 && (
+        <ListSelection selectedWords={selectedWords} setSelectedWords={setSelectedWords} />
+      )}
       {currentSettingsStage === 2 && (
         <WordTypeSelection
           validWords={validWords}
           setValidWords={setValidWords}
-          selectedIds={selectedIds}
+          selectedWords={selectedWords}
           typesToCheck={typesToCheck}
           setTypesToCheck={setTypesToCheck}
           typesToExclude={typesToExclude}
