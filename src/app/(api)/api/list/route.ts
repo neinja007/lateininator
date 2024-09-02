@@ -21,8 +21,6 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Invalid include or wordInclude param' }, { status: 400 });
   }
 
-  console.log(includedData, includedWordData);
-
   try {
     const lists = await prisma.list.findMany({
       where: {
