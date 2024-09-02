@@ -11,19 +11,13 @@ import { WordProperty } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 
-const initialInputValues = {
-  conjugation: '',
-  declension: '',
-  comparison: '',
-  femininum: '',
-  gender: '',
-  genitive: '',
-  neutrum: '',
-  participle: '',
-  perfect: '',
-  present: '',
-  translation: ''
-};
+const initialInputValues = [...APP_CONSTANTS.allWordProperties, 'translation'].reduce(
+  (acc, key) => {
+    acc[key as WordProperty | 'translation'] = '';
+    return acc;
+  },
+  {} as Record<WordProperty | 'translation', string>
+);
 
 const Page = () => {
   const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
