@@ -4,7 +4,7 @@ export const placeholderWord: Word & Noun & Verb & Adjective = {
   info: 'wird geladen...',
   translation: [],
   type: 'OTHER',
-  list: [],
+  lists: [],
   derivative: null,
   id: Math.random() * 100000,
   name: 'wird geladen...',
