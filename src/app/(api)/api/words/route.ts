@@ -1,16 +1,20 @@
 import { prisma } from '@/utils/other/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedDataObject } from '../../utils/getIncludedDataObject';
+import { Prisma } from '@prisma/client';
+import { DefaultArgs } from '@prisma/client/runtime/library';
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('query');
   const id = searchParams.get('id');
-  const includedDataObject = getIncludedDataObject(searchParams.getAll('include'), [
+  const includedDataObject = getIncludedDataObject<Prisma.WordInclude<DefaultArgs>>(searchParams.getAll('include'), [
     'adjective',
     'noun',
     'verb',
-    'derivative'
+    'derivative',
+    'lists',
+    'base'
   ]);
 
   if (!includedDataObject) {
