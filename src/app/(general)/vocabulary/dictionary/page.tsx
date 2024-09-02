@@ -24,7 +24,9 @@ const Page = () => {
     placeholderData: [...Array(12)].map(() => placeholderWord),
     queryKey: ['words', query],
     queryFn: ({ queryKey }) =>
-      axios.get('/api/words', { params: { query: queryKey[1] || undefined } }).then((res) => res.data)
+      axios
+        .get('/api/words', { params: { query: queryKey[1] || undefined, include: ['noun', 'verb', 'adjective'] } })
+        .then((res) => res.data)
   });
 
   const handleSearch = () => setQuery(searchTerm);
