@@ -1,7 +1,6 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants/appConstants';
-import { words } from '@/data/words';
-import { MainWordType, WordType } from '@/types/appConstants';
+import { MainWordType, MainWordTypeWithOther, WordType } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction, useEffect } from 'react';
@@ -9,40 +8,39 @@ import { Dispatch, SetStateAction, useEffect } from 'react';
 type WordTypeSelectionProps = {
   validWords: Word[];
   setValidWords: Dispatch<SetStateAction<Word[]>>;
-  selectedIds: number[];
+  selectedWords: Word[];
   typesToCheck: WordType[];
   setTypesToCheck: Dispatch<SetStateAction<WordType[]>>;
-  typesToExclude: (MainWordType | 'other')[];
+  typesToExclude: MainWordTypeWithOther[];
 };
 
 const WordTypeSelection = ({
   validWords,
   setValidWords,
-  selectedIds,
+  selectedWords,
   typesToCheck,
   setTypesToCheck,
   typesToExclude
 }: WordTypeSelectionProps) => {
   useEffect(() => {
-    const possibleWords = words.filter(
+    const possibleWords = selectedWords.filter(
       (word) =>
-        selectedIds.includes(word.id) &&
-        (typesToCheck.includes(word.type) ||
-          (typesToCheck.includes('other') && !APP_CONSTANTS.mainWordTypes.includes(word.type as any)))
+        typesToCheck.includes(word.type) ||
+        (typesToCheck.includes('OTHER') && !APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType))
     );
     setValidWords(possibleWords);
-  }, [selectedIds, setValidWords, typesToCheck]);
+  }, [selectedWords, setValidWords, typesToCheck]);
 
   return (
     <>
       <p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
       <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
-        {([...APP_CONSTANTS.mainWordTypes, 'other'] as WordType[]).map((type, i) => (
+        {APP_CONSTANTS.mainWordTypesWithOther.map((type, i) => (
           <Button
             key={i}
             color={
               typesToCheck.includes(type)
-                ? typesToExclude.includes(type as MainWordType | 'other')
+                ? typesToExclude.includes(type as MainWordTypeWithOther)
                   ? 'orange'
                   : 'blue'
                 : 'default'
@@ -57,7 +55,7 @@ const WordTypeSelection = ({
       </div>
       <p>
         <b className='text-blue-500'>
-          {validWords.length} von {selectedIds.length} Wörtern
+          {validWords.length} von {selectedWords.length} Wörtern
         </b>{' '}
         stimmen mit den Wortarten überein.
       </p>
