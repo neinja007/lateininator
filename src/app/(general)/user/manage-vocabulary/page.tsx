@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Cell from './components/Cell';
 import CellContainer from './components/CellContainer';
+import { Plus } from 'lucide-react';
 
 const Page = () => {
   const collectionQuery = useQuery<(Collection & { lists: List[]; owner: User })[]>({
@@ -18,7 +19,7 @@ const Page = () => {
     <div>
       <Heading>Wortschatz</Heading>
       <h3 className='text-center font-bold'>Ihre Kollektionen (z.B. Schulbücher)</h3>
-      <div className='mt-4 h-44 resize-y overflow-y-scroll'>
+      <div className='mt-4 h-fit max-h-64 overflow-y-scroll'>
         {!collectionQuery.isFetched && <Skeleton pulse />}
         {collectionQuery.isError && <div>Beim Laden der Kollektionen ist ein Fehler aufgetreten.</div>}
         {collectionQuery.isSuccess && (
@@ -36,6 +37,14 @@ const Page = () => {
                 </p>
               </Cell>
             ))}
+            <Cell outlined>
+              <div className='flex h-full items-center justify-center text-gray-500 dark:text-gray-300'>
+                <div className='text-center'>
+                  <Plus strokeWidth={1} className='m-0 mx-auto h-12 w-12' />
+                  Neue Kollektion anlegen
+                </div>
+              </div>
+            </Cell>
           </CellContainer>
         )}
       </div>
