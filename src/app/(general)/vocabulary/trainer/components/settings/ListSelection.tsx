@@ -33,8 +33,6 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
     );
   }, [selectedLists, setSelectedWords]);
 
-  console.log(lists);
-
   return (
     <>
       <div className='grid-cols-2 md:grid lg:grid-cols-3'>
