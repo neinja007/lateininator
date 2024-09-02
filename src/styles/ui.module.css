@@ -6,7 +6,7 @@
 }
 
 .basic:not([class*='border-']) {
-	@apply border border-gray-500;
+	@apply border dark:border-gray-700;
 }
 
 .basic:not([class*="flex"]) {
