@@ -11,6 +11,7 @@ import { Adjective } from '@/types/word';
 import { Comparison, ComparisonDegree, Gender, WordCase } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
+import { isAdjective } from '@/utils/typeguards/isAdjective';
 
 type TestProps = {
   activeWord: Adjective;
@@ -48,7 +49,7 @@ const Test = ({
   const [tableInputForm, setTableInputForm] = useState<TableInputForm>();
 
   useEffect(() => {
-    if (!activeWord || activeWord.type !== 'adjective') return;
+    if (!activeWord || !isAdjective(activeWord)) return;
     if (testingType === 'individual' || genders.length === 0) {
       setIndividualInputForm({
         adverb: genders.length === 0 || Math.random() < 0.04,
@@ -59,7 +60,7 @@ const Test = ({
       });
     } else {
       setTableInputForm({
-        comparison: activeWord.comparison as Comparison,
+        comparison: activeWord.adjective.comparison as Comparison,
         comparisonDegree: getRandomItem(comparisonDegrees)
       });
     }
@@ -79,11 +80,11 @@ const Test = ({
                 ? `
                   ${MAPPER.extended.gender[individualInputForm.gender]};
                   ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]}
-                  ${activeWord.comparison !== '-' ? MAPPER.extended.comparison[activeWord.comparison] : '-'}
+                  ${MAPPER.extended.comparison[activeWord.adjective.comparison]}
                   ${MAPPER.extended.numerus[individualInputForm.numerus]}
                   ${MAPPER.extended.wordCase[individualInputForm.wordCase]}
                   `
-                : `Adverb ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]} ${activeWord.comparison !== '-' ? MAPPER.extended.comparison[activeWord.comparison] : '-'}`
+                : `Adverb ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]} ${MAPPER.extended.comparison[activeWord.adjective.comparison]}`
             }
             handleChange={setIndividualInputValue}
             value={individualInputValue}
