@@ -7,7 +7,7 @@ type PropertyInputsProps = {
   wordPropertiesToCheck: WordProperty[];
   activeWord: Word;
   inputValues: Record<WordProperty, string>;
-  setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
+  setInputValues: Dispatch<SetStateAction<Record<WordProperty, string>>>;
   stage: 'test' | 'review';
 };
 
