@@ -24,22 +24,24 @@ const Page = () => {
     <div>
       <Heading>Wortschatz</Heading>
       Ihre Kollektionen (z.B. Schulbücher):
-      <div className='mt-4 h-44 min-h-44'>
+      <div className='mt-4 h-44 overflow-y-scroll'>
         {!collectionQuery.isFetched && <Skeleton pulse />}
         {collectionQuery.isError && <div>Beim Laden der Kollektionen ist ein Fehler aufgetreten.</div>}
         {collectionQuery.isSuccess && (
           <CellContainer>
             {collectionQuery.data.map((collection) => (
-              <Cell key={collection.id}>{collection.name}</Cell>
+              <Cell key={collection.id}>
+                <h3 className='font-bold'>{collection.name}</h3>
+              </Cell>
             ))}
           </CellContainer>
         )}
       </div>
       <Hr className='my-5' />
       Ihre Listen (z.B. Lektionen eines Schulbuchs):
-      <div className='mt-4 h-44 min-h-44'>
+      <div className='mt-4 h-44 overflow-y-scroll'>
         {!listQuery.isFetched && <Skeleton pulse />}
-        {listQuery.isError && <div>Beim Laden der Kollektionen ist ein Fehler aufgetreten.</div>}
+        {listQuery.isError && <div>Beim Laden der Listen ist ein Fehler aufgetreten.</div>}
         {listQuery.isSuccess && (
           <CellContainer>
             {listQuery.data.map((list) => (
@@ -48,7 +50,6 @@ const Page = () => {
           </CellContainer>
         )}
       </div>
-      <div></div>
     </div>
   );
 };
