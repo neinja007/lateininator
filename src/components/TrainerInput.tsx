@@ -14,7 +14,7 @@ type TrainerInputProps = {
 };
 
 const TrainerInput = ({ customStyle, label, handleChange, value, correctValue, stage }: TrainerInputProps) => {
-  const inputIsCorrect = compareValues(value, correctValue);
+  const inputIsCorrect = stage === 'review' && compareValues(value, correctValue);
   const correctValueIndicator = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
 
   const valueWithCorrectValue = !inputIsCorrect
