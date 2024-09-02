@@ -11,7 +11,7 @@ const Skeleton = ({ className, pulse, customSize }: SkeletonProps) => {
     <div
       className={clsx(
         customSize || 'h-full w-full',
-        'rounded-lg bg-gray-300 dark:bg-gray-700',
+        'rounded-lg bg-gray-200 dark:bg-gray-700',
         pulse && 'animate-pulse',
         className
       )}
