@@ -1,4 +1,5 @@
 import { Adjective, Noun, Verb, Word } from '@/types/word';
+import { List } from '@prisma/client';
 
 export const placeholderWord: Word & Noun & Verb & Adjective = {
   info: 'wird geladen...',
@@ -29,4 +30,11 @@ export const placeholderWord: Word & Noun & Verb & Adjective = {
     id: Math.random() * 100000,
     neutrum: ''
   }
+};
+
+export const placeholderList: List & { words: Word[] } = {
+  collectionId: Math.random() * 100000,
+  id: Math.random() * 100000,
+  name: 'wird geladen...',
+  words: []
 };
