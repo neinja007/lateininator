@@ -40,7 +40,7 @@ type AdjectiveException = FullyPartial<
 >;
 
 const wordWithList = Prisma.validator<Prisma.WordDefaultArgs>()({
-  include: { list: true }
+  include: { lists: true }
 });
 
 const wordWithDerivative = Prisma.validator<Prisma.WordDefaultArgs>()({
