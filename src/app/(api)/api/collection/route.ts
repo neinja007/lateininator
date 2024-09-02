@@ -1,12 +1,23 @@
 import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { getIncludedDataObject } from '../../utils/getIncludedDataObject';
+import { Prisma } from '@prisma/client';
+import { DefaultArgs } from '@prisma/client/runtime/library';
 
-export const GET = async () => {
+export const GET = async (request: NextRequest) => {
   const user = await currentUser();
 
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  const includedDataObject = getIncludedDataObject<Prisma.CollectionInclude<DefaultArgs>>(
+    request.nextUrl.searchParams.getAll('include'),
+    ['lists', 'owner', 'savedBy']
+  );
+
+  if (!includedDataObject) {
+    return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
   }
 
   try {
@@ -17,7 +28,8 @@ export const GET = async () => {
             id: user.id
           }
         }
-      }
+      },
+      include: includedDataObject
     });
 
     return NextResponse.json(collections, { status: 200 });
