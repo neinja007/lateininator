@@ -23,6 +23,7 @@ const allWordProperties = [
 const otherProperties = ['comparisonDegree', 'wordCase', 'person', 'numerus', 'modus', 'voice', 'tense'] as const;
 const wordTypes = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER', 'ADVERB', 'PRONOUN'] as Type[];
 const mainWordTypes = ['NOUN', 'VERB', 'ADJECTIVE'] satisfies Type[];
+const mainWordTypesWithOther = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER'] satisfies Type[];
 const wordPropertiesUsingSelectInput = ['declension', 'conjugation', 'comparison', 'gender'] as const;
 
 export const APP_CONSTANTS = {
@@ -31,5 +32,6 @@ export const APP_CONSTANTS = {
   otherProperties,
   wordPropertiesUsingSelectInput,
   wordTypes,
-  mainWordTypes
+  mainWordTypes,
+  mainWordTypesWithOther
 } as const;
