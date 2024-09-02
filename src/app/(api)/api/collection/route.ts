@@ -12,7 +12,7 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   const includedDataObject = getIncludedDataObject<Prisma.CollectionInclude<DefaultArgs>>(
-    request.nextUrl.searchParams.getAll('include'),
+    request.nextUrl.searchParams.getAll('include[]'),
     ['lists', 'owner', 'savedBy']
   );
 
