@@ -1,15 +1,25 @@
 import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { getIncludedDataObject } from '../../utils/getIncludedDataObject';
 
-export const GET = async () => {
+export const GET = async (request: NextRequest) => {
   const clerkUser = await currentUser();
   if (!clerkUser) {
     return NextResponse.json({ status: 401, body: { message: 'Unauthorized' } });
   }
 
+  const includedDataObject = getIncludedDataObject(request.nextUrl.searchParams.getAll('include[]'), [
+    'ownedCollections',
+    'savedCollections'
+  ]);
+
+  if (!includedDataObject) {
+    return NextResponse.json({ status: 400, body: { message: 'Invalid include param' } });
+  }
+
   try {
-    const user = await prisma.user.findUnique({ where: { id: clerkUser.id } });
+    const user = await prisma.user.findUnique({ where: { id: clerkUser.id }, include: includedDataObject });
     return NextResponse.json(user, { status: 200 });
   } catch (error: any) {
     console.error(error);
@@ -17,7 +27,7 @@ export const GET = async () => {
   }
 };
 
-export const POST = async () => {
+export const POST = async (request: NextRequest) => {
   const user = await currentUser();
   if (!user) {
     return NextResponse.json({ status: 401, body: { message: 'Unauthorized' } });
