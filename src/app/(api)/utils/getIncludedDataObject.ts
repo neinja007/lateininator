@@ -1,8 +1,8 @@
 export const getIncludedDataObject = (
-  includeParamData: string[],
+  includeParamData: string[] | null,
   allowedItems: string[]
 ): { [key: string]: boolean } | false => {
-  if (!includeParamData.every((item) => allowedItems.includes(item))) {
+  if (!includeParamData || !includeParamData.every((item) => allowedItems.includes(item))) {
     return false;
   }
 
