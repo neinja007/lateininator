@@ -42,9 +42,8 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
       </td>
       <td className='line-clamp-1 p-2 px-4'>
         {loading ? (
-          <div className='flex'>
+          <div className='flex h-6'>
             <Skeleton pulse />, <Skeleton className='ml-2' pulse />
-            , <Skeleton className='ml-2' pulse />
           </div>
         ) : word.translation.length > 0 ? (
           word.translation.join(', ')
