@@ -1,9 +1,7 @@
 import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
-import { getIncludedDataObject } from '../../utils/getIncludedDataObject';
-import { Prisma } from '@prisma/client';
-import { DefaultArgs } from '@prisma/client/runtime/library';
+import { getIncludedData } from '../../utils/getIncludedData';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -12,14 +10,18 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const includedDataObject = getIncludedDataObject<Prisma.ListInclude<DefaultArgs>>(
-    request.nextUrl.searchParams.getAll('include[]'),
-    ['collection', 'words']
-  );
+  const includedData = getIncludedData(request.nextUrl.searchParams.getAll('include[]'), ['collection', 'words']);
+  const includedWordData = getIncludedData(request.nextUrl.searchParams.getAll('wordInclude[]'), [
+    'noun',
+    'verb',
+    'adjective'
+  ]);
 
-  if (!includedDataObject) {
-    return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
+  if (!includedData || !includedWordData) {
+    return NextResponse.json({ error: 'Invalid include or wordInclude param' }, { status: 400 });
   }
+
+  console.log(includedData, includedWordData);
 
   try {
     const lists = await prisma.list.findMany({
@@ -32,7 +34,11 @@ export const GET = async (request: NextRequest) => {
           }
         }
       },
-      include: includedDataObject
+      include: includedData.words && {
+        words: {
+          include: includedWordData
+        }
+      }
     });
 
     return NextResponse.json(lists, { status: 200 });
