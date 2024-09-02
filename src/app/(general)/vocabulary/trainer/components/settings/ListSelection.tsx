@@ -16,7 +16,10 @@ type ListSelectionProps = {
 const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) => {
   const { data: lists, status } = useQuery<(List & { words: Word[] })[]>({
     queryKey: ['lists'],
-    queryFn: () => axios.get('/api/list', { params: { include: ['words'] } }).then((res) => res.data)
+    queryFn: () =>
+      axios
+        .get('/api/list', { params: { include: ['words'], wordInclude: ['noun', 'verb', 'adjective'] } })
+        .then((res) => res.data)
   });
 
   const [selectedLists, setSelectedLists] = useState<(List & { words: Word[] })[]>([]);
@@ -29,6 +32,8 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
       }, [])
     );
   }, [selectedLists, setSelectedWords]);
+
+  console.log(lists);
 
   return (
     <>
