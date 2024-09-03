@@ -9,11 +9,11 @@ export const GET = async (request: NextRequest) => {
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const includedDataObject = getIncludedData(request.nextUrl.searchParams.getAll('include[]'), [
-    'lists',
-    'owner',
-    'savedBy'
-  ]);
+
+  const searchParams = request.nextUrl.searchParams;
+  const saved: boolean = searchParams.get('saved') === 'true';
+
+  const includedDataObject = getIncludedData(searchParams.getAll('include[]'), ['lists', 'owner', 'savedBy']);
 
   if (!includedDataObject) {
     return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
@@ -22,11 +22,27 @@ export const GET = async (request: NextRequest) => {
   try {
     const collections = await prisma.collection.findMany({
       where: {
-        savedBy: {
-          some: {
-            id: user.id
+        savedBy: saved
+          ? {
+              some: {
+                id: user.id
+              }
+            }
+          : {
+              none: {
+                id: user.id
+              }
+            },
+        OR: [
+          {
+            private: false
+          },
+          {
+            owner: {
+              id: user.id
+            }
           }
-        }
+        ]
       },
       include: includedDataObject
     });
