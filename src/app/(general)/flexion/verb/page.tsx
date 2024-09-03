@@ -38,8 +38,6 @@ const Page = () => {
   const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
-  const start = remainingWords > 0;
-
   return (
     <div className='space-y-5'>
       <Heading>Flexionstrainer: Verben</Heading>
