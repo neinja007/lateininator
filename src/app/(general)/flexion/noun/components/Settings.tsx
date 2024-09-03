@@ -1,13 +1,12 @@
-import { lists } from '@/data/lists';
-import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import FormSelection from './settings/FormSelection';
 import WordCount from '../../components/WordLimit';
-import ListSelection from '../../components/ListSelection';
 import ContinueButton from '@/components/ContinueButton';
-import { Noun } from '@/types/word';
+import { Noun, Word } from '@/types/word';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import ListSelection from '@/components/ListSelection';
+import { isNoun } from '@/utils/typeguards/isNoun';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -29,37 +28,31 @@ const Settings = ({
   const [validWords, setValidWords] = useState<Noun[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
 
-  const [maxUnit, setMaxUnit] = useState(lists.length);
+  const [selectedWords, setSelectedWords] = useState<Word[]>([]);
   const [genders, setGenders] = useState([...WORD_CONSTANTS.gender]);
   const [declensions, setDeclensions] = useState([...WORD_CONSTANTS.declension]);
 
   useEffect(() => {
-    const ids = lists
-      .filter((list) => list.id <= maxUnit)
-      .reduce((acc: any, list) => {
-        return acc.concat(list.words);
-      }, []);
-
-    const selectedWords = words.filter(
-      (word) => word.type === 'noun' && ids.includes(word.id) && word.declension !== '-' && word.gender !== '-'
+    const selectedNouns = selectedWords.filter(
+      (word) => isNoun(word) && word.noun.declension !== 'NONE' && word.noun.gender !== 'NONE'
     ) as Noun[];
-    setValidWords(selectedWords);
+    setValidWords(selectedNouns);
 
-    const possibleWords = selectedWords.filter(
+    const possibleWords = selectedNouns.filter(
       (word) =>
-        word.declension !== '-' &&
-        word.gender !== '-' &&
-        declensions.includes(word.declension) &&
-        genders.includes(word.gender)
+        word.noun.declension !== 'NONE' &&
+        word.noun.gender !== 'NONE' &&
+        declensions.includes(word.noun.declension) &&
+        genders.includes(word.noun.gender)
     );
 
     updateWords(possibleWords, value);
-  }, [declensions, genders, maxUnit, updateWords, value]);
+  }, [declensions, genders, selectedWords, updateWords, value]);
 
   return (
     <>
       {currentSettingsStage === 1 && (
-        <ListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Nomen' />
+        <ListSelection selectedWords={selectedWords} setSelectedWords={setSelectedWords} />
       )}
       {currentSettingsStage === 2 && (
         <FormSelection
