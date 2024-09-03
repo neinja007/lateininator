@@ -32,7 +32,7 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
       <div className='block w-full flex-grow'>
         {isWordPropertiesUsingSelectInput(property) ? (
           <Select
-            label={MAPPER.extended.property[property]}
+            label={MAPPER.extended.property.singular[property]}
             options={options}
             className={clsx('w-full opacity-100', stage === 'review' && correctValueIndicatorClasses)}
             value={inputValue}
@@ -42,7 +42,7 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
           />
         ) : (
           <TrainerInput
-            label={MAPPER.extended.property[property]}
+            label={MAPPER.extended.property.singular[property]}
             correctValue={correctValue}
             value={inputValue}
             handleChange={(value) => handleChange(property, value)}
