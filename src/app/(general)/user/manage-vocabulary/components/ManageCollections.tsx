@@ -29,7 +29,10 @@ const ManageCollections = ({ enableBrowseCollections, browseCollections }: Manag
     status: mutationStatus
   } = useMutation({
     mutationFn: (collectionId: number) => axios.delete('/api/collection', { params: { id: collectionId } }),
-    onSettled: () => queryClient.invalidateQueries({ queryKey: ['collections'] })
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['collections'] });
+      queryClient.invalidateQueries({ queryKey: ['lists'] });
+    }
   });
 
   return (
