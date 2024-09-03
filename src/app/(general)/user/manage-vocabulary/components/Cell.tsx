@@ -51,8 +51,8 @@ const Cell = ({
           <h3 className='text-center'>
             <span className='text-2xl font-medium'>{name}</span>
           </h3>
-          <p className='mt-3 flex items-end justify-between'>
-            <span className='mt-2'>Listen: {lists}</span>
+          <p className='mt-3 block items-end justify-between sm:flex'>
+            <span className='mt-2 block'>{lists} Listen</span>
             <span>
               von <span className='font-medium text-yellow-400 dark:text-yellow-500'>{owner}</span>
             </span>
