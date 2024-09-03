@@ -12,6 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Word } from '@/types/word';
 import { placeholderWord } from '@/constants/placeholderData';
+import FailToLoad from '@/components/FailToLoad';
 
 const Page = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -34,10 +35,8 @@ const Page = () => {
   return (
     <div className='space-y-5'>
       <Heading>Wörterbuch</Heading>
-
       <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} isFetched={isFetched} />
-
-      <ResultCount count={data ? data.length : 0} error={error} query={query} isFetched={isFetched} />
+      {error ? <FailToLoad /> : <ResultCount count={data ? data.length : 0} query={query} isFetched={isFetched} />}
       {isSuccess && data.length > 0 && (
         <div>
           <Hr className='mb-4' />
