@@ -5,9 +5,9 @@ import { Dispatch, SetStateAction } from 'react';
 
 type PropertyInputsProps = {
   wordPropertiesToCheck: WordProperty[];
-  activeWord: AnyWord;
-  inputValues: Record<WordProperty, string>;
-  setInputValues: Dispatch<SetStateAction<Record<WordProperty, string>>>;
+  activeWord: Word;
+  inputValues: Record<WordProperty | 'translation', string>;
+  setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
   stage: 'test' | 'review';
 };
 
