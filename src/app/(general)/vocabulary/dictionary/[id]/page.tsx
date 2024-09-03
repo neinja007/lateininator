@@ -10,12 +10,12 @@ import { MainWordType } from '@/types/appConstants';
 import NounTable from './components/tables/NounTable';
 import axios from 'axios';
 import { Word } from '@/types/word';
-import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 import { isNoun } from '@/utils/typeguards/isNoun';
 import { isVerb } from '@/utils/typeguards/isVerb';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { useQuery } from '@tanstack/react-query';
 import BackToDictionaryButton from './components/BackToDictionaryButton';
+import FailToLoad from '@/components/FailToLoad';
 
 type PageProps = { params: { id: string } };
 
@@ -34,8 +34,9 @@ const Page = ({ params: { id } }: PageProps) => {
 
   if (status === 'error')
     return (
-      <div className='text-red-500'>
-        Ein Fehler ist aufgetreten ({error.name}). Bitte melden Sie diesen unserem <LinkToSupportEmail />.
+      <div className='space-y-5'>
+        <BackToDictionaryButton />
+        <FailToLoad />
       </div>
     );
 
