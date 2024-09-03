@@ -34,7 +34,7 @@ const FormSelection = ({
   validWords
 }: FormSelectionProps) => {
   const conjugationsNotToCheck = conjugations.filter(
-    (conjugation) => !validWords.some((word) => word.conjugation === conjugation)
+    (conjugation) => !validWords.some((word) => word.verb.conjugation === conjugation)
   );
 
   const disableImperative = !modi.includes('ind') || !voices.includes('act') || !tenses.includes('pres');
