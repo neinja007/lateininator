@@ -7,7 +7,7 @@ const Page = () => {
     <div>
       <Heading>Einstellungen</Heading>
       <div className='h-44'>Bis jetzt gibt es noch keine Einstellungen.</div>
-      <p className='mb-2 text-center text-lg font-bold'>Weitere Einstellungen</p>
+      <p className='mb-2 text-center text-lg font-bold'>Konto-Einstellungen</p>
       <div className='items-center justify-between gap-x-2 sm:flex'>
         <FancyLink
           route={{
