@@ -46,7 +46,7 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
             Alle auswählen
           </Button>
           <Button
-            color={selectedLists.length === 0 ? 'blue' : 'default'}
+            color={selectedLists.length === 0 && status === 'success' ? 'blue' : 'default'}
             onClick={() => setSelectedLists([])}
             disabled={status !== 'success'}
           >
