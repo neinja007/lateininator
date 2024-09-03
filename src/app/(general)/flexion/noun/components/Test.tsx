@@ -11,6 +11,7 @@ import { Noun } from '@/types/word';
 import { WordCase } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
+import { isNoun } from '@/utils/typeguards/isNoun';
 
 type TestProps = {
   activeWord: Noun;
@@ -43,7 +44,7 @@ const Test = ({
   });
 
   useEffect(() => {
-    if (!activeWord || activeWord.type !== 'noun') return;
+    if (!activeWord || isNoun(activeWord)) return;
     if (testingType === 'individual') {
       setIndividualInputForm({
         numerus: getRandomItem(['sin', 'plu']),
@@ -61,7 +62,7 @@ const Test = ({
       <form onSubmit={submit} className='space-y-8'>
         {individualInputForm && testingType === 'individual' ? (
           <TrainerInput
-            label={`${activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'} ${MAPPER.extended.wordCase[individualInputForm.wordCase]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
+            label={`${MAPPER.extended.declension[activeWord.noun.declension]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
             handleChange={setIndividualInputValue}
             value={individualInputValue}
             correctValue={getForm(activeWord, individualInputForm)}
