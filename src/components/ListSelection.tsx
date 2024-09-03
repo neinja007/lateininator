@@ -122,7 +122,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                 </Button>
               ))
             ) : (
-              <div className='col-span-full'>
+              <div className='col-span-full text-yellow-500'>
                 Keine gespeicherten Kollektionen gefunden. Sie können bei der{' '}
                 <Link href={'/user/manage-vocabulary'} className='font-medium text-blue-500 hover:underline'>
                   Wortschatz-Verwaltung
