@@ -49,7 +49,7 @@ const WordTypeSelection = ({
               setTypesToCheck((prev) => (prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]))
             }
           >
-            {MAPPER.extended.type[type]}
+            {MAPPER.extended.type.singular[type]}
           </Button>
         ))}
       </div>

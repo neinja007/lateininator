@@ -12,7 +12,7 @@ const WordDisplay = ({ word }: WordDisplayProps) => {
     <div>
       {word.info && <WordInfo info={word.info} />}
       <p className='text-2xl font-medium'>
-        {word.name} <Badge text={MAPPER.extended.type[word.type]} />
+        {word.name} <Badge text={MAPPER.extended.type.singular[word.type]} />
       </p>
     </div>
   );

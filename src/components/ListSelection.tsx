@@ -1,7 +1,9 @@
 import Button from '@/components/Button';
 import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
+import { MainWordType } from '@/types/appConstants';
 import { Word } from '@/types/word';
+import { MAPPER } from '@/utils/other/mapper';
 import { Collection, List } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -12,9 +14,10 @@ import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 type ListSelectionProps = {
   selectedWords: Word[];
   setSelectedWords: Dispatch<SetStateAction<Word[]>>;
+  onlyAcceptType?: MainWordType;
 };
 
-const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) => {
+const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: ListSelectionProps) => {
   const { data: lists, status } = useQuery<(List & { words: Word[]; collection: Collection })[]>({
     queryKey: ['lists'],
     queryFn: () =>
@@ -55,11 +58,11 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
       filteredLists
         .filter((list) => selectedLists.includes(list.id))
         .reduce((acc: Word[], cur) => {
-          acc.push(...cur.words);
+          acc.push(...cur.words.filter((word) => !onlyAcceptType || word.type === onlyAcceptType));
           return acc;
         }, [])
     );
-  }, [filteredLists, selectedLists, setSelectedWords]);
+  }, [filteredLists, onlyAcceptType, selectedLists, setSelectedWords]);
 
   return (
     <>
@@ -160,7 +163,11 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
       )}
       {status === 'success' && (
         <p>
-          Es wurden <b className='text-blue-500'>{selectedWords.length} Wörter</b> ausgewählt.
+          Es wurden{' '}
+          <b className='text-blue-500'>
+            {selectedWords.length} {onlyAcceptType ? MAPPER.extended.type.plural[onlyAcceptType] : 'Wörter'}
+          </b>{' '}
+          ausgewählt.
         </p>
       )}
     </>

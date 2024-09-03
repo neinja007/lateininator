@@ -12,7 +12,13 @@ import { isAdjective } from '@/utils/typeguards/isAdjective';
 
 const initialTableInputValues: TableInputValues = {
   ...(WORD_CONSTANTS.gender.reduce(
-    (acc, cur) => ({ ...acc, [cur]: WORD_CONSTANTS.wordCase.reduce((acc, cur) => ({ ...acc, [cur]: '' }), {}) }),
+    (acc, cur) => ({
+      ...acc,
+      [cur]: WORD_CONSTANTS.numerus.reduce(
+        (acc, cur) => ({ ...acc, [cur]: WORD_CONSTANTS.wordCase.reduce((acc, cur) => ({ ...acc, [cur]: '' }), {}) }),
+        {}
+      )
+    }),
     {}
   ) as TableInputValues),
   adverb: ''

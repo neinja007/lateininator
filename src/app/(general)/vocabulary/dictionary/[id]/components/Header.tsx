@@ -15,7 +15,7 @@ const Header = ({ word }: HeaderProps) => {
         <span className='mt-4 flex justify-center sm:mt-0 sm:justify-end lg:justify-center'>
           {word.name} {getLexicalForm(word)}
           <div className='ml-3 md:text-right'>
-            <Badge text={MAPPER.extended.type[word.type]} />
+            <Badge text={MAPPER.extended.type.singular[word.type]} />
           </div>
         </span>
       </Heading>

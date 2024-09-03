@@ -52,7 +52,7 @@ const Settings = ({
   return (
     <>
       {currentSettingsStage === 1 && (
-        <ListSelection selectedWords={selectedWords} setSelectedWords={setSelectedWords} />
+        <ListSelection onlyAcceptType='NOUN' selectedWords={selectedWords} setSelectedWords={setSelectedWords} />
       )}
       {currentSettingsStage === 2 && (
         <FormSelection

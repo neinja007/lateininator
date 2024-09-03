@@ -55,7 +55,7 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
         {loading ? (
           <Skeleton customSize className='h-6 w-20' pulse />
         ) : (
-          <Badge text={MAPPER.extended.type[word.type]} />
+          <Badge text={MAPPER.extended.type.singular[word.type]} />
         )}
       </td>
       <td className='p-2 px-4'>

@@ -3,12 +3,22 @@ import { MapperType } from '@/types/mapper';
 export const MAPPER: MapperType = {
   extended: {
     type: {
-      NOUN: 'Nomen',
-      VERB: 'Verb',
-      ADJECTIVE: 'Adjektiv',
-      OTHER: 'Sonstiges',
-      ADVERB: 'Adverb',
-      PRONOUN: 'Pronomen'
+      singular: {
+        NOUN: 'Nomen',
+        VERB: 'Verb',
+        ADJECTIVE: 'Adjektiv',
+        OTHER: 'Sonstiges',
+        ADVERB: 'Adverb',
+        PRONOUN: 'Pronomen'
+      },
+      plural: {
+        NOUN: 'Nomen',
+        VERB: 'Verben',
+        ADJECTIVE: 'Adjektive',
+        OTHER: 'Sonstige',
+        ADVERB: 'Adverbien',
+        PRONOUN: 'Pronomen'
+      }
     },
     declension: {
       A: 'A Deklination',
@@ -70,23 +80,44 @@ export const MAPPER: MapperType = {
     },
     voice: { act: 'Aktiv', pas: 'Passiv' },
     property: {
-      conjugation: 'Konjugation',
-      comparison: 'Komparation',
-      declension: 'Deklination',
-      gender: 'Geschlecht',
-      femininum: 'Nominativ Feminin',
-      neutrum: 'Nominativ Neutrum',
-      genitive: 'Genitiv Singular',
-      participle: 'Partizip Perfekt Passiv',
-      perfect: '1. Person Singular Perfekt',
-      present: '1. Person Singular Präsens',
-      comparisonDegree: 'Steigerungsform',
-      modus: 'Modus',
-      person: 'Person',
-      tense: 'Zeitform',
-      voice: 'Aktiv / Passiv',
-      wordCase: 'Fall',
-      numerus: 'Numerus'
+      singular: {
+        conjugation: 'Konjugation',
+        comparison: 'Komparation',
+        declension: 'Deklination',
+        gender: 'Geschlecht',
+        femininum: 'Nominativ Feminin',
+        neutrum: 'Nominativ Neutrum',
+        genitive: 'Genitiv Singular',
+        participle: 'Partizip Perfekt Passiv',
+        perfect: '1. Person Singular Perfekt',
+        present: '1. Person Singular Präsens',
+        comparisonDegree: 'Steigerungsform',
+        modus: 'Modus',
+        person: 'Person',
+        tense: 'Zeitform',
+        voice: 'Aktiv / Passiv',
+        wordCase: 'Fall',
+        numerus: 'Numerus'
+      },
+      plural: {
+        conjugation: 'Konjugationen',
+        comparison: 'Komparationen',
+        declension: 'Deklinationen',
+        gender: 'Geschlechter',
+        femininum: 'Nominativ Feminin',
+        neutrum: 'Nominativ Neutrum',
+        genitive: 'Genitiv Singular',
+        participle: 'Partizip Perfekt Passiv',
+        perfect: '1. Person Singular Perfekt',
+        present: '1. Person Singular Präsens',
+        comparisonDegree: 'Steigerungsformen',
+        modus: 'Modi',
+        person: 'Personen',
+        tense: 'Zeitformen',
+        voice: 'Aktiv / Passiv',
+        wordCase: 'Fälle',
+        numerus: 'Numerus'
+      }
     },
     comparisonDegree: {
       pos: 'Positiv',

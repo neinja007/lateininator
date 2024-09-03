@@ -11,7 +11,7 @@ type AdjectiveTableProps = { word: Word };
 const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
   return (
     <div>
-      <p>{MAPPER.extended.type.ADVERB}</p>
+      <p>{MAPPER.extended.type.singular.ADVERB}</p>
       <div className={table.container}>
         <table className={clsx(table.table, 'min-w-[450px]')}>
           <thead className={table.thead}>

@@ -75,12 +75,12 @@ const PropertySelection = ({
         {APP_CONSTANTS.mainWordTypes.map((type: WordType) => (
           <CheckboxList
             key={type}
-            label={MAPPER.extended.type[type]}
+            label={MAPPER.extended.type.plural[type]}
             disabled={!typesToCheck.includes(type)}
             options={[...APP_CONSTANTS.wordProperties[type]] as string[]}
             selected={wordPropertiesToCheck}
             setSelected={setWordPropertiesToCheck as Dispatch<SetStateAction<string[]>>}
-            mapper={MAPPER.extended.property}
+            mapper={MAPPER.extended.property.singular}
           />
         ))}
       </div>

@@ -29,4 +29,11 @@ export type MapperKeys = {
   comparisonDegree: Record<ComparisonDegree, string>;
 };
 
-export type MapperType = { short: MapperKeys; extended: MapperKeys };
+export type ExtendedMapperKeys = Omit<MapperKeys, 'type' | 'property'> & {
+  type: WrapInSingularPlural<Record<WordType, string>>;
+  property: WrapInSingularPlural<Record<WordProperty | OtherProperty, string>>;
+};
+
+type WrapInSingularPlural<Type> = Record<'singular' | 'plural', Type>;
+
+export type MapperType = { short: MapperKeys; extended: ExtendedMapperKeys };
