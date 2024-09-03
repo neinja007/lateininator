@@ -1,14 +1,20 @@
-import { LoaderPinwheel } from 'lucide-react';
+import clsx from 'clsx';
+import { Check, LoaderPinwheel } from 'lucide-react';
 
 type LoadingHeadingProps = {
-  children: string;
+  children: React.ReactNode;
+  done?: boolean;
 };
 
-const LoadingHeading = ({ children }: LoadingHeadingProps) => {
+const LoadingHeading = ({ children, done }: LoadingHeadingProps) => {
   return (
-    <h1 className='mb-4 animate-pulse text-center text-4xl'>
+    <h1 className={clsx('mb-4 text-center text-4xl', done && 'animate-pulse')}>
       <span className='inline-block'>
-        <LoaderPinwheel className='mr-2 inline-block h-8 w-8 animate-spin align-middle' />
+        {done ? (
+          <Check className='mr-3 h-8 w-8' />
+        ) : (
+          <LoaderPinwheel className='mr-2 inline-block h-8 w-8 animate-spin align-middle' />
+        )}
         <span className='align-middle'>{children}</span>
       </span>
     </h1>
