@@ -138,8 +138,6 @@ export const PATCH = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const collectionId = searchParams.get('id');
 
-  console.log(collectionId);
-
   if (!collectionId) {
     return NextResponse.json({ error: 'Missing collection id' }, { status: 400 });
   }
