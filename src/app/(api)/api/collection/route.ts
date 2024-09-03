@@ -127,3 +127,63 @@ export const DELETE = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 };
+
+export const PATCH = async (request: NextRequest) => {
+  const user = await currentUser();
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const searchParams = request.nextUrl.searchParams;
+  const collectionId = searchParams.get('id');
+
+  console.log(collectionId);
+
+  if (!collectionId) {
+    return NextResponse.json({ error: 'Missing collection id' }, { status: 400 });
+  }
+
+  try {
+    const collection = await prisma.collection.findUnique({
+      where: {
+        id: parseInt(collectionId)
+      },
+      include: {
+        savedBy: true,
+        owner: true
+      }
+    });
+
+    if (!collection) {
+      return NextResponse.json({ error: 'Collection not found' }, { status: 404 });
+    }
+
+    if (collection.savedBy.find((u) => u.id === user.id)) {
+      return NextResponse.json({ error: 'Collection already saved' }, { status: 400 });
+    }
+
+    try {
+      const updatedCollection = await prisma.collection.update({
+        where: {
+          id: parseInt(collectionId)
+        },
+        data: {
+          savedBy: {
+            connect: {
+              id: user.id
+            }
+          }
+        }
+      });
+
+      return NextResponse.json(updatedCollection, { status: 200 });
+    } catch (error: any) {
+      console.error(error);
+      return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
+  } catch (error: any) {
+    console.error(error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+};
