@@ -1,12 +1,12 @@
 import { MAPPER } from '@/utils/other/mapper';
 import { Fragment } from 'react';
 import table from '@/styles/table.module.css';
-import { Word } from '@/types/word';
+import { Adjective } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import clsx from 'clsx';
 
-type AdjectiveTableProps = { word: Word };
+type AdjectiveTableProps = { word: Adjective };
 
 const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
   return (
