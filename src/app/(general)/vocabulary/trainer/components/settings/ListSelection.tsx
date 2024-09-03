@@ -47,6 +47,10 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
   const [selectedLists, setSelectedLists] = useState<number[]>([]);
 
   useEffect(() => {
+    setSelectedLists([]);
+  }, [selectedCollection]);
+
+  useEffect(() => {
     setSelectedWords(
       filteredLists
         .filter((list) => selectedLists.includes(list.id))
