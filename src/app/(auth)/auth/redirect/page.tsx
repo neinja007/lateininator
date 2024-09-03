@@ -2,6 +2,7 @@
 import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 import LoadingHeading from '@/components/LoadingHeading';
 import { User } from '@prisma/client';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -13,15 +14,16 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch(window.location.origin + '/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    axios
+      .post('/api/user', undefined, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((response) => {
         setResponseStatus(response.status);
-        return response.json();
+        return response.data;
       })
       .then((data) => {
         setResponse(data);
