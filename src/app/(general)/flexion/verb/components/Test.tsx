@@ -62,7 +62,7 @@ const Test = ({
   });
 
   useEffect(() => {
-    if (!activeWord || activeWord.type !== 'verb') return;
+    if (!activeWord || activeWord.type !== 'VERB') return;
     if (testingType === 'individual') {
       const person =
         checkImperative && Math.random() < 0.04
