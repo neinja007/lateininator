@@ -7,23 +7,13 @@ import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
 import { TableInputValues } from './types';
+import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { isNoun } from '@/utils/typeguards/isNoun';
 
-const initialTableInputValues: TableInputValues = {
-  sin: {
-    1: '',
-    2: '',
-    3: '',
-    4: '',
-    5: ''
-  },
-  plu: {
-    1: '',
-    2: '',
-    3: '',
-    4: '',
-    5: ''
-  }
-};
+const initialTableInputValues: TableInputValues = WORD_CONSTANTS.numerus.reduce(
+  (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.person.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
+  {} as TableInputValues
+);
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
@@ -51,7 +41,7 @@ const Page = () => {
           remainingWords={remainingWords}
         />
       )}
-      {(stage === 'test' || stage === 'review') && activeWord && activeWord.type === 'noun' && (
+      {(stage === 'test' || stage === 'review') && activeWord && isNoun(activeWord) && (
         <Test
           stage={stage}
           activeWord={activeWord}
