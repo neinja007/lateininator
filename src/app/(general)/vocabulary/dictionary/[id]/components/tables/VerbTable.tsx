@@ -1,11 +1,11 @@
 import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
-import { Word } from '@/types/word';
+import { Verb } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import clsx from 'clsx';
 
-type VerbTableProps = { word: Word };
+type VerbTableProps = { word: Verb };
 
 const VerbTable = ({ word }: VerbTableProps) => {
   return (
