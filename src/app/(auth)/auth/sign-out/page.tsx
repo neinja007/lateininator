@@ -9,14 +9,14 @@ const Page = () => {
   signOut();
 
   return (
-    <div>
+    <>
       <LoadingHeading>Sie werden abgemeldet...</LoadingHeading>
       Sollte dies zu lange dauern,{' '}
       <SignOutButton>
         <button className='text-blue-500 hover:underline'>klicken sie bitte hier</button>
       </SignOutButton>
       .
-    </div>
+    </>
   );
 };
 
