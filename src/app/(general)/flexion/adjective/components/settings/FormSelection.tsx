@@ -30,7 +30,7 @@ const FormSelection = ({
   validWords
 }: FormSelectionProps) => {
   const comparisonsNotToCheck = comparisons.filter((comparison) => {
-    return !validWords.some((word) => word.comparison === comparison);
+    return !validWords.some((word) => word.adjective.comparison === comparison);
   });
 
   return (
