@@ -1,7 +1,7 @@
-import { Adjective, Noun, Verb, Word } from '@/types/word';
+import { Word } from '@/types/word';
 import { List } from '@prisma/client';
 
-export const placeholderWord: Word & Noun & Verb & Adjective = {
+export const placeholderWord: Word = {
   info: 'wird geladen...',
   translation: [],
   type: 'OTHER',
