@@ -32,8 +32,9 @@ export const GET = async (request: NextRequest) => {
           }
         }
       },
-      include: includedData.words && {
-        words: {
+      include: {
+        ...includedData,
+        words: includedData.words && {
           include: includedWordData
         }
       }
