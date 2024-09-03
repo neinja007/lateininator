@@ -61,24 +61,26 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
     <>
       <div className='mb-3 grid-cols-2 md:grid lg:grid-cols-3'>
         <p className='lg:col-span-2'>Wähle aus, welche Wörter du lernen möchtest:</p>
-        {filteredLists.length > 0 && (
-          <div className='grid grid-cols-2 gap-x-4'>
-            <Button
-              color={status === 'success' && selectedLists.length === lists.length ? 'blue' : 'default'}
-              onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
-              disabled={status !== 'success'}
-            >
-              Alle auswählen
-            </Button>
-            <Button
-              color={selectedLists.length === 0 && status === 'success' ? 'blue' : 'default'}
-              onClick={() => setSelectedLists([])}
-              disabled={status !== 'success'}
-            >
-              Alle abwählen
-            </Button>
-          </div>
-        )}
+        <div className='grid grid-cols-2 gap-x-4'>
+          <Button
+            color={
+              status === 'success' && selectedLists.length === filteredLists.length && selectedCollection
+                ? 'blue'
+                : 'default'
+            }
+            onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
+            disabled={status !== 'success' || filteredLists.length === 0}
+          >
+            Alle auswählen
+          </Button>
+          <Button
+            color={selectedLists.length === 0 && status === 'success' && selectedCollection ? 'blue' : 'default'}
+            onClick={() => setSelectedLists([])}
+            disabled={status !== 'success' || filteredLists.length === 0}
+          >
+            Alle abwählen
+          </Button>
+        </div>
       </div>
       <div>
         {(status !== 'success' || collections.length > 0) && (
