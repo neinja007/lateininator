@@ -10,78 +10,16 @@ import { TableInputValues } from './types';
 import { Voice, Modus, Tense } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
-const initialTableInputValues: TableInputValues = {
-  pres: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    }
-  },
-  impe: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    }
-  },
-  perf: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    }
-  },
-  plus: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    }
-  },
-  fut1: {
-    sin: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    },
-    plu: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-    }
-  }
-};
+const initialTableInputValues: TableInputValues = WORD_CONSTANTS.tense.reduce(
+  (acc, curr) => ({
+    ...acc,
+    [curr]: WORD_CONSTANTS.numerus.reduce(
+      (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.person.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
+      {}
+    )
+  }),
+  {} as TableInputValues
+);
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
