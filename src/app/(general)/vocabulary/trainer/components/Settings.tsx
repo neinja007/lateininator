@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
-import ListSelection from './settings/ListSelection';
+import ListSelection from '@/components/ListSelection';
 import WordTypeSelection from './settings/WordTypeSelection';
 import WordCountSelection from './settings/WordCountSelection';
 import PropertySelection from './settings/PropertySelection';
