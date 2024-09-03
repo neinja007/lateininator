@@ -9,7 +9,7 @@ import CellContainer from './components/CellContainer';
 import { Plus } from 'lucide-react';
 
 const Page = () => {
-  const collectionQuery = useQuery<(Collection & { lists: List[]; owner: User })[]>({
+  const { status, data: collections } = useQuery<(Collection & { lists: List[]; owner: User })[]>({
     queryKey: ['collections'],
     queryFn: () =>
       axios.get('/api/collection', { params: { saved: true, include: ['lists', 'owner'] } }).then((res) => res.data)
@@ -20,13 +20,13 @@ const Page = () => {
       <Heading>Wortschatz</Heading>
       <h3 className='text-center font-bold'>Ihre Kollektionen (z.B. Schulbücher)</h3>
       <div className='mt-4 h-64 overflow-y-scroll'>
-        {collectionQuery.isError && <div>Beim Laden der Kollektionen ist ein Fehler aufgetreten.</div>}
+        {status === 'error' && <div>Beim Laden der Kollektionen ist ein Fehler aufgetreten.</div>}
         <CellContainer>
-          {!collectionQuery.isFetched &&
+          {status === 'pending' &&
             [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-24 w-full' />)}
-          {collectionQuery.isSuccess && (
+          {status === 'success' && (
             <>
-              {collectionQuery.data.map((collection) => (
+              {collections.map((collection) => (
                 <Cell key={collection.id}>
                   <h3 className='text-center'>
                     <span className='text-2xl font-medium'>{collection.name}</span>
