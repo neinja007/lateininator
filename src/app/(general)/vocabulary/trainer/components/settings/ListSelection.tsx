@@ -54,7 +54,7 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
           </Button>
         </div>
       </div>
-      <div className='grid h-44 max-h-96 min-h-44 resize-y grid-cols-2 gap-2 overflow-hidden overflow-y-scroll scroll-smooth py-5 pr-4 sm:grid-cols-4 md:grid-cols-5 md:gap-4'>
+      <div className='grid h-80 grid-cols-2 gap-4 overflow-hidden overflow-y-scroll scroll-smooth py-5 pr-4 sm:grid-cols-4 md:grid-cols-5'>
         {status === 'pending' && [...Array(15)].map((_, i) => <Skeleton pulse key={i} />)}
         {status === 'error' && (
           <span>
