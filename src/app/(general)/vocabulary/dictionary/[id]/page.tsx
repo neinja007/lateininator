@@ -20,11 +20,7 @@ import FailToLoad from '@/components/FailToLoad';
 type PageProps = { params: { id: string } };
 
 const Page = ({ params: { id } }: PageProps) => {
-  const {
-    data: word,
-    error,
-    status
-  } = useQuery<Word>({
+  const { data: word, status } = useQuery<Word>({
     queryKey: ['words', id],
     queryFn: ({ queryKey }) =>
       axios
