@@ -1,6 +1,6 @@
 import PropertyInput from './PropertyInput';
 import { WordProperty } from '@/types/appConstants';
-import { AnyWord } from '@/types/word';
+import { Adjective, Noun, Verb, Word } from '@/types/word';
 import { Dispatch, SetStateAction } from 'react';
 
 type PropertyInputsProps = {
@@ -27,7 +27,9 @@ const PropertyInputs = ({
             | 'noun'
             | 'verb'
             | 'adjective';
-          const typeSpecificData: Partial<{ [key in WordProperty]: string }> = activeWord[keyToProperty];
+          const typeSpecificData: Partial<{ [key in WordProperty]: string }> = (activeWord as Noun & Verb & Adjective)[
+            keyToProperty
+          ];
           const value = typeSpecificData[key as keyof typeof typeSpecificData];
           if (value === undefined) {
             throw new Error(`Property ${key} not found in word ${activeWord}`);
