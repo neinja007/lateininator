@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Book } from 'lucide-react';
 import Link from 'next/link';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 
 type ListSelectionProps = {
   selectedWords: Word[];
@@ -26,6 +26,11 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
   const [collections, setCollections] = useState<Collection[]>([]);
   const [selectedCollection, setSelectedCollection] = useState<number>();
 
+  const filteredLists = useMemo(
+    () => lists?.filter((list) => selectedCollection === list.collection.id) || [],
+    [lists, selectedCollection]
+  );
+
   useEffect(() => {
     if (status === 'success') {
       setCollections(
@@ -39,55 +44,59 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
     }
   }, [lists, status]);
 
-  const [selectedLists, setSelectedLists] = useState<(List & { words: Word[] })[]>([]);
+  const [selectedLists, setSelectedLists] = useState<number[]>([]);
 
   useEffect(() => {
     setSelectedWords(
-      selectedLists.reduce((acc: Word[], cur) => {
-        acc.push(...cur.words);
-        return acc;
-      }, [])
+      filteredLists
+        .filter((list) => selectedLists.includes(list.id))
+        .reduce((acc: Word[], cur) => {
+          acc.push(...cur.words);
+          return acc;
+        }, [])
     );
-  }, [selectedLists, setSelectedWords]);
-
-  const filteredLists = lists?.filter((list) => selectedCollection === list.collection.id) || [];
+  }, [filteredLists, selectedLists, setSelectedWords]);
 
   return (
     <>
-      <div className='grid-cols-2 md:grid lg:grid-cols-3'>
-        <p className='mb-3 lg:col-span-2'>Wähle aus, welche Wörter du lernen möchtest:</p>
-        <div className='grid grid-cols-2 gap-x-4'>
-          <Button
-            color={status === 'success' && selectedLists.length === lists.length ? 'blue' : 'default'}
-            onClick={() => setSelectedLists(status === 'success' ? lists : [])}
-            disabled={status !== 'success'}
-          >
-            Alle auswählen
-          </Button>
-          <Button
-            color={selectedLists.length === 0 && status === 'success' ? 'blue' : 'default'}
-            onClick={() => setSelectedLists([])}
-            disabled={status !== 'success'}
-          >
-            Alle abwählen
-          </Button>
-        </div>
+      <div className='mb-3 grid-cols-2 md:grid lg:grid-cols-3'>
+        <p className='lg:col-span-2'>Wähle aus, welche Wörter du lernen möchtest:</p>
+        {filteredLists.length > 0 && (
+          <div className='grid grid-cols-2 gap-x-4'>
+            <Button
+              color={status === 'success' && selectedLists.length === lists.length ? 'blue' : 'default'}
+              onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
+              disabled={status !== 'success'}
+            >
+              Alle auswählen
+            </Button>
+            <Button
+              color={selectedLists.length === 0 && status === 'success' ? 'blue' : 'default'}
+              onClick={() => setSelectedLists([])}
+              disabled={status !== 'success'}
+            >
+              Alle abwählen
+            </Button>
+          </div>
+        )}
       </div>
-      <div className='mt-5'>
-        <p className='mb-2'>
-          Gespeicherte Kollektionen
-          {(status !== 'success' || collections.length > 0) && (
-            <span>
-              {' '}
-              (können bei der{' '}
-              <Link href={'/manage-vocabulary'} className='font-medium text-blue-500 hover:underline'>
-                Wortschatz-Verwaltung
-              </Link>{' '}
-              bearbeitet werden)
-            </span>
-          )}
-          :
-        </p>
+      <div>
+        {(status !== 'success' || collections.length > 0) && (
+          <p className='mb-2'>
+            Gespeicherte Kollektionen
+            {(status !== 'success' || collections.length > 0) && (
+              <span>
+                {' '}
+                (können bei der{' '}
+                <Link href={'/user/manage-vocabulary'} className='font-medium text-blue-500 hover:underline'>
+                  Wortschatz-Verwaltung
+                </Link>{' '}
+                bearbeitet werden)
+              </span>
+            )}
+            :
+          </p>
+        )}
         {status === 'error' && <FailToLoad />}
         <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {status === 'pending' &&
@@ -106,7 +115,7 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
             ) : (
               <div className='col-span-full'>
                 Keine gespeicherten Kollektionen gefunden. Sie können bei der{' '}
-                <Link href={'/manage-vocabulary'} className='font-medium text-blue-500 hover:underline'>
+                <Link href={'/user/manage-vocabulary'} className='font-medium text-blue-500 hover:underline'>
                   Wortschatz-Verwaltung
                 </Link>{' '}
                 ein paar hinzufügen.
@@ -114,31 +123,35 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
             ))}
         </div>
       </div>
-      <div className='mt-3'>
-        {(status !== 'success' || filteredLists.length !== 0) && <p className='mb-2'>Listen:</p>}
-        {status === 'error' && <FailToLoad />}
-        <div className='grid h-fit max-h-80 grid-cols-2 gap-3 overflow-hidden overflow-y-scroll scroll-smooth sm:grid-cols-4 md:grid-cols-5'>
-          {status === 'pending' &&
-            [...Array(15)].map((_, i) => <Skeleton pulse key={i} customSize className='h-9 w-full' />)}
-          {status === 'success' && filteredLists.length > 0 ? (
-            filteredLists.map((list) => (
-              <Button
-                key={list.id}
-                color={selectedLists.map((list) => list.id).includes(list.id) ? 'blue' : 'default'}
-                onClick={() =>
-                  setSelectedLists((prev) => (prev.includes(list) ? prev.filter((t) => t !== list) : [...prev, list]))
-                }
-                className='flex items-center gap-x-2'
-              >
-                <Book className='w-4' />
-                {list.name}
-              </Button>
-            ))
-          ) : (
-            <div className='col-span-full'>Wähle eine Kollektion aus, um Listen anzuzeigen</div>
-          )}
+      {(status !== 'success' || collections.length > 0) && (
+        <div className='mt-3'>
+          {(status !== 'success' || filteredLists.length !== 0) && <p className='mb-2'>Listen:</p>}
+          {status === 'error' && <FailToLoad />}
+          <div className='grid h-fit max-h-80 grid-cols-2 gap-3 overflow-hidden overflow-y-scroll scroll-smooth sm:grid-cols-4 md:grid-cols-5'>
+            {status === 'pending' &&
+              [...Array(15)].map((_, i) => <Skeleton pulse key={i} customSize className='h-9 w-full' />)}
+            {status === 'success' && filteredLists.length > 0 ? (
+              filteredLists.map((list) => (
+                <Button
+                  key={list.id}
+                  color={selectedLists.includes(list.id) ? 'blue' : 'default'}
+                  onClick={() =>
+                    setSelectedLists((prev) =>
+                      prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]
+                    )
+                  }
+                  className='flex items-center gap-x-2'
+                >
+                  <Book className='w-4' />
+                  {list.name}
+                </Button>
+              ))
+            ) : (
+              <div className='col-span-full'>Wähle eine Kollektion aus, um Listen anzuzeigen</div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
       {status === 'success' && (
         <p>
           Es wurden <b className='text-blue-500'>{selectedWords.length} Wörter</b> ausgewählt.
