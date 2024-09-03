@@ -16,9 +16,7 @@ type TableInputProps = {
 const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }: TableInputProps) => {
   return (
     <div>
-      <p className='mb-2 text-center font-bold'>
-        {activeWord.declension !== '-' ? MAPPER.extended.declension[activeWord.declension] : '-'}
-      </p>
+      <p className='mb-2 text-center font-bold'>{MAPPER.extended.declension[activeWord.noun.declension]}</p>
       <table className={table.table}>
         <thead className={table.thead}>
           <tr>
