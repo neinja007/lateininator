@@ -1,14 +1,13 @@
-import { lists } from '@/data/lists';
-import { words } from '@/data/words';
 import { useNumberInput } from '@/hooks/useNumberInput';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import FormSelection from './settings/FormSelection';
 import WordCount from '../../components/WordLimit';
-import ListSelection from '../../components/ListSelection';
 import ContinueButton from '@/components/ContinueButton';
 import { Verb, Word } from '@/types/word';
 import { Voice, Modus, Tense, Conjugation } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { isVerb } from '@/utils/typeguards/isVerb';
+import ListSelection from '@/components/ListSelection';
 
 type SettingsProps = {
   testingType: 'table' | 'individual';
@@ -46,28 +45,22 @@ const Settings = ({
   const [validWords, setValidWords] = useState<Verb[]>([]);
   const { inputValue, updateValue, value } = useNumberInput(testingType === 'individual' ? 100 : 5);
 
-  const [maxUnit, setMaxUnit] = useState(lists.length);
-
   const [conjugations, setConjugations] = useState<Conjugation[]>([...WORD_CONSTANTS.conjugation]);
 
+  const [selectedWords, setSelectedWords] = useState<Word[]>([]);
+
   useEffect(() => {
-    const ids = lists
-      .filter((list) => list.id <= maxUnit)
-      .reduce((acc: any, list) => {
-        return acc.concat(list.words);
-      }, []);
-
-    const selectedWords: Verb[] = words.filter(
-      (word: Word) => word.type === 'verb' && ids.includes(word.id) && word.conjugation !== '-'
+    const selectedVerbs: Verb[] = selectedWords.filter(
+      (word: Word) => isVerb(word) && word.verb.conjugation !== 'NONE'
     ) as Verb[];
-    setValidWords(selectedWords);
+    setValidWords(selectedVerbs);
 
-    const possibleWords = selectedWords.filter(
-      (word) => word.conjugation !== '-' && conjugations.includes(word.conjugation)
+    const possibleWords = selectedVerbs.filter(
+      (word) => word.verb.conjugation !== 'NONE' && conjugations.includes(word.verb.conjugation)
     );
 
     updateWords(possibleWords, value);
-  }, [conjugations, maxUnit, updateWords, value]);
+  }, [conjugations, selectedWords, updateWords, value]);
 
   const enableStart =
     remainingWords > 0 &&
@@ -79,7 +72,7 @@ const Settings = ({
   return (
     <>
       {currentSettingsStage === 1 && (
-        <ListSelection maxUnit={maxUnit} setMaxUnit={setMaxUnit} validWords={validWords} type='Verben' />
+        <ListSelection selectedWords={selectedWords} setSelectedWords={setSelectedWords} />
       )}
       {currentSettingsStage === 2 && (
         <FormSelection
