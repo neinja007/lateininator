@@ -3,20 +3,22 @@ import clsx from 'clsx';
 type CellProps = {
   children?: React.ReactNode;
   outlined?: boolean;
+  onClick?: () => void;
 };
 
-const Cell = ({ children, outlined }: CellProps) => {
+const Cell = ({ children, outlined, onClick }: CellProps) => {
   return (
-    <div
+    <button
+      onClick={onClick}
       className={clsx(
-        'h-24 cursor-pointer rounded-lg border border-gray-500 px-4 py-2 transition-colors hover:border-gray-700 dark:hover:border-gray-300',
+        'min-h-24 rounded-lg border border-gray-500 px-4 py-2 transition-colors hover:border-gray-700 dark:hover:border-gray-300',
         outlined
           ? 'border-dashed hover:border-solid hover:bg-gray-200 dark:hover:bg-gray-900'
           : 'bg-blue-200 dark:bg-blue-950'
       )}
     >
       {children}
-    </div>
+    </button>
   );
 };
 
