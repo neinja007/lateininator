@@ -32,10 +32,10 @@ const Cell = ({
     <button
       onClick={onClick}
       className={clsx(
-        'min-h-24 rounded-lg border border-gray-500 px-4 py-2 transition-colors hover:border-gray-700 dark:hover:border-gray-300',
+        'min-h-24 rounded-lg border px-4 py-2 transition-colors',
         outlined
           ? 'border-dashed hover:border-solid hover:bg-gray-200 dark:hover:bg-gray-900'
-          : 'bg-blue-200 dark:bg-blue-950',
+          : 'border-blue-500 bg-blue-400 hover:border-blue-900 hover:bg-blue-500 dark:bg-blue-950 dark:hover:border-blue-300 dark:hover:bg-blue-800',
         className
       )}
     >
@@ -54,7 +54,7 @@ const Cell = ({
           <p className='mt-3 flex items-end justify-between'>
             <span className='mt-2'>Listen: {lists}</span>
             <span>
-              von <span className='font-medium text-yellow-500'>{owner}</span>
+              von <span className='font-medium text-yellow-400 dark:text-yellow-500'>{owner}</span>
             </span>
           </p>
           {buttonVisible && (
