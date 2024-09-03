@@ -79,5 +79,4 @@ type AdjectiveType = GetWordType<typeof wordWithAdjective>;
 export type Noun = NounType & { noun: NonNullable<NounType['noun']> };
 export type Verb = VerbType & { verb: NonNullable<VerbType['verb']> };
 export type Adjective = AdjectiveType & { adjective: NonNullable<AdjectiveType['adjective']> };
-export type Word = GetWordType<{}>;
-export type AnyWord = Word & Noun & Verb & Adjective;
+export type Word = GetWordType<{}> | (GetWordType<{}> & (Noun | Verb | Adjective));
