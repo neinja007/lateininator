@@ -9,6 +9,7 @@ import Test from './components/Test';
 import { TableInputValues } from './types';
 import { Voice, Modus, Tense } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { isVerb } from '@/utils/typeguards/isVerb';
 
 const initialTableInputValues: TableInputValues = WORD_CONSTANTS.tense.reduce(
   (acc, curr) => ({
@@ -61,8 +62,8 @@ const Page = () => {
       )}
       {(stage === 'test' || stage === 'review') &&
         activeWord &&
-        activeWord.type === 'verb' &&
-        activeWord.conjugation !== '-' && (
+        isVerb(activeWord) &&
+        activeWord.verb.conjugation !== 'NONE' && (
           <Test
             checkImperative={checkImperative}
             activeWord={activeWord}
