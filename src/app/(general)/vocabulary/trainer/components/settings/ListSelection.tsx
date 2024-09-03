@@ -55,7 +55,8 @@ const ListSelection = ({ selectedWords, setSelectedWords }: ListSelectionProps) 
         </div>
       </div>
       <div className='grid h-fit max-h-80 grid-cols-2 gap-3 overflow-hidden overflow-y-scroll scroll-smooth py-5 sm:grid-cols-4 md:grid-cols-5'>
-        {status === 'pending' && [...Array(15)].map((_, i) => <Skeleton pulse key={i} />)}
+        {status === 'pending' &&
+          [...Array(15)].map((_, i) => <Skeleton pulse key={i} customSize className='h-9 w-full' />)}
         {status === 'error' && (
           <span>
             Fehler beim Laden der Listen. Versuchen Sie es bitte noch einmal. Sollte dieses Problem öfter auftreten, so
