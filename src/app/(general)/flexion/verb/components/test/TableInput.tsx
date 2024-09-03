@@ -1,7 +1,7 @@
 import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
-import { Word } from '@/types/word';
+import { Verb } from '@/types/word';
 import { Tense } from '@/types/wordConstants';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
@@ -13,7 +13,7 @@ type TableInputProps = {
   tableInputValues: TableInputValues;
   setTableInputValues: SetTableInputValues;
   stage: 'test' | 'review';
-  activeWord: Word;
+  activeWord: Verb;
   checkImperative: boolean;
 };
 
