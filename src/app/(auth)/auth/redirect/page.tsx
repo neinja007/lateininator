@@ -61,7 +61,7 @@ const Page = () => {
     return (
       <>
         <LoadingHeading done>Willkommen zurück, {response.name}!</LoadingHeading>
-        <p>Sie werden automatisch zur homepage weitergeleitet...</p>
+        <p>Sie werden automatisch zur homepage weitergeleitet.</p>
       </>
     );
   } else {
