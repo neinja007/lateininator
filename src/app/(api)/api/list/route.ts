@@ -1,7 +1,7 @@
-import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
+import { getLists } from './services/getLists';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -22,23 +22,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   try {
-    const lists = await prisma.list.findMany({
-      where: {
-        collection: {
-          savedBy: {
-            some: {
-              id: user.id
-            }
-          }
-        }
-      },
-      include: {
-        ...includedData,
-        words: includedData.words && {
-          include: includedWordData
-        }
-      }
-    });
+    const lists = await getLists(user.id, includedData, includedWordData);
 
     return NextResponse.json(lists, { status: 200 });
   } catch (error: any) {
