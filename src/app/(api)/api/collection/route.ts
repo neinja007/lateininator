@@ -2,6 +2,7 @@ import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
+import { getCollections } from './services/getCollections';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -20,32 +21,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   try {
-    const collections = await prisma.collection.findMany({
-      where: {
-        savedBy: saved
-          ? {
-              some: {
-                id: user.id
-              }
-            }
-          : {
-              none: {
-                id: user.id
-              }
-            },
-        OR: [
-          {
-            private: false
-          },
-          {
-            owner: {
-              id: user.id
-            }
-          }
-        ]
-      },
-      include: includedDataObject
-    });
+    const collections = await getCollections(user.id, saved, includedDataObject);
 
     return NextResponse.json(collections, { status: 200 });
   } catch (error: any) {
