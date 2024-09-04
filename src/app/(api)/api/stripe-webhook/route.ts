@@ -33,10 +33,8 @@ export const POST = async (req: NextRequest) => {
 
   if (event.type === 'invoice.payment_succeeded') {
     const invoice = event.data.object as Stripe.Invoice;
-    const paymentIntentId = invoice.payment_intent as string;
     const metadata = invoice.metadata;
     const userId = metadata && metadata.userId;
-    console.log('PaymentIntent was successful!', paymentIntentId);
 
     if (!userId) {
       console.error('No userId found in metadata!');
