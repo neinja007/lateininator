@@ -11,7 +11,7 @@ const CheckoutForm = () => {
   const elements = useElements();
 
   useEffect(() => {
-    fetch('/api/create-payment-intent', {
+    fetch('/api/create-subscription', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
