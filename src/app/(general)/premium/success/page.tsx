@@ -2,6 +2,7 @@
 import Heading from '@/components/Heading';
 import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 import { useDbUser } from '@/hooks/useDbUser';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -41,6 +42,10 @@ const Page = () => {
           <span className='text-green-500'>
             Die Bezahlung war erfolgreich. Vielen Dank für Ihren Einkauf! Sie können von nun an alle Premium-Funktionen
             nutzen.
+            <br />
+            <Link href='/' className='text-blue-500 hover:underline'>
+              Zurück zur Startseite
+            </Link>
           </span>
         )}
       </p>
