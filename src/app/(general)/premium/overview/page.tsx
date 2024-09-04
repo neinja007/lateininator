@@ -1,11 +1,12 @@
 'use client';
-
 import Heading from '@/components/Heading';
 import Card from './components/Card';
 import { useDbUser } from '@/hooks/useDbUser';
 import { monthlyPrice } from '@/constants/other';
 import { useWidth } from '@/hooks/useWidth';
 import { useState } from 'react';
+import axios from 'axios';
+import { loadStripe } from '@stripe/stripe-js';
 
 const features = [
   'Wörterbuch',
@@ -29,6 +30,17 @@ const Page = () => {
 
   const userIsPremium = dbUser.isLoaded ? dbUser.user?.premium || false : false;
 
+  const redirectToCheckout = async () => {
+    const { sessionId } = await axios.post('/api/create-checkout-session').then((res) => res.data);
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+    if (stripe) {
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+      if (error) {
+        console.error('Error redirecting to checkout:', error);
+      }
+    }
+  };
+
   useWidth(
     'lg',
     () => {
@@ -49,6 +61,10 @@ const Page = () => {
     }
   );
 
+  const showFull = !onlyShowNextRank || !user.isSignedIn || !user.isLoaded;
+  const showPremium = !onlyShowNextRank || user.isSignedIn || !user.isLoaded;
+  const premiumIsAvailable = !dbUser.isLoaded || user.isSignedIn;
+
   return (
     <>
       <Heading>Lateininator Premium</Heading>
@@ -64,7 +80,7 @@ const Page = () => {
             highest={!user.isSignedIn}
           />
         )}
-        {(!onlyShowNextRank || !user.isSignedIn || !user.isLoaded) && (
+        {showFull && (
           <Card
             title='Full'
             features={features.slice(0, 7)}
@@ -77,7 +93,7 @@ const Page = () => {
             highest={!userIsPremium && user.isSignedIn}
           />
         )}
-        {(!onlyShowNextRank || user.isSignedIn || !user.isLoaded) && (
+        {showPremium && (
           <Card
             title='Premium'
             features={features}
@@ -87,11 +103,8 @@ const Page = () => {
             owned={userIsPremium}
             loading={!dbUser.isLoaded}
             highest={userIsPremium}
-            href={
-              !dbUser.isLoaded || user.isSignedIn
-                ? process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_URL
-                : '/auth/sign-in?redirect=' + process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_URL
-            }
+            href={'/auth/sign-in'}
+            onClick={premiumIsAvailable ? redirectToCheckout : undefined}
           />
         )}
       </div>
