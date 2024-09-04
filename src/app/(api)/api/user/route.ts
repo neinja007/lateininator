@@ -1,7 +1,8 @@
-import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
+import { createUser } from './services/createUser';
+import { findUser } from './services/findUser';
 
 export const GET = async (request: NextRequest) => {
   const clerkUser = await currentUser();
@@ -19,7 +20,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   try {
-    const user = await prisma.user.findUnique({ where: { id: clerkUser.id }, include: includedDataObject });
+    const user = await findUser(clerkUser.id, includedDataObject);
     return NextResponse.json(user, { status: 200 });
   } catch (error: any) {
     console.error(error);
@@ -41,21 +42,13 @@ export const POST = async () => {
       return NextResponse.json({ status: 400, body: { message: 'Email or username not found' } });
     }
 
-    const userExists = await prisma.user.findUnique({
-      where: { id: user.id }
-    });
+    const userExists = await findUser(user.id);
 
     if (userExists) {
       return NextResponse.json(userExists, { status: 200 });
     }
 
-    const newUser = await prisma.user.create({
-      data: {
-        id: user.id,
-        email: emailAddress,
-        name: user.fullName
-      }
-    });
+    const newUser = await createUser(user.id, emailAddress, user.fullName);
 
     return NextResponse.json(newUser, { status: 201 });
   } catch (error: any) {
