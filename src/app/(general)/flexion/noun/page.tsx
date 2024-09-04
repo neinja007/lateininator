@@ -11,7 +11,7 @@ import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isNoun } from '@/utils/typeguards/isNoun';
 
 const initialTableInputValues: TableInputValues = WORD_CONSTANTS.numerus.reduce(
-  (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.person.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
+  (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.wordCase.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
   {} as TableInputValues
 );
 
