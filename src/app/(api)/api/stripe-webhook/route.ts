@@ -27,16 +27,23 @@ export const POST = async (req: NextRequest) => {
 
     event = stripe.webhooks.constructEvent(payload, sig, webhookSecret);
   } catch (err: any) {
-    console.error(`Webhook signature verification failed.` /*err.message*/);
+    console.error('Webhook signature verification failed.');
     return NextResponse.json({ error: 'Webhook Error' }, { status: 400 });
   }
 
   if (event.type === 'invoice.payment_succeeded') {
     const invoice = event.data.object as Stripe.Invoice;
 
+    const customer = invoice.customer as string;
+
+    if (!customer) {
+      console.error('No customer found in invoice!');
+      return NextResponse.json({ error: 'No customer found in invoice!' }, { status: 400 });
+    }
+
     try {
       await prisma.user.update({
-        where: { stripeCustomerId: invoice.customer as string },
+        where: { stripeCustomerId: customer },
         data: { premium: true }
       });
       console.log('User updated successfully!');
