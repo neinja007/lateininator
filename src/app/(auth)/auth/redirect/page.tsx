@@ -52,7 +52,7 @@ const Page = () => {
           Sie können nun{' '}
           <Link href='/dashboard' className='text-blue-500 hover:underline'>
             zur Startseite des Lateininators
-          </Link>{' '}
+          </Link>
           .
         </p>
       </>
