@@ -1,6 +1,10 @@
-import { prisma } from '@/utils/other/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
+import { validateNumber } from '../../utils/validateNumber';
+import { validateString } from '../../utils/validateString';
+import { getWordById } from './services/getWordById';
+import { getWordsByQuery } from './services/getWordsByQuery';
+import { getWords } from './services/getWords';
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
@@ -23,25 +27,17 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Invalid searchParams (cannot read both id and query)' }, { status: 400 });
   }
 
-  if (id !== null && !/^\d+$/.test(id)) {
+  if (!validateNumber(id)) {
     return NextResponse.json({ error: 'Invalid id (must be number)' }, { status: 400 });
   }
 
-  if (query !== null && !/^[a-zA-Z]+$/.test(query)) {
+  if (!validateString(query)) {
     return NextResponse.json({ error: 'Invalid query (must be string)' }, { status: 400 });
   }
 
   if (query) {
     try {
-      const words = await prisma.word.findMany({
-        where: {
-          name: {
-            contains: query,
-            mode: 'insensitive'
-          }
-        },
-        include: includedDataObject
-      });
+      const words = await getWordsByQuery(query, includedDataObject);
 
       return NextResponse.json(words);
     } catch (error: any) {
@@ -50,12 +46,7 @@ export const GET = async (request: NextRequest) => {
     }
   } else if (id) {
     try {
-      const word = await prisma.word.findUnique({
-        where: {
-          id: parseInt(id)
-        },
-        include: includedDataObject
-      });
+      const word = await getWordById(parseInt(id), includedDataObject);
 
       if (!word) {
         return NextResponse.json({ error: 'Word not found' }, { status: 404 });
@@ -68,9 +59,7 @@ export const GET = async (request: NextRequest) => {
     }
   } else {
     try {
-      const words = await prisma.word.findMany({
-        include: includedDataObject
-      });
+      const words = await getWords(includedDataObject);
 
       return NextResponse.json(words);
     } catch (error: any) {
