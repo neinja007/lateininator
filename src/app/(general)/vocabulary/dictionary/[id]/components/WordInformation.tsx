@@ -7,21 +7,21 @@ type WordInformationProps = { word: Word };
 
 const WordInformation = ({ word }: WordInformationProps) => {
   return (
-    <div className='grid space-y-3 md:grid-cols-3 md:space-y-0'>
+    <div className='grid items-center space-y-3 md:grid-cols-3 md:space-y-0'>
       <p>
         {word.translation.length === 0 ? null : word.translation.length === 1 ? 'Übersetzung:' : 'Übersetzungen:'}{' '}
         <b>{word.translation.length > 0 ? word.translation.join(', ') : 'Keine Übersetzung'}</b>
       </p>
-      <p className='md:text-center'>
-        {word.derivative && (
+      {word.derivative && (
+        <p className='md:text-center'>
           <span>
             Abwandlung von{' '}
             <Link href={`/vocabulary/dictionary/${word.derivative}`} className={ui.link}>
               {word.derivative.name}
             </Link>
           </span>
-        )}
-      </p>
+        </p>
+      )}
       {word.info && <WordInfo info={word.info} />}
     </div>
   );
