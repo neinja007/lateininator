@@ -16,7 +16,7 @@ const WordInformation = ({ word }: WordInformationProps) => {
         <p className='md:text-center'>
           <span>
             Abwandlung von{' '}
-            <Link href={`/vocabulary/dictionary/${word.derivative}`} className={ui.link}>
+            <Link href={`/vocabulary/dictionary/${word.derivative.id}`} className={ui.link}>
               {word.derivative.name}
             </Link>
           </span>
