@@ -1,6 +1,6 @@
 import { prisma } from '@/utils/other/client';
 
-export async function findUser(userId: string, includedDataObject?: any) {
+export async function getUser(userId: string, includedDataObject?: any) {
   try {
     const user = await prisma.user.findUnique({
       where: { id: userId },

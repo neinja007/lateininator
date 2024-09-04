@@ -2,7 +2,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
 import { createUser } from './services/createUser';
-import { findUser } from './services/findUser';
+import { getUser } from './services/getUser';
 
 export const GET = async (request: NextRequest) => {
   const clerkUser = await currentUser();
@@ -20,7 +20,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   try {
-    const user = await findUser(clerkUser.id, includedDataObject);
+    const user = await getUser(clerkUser.id, includedDataObject);
     return NextResponse.json(user, { status: 200 });
   } catch (error: any) {
     console.error(error);
@@ -42,7 +42,7 @@ export const POST = async () => {
       return NextResponse.json({ status: 400, body: { message: 'Email or username not found' } });
     }
 
-    const userExists = await findUser(user.id);
+    const userExists = await getUser(user.id);
 
     if (userExists) {
       return NextResponse.json(userExists, { status: 200 });
