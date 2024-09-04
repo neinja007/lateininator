@@ -87,7 +87,11 @@ const Page = () => {
             owned={userIsPremium}
             loading={!dbUser.isLoaded}
             highest={userIsPremium}
-            href={!dbUser.isLoaded || user.isSignedIn ? '/premium/checkout' : '/auth/sign-in'}
+            href={
+              !dbUser.isLoaded || user.isSignedIn
+                ? process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_URL
+                : '/auth/sign-in?redirect=' + process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_URL
+            }
           />
         )}
       </div>
