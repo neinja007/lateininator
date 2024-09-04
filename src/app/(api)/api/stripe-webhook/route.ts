@@ -1,5 +1,4 @@
 import { prisma } from '@/utils/other/client';
-import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -32,43 +31,47 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ error: 'Webhook Error' }, { status: 400 });
   }
 
-  switch (event.type) {
-    case 'payment_intent.succeeded':
-      {
-        const paymentIntent = event.data.object;
-        console.log('PaymentIntent was successful!', paymentIntent);
+  if (event.type === 'invoice.payment_succeeded') {
+    const invoice = event.data.object as Stripe.Invoice;
+    const paymentIntentId = invoice.payment_intent as string;
+    const metadata = invoice.metadata;
+    const userId = metadata && metadata.userId;
+    console.log('PaymentIntent was successful!', paymentIntentId);
 
-        const userId = paymentIntent.metadata.userId;
-        if (!userId) {
-          console.error('No userId found in metadata!');
-          return NextResponse.json({ error: 'No userId found in metadata!' }, { status: 400 });
-        }
+    if (!userId) {
+      console.error('No userId found in metadata!');
+      return NextResponse.json({ error: 'No userId found in metadata!' }, { status: 400 });
+    }
 
-        let state = 'error';
-        try {
-          await prisma.user.update({
-            where: { id: userId },
-            data: { premium: true }
-          });
-          state = 'success';
+    try {
+      await prisma.user.update({
+        where: { id: userId },
+        data: { premium: true }
+      });
+      console.log('User updated successfully!');
+    } catch (error: any) {
+      console.error(error);
+    }
+  } else if (event.type === 'customer.subscription.deleted') {
+    const subscription = event.data.object as Stripe.Subscription;
+    const metadata = subscription.metadata;
+    const userId = metadata && metadata.userId;
+    console.log('Subscription deleted!', subscription);
 
-          console.log('User updated successfully!');
-        } catch (error: any) {
-          console.error(error);
-          redirect('/premium/success?state=error');
-        }
+    if (!userId) {
+      console.error('No userId found in metadata!');
+      return NextResponse.json({ error: 'No userId found in metadata!' }, { status: 400 });
+    }
 
-        redirect('/premium/success?state=' + state);
-      }
-      break;
-    case 'payment_intent.payment_failed':
-      {
-        const failedPaymentIntent = event.data.object;
-        console.log('PaymentIntent failed', failedPaymentIntent);
-      }
-      break;
-    default:
-      console.log(`Unhandled event type ${event.type}`);
+    try {
+      await prisma.user.update({
+        where: { id: userId },
+        data: { premium: false }
+      });
+      console.log('User updated successfully!');
+    } catch (error: any) {
+      console.error(error);
+    }
   }
 
   return NextResponse.json({ received: true }, { status: 200 });
