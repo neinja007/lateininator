@@ -17,8 +17,8 @@ const Page = () => {
 
   const router = useRouter();
 
-  if (!user.isSignedIn) {
-    router.push('/auth/sign-in');
+  if (user.isLoaded && !user.isSignedIn) {
+    router.push('/auth/sign-in?redirect=/premium/checkout');
   }
 
   return (
