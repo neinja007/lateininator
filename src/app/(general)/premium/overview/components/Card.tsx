@@ -12,6 +12,7 @@ type CardProps = {
   color: 'gray' | 'sky' | 'pink';
   loading?: boolean;
   highest: boolean;
+  onClick?: () => void;
 };
 
 const colors: { [C in 'gray' | 'sky' | 'pink']: { container: string } } = {
@@ -29,14 +30,14 @@ const colors: { [C in 'gray' | 'sky' | 'pink']: { container: string } } = {
   }
 };
 
-const Card = ({ features, price, title, color, owned, description, href, loading, highest }: CardProps) => {
+const Card = ({ features, price, title, color, owned, description, href, loading, highest, onClick }: CardProps) => {
   return (
     <div className='flex flex-col'>
       <div className={clsx('mb-2 h-6 text-center', owned && (highest ? 'text-sky-500' : 'opacity-50'))}>
         {highest ? 'Dein Rang' : description}:
       </div>
       <Link
-        href={owned ? '' : href || ''}
+        href={owned || onClick ? '' : href || ''}
         className={clsx(
           'overflow-hidden rounded-2xl border-gray-500 bg-gradient-to-b shadow-lg shadow-gray-500 transition-all hover:dark:border-white',
           colors[color].container,
@@ -44,6 +45,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
           loading && 'animate-pulse',
           highest && 'border-sky-500'
         )}
+        onClick={onClick}
       >
         <h1 className='m-5 flex items-baseline justify-between text-2xl'>
           <span>Lateininator</span>{' '}
@@ -70,6 +72,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
             'mt-4 min-h-16 w-full px-4 text-lg font-medium leading-tight text-white backdrop-brightness-75 transition-colors',
             owned ? 'opacity-50' : color !== 'pink' && 'flex items-center justify-between'
           )}
+          onClick={onClick}
         >
           {loading ? (
             'Wird geladen...'
