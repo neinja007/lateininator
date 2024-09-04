@@ -3,6 +3,10 @@ import getStripe from '@/utils/stripe/get-stripe';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useIsDarkTheme } from '@/hooks/useIsDarkTheme';
+import { monthlyPrice } from '@/constants/other';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from './components/CheckoutForm';
+import Heading from '@/components/Heading';
 
 const stripePromise = getStripe();
 
@@ -19,7 +23,7 @@ const Page = () => {
 
   return (
     <div>
-      {/* <Heading>Lateininator Premium</Heading>
+      <Heading>Lateininator Premium</Heading>
       <Elements
         stripe={stripePromise}
         options={{
@@ -40,8 +44,7 @@ const Page = () => {
         }}
       >
         <CheckoutForm />
-      </Elements> */}
-      Noch nicht verfügbar...
+      </Elements>
     </div>
   );
 };
