@@ -1,5 +1,6 @@
 import { monthlyPrice } from '@/constants/other';
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const CheckoutForm = () => {
@@ -11,14 +12,15 @@ const CheckoutForm = () => {
   const elements = useElements();
 
   useEffect(() => {
-    fetch('/api/create-subscription', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+    axios
+      .post('/api/create-subscription', undefined, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) => res.data)
+      .then((data) => console.log(data));
+    // .then((data) => setClientSecret(data.clientSecret));
   }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
