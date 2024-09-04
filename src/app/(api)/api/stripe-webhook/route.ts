@@ -51,6 +51,8 @@ export const POST = async (req: NextRequest) => {
             data: { premium: true }
           });
           state = 'success';
+
+          console.log('User updated successfully!');
         } catch (error: any) {
           console.error(error);
           redirect('/premium/success?state=error');
