@@ -13,14 +13,14 @@ const Page = ({ error, reset }: PageProps) => {
     <div className='mb-16'>
       <Heading className='text-orange-500'>Ein Fehler ist aufgetreten ({error.name})</Heading>
       <div>
-        <div className='flex justify-between'>
+        <div className='justify-between text-justify md:flex'>
           <span>
             Wir bitten Sie, diesen unserem <LinkToSupportEmail /> zu melden. Bitte geben Sie dabei die folgende
             Fehlermeldung an:
           </span>
           <button
             color='blue'
-            className='float-end text-blue-500 hover:underline active:text-blue-600'
+            className='text-blue-500 hover:underline active:text-blue-600 md:float-end'
             onClick={() =>
               navigator.clipboard.writeText(
                 JSON.stringify({
@@ -37,9 +37,9 @@ const Page = ({ error, reset }: PageProps) => {
         </div>
         <div className='my-4 rounded-lg border border-gray-500 p-4 font-mono text-red-500'>{error.message}</div>
       </div>
-      <div className='flex items-center justify-between'>
+      <div className='items-center justify-between text-justify md:flex'>
         <span>Wir Danken für Ihre Unterstützung. Sie können hier versuchen, den Fehler rückgängig zu machen:</span>
-        <Button onClick={reset} className='float-end' color='red'>
+        <Button onClick={reset} className='mt-2 md:float-end md:mt-0' color='red'>
           Nochmal versuchen
         </Button>
       </div>
