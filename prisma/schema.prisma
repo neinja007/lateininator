@@ -15,7 +15,7 @@ model User {
   points           Int          @default(0)
   createdAt        DateTime     @default(now())
   premium          Boolean      @default(false)
-  stripeCustomerId String?
+  stripeCustomerId String?      @unique
   savedCollections Collection[] @relation("saved")
   ownedCollections Collection[] @relation("owner")
 }
