@@ -33,17 +33,10 @@ export const POST = async (req: NextRequest) => {
 
   if (event.type === 'invoice.payment_succeeded') {
     const invoice = event.data.object as Stripe.Invoice;
-    const metadata = invoice.metadata;
-    const userId = metadata && metadata.userId;
-
-    if (!userId) {
-      console.error('No userId found in metadata!');
-      return NextResponse.json({ error: 'No userId found in metadata!' }, { status: 400 });
-    }
 
     try {
       await prisma.user.update({
-        where: { id: userId },
+        where: { stripeCustomerId: invoice.customer as string },
         data: { premium: true }
       });
       console.log('User updated successfully!');
