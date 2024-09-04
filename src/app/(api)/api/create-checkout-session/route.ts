@@ -1,3 +1,4 @@
+import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -9,7 +10,32 @@ export async function POST() {
   }
 
   try {
+    let dbUser = await prisma.user.findUnique({
+      where: { id: user.id },
+      select: { stripeCustomerId: true }
+    });
+
+    let customerId: string;
+
+    if (!dbUser?.stripeCustomerId) {
+      const customer = await stripe.customers.create({
+        email: user.emailAddresses[0].emailAddress,
+        name: user.firstName + ' ' + user.lastName,
+        metadata: { userId: user.id }
+      });
+
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { stripeCustomerId: customer.id }
+      });
+
+      customerId = customer.id;
+    } else {
+      customerId = dbUser.stripeCustomerId;
+    }
+
     const session = await stripe.checkout.sessions.create({
+      customer: customerId,
       payment_method_types: ['card'],
       line_items: [
         {
