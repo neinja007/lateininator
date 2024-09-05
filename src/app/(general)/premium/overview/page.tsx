@@ -6,9 +6,8 @@ import { monthlyPrice } from '@/constants/other';
 import { useWidth } from '@/hooks/useWidth';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { loadStripe, Stripe } from '@stripe/stripe-js';
-
-let stripe: Stripe | null = null;
+import { Stripe } from '@stripe/stripe-js';
+import getStripe from '@/utils/stripe/get-stripe';
 
 const features = [
   'Wörterbuch',
@@ -25,25 +24,28 @@ const features = [
   'Unterstütze uns'
 ];
 
+let stripe: Stripe | null = null;
+
 const Page = () => {
   const [user, dbUser] = useDbUser();
   const [hideBasic, setHideBasic] = useState(false);
   const [onlyShowNextRank, setOnlyShowNextRank] = useState(false);
 
   const userIsPremium = dbUser.isLoaded ? dbUser.user?.premium || false : false;
-
   const redirectToCheckout = async () => {
-    const { sessionId } = await axios.post('/api/create-checkout-session').then((res) => res.data);
-    if (stripe) {
-      const { error } = await stripe.redirectToCheckout({ sessionId });
+    const session = await axios.post('/api/create-checkout-session').then((res) => res.data);
+
+    if (stripe && session.sessionId) {
+      const { error } = await stripe.redirectToCheckout({ sessionId: session.sessionId });
       if (error) {
         console.error('Error redirecting to checkout:', error);
+        throw new Error('Error redirecting to checkout: ' + error.message);
       }
     }
   };
 
   useEffect(() => {
-    loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!).then((loadedStripe) => {
+    getStripe().then((loadedStripe) => {
       if (loadedStripe) {
         stripe = loadedStripe;
       }
