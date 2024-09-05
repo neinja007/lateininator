@@ -4,9 +4,11 @@ import Card from './components/Card';
 import { useDbUser } from '@/hooks/useDbUser';
 import { monthlyPrice } from '@/constants/other';
 import { useWidth } from '@/hooks/useWidth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, Stripe } from '@stripe/stripe-js';
+
+let stripe: Stripe | null = null;
 
 const features = [
   'Wörterbuch',
@@ -32,7 +34,6 @@ const Page = () => {
 
   const redirectToCheckout = async () => {
     const { sessionId } = await axios.post('/api/create-checkout-session').then((res) => res.data);
-    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
     if (stripe) {
       const { error } = await stripe.redirectToCheckout({ sessionId });
       if (error) {
@@ -40,6 +41,14 @@ const Page = () => {
       }
     }
   };
+
+  useEffect(() => {
+    loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!).then((loadedStripe) => {
+      if (loadedStripe) {
+        stripe = loadedStripe;
+      }
+    });
+  }, []);
 
   useWidth(
     'lg',
