@@ -1,4 +1,5 @@
 'use client';
+
 import Heading from '@/components/Heading';
 import { RedirectToSignIn, useUser } from '@clerk/nextjs';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -39,8 +40,6 @@ export const Page = () => {
 
   const status = subscription && subscription.status;
   const active = status === 'active' || status === 'trialing';
-
-  console.log(status);
 
   const nextPaymentDate = active && dayjs.unix(subscription.current_period_end).format('DD.MM.YYYY');
   const nextPaymentDays = active && dayjs.unix(subscription.current_period_end).diff(dayjs(), 'days');
