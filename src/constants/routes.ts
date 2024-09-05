@@ -82,8 +82,7 @@ export const routes: Route[] = [
     children: [
       { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord, status: 'signedIn' },
       { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings, status: 'signedIn' },
-      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, status: 'signedIn' },
-      { label: 'Abo Verwalten', href: '/premium/manage', color: 'pink', icon: Gem, status: 'premium' }
+      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, status: 'signedIn' }
     ]
   },
   {
