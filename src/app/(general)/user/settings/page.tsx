@@ -1,6 +1,7 @@
 import FancyLink from '@/components/FancyLink';
 import Heading from '@/components/Heading';
-import { LogOut, UserIcon } from 'lucide-react';
+import { IsPremium } from '@/components/IsPremium';
+import { Gem, LogOut, UserIcon } from 'lucide-react';
 
 const Page = () => {
   return (
@@ -25,6 +26,16 @@ const Page = () => {
             color: 'red'
           }}
         />
+        <IsPremium>
+          <FancyLink
+            route={{
+              label: 'Abo Verwalten',
+              href: '/premium/manage',
+              icon: Gem,
+              color: 'pink'
+            }}
+          />
+        </IsPremium>
       </div>
     </div>
   );

@@ -1,13 +1,15 @@
 'use client';
 import Heading from '@/components/Heading';
 import Card from './components/Card';
-import { useDbUser } from '@/hooks/useDbUser';
 import { monthlyPrice } from '@/constants/other';
 import { useWidth } from '@/hooks/useWidth';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Stripe } from '@stripe/stripe-js';
 import getStripe from '@/utils/stripe/get-stripe';
+import { useQuery } from '@tanstack/react-query';
+import { User } from '@prisma/client';
+import { useUser } from '@clerk/nextjs';
 
 const features = [
   'Wörterbuch',
@@ -27,11 +29,17 @@ const features = [
 let stripe: Stripe | null = null;
 
 const Page = () => {
-  const [user, dbUser] = useDbUser();
+  const { data: dbUser, isLoading } = useQuery<User>({
+    queryKey: ['dbUser'],
+    queryFn: () => axios.get('/api/user').then((res) => res.data)
+  });
+
+  const user = useUser();
+
   const [hideBasic, setHideBasic] = useState(false);
   const [onlyShowNextRank, setOnlyShowNextRank] = useState(false);
 
-  const userIsPremium = (dbUser.isLoaded && dbUser.user?.premium) || false;
+  const userIsPremium = (!isLoading && dbUser?.premium) || false;
   const redirectToCheckout = async () => {
     const session = await axios.post('/api/create-checkout-session').then((res) => res.data);
 
@@ -74,7 +82,7 @@ const Page = () => {
 
   const showFull = !onlyShowNextRank || !user.isSignedIn || !user.isLoaded;
   const showPremium = !onlyShowNextRank || user.isSignedIn || !user.isLoaded;
-  const premiumIsAvailable = !dbUser.isLoaded || user.isSignedIn;
+  const premiumIsAvailable = isLoading || user.isSignedIn;
 
   return (
     <>
@@ -88,7 +96,7 @@ const Page = () => {
             color='gray'
             owned
             description='Für Alle Benutzer'
-            highest={!user.isSignedIn && dbUser.isLoaded}
+            highest={!user.isSignedIn && !isLoading}
           />
         )}
         {showFull && (
@@ -99,9 +107,9 @@ const Page = () => {
             href='/auth/sign-in'
             color='sky'
             description='Für Angemeldete Benutzer'
-            owned={user.isSignedIn && dbUser.isLoaded}
+            owned={!!user.isSignedIn && !isLoading}
             loading={!user.isLoaded}
-            highest={!userIsPremium && user.isSignedIn && dbUser.isLoaded}
+            highest={!userIsPremium && !!user.isSignedIn && !isLoading}
           />
         )}
         {showPremium && (
@@ -112,7 +120,7 @@ const Page = () => {
             color='pink'
             description='Für Supporter'
             owned={userIsPremium}
-            loading={!dbUser.isLoaded}
+            loading={isLoading}
             highest={userIsPremium}
             href={!premiumIsAvailable ? '/auth/sign-in' : undefined}
             onClick={premiumIsAvailable ? redirectToCheckout : undefined}
