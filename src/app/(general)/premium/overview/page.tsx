@@ -114,7 +114,6 @@ const Page = () => {
             owned={userIsPremium}
             loading={!dbUser.isLoaded}
             highest={userIsPremium}
-            href={'/auth/sign-in'}
             onClick={premiumIsAvailable ? redirectToCheckout : undefined}
           />
         )}
