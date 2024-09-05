@@ -3,23 +3,20 @@
 import Heading from '@/components/Heading';
 import { routes } from '@/constants/routes';
 import FancyLink from '@/components/FancyLink';
-import { makeAuthStateDependent } from '@/utils/other/makeAuthStateDependent';
+import { makeStatusDependent } from '@/utils/other/makeAuthStateDependent';
 import { Fragment } from 'react';
-import { useDbUser } from '@/hooks/useDbUser';
 
 const Page = () => {
   const signInRoute = routes.find((route) => route.label === 'Anmelden');
   const premiumRoute = routes.find((route) => route.label === 'Premium');
   if (!signInRoute || !premiumRoute) throw new Error('Route not found');
 
-  const [_, dbUser] = useDbUser();
-
   return (
     <div>
       <Heading className='mb-3 md:mb-6 lg:mb-12'>Übersicht</Heading>
       <p className='mb-2 text-center text-lg font-bold'>Lernen</p>
       {routes
-        .filter((route) => !!route.children && !route.authStatus)
+        .filter((route) => !!route.children && !route.status)
         .map((route) => (
           <div key={route.label} className='mb-5 grid-cols-4 items-center md:mb-2 md:grid'>
             <div className='flex items-center gap-x-2 font-bold text-gray-600 dark:text-gray-400'>
@@ -41,11 +38,11 @@ const Page = () => {
           .find((route) => route.label === '{name}')
           ?.children?.map((child, i) => (
             <Fragment key={i}>
-              {makeAuthStateDependent(<FancyLink route={{ ...child, href: '/user' + child.href }} />, child.authStatus)}
+              {makeStatusDependent(<FancyLink route={{ ...child, href: '/user' + child.href }} />, child.status)}
             </Fragment>
           ))}
-        {makeAuthStateDependent(<FancyLink route={signInRoute} />, signInRoute.authStatus)}
-        {(!dbUser.isLoaded || !dbUser.user?.premium) && <FancyLink route={premiumRoute} />}
+        {makeStatusDependent(<FancyLink route={signInRoute} />, signInRoute.status)}
+        {makeStatusDependent(<FancyLink route={premiumRoute} />, premiumRoute.status)}
       </div>
     </div>
   );
