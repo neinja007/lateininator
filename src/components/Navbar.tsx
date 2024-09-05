@@ -8,7 +8,7 @@ import { routes } from '@/constants/routes';
 import { Menu } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
-import { makeStatusDependent } from '@/utils/other/makeAuthStateDependent';
+import { makeStatusDependent } from '@/utils/other/makeStatusDependent';
 import { useUser } from '@clerk/nextjs';
 
 const Navbar = () => {

@@ -3,7 +3,7 @@
 import Heading from '@/components/Heading';
 import { routes } from '@/constants/routes';
 import FancyLink from '@/components/FancyLink';
-import { makeStatusDependent } from '@/utils/other/makeAuthStateDependent';
+import { makeStatusDependent } from '@/utils/other/makeStatusDependent';
 import { Fragment } from 'react';
 
 const Page = () => {
