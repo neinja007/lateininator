@@ -1,8 +1,6 @@
 'use client';
-
 import { Fragment, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { useUser } from '@clerk/nextjs';
 import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
@@ -11,6 +9,7 @@ import { Menu } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
 import { makeAuthStateDependent } from '@/utils/other/makeAuthStateDependent';
+import { useDbUser } from '@/hooks/useDbUser';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -29,7 +28,7 @@ const Navbar = () => {
     true
   );
 
-  const user = useUser();
+  const [user, dbUser] = useDbUser();
 
   return (
     <>
@@ -53,6 +52,13 @@ const Navbar = () => {
                 user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil'
               )
             };
+
+            if (route.label === 'Premium') {
+              if (!dbUser.isLoaded || dbUser.user?.premium) {
+                return null;
+              }
+            }
+
             let element: React.ReactNode;
             if (route.children) {
               element = (
