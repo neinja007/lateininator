@@ -43,6 +43,9 @@ export async function POST() {
           quantity: 1
         }
       ],
+      subscription_data: {
+        trial_period_days: 7
+      },
       mode: 'subscription',
       success_url: `${process.env.HOST_URL}/premium/success`,
       cancel_url: `${process.env.HOST_URL}/premium/overview`,
