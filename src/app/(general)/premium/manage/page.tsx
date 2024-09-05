@@ -31,7 +31,7 @@ export const Page = () => {
 
   if (!isLoading && !subscription) {
     router.push('/premium/overview');
-    return;
+    return null;
   }
 
   if (user.isLoaded && !user.isSignedIn) {
