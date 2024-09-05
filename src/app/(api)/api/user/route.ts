@@ -4,6 +4,8 @@ import { getIncludedData } from '../../utils/getIncludedData';
 import { createUser } from './services/createUser';
 import { getUserById } from './services/getUserById';
 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 export const GET = async (request: NextRequest) => {
   const clerkUser = await currentUser();
   if (!clerkUser) {
@@ -48,7 +50,22 @@ export const POST = async () => {
       return NextResponse.json(userExists, { status: 200 });
     }
 
-    const newUser = await createUser(user.id, emailAddress, user.fullName);
+    let customerId: string;
+
+    try {
+      const customer = await stripe.customers.create({
+        email: user.emailAddresses[0].emailAddress,
+        name: user.firstName + ' ' + user.lastName,
+        metadata: { userId: user.id }
+      });
+
+      customerId = customer.id;
+    } catch (error: any) {
+      console.error(error);
+      return NextResponse.json({ status: 500, body: { message: error } });
+    }
+
+    const newUser = await createUser(user.id, emailAddress, user.fullName, customerId);
 
     return NextResponse.json(newUser, { status: 201 });
   } catch (error: any) {
