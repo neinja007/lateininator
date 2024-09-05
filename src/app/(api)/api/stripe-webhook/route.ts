@@ -54,7 +54,6 @@ export const POST = async (req: NextRequest) => {
     const subscription = event.data.object as Stripe.Subscription;
     const metadata = subscription.metadata;
     const userId = metadata && metadata.userId;
-    console.log('Subscription deleted!', subscription);
 
     if (!userId) {
       console.error('No userId found in metadata!');
