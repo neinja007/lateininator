@@ -31,7 +31,7 @@ const Page = () => {
 
   if (!isLoading && !subscription) {
     router.push('/premium/overview');
-    return <div>Sie haben kein Abo</div>;
+    return <div>Sie haben kein Abo!</div>;
   }
 
   if (user.isLoaded && !user.isSignedIn) {
