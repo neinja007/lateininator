@@ -24,7 +24,7 @@ export type Route = {
   icon: typeof X;
   color?: Color;
   children?: Route[];
-  authStatus?: 'signedIn' | 'signedOut';
+  status?: 'signedIn' | 'signedOut' | 'premium' | 'notPremium';
 };
 
 export const routes: Route[] = [
@@ -71,23 +71,25 @@ export const routes: Route[] = [
     label: 'Premium',
     href: '/premium/overview',
     icon: Gem,
-    color: 'pink'
+    color: 'pink',
+    status: 'notPremium'
   },
   {
     label: '{name}',
     href: '/user',
-    authStatus: 'signedIn',
+    status: 'signedIn',
     icon: User,
     children: [
-      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord, authStatus: 'signedIn' },
-      { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings, authStatus: 'signedIn' },
-      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, authStatus: 'signedIn' }
+      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord, status: 'signedIn' },
+      { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings, status: 'signedIn' },
+      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, status: 'signedIn' },
+      { label: 'Abo Verwalten', href: '/premium/manage', color: 'pink', icon: Gem, status: 'premium' }
     ]
   },
   {
     label: 'Anmelden',
     href: '/auth/sign-in',
-    authStatus: 'signedOut',
+    status: 'signedOut',
     icon: LogIn,
     color: 'green'
   }
