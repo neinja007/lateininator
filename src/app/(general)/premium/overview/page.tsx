@@ -31,7 +31,7 @@ const Page = () => {
   const [hideBasic, setHideBasic] = useState(false);
   const [onlyShowNextRank, setOnlyShowNextRank] = useState(false);
 
-  const userIsPremium = dbUser.isLoaded ? dbUser.user?.premium || false : false;
+  const userIsPremium = (dbUser.isLoaded && dbUser.user?.premium) || false;
   const redirectToCheckout = async () => {
     const session = await axios.post('/api/create-checkout-session').then((res) => res.data);
 
