@@ -79,15 +79,16 @@ export const routes: Route[] = [
     authStatus: 'signedIn',
     icon: User,
     children: [
-      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord },
-      { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings },
-      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart }
+      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord, authStatus: 'signedIn' },
+      { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings, authStatus: 'signedIn' },
+      { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, authStatus: 'signedIn' }
     ]
   },
   {
     label: 'Anmelden',
     href: '/auth/sign-in',
     authStatus: 'signedOut',
-    icon: LogIn
+    icon: LogIn,
+    color: 'green'
   }
 ];
