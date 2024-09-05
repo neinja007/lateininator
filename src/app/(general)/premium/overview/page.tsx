@@ -88,7 +88,7 @@ const Page = () => {
             color='gray'
             owned
             description='Für Alle Benutzer'
-            highest={!user.isSignedIn}
+            highest={!user.isSignedIn && dbUser.isLoaded}
           />
         )}
         {showFull && (
@@ -99,9 +99,9 @@ const Page = () => {
             href='/auth/sign-in'
             color='sky'
             description='Für Angemeldete Benutzer'
-            owned={user.isSignedIn}
+            owned={user.isSignedIn && dbUser.isLoaded}
             loading={!user.isLoaded}
-            highest={!userIsPremium && user.isSignedIn}
+            highest={!userIsPremium && user.isSignedIn && dbUser.isLoaded}
           />
         )}
         {showPremium && (
