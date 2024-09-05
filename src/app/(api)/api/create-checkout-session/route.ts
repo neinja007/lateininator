@@ -15,9 +15,13 @@ export async function POST() {
       select: { stripeCustomerId: true }
     });
 
+    if (!dbUser) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
     let customerId: string;
 
-    if (!dbUser?.stripeCustomerId) {
+    if (!dbUser.stripeCustomerId) {
       const customer = await stripe.customers.create({
         email: user.emailAddresses[0].emailAddress,
         name: user.firstName + ' ' + user.lastName,
