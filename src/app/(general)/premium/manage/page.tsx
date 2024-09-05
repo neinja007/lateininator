@@ -31,11 +31,15 @@ export const Page = () => {
 
   if (!isLoading && !subscription) {
     router.push('/premium/overview');
-    return null;
+    return <div>Sie haben kein Abo</div>;
   }
 
   if (user.isLoaded && !user.isSignedIn) {
     return <RedirectToSignIn />;
+  }
+
+  if (!subscription) {
+    return <div>Bitte Warten...</div>;
   }
 
   const status = subscription && subscription.status;
@@ -80,5 +84,3 @@ export const Page = () => {
     </div>
   );
 };
-
-export default Page;
