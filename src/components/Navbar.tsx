@@ -8,7 +8,7 @@ import { routes } from '@/constants/routes';
 import { Menu } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
-import { makeAuthStateDependent } from '@/utils/other/makeAuthStateDependent';
+import { makeStatusDependent } from '@/utils/other/makeAuthStateDependent';
 import { useDbUser } from '@/hooks/useDbUser';
 
 const Navbar = () => {
@@ -80,7 +80,7 @@ const Navbar = () => {
               element = <NavbarLink key={i} route={route} active={pathname === route.href} />;
             }
 
-            return <Fragment key={i}>{makeAuthStateDependent(element, route.authStatus)}</Fragment>;
+            return <Fragment key={i}>{makeStatusDependent(element, route.status)}</Fragment>;
           })}
         </div>
       </div>
