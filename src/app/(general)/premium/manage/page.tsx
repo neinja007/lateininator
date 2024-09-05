@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 import { Card } from './components/Card';
 
-export const Page = () => {
+const Page = () => {
   const queryClient = useQueryClient();
 
   const { data: subscription, isLoading } = useQuery({
@@ -84,3 +84,5 @@ export const Page = () => {
     </div>
   );
 };
+
+export default Page;
