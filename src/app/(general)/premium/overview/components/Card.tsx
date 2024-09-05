@@ -34,7 +34,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
   return (
     <div className='flex flex-col'>
       <div className={clsx('mb-2 h-6 text-center', owned && (highest ? 'text-sky-500' : 'opacity-50'))}>
-        {highest ? 'Dein Rang' : description}:
+        {description} {highest && '(Dein Rang)'}
       </div>
       <Link
         href={owned || onClick ? '' : href || ''}
