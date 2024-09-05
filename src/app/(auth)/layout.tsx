@@ -3,7 +3,7 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
-  return <div className='mx-auto mt-16 w-fit text-center'>{children}</div>;
+  return <div className='mx-auto w-fit text-center md:mt-16'>{children}</div>;
 };
 
 export default Layout;
