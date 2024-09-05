@@ -38,10 +38,6 @@ const Page = () => {
     return <RedirectToSignIn />;
   }
 
-  if (!subscription) {
-    return <div>Bitte Warten...</div>;
-  }
-
   const status = subscription && subscription.status;
   const active = status === 'active' || status === 'trialing';
 
