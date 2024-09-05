@@ -9,7 +9,7 @@ import { Menu } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
 import { makeStatusDependent } from '@/utils/other/makeAuthStateDependent';
-import { useDbUser } from '@/hooks/useDbUser';
+import { useUser } from '@clerk/nextjs';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -28,7 +28,7 @@ const Navbar = () => {
     true
   );
 
-  const [user, dbUser] = useDbUser();
+  const user = useUser();
 
   return (
     <>
@@ -52,12 +52,6 @@ const Navbar = () => {
                 user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil'
               )
             };
-
-            if (route.label === 'Premium') {
-              if (!dbUser.isLoaded || dbUser.user?.premium) {
-                return null;
-              }
-            }
 
             let element: React.ReactNode;
             if (route.children) {
