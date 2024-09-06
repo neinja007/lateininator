@@ -10,28 +10,14 @@ type CellProps = {
   name?: string;
   lists?: number;
   owner?: string;
-  buttonVisible?: boolean;
   buttonLabel?: string;
-  buttonOnClick?: () => void;
   buttonColor?: Color;
 };
 
-const Cell = ({
-  outlined,
-  onClick,
-  className,
-  buttonLabel,
-  lists,
-  name,
-  owner,
-  buttonVisible,
-  buttonOnClick,
-  buttonColor
-}: CellProps) => {
+const Cell = ({ outlined, className, buttonLabel, lists, name, owner, buttonColor, onClick }: CellProps) => {
   return (
     <div className='min-h-24'>
       <button
-        onClick={onClick}
         className={clsx(
           'min-h-24 w-full rounded-lg border px-4 py-2 transition-colors',
           outlined
@@ -39,6 +25,7 @@ const Cell = ({
             : 'border-blue-500 bg-blue-400 hover:border-blue-900 hover:bg-blue-500 dark:bg-blue-950 dark:hover:border-blue-300 dark:hover:bg-blue-800',
           className
         )}
+        onClick={outlined ? onClick : undefined}
       >
         {outlined ? (
           <div className='flex h-full items-center justify-center text-gray-500 dark:text-gray-300'>
@@ -61,8 +48,8 @@ const Cell = ({
           </>
         )}
       </button>
-      {buttonVisible && (
-        <Button className={clsx('mt-2 w-full', className)} onClick={buttonOnClick} color={buttonColor}>
+      {!outlined && (
+        <Button className={clsx('mt-2 w-full', className)} onClick={onClick} color={buttonColor}>
           {buttonLabel}
         </Button>
       )}
