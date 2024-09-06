@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 import { Card } from './components/Card';
 import FailToLoad from '@/components/FailToLoad';
+import { useEffect } from 'react';
 
 const Page = () => {
   const queryClient = useQueryClient();
@@ -29,10 +30,11 @@ const Page = () => {
 
   const user = useUser();
 
-  if (!isLoading && !subscription) {
-    router.push('/premium/overview');
-    return <div>Sie haben kein Abo!</div>;
-  }
+  useEffect(() => {
+    if (!isLoading && !subscription) {
+      router.push('/premium/overview');
+    }
+  }, [isLoading, subscription, router]);
 
   if (user.isLoaded && !user.isSignedIn) {
     return <RedirectToSignIn />;
