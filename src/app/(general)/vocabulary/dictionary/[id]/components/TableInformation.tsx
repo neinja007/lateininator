@@ -1,13 +1,24 @@
+import Skeleton from '@/components/Skeleton';
 import { Word } from '@/types/word';
 import { MAPPER } from '@/utils/other/mapper';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { isNoun } from '@/utils/typeguards/isNoun';
 import { isVerb } from '@/utils/typeguards/isVerb';
 
-type ComponentNameProps = { word: Word };
+type TableInformationProps = { word: Word; loading?: false };
+type TableInformationLoadingProps = { word?: undefined; loading: true };
 
-const ComponentName = ({ word }: ComponentNameProps) => {
+const TableInformation = ({ word, loading }: TableInformationProps | TableInformationLoadingProps) => {
   let info = '';
+  if (loading) {
+    return (
+      <div className='mb-2'>
+        <div className='flex justify-center'>
+          <Skeleton pulse customSize className='h-6 w-40' />
+        </div>
+      </div>
+    );
+  }
   if (isNoun(word)) {
     info = `${word.noun.declension === 'NONE' ? 'Keine Deklination' : MAPPER.extended.declension[word.noun.declension]} - ${
       word.noun.gender === 'NONE' ? 'Kein Geschlecht' : MAPPER.extended.gender[word.noun.gender]
@@ -28,4 +39,4 @@ const ComponentName = ({ word }: ComponentNameProps) => {
   );
 };
 
-export default ComponentName;
+export default TableInformation;
