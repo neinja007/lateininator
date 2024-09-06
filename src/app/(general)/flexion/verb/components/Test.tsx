@@ -3,7 +3,6 @@ import WordDisplay from '@/components/WordDisplay';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
-import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/other/mapper';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
@@ -99,9 +98,8 @@ const Test = ({
       <Hr />
       <form onSubmit={submit} className='space-y-8'>
         {testingType === 'individual' ? (
-          <TrainerInput
+          <IndividualTrainerInput
             label={`${MAPPER.extended.person[individualInputForm.person]} ${MAPPER.extended.numerus[individualInputForm.numerus]}; ${MAPPER.extended.modus[individualInputForm.modus]} ${MAPPER.extended.tense[individualInputForm.tense]} ${MAPPER.extended.voice[individualInputForm.voice]}`}
-            handleChange={setIndividualInputValue}
             value={individualInputValue}
             correctValue={getForm(activeWord, individualInputForm)}
             stage={stage}
