@@ -9,6 +9,7 @@ import Test from './components/Test';
 import { TableInputValues } from './types';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isNoun } from '@/utils/typeguards/isNoun';
+import { AuthConditionalLock } from '@/components/AuthConditionalLock';
 
 const initialTableInputValues: TableInputValues = WORD_CONSTANTS.numerus.reduce(
   (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.wordCase.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
@@ -29,34 +30,36 @@ const Page = () => {
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   return (
-    <div className='space-y-5'>
-      <Heading>Flexionstrainer: Nomen</Heading>
-      {stage === 'settings' && (
-        <Settings
-          currentSettingsStage={currentSettingsStage}
-          testingType={testingType}
-          setTestingType={setTestingType}
-          handleContinue={handleContinue}
-          updateWords={updateWords}
-          remainingWords={remainingWords}
-        />
-      )}
-      {(stage === 'test' || stage === 'review') && activeWord && isNoun(activeWord) && (
-        <Test
-          stage={stage}
-          activeWord={activeWord}
-          testingType={testingType}
-          individualInputValue={individualInputValue}
-          setIndividualInputValue={setIndividualInputValue}
-          tableInputValues={tableInputValues}
-          setTableInputValues={setTableInputValues}
-          maxWords={maxWords}
-          remainingWords={remainingWords}
-          handleContinue={handleContinue}
-        />
-      )}
-      {stage === 'results' && <Results handleContinue={handleContinue} />}
-    </div>
+    <AuthConditionalLock>
+      <div className='space-y-5'>
+        <Heading>Flexionstrainer: Nomen</Heading>
+        {stage === 'settings' && (
+          <Settings
+            currentSettingsStage={currentSettingsStage}
+            testingType={testingType}
+            setTestingType={setTestingType}
+            handleContinue={handleContinue}
+            updateWords={updateWords}
+            remainingWords={remainingWords}
+          />
+        )}
+        {(stage === 'test' || stage === 'review') && activeWord && isNoun(activeWord) && (
+          <Test
+            stage={stage}
+            activeWord={activeWord}
+            testingType={testingType}
+            individualInputValue={individualInputValue}
+            setIndividualInputValue={setIndividualInputValue}
+            tableInputValues={tableInputValues}
+            setTableInputValues={setTableInputValues}
+            maxWords={maxWords}
+            remainingWords={remainingWords}
+            handleContinue={handleContinue}
+          />
+        )}
+        {stage === 'results' && <Results handleContinue={handleContinue} />}
+      </div>
+    </AuthConditionalLock>
   );
 };
 

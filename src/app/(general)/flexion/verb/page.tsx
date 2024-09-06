@@ -10,6 +10,7 @@ import { TableInputValues } from './types';
 import { Voice, Modus, Tense } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isVerb } from '@/utils/typeguards/isVerb';
+import { AuthConditionalLock } from '@/components/AuthConditionalLock';
 
 const initialTableInputValues: TableInputValues = WORD_CONSTANTS.tense.reduce(
   (acc, curr) => ({
@@ -40,49 +41,51 @@ const Page = () => {
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
 
   return (
-    <div className='space-y-5'>
-      <Heading>Flexionstrainer: Verben</Heading>
-      {stage === 'settings' && (
-        <Settings
-          currentSettingsStage={currentSettingsStage}
-          checkImperative={checkImperative}
-          setCheckImperative={setCheckImperative}
-          testingType={testingType}
-          setTestingType={setTestingType}
-          voices={voices}
-          setVoices={setVoices}
-          modi={modi}
-          setModi={setModi}
-          tenses={tenses}
-          setTenses={setTenses}
-          handleContinue={handleContinue}
-          updateWords={updateWords}
-          remainingWords={remainingWords}
-        />
-      )}
-      {(stage === 'test' || stage === 'review') &&
-        activeWord &&
-        isVerb(activeWord) &&
-        activeWord.verb.conjugation !== 'NONE' && (
-          <Test
+    <AuthConditionalLock>
+      <div className='space-y-5'>
+        <Heading>Flexionstrainer: Verben</Heading>
+        {stage === 'settings' && (
+          <Settings
+            currentSettingsStage={currentSettingsStage}
             checkImperative={checkImperative}
-            activeWord={activeWord}
-            stage={stage}
+            setCheckImperative={setCheckImperative}
             testingType={testingType}
-            modi={modi}
+            setTestingType={setTestingType}
             voices={voices}
+            setVoices={setVoices}
+            modi={modi}
+            setModi={setModi}
             tenses={tenses}
-            tableInputValues={tableInputValues}
-            setTableInputValues={setTableInputValues}
-            individualInputValue={individualInputValue}
-            setIndividualInputValue={setIndividualInputValue}
-            maxWords={maxWords}
-            remainingWords={remainingWords}
+            setTenses={setTenses}
             handleContinue={handleContinue}
+            updateWords={updateWords}
+            remainingWords={remainingWords}
           />
         )}
-      {stage === 'results' && <Results handleContinue={handleContinue} />}
-    </div>
+        {(stage === 'test' || stage === 'review') &&
+          activeWord &&
+          isVerb(activeWord) &&
+          activeWord.verb.conjugation !== 'NONE' && (
+            <Test
+              checkImperative={checkImperative}
+              activeWord={activeWord}
+              stage={stage}
+              testingType={testingType}
+              modi={modi}
+              voices={voices}
+              tenses={tenses}
+              tableInputValues={tableInputValues}
+              setTableInputValues={setTableInputValues}
+              individualInputValue={individualInputValue}
+              setIndividualInputValue={setIndividualInputValue}
+              maxWords={maxWords}
+              remainingWords={remainingWords}
+              handleContinue={handleContinue}
+            />
+          )}
+        {stage === 'results' && <Results handleContinue={handleContinue} />}
+      </div>
+    </AuthConditionalLock>
   );
 };
 

@@ -10,6 +10,7 @@ import { compareValues } from '@/utils/word/compareValues';
 import { WordProperty } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { APP_CONSTANTS } from '@/constants/appConstants';
+import { AuthConditionalLock } from '@/components/AuthConditionalLock';
 
 const initialInputValues = [...APP_CONSTANTS.allWordProperties, 'translation'].reduce(
   (acc, key) => {
@@ -51,38 +52,40 @@ const Page = () => {
   );
 
   return (
-    <div className='space-y-5'>
-      <Heading>Vokabeltrainer</Heading>
-      {stage === 'settings' && (
-        <Settings
-          currentSettingsStage={currentSettingsStage}
-          checkTranslation={checkTranslation}
-          setCheckTranslation={setCheckTranslation}
-          wordPropertiesToCheck={wordPropertiesToCheck}
-          setWordPropertiesToCheck={setWordPropertiesToCheck}
-          checkIncorrectWordsAgain={checkIncorrectWordsAgain}
-          setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
-          handleContinue={handleContinue}
-          updateWords={updateWords}
-          remainingWords={remainingWords}
-        />
-      )}
-      {(stage === 'test' || stage === 'review') && activeWord && (
-        <Test
-          handleContinue={handleContinue}
-          progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
-          activeWord={activeWord}
-          wordPropertiesToCheck={APP_CONSTANTS.wordProperties[activeWord.type].filter((key) =>
-            wordPropertiesToCheck.includes(key)
-          )}
-          inputValues={inputValues}
-          setInputValues={setInputValues}
-          stage={stage}
-          checkTranslation={checkTranslation}
-        />
-      )}
-      {stage === 'results' && <Results handleContinue={handleContinue} />}
-    </div>
+    <AuthConditionalLock>
+      <div className='space-y-5'>
+        <Heading>Vokabeltrainer</Heading>
+        {stage === 'settings' && (
+          <Settings
+            currentSettingsStage={currentSettingsStage}
+            checkTranslation={checkTranslation}
+            setCheckTranslation={setCheckTranslation}
+            wordPropertiesToCheck={wordPropertiesToCheck}
+            setWordPropertiesToCheck={setWordPropertiesToCheck}
+            checkIncorrectWordsAgain={checkIncorrectWordsAgain}
+            setCheckIncorrectWordsAgain={setCheckIncorrectWordsAgain}
+            handleContinue={handleContinue}
+            updateWords={updateWords}
+            remainingWords={remainingWords}
+          />
+        )}
+        {(stage === 'test' || stage === 'review') && activeWord && (
+          <Test
+            handleContinue={handleContinue}
+            progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+            activeWord={activeWord}
+            wordPropertiesToCheck={APP_CONSTANTS.wordProperties[activeWord.type].filter((key) =>
+              wordPropertiesToCheck.includes(key)
+            )}
+            inputValues={inputValues}
+            setInputValues={setInputValues}
+            stage={stage}
+            checkTranslation={checkTranslation}
+          />
+        )}
+        {stage === 'results' && <Results handleContinue={handleContinue} />}
+      </div>
+    </AuthConditionalLock>
   );
 };
 
