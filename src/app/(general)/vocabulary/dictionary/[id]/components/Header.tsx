@@ -17,7 +17,7 @@ const Header = ({ word, loading }: HeaderProps | HeaderLoadingProps) => {
       <Heading>
         <span className='mt-4 flex justify-center sm:mt-0 sm:justify-end lg:justify-center'>
           {loading ? (
-            <Skeleton customSize className='h-8 w-full' />
+            <Skeleton pulse customSize className='h-8 w-full' />
           ) : (
             <span>
               {word.name} {getLexicalForm(word)}
