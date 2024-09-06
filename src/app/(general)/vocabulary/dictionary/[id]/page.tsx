@@ -16,6 +16,7 @@ import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { useQuery } from '@tanstack/react-query';
 import BackToDictionaryButton from './components/BackToDictionaryButton';
 import FailToLoad from '@/components/FailToLoad';
+import Skeleton from '@/components/Skeleton';
 
 type PageProps = { params: { id: string } };
 
@@ -36,20 +37,22 @@ const Page = ({ params: { id } }: PageProps) => {
       </div>
     );
 
-  if (status === 'pending')
-    return (
-      <div className='grid grid-cols-3 items-center'>
-        <BackToDictionaryButton />
-        <div className='inline animate-pulse text-center'>Wort wird geladen...</div>
-      </div>
-    );
-
   return (
     <div className='space-y-3'>
-      <Header word={word} />
-      <Hr />
-      <WordInformation word={word} />
-      {APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType) && (
+      {status === 'success' ? (
+        <>
+          <Header word={word} loading={false} />
+          <Hr />
+          <WordInformation word={word} />
+        </>
+      ) : (
+        <>
+          <Header word={undefined} loading={true} />
+          <Hr />
+          <Skeleton customSize className='h-8 w-full' />
+        </>
+      )}
+      {status === 'success' && APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType) && (
         <>
           <Hr />
           <TableInformation word={word} />
