@@ -9,8 +9,8 @@ type CardProps = {
   nextPaymentDate: string;
   trialEnd: string;
   status: string;
-  pauseSubscription: () => void;
-  isPausePending: boolean;
+  cancelSubscription: () => void;
+  isCancelPending: boolean;
   loading?: boolean;
 };
 
@@ -21,18 +21,18 @@ export const Card = ({
   nextPaymentDate,
   trialEnd,
   status,
-  pauseSubscription,
-  isPausePending,
+  cancelSubscription,
+  isCancelPending,
   loading
 }: CardProps) => {
   return (
-    <div className='w-full max-w-[400px] rounded-lg bg-blue-950 p-4'>
+    <div className='w-full max-w-[400px] rounded-lg bg-blue-200 p-4 dark:bg-blue-950'>
       <div className='w-full text-center'>
         {active ? (
           <>
             <p className='text-xl font-medium'>Nächste Abrechnung</p>
             {loading ? (
-              <Skeleton customSize className='h-6 w-full' />
+              <Skeleton pulse customSize className='mt-2 h-6 w-full' />
             ) : (
               <p className='h-6'>
                 <b>{nextPaymentAmount}€</b> in{' '}
@@ -50,7 +50,9 @@ export const Card = ({
       {!loading && status === 'trialing' && (
         <>
           <Hr className='my-5' />
-          <p className='text-center text-xl font-medium text-yellow-500'>Sie befinden sich im Testlauf</p>
+          <p className='text-center text-xl font-medium text-yellow-600 dark:text-yellow-500'>
+            Sie befinden sich im Testlauf
+          </p>
           <p className='w-full break-words text-center'>
             Der Testlauf endet am <b>{trialEnd}</b>.
           </p>
@@ -59,9 +61,9 @@ export const Card = ({
       <Hr className='my-5' />
       <Button
         onClick={() => {
-          pauseSubscription();
+          cancelSubscription();
         }}
-        disabled={isPausePending || loading}
+        disabled={isCancelPending || loading}
         color='red'
         className='w-full'
       >
