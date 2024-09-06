@@ -23,7 +23,15 @@ export const GET = async () => {
     });
 
     if (subscriptions.data.length > 1) {
-      return NextResponse.json({ message: 'Multiple subscriptions found' }, { status: 400 });
+      console.error(
+        'Multiple subscriptions found (' + subscriptions.data.length + '), cancelling all of them but one.'
+      );
+      for (const subscription of subscriptions.data.slice(1)) {
+        await stripe.subscriptions.cancel(subscription.id);
+      }
+    } else if (subscriptions.data.length === 0) {
+      console.error('Subscription not found');
+      return NextResponse.json({ message: 'Subscription not found' }, { status: 404 });
     }
 
     const subscription = subscriptions.data[0];
