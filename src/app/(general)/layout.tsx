@@ -8,7 +8,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      {children}
+      <div className='min-h-48 md:min-h-56 lg:min-h-64'>{children}</div>
       <Hr className='my-4' />
       <Footer />
     </>
