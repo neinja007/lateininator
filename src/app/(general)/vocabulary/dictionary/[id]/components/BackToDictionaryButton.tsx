@@ -8,7 +8,7 @@ const BackToDictionaryButton = () => {
     <Link
       className={clsx(
         ui.basic,
-        'hover w-fit bg-gray-100 text-center transition-colors hover:bg-gray-200 md:!pl-2 dark:bg-gray-900 hover:dark:bg-gray-800'
+        'hover flex w-fit items-center bg-gray-100 text-center transition-colors hover:bg-gray-200 md:!pl-2 dark:bg-gray-900 hover:dark:bg-gray-800'
       )}
       href='/vocabulary/dictionary'
     >
