@@ -27,17 +27,18 @@ export const POST = async (req: NextRequest) => {
 
     event = stripe.webhooks.constructEvent(payload, sig, webhookSecret);
   } catch (err: any) {
-    console.error('Webhook signature verification failed.');
-    return NextResponse.json({ error: 'Webhook Error' }, { status: 400 });
+    console.error('CRITICAL ERROR: Webhook event could not be verified.');
+    return NextResponse.json({ error: 'Webhook event could not be verified.' }, { status: 400 });
   }
 
   if (event.type === 'invoice.payment_succeeded') {
+    console.log('Invoice payment succeeded!');
     const invoice = event.data.object as Stripe.Invoice;
 
     const customer = invoice.customer as string;
 
     if (!customer) {
-      console.error('No customer found in invoice!');
+      console.error('CRITICAL ERROR: No customer found in invoice!');
       return NextResponse.json({ error: 'No customer found in invoice!' }, { status: 400 });
     }
 
@@ -48,6 +49,7 @@ export const POST = async (req: NextRequest) => {
       });
       console.log('User updated successfully!');
     } catch (error: any) {
+      console.error('CRITICAL ERROR: User could not be updated (subscription was not created)');
       console.error(error);
     }
   } else if (event.type === 'customer.subscription.deleted') {
@@ -56,7 +58,7 @@ export const POST = async (req: NextRequest) => {
     const userId = metadata && metadata.userId;
 
     if (!userId) {
-      console.error('No userId found in metadata!');
+      console.error('CRITICAL ERROR: No userId found in metadata!');
       return NextResponse.json({ error: 'No userId found in metadata!' }, { status: 400 });
     }
 
@@ -67,6 +69,7 @@ export const POST = async (req: NextRequest) => {
       });
       console.log('User updated successfully!');
     } catch (error: any) {
+      console.error('CRITICAL ERROR: User could not be updated (subscription was not cancelled)');
       console.error(error);
     }
   }
