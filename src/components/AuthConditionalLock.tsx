@@ -16,7 +16,7 @@ export const AuthConditionalLock = ({ children }: AuthConditionalLockProps) => {
     <div className='relative'>
       <div className={lockContent ? 'blur-sm' : undefined}>{children}</div>
       {lockContent && (
-        <div className='absolute left-0 top-0 flex h-full w-full place-items-center justify-center bg-black/50'>
+        <div className='absolute left-0 top-0 flex h-full w-full place-items-center justify-center'>
           <Image
             src='/lock.png'
             alt='Lock'
