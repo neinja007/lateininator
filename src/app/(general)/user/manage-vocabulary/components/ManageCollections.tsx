@@ -5,7 +5,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Cell from './Cell';
 import CellContainer from './CellContainer';
-import { useState } from 'react';
 
 type ManageCollectionsProps = {
   enableBrowseCollections: () => void;
@@ -13,8 +12,6 @@ type ManageCollectionsProps = {
 };
 
 const ManageCollections = ({ enableBrowseCollections, browseCollections }: ManageCollectionsProps) => {
-  const [activeCollection, setActiveCollection] = useState<Collection & { lists: List[]; owner: User }>();
-
   const queryClient = useQueryClient();
 
   const { status, data: collections } = useQuery<(Collection & { lists: List[]; owner: User })[]>({
@@ -30,7 +27,8 @@ const ManageCollections = ({ enableBrowseCollections, browseCollections }: Manag
   } = useMutation({
     mutationFn: (collectionId: number) => axios.delete('/api/collection', { params: { id: collectionId } }),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['collections'] });
+      queryClient.invalidateQueries({ queryKey: ['collections', { saved: false }] });
+      queryClient.invalidateQueries({ queryKey: ['collections', { saved: true }] });
       queryClient.invalidateQueries({ queryKey: ['lists'] });
     }
   });
@@ -58,15 +56,11 @@ const ManageCollections = ({ enableBrowseCollections, browseCollections }: Manag
                     ? 'animate-pulse opacity-50'
                     : ''
                 }
-                onClick={() =>
-                  setActiveCollection((prev) => (prev && prev.id === collection.id ? undefined : collection))
-                }
+                onClick={() => mutate(collection.id)}
                 lists={collection.lists.length}
                 name={collection.name}
                 owner={collection.owner.name}
                 buttonLabel='Lektion Entfernen'
-                buttonVisible={activeCollection?.id === collection.id}
-                buttonOnClick={() => mutate(collection.id)}
                 buttonColor='red'
               />
             ))}
