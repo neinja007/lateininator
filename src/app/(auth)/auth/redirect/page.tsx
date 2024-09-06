@@ -30,9 +30,11 @@ const Page = () => {
       });
   }, []);
 
-  if (responseStatus === 200) {
-    router.push('/dashboard');
-  }
+  useEffect(() => {
+    if (responseStatus === 200) {
+      router.push('/dashboard');
+    }
+  }, [responseStatus, router]);
 
   if (!response) {
     return (
