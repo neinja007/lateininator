@@ -79,7 +79,7 @@ const TableInput = ({
                           stage={stage}
                         />
                       ) : (
-                        <td className='border border-gray-500 p-0' key={tense}>
+                        <td className='border p-0 dark:border-gray-500' key={tense}>
                           <div className='h-8 w-full bg-red-400 pl-2 dark:bg-red-800'>-</div>
                         </td>
                       )
