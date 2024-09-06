@@ -14,6 +14,7 @@ import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
 import { getRandomPossibleTense } from '../utils/getRandomPossibleTense';
 import { getRandomPossibleVoice } from '../utils/getRandomPossibleVoice';
+import { getRandomPossiblePerson } from '../utils/getRandomPossiblePerson';
 
 type TestProps = {
   activeWord: Verb;
@@ -48,8 +49,8 @@ const Test = ({
   setIndividualInputValue,
   checkImperative
 }: TestProps) => {
-  const modus = getRandomItem(modi);
-  const person = getRandomItem([...WORD_CONSTANTS.person]);
+  const person = getRandomPossiblePerson(checkImperative);
+  const modus = person === '4' ? 'ind' : getRandomItem(modi);
   const tense = getRandomPossibleTense(person, modus, tenses);
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
     voice: getRandomPossibleVoice(person, voices),
@@ -67,10 +68,7 @@ const Test = ({
   useEffect(() => {
     if (!activeWord || activeWord.type !== 'VERB') return;
     if (testingType === 'individual') {
-      const person =
-        checkImperative && Math.random() < 0.04
-          ? '4'
-          : getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')]);
+      const person = getRandomPossiblePerson(checkImperative);
       const modus = person === '4' ? 'ind' : getRandomItem(modi);
       const tense = getRandomPossibleTense(person, modus, tenses);
 
