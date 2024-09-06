@@ -10,8 +10,7 @@ type AuthConditionalLockProps = {
 export const AuthConditionalLock = ({ children }: AuthConditionalLockProps) => {
   const { isSignedIn, isLoaded } = useUser();
 
-  const lockContent = true;
-  // const lockContent = isLoaded && !isSignedIn;
+  const lockContent = isLoaded && !isSignedIn;
 
   return (
     <div className='relative'>
