@@ -3,7 +3,6 @@ import WordDisplay from '@/components/WordDisplay';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
-import TrainerInput from '@/components/TrainerInput';
 import { MAPPER } from '@/utils/other/mapper';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
@@ -12,6 +11,7 @@ import { Comparison, ComparisonDegree, Gender, WordCase } from '@/types/wordCons
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
+import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
 
 type TestProps = {
   activeWord: Adjective;
@@ -74,7 +74,7 @@ const Test = ({
       <Hr />
       <form onSubmit={submit} className='space-y-8'>
         {individualInputForm && (testingType === 'individual' || genders.length === 0) ? (
-          <TrainerInput
+          <IndividualTrainerInput
             label={
               !individualInputForm.adverb
                 ? `
@@ -86,10 +86,10 @@ const Test = ({
                   `
                 : `Adverb ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]} ${MAPPER.extended.comparison[activeWord.adjective.comparison]}`
             }
-            handleChange={setIndividualInputValue}
             value={individualInputValue}
             correctValue={getForm(activeWord, individualInputForm)}
             stage={stage}
+            setValue={setIndividualInputValue}
           />
         ) : (
           tableInputForm &&
