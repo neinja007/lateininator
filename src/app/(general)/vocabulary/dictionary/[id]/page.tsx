@@ -49,22 +49,30 @@ const Page = ({ params: { id } }: PageProps) => {
         <>
           <Header word={undefined} loading={true} />
           <Hr />
-          <Skeleton customSize className='h-8 w-full' />
+          <Skeleton pulse customSize className='h-8 w-full' />
         </>
       )}
-      {status === 'success' && APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType) && (
+      {status === 'success' ? (
+        APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType) && (
+          <>
+            <Hr />
+            <TableInformation word={word} />
+            {isNoun(word) ? (
+              <NounTable word={word} />
+            ) : isVerb(word) ? (
+              <VerbTable word={word} />
+            ) : isAdjective(word) ? (
+              <AdjectiveTable word={word} />
+            ) : (
+              false
+            )}
+          </>
+        )
+      ) : (
         <>
           <Hr />
-          <TableInformation word={word} />
-          {isNoun(word) ? (
-            <NounTable word={word} />
-          ) : isVerb(word) ? (
-            <VerbTable word={word} />
-          ) : isAdjective(word) ? (
-            <AdjectiveTable word={word} />
-          ) : (
-            false
-          )}
+          <TableInformation word={undefined} loading />
+          <Skeleton pulse customSize className='h-64 w-full' />
         </>
       )}
     </div>
