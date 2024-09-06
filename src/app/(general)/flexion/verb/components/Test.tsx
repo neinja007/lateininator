@@ -11,6 +11,9 @@ import { Modus, Voice, Tense } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
+import { getRandomPossibleTense } from '../utils/getRandomPossibleTense';
+import { getRandomPossibleVoice } from '../utils/getRandomPossibleVoice';
 
 type TestProps = {
   activeWord: Verb;
@@ -46,13 +49,14 @@ const Test = ({
   checkImperative
 }: TestProps) => {
   const modus = getRandomItem(modi);
-  const tense = modus === 'kon' ? getRandomItem(tenses.filter((tense) => tense !== 'fut1')) : getRandomItem(tenses);
+  const person = getRandomItem([...WORD_CONSTANTS.person]);
+  const tense = getRandomPossibleTense(person, modus, tenses);
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
-    voice: getRandomItem(voices),
+    voice: getRandomPossibleVoice(person, voices),
     modus: modus,
     tense: tense,
     numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
-    person: getRandomItem([...WORD_CONSTANTS.person])
+    person: person
   });
 
   const [tableInputForm, setTableInputForm] = useState<TableInputForm>({
@@ -68,16 +72,11 @@ const Test = ({
           ? '4'
           : getRandomItem([...WORD_CONSTANTS.person.filter((person) => person !== '4')]);
       const modus = person === '4' ? 'ind' : getRandomItem(modi);
-      const tense =
-        person === '4'
-          ? 'pres'
-          : modus === 'kon'
-            ? getRandomItem(tenses.filter((tense) => tense !== 'fut1'))
-            : getRandomItem(tenses);
+      const tense = getRandomPossibleTense(person, modus, tenses);
 
       setIndividualInputForm({
         person: person,
-        voice: person !== '4' ? getRandomItem(voices) : 'act',
+        voice: getRandomPossibleVoice(person, voices),
         modus: modus,
         tense: tense,
         numerus: getRandomItem([...WORD_CONSTANTS.numerus])
@@ -103,6 +102,7 @@ const Test = ({
             value={individualInputValue}
             correctValue={getForm(activeWord, individualInputForm)}
             stage={stage}
+            setValue={setIndividualInputValue}
           />
         ) : (
           <TableInput
