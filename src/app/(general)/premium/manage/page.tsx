@@ -7,6 +7,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 import { Card } from './components/Card';
+import FailToLoad from '@/components/FailToLoad';
 
 const Page = () => {
   const queryClient = useQueryClient();
@@ -18,12 +19,11 @@ const Page = () => {
 
   const router = useRouter();
 
-  const { mutate: pauseSubscription, isPending: isPausePending } = useMutation({
+  const { mutate: cancelSubscription, isPending: isCancelPending } = useMutation({
     mutationFn: () => axios.patch('/api/subscription', { cancel: true }).then((res) => res.data),
-    onSuccess: () => {
+    onMutate: () => {
       queryClient.invalidateQueries({ queryKey: ['subscription'] });
       queryClient.invalidateQueries({ queryKey: ['dbUser'] });
-      router.push('/premium/overview');
     }
   });
 
@@ -54,13 +54,13 @@ const Page = () => {
           <Card
             loading
             active
-            isPausePending={false}
+            isCancelPending={false}
             nextPaymentAmount={0}
             nextPaymentDays={0}
             nextPaymentDate=''
             trialEnd=''
             status=''
-            pauseSubscription={() => {}}
+            cancelSubscription={() => {}}
           />
         ) : nextPaymentDays && nextPaymentDate && trialEnd ? (
           <Card
@@ -70,11 +70,11 @@ const Page = () => {
             nextPaymentDate={nextPaymentDate}
             trialEnd={trialEnd}
             status={status}
-            pauseSubscription={pauseSubscription}
-            isPausePending={isPausePending}
+            cancelSubscription={cancelSubscription}
+            isCancelPending={isCancelPending}
           />
         ) : (
-          <div>Ein Fehler ist aufgetreten</div>
+          <FailToLoad />
         )}
       </div>
     </div>
