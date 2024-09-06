@@ -35,7 +35,7 @@ const TableTrainerInput = ({ label, correctValue, handleChange, stage, value }: 
     </div>
   );
 
-  return label ? Component : <td className='border border-gray-500 p-0'>{Component}</td>;
+  return label ? Component : <td className='border p-0 dark:border-gray-500'>{Component}</td>;
 };
 
 export default TableTrainerInput;
