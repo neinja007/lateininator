@@ -5,13 +5,9 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Cell from './Cell';
 import CellContainer from './CellContainer';
+import { useRouter } from 'next/navigation';
 
-type ManageCollectionsProps = {
-  enableBrowseCollections: () => void;
-  browseCollections: boolean;
-};
-
-const ManageCollections = ({ enableBrowseCollections, browseCollections }: ManageCollectionsProps) => {
+const ManageCollections = () => {
   const queryClient = useQueryClient();
 
   const { status, data: collections } = useQuery<(Collection & { lists: List[]; owner: User })[]>({
@@ -33,10 +29,12 @@ const ManageCollections = ({ enableBrowseCollections, browseCollections }: Manag
     }
   });
 
+  const router = useRouter();
+
   return (
     <div className='my-4'>
       {status === 'error' && <FailToLoad />}
-      <div className={(status === 'success' && collections.length > 0) || !browseCollections ? 'mb-3' : undefined}>
+      <div className='mb-3'>
         {status === 'pending' || (status === 'success' && collections.length > 0) ? (
           <p>Gespeicherte Kollektionen:</p>
         ) : (
@@ -64,7 +62,7 @@ const ManageCollections = ({ enableBrowseCollections, browseCollections }: Manag
                 buttonColor='red'
               />
             ))}
-            {!browseCollections && <Cell outlined onClick={enableBrowseCollections} />}
+            <Cell outlined onClick={() => router.push('/user/manage-vocabulary/new')} />
           </>
         )}
       </CellContainer>
