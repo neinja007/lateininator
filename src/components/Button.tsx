@@ -8,9 +8,10 @@ type ButtonProps = {
   children: React.ReactNode;
   className?: string & React.CSSProperties;
   icon?: React.ReactNode;
-} & React.ComponentProps<'button'>;
+  disabled?: boolean;
+} & Omit<React.ComponentProps<'button'>, 'disabled' | 'className'>;
 
-const Button = ({ color = 'default', children, className, icon, ...props }: ButtonProps) => {
+const Button = ({ color = 'default', children, className, icon, disabled, ...props }: ButtonProps) => {
   return (
     <button
       className={clsx(
@@ -18,8 +19,9 @@ const Button = ({ color = 'default', children, className, icon, ...props }: Butt
         className,
         'justify-center transition-colors',
         COLORS[color],
-        props.disabled && 'disabled:opacity-50'
+        disabled && 'disabled:opacity-50'
       )}
+      disabled={disabled}
       {...props}
     >
       {children}
