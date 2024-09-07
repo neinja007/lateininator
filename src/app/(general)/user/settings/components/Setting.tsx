@@ -1,14 +1,13 @@
-import { DefaultSetting } from '@prisma/client';
-
 type SettingProps = {
-  setting: DefaultSetting;
+  settingKey: string;
+  value: string;
 };
 
-const Setting = ({ setting }: SettingProps) => {
+const Setting = ({ settingKey, value }: SettingProps) => {
   return (
     <div className='flex items-center justify-between'>
-      <div>{setting.settingKey}</div>
-      <div>{setting.defaultValue}</div>
+      <div>{settingKey}</div>
+      <div>{value}</div>
     </div>
   );
 };
