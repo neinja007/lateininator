@@ -1,11 +1,5 @@
 'use client';
-
-import Button from '@/components/Button';
-import Hr from '@/components/Hr';
-import Input from '@/components/Input';
 import { List } from '@prisma/client';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useState } from 'react';
 
 type EditCollectionProps = {
@@ -20,15 +14,9 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
 
   const collectionIsNew = !collectionId;
 
-  const { data: collection } = useQuery({
-    enabled: !collectionIsNew,
-    queryKey: ['collection', collectionId],
-    queryFn: () => axios.get(`/api/collection/${collectionId}`).then((res) => res.data)
-  });
-
   return (
     <div>
-      <span>Kollektion {collectionIsNew ? 'erstellen' : 'bearbeiten'}</span>
+      {/* <span>Kollektion {collectionIsNew ? 'erstellen' : 'bearbeiten'}</span>
       <Hr className='my-5' />
       <div className='grid grid-cols-3 gap-5'>
         <div>
@@ -59,7 +47,8 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
+      Noch nicht implementiert!
     </div>
   );
 };
