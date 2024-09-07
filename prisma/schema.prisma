@@ -21,13 +21,14 @@ model User {
 }
 
 model Collection {
-  id      Int     @id @default(autoincrement())
-  name    String
-  lists   List[]
-  savedBy User[]  @relation("saved")
-  private Boolean @default(true)
-  owner   User    @relation("owner", fields: [ownerId], references: [id])
-  ownerId String  @default("user_lateininator")
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  lists       List[]
+  savedBy     User[]  @relation("saved")
+  private     Boolean @default(true)
+  owner       User    @relation("owner", fields: [ownerId], references: [id])
+  ownerId     String  @default("user_lateininator")
 }
 
 model List {
