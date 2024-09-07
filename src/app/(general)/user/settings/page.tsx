@@ -8,6 +8,7 @@ import { Gem, LogOut, UserIcon } from 'lucide-react';
 import axios from 'axios';
 import { UserSetting } from '@prisma/client';
 import Setting from './components/Setting';
+import Skeleton from '@/components/Skeleton';
 
 const Page = () => {
   const { data: settings, status } = useQuery<UserSetting[]>({
@@ -19,6 +20,8 @@ const Page = () => {
     <div>
       <Heading>Einstellungen</Heading>
       <div className='mb-5'>
+        {status === 'pending' &&
+          [...Array(3)].map((_, index) => <Skeleton key={index} pulse customSize className='my-2 h-20 w-full' />)}
         {status === 'success' &&
           settings &&
           settings.map((setting) => (
