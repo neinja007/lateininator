@@ -2,21 +2,19 @@
 
 import Heading from '@/components/Heading';
 import { RedirectToSignIn, useUser } from '@clerk/nextjs';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 import { Card } from './components/Card';
 import FailToLoad from '@/components/FailToLoad';
 import { useEffect } from 'react';
+import { useSubscription } from '@/hooks/database/useSubscription';
 
 const Page = () => {
   const queryClient = useQueryClient();
 
-  const { data: subscription, isLoading } = useQuery({
-    queryKey: ['subscription'],
-    queryFn: () => axios.get('/api/subscription').then((res) => res.data.data)
-  });
+  const { subscription, isLoading } = useSubscription();
 
   const router = useRouter();
 
