@@ -14,7 +14,6 @@ const Page = () => {
     queryKey: ['user-settings'],
     queryFn: () => axios.get('/api/user-settings').then((res) => res.data)
   });
-  console.log(settings);
 
   return (
     <div>
