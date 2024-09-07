@@ -15,12 +15,14 @@ type SettingProps = {
 const Setting = ({ settingKey, value }: SettingProps) => {
   const queryClient = useQueryClient();
 
-  const { status, mutate } = useMutation({
+  const { variables, status, mutate } = useMutation({
     mutationFn: (value: string) => axios.patch('/api/user-settings', { settingKey, settingValue: value }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user-settings'] });
     }
   });
+
+  value = variables || value;
 
   const [newValue, setNewValue] = useState(value);
 
