@@ -26,6 +26,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
         .then((res) => res.data)
   });
 
+  const [excludeExceptionalWords, setExcludeExceptionalWords] = useState(false);
   const [collections, setCollections] = useState<Collection[]>([]);
   const [selectedCollection, setSelectedCollection] = useState<number>();
 
@@ -59,11 +60,16 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
       filteredLists
         .filter((list) => selectedLists.includes(list.id))
         .reduce((acc: Word[], cur) => {
-          acc.push(...cur.words.filter((word) => !onlyAcceptType || word.type === onlyAcceptType));
+          acc.push(
+            ...cur.words.filter(
+              (word) =>
+                (!onlyAcceptType || word.type === onlyAcceptType) && (!excludeExceptionalWords || !word.exception)
+            )
+          );
           return acc;
         }, [])
     );
-  }, [filteredLists, onlyAcceptType, selectedLists, setSelectedWords]);
+  }, [excludeExceptionalWords, filteredLists, onlyAcceptType, selectedLists, setSelectedWords]);
 
   return (
     <>
