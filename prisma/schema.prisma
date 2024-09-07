@@ -14,6 +14,7 @@ model User {
   name             String
   points           Int           @default(0)
   createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
   premium          Boolean       @default(false)
   stripeCustomerId String?       @unique
   savedCollections Collection[]  @relation("saved")
@@ -45,14 +46,16 @@ model DefaultSetting {
 }
 
 model Collection {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   description String?
   lists       List[]
-  savedBy     User[]  @relation("saved")
-  private     Boolean @default(true)
-  owner       User    @relation("owner", fields: [ownerId], references: [id])
-  ownerId     String  @default("user_lateininator")
+  savedBy     User[]   @relation("saved")
+  private     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  owner       User     @relation("owner", fields: [ownerId], references: [id])
+  ownerId     String   @default("user_lateininator")
 }
 
 model List {
@@ -61,6 +64,8 @@ model List {
   collection   Collection @relation(fields: [collectionId], references: [id])
   collectionId Int
   words        Word[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model Word {
@@ -74,6 +79,8 @@ model Word {
   derivativeId Int?
   exception    Json     @default("{}") @db.JsonB
   base         Word[]   @relation("derivative")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   noun        Noun?      @relation("noun", fields: [nounId], references: [id])
   nounId      Int?       @unique
