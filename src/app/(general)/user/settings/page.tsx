@@ -1,20 +1,14 @@
 'use client';
-
-import { useQuery } from '@tanstack/react-query';
 import FancyLink from '@/components/FancyLink';
 import Heading from '@/components/Heading';
 import { IsPremium } from '@/components/IsPremium';
 import { Gem, LogOut, UserIcon } from 'lucide-react';
-import axios from 'axios';
-import { UserSetting } from '@prisma/client';
 import Setting from './components/Setting';
 import Skeleton from '@/components/Skeleton';
+import { useSettings } from '@/hooks/database/useSettings';
 
 const Page = () => {
-  const { data: settings, status } = useQuery<UserSetting[]>({
-    queryKey: ['user-settings'],
-    queryFn: () => axios.get('/api/user-settings').then((res) => res.data)
-  });
+  const { settings, status } = useSettings();
 
   return (
     <div>
