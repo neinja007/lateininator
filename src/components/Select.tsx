@@ -4,7 +4,7 @@ import ui from '@/styles/ui.module.css';
 
 type SelectProps = {
   label?: string;
-  options: { [key: string]: string };
+  options: { [key: string]: string } | string[];
   handleChange: Dispatch<SetStateAction<any>>;
   className?: React.CSSProperties;
   appendString?: string;
@@ -12,6 +12,12 @@ type SelectProps = {
 
 const Select = ({ label, options, handleChange, className, appendString, ...props }: SelectProps) => {
   const id = useId();
+  options = Array.isArray(options)
+    ? options.reduce((acc: { [key: string]: string }, curr) => {
+        acc[curr] = curr;
+        return acc;
+      }, {})
+    : options;
 
   return (
     <div className='inline'>
