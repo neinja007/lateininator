@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Book } from 'lucide-react';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import CheckboxWithLabel from './CheckboxWithLabel';
 
 type ListSelectionProps = {
   selectedWords: Word[];
@@ -63,7 +64,8 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
           acc.push(
             ...cur.words.filter(
               (word) =>
-                (!onlyAcceptType || word.type === onlyAcceptType) && (!excludeExceptionalWords || !word.exception)
+                (!onlyAcceptType || word.type === onlyAcceptType) &&
+                (!excludeExceptionalWords || !word.exception || Object.keys(word.exception).length === 0)
             )
           );
           return acc;
@@ -171,13 +173,20 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
         </div>
       )}
       {status === 'success' && (
-        <p>
-          Es wurden{' '}
-          <b className='text-blue-500'>
-            {selectedWords.length} {onlyAcceptType ? MAPPER.extended.type.plural[onlyAcceptType] : 'Wörter'}
-          </b>{' '}
-          ausgewählt.
-        </p>
+        <div className='mt-5 flex items-center justify-between'>
+          <p>
+            Es wurden{' '}
+            <b className='text-blue-500'>
+              {selectedWords.length} {onlyAcceptType ? MAPPER.extended.type.plural[onlyAcceptType] : 'Wörter'}
+            </b>{' '}
+            ausgewählt.
+          </p>
+          <CheckboxWithLabel
+            label='Wörter mit Ausnahmen ausschließen'
+            checked={excludeExceptionalWords}
+            handleChange={setExcludeExceptionalWords}
+          />
+        </div>
       )}
     </>
   );
