@@ -67,29 +67,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
 
   return (
     <>
-      <div className='mb-3 grid-cols-2 md:grid lg:grid-cols-3'>
-        <p className='lg:col-span-2'>Wähle aus, welche Wörter du lernen möchtest:</p>
-        <div className='grid grid-cols-2 gap-x-4'>
-          <Button
-            color={
-              status === 'success' && selectedLists.length === filteredLists.length && selectedCollection
-                ? 'blue'
-                : 'default'
-            }
-            onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
-            disabled={status !== 'success' || filteredLists.length === 0}
-          >
-            Alle auswählen
-          </Button>
-          <Button
-            color={selectedLists.length === 0 && status === 'success' && selectedCollection ? 'blue' : 'default'}
-            onClick={() => setSelectedLists([])}
-            disabled={status !== 'success' || filteredLists.length === 0}
-          >
-            Alle abwählen
-          </Button>
-        </div>
-      </div>
+      <p>Wähle aus, welche Wörter du lernen möchtest:</p>
       <div>
         {(status !== 'success' || collections.length > 0) && (
           <p className='mb-2'>
@@ -135,7 +113,31 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
       </div>
       {(status !== 'success' || collections.length > 0) && (
         <div className='mt-3'>
-          {(status !== 'success' || filteredLists.length !== 0) && <p className='mb-2'>Listen:</p>}
+          {(status !== 'success' || filteredLists.length !== 0) && (
+            <div className='mb-3 grid-cols-2 items-baseline sm:grid lg:grid-cols-3'>
+              <p className='mb-2 mr-5 lg:col-span-2'>Listen:</p>
+              <div className='grid flex-grow grid-cols-2 gap-x-4'>
+                <Button
+                  color={
+                    status === 'success' && selectedLists.length === filteredLists.length && selectedCollection
+                      ? 'blue'
+                      : 'default'
+                  }
+                  onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
+                  disabled={status !== 'success' || filteredLists.length === 0}
+                >
+                  Alle auswählen
+                </Button>
+                <Button
+                  color={selectedLists.length === 0 && status === 'success' && selectedCollection ? 'blue' : 'default'}
+                  onClick={() => setSelectedLists([])}
+                  disabled={status !== 'success' || filteredLists.length === 0}
+                >
+                  Alle abwählen
+                </Button>
+              </div>
+            </div>
+          )}
           {status === 'error' && <FailToLoad />}
           <div className='grid h-fit max-h-80 grid-cols-2 gap-3 overflow-hidden overflow-y-scroll scroll-smooth sm:grid-cols-4 md:grid-cols-5'>
             {status === 'pending' &&
