@@ -3,6 +3,9 @@ import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
 import { SettingKey } from '@prisma/client';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import { useState } from 'react';
 
 type SettingProps = {
   settingKey: SettingKey;
@@ -10,6 +13,17 @@ type SettingProps = {
 };
 
 const Setting = ({ settingKey, value }: SettingProps) => {
+  const queryClient = useQueryClient();
+
+  const { status, mutate } = useMutation({
+    mutationFn: (value: string) => axios.patch('/api/user-settings', { settingKey, settingValue: value }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-settings'] });
+    }
+  });
+
+  const [newValue, setNewValue] = useState(value);
+
   const type = settings[settingKey].type;
   let element: React.ReactNode;
 
@@ -18,17 +32,29 @@ const Setting = ({ settingKey, value }: SettingProps) => {
       element = (
         <>
           <span className='text-neutral-400'>{value === 'true' ? 'Aktiviert' : 'Deaktiviert'}</span>
-          <Button className='ml-3' color={value === 'true' ? 'red' : 'green'} onClick={() => {}}>
+          <Button
+            disabled={status === 'pending'}
+            className='ml-3'
+            color={value === 'true' ? 'red' : 'green'}
+            onClick={() => mutate(value === 'true' ? 'false' : 'true')}
+          >
             {value === 'true' ? 'Deaktivieren' : 'Aktivieren'}
           </Button>
         </>
       );
       break;
     case 'input':
-      element = <Input value={value} />;
+      element = <Input value={newValue} onChange={setNewValue} disabled={status === 'pending'} />;
       break;
     case 'list':
-      element = <Select value={value} handleChange={() => {}} options={settings[settingKey].list || []} />;
+      element = (
+        <Select
+          value={newValue}
+          handleChange={() => mutate(newValue)}
+          options={settings[settingKey].list || []}
+          disabled={status === 'pending'}
+        />
+      );
       break;
   }
 
