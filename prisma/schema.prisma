@@ -39,7 +39,7 @@ model UserSetting {
 model DefaultSetting {
   id           Int        @id @default(autoincrement())
   settingKey   SettingKey @unique
-  defaultValue Json
+  defaultValue String
 
   @@map("default_settings")
 }
