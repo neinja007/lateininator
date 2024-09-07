@@ -6,20 +6,25 @@ import Heading from '@/components/Heading';
 import { IsPremium } from '@/components/IsPremium';
 import { Gem, LogOut, UserIcon } from 'lucide-react';
 import axios from 'axios';
-import { DefaultSetting } from '@prisma/client';
+import { UserSetting } from '@prisma/client';
 import Setting from './components/Setting';
 
 const Page = () => {
-  const { data: settings, isLoading } = useQuery({
+  const { data: settings, status } = useQuery<UserSetting[]>({
     queryKey: ['user-settings'],
-    queryFn: () => axios.get('/api/user-settings')
+    queryFn: () => axios.get('/api/user-settings').then((res) => res.data)
   });
+  console.log(settings);
 
   return (
     <div>
       <Heading>Einstellungen</Heading>
-      <div className='h-44'>
-        {settings?.data.map((setting: DefaultSetting) => <Setting key={setting.id} setting={setting} />)}
+      <div className='mb-5'>
+        {status === 'success' &&
+          settings &&
+          settings.map((setting) => (
+            <Setting key={setting.id} settingKey={setting.settingKey} value={setting.settingValue} />
+          ))}
       </div>
       <p className='mb-2 text-center text-lg font-bold'>Konto-Einstellungen</p>
       <div className='items-center justify-between gap-x-2 sm:flex'>
