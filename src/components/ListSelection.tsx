@@ -139,7 +139,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             </div>
           )}
           {status === 'error' && <FailToLoad />}
-          <div className='grid h-fit max-h-80 grid-cols-2 gap-3 overflow-hidden overflow-y-scroll scroll-smooth sm:grid-cols-4 md:grid-cols-5'>
+          <div className='mt-5 grid h-fit max-h-80 grid-cols-2 gap-3 overflow-hidden overflow-y-scroll scroll-smooth sm:grid-cols-4 md:grid-cols-5'>
             {status === 'pending' &&
               [...Array(15)].map((_, i) => <Skeleton pulse key={i} customSize className='h-9 w-full' />)}
             {status === 'success' && filteredLists.length > 0 ? (
