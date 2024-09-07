@@ -1,0 +1,67 @@
+'use client';
+
+import Button from '@/components/Button';
+import Hr from '@/components/Hr';
+import Input from '@/components/Input';
+import { List } from '@prisma/client';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { useState } from 'react';
+
+type EditCollectionProps = {
+  collectionId: number | undefined;
+};
+
+const EditCollection = ({ collectionId }: EditCollectionProps) => {
+  const [name, setName] = useState('');
+  const [lists, setLists] = useState<List[]>([]);
+  const [listName, setListName] = useState('');
+  const [description, setDescription] = useState('');
+
+  const collectionIsNew = !collectionId;
+
+  const { data: collection } = useQuery({
+    enabled: !collectionIsNew,
+    queryKey: ['collection', collectionId],
+    queryFn: () => axios.get(`/api/collection/${collectionId}`).then((res) => res.data)
+  });
+
+  return (
+    <div>
+      <span>Kollektion {collectionIsNew ? 'erstellen' : 'bearbeiten'}</span>
+      <Hr className='my-5' />
+      <div className='grid grid-cols-3 gap-5'>
+        <div>
+          <Input className='w-full' label='Name' value={name} onChange={setName} />
+          <Input className='w-full' label='Beschreibung' value={description} onChange={setDescription} />
+        </div>
+        <div className='col-span-2'>
+          {lists.length > 0 && (
+            <>
+              <span>Listen:</span>
+              <div>
+                {lists.map((list) => (
+                  <div key={list.id}>{list.name}</div>
+                ))}
+              </div>
+            </>
+          )}
+          <div className='flex items-end'>
+            <Input className='w-full max-w-64' label='Liste hinzufügen' value={listName} onChange={setListName} />
+            <Button
+              className='ml-4'
+              onClick={() => {
+                setLists([...lists, { id: lists.length + 1, name: listName, collectionId: collectionId ?? 0 }]);
+                setListName('');
+              }}
+            >
+              Liste hinzufügen
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EditCollection;
