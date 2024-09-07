@@ -8,9 +8,20 @@ type SelectProps = {
   handleChange: Dispatch<SetStateAction<any>>;
   className?: React.CSSProperties;
   appendString?: string;
-} & Omit<React.ComponentProps<'select'>, 'onChange'>;
+  disabled?: boolean;
+  disabledStyle?: boolean;
+} & Omit<React.ComponentProps<'select'>, 'onChange' | 'disabled'>;
 
-const Select = ({ label, options, handleChange, className, appendString, ...props }: SelectProps) => {
+const Select = ({
+  label,
+  options,
+  handleChange,
+  className,
+  appendString,
+  disabled,
+  disabledStyle,
+  ...props
+}: SelectProps) => {
   const id = useId();
   options = Array.isArray(options)
     ? options.reduce((acc: { [key: string]: string }, curr) => {
@@ -30,7 +41,8 @@ const Select = ({ label, options, handleChange, className, appendString, ...prop
         onChange={(e) => handleChange(e.target.value)}
         id={id}
         {...props}
-        className={clsx(ui.basic, className, 'mt-1')}
+        disabled={disabled}
+        className={clsx(ui.basic, className, 'mt-1', disabledStyle && disabled && 'disabled:opacity-50')}
       >
         <option value={''} hidden>
           {(appendString && '(' + appendString + ')') || 'Auswählen'}
