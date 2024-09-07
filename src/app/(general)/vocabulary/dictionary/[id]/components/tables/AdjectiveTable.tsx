@@ -5,10 +5,21 @@ import { Adjective } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import clsx from 'clsx';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { UserSetting } from '@prisma/client';
 
 type AdjectiveTableProps = { word: Adjective };
 
 const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
+  const { data: settings, status } = useQuery<UserSetting[]>({
+    queryKey: ['user-settings'],
+    queryFn: () => axios.get('/api/user-settings').then((res) => res.data)
+  });
+
+  const showVocative =
+    settings?.find((setting) => setting.settingKey === 'DICTIONARY_VOCATIVE')?.settingValue === 'true';
+
   return (
     <div>
       <p>{MAPPER.extended.type.singular.ADVERB}</p>
@@ -58,18 +69,20 @@ const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
               </thead>
               <tbody>
                 {WORD_CONSTANTS.numerus.map((numerus) =>
-                  WORD_CONSTANTS.wordCase.map((wordCase, i) => (
-                    <tr key={i} className={table.tr}>
-                      <th className={table.th}>
-                        {MAPPER.short.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
-                      </th>
-                      {WORD_CONSTANTS.gender.map((gender, i) => (
-                        <td key={i} className={table.td}>
-                          {getForm(word, { comparisonDegree, gender, numerus, wordCase })}
-                        </td>
-                      ))}
-                    </tr>
-                  ))
+                  WORD_CONSTANTS.wordCase
+                    .filter((wordCase) => (status === 'success' && showVocative) || wordCase !== '6')
+                    .map((wordCase, i) => (
+                      <tr key={i} className={table.tr}>
+                        <th className={table.th}>
+                          {MAPPER.short.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
+                        </th>
+                        {WORD_CONSTANTS.gender.map((gender, i) => (
+                          <td key={i} className={table.td}>
+                            {getForm(word, { comparisonDegree, gender, numerus, wordCase })}
+                          </td>
+                        ))}
+                      </tr>
+                    ))
                 )}
               </tbody>
             </table>
