@@ -11,7 +11,7 @@ export const settings: {
   DICTIONARY_VOCATIVE: {
     type: 'boolean',
     name: 'Vokativ im Wörterbuch anzeigen',
-    description: 'Zeigt den Vokativ in den Tabellen des Wörterbuchs an.'
+    description: 'Zeigt den Vokativ in den Tabellen des Wörterbuchs an. Betrifft Nomen und Adjektive.'
   },
   TESTING_VOCATIVE: {
     type: 'boolean',
