@@ -7,5 +7,6 @@ export const useWords = (id: number, include: string[]) => {
     queryKey: ['words', id, include],
     queryFn: () => axios.get('/api/words', { params: { id: id, include: include } }).then((res) => res.data)
   });
+
   return { word, status };
 };
