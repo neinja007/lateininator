@@ -5,17 +5,12 @@ import { Adjective } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import clsx from 'clsx';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
-import { UserSetting } from '@prisma/client';
+import { useSettings } from '@/hooks/database/useSettings';
 
 type AdjectiveTableProps = { word: Adjective };
 
 const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
-  const { data: settings, status } = useQuery<UserSetting[]>({
-    queryKey: ['user-settings'],
-    queryFn: () => axios.get('/api/user-settings').then((res) => res.data)
-  });
+  const { settings, status } = useSettings();
 
   const showVocative =
     settings?.find((setting) => setting.settingKey === 'DICTIONARY_VOCATIVE')?.settingValue === 'true';
