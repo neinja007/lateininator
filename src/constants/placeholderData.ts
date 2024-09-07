@@ -2,6 +2,8 @@ import { Word } from '@/types/word';
 import { List } from '@prisma/client';
 
 export const placeholderWord: Word = {
+  createdAt: new Date(),
+  updatedAt: new Date(),
   info: 'wird geladen...',
   translation: [],
   type: 'OTHER',
@@ -33,6 +35,8 @@ export const placeholderWord: Word = {
 };
 
 export const placeholderList: List & { words: Word[] } = {
+  createdAt: new Date(),
+  updatedAt: new Date(),
   collectionId: Math.random() * 100000,
   id: Math.random() * 100000,
   name: 'wird geladen...',
