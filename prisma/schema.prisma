@@ -9,15 +9,39 @@ datasource db {
 }
 
 model User {
-  id               String       @id @unique
+  id               String        @id @unique
   email            String
   name             String
-  points           Int          @default(0)
-  createdAt        DateTime     @default(now())
-  premium          Boolean      @default(false)
-  stripeCustomerId String?      @unique
-  savedCollections Collection[] @relation("saved")
-  ownedCollections Collection[] @relation("owner")
+  points           Int           @default(0)
+  createdAt        DateTime      @default(now())
+  premium          Boolean       @default(false)
+  stripeCustomerId String?       @unique
+  savedCollections Collection[]  @relation("saved")
+  ownedCollections Collection[]  @relation("owner")
+  settings         UserSetting[]
+}
+
+model UserSetting {
+  id           Int        @id @default(autoincrement())
+  userId       String
+  settingKey   SettingKey
+  settingValue String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, settingKey])
+  @@index([userId])
+  @@map("user_settings")
+}
+
+model DefaultSetting {
+  id           Int        @id @default(autoincrement())
+  settingKey   SettingKey @unique
+  defaultValue Json
+
+  @@map("default_settings")
 }
 
 model Collection {
@@ -128,4 +152,10 @@ enum Type {
   ADVERB
   PRONOUN
   OTHER
+}
+
+enum SettingKey {
+  LANGUAGE
+  DICTIONARY_VOCATIVE
+  TESTING_VOCATIVE
 }
