@@ -5,14 +5,9 @@ import CellContainer from './CellContainer';
 import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
 import Cell from './Cell';
-import Button from '@/components/Button';
 import clsx from 'clsx';
 
-type BrowseCollectionsProps = {
-  hideBrowseCollections: () => void;
-};
-
-const BrowseCollections = ({ hideBrowseCollections }: BrowseCollectionsProps) => {
+const BrowseCollections = () => {
   const queryClient = useQueryClient();
   const { status, data: collections } = useQuery<(Collection & { lists: List[]; owner: User })[]>({
     queryKey: ['collections', { saved: false }],
@@ -31,8 +26,7 @@ const BrowseCollections = ({ hideBrowseCollections }: BrowseCollectionsProps) =>
       queryClient.invalidateQueries({ queryKey: ['collections', { saved: false }] });
       queryClient.invalidateQueries({ queryKey: ['collections', { saved: true }] });
       queryClient.invalidateQueries({ queryKey: ['lists'] });
-    },
-    onSuccess: hideBrowseCollections
+    }
   });
 
   return (
@@ -48,7 +42,6 @@ const BrowseCollections = ({ hideBrowseCollections }: BrowseCollectionsProps) =>
         ) : (
           <p>Es konnten keine öffentliche Kollektionen gefunden werden, die Sie noch nicht gespeichert haben.</p>
         )}
-        <Button onClick={hideBrowseCollections}>Schließen</Button>
       </div>
       {status === 'error' && <FailToLoad />}
       <CellContainer>
