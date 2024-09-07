@@ -44,8 +44,9 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
           return acc;
         }, [])
       );
+      setSelectedCollection(collections[0]?.id);
     }
-  }, [lists, status]);
+  }, [collections, lists, status]);
 
   const [selectedLists, setSelectedLists] = useState<number[]>([]);
 
