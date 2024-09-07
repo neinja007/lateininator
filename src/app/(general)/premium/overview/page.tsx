@@ -7,9 +7,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Stripe } from '@stripe/stripe-js';
 import getStripe from '@/utils/stripe/get-stripe';
-import { useQuery } from '@tanstack/react-query';
-import { User } from '@prisma/client';
 import { useUser } from '@clerk/nextjs';
+import { useDbUser } from '@/hooks/database/useDbUser';
 
 const features = [
   'Wörterbuch',
@@ -29,10 +28,7 @@ const features = [
 let stripe: Stripe | null = null;
 
 const Page = () => {
-  const { data: dbUser, isLoading } = useQuery<User>({
-    queryKey: ['dbUser'],
-    queryFn: () => axios.get('/api/user').then((res) => res.data)
-  });
+  const { dbUser, isLoading } = useDbUser();
 
   const user = useUser();
 
