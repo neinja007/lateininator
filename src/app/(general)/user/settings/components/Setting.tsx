@@ -53,7 +53,7 @@ const Setting = ({ settingKey, value }: SettingProps) => {
         <Select
           value={value}
           handleChange={(value) => mutate(value)}
-          options={settings[settingKey].list || []}
+          options={settings[settingKey].options || {}}
           disabled={status === 'pending'}
           disabledStyle
         />
