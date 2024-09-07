@@ -20,7 +20,7 @@ export const GET = async () => {
     const userSetting = userSettings.find((userSetting) => userSetting.settingKey === setting.settingKey);
     return {
       ...setting,
-      value: userSetting?.settingValue || setting.defaultValue
+      settingValue: userSetting?.settingValue || setting.defaultValue
     };
   });
 
