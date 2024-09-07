@@ -4,13 +4,12 @@ import Skeleton from '@/components/Skeleton';
 import { MainWordType } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { MAPPER } from '@/utils/other/mapper';
-import { Collection, List } from '@prisma/client';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { Collection } from '@prisma/client';
 import { Book } from 'lucide-react';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import CheckboxWithLabel from './CheckboxWithLabel';
+import { useLists } from '@/hooks/database/useLists';
 
 type ListSelectionProps = {
   selectedWords: Word[];
@@ -19,13 +18,7 @@ type ListSelectionProps = {
 };
 
 const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: ListSelectionProps) => {
-  const { data: lists, status } = useQuery<(List & { words: Word[]; collection: Collection })[]>({
-    queryKey: ['lists'],
-    queryFn: () =>
-      axios
-        .get('/api/list', { params: { include: ['words', 'collection'], wordInclude: ['noun', 'verb', 'adjective'] } })
-        .then((res) => res.data)
-  });
+  const { lists, status } = useLists(['words', 'collection'], ['noun', 'verb', 'adjective']);
 
   const [excludeExceptionalWords, setExcludeExceptionalWords] = useState(false);
   const [collections, setCollections] = useState<Collection[]>([]);
@@ -39,7 +32,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
   useEffect(() => {
     if (status === 'success') {
       setCollections(
-        lists.reduce((acc: Collection[], curr) => {
+        (lists ?? []).reduce((acc: Collection[], curr) => {
           if (!acc.find((collection) => collection.id === curr.collection.id)) {
             acc.push(curr.collection);
           }
