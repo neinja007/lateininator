@@ -49,10 +49,11 @@ const Setting = ({ settingKey, value }: SettingProps) => {
     case 'list':
       element = (
         <Select
-          value={newValue}
-          handleChange={() => mutate(newValue)}
+          value={value}
+          handleChange={(value) => mutate(value)}
           options={settings[settingKey].list || []}
           disabled={status === 'pending'}
+          disabledStyle
         />
       );
       break;
