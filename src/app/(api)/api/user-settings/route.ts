@@ -24,5 +24,5 @@ export const GET = async () => {
     };
   });
 
-  return NextResponse.json({ combinedSettings });
+  return NextResponse.json(combinedSettings);
 };
