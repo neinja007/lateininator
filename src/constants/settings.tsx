@@ -3,7 +3,7 @@ import { SettingKey } from '@prisma/client';
 export const settings: {
   [S in SettingKey]: {
     type: 'boolean' | 'list' | 'input';
-    list?: string[];
+    options?: { [key: string]: string };
     name: string;
     description: string;
   };
@@ -20,7 +20,10 @@ export const settings: {
   },
   LANGUAGE: {
     type: 'list',
-    list: ['de', 'en'],
+    options: {
+      de: 'Deutsch',
+      en: 'Englisch'
+    },
     name: 'Sprache',
     description: 'Wählt die Sprache des gesamten Lateininators aus.'
   }
