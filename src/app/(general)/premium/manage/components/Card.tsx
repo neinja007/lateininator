@@ -32,7 +32,7 @@ export const Card = ({
           <>
             <p className='text-xl font-medium'>Nächste Abrechnung</p>
             {loading ? (
-              <Skeleton pulse customSize className='mt-2 h-6 w-full' />
+              <Skeleton pulse customSize className='mx-12 mt-1 h-6' />
             ) : (
               <p className='h-6'>
                 <b>{nextPaymentAmount}€</b> in{' '}
