@@ -1,9 +1,8 @@
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
+import { useUpdateSettings } from '@/hooks/database/mutations/useUpdateSettings';
 import { SettingKey } from '@prisma/client';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Switch from 'react-switch';
@@ -16,16 +15,9 @@ type SettingProps = {
 const Setting = ({ settingKey, settingValue }: SettingProps) => {
   const disabled = settings[settingKey].disabled;
 
-  const queryClient = useQueryClient();
+  const { variables, status, mutate } = useUpdateSettings();
 
-  const { variables, status, mutate } = useMutation({
-    mutationFn: (value: string) => axios.patch('/api/user-settings', { settingKey, settingValue: value }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user-settings'] });
-    }
-  });
-
-  const value = variables || settingValue;
+  const value = variables?.settingValue || settingValue;
 
   const [newValue, setNewValue] = useState(value);
 
@@ -38,7 +30,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
         <div className='flex items-center justify-center gap-2'>
           <Switch
             checked={value === 'true'}
-            onChange={() => mutate(value === 'true' ? 'false' : 'true')}
+            onChange={() => mutate({ settingKey, settingValue: value === 'true' ? 'false' : 'true' })}
             disabled={status === 'pending' || disabled}
             uncheckedIcon={false}
             checkedIcon={false}
