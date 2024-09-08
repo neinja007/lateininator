@@ -1,4 +1,5 @@
 'use client';
+
 import FancyLink from '@/components/FancyLink';
 import Heading from '@/components/Heading';
 import { IsPremium } from '@/components/IsPremium';
