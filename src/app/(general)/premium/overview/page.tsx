@@ -9,7 +9,7 @@ import axios from 'axios';
 import { Stripe } from '@stripe/stripe-js';
 import getStripe from '@/utils/stripe/get-stripe';
 import { useUser } from '@clerk/nextjs';
-import { useDbUser } from '@/hooks/database/useDbUser';
+import { useDbUser } from '@/hooks/database/queries/useDbUser';
 
 const features = [
   'Wörterbuch',

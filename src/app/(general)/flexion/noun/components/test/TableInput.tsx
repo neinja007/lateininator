@@ -5,7 +5,7 @@ import { Noun } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
-import { useSettings } from '@/hooks/database/useSettings';
+import { useSettings } from '@/hooks/database/queries/useSettings';
 
 type TableInputProps = {
   tableInputValues: TableInputValues;

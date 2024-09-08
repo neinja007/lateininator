@@ -9,7 +9,7 @@ import Hr from '@/components/Hr';
 import { Noun } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
-import { useSettings } from '@/hooks/database/useSettings';
+import { useSettings } from '@/hooks/database/queries/useSettings';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
 

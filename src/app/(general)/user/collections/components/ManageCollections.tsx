@@ -5,7 +5,7 @@ import axios from 'axios';
 import Cell from './Cell';
 import CellContainer from './CellContainer';
 import { useRouter } from 'next/navigation';
-import { useCollections } from '@/hooks/database/useCollections';
+import { useCollections } from '@/hooks/database/queries/useCollections';
 
 const ManageCollections = () => {
   const queryClient = useQueryClient();

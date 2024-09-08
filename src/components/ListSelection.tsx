@@ -9,7 +9,7 @@ import { Book } from 'lucide-react';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import CheckboxWithLabel from './CheckboxWithLabel';
-import { useLists } from '@/hooks/database/useLists';
+import { useLists } from '@/hooks/database/queries/useLists';
 
 type ListSelectionProps = {
   selectedWords: Word[];

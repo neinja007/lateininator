@@ -6,7 +6,7 @@ import { IsPremium } from '@/components/IsPremium';
 import { Gem, LogOut, UserIcon } from 'lucide-react';
 import Setting from './components/Setting';
 import Skeleton from '@/components/Skeleton';
-import { useSettings } from '@/hooks/database/useSettings';
+import { useSettings } from '@/hooks/database/queries/useSettings';
 import { SettingKey } from '@prisma/client';
 
 const Page = () => {

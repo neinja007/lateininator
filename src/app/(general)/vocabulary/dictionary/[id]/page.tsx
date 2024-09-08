@@ -15,7 +15,7 @@ import { isAdjective } from '@/utils/typeguards/isAdjective';
 import BackToDictionaryButton from './components/BackToDictionaryButton';
 import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
-import { useWords } from '@/hooks/database/useWords';
+import { useWords } from '@/hooks/database/queries/useWords';
 
 type PageProps = { params: { id: string } };
 

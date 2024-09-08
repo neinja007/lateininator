@@ -12,7 +12,7 @@ import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
-import { useSettings } from '@/hooks/database/useSettings';
+import { useSettings } from '@/hooks/database/queries/useSettings';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
 

@@ -5,7 +5,7 @@ import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
 import Cell from './Cell';
 import clsx from 'clsx';
-import { useCollections } from '@/hooks/database/useCollections';
+import { useCollections } from '@/hooks/database/queries/useCollections';
 
 const BrowseCollections = () => {
   const queryClient = useQueryClient();

@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { Card } from './components/Card';
 import FailToLoad from '@/components/FailToLoad';
 import { useEffect } from 'react';
-import { useSubscription } from '@/hooks/database/useSubscription';
+import { useSubscription } from '@/hooks/database/queries/useSubscription';
 
 const Page = () => {
   const queryClient = useQueryClient();

@@ -10,7 +10,7 @@ import SearchBar from './components/SearchBar';
 import Hr from '@/components/Hr';
 import { useWidth } from '@/hooks/useWidth';
 import FailToLoad from '@/components/FailToLoad';
-import { useWords } from '@/hooks/database/useWords';
+import { useWords } from '@/hooks/database/queries/useWords';
 
 const Page = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');

@@ -1,6 +1,6 @@
 'use client';
 
-import { useDbUser } from '@/hooks/database/useDbUser';
+import { useDbUser } from '@/hooks/database/queries/useDbUser';
 
 export const IsPremium = ({ children, not }: { children: React.ReactNode; not?: boolean }) => {
   const { dbUser, isLoading } = useDbUser();
