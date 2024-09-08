@@ -1,4 +1,5 @@
 'use client';
+
 import Heading from '@/components/Heading';
 import Hr from '@/components/Hr';
 import BrowseCollections from './components/BrowseCollections';

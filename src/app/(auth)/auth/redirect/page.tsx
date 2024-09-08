@@ -1,4 +1,5 @@
 'use client';
+
 import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 import LoadingHeading from '@/components/LoadingHeading';
 import { User } from '@prisma/client';

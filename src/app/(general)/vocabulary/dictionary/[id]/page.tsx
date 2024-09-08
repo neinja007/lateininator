@@ -1,4 +1,5 @@
 'use client';
+
 import Header from './components/Header';
 import WordInformation from './components/WordInformation';
 import TableInformation from './components/TableInformation';

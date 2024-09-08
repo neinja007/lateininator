@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import Heading from '@/components/Heading';
 import { useGame } from '@/hooks/useGame';

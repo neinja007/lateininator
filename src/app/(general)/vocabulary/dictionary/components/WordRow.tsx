@@ -1,4 +1,5 @@
 'use client';
+
 import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
 import { MAPPER } from '@/utils/other/mapper';

@@ -1,4 +1,5 @@
 'use client';
+
 import { Fragment, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';

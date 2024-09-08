@@ -1,4 +1,5 @@
 'use client';
+
 import Heading from '@/components/Heading';
 import Link from 'next/link';
 
