@@ -6,6 +6,7 @@ export const settings: {
     options?: { [key: string]: string };
     name: string;
     description: string;
+    disabled?: boolean;
   };
 } = {
   DICTIONARY_VOCATIVE: {
@@ -25,6 +26,7 @@ export const settings: {
       en: 'Englisch'
     },
     name: 'Sprache',
-    description: 'Wählt die Sprache des gesamten Lateininators aus.'
+    description: 'Wählt die Sprache des gesamten Lateininators aus.',
+    disabled: true
   }
 };
