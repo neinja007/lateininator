@@ -26,9 +26,9 @@ export const AuthConditionalLock = ({ children }: AuthConditionalLockProps) => {
           />
           <div className='absolute z-10'>
             <div className='flex flex-col items-center gap-4 text-center'>
-              <div className='text-2xl font-bold'>Du musst angemeldet sein, um diese Seite verwenden zu können.</div>
+              <div className='text-2xl font-bold'>Sie müssen angemeldet sein, um diese Seite verwenden zu können.</div>
               <div className='text-lg'>
-                Bitte melde dich an, um fortzufahren.{' '}
+                Bitte melden Sie sich an, um fortzufahren.{' '}
                 <Link href='/auth/sign-in' className='text-blue-500 hover:underline'>
                   Jetzt anmelden <ExternalLink className='inline-block h-4 w-4 align-text-top' />
                 </Link>
