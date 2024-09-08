@@ -1,7 +1,7 @@
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
-import { UserSetting } from '@prisma/client';
+import { SettingKey } from '@prisma/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import clsx from 'clsx';
@@ -9,12 +9,11 @@ import { useState } from 'react';
 import Switch from 'react-switch';
 
 type SettingProps = {
-  setting: UserSetting;
+  settingKey: SettingKey;
+  settingValue: string;
 };
 
-const Setting = ({ setting }: SettingProps) => {
-  const { settingKey, settingValue } = setting;
-
+const Setting = ({ settingKey, settingValue }: SettingProps) => {
   const disabled = settings[settingKey].disabled;
 
   const queryClient = useQueryClient();
