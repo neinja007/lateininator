@@ -1,29 +1,15 @@
 import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import Cell from './Cell';
 import CellContainer from './CellContainer';
 import { useRouter } from 'next/navigation';
 import { useCollections } from '@/hooks/database/queries/useCollections';
+import { useRemoveCollection } from '@/hooks/database/mutations/useRemoveCollection';
 
 const ManageCollections = () => {
-  const queryClient = useQueryClient();
-
   const { collections, status } = useCollections(true, ['lists', 'owner']);
 
-  const {
-    mutate,
-    variables,
-    status: mutationStatus
-  } = useMutation({
-    mutationFn: (collectionId: number) => axios.delete('/api/collection', { params: { id: collectionId } }),
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['collections', { saved: false }] });
-      queryClient.invalidateQueries({ queryKey: ['collections', { saved: true }] });
-      queryClient.invalidateQueries({ queryKey: ['lists'] });
-    }
-  });
+  const { mutate, variables, status: mutationStatus } = useRemoveCollection();
 
   const router = useRouter();
 
