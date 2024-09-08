@@ -16,11 +16,7 @@ const Page = () => {
       <div className='mb-5'>
         {status === 'pending' &&
           [...Array(3)].map((_, index) => <Skeleton key={index} pulse customSize className='my-2 h-20 w-full' />)}
-        {status === 'success' &&
-          settings &&
-          settings.map((setting) => (
-            <Setting key={setting.id} settingKey={setting.settingKey} value={setting.settingValue} />
-          ))}
+        {status === 'success' && settings && settings.map((setting) => <Setting key={setting.id} setting={setting} />)}
       </div>
       <p className='mb-2 text-center text-lg font-bold'>Konto-Einstellungen</p>
       <div className='items-center justify-between gap-x-2 sm:flex'>
