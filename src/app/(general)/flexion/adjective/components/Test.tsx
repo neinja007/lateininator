@@ -12,6 +12,8 @@ import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
+import { useSettings } from '@/hooks/database/useSettings';
+import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type TestProps = {
   activeWord: Adjective;
@@ -45,8 +47,12 @@ const Test = ({
   checkAdverb
 }: TestProps) => {
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
-
   const [tableInputForm, setTableInputForm] = useState<TableInputForm>();
+
+  const { settings } = useSettings();
+
+  const enabledWordCases =
+    settings && settings.TESTING_VOCATIVE === 'true' ? WORD_CONSTANTS.wordCase : WORD_CONSTANTS.wordCaseWithoutVocative;
 
   useEffect(() => {
     if (!activeWord || !isAdjective(activeWord)) return;
@@ -55,7 +61,7 @@ const Test = ({
         adverb: genders.length === 0 || Math.random() < 0.04,
         comparisonDegree: getRandomItem(comparisonDegrees),
         numerus: getRandomItem(['sin', 'plu']),
-        wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase,
+        wordCase: getRandomItem([...enabledWordCases]) as WordCase,
         gender: getRandomItem(genders)
       });
     } else {
@@ -64,7 +70,7 @@ const Test = ({
         comparisonDegree: getRandomItem(comparisonDegrees)
       });
     }
-  }, [activeWord, comparisonDegrees, genders, testingType]);
+  }, [activeWord, comparisonDegrees, enabledWordCases, genders, testingType]);
 
   const { submit } = useTestForm(handleContinue);
 
