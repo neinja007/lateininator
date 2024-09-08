@@ -35,17 +35,16 @@ const Setting = ({ setting }: SettingProps) => {
   switch (type) {
     case 'boolean':
       element = (
-        <>
+        <div className='flex items-center justify-center gap-2'>
+          <Switch
+            checked={value === 'true'}
+            onChange={() => mutate(value === 'true' ? 'false' : 'true')}
+            disabled={status === 'pending' || disabled}
+            uncheckedIcon={false}
+            checkedIcon={false}
+          />
           <span className='text-neutral-400'>{value === 'true' ? 'Aktiviert' : 'Deaktiviert'}</span>
-          <Button
-            disabled={status === 'pending'}
-            className='ml-3'
-            color={value === 'true' ? 'red' : 'green'}
-            onClick={() => mutate(value === 'true' ? 'false' : 'true')}
-          >
-            {value === 'true' ? 'Deaktivieren' : 'Aktivieren'}
-          </Button>
-        </>
+        </div>
       );
       break;
     case 'input':
