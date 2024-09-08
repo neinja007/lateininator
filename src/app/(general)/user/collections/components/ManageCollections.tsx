@@ -59,7 +59,7 @@ const ManageCollections = () => {
                   buttonColor='red'
                 />
               ))}
-            <Cell outlined onClick={() => router.push('/user/manage-vocabulary/new')} />
+            <Cell outlined onClick={() => router.push('/user/collections/new')} />
           </>
         )}
       </CellContainer>

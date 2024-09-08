@@ -80,7 +80,7 @@ export const routes: Route[] = [
     status: 'signedIn',
     icon: User,
     children: [
-      { label: 'Wortschatz', href: '/manage-vocabulary', color: 'purple', icon: WholeWord, status: 'signedIn' },
+      { label: 'Wortschatz', href: '/collections', color: 'purple', icon: WholeWord, status: 'signedIn' },
       { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings, status: 'signedIn' },
       { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, status: 'signedIn' }
     ]
