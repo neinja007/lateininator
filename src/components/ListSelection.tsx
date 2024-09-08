@@ -31,17 +31,16 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
 
   useEffect(() => {
     if (status === 'success') {
-      setCollections(
-        (lists ?? []).reduce((acc: Collection[], curr) => {
-          if (!acc.find((collection) => collection.id === curr.collection.id)) {
-            acc.push(curr.collection);
-          }
-          return acc;
-        }, [])
-      );
+      const collections = (lists ?? []).reduce((acc: Collection[], curr) => {
+        if (!acc.find((collection) => collection.id === curr.collection.id)) {
+          acc.push(curr.collection);
+        }
+        return acc;
+      }, []);
+      setCollections(collections);
       setSelectedCollection(collections[0]?.id);
     }
-  }, [collections, lists, status]);
+  }, [lists, status]);
 
   const [selectedLists, setSelectedLists] = useState<number[]>([]);
 
