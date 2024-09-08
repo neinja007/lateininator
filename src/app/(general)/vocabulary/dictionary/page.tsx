@@ -18,7 +18,7 @@ const Page = () => {
 
   useWidth('md', () => setView('cards'));
 
-  const { words, status } = useWords(undefined, ['noun', 'verb', 'adjective']);
+  const { words, status } = useWords(undefined, ['noun', 'verb', 'adjective'], query);
 
   const handleSearch = () => setQuery(searchTerm);
 
