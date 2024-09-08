@@ -77,28 +77,28 @@ const FormSelection = ({
         disabledOptions={conjugationsNotToCheck}
         selected={conjugations}
         setSelected={setConjugations}
-        label='Konjugation'
+        label={MAPPER.extended.property.plural.conjugation}
         mapper={MAPPER.extended.conjugation}
       />
       <CheckboxList
         options={[...WORD_CONSTANTS.modus]}
         selected={modi}
         setSelected={setModi}
-        label='Modus'
+        label={MAPPER.extended.property.plural.modus}
         mapper={MAPPER.extended.modus}
       />
       <CheckboxList
         options={[...WORD_CONSTANTS.tense]}
         selected={tenses}
         setSelected={setTenses}
-        label='Zeitformen'
+        label={MAPPER.extended.property.plural.tense}
         mapper={MAPPER.extended.tense}
       />
       <CheckboxList
         options={[...WORD_CONSTANTS.voice]}
         selected={voices}
         setSelected={setVoices}
-        label='Aktiv / Passiv'
+        label={MAPPER.extended.property.plural.voice}
         mapper={MAPPER.extended.voice}
       />
     </FormSelectionWrapper>

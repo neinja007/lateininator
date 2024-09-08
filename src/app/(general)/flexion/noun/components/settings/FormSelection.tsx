@@ -42,7 +42,7 @@ const FormSelection = ({ genders, setGenders, declensions, setDeclensions, valid
         disabledOptions={declensionsNotToCheck}
         selected={declensions}
         setSelected={setDeclensions}
-        label='Deklination'
+        label={MAPPER.extended.property.plural.declension}
         mapper={MAPPER.extended.declension}
       />
       <CheckboxList
@@ -50,7 +50,7 @@ const FormSelection = ({ genders, setGenders, declensions, setDeclensions, valid
         disabledOptions={gendersNotToCheck}
         selected={genders}
         setSelected={setGenders}
-        label='Geschlecht'
+        label={MAPPER.extended.property.plural.gender}
         mapper={MAPPER.extended.gender}
       />
     </FormSelectionWrapper>

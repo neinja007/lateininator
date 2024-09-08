@@ -69,21 +69,21 @@ const FormSelection = ({
         disabledOptions={comparisonsNotToCheck}
         selected={comparisons}
         setSelected={setComparisons}
-        label='Komparation'
+        label={MAPPER.extended.property.plural.comparison}
         mapper={MAPPER.extended.comparison}
       />
       <CheckboxList
         options={[...WORD_CONSTANTS.comparisonDegree]}
         selected={comparisonDegrees}
         setSelected={setComparisonDegrees}
-        label='Steigerungsform'
+        label={MAPPER.extended.property.plural.comparisonDegree}
         mapper={MAPPER.extended.comparisonDegree}
       />
       <CheckboxList
         options={[...WORD_CONSTANTS.gender]}
         selected={genders}
         setSelected={setGenders}
-        label='Geschlecht'
+        label={MAPPER.extended.property.plural.gender}
         mapper={MAPPER.extended.gender}
       />
     </FormSelectionWrapper>
