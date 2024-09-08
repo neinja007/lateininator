@@ -54,17 +54,17 @@ export const POST = async (req: NextRequest) => {
     }
   } else if (event.type === 'customer.subscription.deleted') {
     const subscription = event.data.object as Stripe.Subscription;
-    const metadata = subscription.metadata;
-    const userId = metadata && metadata.userId;
 
-    if (!userId) {
-      console.error('CRITICAL ERROR: No userId found in metadata!');
-      return NextResponse.json({ error: 'No userId found in metadata!' }, { status: 400 });
+    const customer = subscription.customer as string;
+
+    if (!customer) {
+      console.error('CRITICAL ERROR: No customer id found!');
+      return NextResponse.json({ error: 'No customer id found!' }, { status: 400 });
     }
 
     try {
       await prisma.user.update({
-        where: { id: userId },
+        where: { stripeCustomerId: customer },
         data: { premium: false }
       });
       console.log('User updated successfully!');
