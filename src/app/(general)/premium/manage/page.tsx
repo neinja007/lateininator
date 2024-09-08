@@ -5,9 +5,9 @@ import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 import { Card } from './components/Card';
 import FailToLoad from '@/components/FailToLoad';
-import { useEffect } from 'react';
 import { useSubscription } from '@/hooks/database/queries/useSubscription';
 import { useCancelSubscription } from '@/hooks/database/mutations/useCancelSubscription';
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 
 const Page = () => {
   const { subscription, isLoading } = useSubscription();
@@ -18,11 +18,13 @@ const Page = () => {
 
   const user = useUser();
 
-  useEffect(() => {
-    if (!isLoading && !subscription) {
-      router.push('/premium/overview');
-    }
-  }, [isLoading, subscription, router]);
+  if (!isLoading && !subscription) {
+    return (
+      <div className='text-center text-red-500'>
+        Abo konnte nicht geladen werden! Kontaktieren Sie bitte unseren <LinkToSupportEmail />.
+      </div>
+    );
+  }
 
   if (user.isLoaded && !user.isSignedIn) {
     return <RedirectToSignIn />;
