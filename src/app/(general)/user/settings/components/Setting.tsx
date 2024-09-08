@@ -8,11 +8,14 @@ import axios from 'axios';
 import { useState } from 'react';
 
 type SettingProps = {
-  settingKey: SettingKey;
-  value: string;
+  setting: UserSetting;
 };
 
-const Setting = ({ settingKey, value }: SettingProps) => {
+const Setting = ({ setting }: SettingProps) => {
+  const { settingKey, settingValue } = setting;
+
+  const disabled = settings[settingKey].disabled;
+
   const queryClient = useQueryClient();
 
   const { variables, status, mutate } = useMutation({
