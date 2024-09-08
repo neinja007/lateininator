@@ -3,6 +3,8 @@ import Input from '@/components/Input';
 import clsx from 'clsx';
 import ui from '@/styles/ui.module.css';
 import { compareValues } from '@/utils/word/compareValues';
+import { formatCorrectedInput } from '@/utils/helpers/formatCorrectedInput';
+import { parseValue } from '@/utils/helpers/parseValue';
 
 type TrainerInputProps = {
   customStyle?: React.CSSProperties & string;
@@ -17,18 +19,12 @@ const TrainerInput = ({ customStyle, label, handleChange, value, correctValue, s
   const inputIsCorrect = stage === 'review' && compareValues(value, correctValue);
   const correctValueIndicator = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
 
-  const valueWithCorrectValue = !inputIsCorrect
-    ? value.trim()
-      ? value + ' (' + correctValue + ')'
-      : '(' + correctValue + ')'
-    : correctValue;
-
   return (
     <Input
       unstyled={!!customStyle}
       label={label}
       className={clsx('w-full', correctValueIndicator, customStyle)}
-      value={stage === 'test' ? value : valueWithCorrectValue}
+      value={stage === 'test' || inputIsCorrect ? parseValue(value) : formatCorrectedInput(value, correctValue)}
       onChange={handleChange}
       disabled={stage === 'review'}
     />
