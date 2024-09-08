@@ -43,6 +43,8 @@ const Setting = ({ setting }: SettingProps) => {
             disabled={status === 'pending' || disabled}
             uncheckedIcon={false}
             checkedIcon={false}
+            offColor='#aa0000'
+            onColor='#008800'
           />
           <span className='text-neutral-400'>{value === 'true' ? 'Aktiviert' : 'Deaktiviert'}</span>
         </div>
