@@ -25,11 +25,11 @@ const Page = () => {
   return (
     <div className='space-y-5'>
       <Heading>Wörterbuch</Heading>
-      <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} isFetched={status === 'pending'} />
+      <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} isFetched={status !== 'pending'} />
       {status === 'error' ? (
         <FailToLoad />
       ) : (
-        <ResultCount count={words ? words.length : 0} query={query} isFetched={status === 'pending'} />
+        <ResultCount count={words ? words.length : 0} query={query} isFetched={status !== 'pending'} />
       )}
       {words && words.length > 0 && (
         <div>
