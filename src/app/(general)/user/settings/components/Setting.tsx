@@ -1,11 +1,12 @@
-import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
-import { SettingKey } from '@prisma/client';
+import { UserSetting } from '@prisma/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import clsx from 'clsx';
 import { useState } from 'react';
+import Switch from 'react-switch';
 
 type SettingProps = {
   setting: UserSetting;
@@ -25,7 +26,7 @@ const Setting = ({ setting }: SettingProps) => {
     }
   });
 
-  value = variables || value;
+  const value = variables || settingValue;
 
   const [newValue, setNewValue] = useState(value);
 
@@ -48,7 +49,7 @@ const Setting = ({ setting }: SettingProps) => {
       );
       break;
     case 'input':
-      element = <Input value={newValue} onChange={setNewValue} disabled={status === 'pending'} />;
+      element = <Input value={newValue} onChange={setNewValue} disabled={status === 'pending' || disabled} />;
       break;
     case 'list':
       element = (
@@ -56,7 +57,7 @@ const Setting = ({ setting }: SettingProps) => {
           value={value}
           handleChange={(value) => mutate(value)}
           options={settings[settingKey].options || {}}
-          disabled={status === 'pending'}
+          disabled={status === 'pending' || disabled}
           disabledStyle
         />
       );
@@ -64,12 +65,17 @@ const Setting = ({ setting }: SettingProps) => {
   }
 
   return (
-    <div className='my-2 flex min-h-20 items-center justify-between rounded-lg bg-neutral-800 px-4 py-2'>
+    <div
+      className={clsx(
+        'my-2 min-h-20 items-center justify-between rounded-lg bg-neutral-800 px-4 py-2 sm:flex',
+        disabled && 'opacity-50'
+      )}
+    >
       <div className='flex-grow'>
         <span className='text-lg font-medium'>{settings[settingKey].name}</span>
         <p className='text-neutral-400'>{settings[settingKey].description}</p>
       </div>
-      <div className='flex-shrink'>{element}</div>
+      <div className='mt-4 flex-shrink text-center sm:mt-0'>{element}</div>
     </div>
   );
 };
