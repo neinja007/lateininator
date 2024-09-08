@@ -7,11 +7,11 @@ import { MAPPER } from '@/utils/other/mapper';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
 import { Noun } from '@/types/word';
-import { WordCase } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
-import { isNoun } from '@/utils/typeguards/isNoun';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
+import { useSettings } from '@/hooks/database/useSettings';
+import { WORD_CONSTANTS } from '@/constants/wordConstants';
 
 type TestProps = {
   activeWord: Noun;
@@ -38,20 +38,24 @@ const Test = ({
   individualInputValue,
   setIndividualInputValue
 }: TestProps) => {
+  const { settings } = useSettings();
+
+  const enabledWordCases =
+    settings && settings.TESTING_VOCATIVE === 'true' ? WORD_CONSTANTS.wordCase : WORD_CONSTANTS.wordCaseWithoutVocative;
+
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
-    numerus: getRandomItem(['sin', 'plu']),
-    wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase
+    numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
+    wordCase: getRandomItem([...enabledWordCases])
   });
 
   useEffect(() => {
-    if (!activeWord || isNoun(activeWord)) return;
     if (testingType === 'individual') {
       setIndividualInputForm({
-        numerus: getRandomItem(['sin', 'plu']),
-        wordCase: getRandomItem(['1', '2', '3', '4', '5']) as WordCase
+        numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
+        wordCase: getRandomItem([...enabledWordCases])
       });
     }
-  }, [activeWord, testingType]);
+  }, [activeWord, enabledWordCases, testingType]);
 
   const { submit } = useTestForm(handleContinue);
 

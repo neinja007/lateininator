@@ -5,6 +5,7 @@ import { Noun } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
+import { useSettings } from '@/hooks/database/useSettings';
 
 type TableInputProps = {
   tableInputValues: TableInputValues;
@@ -14,6 +15,10 @@ type TableInputProps = {
 };
 
 const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }: TableInputProps) => {
+  const { settings } = useSettings();
+
+  const showVocative = settings && settings.TESTING_VOCATIVE === 'true';
+
   return (
     <div>
       <p className='mb-2 text-center font-bold'>{MAPPER.extended.declension[activeWord.noun.declension]}</p>
@@ -31,7 +36,7 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }
         <tbody>
           {WORD_CONSTANTS.wordCase.map(
             (wordCase) =>
-              wordCase !== '6' && (
+              (wordCase !== '6' || showVocative) && (
                 <tr key={wordCase} className={table.tr}>
                   <th className={table.th}>{MAPPER.extended.wordCase[wordCase]}</th>
                   {WORD_CONSTANTS.numerus.map((numerus, i) => (
