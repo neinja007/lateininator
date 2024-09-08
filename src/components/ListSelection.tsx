@@ -174,11 +174,13 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             </b>{' '}
             ausgewählt.
           </p>
-          <CheckboxWithLabel
-            label='Wörter mit Ausnahmen ausschließen'
-            checked={excludeExceptionalWords}
-            handleChange={setExcludeExceptionalWords}
-          />
+          <div className='sm:text-right'>
+            <CheckboxWithLabel
+              label='Wörter mit Ausnahmen ausschließen'
+              checked={excludeExceptionalWords}
+              handleChange={setExcludeExceptionalWords}
+            />
+          </div>
         </div>
       )}
     </>
