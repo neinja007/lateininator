@@ -8,13 +8,10 @@ import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
 import { Verb } from '@/types/word';
 import { Modus, Voice, Tense } from '@/types/wordConstants';
-import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
-import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
-import { getRandomPossibleTense } from '../utils/getRandomPossibleTense';
-import { getRandomPossibleVoice } from '../utils/getRandomPossibleVoice';
-import { getRandomPossiblePerson } from '../utils/getRandomPossiblePerson';
+import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
+import { getRandomTableInputForm } from '../utils/getRandomTableInputForm';
 
 type TestProps = {
   activeWord: Verb;
@@ -49,41 +46,15 @@ const Test = ({
   setIndividualInputValue,
   checkImperative
 }: TestProps) => {
-  const person = getRandomPossiblePerson(checkImperative);
-  const modus = person === '4' ? 'ind' : getRandomItem(modi);
-  const tense = getRandomPossibleTense(person, modus, tenses);
-  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
-    voice: getRandomPossibleVoice(person, voices),
-    modus: modus,
-    tense: tense,
-    numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
-    person: person
-  });
+  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
 
-  const [tableInputForm, setTableInputForm] = useState<TableInputForm>({
-    voice: getRandomItem(voices),
-    modus: getRandomItem(modi)
-  });
+  const [tableInputForm, setTableInputForm] = useState<TableInputForm>();
 
   useEffect(() => {
-    if (!activeWord || activeWord.type !== 'VERB') return;
     if (testingType === 'individual') {
-      const person = getRandomPossiblePerson(checkImperative);
-      const modus = person === '4' ? 'ind' : getRandomItem(modi);
-      const tense = getRandomPossibleTense(person, modus, tenses);
-
-      setIndividualInputForm({
-        person: person,
-        voice: getRandomPossibleVoice(person, voices),
-        modus: modus,
-        tense: tense,
-        numerus: getRandomItem([...WORD_CONSTANTS.numerus])
-      });
+      setIndividualInputForm(getRandomIndividualInputForm(checkImperative, modi, tenses, voices));
     } else {
-      setTableInputForm({
-        voice: getRandomItem(voices),
-        modus: getRandomItem(modi)
-      });
+      setTableInputForm(getRandomTableInputForm(voices, modi));
     }
   }, [activeWord, checkImperative, modi, tenses, testingType, voices]);
 
@@ -94,25 +65,27 @@ const Test = ({
       <WordDisplay word={activeWord} />
       <Hr />
       <form onSubmit={submit} className='space-y-8'>
-        {testingType === 'individual' ? (
-          <IndividualTrainerInput
-            label={`${MAPPER.extended.person[individualInputForm.person]} ${MAPPER.extended.numerus[individualInputForm.numerus]}; ${MAPPER.extended.modus[individualInputForm.modus]} ${MAPPER.extended.tense[individualInputForm.tense]} ${MAPPER.extended.voice[individualInputForm.voice]}`}
-            value={individualInputValue}
-            correctValue={getForm(activeWord, individualInputForm)}
-            stage={stage}
-            setValue={setIndividualInputValue}
-          />
-        ) : (
-          <TableInput
-            checkImperative={checkImperative}
-            tenses={tenses}
-            tableInputForm={tableInputForm}
-            tableInputValues={tableInputValues}
-            setTableInputValues={setTableInputValues}
-            stage={stage}
-            activeWord={activeWord}
-          />
-        )}
+        {testingType === 'individual'
+          ? individualInputForm && (
+              <IndividualTrainerInput
+                label={`${MAPPER.extended.person[individualInputForm.person]} ${MAPPER.extended.numerus[individualInputForm.numerus]}; ${MAPPER.extended.modus[individualInputForm.modus]} ${MAPPER.extended.tense[individualInputForm.tense]} ${MAPPER.extended.voice[individualInputForm.voice]}`}
+                value={individualInputValue}
+                correctValue={getForm(activeWord, individualInputForm)}
+                stage={stage}
+                setValue={setIndividualInputValue}
+              />
+            )
+          : tableInputForm && (
+              <TableInput
+                checkImperative={checkImperative}
+                tenses={tenses}
+                tableInputForm={tableInputForm}
+                tableInputValues={tableInputValues}
+                setTableInputValues={setTableInputValues}
+                stage={stage}
+                activeWord={activeWord}
+              />
+            )}
         <ActionBar
           form
           handleContinue={handleContinue}

@@ -7,13 +7,14 @@ import { MAPPER } from '@/utils/other/mapper';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
 import { Adjective } from '@/types/word';
-import { Comparison, ComparisonDegree, Gender, WordCase } from '@/types/wordConstants';
+import { Comparison, ComparisonDegree, Gender } from '@/types/wordConstants';
 import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
 import { useSettings } from '@/hooks/database/useSettings';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
 
 type TestProps = {
   activeWord: Adjective;
@@ -57,13 +58,7 @@ const Test = ({
   useEffect(() => {
     if (!activeWord || !isAdjective(activeWord)) return;
     if (testingType === 'individual' || genders.length === 0) {
-      setIndividualInputForm({
-        adverb: genders.length === 0 || Math.random() < 0.04,
-        comparisonDegree: getRandomItem(comparisonDegrees),
-        numerus: getRandomItem(['sin', 'plu']),
-        wordCase: getRandomItem([...enabledWordCases]) as WordCase,
-        gender: getRandomItem(genders)
-      });
+      setIndividualInputForm(getRandomIndividualInputForm(genders, comparisonDegrees, [...enabledWordCases]));
     } else {
       setTableInputForm({
         comparison: activeWord.adjective.comparison as Comparison,

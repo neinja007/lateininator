@@ -7,11 +7,11 @@ import { MAPPER } from '@/utils/other/mapper';
 import { useTestForm } from '@/hooks/useTestForm';
 import Hr from '@/components/Hr';
 import { Noun } from '@/types/word';
-import { getRandomItem } from '@/utils/helpers/getRandomItem';
 import { getForm } from '@/utils/word/getForm';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
 import { useSettings } from '@/hooks/database/useSettings';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
 
 type TestProps = {
   activeWord: Noun;
@@ -43,23 +43,17 @@ const Test = ({
   const enabledWordCases =
     settings && settings.TESTING_VOCATIVE === 'true' ? WORD_CONSTANTS.wordCase : WORD_CONSTANTS.wordCaseWithoutVocative;
 
-  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>({
-    numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
-    wordCase: getRandomItem([...enabledWordCases])
-  });
+  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
 
   useEffect(() => {
     if (testingType === 'individual') {
-      setIndividualInputForm({
-        numerus: getRandomItem([...WORD_CONSTANTS.numerus]),
-        wordCase: getRandomItem([...enabledWordCases])
-      });
+      setIndividualInputForm(getRandomIndividualInputForm([...enabledWordCases]));
     }
   }, [activeWord, enabledWordCases, testingType]);
 
   const { submit } = useTestForm(handleContinue);
 
-  const correctIndividualInputValue = getForm(activeWord, individualInputForm);
+  const correctIndividualInputValue = individualInputForm ? getForm(activeWord, individualInputForm) : '';
 
   return (
     <>
