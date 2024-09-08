@@ -3145,6 +3145,7 @@ __metadata:
     prisma: "npm:^5.19.1"
     react: "npm:^18"
     react-dom: "npm:^18"
+    react-switch: "npm:^7.0.0"
     sharp: "npm:^0.33.4"
     stripe: "npm:^16.8.0"
     tailwindcss: "npm:^3.4.1"
@@ -4170,6 +4171,18 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
+  languageName: node
+  linkType: hard
+
+"react-switch@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "react-switch@npm:7.0.0"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/fe5d2fc7c25998de5ff8c0f5a0013d43bb5dc89564d97b03f9e0202761a00127e477d4d670e8cc2885cfcacbc98e87c0c3555a1398d0db1403db45598d0dc753
   languageName: node
   linkType: hard
 
