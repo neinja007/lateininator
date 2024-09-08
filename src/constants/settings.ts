@@ -1,13 +1,8 @@
+import { SettingData } from '@/types/other';
 import { SettingKey } from '@prisma/client';
 
 export const settings: {
-  [S in SettingKey]: {
-    type: 'boolean' | 'list' | 'input';
-    options?: { [key: string]: string };
-    name: string;
-    description: string;
-    disabled?: boolean;
-  };
+  [S in SettingKey]: SettingData;
 } = {
   DICTIONARY_VOCATIVE: {
     type: 'boolean',
