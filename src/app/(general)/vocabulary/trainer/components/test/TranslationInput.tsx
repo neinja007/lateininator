@@ -24,11 +24,9 @@ const TranslationInput = ({ correctTranslations, stage, inputValues, setInputVal
     correctTranslations.length > 0 ? correctTranslations.join(', ') : 'Keine Übersetzung';
 
   if (!inputValues.translation.trim()) {
-    inputWithCorrectValueAppended = `(${formattedCorrectTranslations})`;
-  } else if (inputIsCorrect) {
-    inputWithCorrectValueAppended = `${inputValues.translation} (${formattedCorrectTranslations})`;
+    inputWithCorrectValueAppended = formattedCorrectTranslations;
   } else {
-    inputWithCorrectValueAppended = `${inputValues.translation} (${formattedCorrectTranslations})`;
+    inputWithCorrectValueAppended = `${formattedCorrectTranslations} (${inputValues.translation})`;
   }
 
   const displayedValue = stage === 'review' ? inputWithCorrectValueAppended : inputValues.translation;
