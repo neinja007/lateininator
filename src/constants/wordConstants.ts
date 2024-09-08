@@ -1,6 +1,7 @@
 import { Comparison, Conjugation, Declension, Gender } from '@prisma/client';
 
 const wordCase = ['1', '2', '3', '4', '5', '6'] as const;
+const wordCaseWithoutVocative = ['1', '2', '3', '4', '5'] as const;
 const person = ['1', '2', '3', '4'] as const;
 const numerus = ['sin', 'plu'] as const;
 const modus = ['ind', 'kon'] as const;
@@ -30,6 +31,7 @@ export const WORD_CONSTANTS = {
   conjugation,
   comparison,
   comparisonDegree,
+  wordCaseWithoutVocative,
   optional: {
     declension: optionalDeclension,
     gender: optionalGender,
