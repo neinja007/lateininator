@@ -21,7 +21,7 @@ const NavbarDropdown = ({ route, children, open, handleOpen, active }: NavbarDro
         className={clsx(navbar.navlink, active ? navbar.active : navbar.inactive)}
         onClick={() => handleOpen((prevOpen) => (prevOpen === route.label ? '' : route.label))}
       >
-        <route.icon className='w-5' /> {route.label}
+        <route.icon className='w-5' /> <span className='max-w-40 truncate'>{route.label}</span>
         <ChevronUp
           size={20}
           className={clsx(
