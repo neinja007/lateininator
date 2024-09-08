@@ -166,8 +166,8 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
         </div>
       )}
       {status === 'success' && (
-        <div className='mt-5 flex items-center justify-between'>
-          <p>
+        <div className='mt-5 grid items-center gap-3 sm:grid-cols-2'>
+          <p className='order-2 sm:order-none'>
             Es wurden{' '}
             <b className='text-blue-500'>
               {selectedWords.length} {onlyAcceptType ? MAPPER.extended.type.plural[onlyAcceptType] : 'Wörter'}
