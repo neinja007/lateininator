@@ -12,8 +12,7 @@ type AdjectiveTableProps = { word: Adjective };
 const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
   const { settings, status } = useSettings();
 
-  const showVocative =
-    settings?.find((setting) => setting.settingKey === 'DICTIONARY_VOCATIVE')?.settingValue === 'true';
+  const showVocative = settings && settings.DICTIONARY_VOCATIVE === 'true';
 
   return (
     <div>
