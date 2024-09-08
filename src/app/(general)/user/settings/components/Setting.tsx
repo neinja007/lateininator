@@ -46,7 +46,7 @@ const Setting = ({ setting }: SettingProps) => {
             offColor='#aa0000'
             onColor='#008800'
           />
-          <span className='text-neutral-400'>{value === 'true' ? 'Aktiviert' : 'Deaktiviert'}</span>
+          <span className='w-20 text-center text-neutral-400'>{value === 'true' ? 'Aktiviert' : 'Deaktiviert'}</span>
         </div>
       );
       break;
