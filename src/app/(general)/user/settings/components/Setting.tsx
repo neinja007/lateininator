@@ -62,7 +62,7 @@ const Setting = ({ settingKey, value }: SettingProps) => {
   }
 
   return (
-    <div className='my-2 flex min-h-20 items-center justify-between rounded-lg bg-neutral-800 px-4'>
+    <div className='my-2 flex min-h-20 items-center justify-between rounded-lg bg-neutral-800 px-4 py-2'>
       <div className='flex-grow'>
         <span className='text-lg font-medium'>{settings[settingKey].name}</span>
         <p className='text-neutral-400'>{settings[settingKey].description}</p>
