@@ -26,7 +26,7 @@ const BrowseCollections = () => {
         )}
       </div>
       {status === 'error' && <FailToLoad />}
-      <CellContainer>
+      <CellContainer wide>
         {status === 'pending' &&
           [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-24 w-full' />)}
         {status === 'success' &&
@@ -46,6 +46,7 @@ const BrowseCollections = () => {
               owner={collection.owner.name}
               buttonColor='green'
               description={collection.description ?? undefined}
+              wide
             />
           ))}
       </CellContainer>
