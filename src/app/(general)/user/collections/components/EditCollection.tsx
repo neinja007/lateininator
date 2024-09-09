@@ -39,7 +39,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
           </label>
           <textarea
             id={id}
-            className={clsx(ui.basic, 'mt-1 w-full')}
+            className={clsx(ui.shape, 'mt-1 h-24 w-full')}
             placeholder='Beschreibung'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
