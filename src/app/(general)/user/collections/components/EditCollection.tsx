@@ -22,8 +22,10 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
 
   const handleListSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLists([...lists, { id: lists.length + 1, name: listName, collectionId: collectionId ?? 0 }]);
-    setListName('');
+    if (listName.trim().length > 0 && !lists.some((list) => list.name === listName)) {
+      setLists([...lists, { id: lists.length + 1, name: listName, collectionId: collectionId ?? 0 }]);
+      setListName('');
+    }
   };
 
   return (
