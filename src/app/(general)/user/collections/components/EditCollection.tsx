@@ -48,8 +48,14 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
       <div className='col-span-2'>
         <form onSubmit={handleListSubmit} className='flex items-end'>
           <Input className='w-full max-w-64' label='Liste hinzufügen' value={listName} onChange={setListName} />
-          <Button className='ml-4' type='submit'>
-            Liste hinzufügen
+          <Button
+            className='ml-4'
+            type='submit'
+            disabled={
+              listName.trim().length === 0 || listName.length > 100 || lists.some((list) => list.name === listName)
+            }
+          >
+            {lists.some((list) => list.name === listName) ? 'Liste existiert bereits' : 'Liste hinzufügen'}
           </Button>
         </form>
         <div className='mt-4'>
