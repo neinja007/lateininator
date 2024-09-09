@@ -13,10 +13,21 @@ type CellProps = {
   buttonLabel?: string;
   buttonColor?: Color;
   description?: string;
+  wide?: boolean;
 };
 
+const Cell = ({
+  outlined,
+  className,
+  buttonLabel,
+  lists,
+  name,
+  owner,
+  buttonColor,
   onClick,
   description,
+  wide
+}: CellProps) => {
   return (
     <div className='min-h-24'>
       <button
@@ -38,6 +49,7 @@ type CellProps = {
           </div>
         ) : (
           <>
+            <h3 className={clsx('text-2xl font-medium', wide ? 'text-left' : 'text-center')}>{name}</h3>
             {wide && <p className='text-left'>{description}</p>}
             <p className='mt-3 block items-end justify-between sm:flex'>
               <span className='mt-2 block'>{lists} Listen</span>
