@@ -1,10 +1,10 @@
 'use client';
-
 import Button from '@/components/Button';
-import Hr from '@/components/Hr';
 import Input from '@/components/Input';
 import { List } from '@prisma/client';
-import { useState } from 'react';
+import { useId, useState } from 'react';
+import ui from '@/styles/ui.module.css';
+import clsx from 'clsx';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -18,37 +18,46 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
 
   const collectionIsNew = !collectionId;
 
+  const id = useId();
+
+  const handleListSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLists([...lists, { id: lists.length + 1, name: listName, collectionId: collectionId ?? 0 }]);
+    setListName('');
+  };
+
   return (
-    <div>
-      <span>Kollektion {collectionIsNew ? 'erstellen' : 'bearbeiten'}</span>
-      <Hr className='my-5' />
-      <div className='grid grid-cols-3 gap-5'>
-        <div>
-          <Input className='w-full' label='Name' value={name} onChange={setName} />
-          <Input className='w-full' label='Beschreibung' value={description} onChange={setDescription} />
+    <div className='grid grid-cols-3 gap-5'>
+      <div className='border-r pr-5 dark:border-gray-700'>
+        <Input className='w-full' label='Name' value={name} onChange={setName} />
+        <div className='mt-4'>
+          <label htmlFor={id} className='block'>
+            Beschreibung
+          </label>
+          <textarea
+            id={id}
+            className={clsx(ui.basic, 'mt-1 w-full')}
+            placeholder='Beschreibung'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </div>
-        <div className='col-span-2'>
-          {lists.length > 0 && (
-            <>
-              <span>Listen:</span>
-              <div>
-                {lists.map((list) => (
-                  <div key={list.id}>{list.name}</div>
-                ))}
+      </div>
+      <div className='col-span-2'>
+        <form onSubmit={handleListSubmit} className='flex items-end'>
+          <Input className='w-full max-w-64' label='Liste hinzufügen' value={listName} onChange={setListName} />
+          <Button className='ml-4' type='submit'>
+            Liste hinzufügen
+          </Button>
+        </form>
+        <div className='mt-4'>
+          <span>Listen (können im nächsten Schritt bearbeitet werden):</span>
+          <div className='mt-2 grid grid-cols-3 gap-2'>
+            {lists.map((list) => (
+              <div key={list.id} className='rounded-md border p-2 px-3 dark:border-gray-700'>
+                {list.name}
               </div>
-            </>
-          )}
-          <div className='flex items-end'>
-            <Input className='w-full max-w-64' label='Liste hinzufügen' value={listName} onChange={setListName} />
-            <Button
-              className='ml-4'
-              onClick={() => {
-                setLists([...lists, { id: lists.length + 1, name: listName, collectionId: collectionId ?? 0 }]);
-                setListName('');
-              }}
-            >
-              Liste hinzufügen
-            </Button>
+            ))}
           </div>
         </div>
       </div>
