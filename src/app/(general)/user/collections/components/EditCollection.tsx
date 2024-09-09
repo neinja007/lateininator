@@ -5,6 +5,7 @@ import { List } from '@prisma/client';
 import { useId, useState } from 'react';
 import ui from '@/styles/ui.module.css';
 import clsx from 'clsx';
+import { X } from 'lucide-react';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -60,10 +61,16 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
         </form>
         <div className='mt-4'>
           <span>Listen (können im nächsten Schritt bearbeitet werden):</span>
-          <div className='mt-2 grid grid-cols-3 gap-2'>
+          <div className='flex flex-wrap gap-x-4'>
             {lists.map((list) => (
-              <div key={list.id} className='rounded-md border p-2 px-3 dark:border-gray-700'>
-                {list.name}
+              <div key={list.id} className='flex items-center'>
+                {list.name}{' '}
+                <X
+                  onClick={() => {
+                    setLists(lists.filter((l) => l.id !== list.id));
+                  }}
+                  className='ml-1 h-5 w-5 cursor-pointer rounded-full bg-red-400 p-0.5 dark:bg-red-700'
+                />
               </div>
             ))}
           </div>
