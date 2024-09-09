@@ -1,20 +1,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.basic:not([class*='bg-']) {
-	@apply bg-white dark:bg-gray-900;
-}
-
-.basic:not([class*='border-']) {
-	@apply border dark:border-gray-700;
-}
-
 .basic:not([class*="flex"]) {
   @apply inline
 }
 
 .basic {
-	@apply p-1 px-3 h-9 rounded-md focus:outline-none;
+	@apply shape h-9;
+}
+
+.shape {
+  @apply p-1 px-3 rounded-md focus:outline-none
+}
+
+.shape:not([class*='bg-']) {
+	@apply bg-white dark:bg-gray-900;
+}
+
+.shape:not([class*='border-']) {
+	@apply border dark:border-gray-700;
 }
 
 .link {
