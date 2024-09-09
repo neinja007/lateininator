@@ -45,6 +45,7 @@ const BrowseCollections = () => {
               name={collection.name}
               owner={collection.owner.name}
               buttonColor='green'
+              description={collection.description ?? undefined}
             />
           ))}
       </CellContainer>
