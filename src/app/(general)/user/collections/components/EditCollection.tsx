@@ -101,12 +101,13 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
                   />
                 )}
                 <X
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     setLists(lists.filter((l) => l.id !== list.id));
                   }}
-                  className='ml-1 h-5 w-5 cursor-pointer rounded-full bg-red-400 p-0.5 dark:bg-red-700'
+                  className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-red-400 p-0.5 dark:bg-red-700'
                 />
-              </div>
+              </button>
             ))}
           </div>
         </div>
