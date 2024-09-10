@@ -1,0 +1,67 @@
+import Input from '@/components/Input';
+import clsx from 'clsx';
+import { Edit, Check, X } from 'lucide-react';
+import { List as ListType } from '@prisma/client';
+
+type ListProps = {
+  list: Omit<ListType, 'createdAt' | 'updatedAt'>;
+  activeList: number | undefined;
+  setActiveList: (id: number | undefined) => void;
+  editList: number | undefined;
+  setEditList: (id: number | undefined) => void;
+  setLists: (lists: Omit<ListType, 'createdAt' | 'updatedAt'>[]) => void;
+  lists: Omit<ListType, 'createdAt' | 'updatedAt'>[];
+};
+
+const List = ({ list, activeList, setActiveList, editList, setEditList, setLists, lists }: ListProps) => {
+  return (
+    <button
+      key={list.id}
+      className={clsx(
+        'flex items-center rounded-lg px-3 py-2 dark:border-gray-700',
+        activeList === list.id ? 'bg-gray-500' : 'bg-gray-900'
+      )}
+      onClick={() => setActiveList(list.id)}
+    >
+      {editList === list.id ? (
+        <Input
+          className='w-full'
+          value={list.name}
+          onChange={(value) => setLists(lists.map((l) => (l.id === list.id ? { ...l, name: value } : l)))}
+          onClick={(e) => {
+            e.stopPropagation();
+            setActiveList(undefined);
+          }}
+        />
+      ) : (
+        list.name
+      )}
+      {editList !== list.id ? (
+        <Edit
+          onClick={(e) => {
+            e.stopPropagation();
+            setEditList(list.id);
+          }}
+          className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-yellow-400 p-0.5 dark:bg-yellow-700'
+        />
+      ) : (
+        <Check
+          onClick={(e) => {
+            e.stopPropagation();
+            setEditList(undefined);
+          }}
+          className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-green-400 p-0.5 dark:bg-green-700'
+        />
+      )}
+      <X
+        onClick={(e) => {
+          e.stopPropagation();
+          setLists(lists.filter((l) => l.id !== list.id));
+        }}
+        className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-red-400 p-0.5 dark:bg-red-700'
+      />
+    </button>
+  );
+};
+
+export default List;
