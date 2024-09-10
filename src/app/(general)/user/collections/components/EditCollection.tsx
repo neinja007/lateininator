@@ -30,25 +30,26 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   };
 
   return (
-    <div className='grid grid-cols-3 gap-5'>
-      <div className='border-r pr-5 dark:border-gray-700'>
-        <Input className='w-full' label='Name' value={name} onChange={setName} />
-        <div className='mt-4'>
-          <label htmlFor={id} className='block'>
-            Beschreibung
-          </label>
-          <textarea
-            id={id}
-            className={clsx(ui.shape, 'mt-1 h-24 w-full')}
-            placeholder='Beschreibung'
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+    <div>
+      <Input className='w-full' label='Name der Kollektion' value={name} onChange={setName} />
+      <div className='mt-4'>
+        <label htmlFor={id} className='block'>
+          Beschreibung
+        </label>
+        <textarea
+          id={id}
+          className={clsx(ui.shape, 'mt-1 h-24 w-full')}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
       </div>
-      <div className='col-span-2'>
+      <Hr className='my-4' />
+      <div>
         <form onSubmit={handleListSubmit} className='flex items-end'>
-          <Input className='w-full max-w-64' label='Liste hinzufügen' value={listName} onChange={setListName} />
+          <div className='flex items-baseline'>
+            <span className='mr-4'>Ihre Kollektion hat bereits {lists.length} Listen.</span>
+            <Input className='w-full max-w-64' value={listName} onChange={setListName} />
+          </div>
           <Button
             className='ml-4'
             type='submit'
@@ -59,8 +60,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
             {lists.some((list) => list.name === listName) ? 'Liste existiert bereits' : 'Liste hinzufügen'}
           </Button>
         </form>
-        <div className='mt-4'>
-          <span>Listen (können im nächsten Schritt bearbeitet werden):</span>
+        <div className={lists.length > 0 ? 'mt-4' : undefined}>
           <div className='flex flex-wrap gap-x-4'>
             {lists.map((list) => (
               <div key={list.id} className='flex items-center'>
