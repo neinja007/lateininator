@@ -1,3 +1,5 @@
+'use client';
+
 import Heading from '@/components/Heading';
 import EditCollection from '../components/EditCollection';
 
