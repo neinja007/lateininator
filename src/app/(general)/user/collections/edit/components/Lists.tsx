@@ -1,12 +1,12 @@
 import { List as ListType } from '@prisma/client';
-import List from './List';
+import ListDisplay from './ListDisplay';
 import { useState } from 'react';
 
 type ListsProps = {
-  lists: Omit<ListType, 'createdAt' | 'updatedAt'>[];
+  lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[];
   activeList: number | undefined;
   setActiveList: (id: number | undefined) => void;
-  setLists: (lists: Omit<ListType, 'createdAt' | 'updatedAt'>[]) => void;
+  setLists: (lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[]) => void;
 };
 
 const Lists = ({ lists, activeList, setActiveList, setLists }: ListsProps) => {
@@ -16,7 +16,7 @@ const Lists = ({ lists, activeList, setActiveList, setLists }: ListsProps) => {
     <div className={lists.length > 0 ? 'mt-4' : undefined}>
       <div className='flex flex-wrap gap-x-4'>
         {lists.map((list) => (
-          <List
+          <ListDisplay
             key={list.id}
             list={list}
             activeList={activeList}
