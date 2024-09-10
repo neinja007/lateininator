@@ -4,12 +4,12 @@ import { useId, useState } from 'react';
 import clsx from 'clsx';
 import { Minus, Plus } from 'lucide-react';
 import Hr from '@/components/Hr';
-import { List as ListType } from '@prisma/client';
+import { List } from '@prisma/client';
 import { Word } from '@/types/word';
 import { useWords } from '@/hooks/database/queries/useWords';
 import BasicDataEditor from './BasicDataEditor';
 import ListAddForm from './ListAddForm';
-import List from './List';
+import Lists from './Lists';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -17,7 +17,7 @@ type EditCollectionProps = {
 
 const EditCollection = ({ collectionId }: EditCollectionProps) => {
   const [name, setName] = useState('');
-  const [lists, setLists] = useState<Omit<ListType, 'createdAt' | 'updatedAt'>[]>([]);
+  const [lists, setLists] = useState<Omit<List, 'createdAt' | 'updatedAt'>[]>([]);
   const [listName, setListName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -48,22 +48,14 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
       <Hr className='my-4' />
       <div>
         <ListAddForm handleListSubmit={handleListSubmit} listName={listName} lists={lists} setListName={setListName} />
-        <div className={lists.length > 0 ? 'mt-4' : undefined}>
-          <div className='flex flex-wrap gap-x-4'>
-            {lists.map((list) => (
-              <List
-                key={list.id}
-                list={list}
-                activeList={activeList}
-                setActiveList={setActiveList}
-                editList={editList}
-                setEditList={setEditList}
-                setLists={setLists}
-                lists={lists}
-              />
-            ))}
-          </div>
-        </div>
+        <Lists
+          lists={lists}
+          activeList={activeList}
+          setActiveList={setActiveList}
+          editList={editList}
+          setEditList={setEditList}
+          setLists={setLists}
+        />
         {activeList && (
           <div>
             <Hr className='my-4' />
