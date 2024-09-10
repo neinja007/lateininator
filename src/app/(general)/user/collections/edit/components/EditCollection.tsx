@@ -20,9 +20,8 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   const [lists, setLists] = useState<Omit<List, 'createdAt' | 'updatedAt'>[]>([]);
   const [listName, setListName] = useState('');
   const [description, setDescription] = useState('');
-
   const [activeList, setActiveList] = useState<number>();
-  const [editList, setEditList] = useState<number>();
+
   const [word, setWord] = useState('');
   const [words, setWords] = useState<Word[]>([]);
   const [query, setQuery] = useState('');
@@ -48,14 +47,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
       <Hr className='my-4' />
       <div>
         <ListAddForm handleListSubmit={handleListSubmit} listName={listName} lists={lists} setListName={setListName} />
-        <Lists
-          lists={lists}
-          activeList={activeList}
-          setActiveList={setActiveList}
-          editList={editList}
-          setEditList={setEditList}
-          setLists={setLists}
-        />
+        <Lists lists={lists} activeList={activeList} setActiveList={setActiveList} setLists={setLists} />
         {activeList && (
           <div>
             <Hr className='my-4' />
