@@ -5,10 +5,11 @@ import Input from '@/components/Input';
 import { useId, useState } from 'react';
 import ui from '@/styles/ui.module.css';
 import clsx from 'clsx';
-import { Check, Edit, X } from 'lucide-react';
+import { Check, Edit, Minus, Plus, X } from 'lucide-react';
 import Hr from '@/components/Hr';
 import { List } from '@prisma/client';
 import { Word } from '@/types/word';
+import { useWords } from '@/hooks/database/queries/useWords';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -24,10 +25,13 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   const [editList, setEditList] = useState<number>();
   const [word, setWord] = useState('');
   const [words, setWords] = useState<Word[]>([]);
+  const [query, setQuery] = useState('');
 
   const collectionIsNew = !collectionId;
 
   const id = useId();
+
+  const { words: data, status } = useWords(undefined, undefined, query);
 
   const handleListSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,9 +77,10 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
             {lists.map((list) => (
               <button
                 key={list.id}
-                className={clsx('flex items-center rounded-lg bg-neutral-900 px-3 py-2 dark:border-gray-700', {
-                  'bg-neutral-500': activeList === list.id
-                })}
+                className={clsx(
+                  'flex items-center rounded-lg px-3 py-2 dark:border-gray-700',
+                  activeList === list.id ? 'bg-gray-500' : 'bg-gray-900'
+                )}
                 onClick={() => setActiveList(list.id)}
               >
                 {editList === list.id ? (
@@ -122,12 +127,44 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
         {activeList && (
           <div>
             <Hr className='my-4' />
-            <h2 className='text-lg'>
-              Wörter in <b>{lists.find((l) => l.id === activeList)?.name}</b>:
+            <h2 className='text-center text-lg'>
+              Wörter in <b>{lists.find((l) => l.id === activeList)?.name}</b>
             </h2>
-            <div>
-              <Input className='w-full' value={word} onChange={setWord} />
-              <Button>Hinzufgen</Button>
+            <div className='grid grid-cols-2'>
+              <div className='border-r pr-3'>
+                <Input className='w-full' placeholder='Wort suchen...' value={query} onChange={setQuery} />
+                <div>
+                  {data?.map((word) => (
+                    <button
+                      key={word.id}
+                      className={clsx('flex items-center rounded-lg bg-gray-800 px-3 py-2 dark:border-gray-700')}
+                    >
+                      {word.name}
+                      <Plus
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setWords([...words, word]);
+                        }}
+                        className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-green-400 p-0.5 dark:bg-green-700'
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className='pl-3'>
+                {words.map((word) => (
+                  <button key={word.id} className={clsx('flex items-center rounded-lg px-3 py-2 dark:border-gray-700')}>
+                    {word.name}
+                    <Minus
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setWords(words.filter((w) => w.id !== word.id));
+                      }}
+                      className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-red-400 p-0.5 dark:bg-red-700'
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}
