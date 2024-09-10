@@ -1,15 +1,24 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { List } from '@prisma/client';
+import { useState } from 'react';
 
 type ListAddFormProps = {
-  listName: string;
-  setListName: (listName: string) => void;
-  lists: Omit<List, 'createdAt' | 'updatedAt'>[];
-  handleListSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  lists: Omit<List, 'createdAt' | 'updatedAt' | 'collectionId'>[];
+  setLists: (lists: Omit<List, 'createdAt' | 'updatedAt' | 'collectionId'>[]) => void;
 };
 
-const ListAddForm = ({ handleListSubmit, listName, lists, setListName }: ListAddFormProps) => {
+const ListAddForm = ({ lists, setLists }: ListAddFormProps) => {
+  const handleListSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (listName.trim().length > 0 && !lists.some((list) => list.name === listName)) {
+      setLists([...lists, { id: lists.length + 1, name: listName }]);
+      setListName('');
+    }
+  };
+
+  const [listName, setListName] = useState('');
+
   return (
     <form onSubmit={handleListSubmit} className='flex items-end'>
       <div className='flex items-baseline'>
