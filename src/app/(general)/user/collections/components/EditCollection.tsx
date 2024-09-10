@@ -63,8 +63,43 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
         <div className={lists.length > 0 ? 'mt-4' : undefined}>
           <div className='flex flex-wrap gap-x-4'>
             {lists.map((list) => (
-              <div key={list.id} className='flex items-center'>
-                {list.name}{' '}
+              <button
+                key={list.id}
+                className={clsx('flex items-center rounded-lg bg-neutral-900 px-3 py-2 dark:border-gray-700', {
+                  'bg-neutral-500': activeList === list.id
+                })}
+                onClick={() => setActiveList(list.id)}
+              >
+                {editList === list.id ? (
+                  <Input
+                    className='w-full'
+                    value={list.name}
+                    onChange={(value) => setLists(lists.map((l) => (l.id === list.id ? { ...l, name: value } : l)))}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveList(undefined);
+                    }}
+                  />
+                ) : (
+                  list.name
+                )}
+                {editList !== list.id ? (
+                  <Edit
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditList(list.id);
+                    }}
+                    className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-yellow-400 p-0.5 dark:bg-yellow-700'
+                  />
+                ) : (
+                  <Check
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditList(undefined);
+                    }}
+                    className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-green-400 p-0.5 dark:bg-green-700'
+                  />
+                )}
                 <X
                   onClick={() => {
                     setLists(lists.filter((l) => l.id !== list.id));
