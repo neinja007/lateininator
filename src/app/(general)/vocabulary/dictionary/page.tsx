@@ -13,20 +13,17 @@ import FailToLoad from '@/components/FailToLoad';
 import { useWords } from '@/hooks/database/queries/useWords';
 
 const Page = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
   const [query, setQuery] = useState<string>('');
   const [view, setView] = useState<'cards' | 'list'>('cards');
 
   useWidth('md', () => setView('cards'));
 
-  const { words, status } = useWords(undefined, ['noun', 'verb', 'adjective'], query);
-
-  const handleSearch = () => setQuery(searchTerm.toLowerCase().trim());
+  const { words, status } = useWords(undefined, ['noun', 'verb', 'adjective'], query.toLowerCase().trim());
 
   return (
     <div className='space-y-5'>
       <Heading>Wörterbuch</Heading>
-      <SearchBar query={searchTerm} setQuery={setSearchTerm} onSearch={handleSearch} isFetched={status !== 'pending'} />
+      <SearchBar query={query} setQuery={setQuery} />
       {status === 'error' ? (
         <FailToLoad />
       ) : (
