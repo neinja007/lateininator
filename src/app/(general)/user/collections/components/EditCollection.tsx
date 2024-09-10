@@ -1,11 +1,13 @@
 'use client';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import { List } from '@prisma/client';
 import { useId, useState } from 'react';
 import ui from '@/styles/ui.module.css';
 import clsx from 'clsx';
-import { X } from 'lucide-react';
+import { Check, Edit, X } from 'lucide-react';
+import Hr from '@/components/Hr';
+import { List } from '@prisma/client';
+import { Word } from '@/types/word';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -16,6 +18,11 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   const [lists, setLists] = useState<Omit<List, 'createdAt' | 'updatedAt'>[]>([]);
   const [listName, setListName] = useState('');
   const [description, setDescription] = useState('');
+
+  const [activeList, setActiveList] = useState<number>();
+  const [editList, setEditList] = useState<number>();
+  const [word, setWord] = useState('');
+  const [words, setWords] = useState<Word[]>([]);
 
   const collectionIsNew = !collectionId;
 
