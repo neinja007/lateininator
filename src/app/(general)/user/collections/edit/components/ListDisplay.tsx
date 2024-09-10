@@ -4,22 +4,24 @@ import { Edit, Check, X } from 'lucide-react';
 import { List as ListType } from '@prisma/client';
 
 type ListProps = {
-  list: Omit<ListType, 'createdAt' | 'updatedAt'>;
+  list: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>;
   activeList: number | undefined;
   setActiveList: (id: number | undefined) => void;
   editList: number | undefined;
   setEditList: (id: number | undefined) => void;
-  setLists: (lists: Omit<ListType, 'createdAt' | 'updatedAt'>[]) => void;
-  lists: Omit<ListType, 'createdAt' | 'updatedAt'>[];
+  setLists: (lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[]) => void;
+  lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[];
 };
 
-const List = ({ list, activeList, setActiveList, editList, setEditList, setLists, lists }: ListProps) => {
+const ListDisplay = ({ list, activeList, setActiveList, editList, setEditList, setLists, lists }: ListProps) => {
   return (
     <button
       key={list.id}
       className={clsx(
-        'flex items-center rounded-lg px-3 py-2 dark:border-gray-700',
-        activeList === list.id ? 'bg-gray-500' : 'bg-gray-900'
+        'flex items-center rounded-lg border px-3 py-2',
+        activeList === list.id
+          ? 'border-blue-500 bg-blue-200 hover:bg-blue-300 dark:bg-blue-800 dark:hover:bg-blue-600'
+          : 'bg-gray-200 hover:border-gray-400 hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
       )}
       onClick={() => setActiveList(list.id)}
     >
@@ -64,4 +66,4 @@ const List = ({ list, activeList, setActiveList, editList, setEditList, setLists
   );
 };
 
-export default List;
+export default ListDisplay;
