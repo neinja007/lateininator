@@ -60,12 +60,13 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   return (
     <div
       className={clsx(
-        'my-2 min-h-20 items-center justify-between rounded-lg bg-neutral-800 px-4 py-2 sm:flex',
-        disabled && 'opacity-50'
+        'my-2 min-h-20 items-center justify-between border-b px-4 py-2 last:border-b-0 sm:flex dark:border-gray-700'
       )}
     >
       <div className='flex-grow'>
-        <span className='text-lg font-medium'>{settings[settingKey].name}</span>
+        <span className='text-lg font-medium'>
+          {settings[settingKey].name} {disabled && <span className='text-red-400'>(noch nicht verfügbar)</span>}
+        </span>
         <p className='text-neutral-400'>{settings[settingKey].description}</p>
       </div>
       <div className='mt-4 flex-shrink text-center sm:mt-0'>{element}</div>
