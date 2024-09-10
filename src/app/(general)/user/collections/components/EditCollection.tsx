@@ -110,6 +110,18 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
             ))}
           </div>
         </div>
+        {activeList && (
+          <div>
+            <Hr className='my-4' />
+            <h2 className='text-lg'>
+              Wörter in <b>{lists.find((l) => l.id === activeList)?.name}</b>:
+            </h2>
+            <div>
+              <Input className='w-full' value={word} onChange={setWord} />
+              <Button>Hinzufgen</Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
