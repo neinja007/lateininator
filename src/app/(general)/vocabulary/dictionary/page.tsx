@@ -21,7 +21,7 @@ const Page = () => {
 
   const { words, status } = useWords(undefined, ['noun', 'verb', 'adjective'], query);
 
-  const handleSearch = () => setQuery(searchTerm);
+  const handleSearch = () => setQuery(searchTerm.toLowerCase().trim());
 
   return (
     <div className='space-y-5'>
