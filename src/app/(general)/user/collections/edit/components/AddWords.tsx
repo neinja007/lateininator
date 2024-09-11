@@ -25,11 +25,10 @@ const AddWords = ({ listName, words, setWords }: AddWordsProps) => {
       <div className='mt-4 grid grid-cols-2'>
         <div className='space-y-3 border-r pr-3'>
           <Input className='w-full' placeholder='Wort suchen...' value={query} onChange={setQuery} />
-          <div className='overflow-hidden overflow-y-scroll'>
-            <WordContainer addedWords={words} words={data?.slice(0, 20) || []} setWords={setWords} />
-          </div>
+          <WordContainer addedWords={words} words={data?.slice(0, 20) || []} setWords={setWords} />
         </div>
         <div className='pl-3'>
+          <h3 className='mb-1 flex h-12 items-center'>Schon hinzugefügte Wörter:</h3>
           <WordContainer addedWords={words} words={words} setWords={setWords} />
         </div>
       </div>
