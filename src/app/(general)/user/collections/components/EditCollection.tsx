@@ -19,8 +19,6 @@ type EditCollectionProps = {
 };
 
 const EditCollection = ({ collectionId }: EditCollectionProps) => {
-  const collectionIsNew = !collectionId;
-
   const [name, setName] = useState('');
   const [lists, setLists] = useState<ListWithWords[]>([]);
   const [description, setDescription] = useState('');
@@ -31,11 +29,12 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
 
   const submit = () => {
     const collection = {
+      id: collectionId,
       name,
       description,
       private: !isPublic,
       lists: lists.map((l) => ({
-        id: l.id,
+        id: collectionId ? l.id : undefined,
         name: l.name,
         words: l.words.map((w) => w.id)
       }))
