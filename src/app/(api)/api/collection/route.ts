@@ -3,7 +3,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
 import { getCollections } from './services/getCollections';
-import { Collection } from '@prisma/client';
+import { collectionSchema } from '@/schemas/collectionSchema';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -170,18 +170,72 @@ export const PUT = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const collection: Omit<Collection, 'createdAt' | 'updatedAt' | 'ownerId'> = await request.json();
+  const body = await request.json();
 
-  const { id, ...rest } = collection;
+  const parsed = collectionSchema.safeParse(body);
+
+  if (!parsed.success) {
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+  }
+
+  const collection = parsed.data;
+
+  const id = collection.id;
+  const name = collection.name;
+  const description = collection.description;
+  const isPrivate = collection.private;
+  const lists = collection.lists;
 
   try {
     const updatedCollection = await prisma.collection.upsert({
       where: {
-        id
+        id: id
       },
-      update: rest,
+      update: {
+        name,
+        description,
+        private: isPrivate,
+        lists: {
+          connectOrCreate: lists.map((list) => ({
+            where: {
+              id: list.id
+            },
+            create: {
+              name: list.name,
+              words: {
+                connect: list.words.map((word) => ({ id: word }))
+              }
+            }
+          }))
+        }
+      },
       create: {
-        ...rest
+        name,
+        description,
+        private: isPrivate,
+        lists: {
+          connectOrCreate: lists.map((list) => ({
+            where: {
+              id: list.id
+            },
+            create: {
+              name: list.name,
+              words: {
+                connect: list.words.map((word) => ({ id: word }))
+              }
+            }
+          }))
+        },
+        owner: {
+          connect: {
+            id: user.id
+          }
+        },
+        savedBy: {
+          connect: {
+            id: user.id
+          }
+        }
       }
     });
 
