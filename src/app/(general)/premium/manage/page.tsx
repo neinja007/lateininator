@@ -1,8 +1,6 @@
 'use client';
 import Heading from '@/components/Heading';
-import { RedirectToSignIn, useUser } from '@clerk/nextjs';
 import dayjs from 'dayjs';
-import { useRouter } from 'next/navigation';
 import { Card } from './components/Card';
 import FailToLoad from '@/components/FailToLoad';
 import { useSubscription } from '@/hooks/database/queries/useSubscription';
@@ -12,22 +10,15 @@ import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 const Page = () => {
   const { subscription, isLoading } = useSubscription();
 
-  const router = useRouter();
-
   const { mutate: cancelSubscription, isPending: isCancelPending } = useCancelSubscription();
-
-  const user = useUser();
 
   if (!isLoading && !subscription) {
     return (
       <div className='text-center text-red-500'>
-        Abo konnte nicht geladen werden! Kontaktieren Sie bitte unseren <LinkToSupportEmail />.
+        Abo konnte nicht geladen werden! Kontaktieren Sie bitte unseren <LinkToSupportEmail />, wenn dies ein Fehler
+        ist.
       </div>
     );
-  }
-
-  if (user.isLoaded && !user.isSignedIn) {
-    return <RedirectToSignIn />;
   }
 
   const status = subscription && subscription.status;

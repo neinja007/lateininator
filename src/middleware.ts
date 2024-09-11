@@ -9,4 +9,4 @@ export default clerkMiddleware((auth, request) => {
   }
 });
 
-const isProtectedRoute = createRouteMatcher(['/user(.*)']);
+const isProtectedRoute = createRouteMatcher(['/user(.*)', '/premium/manage(.*)']);
