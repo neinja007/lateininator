@@ -1,18 +1,18 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import { List } from '@prisma/client';
 import { useState } from 'react';
+import { ListWithWords } from '../../types';
 
 type ListAddFormProps = {
-  lists: Omit<List, 'createdAt' | 'updatedAt' | 'collectionId'>[];
-  setLists: (lists: Omit<List, 'createdAt' | 'updatedAt' | 'collectionId'>[]) => void;
+  lists: ListWithWords[];
+  setLists: (lists: ListWithWords[]) => void;
 };
 
 const ListAddForm = ({ lists, setLists }: ListAddFormProps) => {
   const handleListSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (listName.trim().length > 0 && !lists.some((list) => list.name === listName)) {
-      setLists([...lists, { id: lists.length + 1, name: listName }]);
+      setLists([...lists, { id: lists.length + 1, name: listName, words: [] }]);
       setListName('');
     }
   };
