@@ -1,15 +1,15 @@
 import { Word as WordType } from '@/types/word';
 import clsx from 'clsx';
 import { Minus, Plus } from 'lucide-react';
-import { Dispatch, SetStateAction } from 'react';
 
 type WordProps = {
   added: boolean;
   word: WordType;
-  setWords: Dispatch<SetStateAction<WordType[]>>;
+  setWords: (words: WordType[]) => void;
+  words: WordType[];
 };
 
-const WordDisplay = ({ added, word, setWords }: WordProps) => {
+const WordDisplay = ({ added, word, setWords, words }: WordProps) => {
   return (
     <button
       key={word.id}
@@ -17,11 +17,11 @@ const WordDisplay = ({ added, word, setWords }: WordProps) => {
         added
           ? (e) => {
               e.stopPropagation();
-              setWords((prev) => prev.filter((w) => w.id !== word.id));
+              setWords(words.filter((w) => w.id !== word.id));
             }
           : (e) => {
               e.stopPropagation();
-              setWords((prev) => [...prev, word]);
+              setWords([...words, word]);
             }
       }
       className={clsx(
