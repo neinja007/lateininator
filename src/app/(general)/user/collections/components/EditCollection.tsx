@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Hr from '@/components/Hr';
 import { List } from '@prisma/client';
 import { Word } from '@/types/word';
-import BasicDataEditor from './BasicDataEditor';
-import ListAddForm from './ListAddForm';
-import Lists from './Lists';
-import AddWords from './AddWords';
+import BasicDataEditor from '../edit/components/BasicDataEditor';
+import ListAddForm from '../edit/components/ListAddForm';
+import Lists from '../edit/components/Lists';
+import AddWords from '../edit/components/AddWords';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
