@@ -186,46 +186,32 @@ export const PUT = async (request: NextRequest) => {
   const isPrivate = collection.private;
   const lists = collection.lists;
 
-  try {
-    const updatedCollection = await prisma.collection.upsert({
-      where: {
-        id: id
-      },
-      update: {
-        name,
-        description,
-        private: isPrivate,
-        lists: {
-          connectOrCreate: lists.map((list) => ({
-            where: {
-              id: list.id
-            },
-            create: {
-              name: list.name,
-              words: {
-                connect: list.words.map((word) => ({ id: word }))
-              }
-            }
-          }))
-        }
-      },
-      create: {
-        name,
-        description,
-        private: isPrivate,
-        lists: {
-          connectOrCreate: lists.map((list) => ({
-            where: {
-              id: list.id
-            },
-            create: {
-              name: list.name,
-              words: {
-                connect: list.words.map((word) => ({ id: word }))
-              }
-            }
-          }))
+  let updatedCollection;
+
+  if (id) {
+    try {
+      updatedCollection = prisma.collection.update({
+        where: {
+          id: id
         },
+        data: {
+          name,
+          description,
+          private: isPrivate
+        }
+      });
+
+      return NextResponse.json(updatedCollection, { status: 200 });
+    } catch (error: any) {
+      console.error(error);
+      return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+  } else {
+    updatedCollection = await prisma.collection.create({
+      data: {
+        name,
+        description,
+        private: isPrivate,
         owner: {
           connect: {
             id: user.id
@@ -238,10 +224,40 @@ export const PUT = async (request: NextRequest) => {
         }
       }
     });
-
-    return NextResponse.json(updatedCollection, { status: 200 });
+  }
+  try {
+    for (const list of lists) {
+      if (!list.id) {
+        await prisma.list.create({
+          data: {
+            name: list.name,
+            words: {
+              connect: list.words.map((word) => ({ id: word }))
+            },
+            collection: {
+              connect: {
+                id: updatedCollection.id
+              }
+            }
+          }
+        });
+      } else {
+        await prisma.list.update({
+          where: {
+            id: list.id
+          },
+          data: {
+            name: list.name,
+            words: {
+              connect: list.words.map((word) => ({ id: word }))
+            }
+          }
+        });
+      }
+    }
   } catch (error: any) {
     console.error(error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
+  return NextResponse.json(updatedCollection, { status: 200 });
 };
