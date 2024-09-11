@@ -14,7 +14,11 @@ type AddWordsProps = {
 const AddWords = ({ listName, words, setWords }: AddWordsProps) => {
   const [query, setQuery] = useState('');
 
-  const { words: data, status } = useWords(undefined, undefined, query);
+  const { words: data } = useWords(undefined, undefined, query);
+
+  useEffect(() => {
+    setQuery('');
+  }, [listName]);
 
   return (
     <div>
