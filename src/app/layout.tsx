@@ -9,7 +9,10 @@ import { QueryClientWrapper } from '@/components/QueryClientWrapper';
 const rubik = Rubik({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Lateininator',
+  title: {
+    template: '%s - Lateininator',
+    default: 'Lateininator'
+  },
   description: 'Die #1 Latein-App zum Latein lernen'
 };
 
