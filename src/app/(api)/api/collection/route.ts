@@ -3,6 +3,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
 import { getCollections } from './services/getCollections';
+import { Collection } from '@prisma/client';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -159,5 +160,34 @@ export const PATCH = async (request: NextRequest) => {
   } catch (error: any) {
     console.error(error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+};
+
+export const PUT = async (request: NextRequest) => {
+  const user = await currentUser();
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const collection: Omit<Collection, 'createdAt' | 'updatedAt' | 'ownerId'> = await request.json();
+
+  const { id, ...rest } = collection;
+
+  try {
+    const updatedCollection = await prisma.collection.upsert({
+      where: {
+        id
+      },
+      update: rest,
+      create: {
+        ...rest
+      }
+    });
+
+    return NextResponse.json(updatedCollection, { status: 200 });
+  } catch (error: any) {
+    console.error(error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 };
