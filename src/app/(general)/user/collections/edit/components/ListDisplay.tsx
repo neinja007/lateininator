@@ -1,16 +1,16 @@
 import Input from '@/components/Input';
 import clsx from 'clsx';
 import { Edit, Check, X } from 'lucide-react';
-import { List as ListType } from '@prisma/client';
+import { ListWithWords } from '../../types';
 
 type ListProps = {
-  list: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>;
+  list: ListWithWords;
   activeList: number | undefined;
   setActiveList: (id: number | undefined) => void;
   editList: number | undefined;
   setEditList: (id: number | undefined) => void;
-  setLists: (lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[]) => void;
-  lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[];
+  setLists: (lists: ListWithWords[]) => void;
+  lists: ListWithWords[];
 };
 
 const ListDisplay = ({ list, activeList, setActiveList, editList, setEditList, setLists, lists }: ListProps) => {
