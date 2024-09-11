@@ -1,12 +1,12 @@
-import { List as ListType } from '@prisma/client';
 import ListDisplay from './ListDisplay';
 import { useState } from 'react';
+import { ListWithWords } from '../../types';
 
 type ListsProps = {
-  lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[];
+  lists: ListWithWords[];
   activeList: number | undefined;
   setActiveList: (id: number | undefined) => void;
-  setLists: (lists: Omit<ListType, 'createdAt' | 'updatedAt' | 'collectionId'>[]) => void;
+  setLists: (lists: ListWithWords[]) => void;
 };
 
 const Lists = ({ lists, activeList, setActiveList, setLists }: ListsProps) => {
