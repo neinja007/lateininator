@@ -5,9 +5,13 @@ import Cell from './Cell';
 import clsx from 'clsx';
 import { useCollections } from '@/hooks/database/queries/useCollections';
 import { useSaveCollection } from '@/hooks/database/mutations/useSaveCollection';
+import { FullCollection } from '@/types/collection';
 
 const BrowseCollections = () => {
-  const { collections, status } = useCollections(false, ['lists', 'owner']);
+  const { data: collections, status } = useCollections<FullCollection[]>({
+    include: ['lists', 'owner'],
+    listInclude: ['words']
+  });
 
   const { mutate, variables, error, status: mutationStatus } = useSaveCollection();
 
