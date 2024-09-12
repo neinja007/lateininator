@@ -1,4 +1,5 @@
 'use client';
+
 import Input from '@/components/Input';
 import { useState } from 'react';
 import Hr from '@/components/Hr';
@@ -8,18 +9,22 @@ import Lists from '../edit/components/Lists';
 import AddWords from '../edit/components/AddWords';
 import { useUpdateCollection } from '@/hooks/database/mutations/useUpdateCollection';
 import Button from '@/components/Button';
-import { ListWithWords } from '../types';
 import { Word } from '@/types/word';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { collectionSchema } from '@/schemas/collectionSchema';
 import { useCollections } from '@/hooks/database/queries/useCollections';
+import { FullCollection, ListWithWords } from '@/types/collection';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
 };
 
 const EditCollection = ({ collectionId }: EditCollectionProps) => {
-  const { data: collection } = useCollections({ id: collectionId });
+  const { data: collection } = useCollections<FullCollection>({
+    id: collectionId,
+    include: ['lists', 'owner', 'savedBy'],
+    listInclude: ['words']
+  });
 
   const [name, setName] = useState('');
   const [lists, setLists] = useState<ListWithWords[]>([]);
