@@ -23,7 +23,8 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   const { data: collection } = useCollections<FullCollection>({
     id: collectionId,
     include: ['lists', 'owner', 'savedBy'],
-    listInclude: ['words']
+    listInclude: ['words'],
+    enabled: !!collectionId
   });
 
   const [name, setName] = useState('');
