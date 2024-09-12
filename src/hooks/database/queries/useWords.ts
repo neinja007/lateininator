@@ -1,8 +1,12 @@
-import { Word } from '@/types/word';
+import { Word } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-export const useWords = (parameters: { id?: number; include: string[]; query?: string | undefined }) => {
+export const useWords = <T extends Word>(parameters: {
+  id?: number;
+  include: string[];
+  query?: string | undefined;
+}) => {
   const { id, include, query: searchQuery } = parameters;
 
   if (searchQuery && id) {
@@ -15,8 +19,8 @@ export const useWords = (parameters: { id?: number; include: string[]; query?: s
   });
 
   if (id) {
-    return { word: query.data as Word, ...query };
+    return { word: query.data as T, ...query };
   } else {
-    return { words: query.data as Word[], ...query };
+    return { words: query.data as T[], ...query };
   }
 };

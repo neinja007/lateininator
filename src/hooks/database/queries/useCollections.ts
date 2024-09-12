@@ -1,8 +1,12 @@
-import { FullCollection } from '@/types/collection';
+import { Collection } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-export const useCollections = (parameters: { saved?: boolean; include?: string[]; id?: number }) => {
+export const useCollections = <T extends Collection>(parameters: {
+  saved?: boolean;
+  include?: string[];
+  id?: number;
+}) => {
   const { saved, include, id } = parameters;
 
   const query = useQuery({
@@ -11,8 +15,8 @@ export const useCollections = (parameters: { saved?: boolean; include?: string[]
   });
 
   if (id) {
-    return { collection: query.data as FullCollection, ...query };
+    return { collection: query.data as T, ...query };
   } else {
-    return { collections: query.data as FullCollection[], ...query };
+    return { collections: query.data as T[], ...query };
   }
 };
