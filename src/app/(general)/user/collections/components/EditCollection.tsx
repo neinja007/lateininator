@@ -1,5 +1,4 @@
 'use client';
-
 import Input from '@/components/Input';
 import { useState } from 'react';
 import Hr from '@/components/Hr';
@@ -13,12 +12,15 @@ import { ListWithWords } from '../types';
 import { Word } from '@/types/word';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { collectionSchema } from '@/schemas/collectionSchema';
+import { useCollections } from '@/hooks/database/queries/useCollections';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
 };
 
 const EditCollection = ({ collectionId }: EditCollectionProps) => {
+  const { data: collection } = useCollections({ id: collectionId });
+
   const [name, setName] = useState('');
   const [lists, setLists] = useState<ListWithWords[]>([]);
   const [description, setDescription] = useState('');
