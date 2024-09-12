@@ -1,6 +1,12 @@
 import { prisma } from '@/utils/other/client';
+import { IncludedData } from '../../types';
 
-export async function getCollections(userId: string, saved: boolean, includedData: any) {
+export async function getCollections(
+  userId: string,
+  saved: boolean,
+  includedData: IncludedData,
+  listIncludedData: IncludedData
+) {
   try {
     const collections = await prisma.collection.findMany({
       where: {
@@ -26,7 +32,14 @@ export async function getCollections(userId: string, saved: boolean, includedDat
           }
         ]
       },
-      include: includedData
+      include: {
+        ...includedData,
+        lists: includedData.lists && {
+          include: {
+            ...listIncludedData
+          }
+        }
+      }
     });
     return collections;
   } catch (error) {
