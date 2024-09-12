@@ -17,7 +17,7 @@ export const GET = async (request: NextRequest) => {
   const saved: boolean = searchParams.get('saved') === 'true';
   const id: number = parseInt(searchParams.get('id') || '');
 
-  const includedDataObject = getIncludedData(searchParams.getAll('include[]'), ['lists', 'owner', 'savedBy']);
+  const includedDataObject = getIncludedData(searchParams.getAll('include[]'), ['lists', 'owner', 'savedBy', 'words']);
 
   if (!includedDataObject) {
     return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
