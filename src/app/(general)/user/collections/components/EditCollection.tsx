@@ -1,7 +1,7 @@
 'use client';
 
 import Input from '@/components/Input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Hr from '@/components/Hr';
 import BasicDataEditor from '../edit/components/BasicDataEditor';
 import ListAddForm from '../edit/components/ListAddForm';
@@ -14,17 +14,21 @@ import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { collectionSchema } from '@/schemas/collectionSchema';
 import { useCollections } from '@/hooks/database/queries/useCollections';
 import { FullCollection, ListWithWords } from '@/types/collection';
+import Skeleton from '@/components/Skeleton';
+import FailToLoad from '@/components/FailToLoad';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
 };
 
 const EditCollection = ({ collectionId }: EditCollectionProps) => {
-  const { data: collection } = useCollections<FullCollection>({
+  const newCollection = !collectionId;
+
+  const { data: collection, status: collectionStatus } = useCollections<FullCollection>({
     id: collectionId,
     include: ['lists', 'owner', 'savedBy'],
     listInclude: ['words'],
-    enabled: !!collectionId
+    enabled: !newCollection
   });
 
   const [name, setName] = useState('');
@@ -33,7 +37,25 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   const [isPublic, setIsPublic] = useState(false);
   const [activeList, setActiveList] = useState<number>();
 
+  useEffect(() => {
+    if (collection) {
+      setName(collection.name);
+      setDescription(collection.description || '');
+      setIsPublic(collection.private);
+      setLists(collection.lists);
+      setActiveList(collection.lists[0].id);
+    }
+  }, [collection]);
+
   const { updateCollection, status } = useUpdateCollection();
+
+  if (!newCollection && collectionStatus === 'pending') {
+    return <Skeleton pulse customSize className='h-24 w-full' />;
+  }
+
+  if (!newCollection && collectionStatus === 'error') {
+    return <FailToLoad />;
+  }
 
   const submit = () => {
     const collection = {
