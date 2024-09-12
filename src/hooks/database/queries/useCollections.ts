@@ -11,13 +11,13 @@ export const useCollections = <T extends Collection>(parameters: {
   const { saved, include, id, listInclude } = parameters;
 
   const query = useQuery({
-    queryKey: ['collections', { saved, include, listInclude }],
-    queryFn: () => axios.get('/api/collection', { params: { saved, include, listInclude } }).then((res) => res.data)
+    queryKey: ['collections', { id, saved, include, listInclude }],
+    queryFn: () => axios.get('/api/collection', { params: { id, saved, include, listInclude } }).then((res) => res.data)
   });
 
   if (id) {
-    return { collection: query.data as T, ...query };
+    return { ...query, data: query.data as T };
   } else {
-    return { collections: query.data as T[], ...query };
+    return { ...query, data: query.data as T[] };
   }
 };
