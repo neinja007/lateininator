@@ -25,7 +25,7 @@ export const GET = async (request: NextRequest) => {
 
   try {
     if (id) {
-      const collection = await getCollection(id, includedDataObject);
+      const collection = await getCollection(id, user.id, includedDataObject);
       return NextResponse.json(collection, { status: 200 });
     } else {
       const collections = await getCollections(user.id, saved, includedDataObject);
