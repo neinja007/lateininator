@@ -1,4 +1,5 @@
-import { Collection, List, User, Word } from '@prisma/client';
+import { Collection, List, User } from '@prisma/client';
+import { Word } from './word';
 
 export type FullCollection = Collection & {
   lists: ListWithWords[];
