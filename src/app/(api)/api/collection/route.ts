@@ -2,9 +2,7 @@ import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
-import { getCollections } from './services/getCollections';
 import { collectionSchema } from '@/schemas/collectionSchema';
-import { getCollection } from './services/getCollection';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -17,18 +15,70 @@ export const GET = async (request: NextRequest) => {
   const saved: boolean = searchParams.get('saved') === 'true';
   const id: number = parseInt(searchParams.get('id') || '');
 
-  const includedDataObject = getIncludedData(searchParams.getAll('include[]'), ['lists', 'owner', 'savedBy', 'words']);
+  const includedDataObject = getIncludedData<['lists', 'owner', 'savedBy']>(searchParams.getAll('include[]'), [
+    'lists',
+    'owner',
+    'savedBy'
+  ]);
+  const listIncludedDataObject = getIncludedData<['words', 'collection']>(searchParams.getAll('listInclude[]'), [
+    'words',
+    'collection'
+  ]);
 
-  if (!includedDataObject) {
+  if (!includedDataObject || !listIncludedDataObject) {
     return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
   }
 
   try {
     if (id) {
-      const collection = await getCollection(id, user.id, includedDataObject);
+      const collection = await prisma.collection.findUnique({
+        where: {
+          id,
+          OR: [{ ownerId: user.id }, { private: false }]
+        },
+        include: {
+          ...includedDataObject,
+          lists: includedDataObject.lists && {
+            include: listIncludedDataObject
+          }
+        }
+      });
+
       return NextResponse.json(collection, { status: 200 });
     } else {
-      const collections = await getCollections(user.id, saved, includedDataObject);
+      const collections = await prisma.collection.findMany({
+        where: {
+          savedBy: saved
+            ? {
+                some: {
+                  id: user.id
+                }
+              }
+            : {
+                none: {
+                  id: user.id
+                }
+              },
+          OR: [
+            {
+              private: false
+            },
+            {
+              owner: {
+                id: user.id
+              }
+            }
+          ]
+        },
+        include: {
+          ...includedDataObject,
+          lists: includedDataObject.lists && {
+            include: {
+              ...listIncludedDataObject
+            }
+          }
+        }
+      });
       return NextResponse.json(collections, { status: 200 });
     }
   } catch (error: any) {
