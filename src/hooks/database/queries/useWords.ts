@@ -1,10 +1,10 @@
-import { Word } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Word } from '@/types/word';
 
-export const useWords = <T extends Word>(parameters: {
+export const useWords = <T extends Word | Word[]>(parameters: {
   id?: number;
-  include: string[];
+  include?: string[];
   query?: string | undefined;
 }) => {
   const { id, include, query: searchQuery } = parameters;
