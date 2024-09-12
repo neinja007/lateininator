@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
 import { getCollections } from './services/getCollections';
 import { collectionSchema } from '@/schemas/collectionSchema';
+import { getCollection } from './services/getCollection';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -14,6 +15,7 @@ export const GET = async (request: NextRequest) => {
 
   const searchParams = request.nextUrl.searchParams;
   const saved: boolean = searchParams.get('saved') === 'true';
+  const id: number = parseInt(searchParams.get('id') || '');
 
   const includedDataObject = getIncludedData(searchParams.getAll('include[]'), ['lists', 'owner', 'savedBy']);
 
@@ -22,9 +24,13 @@ export const GET = async (request: NextRequest) => {
   }
 
   try {
-    const collections = await getCollections(user.id, saved, includedDataObject);
-
-    return NextResponse.json(collections, { status: 200 });
+    if (id) {
+      const collection = await getCollection(id, includedDataObject);
+      return NextResponse.json(collection, { status: 200 });
+    } else {
+      const collections = await getCollections(user.id, saved, includedDataObject);
+      return NextResponse.json(collections, { status: 200 });
+    }
   } catch (error: any) {
     console.error(error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
