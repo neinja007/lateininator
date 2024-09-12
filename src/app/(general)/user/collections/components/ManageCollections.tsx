@@ -5,9 +5,13 @@ import CellContainer from './CellContainer';
 import { useRouter } from 'next/navigation';
 import { useCollections } from '@/hooks/database/queries/useCollections';
 import { useRemoveCollection } from '@/hooks/database/mutations/useRemoveCollection';
+import { FullCollection } from '@/types/collection';
 
 const ManageCollections = () => {
-  const { collections, status } = useCollections(true, ['lists', 'owner']);
+  const { data: collections, status } = useCollections<FullCollection[]>({
+    saved: true,
+    include: ['lists', 'owner']
+  });
 
   const { mutate, variables, status: mutationStatus } = useRemoveCollection();
 
@@ -29,7 +33,7 @@ const ManageCollections = () => {
         {status === 'success' && (
           <>
             {collections &&
-              collections.map((collection) => (
+              collections.map((collection: FullCollection) => (
                 <Cell
                   key={collection.id}
                   className={
