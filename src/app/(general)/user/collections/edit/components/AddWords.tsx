@@ -14,7 +14,9 @@ type AddWordsProps = {
 const AddWords = ({ listName, words, setWords }: AddWordsProps) => {
   const [query, setQuery] = useState('');
 
-  const { words: data } = useWords(undefined, undefined, query);
+  const { data } = useWords<WordType[]>({
+    query
+  });
 
   useEffect(() => {
     setQuery('');
