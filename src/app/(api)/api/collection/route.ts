@@ -15,19 +15,23 @@ export const GET = async (request: NextRequest) => {
   const saved: boolean = searchParams.get('saved') === 'true';
   const id: number = parseInt(searchParams.get('id') || '');
 
-  const includedDataObject = getIncludedData<['lists', 'owner', 'savedBy']>(searchParams.getAll('include[]'), [
-    'lists',
-    'owner',
-    'savedBy'
-  ]);
-  const listIncludedDataObject = getIncludedData<['words', 'collection']>(searchParams.getAll('listInclude[]'), [
-    'words',
-    'collection'
-  ]);
+  const collectionIncludedDataObject = getIncludedData<['lists', 'owner', 'savedBy']>(
+    searchParams.getAll('include[]'),
+    ['lists', 'owner', 'savedBy']
+  );
+  const listIncludedDataObject = getIncludedData<['words']>(searchParams.getAll('listInclude[]'), ['words']);
+  const wordIncludedDataObject = getIncludedData<['adjective', 'noun', 'verb', 'derivative', 'lists', 'base']>(
+    searchParams.getAll('wordInclude[]'),
+    ['adjective', 'noun', 'verb', 'derivative', 'lists', 'base']
+  );
 
-  if (!includedDataObject || !listIncludedDataObject) {
+  if (!collectionIncludedDataObject || !listIncludedDataObject || !wordIncludedDataObject) {
     return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
   }
+
+  const wordIncludedData = listIncludedDataObject?.words ? { include: wordIncludedDataObject } : undefined;
+  const listIncludedData = collectionIncludedDataObject.lists ? { include: { words: wordIncludedData } } : undefined;
+  const collectionIncludedData = { ...collectionIncludedDataObject, lists: listIncludedData };
 
   try {
     if (id) {
@@ -36,12 +40,7 @@ export const GET = async (request: NextRequest) => {
           id,
           OR: [{ ownerId: user.id }, { private: false }]
         },
-        include: {
-          ...includedDataObject,
-          lists: includedDataObject.lists && {
-            include: listIncludedDataObject
-          }
-        }
+        include: collectionIncludedData
       });
 
       return NextResponse.json(collection, { status: 200 });
@@ -70,14 +69,7 @@ export const GET = async (request: NextRequest) => {
             }
           ]
         },
-        include: {
-          ...includedDataObject,
-          lists: includedDataObject.lists && {
-            include: {
-              ...listIncludedDataObject
-            }
-          }
-        }
+        include: collectionIncludedData
       });
       return NextResponse.json(collections, { status: 200 });
     }
