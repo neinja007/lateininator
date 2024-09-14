@@ -4,12 +4,12 @@ import Skeleton from '@/components/Skeleton';
 import { MainWordType } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { MAPPER } from '@/utils/other/mapper';
-import { Collection } from '@prisma/client';
+import { Collection, List } from '@prisma/client';
 import { Book } from 'lucide-react';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import CheckboxWithLabel from './CheckboxWithLabel';
-import { useLists } from '@/hooks/database/queries/useLists';
+import { useCollections } from '@/hooks/database/queries/useCollections';
 
 type ListSelectionProps = {
   selectedWords: Word[];
@@ -18,29 +18,19 @@ type ListSelectionProps = {
 };
 
 const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: ListSelectionProps) => {
-  const { lists, status } = useLists(['words', 'collection'], ['noun', 'verb', 'adjective']);
+  const { data: collections, status } = useCollections<(Collection & { lists: (List & { words: Word[] })[] })[]>({
+    wordInclude: ['adjective', 'noun', 'verb'],
+    include: ['lists'],
+    listInclude: ['words']
+  });
 
   const [excludeExceptionalWords, setExcludeExceptionalWords] = useState(false);
-  const [collections, setCollections] = useState<Collection[]>([]);
   const [selectedCollection, setSelectedCollection] = useState<number>();
 
   const filteredLists = useMemo(
-    () => lists?.filter((list) => selectedCollection === list.collection.id) || [],
-    [lists, selectedCollection]
+    () => collections?.find((collection) => selectedCollection === collection.id)?.lists || [],
+    [collections, selectedCollection]
   );
-
-  useEffect(() => {
-    if (status === 'success') {
-      const collections = (lists ?? []).reduce((acc: Collection[], curr) => {
-        if (!acc.find((collection) => collection.id === curr.collection.id)) {
-          acc.push(curr.collection);
-        }
-        return acc;
-      }, []);
-      setCollections(collections);
-      setSelectedCollection(collections[0]?.id);
-    }
-  }, [lists, status]);
 
   const [selectedLists, setSelectedLists] = useState<number[]>([]);
 
@@ -143,21 +133,23 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             {status === 'pending' &&
               [...Array(15)].map((_, i) => <Skeleton pulse key={i} customSize className='h-9 w-full' />)}
             {status === 'success' && filteredLists.length > 0 ? (
-              filteredLists.map((list) => (
-                <Button
-                  key={list.id}
-                  color={selectedLists.includes(list.id) ? 'blue' : 'default'}
-                  onClick={() =>
-                    setSelectedLists((prev) =>
-                      prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]
-                    )
-                  }
-                  className='flex items-center gap-x-2'
-                >
-                  <Book className='w-4' />
-                  {list.name}
-                </Button>
-              ))
+              filteredLists
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((list) => (
+                  <Button
+                    key={list.id}
+                    color={selectedLists.includes(list.id) ? 'blue' : 'default'}
+                    onClick={() =>
+                      setSelectedLists((prev) =>
+                        prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]
+                      )
+                    }
+                    className='flex items-center gap-x-2'
+                  >
+                    <Book className='w-4' />
+                    {list.name}
+                  </Button>
+                ))
             ) : (
               <div className='col-span-full'>Wähle eine Kollektion aus, um Listen anzuzeigen</div>
             )}
