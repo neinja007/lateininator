@@ -6,11 +6,12 @@ import Logo from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
 import { routes } from '@/constants/routes';
-import { Menu } from 'lucide-react';
+import { Coins, Menu } from 'lucide-react';
 import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
 import { makeStatusDependent } from '@/utils/other/makeStatusDependent';
 import { useUser } from '@clerk/nextjs';
+import { useDbUser } from '@/hooks/database/queries/useDbUser';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -30,6 +31,9 @@ const Navbar = () => {
   );
 
   const user = useUser();
+
+  const { dbUser } = useDbUser();
+  const coins = dbUser?.points;
 
   return (
     <>
@@ -77,6 +81,9 @@ const Navbar = () => {
 
             return <Fragment key={i}>{makeStatusDependent(element, route.status)}</Fragment>;
           })}
+        </div>
+        <div className='my-auto mr-4 flex items-center'>
+          <b>{coins ?? '?'}</b> <Coins className='ml-3 w-6 text-yellow-400' />
         </div>
       </div>
     </>
