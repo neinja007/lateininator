@@ -1,7 +1,9 @@
+import { settings } from '@/constants/settings';
 import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
-import { UserSetting } from '@prisma/client';
+import { SettingKey, UserSetting } from '@prisma/client';
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 
 export const GET = async () => {
   const user = await currentUser();
@@ -31,7 +33,16 @@ export const GET = async () => {
 };
 
 export const PATCH = async (req: Request) => {
-  const { settingKey, settingValue } = await req.json();
+  const body = await req.json();
+  const schema = z.object({
+    settingKey: z.string(),
+    settingValue: z.string()
+  });
+  const { settingKey, settingValue } = schema.parse(body);
+
+  if (!Object.keys(settings).includes(settingKey)) {
+    return NextResponse.json({ error: 'Invalid setting key' }, { status: 400 });
+  }
 
   const user = await currentUser();
   if (!user) {
@@ -42,7 +53,7 @@ export const PATCH = async (req: Request) => {
     where: {
       userId_settingKey: {
         userId: user.id,
-        settingKey
+        settingKey: settingKey as SettingKey
       }
     },
     update: {
@@ -50,7 +61,7 @@ export const PATCH = async (req: Request) => {
     },
     create: {
       userId: user.id,
-      settingKey,
+      settingKey: settingKey as SettingKey,
       settingValue
     }
   });
