@@ -9,7 +9,7 @@ const CellContainer = ({ children, wide }: CellContainerProps) => {
   return (
     <div
       className={clsx(
-        'grid h-fit max-h-64 gap-3 overflow-y-scroll',
+        'grid h-fit gap-x-3 gap-y-6 overflow-y-scroll',
         wide ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-2 lg:grid-cols-3'
       )}
     >
