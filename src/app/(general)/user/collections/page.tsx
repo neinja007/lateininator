@@ -12,6 +12,7 @@ import CellContainer from './components/CellContainer';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useToggleSavedCollection } from '@/hooks/database/mutations/useToggleSavedCollection';
+import Tutorial from '@/components/Tutorial';
 
 const displays = ['saved', 'browse', 'manage'] as const;
 
@@ -43,7 +44,8 @@ const Page = () => {
 
   return (
     <div>
-      <Heading>Wortschatz: {displayMap[display]}</Heading>
+      <Heading className='mb-8'>Wortschatz: {displayMap[display]}</Heading>
+
       <div className='grid grid-cols-3 gap-x-4'>
         {displays.map((d) => (
           <Button key={d} onClick={() => setDisplay(d)} color={d === display ? 'blue' : 'default'}>
@@ -53,6 +55,27 @@ const Page = () => {
       </div>
       <div className='my-10'>
         {status === 'error' && <FailToLoad />}
+        <Tutorial heading={displayMap[display]}>
+          <div className='text-center'>
+            {display === 'saved' && (
+              <p>
+                Hier sind alle Kollektionen, die du <b>gespeichert</b> hast. Diese stehen bei den <b>Trainern</b> zur
+                Verfügung.
+              </p>
+            )}
+            {display === 'browse' && (
+              <p>
+                Hier findest du alle <b>öffentlichen Kollektionen</b>, die du <b>speichern</b> kannst.
+              </p>
+            )}
+            {display === 'manage' && (
+              <p>
+                Hier findest du alle Kollektionen, <b>die du erstellt</b> hast. Du kannst diese <b>bearbeiten</b>,{' '}
+                <b>löschen</b> oder <b>neue erstellen</b>.
+              </p>
+            )}
+          </div>
+        </Tutorial>
         <CellContainer>
           {status === 'pending' &&
             [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-24 w-full' />)}
