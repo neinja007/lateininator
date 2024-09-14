@@ -32,10 +32,10 @@ const Cell = ({
     <div className='min-h-24'>
       <button
         className={clsx(
-          'min-h-24 w-full rounded-lg border px-4 py-2 transition-colors',
+          'min-h-24 w-full rounded-lg px-4 py-2 transition-colors',
           outlined
-            ? 'border-dashed hover:border-solid hover:bg-gray-200 dark:hover:bg-gray-900'
-            : 'border-blue-500 bg-blue-400 hover:border-blue-900 hover:bg-blue-500 dark:bg-blue-950 dark:hover:border-blue-300 dark:hover:bg-blue-800',
+            ? 'border border-dashed hover:border-solid hover:bg-gray-200 dark:hover:bg-gray-900'
+            : 'bg-blue-400 hover:bg-blue-500 dark:bg-blue-950 dark:hover:bg-blue-800',
           className
         )}
         onClick={outlined ? onClick : undefined}
@@ -60,11 +60,9 @@ const Cell = ({
           </>
         )}
       </button>
-      {!outlined && (
-        <Button className={clsx('mt-2 w-full', className)} onClick={onClick} color={buttonColor}>
-          {buttonLabel}
-        </Button>
-      )}
+      <Button className={clsx('mt-2 w-full', className)} onClick={onClick} color={buttonColor}>
+        {buttonLabel}
+      </Button>
     </div>
   );
 };
