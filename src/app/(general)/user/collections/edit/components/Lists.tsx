@@ -1,6 +1,6 @@
+import { ListWithWords } from '@/types/collection';
 import ListDisplay from './ListDisplay';
 import { useState } from 'react';
-import { ListWithWords } from '../../types';
 
 type ListsProps = {
   lists: ListWithWords[];

@@ -1,7 +1,7 @@
 import Input from '@/components/Input';
+import { ListWithWords } from '@/types/collection';
 import clsx from 'clsx';
 import { Edit, Check, X } from 'lucide-react';
-import { ListWithWords } from '../../types';
 
 type ListProps = {
   list: ListWithWords;
