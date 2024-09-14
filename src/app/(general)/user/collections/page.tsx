@@ -8,10 +8,9 @@ import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
 import Cell from './components/Cell';
 import CellContainer from './components/CellContainer';
-import { useRemoveCollection } from '@/hooks/database/mutations/useRemoveCollection';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import { useSaveCollection } from '@/hooks/database/mutations/useSaveCollection';
+import { useToggleSavedCollection } from '@/hooks/database/mutations/useToggleSavedCollection';
 
 const displays = ['saved', 'browse', 'manage'] as const;
 
@@ -32,10 +31,14 @@ const Page = () => {
 
   const router = useRouter();
 
-  const { mutate: removeCollection, variables: removeVariables, status: removeMutationStatus } = useRemoveCollection();
-  const { mutate: saveCollection, variables: saveVariables, error, status: saveMutationStatus } = useSaveCollection();
+  const {
+    mutate: toggleSavedCollection,
+    variables: toggleSavedVariables,
+    status: toggleSavedMutationStatus
+  } = useToggleSavedCollection();
 
-  const mutationIsPending = saveMutationStatus === 'pending' || removeMutationStatus === 'pending';
+  const mutationIsPending = toggleSavedMutationStatus === 'pending';
+  const affectedCollection = toggleSavedVariables;
 
   return (
     <div>
@@ -62,15 +65,13 @@ const Page = () => {
                     <Cell
                       key={collection.id}
                       className={
-                        saveVariables && saveVariables === collection.id && mutationIsPending
-                          ? 'animate-pulse opacity-50'
-                          : ''
+                        affectedCollection === collection.id && mutationIsPending ? 'animate-pulse opacity-50' : ''
                       }
                       onClick={() => {
                         if (display === 'manage') {
                           router.push(`/user/collections/${collection.id}`);
                         } else {
-                          removeCollection(collection.id);
+                          toggleSavedCollection(collection.id);
                         }
                       }}
                       lists={collection.lists.length}
