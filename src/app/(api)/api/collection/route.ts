@@ -3,6 +3,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
 import { collectionSchema } from '@/schemas/collectionSchema';
+import { z } from 'zod';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -12,8 +13,12 @@ export const GET = async (request: NextRequest) => {
   }
 
   const searchParams = request.nextUrl.searchParams;
-  const saved: boolean = searchParams.get('saved') === 'true';
-  const id: number = parseInt(searchParams.get('id') || '');
+  const saved = z.enum(['true', 'false']).optional().parse(searchParams.get('saved'));
+  const id = z.number().optional().parse(searchParams.get('id'));
+
+  if (id && saved) {
+    return NextResponse.json({ error: 'Invalid searchParams (cannot read both id and saved)' }, { status: 400 });
+  }
 
   const collectionIncludedDataObject = getIncludedData<['lists', 'owner', 'savedBy']>(
     searchParams.getAll('include[]'),
@@ -87,11 +92,7 @@ export const DELETE = async (request: NextRequest) => {
   }
 
   const searchParams = request.nextUrl.searchParams;
-  const collectionId: number = parseInt(searchParams.get('id') || '');
-
-  if (!collectionId) {
-    return NextResponse.json({ error: 'Missing collection id' }, { status: 400 });
-  }
+  const collectionId = z.number().parse(searchParams.get('id'));
 
   try {
     const collection = await prisma.collection.findUnique({
@@ -161,7 +162,7 @@ export const PATCH = async (request: NextRequest) => {
   }
 
   const searchParams = request.nextUrl.searchParams;
-  const collectionId = searchParams.get('id');
+  const collectionId = z.number().parse(searchParams.get('id'));
 
   if (!collectionId) {
     return NextResponse.json({ error: 'Missing collection id' }, { status: 400 });
@@ -170,7 +171,7 @@ export const PATCH = async (request: NextRequest) => {
   try {
     const collection = await prisma.collection.findUnique({
       where: {
-        id: parseInt(collectionId)
+        id: collectionId
       },
       include: {
         savedBy: true,
@@ -189,7 +190,7 @@ export const PATCH = async (request: NextRequest) => {
     try {
       const updatedCollection = await prisma.collection.update({
         where: {
-          id: parseInt(collectionId)
+          id: collectionId
         },
         data: {
           savedBy: {
