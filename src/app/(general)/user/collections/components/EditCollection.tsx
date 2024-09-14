@@ -64,7 +64,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
       description,
       private: !isPublic,
       lists: lists.map((l) => ({
-        id: collectionId ? l.id : undefined,
+        id: l.new ? undefined : l.id,
         name: l.name,
         words: l.words.map((w) => w.id)
       }))
