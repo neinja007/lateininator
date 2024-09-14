@@ -77,7 +77,7 @@ export const GET = async (request: NextRequest) => {
             }
           ]
         },
-        include: collectionIncludedData
+        include: { ...collectionIncludedData, lists: { orderBy: { id: 'asc' } } }
       });
       return NextResponse.json(collections, { status: 200 });
     }
