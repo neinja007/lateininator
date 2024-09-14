@@ -7,9 +7,7 @@ export const useToggleSavedCollection = () => {
   return useMutation({
     mutationFn: (collectionId: number) => axios.patch('/api/collection', undefined, { params: { id: collectionId } }),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['collections', { saved: false }] });
-      queryClient.invalidateQueries({ queryKey: ['collections', { saved: true }] });
-      queryClient.invalidateQueries({ queryKey: ['lists'] });
+      queryClient.invalidateQueries({ predicate: (query) => query.queryKey?.[0] === 'collections' });
     }
   });
 };
