@@ -8,6 +8,7 @@ import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import { ChevronRight, ChevronsRight } from 'lucide-react';
 import clsx from 'clsx';
 import Skeleton from '@/components/Skeleton';
+import { getHighlightedQuery } from '../utils/getHighlightedQuery';
 
 type WordRowProps = {
   word: Word;
@@ -18,18 +19,6 @@ type WordRowProps = {
 const WordRow = ({ word, query, loading }: WordRowProps) => {
   const router = useRouter();
 
-  let highlightedWord: React.ReactNode = <span>{word.name}</span>;
-  if (query !== '' && query) {
-    const indexOfQuery = word.name.indexOf(query);
-    highlightedWord = (
-      <span>
-        {word.name.slice(0, indexOfQuery)}
-        <span className='text-blue-500'>{query}</span>
-        {word.name.slice(indexOfQuery + query.length)}
-      </span>
-    );
-  }
-
   return (
     <tr
       className={clsx(
@@ -39,7 +28,8 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <td className='p-2 px-4'>
-        {loading ? <Skeleton customSize className='h-6 w-32' pulse /> : highlightedWord} <i>{getLexicalForm(word)}</i>
+        {loading ? <Skeleton customSize className='h-6 w-32' pulse /> : getHighlightedQuery(word, query || '')}{' '}
+        <i>{getLexicalForm(word)}</i>
       </td>
       <td className='line-clamp-1 p-2 px-4'>
         {loading ? (

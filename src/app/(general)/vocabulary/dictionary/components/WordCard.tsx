@@ -8,6 +8,7 @@ import { Word } from '@/types/word';
 import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import clsx from 'clsx';
 import Skeleton from '@/components/Skeleton';
+import { getHighlightedQuery } from '../utils/getHighlightedQuery';
 
 type WordCardProps = {
   word: Word;
@@ -17,18 +18,6 @@ type WordCardProps = {
 
 const WordCard = ({ word, query, loading }: WordCardProps) => {
   const router = useRouter();
-
-  let highlightedWord: React.ReactNode = <span>{word.name}</span>;
-  if (query !== '' && query) {
-    const indexOfQuery = word.name.indexOf(query);
-    highlightedWord = (
-      <span>
-        {word.name.slice(0, indexOfQuery)}
-        <span className='text-blue-500'>{query}</span>
-        {word.name.slice(indexOfQuery + query.length)}
-      </span>
-    );
-  }
 
   let lexicalForm = getLexicalForm(word);
 
@@ -44,7 +33,7 @@ const WordCard = ({ word, query, loading }: WordCardProps) => {
       <div className='p-2 px-3'>
         <div className='float-end m-1'>{!loading && <Badge text={MAPPER.extended.type.singular[word.type]} />}</div>
         <div className='line-clamp-1 h-8 text-2xl'>
-          {loading ? <Skeleton customSize className='h-7 w-32' pulse /> : highlightedWord}
+          {loading ? <Skeleton customSize className='h-7 w-32' pulse /> : getHighlightedQuery(word, query || '')}
         </div>
         <div className='h-6'>{loading ? <Skeleton customSize className='h-full w-14' pulse /> : lexicalForm}</div>
         <br />
