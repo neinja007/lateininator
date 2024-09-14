@@ -69,7 +69,7 @@ const Page = () => {
                       }
                       onClick={() => {
                         if (display === 'manage') {
-                          router.push(`/user/collections/${collection.id}`);
+                          router.push(`/user/collections/edit/${collection.id}`);
                         } else {
                           toggleSavedCollection(collection.id);
                         }
