@@ -25,6 +25,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   const newCollection = !collectionId;
 
   const { data: collection, status: collectionStatus } = useCollections<FullCollection>({
+    status: 'owned',
     id: collectionId,
     include: ['lists', 'owner', 'savedBy'],
     listInclude: ['words'],
