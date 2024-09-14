@@ -32,7 +32,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   });
 
   const [name, setName] = useState('');
-  const [lists, setLists] = useState<ListWithWords[]>([]);
+  const [lists, setLists] = useState<(ListWithWords & { new?: boolean })[]>([]);
   const [description, setDescription] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [activeList, setActiveList] = useState<number>();
