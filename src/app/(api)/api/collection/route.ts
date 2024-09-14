@@ -52,17 +52,20 @@ export const GET = async (request: NextRequest) => {
     } else {
       const collections = await prisma.collection.findMany({
         where: {
-          savedBy: saved
-            ? {
-                some: {
-                  id: user.id
+          savedBy:
+            saved === 'true'
+              ? {
+                  some: {
+                    id: user.id
+                  }
                 }
-              }
-            : {
-                none: {
-                  id: user.id
-                }
-              },
+              : saved === 'false'
+                ? {
+                    none: {
+                      id: user.id
+                    }
+                  }
+                : undefined,
           OR: [
             {
               private: false
