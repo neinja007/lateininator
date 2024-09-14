@@ -19,6 +19,7 @@ type ListSelectionProps = {
 
 const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: ListSelectionProps) => {
   const { data: collections, status } = useCollections<(Collection & { lists: (List & { words: Word[] })[] })[]>({
+    status: 'saved',
     wordInclude: ['adjective', 'noun', 'verb'],
     include: ['lists'],
     listInclude: ['words']
