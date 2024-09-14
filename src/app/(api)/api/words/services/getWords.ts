@@ -3,7 +3,10 @@ import { prisma } from '@/utils/other/client';
 export async function getWords(includedDataObject: any) {
   try {
     const words = await prisma.word.findMany({
-      include: includedDataObject
+      include: includedDataObject,
+      orderBy: {
+        name: 'asc'
+      }
     });
     return words;
   } catch (error) {
