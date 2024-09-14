@@ -12,6 +12,7 @@ import { useWidth } from '@/hooks/useWidth';
 import FailToLoad from '@/components/FailToLoad';
 import { useWords } from '@/hooks/database/queries/useWords';
 import { Word } from '@/types/word';
+import { placeholderWord } from '@/constants/placeholderData';
 
 const Page = () => {
   const [query, setQuery] = useState<string>('');
@@ -19,10 +20,16 @@ const Page = () => {
 
   useWidth('md', () => setView('cards'));
 
-  const { data: words, status } = useWords<Word[]>({
+  const {
+    data: words,
+    fetchStatus,
+    status
+  } = useWords<Word[]>({
     query: query.toLowerCase().trim(),
     include: ['noun', 'verb', 'adjective']
   });
+
+  let results = words || [...Array(12)].map((_) => placeholderWord);
 
   return (
     <div className='space-y-5'>
@@ -31,16 +38,16 @@ const Page = () => {
       {status === 'error' ? (
         <FailToLoad />
       ) : (
-        <ResultCount count={words ? words.length : 0} query={query} isFetched={status !== 'pending'} />
+        <ResultCount count={words ? words.length : 0} query={query} isFetched={fetchStatus === 'idle'} />
       )}
-      {words && words.length > 0 && (
+      {(status !== 'success' || words.length > 0) && (
         <div>
           <Hr className='mb-4' />
           <DisplayMode view={view} setView={setView} />
           {view === 'list' ? (
-            <WordList results={words} query={query} loading={status === 'pending'} />
+            <WordList results={results} query={query} loading={fetchStatus === 'fetching'} />
           ) : (
-            <WordCards results={words} query={query} loading={status === 'pending'} />
+            <WordCards results={results} query={query} loading={fetchStatus === 'fetching'} />
           )}
         </div>
       )}
