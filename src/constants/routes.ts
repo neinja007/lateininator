@@ -44,7 +44,7 @@ export const routes: Route[] = [
     ]
   },
   {
-    label: 'Flexion',
+    label: 'Endungen',
     href: '/flexion',
     icon: Replace,
     children: [

@@ -46,7 +46,7 @@ const Page = () => {
   return (
     <AuthConditionalLock>
       <div className='space-y-5'>
-        <Heading>Flexionstrainer: Adjektive</Heading>
+        <Heading>Endungstrainer: Adjektive</Heading>
         {stage === 'settings' && (
           <Settings
             currentSettingsStage={currentSettingsStage}
