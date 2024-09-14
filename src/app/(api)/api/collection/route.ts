@@ -242,7 +242,7 @@ export const PUT = async (request: NextRequest) => {
 
   if (id) {
     try {
-      updatedCollection = prisma.collection.update({
+      updatedCollection = await prisma.collection.update({
         where: {
           id: id
         },
