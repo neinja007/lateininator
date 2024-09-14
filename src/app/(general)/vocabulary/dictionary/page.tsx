@@ -11,6 +11,7 @@ import Hr from '@/components/Hr';
 import { useWidth } from '@/hooks/useWidth';
 import FailToLoad from '@/components/FailToLoad';
 import { useWords } from '@/hooks/database/queries/useWords';
+import { Word } from '@/types/word';
 
 const Page = () => {
   const [query, setQuery] = useState<string>('');
@@ -18,7 +19,10 @@ const Page = () => {
 
   useWidth('md', () => setView('cards'));
 
-  const { words, status } = useWords(undefined, ['noun', 'verb', 'adjective'], query.toLowerCase().trim());
+  const { data: words, status } = useWords<Word[]>({
+    query: query.toLowerCase().trim(),
+    include: ['noun', 'verb', 'adjective']
+  });
 
   return (
     <div className='space-y-5'>
