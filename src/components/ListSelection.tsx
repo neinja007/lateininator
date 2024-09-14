@@ -133,23 +133,21 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             {status === 'pending' &&
               [...Array(15)].map((_, i) => <Skeleton pulse key={i} customSize className='h-9 w-full' />)}
             {status === 'success' && filteredLists.length > 0 ? (
-              filteredLists
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((list) => (
-                  <Button
-                    key={list.id}
-                    color={selectedLists.includes(list.id) ? 'blue' : 'default'}
-                    onClick={() =>
-                      setSelectedLists((prev) =>
-                        prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]
-                      )
-                    }
-                    className='flex items-center gap-x-2'
-                  >
-                    <Book className='w-4' />
-                    {list.name}
-                  </Button>
-                ))
+              filteredLists.map((list) => (
+                <Button
+                  key={list.id}
+                  color={selectedLists.includes(list.id) ? 'blue' : 'default'}
+                  onClick={() =>
+                    setSelectedLists((prev) =>
+                      prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]
+                    )
+                  }
+                  className='flex items-center gap-x-2'
+                >
+                  <Book className='w-4' />
+                  {list.name}
+                </Button>
+              ))
             ) : (
               <div className='col-span-full'>Wähle eine Kollektion aus, um Listen anzuzeigen</div>
             )}
