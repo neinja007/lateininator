@@ -8,10 +8,7 @@ import { z } from 'zod';
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const query = z.string().optional().parse(searchParams.get('query'));
-  const id = z
-    .number()
-    .optional()
-    .parse(parseInt(z.string().optional().parse(searchParams.get('id')) || ''));
+  const id = z.coerce.number().optional().parse(searchParams.get('id'));
   const includedDataObject = getIncludedData<['adjective', 'noun', 'verb', 'derivative', 'lists', 'base']>(
     searchParams.getAll('include[]'),
     ['adjective', 'noun', 'verb', 'derivative', 'lists', 'base']
