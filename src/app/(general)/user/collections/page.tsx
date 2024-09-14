@@ -23,7 +23,7 @@ const displayMap = {
 const Page = () => {
   const user = useUser();
 
-  const [display, setDisplay] = useState<(typeof displays)[number]>('browse');
+  const [display, setDisplay] = useState<(typeof displays)[number]>('saved');
   const { data: collections, status } = useCollections<FullCollection[]>({
     status: display === 'saved' ? 'saved' : display === 'manage' ? 'owned' : 'all',
     include: ['lists', 'owner', 'savedBy']
