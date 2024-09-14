@@ -16,10 +16,6 @@ export const GET = async (request: NextRequest) => {
   const status = z.enum(['saved', 'all', 'owned']).parse(searchParams.get('status'));
   const id = z.nullable(z.coerce.number()).parse(searchParams.get('id'));
 
-  if (id && status) {
-    return NextResponse.json({ error: 'Invalid searchParams (cannot read both id and status)' }, { status: 400 });
-  }
-
   const collectionIncludedDataObject = getIncludedData<['lists', 'owner', 'savedBy']>(
     searchParams.getAll('include[]'),
     ['lists', 'owner', 'savedBy']
@@ -35,7 +31,9 @@ export const GET = async (request: NextRequest) => {
   }
 
   const wordIncludedData = listIncludedDataObject?.words ? { include: wordIncludedDataObject } : undefined;
-  const listIncludedData = collectionIncludedDataObject.lists ? { include: { words: wordIncludedData } } : undefined;
+  const listIncludedData = collectionIncludedDataObject.lists
+    ? { include: { words: wordIncludedData }, orderBy: { id: 'asc' as 'asc' } }
+    : undefined;
   const collectionIncludedData = { ...collectionIncludedDataObject, lists: listIncludedData };
 
   try {
@@ -72,7 +70,7 @@ export const GET = async (request: NextRequest) => {
             }
           ]
         },
-        include: { ...collectionIncludedData, lists: { orderBy: { id: 'asc' } } }
+        include: collectionIncludedData
       });
       return NextResponse.json(collections, { status: 200 });
     }
