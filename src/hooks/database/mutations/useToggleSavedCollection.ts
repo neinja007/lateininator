@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
-export const useSaveCollection = () => {
+export const useToggleSavedCollection = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
