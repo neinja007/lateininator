@@ -18,9 +18,5 @@ export const useWords = <T extends Word | Word[]>(parameters: {
     queryFn: () => axios.get('/api/words', { params: { query: searchQuery, id, include } }).then((res) => res.data)
   });
 
-  if (id) {
-    return { word: query.data as T, ...query };
-  } else {
-    return { words: query.data as T[], ...query };
-  }
+  return { ...query, data: query.data as T };
 };
