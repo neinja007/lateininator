@@ -252,8 +252,6 @@ export const PUT = async (request: NextRequest) => {
           private: isPrivate
         }
       });
-
-      return NextResponse.json(updatedCollection, { status: 200 });
     } catch (error: any) {
       console.error(error);
       return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
