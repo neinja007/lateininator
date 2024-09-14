@@ -10,7 +10,10 @@ import { useSettings } from '@/hooks/database/queries/useSettings';
 import { SettingKey } from '@prisma/client';
 
 const Page = () => {
-  const { settings, status } = useSettings();
+  const {
+    settings,
+    query: { status }
+  } = useSettings();
 
   return (
     <div>
