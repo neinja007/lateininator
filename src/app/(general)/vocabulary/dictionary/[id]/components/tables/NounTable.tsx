@@ -8,7 +8,10 @@ import { useSettings } from '@/hooks/database/queries/useSettings';
 type NounTableProps = { word: Noun };
 
 const NounTable = ({ word }: NounTableProps) => {
-  const { settings, status } = useSettings();
+  const {
+    query: { status },
+    settings
+  } = useSettings();
 
   const showVocative = settings && settings.DICTIONARY_VOCATIVE === 'true';
 
