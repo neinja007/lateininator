@@ -10,14 +10,10 @@ export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('query');
   const id = searchParams.get('id');
-  const includedDataObject = getIncludedData(searchParams.getAll('include[]'), [
-    'adjective',
-    'noun',
-    'verb',
-    'derivative',
-    'lists',
-    'base'
-  ]);
+  const includedDataObject = getIncludedData<['adjective', 'noun', 'verb', 'derivative', 'lists', 'base']>(
+    searchParams.getAll('include[]'),
+    ['adjective', 'noun', 'verb', 'derivative', 'lists', 'base']
+  );
 
   if (!includedDataObject) {
     return NextResponse.json({ error: 'Invalid include param' }, { status: 400 });
