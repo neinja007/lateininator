@@ -16,11 +16,15 @@ import BackToDictionaryButton from './components/BackToDictionaryButton';
 import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
 import { useWords } from '@/hooks/database/queries/useWords';
+import { Word } from '@/types/word';
 
 type PageProps = { params: { id: string } };
 
 const Page = ({ params: { id } }: PageProps) => {
-  const { word, status } = useWords(parseInt(id), ['derivative', 'noun', 'verb', 'adjective']);
+  const { data: word, status } = useWords<Word>({
+    id: parseInt(id),
+    include: ['derivative', 'noun', 'verb', 'adjective']
+  });
 
   if (status === 'error')
     return (
