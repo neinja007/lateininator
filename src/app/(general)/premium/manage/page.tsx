@@ -8,7 +8,7 @@ import { useCancelSubscription } from '@/hooks/database/mutations/useCancelSubsc
 import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 
 const Page = () => {
-  const { subscription, isLoading } = useSubscription();
+  const { data: subscription, isLoading } = useSubscription();
 
   const { mutate: cancelSubscription, isPending: isCancelPending } = useCancelSubscription();
 
