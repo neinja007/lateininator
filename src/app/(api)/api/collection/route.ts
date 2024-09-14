@@ -13,11 +13,11 @@ export const GET = async (request: NextRequest) => {
   }
 
   const searchParams = request.nextUrl.searchParams;
-  const saved = z.nullable(z.enum(['true', 'false'])).parse(searchParams.get('saved'));
+  const status = z.enum(['saved', 'all', 'owned']).parse(searchParams.get('status'));
   const id = z.nullable(z.coerce.number()).parse(searchParams.get('id'));
 
-  if (id && saved) {
-    return NextResponse.json({ error: 'Invalid searchParams (cannot read both id and saved)' }, { status: 400 });
+  if (id && status) {
+    return NextResponse.json({ error: 'Invalid searchParams (cannot read both id and status)' }, { status: 400 });
   }
 
   const collectionIncludedDataObject = getIncludedData<['lists', 'owner', 'savedBy']>(
@@ -53,19 +53,14 @@ export const GET = async (request: NextRequest) => {
       const collections = await prisma.collection.findMany({
         where: {
           savedBy:
-            saved === 'true'
+            status === 'saved'
               ? {
                   some: {
                     id: user.id
                   }
                 }
-              : saved === 'false'
-                ? {
-                    none: {
-                      id: user.id
-                    }
-                  }
-                : undefined,
+              : undefined,
+          ownerId: status === 'owned' ? user.id : undefined,
           OR: [
             {
               private: false
@@ -95,7 +90,7 @@ export const DELETE = async (request: NextRequest) => {
   }
 
   const searchParams = request.nextUrl.searchParams;
-  const collectionId = z.number().parse(searchParams.get('id'));
+  const collectionId = z.coerce.number().parse(searchParams.get('id'));
 
   try {
     const collection = await prisma.collection.findUnique({
