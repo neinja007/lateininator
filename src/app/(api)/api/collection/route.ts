@@ -274,6 +274,7 @@ export const PUT = async (request: NextRequest) => {
       }
     });
   }
+
   try {
     for (const list of lists) {
       if (!list.id) {
