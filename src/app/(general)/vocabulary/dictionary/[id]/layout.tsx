@@ -4,7 +4,6 @@ type LayoutProps = { children: React.ReactNode };
 
 type Props = {
   params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export async function generateMetadata({ params }: Props) {
