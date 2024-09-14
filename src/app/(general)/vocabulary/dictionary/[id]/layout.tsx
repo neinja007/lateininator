@@ -7,7 +7,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params, searchParams }: Props) {
+export async function generateMetadata({ params }: Props) {
   const id = params.id;
 
   const word = await prisma.word.findUnique({
