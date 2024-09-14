@@ -5,6 +5,7 @@ import FancyLinkContainer from './components/FancyLinkContainer';
 import StatusDependentRoutes from './components/StatusDependentRoutes';
 import Tutorial from '@/components/Tutorial';
 import { useUser } from '@clerk/nextjs';
+import Link from '@/components/Link';
 
 const Page = () => {
   const signInRoute = routes.find((route) => route.label === 'Anmelden');
@@ -16,11 +17,15 @@ const Page = () => {
   return (
     <div>
       <Heading className='mb-3 md:mb-6 lg:mb-12'>Übersicht</Heading>
-      <div>
-        <Tutorial heading={user.isSignedIn ? `Willkommen, ${user.user?.fullName}!` : 'Willkommen!'}>
-          Unten findest du alle Tools, die dir zur Verfügung stehen.
-        </Tutorial>
-      </div>
+      <Tutorial heading={user.isSignedIn ? `Willkommen, ${user.user?.fullName}!` : 'Willkommen!'}>
+        <p>
+          Hier findest du alle Tools, die dir zur Verfügung stehen. Es gibt Übungen für <b>Endungen</b>, <b>Vokabeln</b>{' '}
+          und <b>Grammatik</b>. Außerdem kannst du deinen Fortschritt verfolgen und deine Einstellungen anpassen.
+        </p>
+        <p>
+          Eine Anleitung zu allen Tools findest du <Link href='/user/tutorial'>hier</Link>.
+        </p>
+      </Tutorial>
       <div>
         <p className='mb-2 text-center text-lg font-bold'>Lernen</p>
         <div>
