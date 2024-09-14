@@ -8,7 +8,7 @@ export const getHighlightedQuery = (word: Word, query: string) => {
   }
 
   if (indexOfQuery === -1) {
-    throw new Error('Query not found in word');
+    return word.name;
   }
 
   return (
