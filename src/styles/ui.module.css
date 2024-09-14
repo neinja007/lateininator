@@ -21,10 +21,6 @@
 	@apply border dark:border-gray-700;
 }
 
-.link {
-	@apply text-blue-500 underline;
-}
-
 .correct {
 	@apply !bg-green-400 dark:!bg-green-800 border-none;
 }
