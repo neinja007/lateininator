@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import ui from '@/styles/ui.module.css';
+import Link from '@/components/Link';
 import WordInfo from '@/components/WordInfo';
 import { Word } from '@/types/word';
 
@@ -15,10 +14,7 @@ const WordInformation = ({ word }: WordInformationProps) => {
       {word.derivative && (
         <p className='md:text-center'>
           <span>
-            Abwandlung von{' '}
-            <Link href={`/vocabulary/dictionary/${word.derivative.id}`} className={ui.link}>
-              {word.derivative.name}
-            </Link>
+            Abwandlung von <Link href={`/vocabulary/dictionary/${word.derivative.id}`}>{word.derivative.name}</Link>
           </span>
         </p>
       )}

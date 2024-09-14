@@ -4,7 +4,7 @@ import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 import LoadingHeading from '@/components/LoadingHeading';
 import { User } from '@prisma/client';
 import axios from 'axios';
-import Link from 'next/link';
+import Link from '@/components/Link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -52,11 +52,7 @@ const Page = () => {
       <>
         <LoadingHeading done>Ihr Profil wurde erfolgreich eingerichtet.</LoadingHeading>
         <p>
-          Sie können nun{' '}
-          <Link href='/dashboard' className='text-blue-500 hover:underline'>
-            zur Startseite des Lateininators
-          </Link>
-          .
+          Sie können nun <Link href='/dashboard'>zur Startseite des Lateininators</Link>.
         </p>
       </>
     );

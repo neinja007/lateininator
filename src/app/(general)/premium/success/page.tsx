@@ -1,7 +1,7 @@
 'use client';
 
 import Heading from '@/components/Heading';
-import Link from 'next/link';
+import Link from '@/components/Link';
 
 const Page = () => {
   return (
@@ -12,9 +12,7 @@ const Page = () => {
           Die Bezahlung war erfolgreich. Vielen Dank für Ihren Einkauf! Sie können von nun an alle Premium-Funktionen
           nutzen.
           <br />
-          <Link href='/' className='text-blue-500 hover:underline'>
-            Zurück zur Startseite
-          </Link>
+          <Link href='/'>Zurück zur Startseite</Link>
         </span>
       </p>
     </div>

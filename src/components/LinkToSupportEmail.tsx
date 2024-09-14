@@ -1,15 +1,11 @@
-import Link from 'next/link';
+import Link from '@/components/Link';
 
 type LinkToSupportEmailProps = {
   children?: string;
 };
 
 const LinkToSupportEmail = ({ children }: LinkToSupportEmailProps) => {
-  return (
-    <Link className='text-blue-500 hover:underline' href='mailto:support@lateininator.com'>
-      {children ? children : 'Support'}
-    </Link>
-  );
+  return <Link href='mailto:support@lateininator.com'>{children ? children : 'Support'}</Link>;
 };
 
 export default LinkToSupportEmail;

@@ -1,6 +1,6 @@
 import Heading from '@/components/Heading';
+import Link from '@/components/Link';
 import LinkToSupportEmail from '@/components/LinkToSupportEmail';
-import Link from 'next/link';
 
 const Page = () => {
   return (
@@ -10,11 +10,7 @@ const Page = () => {
         Wenn Sie glauben, dass dies ein Fehler ist, bitten wir Sie, unseren <LinkToSupportEmail /> zu kontaktieren.
       </p>
       <p className='mt-2'>
-        Ansonsten können Sie{' '}
-        <Link className='text-blue-500 hover:underline' href='/dashboard'>
-          hier zurück zur Homepage gelangen
-        </Link>
-        .
+        Ansonsten können Sie <Link href='/dashboard'>hier zurück zur Homepage gelangen</Link>.
       </p>
     </div>
   );

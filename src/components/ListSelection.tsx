@@ -6,7 +6,7 @@ import { Word } from '@/types/word';
 import { MAPPER } from '@/utils/other/mapper';
 import { Collection, List } from '@prisma/client';
 import { Book } from 'lucide-react';
-import Link from 'next/link';
+import Link from '@/components/Link';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import CheckboxWithLabel from './CheckboxWithLabel';
 import { useCollections } from '@/hooks/database/queries/useCollections';
@@ -66,11 +66,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             {(status !== 'success' || collections.length > 0) && (
               <span>
                 {' '}
-                (können bei der{' '}
-                <Link href={'/user/collections'} className='font-medium text-blue-500 hover:underline'>
-                  Wortschatz-Verwaltung
-                </Link>{' '}
-                bearbeitet werden)
+                (können bei der <Link href={'/user/collections'}>Wortschatz-Verwaltung</Link> bearbeitet werden)
               </span>
             )}
             :
@@ -150,7 +146,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                 </Button>
               ))
             ) : (
-              <div className='col-span-full'>Wähle eine Kollektion aus, um Listen anzuzeigen</div>
+              <div className='col-span-full'>Wählen Sie eine Kollektion aus, um deren Listen anzuzeigen</div>
             )}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { useUser } from '@clerk/nextjs';
 import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/Link';
 
 type AuthConditionalLockProps = {
   children: React.ReactNode;
@@ -29,7 +29,7 @@ export const AuthConditionalLock = ({ children }: AuthConditionalLockProps) => {
               <div className='text-2xl font-bold'>Sie müssen angemeldet sein, um diese Seite verwenden zu können.</div>
               <div className='text-lg'>
                 Bitte melden Sie sich an, um fortzufahren.{' '}
-                <Link href='/auth/sign-in' className='text-blue-500 hover:underline'>
+                <Link href='/auth/sign-in'>
                   Jetzt anmelden <ExternalLink className='inline-block h-4 w-4 align-text-top' />
                 </Link>
               </div>
