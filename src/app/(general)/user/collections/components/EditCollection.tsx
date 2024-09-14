@@ -16,6 +16,7 @@ import { useCollections } from '@/hooks/database/queries/useCollections';
 import { FullCollection, ListWithWords } from '@/types/collection';
 import Skeleton from '@/components/Skeleton';
 import FailToLoad from '@/components/FailToLoad';
+import { useRouter } from 'next/navigation';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -50,6 +51,8 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
 
   const { updateCollection, status } = useUpdateCollection();
 
+  const router = useRouter();
+
   if (!newCollection && collectionStatus === 'pending') {
     return <Skeleton pulse customSize className='h-24 w-full' />;
   }
@@ -73,6 +76,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
 
     if (collectionSchema.safeParse(collection).success) {
       updateCollection(collection);
+      router.push(`/user/collections`);
     } else {
       throw new Error('Collection is not valid');
     }
