@@ -18,8 +18,9 @@ const Page = () => {
       <Heading>Übersicht</Heading>
       <Tutorial heading={user.isSignedIn ? `Willkommen, ${user.user?.fullName}!` : 'Willkommen!'}>
         <p>
-          Hier findest du alle Tools, die dir zur Verfügung stehen. Es gibt Übungen für <b>Endungen</b>, <b>Vokabeln</b>{' '}
-          und <b>Grammatik</b>. Außerdem kannst du deinen Fortschritt verfolgen und deine Einstellungen anpassen.
+          Hier finden Sie alle Tools, die Ihnen zur Verfügung stehen. Es gibt Übungen für <b>Endungen</b>,{' '}
+          <b>Vokabeln</b> und <b>Grammatik</b>. Außerdem können Sie Ihren Fortschritt verfolgen und Ihre Einstellungen
+          anpassen.
         </p>
       </Tutorial>
       <div>

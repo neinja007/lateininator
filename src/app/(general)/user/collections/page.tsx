@@ -59,18 +59,18 @@ const Page = () => {
           <div className='text-center'>
             {display === 'saved' && (
               <p>
-                Hier sind alle Kollektionen, die du <b>gespeichert</b> hast. Diese stehen bei den <b>Trainern</b> zur
-                Verfügung.
+                Hier sind alle Kollektionen, die Sie <b>gespeichert</b> haben. Diese stehen Ihnen bei den{' '}
+                <b>Trainern</b> zur Verfügung.
               </p>
             )}
             {display === 'browse' && (
               <p>
-                Hier findest du alle <b>öffentlichen Kollektionen</b>, die du <b>speichern</b> kannst.
+                Hier finden Sie alle <b>öffentlichen Kollektionen</b>, die Sie <b>speichern</b> können.
               </p>
             )}
             {display === 'manage' && (
               <p>
-                Hier findest du alle Kollektionen, <b>die du erstellt</b> hast. Du kannst diese <b>bearbeiten</b>,{' '}
+                Hier finden Sie alle Kollektionen, <b>die Sie erstellt</b> haben. Sie können <b>bearbeiten</b>,{' '}
                 <b>löschen</b> oder <b>neue erstellen</b>.
               </p>
             )}
