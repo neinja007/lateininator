@@ -41,9 +41,9 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
     if (collection) {
       setName(collection.name);
       setDescription(collection.description || '');
-      setIsPublic(collection.private);
+      setIsPublic(!collection.private);
       setLists(collection.lists);
-      setActiveList(collection.lists[0].id);
+      setActiveList(collection.lists[0]?.id);
     }
   }, [collection]);
 
