@@ -14,7 +14,7 @@ export const GET = async (request: NextRequest) => {
 
   const searchParams = request.nextUrl.searchParams;
   const saved = z.nullable(z.enum(['true', 'false'])).parse(searchParams.get('saved'));
-  const id = z.nullable(z.number()).parse(searchParams.get('id'));
+  const id = z.nullable(z.coerce.number()).parse(searchParams.get('id'));
 
   if (id && saved) {
     return NextResponse.json({ error: 'Invalid searchParams (cannot read both id and saved)' }, { status: 400 });
