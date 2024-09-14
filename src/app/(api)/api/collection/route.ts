@@ -182,27 +182,45 @@ export const PATCH = async (request: NextRequest) => {
     }
 
     if (collection.savedBy.find((u) => u.id === user.id)) {
-      return NextResponse.json({ error: 'Collection already saved' }, { status: 400 });
-    }
-
-    try {
-      const updatedCollection = await prisma.collection.update({
-        where: {
-          id: collectionId
-        },
-        data: {
-          savedBy: {
-            connect: {
-              id: user.id
+      try {
+        const updatedCollection = await prisma.collection.update({
+          where: {
+            id: collectionId
+          },
+          data: {
+            savedBy: {
+              disconnect: {
+                id: user.id
+              }
             }
           }
-        }
-      });
+        });
 
-      return NextResponse.json(updatedCollection, { status: 200 });
-    } catch (error: any) {
-      console.error(error);
-      return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+        return NextResponse.json(updatedCollection, { status: 200 });
+      } catch (error: any) {
+        console.error(error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+      }
+    } else {
+      try {
+        const updatedCollection = await prisma.collection.update({
+          where: {
+            id: collectionId
+          },
+          data: {
+            savedBy: {
+              connect: {
+                id: user.id
+              }
+            }
+          }
+        });
+
+        return NextResponse.json(updatedCollection, { status: 200 });
+      } catch (error: any) {
+        console.error(error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+      }
     }
   } catch (error: any) {
     console.error(error);
