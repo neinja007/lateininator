@@ -244,7 +244,7 @@ export const PUT = async (request: NextRequest) => {
     try {
       updatedCollection = await prisma.collection.update({
         where: {
-          id: id
+          id
         },
         data: {
           name,
