@@ -71,10 +71,9 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
     };
 
     if (collectionSchema.safeParse(collection).success) {
-      console.log('collection is valid');
       updateCollection(collection);
     } else {
-      console.log(collectionSchema.safeParse(collection).error);
+      throw new Error('Collection is not valid');
     }
   };
 
