@@ -140,7 +140,7 @@ export const PATCH = async (request: NextRequest) => {
   }
 
   const searchParams = request.nextUrl.searchParams;
-  const collectionId = z.number().parse(searchParams.get('id'));
+  const collectionId = z.coerce.number().parse(searchParams.get('id'));
 
   if (!collectionId) {
     return NextResponse.json({ error: 'Missing collection id' }, { status: 400 });
