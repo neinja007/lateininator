@@ -4,7 +4,7 @@ import { Word } from '@/types/word';
 
 export const useWords = <T extends Word | Word[]>(parameters: {
   id?: number;
-  include?: string[];
+  include?: ('adjective' | 'noun' | 'verb' | 'derivative' | 'lists' | 'base')[];
   query?: string | undefined;
 }) => {
   const { id, include, query: searchQuery } = parameters;
