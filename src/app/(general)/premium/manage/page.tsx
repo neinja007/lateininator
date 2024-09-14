@@ -1,4 +1,5 @@
 'use client';
+
 import Heading from '@/components/Heading';
 import dayjs from 'dayjs';
 import { Card } from './components/Card';
