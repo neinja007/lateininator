@@ -58,7 +58,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
 
   return (
     <>
-      <p>Wähle aus, welche Wörter Sie lernen möchten:</p>
+      <p>Wählen Sie aus, welche Wörter Sie lernen möchten:</p>
       <div>
         {(status !== 'success' || collections.length > 0) && (
           <p className='mb-2'>
