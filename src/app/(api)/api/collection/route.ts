@@ -123,26 +123,6 @@ export const DELETE = async (request: NextRequest) => {
         console.error(error);
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
       }
-    } else if (collection.savedBy.find((u) => u.id === user.id)) {
-      try {
-        const updatedCollection = await prisma.collection.update({
-          where: {
-            id: collectionId
-          },
-          data: {
-            savedBy: {
-              disconnect: {
-                id: user.id
-              }
-            }
-          }
-        });
-
-        return NextResponse.json(updatedCollection, { status: 200 });
-      } catch (error: any) {
-        console.error(error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-      }
     } else {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
