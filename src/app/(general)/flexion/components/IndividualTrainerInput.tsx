@@ -18,7 +18,7 @@ export const IndividualTrainerInput = ({
   setValue
 }: IndividualTrainerInputProps) => {
   return (
-    <div className='flex items-end'>
+    <div className='mx-auto flex w-full max-w-96 items-end'>
       <div className='block w-full'>
         <TrainerInput label={label} handleChange={setValue} value={value} correctValue={correctValue} stage={stage} />
       </div>
