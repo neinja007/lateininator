@@ -240,7 +240,10 @@ export const PUT = async (request: NextRequest) => {
         data: {
           name,
           description,
-          private: isPrivate
+          private: isPrivate,
+          lists: {
+            deleteMany: {}
+          }
         }
       });
     } catch (error: any) {
@@ -269,33 +272,19 @@ export const PUT = async (request: NextRequest) => {
 
   try {
     for (const list of lists) {
-      if (!list.id) {
-        await prisma.list.create({
-          data: {
-            name: list.name,
-            words: {
-              connect: list.words.map((word) => ({ id: word }))
-            },
-            collection: {
-              connect: {
-                id: updatedCollection.id
-              }
-            }
-          }
-        });
-      } else {
-        await prisma.list.update({
-          where: {
-            id: list.id
+      await prisma.list.create({
+        data: {
+          name: list.name,
+          words: {
+            connect: list.words.map((word) => ({ id: word }))
           },
-          data: {
-            name: list.name,
-            words: {
-              connect: list.words.map((word) => ({ id: word }))
+          collection: {
+            connect: {
+              id: updatedCollection.id
             }
           }
-        });
-      }
+        }
+      });
     }
   } catch (error: any) {
     console.error(error);
