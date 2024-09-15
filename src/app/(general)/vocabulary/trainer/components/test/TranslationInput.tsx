@@ -1,5 +1,5 @@
 import Input from '@/components/Input';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ui from '@/styles/ui.module.css';
 import { WordProperty } from '@/types/appConstants';
 import { compareValues } from '@/utils/word/compareValues';
@@ -11,9 +11,18 @@ type TranslationInputProps = {
   stage: 'test' | 'review';
   inputValues: Record<WordProperty | 'translation', string>;
   setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
+  setPoints: Dispatch<SetStateAction<number>>;
 };
 
-const TranslationInput = ({ correctTranslations, stage, inputValues, setInputValues }: TranslationInputProps) => {
+const TranslationInput = ({
+  correctTranslations,
+  stage,
+  inputValues,
+  setInputValues,
+  setPoints
+}: TranslationInputProps) => {
+  const [manuallySetCorrectValue, setManuallySetCorrectValue] = useState<boolean>(false);
+
   const inputIsCorrect = compareValues(inputValues.translation, correctTranslations, true);
 
   const correctValueIndicatorClasses = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
@@ -31,6 +40,12 @@ const TranslationInput = ({ correctTranslations, stage, inputValues, setInputVal
 
   const displayedValue = stage === 'review' ? inputWithCorrectValueAppended : inputValues.translation;
 
+  useEffect(() => {
+    if (stage === 'review' && inputIsCorrect && !manuallySetCorrectValue) {
+      setPoints((prevPoints) => prevPoints + 1);
+    }
+  }, [inputIsCorrect, setPoints, stage, manuallySetCorrectValue]);
+
   return (
     <div className='flex items-end'>
       <div className='block w-full'>
@@ -46,7 +61,10 @@ const TranslationInput = ({ correctTranslations, stage, inputValues, setInputVal
         <button
           type='button'
           className='m-1.5 w-5 flex-shrink'
-          onClick={() => setInputValues((prev) => ({ ...prev, translation: correctTranslations.join(', ') }))}
+          onClick={() => {
+            setInputValues((prev) => ({ ...prev, translation: correctTranslations.join(', ') }));
+            setManuallySetCorrectValue(true);
+          }}
         >
           <Check />
         </button>
