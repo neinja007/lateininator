@@ -28,13 +28,7 @@ const ActionBar = ({ handleContinue, progressPercentage, form, points, differenc
       {points !== undefined && (
         <div className='order-3 mr-3 flex items-center gap-1'>
           <Coins size={16} />
-          <b>{points}</b>{' '}
-          {!!difference && (
-            <span className={difference > 0 ? 'text-green-500' : 'text-red-500'}>
-              {difference > 0 ? '+' : ''}
-              {difference}
-            </span>
-          )}
+          <b>{points}</b> {!!difference && <span className={'text-green-500'}>+{difference}</span>}
         </div>
       )}
       <Button
