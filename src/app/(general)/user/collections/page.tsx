@@ -1,6 +1,6 @@
 'use client';
 
-import Heading from '@/components/Heading';
+import TutorialHeading from '@/components/TutorialHeading';
 import { useState } from 'react';
 import Button from '@/components/Button';
 import { useCollections } from '@/hooks/database/queries/useCollections';
@@ -43,7 +43,11 @@ const Page = () => {
 
   return (
     <div>
-      <Heading className='mb-8'>Kollektion: {displayMap[display]}</Heading>
+      <TutorialHeading heading={`Kollektion: ${displayMap[display]}`}>
+        Hier können Sie Ihre Kollektionen verwalten. Gespeicherte Kollektionen können mit unseren Trainern abgefragt
+        werden. Sie können unter dem Tab {displayMap.owned} selbst Kollektionen nach Ihren Präferenzen gestalten und
+        bearbeiten.
+      </TutorialHeading>
 
       <div className='grid grid-cols-2 gap-x-4'>
         {displays.map((d) => (
