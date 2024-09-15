@@ -9,7 +9,7 @@ type ActionBarProps = {
   progressPercentage: number;
   points?: number;
   difference?: number;
-  addDifferenceToPoints: () => void;
+  addDifferenceToPoints?: () => void;
 };
 
 const ActionBar = ({
