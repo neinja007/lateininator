@@ -1,18 +1,23 @@
+import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
 import { useUpdateSettings } from '@/hooks/database/mutations/useUpdateSettings';
+import { ButtonSettingData } from '@/types/other';
 import { SettingKey } from '@prisma/client';
+import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Switch from 'react-switch';
 
 type SettingProps = {
   settingKey: SettingKey;
-  settingValue: string;
+  settingValue: string | undefined;
 };
 
 const Setting = ({ settingKey, settingValue }: SettingProps) => {
+  const queryClient = useQueryClient();
+
   const disabled = settings[settingKey].disabled;
 
   const { variables, status, mutate } = useUpdateSettings();
@@ -53,6 +58,23 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           disabled={status === 'pending' || disabled}
           disabledStyle
         />
+      );
+      break;
+    case 'button':
+      element = (
+        <Button
+          color={settings[settingKey].color}
+          onClick={() => {
+            (settings[settingKey] as ButtonSettingData).onClick();
+            const queryKey = (settings[settingKey] as ButtonSettingData).invalidateQueries;
+            console.log(queryKey);
+            queryClient.invalidateQueries({
+              predicate: (query) => query.queryKey.includes(queryKey)
+            });
+          }}
+        >
+          {settings[settingKey].buttonText}
+        </Button>
       );
       break;
   }
