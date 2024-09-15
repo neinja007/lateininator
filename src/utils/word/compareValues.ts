@@ -14,7 +14,7 @@ export const compareValues = (
     return input.trim().toLowerCase() === correctInput.trim().toLowerCase();
   } else {
     throw new Error(
-      'Error: compareValues() called with incorrect arguments: ' + JSON.stringify({ input, correctInput })
+      'Error: compareValues() called with incorrect arguments: ' + JSON.stringify({ input, correctInput, translation })
     );
   }
 };
