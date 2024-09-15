@@ -1,5 +1,4 @@
 'use client';
-
 import Header from './components/Header';
 import WordInformation from './components/WordInformation';
 import TableInformation from './components/TableInformation';
@@ -13,10 +12,10 @@ import { isNoun } from '@/utils/typeguards/isNoun';
 import { isVerb } from '@/utils/typeguards/isVerb';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import BackToDictionaryButton from './components/BackToDictionaryButton';
-import FailToLoad from '@/components/FailToLoad';
 import Skeleton from '@/components/Skeleton';
 import { useWords } from '@/hooks/database/queries/useWords';
 import { Word } from '@/types/word';
+import WordNotFound from './components/WordNotFound';
 
 type PageProps = { params: { id: string } };
 
@@ -30,7 +29,7 @@ const Page = ({ params: { id } }: PageProps) => {
     return (
       <div className='space-y-5'>
         <BackToDictionaryButton />
-        <FailToLoad />
+        <WordNotFound />
       </div>
     );
 
