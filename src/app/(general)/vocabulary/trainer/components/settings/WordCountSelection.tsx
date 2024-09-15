@@ -37,7 +37,7 @@ const WordCountSelection = ({
           color={checkType === 'all' ? 'blue' : 'default'}
           onClick={() => setCheckType('all')}
         >
-          Alle verfügbaren Wörter {maxWords} abfragen
+          Alle verfügbaren Wörter ({maxWords}) abfragen
         </Button>
         <Button
           className='w-full font-medium'
