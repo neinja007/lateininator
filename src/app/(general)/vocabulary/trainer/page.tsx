@@ -23,6 +23,7 @@ const initialInputValues = [...APP_CONSTANTS.allWordProperties, 'translation'].r
 const Page = () => {
   const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
   const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
+  const [points, setPoints] = useState<number>(0);
 
   const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<WordProperty[]>([
     ...APP_CONSTANTS.allWordProperties
@@ -71,6 +72,8 @@ const Page = () => {
         )}
         {(stage === 'test' || stage === 'review') && activeWord && (
           <Test
+            points={points}
+            setPoints={setPoints}
             handleContinue={handleContinue}
             progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
             activeWord={activeWord}
@@ -83,7 +86,7 @@ const Page = () => {
             checkTranslation={checkTranslation}
           />
         )}
-        {stage === 'results' && <Results handleContinue={handleContinue} />}
+        {stage === 'results' && <Results handleContinue={handleContinue} points={points} />}
       </div>
     </AuthConditionalLock>
   );
