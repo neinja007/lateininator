@@ -1,5 +1,5 @@
 import WordDisplay from '@/components/WordDisplay';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
 import ActionBar from '@/components/ActionBar';
@@ -36,6 +36,13 @@ const Test = ({
 }: TestProps) => {
   const { submit } = useTestForm(handleContinue);
   const [difference, setDifference] = useState(0);
+
+  useEffect(() => {
+    if (difference !== 0 && stage === 'test') {
+      setPoints((prev) => prev + difference);
+      setDifference(0);
+    }
+  }, [difference, setPoints, stage]);
 
   return (
     activeWord && (
