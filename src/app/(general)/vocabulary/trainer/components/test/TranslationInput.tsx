@@ -23,7 +23,12 @@ const TranslationInput = ({
 }: TranslationInputProps) => {
   const [disablePoints, setDisablePoints] = useState<boolean>(false);
 
-  const inputIsCorrect = compareValues(inputValues.translation, correctTranslations, true);
+  const translations = inputValues.translation
+    .split(',')
+    .map((t) => t.trim())
+    .filter((value, index, self) => self.indexOf(value) === index);
+
+  const inputIsCorrect = compareValues(translations, correctTranslations, true);
 
   const correctValueIndicatorClasses = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
 
@@ -42,10 +47,10 @@ const TranslationInput = ({
 
   useEffect(() => {
     if (stage === 'review' && inputIsCorrect && !disablePoints) {
-      setPoints((prevPoints) => prevPoints + inputValues.translation.length);
+      setPoints((prevPoints) => prevPoints + translations.length);
       setDisablePoints(true);
     }
-  }, [inputIsCorrect, setPoints, stage, disablePoints, inputValues.translation.length]);
+  }, [disablePoints, inputIsCorrect, setPoints, stage, translations.length]);
 
   useEffect(() => {
     if (stage === 'test' && disablePoints) {
