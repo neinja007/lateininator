@@ -3,7 +3,7 @@ import Heading from '@/components/Heading';
 const Page = () => {
   return (
     <div>
-      <Heading>Wortschatz</Heading>
+      <Heading>Statistiken</Heading>
       Dieses Feature ist noch nicht verfügbar.
     </div>
   );
