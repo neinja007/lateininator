@@ -1,14 +1,17 @@
 import Button from '@/components/Button';
 import ProgressBar from '@/components/ProgressBar';
 import { Stage } from '@/types/other';
+import { Coins } from 'lucide-react';
 
 type ActionBarProps = {
   form?: boolean;
   handleContinue: (arg?: Stage) => void;
   progressPercentage: number;
+  points?: number;
+  difference?: number;
 };
 
-const ActionBar = ({ handleContinue, progressPercentage, form }: ActionBarProps) => {
+const ActionBar = ({ handleContinue, progressPercentage, form, points, difference }: ActionBarProps) => {
   return (
     <div className='mt-8 grid grid-cols-2 gap-3 sm:flex'>
       <Button
@@ -22,6 +25,18 @@ const ActionBar = ({ handleContinue, progressPercentage, form }: ActionBarProps)
         Beenden
       </Button>
       <ProgressBar progressPercentage={progressPercentage} />
+      {points !== undefined && (
+        <div className='order-3 mr-3 flex items-center gap-1'>
+          <Coins size={16} />
+          <b>{points}</b>{' '}
+          {!!difference && (
+            <span className={difference > 0 ? 'text-green-500' : 'text-red-500'}>
+              {difference > 0 ? '+' : ''}
+              {difference}
+            </span>
+          )}
+        </div>
+      )}
       <Button
         onClick={form ? undefined : () => handleContinue()}
         color='green'
