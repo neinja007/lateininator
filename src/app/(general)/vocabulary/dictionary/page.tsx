@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Heading from '@/components/Heading';
+import TutorialHeading from '@/components/TutorialHeading';
 import DisplayMode from './components/DisplayMode';
 import { ResultCount } from './components/ResultCount';
 import WordCards from './components/WordCards';
@@ -13,6 +13,7 @@ import FailToLoad from '@/components/FailToLoad';
 import { useWords } from '@/hooks/database/queries/useWords';
 import { Word } from '@/types/word';
 import { placeholderWord } from '@/constants/placeholderData';
+import Link from '@/components/Link';
 
 const Page = () => {
   const [query, setQuery] = useState<string>('');
@@ -33,7 +34,10 @@ const Page = () => {
 
   return (
     <div className='space-y-5'>
-      <Heading>Wörterbuch</Heading>
+      <TutorialHeading heading='Wörterbuch'>
+        Das ist das Lateininator Wörterbuch. Hier kannst du alle Wörter sehen, die es auf dem Lateininator gibt. Wenn es
+        ein Wort noch nicht gibt, kannst du es unter <Link href='/user/words'>Wörter verwalten</Link> hinzufügen.
+      </TutorialHeading>
       <SearchBar query={query} setQuery={setQuery} />
       {status === 'error' ? (
         <FailToLoad />
