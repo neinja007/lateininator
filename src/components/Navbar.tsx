@@ -1,5 +1,4 @@
 'use client';
-
 import { Fragment, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';
@@ -11,7 +10,7 @@ import { useWidth } from '@/hooks/useWidth';
 import clsx from 'clsx';
 import { makeStatusDependent } from '@/utils/other/makeStatusDependent';
 import { useUser } from '@clerk/nextjs';
-import { useDbUser } from '@/hooks/database/queries/useDbUser';
+import { usePoints } from '@/hooks/database/queries/usePoints';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -32,8 +31,7 @@ const Navbar = () => {
 
   const user = useUser();
 
-  const { dbUser } = useDbUser();
-  const coins = dbUser?.points;
+  const { data: points } = usePoints();
 
   return (
     <>
@@ -83,7 +81,7 @@ const Navbar = () => {
           })}
         </div>
         <div className='my-auto mr-4 flex items-center'>
-          <b>{coins ?? '?'}</b> <Coins className='ml-3 w-6 text-yellow-400' />
+          <b>{points ?? '?'}</b> <Coins className='ml-3 w-6 text-yellow-400' />
         </div>
       </div>
     </>
