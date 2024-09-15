@@ -9,6 +9,7 @@ type PropertyInputsProps = {
   inputValues: Record<WordProperty | 'translation', string>;
   setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
   stage: 'test' | 'review';
+  setPoints: Dispatch<SetStateAction<number>>;
 };
 
 const PropertyInputs = ({
@@ -16,7 +17,8 @@ const PropertyInputs = ({
   activeWord,
   inputValues,
   setInputValues,
-  stage
+  stage,
+  setPoints
 }: PropertyInputsProps) => {
   return (
     <div className='mt-4 grid gap-4 md:grid-cols-2'>
@@ -42,6 +44,7 @@ const PropertyInputs = ({
 
         return (
           <PropertyInput
+            setPoints={setPoints}
             stage={stage}
             key={i}
             property={key}
