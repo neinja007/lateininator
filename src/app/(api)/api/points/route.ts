@@ -23,6 +23,7 @@ export const GET = async () => {
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   const points = z.number().parse(body.points);
+  const method = z.enum(['increment', 'set']).parse(body.method);
 
   const user = await currentUser();
 
@@ -36,10 +37,10 @@ export const POST = async (req: NextRequest) => {
     },
     data: {
       points: {
-        increment: points
+        [method]: points
       }
     }
   });
 
-  return NextResponse.json({ points: updatedUser.points });
+  return NextResponse.json(updatedUser.points);
 };
