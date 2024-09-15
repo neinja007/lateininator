@@ -15,9 +15,16 @@ export async function generateMetadata({ params }: Props) {
     }
   });
 
+  if (!word) {
+    return {
+      title: 'Wort nicht gefunden - Lateininator Wörterbuch',
+      description: 'Das Wort wurde nicht gefunden'
+    };
+  }
+
   return {
-    title: `"${word?.name.toUpperCase()}"`,
-    description: `Formen und Informationen zu ${word?.name} im Lateininator Wörterbuch`
+    title: `"${word?.name.toUpperCase()}" - Lateininator Wörterbuch`,
+    description: `Formen und Informationen zu "${word?.name}" im Lateininator Wörterbuch`
   };
 }
 
