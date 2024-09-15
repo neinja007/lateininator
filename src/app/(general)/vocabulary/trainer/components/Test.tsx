@@ -1,5 +1,5 @@
 import WordDisplay from '@/components/WordDisplay';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
 import ActionBar from '@/components/ActionBar';
@@ -35,16 +35,17 @@ const Test = ({
   checkTranslation
 }: TestProps) => {
   const { submit } = useTestForm(handleContinue);
+  const [difference, setDifference] = useState(0);
 
   return (
     activeWord && (
       <>
-        <WordDisplay word={activeWord} points={points} />
+        <WordDisplay word={activeWord} />
         <Hr />
         <form onSubmit={submit}>
           {checkTranslation && (
             <TranslationInput
-              setPoints={setPoints}
+              setPoints={setDifference}
               correctTranslations={activeWord.translation}
               stage={stage}
               inputValues={inputValues}
@@ -53,7 +54,7 @@ const Test = ({
           )}
           {wordPropertiesToCheck.length > 0 && (
             <PropertyInputs
-              setPoints={setPoints}
+              setPoints={setDifference}
               wordPropertiesToCheck={wordPropertiesToCheck}
               activeWord={activeWord}
               inputValues={inputValues}
@@ -61,7 +62,13 @@ const Test = ({
               stage={stage}
             />
           )}
-          <ActionBar form handleContinue={handleContinue} progressPercentage={progressPercentage} />
+          <ActionBar
+            form
+            handleContinue={handleContinue}
+            points={points}
+            progressPercentage={progressPercentage}
+            difference={difference}
+          />
         </form>
       </>
     )
