@@ -1,7 +1,7 @@
 type LayoutProps = { children: React.ReactNode };
 
 export const metadata = {
-  title: 'Kollektion bearbeiten',
+  title: { default: 'Kollektion bearbeiten', template: '%s - Lateininator' },
   description: 'Kollektion bearbeiten'
 };
 
