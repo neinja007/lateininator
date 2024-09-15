@@ -17,7 +17,7 @@ export const GET = async () => {
     return new Response('User not found', { status: 404 });
   }
 
-  return NextResponse.json({ points: dbUser.points });
+  return NextResponse.json(dbUser.points);
 };
 
 export const POST = async (req: NextRequest) => {
