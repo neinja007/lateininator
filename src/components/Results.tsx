@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 type ResultsProps = {
   handleContinue: (arg?: Stage) => void;
-  points: number;
+  points?: number;
 };
 
 const Results = ({ handleContinue, points }: ResultsProps) => {
