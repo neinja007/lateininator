@@ -66,7 +66,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             {(status !== 'success' || collections.length > 0) && (
               <span>
                 {' '}
-                (können bei der <Link href={'/user/collections'}>Wortschatz-Verwaltung</Link> bearbeitet werden)
+                (können bei der <Link href={'/user/collections'}>Kollektions-Verwaltung</Link> bearbeitet werden)
               </span>
             )}
             :
@@ -91,7 +91,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               <div className='col-span-full text-yellow-500'>
                 Keine gespeicherten Kollektionen gefunden. Sie können bei der{' '}
                 <Link href={'/user/collections'} className='font-medium text-blue-500 hover:underline'>
-                  Wortschatz-Verwaltung
+                  Kollektions-Verwaltung
                 </Link>{' '}
                 ein paar hinzufügen.
               </div>
