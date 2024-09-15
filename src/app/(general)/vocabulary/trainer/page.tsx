@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import Heading from '@/components/Heading';
+import TutorialHeading from '@/components/TutorialHeading';
 import Settings from './components/Settings';
 import Test from './components/Test';
 import Results from '@/components/Results';
@@ -55,7 +55,10 @@ const Page = () => {
   return (
     <AuthConditionalLock>
       <div className='space-y-5'>
-        <Heading>Vokabeltrainer</Heading>
+        <TutorialHeading heading='Vokabeltrainer'>
+          Hier kannst du Wörter lernen und üben. Die Wörter können nach verschiedenen Kriterien ausgewählt und nach
+          spezifischen Eigenschaften abgefragt werden.
+        </TutorialHeading>
         {stage === 'settings' && (
           <Settings
             currentSettingsStage={currentSettingsStage}
