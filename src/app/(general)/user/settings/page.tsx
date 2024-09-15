@@ -21,7 +21,9 @@ const Page = () => {
       <Heading>Einstellungen</Heading>
       <div className='mb-5'>
         {status === 'pending' &&
-          [...Array(3)].map((_, index) => <Skeleton key={index} pulse customSize className='my-2 h-20 w-full' />)}
+          [...Array(Object.keys(settings).length)].map((_, index) => (
+            <Skeleton key={index} pulse customSize className='my-2 h-20 w-full' />
+          ))}
         {status === 'success' &&
           DbSettings &&
           Object.keys(settings).map((key) => (
