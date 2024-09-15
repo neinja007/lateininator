@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Heading from '@/components/Heading';
+import TutorialHeading from '@/components/TutorialHeading';
 import { useGame } from '@/hooks/useGame';
 import Results from '@/components/Results';
 import Settings from './components/Settings';
@@ -46,7 +46,10 @@ const Page = () => {
   return (
     <AuthConditionalLock>
       <div className='space-y-5'>
-        <Heading>Endungstrainer: Adjektive</Heading>
+        <TutorialHeading heading='Endungstrainer: Adjektive'>
+          Hier können Sie die Komparation von Adjektiven üben. Hierbei können Sie sich auf einige bestimmte Formen
+          beschränken oder alle Komparationen üben.
+        </TutorialHeading>
         {stage === 'settings' && (
           <Settings
             currentSettingsStage={currentSettingsStage}
