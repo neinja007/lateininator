@@ -9,15 +9,24 @@ type ActionBarProps = {
   progressPercentage: number;
   points?: number;
   difference?: number;
+  addDifferenceToPoints: () => void;
 };
 
-const ActionBar = ({ handleContinue, progressPercentage, form, points, difference }: ActionBarProps) => {
+const ActionBar = ({
+  handleContinue,
+  progressPercentage,
+  form,
+  points,
+  difference,
+  addDifferenceToPoints
+}: ActionBarProps) => {
   return (
     <div className='mt-8 grid grid-cols-2 gap-3 sm:flex'>
       <Button
         color='red'
         className='order-2'
         onClick={() => {
+          addDifferenceToPoints();
           handleContinue('results');
         }}
         type='button'
