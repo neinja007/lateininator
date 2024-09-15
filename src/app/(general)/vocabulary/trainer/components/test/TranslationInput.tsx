@@ -21,7 +21,7 @@ const TranslationInput = ({
   setInputValues,
   setPoints
 }: TranslationInputProps) => {
-  const [manuallySetCorrectValue, setManuallySetCorrectValue] = useState<boolean>(false);
+  const [disablePoints, setDisablePoints] = useState<boolean>(false);
 
   const inputIsCorrect = compareValues(inputValues.translation, correctTranslations, true);
 
@@ -41,10 +41,17 @@ const TranslationInput = ({
   const displayedValue = stage === 'review' ? inputWithCorrectValueAppended : inputValues.translation;
 
   useEffect(() => {
-    if (stage === 'review' && inputIsCorrect && !manuallySetCorrectValue) {
-      setPoints((prevPoints) => prevPoints + 1);
+    if (stage === 'review' && inputIsCorrect && !disablePoints) {
+      setPoints((prevPoints) => prevPoints + inputValues.translation.length);
+      setDisablePoints(true);
     }
-  }, [inputIsCorrect, setPoints, stage, manuallySetCorrectValue]);
+  }, [inputIsCorrect, setPoints, stage, disablePoints, inputValues.translation.length]);
+
+  useEffect(() => {
+    if (stage === 'test' && disablePoints) {
+      setDisablePoints(false);
+    }
+  }, [disablePoints, stage]);
 
   return (
     <div className='flex items-end'>
@@ -63,7 +70,7 @@ const TranslationInput = ({
           className='m-1.5 w-5 flex-shrink'
           onClick={() => {
             setInputValues((prev) => ({ ...prev, translation: correctTranslations.join(', ') }));
-            setManuallySetCorrectValue(true);
+            setDisablePoints(true);
           }}
         >
           <Check />

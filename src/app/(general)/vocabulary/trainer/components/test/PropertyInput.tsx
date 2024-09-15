@@ -20,7 +20,7 @@ type PropertyInputProps = {
 };
 
 const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue, setPoints }: PropertyInputProps) => {
-  const [manuallySetCorrectValue, setManuallySetCorrectValue] = useState<boolean>(false);
+  const [disablePoints, setDisablePoints] = useState<boolean>(false);
 
   const options = isWordPropertiesUsingSelectInput(property)
     ? WORD_CONSTANTS.optional[property].reduce((object: { [key: string]: string }, element) => {
@@ -28,18 +28,25 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
         return object;
       }, {})
     : {};
-  let isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
+  const isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
   const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
 
   useEffect(() => {
-    if (!manuallySetCorrectValue && isInputCorrect && stage === 'review') {
+    if (stage === 'review' && isInputCorrect && !disablePoints) {
       setPoints((prevPoints) => prevPoints + 1);
+      setDisablePoints(true);
     }
-  }, [isInputCorrect, manuallySetCorrectValue, setPoints, stage]);
+  }, [isInputCorrect, setPoints, stage, disablePoints]);
+
+  useEffect(() => {
+    if (stage === 'test' && disablePoints) {
+      setDisablePoints(false);
+    }
+  }, [disablePoints, stage]);
 
   const handleManuallySetCorrectValue = () => {
     handleChange(property, correctValue);
-    setManuallySetCorrectValue(true);
+    setDisablePoints(true);
   };
 
   return (
