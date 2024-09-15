@@ -8,6 +8,7 @@ import { WordProperty } from '@/types/appConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { compareValues } from '@/utils/word/compareValues';
 import { Check } from 'lucide-react';
+import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
 type PropertyInputProps = {
   property: WordProperty;
@@ -15,9 +16,12 @@ type PropertyInputProps = {
   handleChange: (key: WordProperty, value: string) => void;
   correctValue: string;
   stage: 'test' | 'review';
+  setPoints: Dispatch<SetStateAction<number>>;
 };
 
-const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue }: PropertyInputProps) => {
+const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue, setPoints }: PropertyInputProps) => {
+  const [manuallySetCorrectValue, setManuallySetCorrectValue] = useState<boolean>(false);
+
   const options = isWordPropertiesUsingSelectInput(property)
     ? WORD_CONSTANTS.optional[property].reduce((object: { [key: string]: string }, element) => {
         object[element] = (MAPPER.extended[property] as { [key: string]: string })[element];
@@ -26,6 +30,17 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
     : {};
   let isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
   const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
+
+  useEffect(() => {
+    if (!manuallySetCorrectValue && isInputCorrect && stage === 'review') {
+      setPoints((prevPoints) => prevPoints + 1);
+    }
+  }, [isInputCorrect, manuallySetCorrectValue, setPoints, stage]);
+
+  const handleManuallySetCorrectValue = () => {
+    handleChange(property, correctValue);
+    setManuallySetCorrectValue(true);
+  };
 
   return (
     <div className='flex items-end'>
@@ -51,7 +66,7 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
         )}
       </div>
       {stage === 'review' && !isInputCorrect && (
-        <button type='button' className='m-1.5 w-5 flex-shrink' onClick={() => handleChange(property, correctValue)}>
+        <button type='button' className='m-1.5 w-5 flex-shrink' onClick={handleManuallySetCorrectValue}>
           <Check />
         </button>
       )}
