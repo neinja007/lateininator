@@ -26,7 +26,7 @@ const ActionBar = ({
         color='red'
         className='order-2'
         onClick={() => {
-          addDifferenceToPoints();
+          addDifferenceToPoints && addDifferenceToPoints();
           handleContinue('results');
         }}
         type='button'
