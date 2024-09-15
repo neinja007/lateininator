@@ -4,15 +4,15 @@ import { ListWithWords } from '@/types/collection';
 import { useState } from 'react';
 
 type ListAddFormProps = {
-  lists: (ListWithWords & { new?: boolean })[];
-  setLists: (lists: (ListWithWords & { new?: boolean })[]) => void;
+  lists: ListWithWords[];
+  setLists: (lists: ListWithWords[]) => void;
 };
 
 const ListAddForm = ({ lists, setLists }: ListAddFormProps) => {
   const handleListSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (listName.trim().length > 0 && !lists.some((list) => list.name === listName)) {
-      setLists([...lists, { id: lists.length + 1, name: listName, words: [], new: true }]);
+      setLists([...lists, { id: lists.length + 1, name: listName, words: [] }]);
       setListName('');
     }
   };

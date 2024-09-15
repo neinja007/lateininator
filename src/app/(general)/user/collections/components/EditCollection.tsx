@@ -34,7 +34,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   });
 
   const [name, setName] = useState('');
-  const [lists, setLists] = useState<(ListWithWords & { new?: boolean })[]>([]);
+  const [lists, setLists] = useState<ListWithWords[]>([]);
   const [description, setDescription] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [activeList, setActiveList] = useState<number>();
@@ -68,7 +68,6 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
       description,
       private: !isPublic,
       lists: lists.map((l) => ({
-        id: l.new ? undefined : l.id,
         name: l.name,
         words: l.words.map((w) => w.id)
       }))
