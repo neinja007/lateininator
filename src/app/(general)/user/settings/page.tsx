@@ -8,10 +8,11 @@ import Setting from './components/Setting';
 import Skeleton from '@/components/Skeleton';
 import { useSettings } from '@/hooks/database/queries/useSettings';
 import { SettingKey } from '@prisma/client';
+import { settings } from '@/constants/settings';
 
 const Page = () => {
   const {
-    settings,
+    settings: DbSettings,
     query: { status }
   } = useSettings();
 
@@ -22,9 +23,13 @@ const Page = () => {
         {status === 'pending' &&
           [...Array(3)].map((_, index) => <Skeleton key={index} pulse customSize className='my-2 h-20 w-full' />)}
         {status === 'success' &&
-          settings &&
-          Object.entries(settings).map(([key, value]) => (
-            <Setting key={key} settingKey={key as SettingKey} settingValue={value} />
+          DbSettings &&
+          Object.keys(settings).map((key) => (
+            <Setting
+              key={key}
+              settingKey={key as SettingKey}
+              settingValue={key in DbSettings ? DbSettings[key as keyof typeof DbSettings] : undefined}
+            />
           ))}
       </div>
       <p className='mb-2 text-center text-lg font-bold'>Konto-Einstellungen</p>
