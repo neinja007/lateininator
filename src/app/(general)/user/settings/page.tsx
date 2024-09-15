@@ -1,7 +1,7 @@
 'use client';
 
 import FancyLink from '@/components/FancyLink';
-import Heading from '@/components/Heading';
+import TutorialHeading from '@/components/TutorialHeading';
 import { IsPremium } from '@/components/IsPremium';
 import { Gem, LogOut, UserIcon } from 'lucide-react';
 import Setting from './components/Setting';
@@ -9,6 +9,7 @@ import Skeleton from '@/components/Skeleton';
 import { useSettings } from '@/hooks/database/queries/useSettings';
 import { SettingKey } from '@prisma/client';
 import { settings } from '@/constants/settings';
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 
 const Page = () => {
   const {
@@ -18,7 +19,10 @@ const Page = () => {
 
   return (
     <div>
-      <Heading>Einstellungen</Heading>
+      <TutorialHeading heading='Einstellungen'>
+        Hier können Sie Ihre Einstellungen anpassen. Wenn Sie sich eine weitere Einstellung wünschen, können Sie diese
+        bei unserem <LinkToSupportEmail /> anfragen.
+      </TutorialHeading>
       <div className='mb-5'>
         {status === 'pending' &&
           [...Array(Object.keys(settings).length)].map((_, index) => (
