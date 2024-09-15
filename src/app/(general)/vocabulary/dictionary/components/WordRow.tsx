@@ -31,7 +31,7 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
         {loading ? <Skeleton customSize className='h-6 w-32' pulse /> : getHighlightedQuery(word, query || '')}{' '}
         <i>{getLexicalForm(word)}</i>
       </td>
-      <td className='line-clamp-1 p-2 px-4'>
+      <td className='truncate p-2 px-4'>
         {loading ? (
           <div className='flex h-6'>
             <Skeleton pulse />, <Skeleton className='ml-2' pulse />
