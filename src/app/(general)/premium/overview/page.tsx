@@ -1,6 +1,6 @@
 'use client';
 
-import Heading from '@/components/Heading';
+import TutorialHeading from '@/components/TutorialHeading';
 import Card from './components/Card';
 import { monthlyPrice } from '@/constants/other';
 import { useWidth } from '@/hooks/useWidth';
@@ -10,6 +10,7 @@ import { Stripe } from '@stripe/stripe-js';
 import getStripe from '@/utils/stripe/get-stripe';
 import { useUser } from '@clerk/nextjs';
 import { useDbUser } from '@/hooks/database/queries/useDbUser';
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 
 const features = [
   'Wörterbuch',
@@ -83,7 +84,10 @@ const Page = () => {
 
   return (
     <>
-      <Heading>Lateininator Premium</Heading>
+      <TutorialHeading heading='Lateininator Premium'>
+        Die verschiedenen Stufen des Lateininators stehen hier im Vergleich. Wenn Sie weitere Fragen haben, bitten wir
+        Sie, diese unserem <LinkToSupportEmail /> zukommen zu lassen.
+      </TutorialHeading>
       <div className='my-5 grid gap-x-3 gap-y-5 sm:grid-cols-2 lg:grid-cols-3'>
         {!hideBasic && (
           <Card
