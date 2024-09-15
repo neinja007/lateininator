@@ -14,20 +14,19 @@ import { useRouter } from 'next/navigation';
 import { useToggleSavedCollection } from '@/hooks/database/mutations/useToggleSavedCollection';
 import Tutorial from '@/components/Tutorial';
 
-const displays = ['saved', 'browse', 'manage'] as const;
+const displays = ['all', 'owned'] as const;
 
 const displayMap = {
-  saved: 'Gespeicherte Kollektionen',
-  browse: 'Alle Kollektionen',
-  manage: 'Deine Kollektionen'
+  all: 'Alle Kollektionen',
+  owned: 'Deine Kollektionen'
 };
 
 const Page = () => {
   const user = useUser();
 
-  const [display, setDisplay] = useState<(typeof displays)[number]>('saved');
+  const [display, setDisplay] = useState<(typeof displays)[number]>('all');
   const { data: collections, status } = useCollections<FullCollection[]>({
-    status: display === 'saved' ? 'saved' : display === 'manage' ? 'owned' : 'all',
+    status: display === 'all' ? 'all' : 'owned',
     include: ['lists', 'owner', 'savedBy']
   });
 
@@ -46,7 +45,7 @@ const Page = () => {
     <div>
       <Heading className='mb-8'>Wortschatz: {displayMap[display]}</Heading>
 
-      <div className='grid grid-cols-3 gap-x-4'>
+      <div className='grid grid-cols-2 gap-x-4'>
         {displays.map((d) => (
           <Button key={d} onClick={() => setDisplay(d)} color={d === display ? 'blue' : 'default'}>
             {displayMap[d]}
@@ -57,18 +56,13 @@ const Page = () => {
         {status === 'error' && <FailToLoad />}
         <Tutorial heading={displayMap[display]}>
           <div className='text-center'>
-            {display === 'saved' && (
+            {display === 'all' && (
               <p>
-                Hier sind alle Kollektionen, die Sie <b>gespeichert</b> haben. Diese stehen Ihnen bei den{' '}
-                <b>Trainern</b> zur Verfügung.
+                Hier sind alle Kollektionen, die veröffentlicht wurden. Sie können diese hier aktivieren und
+                deaktivieren.
               </p>
             )}
-            {display === 'browse' && (
-              <p>
-                Hier finden Sie alle <b>öffentlichen Kollektionen</b>, die Sie <b>speichern</b> können.
-              </p>
-            )}
-            {display === 'manage' && (
+            {display === 'owned' && (
               <p>
                 Hier finden Sie alle Kollektionen, <b>die Sie erstellt</b> haben. Sie können <b>bearbeiten</b>,{' '}
                 <b>löschen</b> oder <b>neue erstellen</b>.
@@ -92,7 +86,7 @@ const Page = () => {
                         affectedCollection === collection.id && mutationIsPending ? 'animate-pulse opacity-50' : ''
                       }
                       onClick={() => {
-                        if (display === 'manage') {
+                        if (display === 'owned') {
                           router.push(`/user/collections/edit/${collection.id}`);
                         } else {
                           toggleSavedCollection(collection.id);
@@ -102,17 +96,17 @@ const Page = () => {
                       name={collection.name}
                       owner={collection.owner.name}
                       buttonLabel={
-                        display === 'manage'
+                        display === 'owned'
                           ? 'Kollektion bearbeiten'
                           : isSaved
                             ? 'Kollektion entfernen'
                             : 'Kollektion speichern'
                       }
-                      buttonColor={display === 'manage' ? 'blue' : isSaved ? 'red' : 'green'}
+                      buttonColor={display === 'owned' ? 'blue' : isSaved ? 'red' : 'green'}
                     />
                   );
                 })}
-              {display === 'manage' && (
+              {display === 'owned' && (
                 <Cell
                   outlined
                   buttonColor='gray'
