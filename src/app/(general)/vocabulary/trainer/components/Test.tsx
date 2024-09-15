@@ -18,9 +18,13 @@ type TestProps = {
   handleContinue: (newStage?: Stage) => void;
   progressPercentage: number;
   checkTranslation: boolean;
+  points: number;
+  setPoints: Dispatch<SetStateAction<number>>;
 };
 
 const Test = ({
+  points,
+  setPoints,
   stage,
   activeWord,
   inputValues,
@@ -35,11 +39,12 @@ const Test = ({
   return (
     activeWord && (
       <>
-        <WordDisplay word={activeWord} />
+        <WordDisplay word={activeWord} points={points} />
         <Hr />
         <form onSubmit={submit}>
           {checkTranslation && (
             <TranslationInput
+              setPoints={setPoints}
               correctTranslations={activeWord.translation}
               stage={stage}
               inputValues={inputValues}
@@ -48,6 +53,7 @@ const Test = ({
           )}
           {wordPropertiesToCheck.length > 0 && (
             <PropertyInputs
+              setPoints={setPoints}
               wordPropertiesToCheck={wordPropertiesToCheck}
               activeWord={activeWord}
               inputValues={inputValues}
