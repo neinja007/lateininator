@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
-export const useAddPoints = () => {
+export const useAddPoints = (method: 'increment' | 'set') => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (points: number) => axios.post('/api/points', { points }).then((res) => res.data),
+    mutationFn: (points: number) => axios.post('/api/points', { points, method }).then((res) => res.data),
     onError: (error) => {
       console.error('Error adding points:', error);
     },
