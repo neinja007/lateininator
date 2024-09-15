@@ -1,8 +1,8 @@
 type LayoutProps = { children: React.ReactNode };
 
 export const metadata = {
-  title: { default: 'Wortschatz', template: '%s - Lateininator' },
-  description: 'Wortschatz'
+  title: { default: 'Kollektionen', template: '%s - Lateininator' },
+  description: 'Kollektionen'
 };
 
 const Layout = ({ children }: LayoutProps) => children;

@@ -6,7 +6,7 @@ import EditCollection from '../../components/EditCollection';
 const Page = ({ params }: { params: { id: string } }) => {
   return (
     <div>
-      <Heading>Wortschatz</Heading>
+      <Heading>Kollektion bearbeiten</Heading>
       <EditCollection collectionId={parseInt(params.id)} />
     </div>
   );

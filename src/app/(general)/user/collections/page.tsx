@@ -16,7 +16,7 @@ import Tutorial from '@/components/Tutorial';
 
 const displays = ['all', 'owned'] as const;
 
-const displayMap = {
+const displayMap: Record<(typeof displays)[number], string> = {
   all: 'Alle Kollektionen',
   owned: 'Deine Kollektionen'
 };
@@ -43,7 +43,7 @@ const Page = () => {
 
   return (
     <div>
-      <Heading className='mb-8'>Wortschatz: {displayMap[display]}</Heading>
+      <Heading className='mb-8'>Kollektion: {displayMap[display]}</Heading>
 
       <div className='grid grid-cols-2 gap-x-4'>
         {displays.map((d) => (
@@ -58,14 +58,14 @@ const Page = () => {
           <div className='text-center'>
             {display === 'all' && (
               <p>
-                Hier sind alle Kollektionen, die veröffentlicht wurden. Sie können diese hier aktivieren und
+                Hier sind alle <b>Kollektionen</b>, die veröffentlicht wurden. Sie können diese hier aktivieren und
                 deaktivieren.
               </p>
             )}
             {display === 'owned' && (
               <p>
-                Hier finden Sie alle Kollektionen, <b>die Sie erstellt</b> haben. Sie können <b>bearbeiten</b>,{' '}
-                <b>löschen</b> oder <b>neue erstellen</b>.
+                Hier finden Sie alle <b>Kollektionen</b>, <b>die Sie erstellt</b> haben. Sie können diese{' '}
+                <b>bearbeiten</b>, <b>löschen</b> oder <b>neue erstellen</b>.
               </p>
             )}
           </div>

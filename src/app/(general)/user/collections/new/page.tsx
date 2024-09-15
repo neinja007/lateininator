@@ -6,7 +6,7 @@ import EditCollection from '../components/EditCollection';
 const Page = () => {
   return (
     <div>
-      <Heading>Wortschatz</Heading>
+      <Heading>Kollektion erstellen</Heading>
       <EditCollection collectionId={undefined} />
     </div>
   );
