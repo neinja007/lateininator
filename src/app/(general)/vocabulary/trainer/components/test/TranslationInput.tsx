@@ -40,7 +40,7 @@ const TranslationInput = ({
   if (!inputValues.translation.trim()) {
     inputWithCorrectValueAppended = formattedCorrectTranslations;
   } else {
-    inputWithCorrectValueAppended = `${formattedCorrectTranslations} (${inputValues.translation})`;
+    inputWithCorrectValueAppended = `${formattedCorrectTranslations} (${translations.join(', ')})`;
   }
 
   const displayedValue = stage === 'review' ? inputWithCorrectValueAppended : inputValues.translation;
