@@ -1,5 +1,5 @@
 import WordDisplay from '@/components/WordDisplay';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
 import ActionBar from '@/components/ActionBar';
@@ -37,12 +37,16 @@ const Test = ({
   const { submit } = useTestForm(handleContinue);
   const [difference, setDifference] = useState(0);
 
+  const addDifferenceToPoints = useCallback(() => {
+    setPoints((prev) => prev + difference);
+    setDifference(0);
+  }, [difference, setPoints, setDifference]);
+
   useEffect(() => {
     if (difference !== 0 && stage === 'test') {
-      setPoints((prev) => prev + difference);
-      setDifference(0);
+      addDifferenceToPoints();
     }
-  }, [difference, setPoints, stage]);
+  }, [addDifferenceToPoints, difference, stage]);
 
   return (
     activeWord && (
@@ -70,6 +74,7 @@ const Test = ({
             />
           )}
           <ActionBar
+            addDifferenceToPoints={addDifferenceToPoints}
             form
             handleContinue={handleContinue}
             points={points}
