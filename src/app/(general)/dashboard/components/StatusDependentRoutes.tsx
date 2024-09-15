@@ -9,7 +9,7 @@ type StatusDependentRoutesProps = {
 
 const StatusDependentRoutes = ({ routes }: StatusDependentRoutesProps) => {
   return (
-    <div className='col-span-3 items-center justify-between gap-2 sm:flex'>
+    <div className='col-span-3 mt-2 items-center justify-between gap-2 sm:flex'>
       {routes.map((route, i) => (
         <Fragment key={i}>
           {makeStatusDependent(<FancyLink route={{ ...route, href: '/user' + route.href }} />, route.status)}
