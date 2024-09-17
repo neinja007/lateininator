@@ -20,6 +20,8 @@ model User {
   savedCollections Collection[]  @relation("saved")
   ownedCollections Collection[]  @relation("owner")
   settings         UserSetting[]
+
+  words Word[] @relation("createdBy")
 }
 
 model UserSetting {
@@ -89,6 +91,10 @@ model Word {
   verbId      Int?       @unique
   adjective   Adjective? @relation(fields: [adjectiveId], references: [id])
   adjectiveId Int?       @unique
+
+  private     Boolean @default(false)
+  createdBy   User    @relation("createdBy", fields: [createdById], references: [id])
+  createdById String
 }
 
 model Noun {
