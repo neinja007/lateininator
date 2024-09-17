@@ -79,8 +79,9 @@ model Word {
   derivativeId Int?
   exception    Json     @default("{}") @db.JsonB
   base         Word[]   @relation("derivative")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   noun        Noun?      @relation("noun", fields: [nounId], references: [id])
   nounId      Int?       @unique
