@@ -17,8 +17,8 @@ import Tutorial from '@/components/Tutorial';
 const displays = ['all', 'owned'] as const;
 
 const displayMap: Record<(typeof displays)[number], string> = {
-  all: 'Alle Kollektionen',
-  owned: 'Deine Kollektionen'
+  all: 'Kollektionen aktivieren & deaktivieren',
+  owned: 'Kollektionen erstellen & bearbeiten'
 };
 
 const Page = () => {
@@ -43,13 +43,8 @@ const Page = () => {
 
   return (
     <div>
-      <TutorialHeading heading={`Kollektion: ${displayMap[display]}`}>
-        Hier können Sie Ihre Kollektionen verwalten. Gespeicherte Kollektionen können mit unseren Trainern abgefragt
-        werden. Sie können unter dem Tab {displayMap.owned} selbst Kollektionen nach Ihren Präferenzen gestalten und
-        bearbeiten.
-      </TutorialHeading>
-
-      <div className='grid grid-cols-2 gap-x-4'>
+      <TutorialHeading heading={`${displayMap[display]}`} />
+      <div className='grid gap-4 sm:grid-cols-2'>
         {displays.map((d) => (
           <Button key={d} onClick={() => setDisplay(d)} color={d === display ? 'blue' : 'default'}>
             {displayMap[d]}
@@ -58,18 +53,18 @@ const Page = () => {
       </div>
       <div className='my-10'>
         {status === 'error' && <FailToLoad />}
-        <Tutorial heading={displayMap[display]}>
+        <Tutorial>
           <div className='text-center'>
             {display === 'all' && (
               <p>
                 Hier sind alle <b>Kollektionen</b>, die veröffentlicht wurden. Sie können diese hier aktivieren und
-                deaktivieren.
+                deaktivieren. <b>Aktivierte Kollektionen</b> können Sie in den Trainern verwenden.
               </p>
             )}
             {display === 'owned' && (
               <p>
                 Hier finden Sie alle <b>Kollektionen</b>, <b>die Sie erstellt</b> haben. Sie können diese{' '}
-                <b>bearbeiten</b>, <b>löschen</b> oder <b>neue erstellen</b>.
+                <b>bearbeiten</b> oder <b>löschen</b>. <b>Neue Kollektionen</b> können Sie hier erstellen.
               </p>
             )}
           </div>
@@ -103,8 +98,8 @@ const Page = () => {
                         display === 'owned'
                           ? 'Kollektion bearbeiten'
                           : isSaved
-                            ? 'Kollektion entfernen'
-                            : 'Kollektion speichern'
+                            ? 'Kollektion deaktivieren'
+                            : 'Kollektion aktivieren'
                       }
                       buttonColor={display === 'owned' ? 'blue' : isSaved ? 'red' : 'green'}
                     />
