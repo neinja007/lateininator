@@ -79,9 +79,9 @@ const Navbar = () => {
 
             return <Fragment key={i}>{makeStatusDependent(element, route.status)}</Fragment>;
           })}
-        </div>
-        <div className='my-auto mr-4 flex items-center'>
-          <b>{points ?? '?'}</b> <Coins className='ml-3 w-6 text-yellow-400' />
+          <div className='my-auto mr-4 flex items-center'>
+            <b>{points ?? '?'}</b> <Coins className='ml-3 w-6 text-yellow-400' />
+          </div>
         </div>
       </div>
     </>
