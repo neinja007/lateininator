@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { Stage } from '@/types/other';
+import { useCallback, useState, useEffect } from 'react';
 
-export const usePointCounter = () => {
+export const usePointCounter = (stage: Stage) => {
   const [points, setPoints] = useState<number>(0);
   const [difference, setDifference] = useState<number>(0);
 
@@ -22,6 +23,12 @@ export const usePointCounter = () => {
     setPoints((prev) => prev + difference);
     setDifference(0);
   }, [difference, setPoints, setDifference]);
+
+  useEffect(() => {
+    if (stage === 'test' && difference !== 0) {
+      addDifferenceToPoints();
+    }
+  }, [stage, addDifferenceToPoints, difference]);
 
   return { points, addPoints, difference, addDifference, addDifferenceToPoints };
 };

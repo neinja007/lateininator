@@ -24,7 +24,6 @@ const initialInputValues = [...APP_CONSTANTS.allWordProperties, 'translation'].r
 const Page = () => {
   const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
   const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
-  const { points, addPoints, difference, addDifference, addDifferenceToPoints } = usePointCounter();
 
   const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<WordProperty[]>([
     ...APP_CONSTANTS.allWordProperties
@@ -52,6 +51,8 @@ const Page = () => {
     4,
     canContinue
   );
+
+  const { points, difference, addDifference, addDifferenceToPoints } = usePointCounter(stage);
 
   return (
     <AuthConditionalLock>
