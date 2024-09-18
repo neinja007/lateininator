@@ -11,7 +11,7 @@ type TranslationInputProps = {
   stage: 'test' | 'review';
   inputValues: Record<WordProperty | 'translation', string>;
   setInputValues: Dispatch<SetStateAction<Record<WordProperty | 'translation', string>>>;
-  setPoints: Dispatch<SetStateAction<number>>;
+  addDifference: (difference: number) => void;
 };
 
 const TranslationInput = ({
@@ -19,7 +19,7 @@ const TranslationInput = ({
   stage,
   inputValues,
   setInputValues,
-  setPoints
+  addDifference
 }: TranslationInputProps) => {
   const [disablePoints, setDisablePoints] = useState<boolean>(false);
 
@@ -47,10 +47,10 @@ const TranslationInput = ({
 
   useEffect(() => {
     if (stage === 'review' && inputIsCorrect && !disablePoints) {
-      setPoints((prevPoints) => prevPoints + translations.length);
+      addDifference(translations.length);
       setDisablePoints(true);
     }
-  }, [disablePoints, inputIsCorrect, setPoints, stage, translations.length]);
+  }, [disablePoints, inputIsCorrect, stage, translations.length, addDifference]);
 
   useEffect(() => {
     if (stage === 'test' && disablePoints) {
