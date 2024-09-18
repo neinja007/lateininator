@@ -8,7 +8,7 @@ import { WordProperty } from '@/types/appConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { compareValues } from '@/utils/word/compareValues';
 import { Check } from 'lucide-react';
-import { useEffect, useState, Dispatch, SetStateAction } from 'react';
+import { useEffect, useState } from 'react';
 
 type PropertyInputProps = {
   property: WordProperty;
@@ -16,10 +16,17 @@ type PropertyInputProps = {
   handleChange: (key: WordProperty, value: string) => void;
   correctValue: string;
   stage: 'test' | 'review';
-  setPoints: Dispatch<SetStateAction<number>>;
+  addDifference: (difference: number) => void;
 };
 
-const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue, setPoints }: PropertyInputProps) => {
+const PropertyInput = ({
+  stage,
+  correctValue,
+  property,
+  handleChange,
+  inputValue,
+  addDifference
+}: PropertyInputProps) => {
   const [disablePoints, setDisablePoints] = useState<boolean>(false);
 
   const options = isWordPropertiesUsingSelectInput(property)
@@ -33,10 +40,10 @@ const PropertyInput = ({ stage, correctValue, property, handleChange, inputValue
 
   useEffect(() => {
     if (stage === 'review' && isInputCorrect && !disablePoints) {
-      setPoints((prevPoints) => prevPoints + 1);
+      addDifference(1);
       setDisablePoints(true);
     }
-  }, [isInputCorrect, setPoints, stage, disablePoints]);
+  }, [isInputCorrect, stage, disablePoints, addDifference]);
 
   useEffect(() => {
     if (stage === 'test' && disablePoints) {
