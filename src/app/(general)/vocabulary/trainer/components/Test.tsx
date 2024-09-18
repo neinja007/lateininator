@@ -1,5 +1,5 @@
 import WordDisplay from '@/components/WordDisplay';
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import TranslationInput from './test/TranslationInput';
 import PropertyInputs from './test/PropertyInputs';
 import ActionBar from '@/components/ActionBar';
@@ -19,12 +19,16 @@ type TestProps = {
   progressPercentage: number;
   checkTranslation: boolean;
   points: number;
-  setPoints: Dispatch<SetStateAction<number>>;
+  addDifferenceToPoints: () => void;
+  difference: number;
+  addDifference: (difference: number) => void;
 };
 
 const Test = ({
   points,
-  setPoints,
+  addDifferenceToPoints,
+  difference,
+  addDifference,
   stage,
   activeWord,
   inputValues,
@@ -35,18 +39,12 @@ const Test = ({
   checkTranslation
 }: TestProps) => {
   const { submit } = useTestForm(handleContinue);
-  const [difference, setDifference] = useState(0);
-
-  const addDifferenceToPoints = useCallback(() => {
-    setPoints((prev) => prev + difference);
-    setDifference(0);
-  }, [difference, setPoints, setDifference]);
 
   useEffect(() => {
-    if (difference !== 0 && stage === 'test') {
+    if (stage === 'test') {
       addDifferenceToPoints();
     }
-  }, [addDifferenceToPoints, difference, stage]);
+  }, [addDifferenceToPoints, stage]);
 
   return (
     activeWord && (
@@ -56,7 +54,7 @@ const Test = ({
         <form onSubmit={submit}>
           {checkTranslation && (
             <TranslationInput
-              setPoints={setDifference}
+              addDifference={addDifference}
               correctTranslations={activeWord.translation}
               stage={stage}
               inputValues={inputValues}
@@ -65,7 +63,7 @@ const Test = ({
           )}
           {wordPropertiesToCheck.length > 0 && (
             <PropertyInputs
-              setPoints={setDifference}
+              addDifference={addDifference}
               wordPropertiesToCheck={wordPropertiesToCheck}
               activeWord={activeWord}
               inputValues={inputValues}
