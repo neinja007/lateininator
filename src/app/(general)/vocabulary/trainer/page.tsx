@@ -11,6 +11,7 @@ import { WordProperty } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
+import { usePointCounter } from '@/hooks/usePointCounter';
 
 const initialInputValues = [...APP_CONSTANTS.allWordProperties, 'translation'].reduce(
   (acc, key) => {
@@ -23,7 +24,7 @@ const initialInputValues = [...APP_CONSTANTS.allWordProperties, 'translation'].r
 const Page = () => {
   const [inputValues, setInputValues] = useState<Record<WordProperty | 'translation', string>>(initialInputValues);
   const [checkIncorrectWordsAgain, setCheckIncorrectWordsAgain] = useState<boolean>(false);
-  const [points, setPoints] = useState<number>(0);
+  const { points, addPoints, difference, addDifference, addDifferenceToPoints } = usePointCounter();
 
   const [wordPropertiesToCheck, setWordPropertiesToCheck] = useState<WordProperty[]>([
     ...APP_CONSTANTS.allWordProperties
@@ -76,7 +77,9 @@ const Page = () => {
         {(stage === 'test' || stage === 'review') && activeWord && (
           <Test
             points={points}
-            setPoints={setPoints}
+            difference={difference}
+            addDifference={addDifference}
+            addDifferenceToPoints={addDifferenceToPoints}
             handleContinue={handleContinue}
             progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
             activeWord={activeWord}
