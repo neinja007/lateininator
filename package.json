@@ -23,7 +23,7 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "lucide-react": "^0.429.0",
-    "next": "^14.2.8",
+    "next": "^14.2.10",
     "react": "^18",
     "react-dom": "^18",
     "react-switch": "^7.0.0",
