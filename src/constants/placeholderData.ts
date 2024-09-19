@@ -2,6 +2,8 @@ import { Word } from '@/types/word';
 import { List } from '@prisma/client';
 
 export const placeholderWord: Word = {
+  createdById: 'user_lateininator',
+  private: false,
   createdAt: new Date(),
   updatedAt: new Date(),
   info: 'wird geladen...',
