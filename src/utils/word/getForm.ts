@@ -28,17 +28,18 @@ export const getForm = (
         numerus: Numerus;
         wordCase: WordCase | '6';
       }
-): string => {
+): { form: string; exception: boolean } => {
   let ending: string | undefined = undefined;
   let customEnding: string | undefined = undefined;
+  let exception = false;
 
   if (isNoun(word)) {
     if (word.noun.declension === 'NONE' || word.noun.gender === 'NONE')
       throw new Error('Error: Empty word properties were passed to getForm()');
-    else if (word.noun.pluralOnly && info.numerus === 'sin') return '-';
+    else if (word.noun.pluralOnly && info.numerus === 'sin') return { form: '-', exception: false };
     else if ('numerus' in info && 'wordCase' in info) {
       customEnding = word.exception[info.numerus]?.[info.wordCase];
-      if (customEnding) return customEnding;
+      if (customEnding) return { form: customEnding, exception: true };
 
       if (info.wordCase === '6') {
         ending = endings.noun[word.noun.declension][word.noun.gender][info.numerus][1];
@@ -63,7 +64,7 @@ export const getForm = (
         throw new Error('Error: Invalid word properties were passed to getForm()');
       } else {
         customEnding = word.exception[info.modus]?.[info.voice]?.[info.tense]?.[info.numerus]?.[info.person];
-        if (customEnding) return customEnding;
+        if (customEnding) return { form: customEnding, exception: true };
 
         ending =
           endings.verb[word.verb.conjugation][info.modus][info.voice][info.tense as Exclude<Tense, 'fut1'>][
@@ -76,12 +77,12 @@ export const getForm = (
     else if ('comparisonDegree' in info && 'numerus' in info && 'wordCase' in info) {
       if (info.adverb) {
         customEnding = word.exception.adverb?.[info.comparisonDegree];
-        if (customEnding) return customEnding;
+        if (customEnding) return { form: customEnding, exception: true };
 
         ending = endings.adverb[info.comparisonDegree][word.name.endsWith('ns') ? '_ns' : word.adjective.comparison];
       } else {
         customEnding = word.exception[info.gender]?.[info.comparisonDegree]?.[info.numerus]?.[info.wordCase];
-        if (customEnding) return customEnding;
+        if (customEnding) return { form: customEnding, exception: true };
 
         if (info.wordCase === '6') {
           ending = endings.adjective[word.adjective.comparison][info.gender][info.comparisonDegree][info.numerus][1];
@@ -105,7 +106,7 @@ export const getForm = (
   if (ending === undefined)
     throw new Error('Error: Ending from getForm() is undefined: ' + JSON.stringify(word) + JSON.stringify(info));
   if (ending === '-') {
-    return word.name.toLowerCase();
+    return { form: word.name.toLowerCase(), exception: false };
   }
 
   let baseType: 'word' | 'present' | 'perfect' | 'participle' = 'word';
@@ -126,6 +127,6 @@ export const getForm = (
   }
 
   const base = getBase(word, { baseType, superlative });
-  if (base === '') return '-';
-  else return base + ending;
+  if (base === '') return { form: '-', exception: false };
+  else return { form: base + ending, exception: false };
 };
