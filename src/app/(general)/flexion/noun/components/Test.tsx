@@ -53,7 +53,7 @@ const Test = ({
 
   const { submit } = useTestForm(handleContinue);
 
-  const correctIndividualInputValue = individualInputForm ? getForm(activeWord, individualInputForm) : '';
+  const correctIndividualInputValue = individualInputForm ? getForm(activeWord, individualInputForm).form : '';
 
   return (
     <>

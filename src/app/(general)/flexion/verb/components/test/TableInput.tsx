@@ -57,13 +57,15 @@ const TableInput = ({
                         <TableTrainerInput
                           key={tense}
                           value={tableInputValues[tense][numerus][person]}
-                          correctValue={getForm(activeWord, {
-                            tense,
-                            numerus,
-                            person,
-                            modus: tableInputForm.modus,
-                            voice: tableInputForm.voice
-                          })}
+                          correctValue={
+                            getForm(activeWord, {
+                              tense,
+                              numerus,
+                              person,
+                              modus: tableInputForm.modus,
+                              voice: tableInputForm.voice
+                            }).form
+                          }
                           handleChange={(value) =>
                             setTableInputValues((prev) => ({
                               ...prev,

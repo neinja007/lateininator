@@ -43,10 +43,12 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }
                     <TableTrainerInput
                       key={numerus}
                       value={tableInputValues[numerus][wordCase]}
-                      correctValue={getForm(activeWord, {
-                        numerus,
-                        wordCase
-                      })}
+                      correctValue={
+                        getForm(activeWord, {
+                          numerus,
+                          wordCase
+                        }).form
+                      }
                       handleChange={(value) =>
                         setTableInputValues((prev) => ({
                           ...prev,

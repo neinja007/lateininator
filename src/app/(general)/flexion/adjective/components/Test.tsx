@@ -88,7 +88,7 @@ const Test = ({
                 : `Adverb ${MAPPER.extended.comparisonDegree[individualInputForm.comparisonDegree]} ${MAPPER.extended.comparison[activeWord.adjective.comparison]}`
             }
             value={individualInputValue}
-            correctValue={getForm(activeWord, individualInputForm)}
+            correctValue={getForm(activeWord, individualInputForm).form}
             stage={stage}
             setValue={setIndividualInputValue}
           />

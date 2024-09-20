@@ -45,7 +45,7 @@ const VerbTable = ({ word }: VerbTableProps) => {
                                 (modus === 'ind' || tense !== 'fut1') &&
                                 (person !== '4' || tense === 'pres') && (
                                   <td key={tense} className={table.td}>
-                                    {getForm(word, { modus, numerus, person, tense, voice })}
+                                    {getForm(word, { modus, numerus, person, tense, voice }).form}
                                   </td>
                                 )
                             )}

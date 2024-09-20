@@ -36,7 +36,7 @@ const NounTable = ({ word }: NounTableProps) => {
                 <th className={table.th}>{MAPPER.extended.wordCase[wordCase]}</th>
                 {WORD_CONSTANTS.numerus.map((numerus) => (
                   <td key={numerus} className={table.td}>
-                    {getForm(word, { wordCase: wordCase, numerus: numerus })}
+                    {getForm(word, { wordCase: wordCase, numerus: numerus }).form}
                   </td>
                 ))}
               </tr>

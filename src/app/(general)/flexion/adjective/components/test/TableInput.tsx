@@ -34,12 +34,14 @@ const TableInput = ({ form, setValues, values, stage, activeWord, genders, check
             label='Adverb'
             value={values.adverb}
             handleChange={(value) => setValues((prev) => ({ ...prev, adverb: value }))}
-            correctValue={getForm(activeWord, {
-              numerus: 'sin',
-              wordCase: '1',
-              adverb: true,
-              comparisonDegree: form.comparisonDegree
-            })}
+            correctValue={
+              getForm(activeWord, {
+                numerus: 'sin',
+                wordCase: '1',
+                adverb: true,
+                comparisonDegree: form.comparisonDegree
+              }).form
+            }
             stage={stage}
           />
         </div>
@@ -68,12 +70,14 @@ const TableInput = ({ form, setValues, values, stage, activeWord, genders, check
                       <TableTrainerInput
                         key={gender}
                         value={values[gender][numerus][wordCase]}
-                        correctValue={getForm(activeWord, {
-                          gender,
-                          numerus,
-                          wordCase,
-                          comparisonDegree: form.comparisonDegree
-                        })}
+                        correctValue={
+                          getForm(activeWord, {
+                            gender,
+                            numerus,
+                            wordCase,
+                            comparisonDegree: form.comparisonDegree
+                          }).form
+                        }
                         handleChange={(value) =>
                           setValues((prev) => ({
                             ...prev,

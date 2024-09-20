@@ -70,7 +70,7 @@ const Test = ({
               <IndividualTrainerInput
                 label={`${MAPPER.extended.person[individualInputForm.person]} ${MAPPER.extended.numerus[individualInputForm.numerus]}; ${MAPPER.extended.modus[individualInputForm.modus]} ${MAPPER.extended.tense[individualInputForm.tense]} ${MAPPER.extended.voice[individualInputForm.voice]}`}
                 value={individualInputValue}
-                correctValue={getForm(activeWord, individualInputForm)}
+                correctValue={getForm(activeWord, individualInputForm).form}
                 stage={stage}
                 setValue={setIndividualInputValue}
               />
