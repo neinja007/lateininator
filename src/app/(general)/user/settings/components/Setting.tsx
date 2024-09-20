@@ -64,10 +64,9 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
       element = (
         <Button
           color={settings[settingKey].color}
-          onClick={() => {
-            (settings[settingKey] as ButtonSettingData).onClick();
+          onClick={async () => {
+            await (settings[settingKey] as ButtonSettingData).onClick();
             const queryKey = (settings[settingKey] as ButtonSettingData).invalidateQueries;
-            console.log(queryKey);
             queryClient.invalidateQueries({
               predicate: (query) => query.queryKey.includes(queryKey)
             });
