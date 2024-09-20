@@ -12,7 +12,7 @@ export type ListSettingData = BaseSettingData & {
 export type ButtonSettingData = BaseSettingData & {
   type: 'button';
   buttonText: string;
-  onClick: () => void;
+  onClick: () => Promise<void>;
   color: Color;
   invalidateQueries?: string;
 };

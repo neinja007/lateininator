@@ -32,7 +32,7 @@ export const settings: Settings = {
     type: 'button',
     name: 'Punkte zurücksetzen',
     description: 'Setzt die Punkte auf 0 zurück.',
-    onClick: () => {
+    onClick: async () => {
       axios.post('/api/points', { points: 0, method: 'set' });
     },
     buttonText: 'Punkte zurücksetzen',
