@@ -105,7 +105,7 @@ export const getForm = (
   if (ending === undefined)
     throw new Error('Error: Ending from getForm() is undefined: ' + JSON.stringify(word) + JSON.stringify(info));
   if (ending === '-') {
-    return word.name;
+    return word.name.toLowerCase();
   }
 
   let baseType: 'word' | 'present' | 'perfect' | 'participle' = 'word';
