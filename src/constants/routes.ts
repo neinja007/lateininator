@@ -15,7 +15,6 @@ import {
   Settings,
   SpellCheck,
   User,
-  WholeWord,
   X
 } from 'lucide-react';
 
@@ -81,8 +80,7 @@ export const routes: Route[] = [
     status: 'signedIn',
     icon: User,
     children: [
-      { label: 'Kollektionen', href: '/collections', color: 'purple', icon: Box, status: 'signedIn' },
-      { label: 'Wörter Verwalten', href: '/words', color: 'red', icon: WholeWord, status: 'signedIn' },
+      { label: 'Wortschatz', href: '/collections', color: 'purple', icon: Box, status: 'signedIn' },
       { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings, status: 'signedIn' },
       { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, status: 'signedIn' }
     ]
