@@ -9,7 +9,7 @@ type WordContainerProps = {
 
 const WordContainer = ({ words, setWords, addedWords }: WordContainerProps) => {
   return (
-    <div className='flex flex-wrap gap-4'>
+    <div className='mt-3 flex flex-wrap gap-4'>
       {words?.length === 0 ? (
         <div className='text-center text-gray-500'>Keine Wörter gefunden</div>
       ) : (
