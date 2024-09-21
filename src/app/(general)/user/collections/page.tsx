@@ -1,8 +1,5 @@
 'use client';
-
 import TutorialHeading from '@/components/TutorialHeading';
-import { useState } from 'react';
-import Button from '@/components/Button';
 import { useCollections } from '@/hooks/database/queries/useCollections';
 import { FullCollection } from '@/types/collection';
 import FailToLoad from '@/components/FailToLoad';
@@ -12,21 +9,13 @@ import CellContainer from './components/CellContainer';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useToggleSavedCollection } from '@/hooks/database/mutations/useToggleSavedCollection';
-import Tutorial from '@/components/Tutorial';
-
-const displays = ['all', 'owned'] as const;
-
-const displayMap: Record<(typeof displays)[number], string> = {
-  all: 'Kollektionen aktivieren & deaktivieren',
-  owned: 'Kollektionen erstellen & bearbeiten'
-};
+import Hr from '@/components/Hr';
 
 const Page = () => {
   const user = useUser();
 
-  const [display, setDisplay] = useState<(typeof displays)[number]>('all');
   const { data: collections, status } = useCollections<FullCollection[]>({
-    status: display === 'all' ? 'all' : 'owned',
+    status: 'all',
     include: ['lists', 'owner', 'savedBy']
   });
 
@@ -41,81 +30,77 @@ const Page = () => {
   const mutationIsPending = toggleSavedMutationStatus === 'pending';
   const affectedCollection = toggleSavedVariables;
 
+  const savedCollections = collections?.filter((collection) => collection.savedBy.some((s) => s.id === user.user?.id));
+
   return (
     <div>
-      <TutorialHeading heading={`${displayMap[display]}`} />
-      <div className='grid gap-4 sm:grid-cols-2'>
-        {displays.map((d) => (
-          <Button key={d} onClick={() => setDisplay(d)} color={d === display ? 'blue' : 'default'}>
-            {displayMap[d]}
-          </Button>
-        ))}
-      </div>
+      <TutorialHeading heading='Wortschatz'>
+        Hier sind alle veröffentlichten <b>Kollektionen</b>, und jene, die Sie erstellt haben. Sie können bis zu{' '}
+        <b>drei Kollektionen</b> aktivieren. Diese stehen Ihnen in den <b>Trainern</b> zur Verfügung.
+      </TutorialHeading>
       <div className='my-10'>
         {status === 'error' && <FailToLoad />}
-        <Tutorial>
-          <div className='text-center'>
-            {display === 'all' && (
-              <p>
-                Hier sind alle <b>Kollektionen</b>, die veröffentlicht wurden. Sie können diese hier aktivieren und
-                deaktivieren. <b>Aktivierte Kollektionen</b> können Sie in den Trainern verwenden.
-              </p>
-            )}
-            {display === 'owned' && (
-              <p>
-                Hier finden Sie alle <b>Kollektionen</b>, <b>die Sie erstellt</b> haben. Sie können diese{' '}
-                <b>bearbeiten</b> oder <b>löschen</b>. <b>Neue Kollektionen</b> können Sie hier erstellen.
-              </p>
-            )}
-          </div>
-        </Tutorial>
-        <CellContainer>
-          {status === 'pending' &&
-            [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-24 w-full' />)}
-          {status === 'success' && (
-            <>
-              {collections &&
-                collections.map((collection: FullCollection) => {
-                  const isSaved = collection.savedBy.some((s) => s.id === user.user?.id);
-
-                  return (
-                    <Cell
-                      key={collection.id}
-                      className={
-                        affectedCollection === collection.id && mutationIsPending ? 'animate-pulse opacity-50' : ''
-                      }
-                      onClick={() => {
-                        if (display === 'owned') {
-                          router.push(`/user/collections/edit/${collection.id}`);
-                        } else {
-                          toggleSavedCollection(collection.id);
-                        }
-                      }}
-                      lists={collection.lists.length}
-                      name={collection.name}
-                      owner={collection.owner.name}
-                      buttonLabel={
-                        display === 'owned'
-                          ? 'Kollektion bearbeiten'
-                          : isSaved
-                            ? 'Kollektion deaktivieren'
-                            : 'Kollektion aktivieren'
-                      }
-                      buttonColor={display === 'owned' ? 'blue' : isSaved ? 'red' : 'green'}
-                    />
-                  );
-                })}
-              {display === 'owned' && (
+        <div>
+          <h2 className='mb-2 text-center text-lg'>Gespeicherte Kollektionen (maximal 3)</h2>
+          <CellContainer>
+            {!savedCollections &&
+              [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-32 w-full' />)}
+            {savedCollections &&
+              savedCollections.map((collection) => (
                 <Cell
-                  outlined
-                  buttonColor='gray'
-                  buttonLabel='Kollektion Erstellen'
-                  onClick={() => router.push('/user/collections/new')}
+                  key={collection.id}
+                  className={
+                    affectedCollection === collection.id && mutationIsPending ? 'animate-pulse opacity-50' : ''
+                  }
+                  active={true}
+                  editable={collection.owner.id === user.user?.id}
+                  onToggleEditable={() => router.push(`/user/collections/edit/${collection.id}`)}
+                  onToggleActive={() => toggleSavedCollection(collection.id)}
+                  lists={collection.lists.length}
+                  name={collection.name}
+                  owner={collection.owner.name}
+                  owned={collection.owner.id === user.user?.id}
                 />
-              )}
-            </>
-          )}
-        </CellContainer>
+              ))}
+            {[...Array(3 - (savedCollections ? savedCollections.length : 3))].map((i) => (
+              <Cell key={i} outlined />
+            ))}
+          </CellContainer>
+        </div>
+        <Hr className='my-5' />
+        <div>
+          <h2 className='mb-2 text-center text-lg'>Alle verfügbaren Kollektionen:</h2>
+          <CellContainer>
+            {status === 'pending' &&
+              [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-32 w-full' />)}
+            {status === 'success' && (
+              <>
+                {collections &&
+                  collections.map((collection: FullCollection) => {
+                    const isActive = collection.savedBy.some((s) => s.id === user.user?.id);
+                    const isEditable = collection.owner.id === user.user?.id;
+
+                    return (
+                      <Cell
+                        key={collection.id}
+                        className={
+                          affectedCollection === collection.id && mutationIsPending ? 'animate-pulse opacity-50' : ''
+                        }
+                        active={isActive}
+                        editable={isEditable}
+                        onToggleEditable={() => router.push(`/user/collections/edit/${collection.id}`)}
+                        onToggleActive={() => toggleSavedCollection(collection.id)}
+                        lists={collection.lists.length}
+                        name={collection.name}
+                        owner={collection.owner.name}
+                        owned={collection.owner.id === user.user?.id}
+                      />
+                    );
+                  })}
+              </>
+            )}
+          </CellContainer>
+        </div>
       </div>
     </div>
   );
