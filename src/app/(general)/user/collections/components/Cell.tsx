@@ -74,7 +74,9 @@ const Cell = ({
             </h3>
             {description && <p className='text-left'>{description}</p>}
             <p className='mt-3 flex items-end justify-between'>
-              <span className='mt-2 block'>{lists} Listen</span>
+              <span className='mt-2 block'>
+                {lists} Liste{lists !== 1 && 'n'}
+              </span>
               {owned ? (
                 <span className='font-medium text-sky-500'>Ihre Kollektion</span>
               ) : (
