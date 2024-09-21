@@ -9,13 +9,14 @@ type ButtonProps = {
   className?: string & React.CSSProperties;
   icon?: React.ReactNode;
   disabled?: boolean;
+  unstyled?: boolean;
 } & Omit<React.ComponentProps<'button'>, 'disabled' | 'className'>;
 
-const Button = ({ color = 'default', children, className, icon, disabled, ...props }: ButtonProps) => {
+const Button = ({ color = 'default', children, className, icon, disabled, unstyled, ...props }: ButtonProps) => {
   return (
     <button
       className={clsx(
-        ui.basic,
+        !unstyled && ui.basic,
         className,
         'justify-center transition-colors',
         COLORS[color],
