@@ -22,14 +22,14 @@ const Info = ({ children, heading, size = 4 }: InfoProps) => {
       {showTutorial && (
         <div className='fixed inset-0 z-50 backdrop-brightness-75' onClick={() => setShowTutorial(false)}>
           <div className='absolute inset-0 flex items-center justify-center'>
-            <div className='rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-700 dark:bg-cyan-900'>
-              <h2 className='mb-2 flex justify-between text-2xl font-bold'>
+            <div className='mx-4 w-full max-w-md rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-700 dark:bg-cyan-900'>
+              <h2 className='mb-2 flex items-start justify-between text-2xl font-bold'>
                 <span>{heading || 'Information'}</span>{' '}
                 <button onClick={() => setShowTutorial(false)}>
-                  <X className='size-6 text-gray-300 hover:text-white' />
+                  <X className='mt-2 size-6 text-gray-300 hover:text-white' />
                 </button>
               </h2>
-              <p className='w-full max-w-md break-words text-justify text-base text-gray-300'>{children}</p>
+              <p className='break-words text-base text-gray-300'>{children}</p>
             </div>
           </div>
         </div>
