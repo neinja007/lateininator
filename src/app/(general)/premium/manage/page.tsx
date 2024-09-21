@@ -1,6 +1,6 @@
 'use client';
 
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import dayjs from 'dayjs';
 import { Card } from './components/Card';
 import FailToLoad from '@/components/FailToLoad';
@@ -32,10 +32,10 @@ const Page = () => {
 
   return (
     <div>
-      <TutorialHeading heading='Abo Verwalten'>
+      <Heading heading='Abo Verwalten'>
         Hier können Sie Ihr Abo verwalten. Wenn ein Fehler auftritt, bitten wir Sie, dieses Problem schnellstmöglich
         unserem <LinkToSupportEmail /> zu melden, damit wir das Problem für Sie beheben können.
-      </TutorialHeading>
+      </Heading>
       <div className='flex justify-center'>
         {isLoading ? (
           <Card

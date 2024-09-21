@@ -1,10 +1,10 @@
 import Link from '@/components/Link';
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 
 const Page = () => {
   return (
     <div>
-      <TutorialHeading heading='Wörter Verwalten'>
+      <Heading heading='Wörter Verwalten'>
         Füge hier <b>Wörter</b> hinzu, die es <b>noch nicht auf dem Lateininator gibt</b>. Diese kannst du dann in
         deinen{' '}
         <b>
@@ -15,7 +15,7 @@ const Page = () => {
           verwenden
         </b>{' '}
         und auch <b>abfragen</b>.
-      </TutorialHeading>
+      </Heading>
     </div>
   );
 };

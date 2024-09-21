@@ -1,9 +1,9 @@
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 
 const Page = () => {
   return (
     <div>
-      <TutorialHeading heading='Statistiken'>Dieses Feature ist noch nicht verfügbar.</TutorialHeading>
+      <Heading heading='Statistiken'>Dieses Feature ist noch nicht verfügbar.</Heading>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import Card from './components/Card';
 import { monthlyPrice } from '@/constants/other';
 import { useWidth } from '@/hooks/useWidth';
@@ -84,10 +84,10 @@ const Page = () => {
 
   return (
     <>
-      <TutorialHeading heading='Lateininator Premium'>
+      <Heading heading='Lateininator Premium'>
         Die verschiedenen Stufen des Lateininators stehen hier im Vergleich. Wenn Sie weitere Fragen haben, bitten wir
         Sie, diese unserem <LinkToSupportEmail /> zukommen zu lassen.
-      </TutorialHeading>
+      </Heading>
       <div className='my-5 grid gap-x-3 gap-y-5 sm:grid-cols-2 lg:grid-cols-3'>
         {!hideBasic && (
           <Card

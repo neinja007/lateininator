@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 
 type PageProps = {
@@ -12,9 +12,9 @@ type PageProps = {
 const Page = ({ error, reset }: PageProps) => {
   return (
     <div className='mb-16'>
-      <TutorialHeading heading='Ein Fehler ist aufgetreten'>
+      <Heading heading='Ein Fehler ist aufgetreten'>
         Ein Fehler ist aufgetreten ({error.name}). Bitte melden Sie diesen unserem <LinkToSupportEmail />.
-      </TutorialHeading>
+      </Heading>
       <div>
         <div className='justify-between text-justify md:flex'>
           <span>

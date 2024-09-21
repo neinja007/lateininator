@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import { useGame } from '@/hooks/useGame';
 import Results from '@/components/Results';
 import Settings from './components/Settings';
@@ -32,10 +32,10 @@ const Page = () => {
   return (
     <AuthConditionalLock>
       <div className='space-y-5'>
-        <TutorialHeading heading='Endungstrainer: Nomen'>
+        <Heading heading='Endungstrainer: Nomen'>
           Hier können Sie die Deklination von Nomen üben. Ob Sie sich auf bestimmte Endungen beschränken oder alle
           Deklinationen üben, ist Ihnen überlassen.
-        </TutorialHeading>
+        </Heading>
         {stage === 'settings' && (
           <Settings
             currentSettingsStage={currentSettingsStage}

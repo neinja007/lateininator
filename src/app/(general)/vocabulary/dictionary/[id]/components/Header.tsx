@@ -1,4 +1,4 @@
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import { Word } from '@/types/word';
 import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import BackToDictionaryButton from './BackToDictionaryButton';
@@ -15,13 +15,13 @@ const Header = ({ word, loading }: HeaderProps | HeaderLoadingProps) => {
         <BackToDictionaryButton />
       </div>
       <div className='flex w-full justify-center'>
-        <TutorialHeading
+        <Heading
           heading={
             word ? `${MAPPER.extended.type.singular[word.type]}: ${word?.name} ${getLexicalForm(word)}` : 'Wörterbuch'
           }
         >
           Hier findest du alle Informationen zum Wort &quot;{word?.name}&quot;.
-        </TutorialHeading>
+        </Heading>
       </div>
     </div>
   );

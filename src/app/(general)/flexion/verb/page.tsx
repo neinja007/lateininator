@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import { useGame } from '@/hooks/useGame';
 import Results from '@/components/Results';
 import Settings from './components/Settings';
@@ -43,10 +43,10 @@ const Page = () => {
   return (
     <AuthConditionalLock>
       <div className='space-y-5'>
-        <TutorialHeading heading='Endungstrainer: Verben'>
+        <Heading heading='Endungstrainer: Verben'>
           Hier können Sie die Konjugation von Verben üben. Sie können sich entweder auf bestimmte Modi, Stimmen oder
           Tempusformen beschränken, oder einfach alles üben.
-        </TutorialHeading>
+        </Heading>
         {stage === 'settings' && (
           <Settings
             currentSettingsStage={currentSettingsStage}

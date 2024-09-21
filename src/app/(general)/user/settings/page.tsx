@@ -1,7 +1,7 @@
 'use client';
 
 import FancyLink from '@/components/FancyLink';
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import { IsPremium } from '@/components/IsPremium';
 import { Gem, LogOut, UserIcon } from 'lucide-react';
 import Setting from './components/Setting';
@@ -19,10 +19,10 @@ const Page = () => {
 
   return (
     <div>
-      <TutorialHeading heading='Einstellungen'>
+      <Heading heading='Einstellungen'>
         Hier können Sie Ihre Einstellungen anpassen. Wenn Sie sich eine weitere Einstellung wünschen, können Sie diese
         bei unserem <LinkToSupportEmail /> anfragen.
-      </TutorialHeading>
+      </Heading>
       <div className='mb-5'>
         {status === 'pending' &&
           [...Array(Object.keys(settings).length)].map((_, index) => (

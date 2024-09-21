@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import DisplayMode from './components/DisplayMode';
 import { ResultCount } from './components/ResultCount';
 import WordCards from './components/WordCards';
@@ -34,10 +34,10 @@ const Page = () => {
 
   return (
     <div className='space-y-5'>
-      <TutorialHeading heading='Wörterbuch'>
+      <Heading heading='Wörterbuch'>
         Das ist das Lateininator Wörterbuch. Hier kannst du alle Wörter sehen, die es auf dem Lateininator gibt. Wenn es
         ein Wort noch nicht gibt, kannst du es unter <Link href='/user/words'>Wörter verwalten</Link> hinzufügen.
-      </TutorialHeading>
+      </Heading>
       <SearchBar query={query} setQuery={setQuery} />
       {status === 'error' ? (
         <FailToLoad />

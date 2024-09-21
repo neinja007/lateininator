@@ -1,5 +1,5 @@
 'use client';
-import TutorialHeading from '@/components/TutorialHeading';
+import Heading from '@/components/Heading';
 import { routes } from '@/constants/routes';
 import FancyLinkContainer from './components/FancyLinkContainer';
 import StatusDependentRoutes from './components/StatusDependentRoutes';
@@ -14,10 +14,10 @@ const Page = () => {
 
   return (
     <div>
-      <TutorialHeading heading={user.isSignedIn ? `Willkommen, ${user.user?.fullName}!` : 'Willkommen!'}>
+      <Heading heading={user.isSignedIn ? `Willkommen, ${user.user?.fullName}!` : 'Willkommen!'}>
         Hier finden Sie alle Tools, die Ihnen zur Verfügung stehen. Es gibt Übungen für <b>Endungen</b>, <b>Vokabeln</b>{' '}
         und <b>Grammatik</b>. Außerdem können Sie Ihren Fortschritt verfolgen und Ihre Einstellungen anpassen.
-      </TutorialHeading>
+      </Heading>
       <div>
         <p className='mb-2 text-center text-lg font-bold'>Lernen</p>
         <div>
