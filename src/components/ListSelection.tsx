@@ -56,6 +56,10 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
     );
   }, [excludeExceptionalWords, filteredLists, onlyAcceptType, selectedLists, setSelectedWords]);
 
+  useEffect(() => {
+    setSelectedCollection(collections?.[0]?.id);
+  }, [collections]);
+
   return (
     <>
       <p>Wählen Sie aus, welche Wörter Sie lernen möchten:</p>
@@ -154,9 +158,14 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
       {status === 'success' && (
         <div className='mt-5 grid items-center gap-3 sm:grid-cols-2'>
           <p className='order-2 sm:order-none'>
-            Es wurden{' '}
+            Es wurde{selectedWords.length !== 1 && 'n'}{' '}
             <b className='text-blue-500'>
-              {selectedWords.length} {onlyAcceptType ? MAPPER.extended.type.plural[onlyAcceptType] : 'Wörter'}
+              {selectedWords.length === 0 ? 'keine' : selectedWords.length}{' '}
+              {onlyAcceptType
+                ? MAPPER.extended.type[selectedWords.length !== 1 ? 'plural' : 'singular'][onlyAcceptType]
+                : selectedWords.length !== 1
+                  ? 'Wörter'
+                  : 'Wort'}
             </b>{' '}
             ausgewählt.
           </p>
