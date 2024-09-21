@@ -29,7 +29,7 @@ const Info = ({ children, heading, size = 4 }: InfoProps) => {
                   <X className='mt-2 size-6 text-gray-300 hover:text-white' />
                 </button>
               </h2>
-              <p className='break-words text-base text-gray-300'>{children}</p>
+              <p className='break-words text-left text-base text-gray-300'>{children}</p>
             </div>
           </div>
         </div>
