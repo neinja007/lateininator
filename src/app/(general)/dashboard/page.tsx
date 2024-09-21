@@ -30,7 +30,10 @@ const Page = () => {
       </div>
       <div>
         <p className='mb-2 mt-10 text-center text-lg font-bold'>Benutzer</p>
-        <StatusDependentRoutes routes={routes.find((route) => route.label === '{name}')!.children || []} />
+        <StatusDependentRoutes
+          hrefPrefix='/user'
+          routes={routes.find((route) => route.label === '{name}')!.children || []}
+        />
         <StatusDependentRoutes routes={[signInRoute, premiumRoute]} />
       </div>
     </div>
