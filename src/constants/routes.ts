@@ -1,17 +1,19 @@
 import { Color } from '@/types/other';
 import {
+  Bike,
   BookCheck,
   BookMarked,
   BookOpenText,
   Box,
-  CircleDot,
   Gem,
+  House,
   LayoutDashboard,
   LineChart,
   LogIn,
   Newspaper,
   PencilLine,
   Replace,
+  Ruler,
   Settings,
   SpellCheck,
   User,
@@ -48,9 +50,9 @@ export const routes: Route[] = [
     href: '/flexion',
     icon: Replace,
     children: [
-      { label: 'Nomen', href: '/noun', color: 'blue', icon: CircleDot },
-      { label: 'Verben', href: '/verb', color: 'red', icon: CircleDot },
-      { label: 'Adjektive', href: '/adjective', color: 'green', icon: CircleDot }
+      { label: 'Nomen', href: '/noun', color: 'blue', icon: House },
+      { label: 'Verben', href: '/verb', color: 'red', icon: Bike },
+      { label: 'Adjektive', href: '/adjective', color: 'green', icon: Ruler }
     ]
   },
   {
