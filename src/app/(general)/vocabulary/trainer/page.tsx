@@ -58,8 +58,8 @@ const Page = () => {
     <AuthConditionalLock>
       <div className='space-y-5'>
         <Heading heading='Vokabeltrainer'>
-          Hier kannst du Wörter lernen und üben. Die Wörter können nach verschiedenen Kriterien ausgewählt und nach
-          spezifischen Eigenschaften abgefragt werden.
+          Hier können Sie <b>Vokabeln lernen und üben</b>. Die Vokabeln können nach verschiedenen Kriterien ausgewählt
+          und nach spezifischen Eigenschaften abgefragt werden.
         </Heading>
         {stage === 'settings' && (
           <Settings
