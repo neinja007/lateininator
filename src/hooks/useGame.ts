@@ -50,18 +50,22 @@ export const useGame = (
       }
     } else if (newStage === 'test') {
       setStage('review');
+      if (!activeWord) {
+        throw new Error('activeWord is undefined');
+      }
+
+      if (staticPossibleWords || (canContinue && canContinue(activeWord))) {
+        updateWords();
+      }
     } else if (newStage === 'review') {
       if (!activeWord) {
         throw new Error('activeWord is undefined');
       }
-      if (staticPossibleWords || (canContinue && canContinue(activeWord))) {
-        updateWords();
-      }
-
       if (remainingWords === 0) {
         setStage('results');
         return;
       }
+
       setStage('test');
       updateActiveWord();
       resetInputs();
