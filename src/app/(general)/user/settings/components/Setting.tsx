@@ -81,7 +81,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   return (
     <div
       className={clsx(
-        'my-2 min-h-20 items-center justify-between border-b px-4 py-2 last:border-b-0 sm:flex dark:border-gray-700'
+        'my-2 min-h-20 items-center justify-between border-b px-4 py-4 last:border-b-0 sm:flex dark:border-gray-700'
       )}
     >
       <div className='flex-grow'>
