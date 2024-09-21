@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import ProgressBar from '@/components/ProgressBar';
 import { Stage } from '@/types/other';
-import { Coins } from 'lucide-react';
+import { Ban, ChevronsRight, Coins } from 'lucide-react';
 
 type ActionBarProps = {
   form?: boolean;
@@ -24,14 +24,14 @@ const ActionBar = ({
     <div className='mt-8 grid grid-cols-2 gap-3 sm:flex'>
       <Button
         color='red'
-        className='order-2'
+        className='order-2 flex items-center gap-1'
         onClick={() => {
           addDifferenceToPoints && addDifferenceToPoints();
           handleContinue('results');
         }}
         type='button'
       >
-        Beenden
+        Beenden <Ban size={16} />
       </Button>
       <div className='order-1 col-span-2 flex w-full sm:order-2'>
         <ProgressBar progressPercentage={progressPercentage} />
@@ -46,9 +46,9 @@ const ActionBar = ({
         onClick={form ? undefined : () => handleContinue()}
         color='green'
         type={form ? 'submit' : 'button'}
-        className='order-3'
+        className='order-3 flex items-center gap-1'
       >
-        Weiter
+        Weiter <ChevronsRight size={20} />
       </Button>
     </div>
   );
