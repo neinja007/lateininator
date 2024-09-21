@@ -1,5 +1,4 @@
 'use client';
-
 import FancyLink from '@/components/FancyLink';
 import Heading from '@/components/Heading';
 import { IsPremium } from '@/components/IsPremium';
@@ -10,6 +9,7 @@ import { useSettings } from '@/hooks/database/queries/useSettings';
 import { SettingKey } from '@prisma/client';
 import { settings } from '@/constants/settings';
 import LinkToSupportEmail from '@/components/LinkToSupportEmail';
+import Hr from '@/components/Hr';
 
 const Page = () => {
   const {
@@ -38,7 +38,8 @@ const Page = () => {
             />
           ))}
       </div>
-      <p className='mb-2 text-center text-lg font-bold'>Konto-Einstellungen</p>
+      <Hr className='my-5' />
+      <p className='my-2 text-center text-lg font-bold'>Konto-Einstellungen</p>
       <div className='items-center justify-between gap-x-2 sm:flex'>
         <FancyLink
           route={{
@@ -53,7 +54,8 @@ const Page = () => {
             label: 'Abmelden',
             href: '/auth/sign-out',
             icon: LogOut,
-            color: 'red'
+            color: 'red',
+            status: 'signedIn'
           }}
         />
         <IsPremium>
