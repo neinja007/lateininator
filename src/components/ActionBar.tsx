@@ -33,13 +33,15 @@ const ActionBar = ({
       >
         Beenden
       </Button>
-      <ProgressBar progressPercentage={progressPercentage} />
-      {points !== undefined && (
-        <div className='order-3 mr-3 flex items-center gap-1'>
-          <Coins size={16} />
-          <b>{points}</b> {!!difference && <span className={'text-green-500'}>+{difference}</span>}
-        </div>
-      )}
+      <div className='order-1 col-span-2 flex w-full sm:order-2'>
+        <ProgressBar progressPercentage={progressPercentage} />
+        {points !== undefined && (
+          <div className='order-3 mr-3 flex items-center gap-1'>
+            <Coins size={16} />
+            <b>{points}</b> {!!difference && <span className={'text-green-500'}>+{difference}</span>}
+          </div>
+        )}
+      </div>
       <Button
         onClick={form ? undefined : () => handleContinue()}
         color='green'
