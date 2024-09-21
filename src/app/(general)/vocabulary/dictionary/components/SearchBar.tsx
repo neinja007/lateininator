@@ -8,6 +8,8 @@ type SearchBarProps = {
 const SearchBar = ({ query, setQuery }: SearchBarProps) => {
   return (
     <Input
+      autoFocus
+      autoComplete='on'
       label='Suche'
       placeholder='Lateinisches Wort eingeben'
       className='mr-4 w-full'
