@@ -78,7 +78,13 @@ const Page = () => {
           <>
             <Hr className='my-5' />
             <div>
-              <h2 className='mb-2 text-center text-lg'>Weitere Kollektionen:</h2>
+              <h2 className='mb-2 flex items-center justify-center text-lg'>
+                Weitere Kollektionen{' '}
+                <Info size={5} heading='Weitere Kollektionen'>
+                  Diese Kollektionen sind entweder öffentlich oder von Ihnen erstellt, aber <b>nicht aktiviert</b>. Sie
+                  können diese jederzeit aktivieren, um sie in den Trainern verwenden zu können.
+                </Info>
+              </h2>
               <CellContainer>
                 {status === 'pending' &&
                   [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-32 w-full' />)}
