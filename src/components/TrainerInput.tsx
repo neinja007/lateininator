@@ -21,6 +21,7 @@ const TrainerInput = ({ customStyle, label, handleChange, value, correctValue, s
 
   return (
     <Input
+      autoComplete='off'
       unstyled={!!customStyle}
       label={label}
       className={clsx('w-full', correctValueIndicator, customStyle)}
