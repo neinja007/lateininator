@@ -11,16 +11,19 @@ type HeaderLoadingProps = { word?: undefined; loading: true };
 const Header = ({ word, loading }: HeaderProps | HeaderLoadingProps) => {
   return (
     <div>
-      <div className='absolute float-start'>
+      <div className='float-start mb-2 sm:absolute'>
         <BackToDictionaryButton />
       </div>
-      <div className='flex w-full justify-center'>
+      <div className='flex w-full justify-end lg:justify-center'>
         <Heading
           heading={
-            word ? `${MAPPER.extended.type.singular[word.type]}: ${word?.name} ${getLexicalForm(word)}` : 'Wörterbuch'
+            word ? `${word?.name} ${getLexicalForm(word)} (${MAPPER.extended.type.singular[word.type]})` : 'Wörterbuch'
           }
         >
-          Hier findest du alle Informationen zum Wort &quot;{word?.name}&quot;.
+          Hier findest du <b>alle Informationen</b> zum {word ? MAPPER.extended.type.singular[word.type] : 'Wort'}{' '}
+          &quot;
+          {word?.name}
+          &quot;.
         </Heading>
       </div>
     </div>
