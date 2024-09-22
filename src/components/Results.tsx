@@ -18,7 +18,7 @@ const Results = ({ handleContinue, points }: ResultsProps) => {
           <b>
             {points} Punkt{points !== 1 ? 'e' : ''}
           </b>{' '}
-          erreicht. Diese wurden bereits in die <b>Gesamtpunkte</b> miteinberechnet ({newPoints - points} + {points} ={' '}
+          erreicht. Diese wurden bereits in <b>Ihre Gesamtpunkte</b> miteinberechnet ({newPoints - points} + {points} ={' '}
           <b>{newPoints}</b>)
         </p>
       )}
