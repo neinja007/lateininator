@@ -11,14 +11,14 @@ type CheckboxWithLabelProps = {
 
 const CheckboxWithLabel = ({ checked, disabled, handleChange, label }: CheckboxWithLabelProps) => {
   const id = useId();
-  const primaryColor = usePrimaryColor();
+  const primaryColor = usePrimaryColor(true);
 
   return (
     <div>
       <input
         type='checkbox'
         disabled={disabled}
-        style={{ accentColor: COLORS[primaryColor].hex }}
+        style={{ accentColor: COLORS[primaryColor()].hex }}
         id={id}
         checked={checked}
         onChange={(e) => handleChange(e.target.checked)}
@@ -27,7 +27,7 @@ const CheckboxWithLabel = ({ checked, disabled, handleChange, label }: CheckboxW
       <label
         htmlFor={id}
         className={
-          checked ? COLORS[primaryColor].text : disabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-500'
+          checked ? COLORS[primaryColor()].text : disabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-500'
         }
       >
         {label}
