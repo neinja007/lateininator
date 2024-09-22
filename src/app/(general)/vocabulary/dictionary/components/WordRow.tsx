@@ -9,6 +9,7 @@ import { ChevronRight, ChevronsRight } from 'lucide-react';
 import clsx from 'clsx';
 import Skeleton from '@/components/Skeleton';
 import { HighlightedQuery } from './HighlightedQuery';
+import { mapTypeToColor } from '@/constants/other';
 
 type WordRowProps = {
   word: Word;
@@ -50,7 +51,7 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
         {loading ? (
           <Skeleton customSize className='h-6 w-20' pulse />
         ) : (
-          <Badge text={MAPPER.extended.type.singular[word.type]} />
+          <Badge text={MAPPER.extended.type.singular[word.type]} color={mapTypeToColor[word.type]} />
         )}
       </td>
       <td className='p-2 px-4'>
