@@ -29,10 +29,10 @@ const Info = ({ children, heading, size = 4 }: InfoProps) => {
           onClick={() => setShowTutorial(false)}
         >
           <div className='absolute inset-0 flex items-center justify-center'>
-            <div className={clsx('relative mx-4 w-full max-w-md rounded-lg p-4', COLORS[primaryColor].static)}>
+            <div className={clsx('relative mx-4 w-full max-w-lg rounded-lg p-4', COLORS[primaryColor].static)}>
               <div className='absolute inset-0 z-0 rounded-lg bg-inherit brightness-50'></div>
               <div className='relative z-10'>
-                <div className='flex items-start justify-between'>
+                <div className='mb-3 flex items-start justify-between'>
                   <h2 className='mb-2 line-clamp-2 text-2xl font-bold'>{heading || 'Information'}</h2>
                   <button onClick={() => setShowTutorial(false)} className='mt-1 inline-block'>
                     <X className='size-6 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-white' />
