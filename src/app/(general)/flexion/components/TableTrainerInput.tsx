@@ -1,6 +1,7 @@
 import TrainerInput from '@/components/TrainerInput';
 import { compareValues } from '@/utils/word/compareValues';
 import { Check } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 type TableTrainerInputProps = {
   value: string;
@@ -8,9 +9,28 @@ type TableTrainerInputProps = {
   handleChange: (value: string) => void;
   stage: 'test' | 'review';
   label?: string;
+  addDifference: (difference: number) => void;
 };
 
-const TableTrainerInput = ({ label, correctValue, handleChange, stage, value }: TableTrainerInputProps) => {
+const TableTrainerInput = ({
+  label,
+  correctValue,
+  handleChange,
+  stage,
+  value,
+  addDifference
+}: TableTrainerInputProps) => {
+  const [disablePoints, setDisablePoints] = useState<boolean>(false);
+
+  const isInputCorrect = stage === 'review' ? compareValues(value, correctValue) : undefined;
+
+  useEffect(() => {
+    if (stage === 'review' && isInputCorrect && !disablePoints) {
+      addDifference(1);
+      setDisablePoints(true);
+    }
+  }, [isInputCorrect, stage, disablePoints, addDifference]);
+
   const Component = (
     <div className='flex w-full items-end'>
       <div className='block w-full flex-grow'>
