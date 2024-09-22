@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import Heading from '@/components/Heading';
 import { useGame } from '@/hooks/useGame';
@@ -10,6 +9,7 @@ import { TableInputValues } from './types';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isNoun } from '@/utils/typeguards/isNoun';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
+import { usePointCounter } from '@/hooks/usePointCounter';
 
 const initialTableInputValues: TableInputValues = WORD_CONSTANTS.numerus.reduce(
   (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.wordCase.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
@@ -28,6 +28,8 @@ const Page = () => {
 
   const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
+
+  const { points, difference, addDifference, addDifferenceToPoints } = usePointCounter(stage);
 
   return (
     <AuthConditionalLock>
@@ -48,6 +50,10 @@ const Page = () => {
         )}
         {(stage === 'test' || stage === 'review') && activeWord && isNoun(activeWord) && (
           <Test
+            points={points}
+            difference={difference}
+            addDifference={addDifference}
+            addDifferenceToPoints={addDifferenceToPoints}
             stage={stage}
             activeWord={activeWord}
             testingType={testingType}
@@ -60,7 +66,7 @@ const Page = () => {
             handleContinue={handleContinue}
           />
         )}
-        {stage === 'results' && <Results handleContinue={handleContinue} />}
+        {stage === 'results' && <Results handleContinue={handleContinue} points={points} />}
       </div>
     </AuthConditionalLock>
   );
