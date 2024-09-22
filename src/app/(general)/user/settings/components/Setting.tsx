@@ -66,10 +66,13 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           onClick={async () => {
             await (settings[settingKey] as ButtonSettingData).onClick();
             const queryKey = (settings[settingKey] as ButtonSettingData).invalidateQueries;
-            queryClient.invalidateQueries({
-              predicate: (query) => query.queryKey.includes(queryKey)
-            });
+            if (queryKey) {
+              queryClient.invalidateQueries({
+                predicate: (query) => query.queryKey.includes(queryKey)
+              });
+            }
           }}
+          disabled={status === 'pending' || disabled}
         >
           {settings[settingKey].buttonText}
         </Button>
