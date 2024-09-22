@@ -3,12 +3,12 @@ import { LucideBetweenVerticalStart } from 'lucide-react';
 import Button from '@/components/Button';
 
 type InsertBasesButtonProps = {
-  setTableInputValues: () => void;
+  onClick: () => void;
 };
 
-const InsertBasesButton = ({ setTableInputValues }: InsertBasesButtonProps) => {
+const InsertBasesButton = ({ onClick }: InsertBasesButtonProps) => {
   return (
-    <Button color='green' className='flex items-center gap-x-1' onClick={setTableInputValues}>
+    <Button color='green' className='flex items-center gap-x-1' onClick={onClick}>
       <LucideBetweenVerticalStart size={16} />
       Stämme einfügen
     </Button>
