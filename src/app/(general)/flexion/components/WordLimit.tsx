@@ -3,6 +3,7 @@ import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
 import { useWidth } from '@/hooks/useWidth';
 import { Breakpoint } from '@/types/other';
+import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
 
 type WordLimitProps = {
   testingType: 'table' | 'individual';
@@ -42,6 +43,8 @@ const WordLimit = ({
     }
   );
 
+  const primaryColor = usePrimaryColor();
+
   return (
     <>
       <p>Wählen Sie aus, wie Sie abgefragt werden möchten.</p>
@@ -54,14 +57,14 @@ const WordLimit = ({
         <Button
           disabled={disableTables || disableTablesBecauseOfWidth}
           className='w-full font-medium'
-          color={testingType === 'table' ? 'blue' : 'default'}
+          color={testingType === 'table' ? primaryColor : 'default'}
           onClick={() => setTestingType('table')}
         >
           Formen mit Tabellen abfragen
         </Button>
         <Button
           className='w-full font-medium'
-          color={testingType === 'individual' ? 'blue' : 'default'}
+          color={testingType === 'individual' ? primaryColor : 'default'}
           onClick={() => setTestingType('individual')}
         >
           Formen einzeln abfragen

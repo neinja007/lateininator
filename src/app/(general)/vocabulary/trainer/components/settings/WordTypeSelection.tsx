@@ -1,5 +1,7 @@
 import Button from '@/components/Button';
 import { APP_CONSTANTS } from '@/constants/appConstants';
+import { COLORS } from '@/constants/other';
+import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
 import { MainWordType, MainWordTypeWithOther, WordType } from '@/types/appConstants';
 import { Word } from '@/types/word';
 import { MAPPER } from '@/utils/other/mapper';
@@ -31,6 +33,8 @@ const WordTypeSelection = ({
     setValidWords(possibleWords);
   }, [selectedWords, setValidWords, typesToCheck]);
 
+  const primaryColor = usePrimaryColor();
+
   return (
     <>
       <p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
@@ -42,7 +46,7 @@ const WordTypeSelection = ({
               typesToCheck.includes(type)
                 ? typesToExclude.includes(type as MainWordTypeWithOther)
                   ? 'orange'
-                  : 'blue'
+                  : primaryColor
                 : 'default'
             }
             onClick={() =>
@@ -54,7 +58,7 @@ const WordTypeSelection = ({
         ))}
       </div>
       <p>
-        <b className='text-blue-500'>
+        <b className={COLORS[primaryColor].text}>
           {validWords.length} von {selectedWords.length} Wörtern
         </b>{' '}
         stimmen mit den Wortarten überein.
