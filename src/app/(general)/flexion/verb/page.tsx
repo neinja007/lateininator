@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import Heading from '@/components/Heading';
 import { useGame } from '@/hooks/useGame';
@@ -11,6 +10,7 @@ import { Voice, Modus, Tense } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isVerb } from '@/utils/typeguards/isVerb';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
+import { usePointCounter } from '@/hooks/usePointCounter';
 
 const initialTableInputValues: TableInputValues = WORD_CONSTANTS.tense.reduce(
   (acc, curr) => ({
@@ -39,6 +39,8 @@ const Page = () => {
 
   const [tableInputValues, setTableInputValues] = useState<TableInputValues>(initialTableInputValues);
   const [individualInputValue, setIndividualInputValue] = useState<string>('');
+
+  const { points, difference, addDifference, addDifferenceToPoints } = usePointCounter(stage);
 
   return (
     <AuthConditionalLock>
@@ -70,6 +72,10 @@ const Page = () => {
           isVerb(activeWord) &&
           activeWord.verb.conjugation !== 'NONE' && (
             <Test
+              points={points}
+              difference={difference}
+              addDifference={addDifference}
+              addDifferenceToPoints={addDifferenceToPoints}
               checkImperative={checkImperative}
               activeWord={activeWord}
               stage={stage}
