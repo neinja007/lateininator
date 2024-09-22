@@ -11,9 +11,9 @@ type WordDisplayProps = {
 const WordDisplay = ({ word }: WordDisplayProps) => {
   return (
     <div className='flex items-baseline justify-between'>
-      <p className='text-2xl font-medium'>
+      <div className='text-2xl font-medium'>
         {word.name} <Badge text={MAPPER.extended.type.singular[word.type]} color={mapTypeToColor[word.type]} />
-      </p>
+      </div>
       {word.info && <WordInfo info={word.info} />}
     </div>
   );
