@@ -1,6 +1,6 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { IndividualInputForm, SetTableInputValues, TableInputValues } from '../types';
 import { MAPPER } from '@/utils/other/mapper';
@@ -12,21 +12,20 @@ import { IndividualTrainerInput } from '../../components/IndividualTrainerInput'
 import { useSettings } from '@/hooks/database/queries/useSettings';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
+import { BaseProps, PointProps } from '../../types';
 
 type TestProps = {
   activeWord: Noun;
-  testingType: 'table' | 'individual';
-  stage: 'test' | 'review';
   tableInputValues: TableInputValues;
   setTableInputValues: SetTableInputValues;
-  maxWords: number;
-  remainingWords: number;
-  handleContinue: () => void;
-  individualInputValue: string;
-  setIndividualInputValue: Dispatch<SetStateAction<string>>;
-};
+} & PointProps &
+  BaseProps;
 
 const Test = ({
+  points,
+  difference,
+  addDifference,
+  addDifferenceToPoints,
   activeWord,
   testingType,
   stage,
@@ -62,6 +61,7 @@ const Test = ({
       <form onSubmit={submit} className='space-y-8'>
         {individualInputForm && testingType === 'individual' ? (
           <IndividualTrainerInput
+            addDifference={addDifference}
             label={`${MAPPER.extended.wordCase[individualInputForm.wordCase]} ${MAPPER.extended.numerus[individualInputForm.numerus]}`}
             correctValue={correctIndividualInputValue}
             stage={stage}
@@ -71,6 +71,7 @@ const Test = ({
         ) : (
           testingType === 'table' && (
             <TableInput
+              addDifference={addDifference}
               tableInputValues={tableInputValues}
               setTableInputValues={setTableInputValues}
               stage={stage}
@@ -82,6 +83,9 @@ const Test = ({
           form
           handleContinue={handleContinue}
           progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+          points={points}
+          difference={difference}
+          addDifferenceToPoints={addDifferenceToPoints}
         />
       </form>
     </>

@@ -12,9 +12,10 @@ type TableInputProps = {
   setTableInputValues: SetTableInputValues;
   stage: 'test' | 'review';
   activeWord: Noun;
+  addDifference: (arg: number) => void;
 };
 
-const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }: TableInputProps) => {
+const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord, addDifference }: TableInputProps) => {
   const { settings } = useSettings();
 
   const showVocative = settings && settings.TESTING_VOCATIVE === 'true';
@@ -41,6 +42,7 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord }
                   <th className={table.th}>{MAPPER.extended.wordCase[wordCase]}</th>
                   {WORD_CONSTANTS.numerus.map((numerus, i) => (
                     <TableTrainerInput
+                      addDifference={addDifference}
                       key={numerus}
                       value={tableInputValues[numerus][wordCase]}
                       correctValue={
