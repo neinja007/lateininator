@@ -1,7 +1,6 @@
 import { COLORS } from '@/constants/other';
 import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
 import { Dispatch, SetStateAction, useId } from 'react';
-import Checkbox from './Checkbox';
 
 type CheckboxWithLabelProps = {
   checked: boolean;
@@ -16,8 +15,10 @@ const CheckboxWithLabel = ({ checked, disabled, handleChange, label }: CheckboxW
 
   return (
     <div>
-      <Checkbox
+      <input
+        type='checkbox'
         disabled={disabled}
+        style={{ accentColor: COLORS[primaryColor].hex }}
         id={id}
         checked={checked}
         onChange={(e) => handleChange(e.target.checked)}
