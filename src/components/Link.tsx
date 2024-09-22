@@ -12,7 +12,7 @@ const Link = ({ children, href, className, ...props }: LinkProps) => {
   return (
     <NextLink href={href} className={clsx('text-blue-500 hover:underline', className)} {...props}>
       {children}
-      <ExternalLink className='ml-1 inline-block h-4 w-4 align-text-top' />
+      <ExternalLink className='mx-1 inline-block h-4 w-4 align-text-top' />
     </NextLink>
   );
 };
