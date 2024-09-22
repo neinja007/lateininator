@@ -8,7 +8,7 @@ import { WordProperty } from '@/types/appConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { compareValues } from '@/utils/word/compareValues';
 import { Check } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { usePointState } from '@/hooks/usePointState';
 
 type PropertyInputProps = {
   property: WordProperty;
@@ -27,8 +27,6 @@ const PropertyInput = ({
   inputValue,
   addDifference
 }: PropertyInputProps) => {
-  const [disablePoints, setDisablePoints] = useState<boolean>(false);
-
   const options = isWordPropertiesUsingSelectInput(property)
     ? WORD_CONSTANTS.optional[property].reduce((object: { [key: string]: string }, element) => {
         object[element] = (MAPPER.extended[property] as { [key: string]: string })[element];
@@ -38,23 +36,7 @@ const PropertyInput = ({
   const isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
   const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
 
-  useEffect(() => {
-    if (stage === 'review' && isInputCorrect && !disablePoints) {
-      addDifference(1);
-      setDisablePoints(true);
-    }
-  }, [isInputCorrect, stage, disablePoints, addDifference]);
-
-  useEffect(() => {
-    if (stage === 'test' && disablePoints) {
-      setDisablePoints(false);
-    }
-  }, [disablePoints, stage]);
-
-  const handleManuallySetCorrectValue = () => {
-    handleChange(property, correctValue);
-    setDisablePoints(true);
-  };
+  const { handleSetCorrect } = usePointState(stage, !!isInputCorrect, addDifference);
 
   return (
     <div className='flex items-end'>
@@ -80,7 +62,11 @@ const PropertyInput = ({
         )}
       </div>
       {stage === 'review' && !isInputCorrect && (
-        <button type='button' className='m-1.5 w-5 flex-shrink' onClick={handleManuallySetCorrectValue}>
+        <button
+          type='button'
+          className='m-1.5 w-5 flex-shrink'
+          onClick={handleSetCorrect(() => handleChange(property, correctValue))}
+        >
           <Check />
         </button>
       )}
