@@ -13,9 +13,7 @@ const Page = () => {
       <LoadingHeading>Sie werden abgemeldet...</LoadingHeading>
       Sollte dies zu lange dauern,{' '}
       <SignOutButton>
-        <button className='text-blue-500 hover:underline' onClick={() => signOut()}>
-          klicken sie bitte hier
-        </button>
+        <button className='text-blue-500 hover:underline'>klicken sie bitte hier</button>
       </SignOutButton>
       .
     </>
