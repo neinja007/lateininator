@@ -69,12 +69,12 @@ const Navbar = () => {
                   {route.children
                     .map((child) => ({ ...child, href: route.href + child.href }))
                     .map((child, i) => {
-                      return <NavbarLink dropdown key={i} route={child} active={pathname === child.href} />;
+                      return <NavbarLink dropdown key={i} route={child} active={pathname.startsWith(child.href)} />;
                     })}
                 </NavbarDropdown>
               );
             } else {
-              element = <NavbarLink key={i} route={route} active={pathname === route.href} />;
+              element = <NavbarLink key={i} route={route} active={pathname.startsWith(route.href)} />;
             }
 
             return <Fragment key={i}>{makeStatusDependent(element, route.status)}</Fragment>;
