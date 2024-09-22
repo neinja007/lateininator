@@ -11,6 +11,7 @@ import { ComparisonDegree, Gender } from '@/types/wordConstants';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
+import { usePointCounter } from '@/hooks/usePointCounter';
 
 const initialTableInputValues: TableInputValues = {
   ...(WORD_CONSTANTS.gender.reduce(
@@ -35,6 +36,8 @@ const Page = () => {
       : () => setTableInputValues(initialTableInputValues),
     3
   );
+
+  const { points, difference, addDifference, addDifferenceToPoints } = usePointCounter(stage);
 
   const [comparisonDegrees, setComparisonDegrees] = useState<ComparisonDegree[]>([...WORD_CONSTANTS.comparisonDegree]);
   const [genders, setGenders] = useState<Gender[]>([...WORD_CONSTANTS.gender]);
@@ -68,6 +71,10 @@ const Page = () => {
         )}
         {(stage === 'test' || stage === 'review') && activeWord && isAdjective(activeWord) && (
           <Test
+            points={points}
+            difference={difference}
+            addDifference={addDifference}
+            addDifferenceToPoints={addDifferenceToPoints}
             activeWord={activeWord}
             testingType={testingType}
             stage={stage}
@@ -83,7 +90,7 @@ const Page = () => {
             setIndividualInputValue={setIndividualInputValue}
           />
         )}
-        {stage === 'results' && <Results handleContinue={handleContinue} />}
+        {stage === 'results' && <Results handleContinue={handleContinue} points={points} />}
       </div>
     </AuthConditionalLock>
   );
