@@ -31,11 +31,11 @@ const Cell = ({
   owned
 }: CellProps) => {
   return (
-    <div className='min-h-32'>
+    <div className='min-h-32 rounded-lg border border-gray-200 dark:border-gray-700'>
       <div
         className={clsx(
           'w-full px-4 py-2 transition-colors',
-          outlined ? 'h-[132px] rounded-lg border border-dashed' : 'h-24 rounded-t-lg bg-blue-400 dark:bg-blue-950',
+          outlined ? 'h-[132px] rounded-lg border border-dashed' : 'h-24 rounded-t-lg',
           className
         )}
       >
@@ -66,7 +66,7 @@ const Cell = ({
                         }
                       : undefined
                   }
-                  className='-mr-2 rounded-lg bg-sky-700 p-2 hover:bg-sky-600'
+                  className='-mr-2 rounded-lg bg-sky-400 p-2 hover:bg-sky-300 dark:bg-sky-700 dark:hover:bg-sky-600'
                 >
                   <Edit className='h-4 w-4' />
                 </button>
@@ -78,10 +78,10 @@ const Cell = ({
                 {lists} Liste{lists !== 1 && 'n'}
               </span>
               {owned ? (
-                <span className='font-medium text-sky-100 dark:text-sky-500'>Ihre Kollektion</span>
+                <span className='font-medium text-sky-500'>Ihre Kollektion</span>
               ) : (
                 <span>
-                  von <span className='font-medium text-yellow-400 dark:text-yellow-500'>{owner}</span>
+                  von <span className='font-medium text-yellow-500'>{owner}</span>
                 </span>
               )}
             </p>
