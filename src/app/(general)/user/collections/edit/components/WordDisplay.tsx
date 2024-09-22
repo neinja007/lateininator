@@ -1,5 +1,4 @@
 import { Word as WordType } from '@/types/word';
-import clsx from 'clsx';
 import { Minus, Plus } from 'lucide-react';
 
 type WordProps = {
@@ -24,9 +23,7 @@ const WordDisplay = ({ added, word, setWords, words }: WordProps) => {
               setWords([...words, word]);
             }
       }
-      className={clsx(
-        'flex items-center rounded-lg bg-gray-200 px-3 py-2 hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
-      )}
+      className='flex items-center rounded-lg bg-gray-200 px-3 py-2 hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
     >
       {word.name}
       {added ? (

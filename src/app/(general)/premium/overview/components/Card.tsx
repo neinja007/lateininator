@@ -49,7 +49,7 @@ const Card = ({ features, price, title, color, owned, description, href, loading
       >
         <h1 className='m-5 flex items-baseline justify-between text-2xl'>
           <span>Lateininator</span>{' '}
-          <span className={clsx('rounded-lg px-3 py-1.5 font-bold text-white backdrop-brightness-50')}>{title}</span>
+          <span className='rounded-lg px-3 py-1.5 font-bold text-white backdrop-brightness-50'>{title}</span>
         </h1>
         <br />
         <div className='mx-5 mt-4 space-y-2 text-lg'>

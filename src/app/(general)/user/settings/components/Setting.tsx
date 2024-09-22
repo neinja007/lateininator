@@ -6,7 +6,6 @@ import { useUpdateSettings } from '@/hooks/database/mutations/useUpdateSettings'
 import { ButtonSettingData, PrimaryColor } from '@/types/other';
 import { SettingKey } from '@prisma/client';
 import { useQueryClient } from '@tanstack/react-query';
-import clsx from 'clsx';
 import { useState } from 'react';
 import Switch from 'react-switch';
 import ColorPicker from './ColorPicker';
@@ -88,7 +87,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   }
 
   return (
-    <div className={clsx('my-2 items-center justify-between px-4 py-4 sm:flex sm:h-20 dark:border-gray-700')}>
+    <div className='my-2 items-center justify-between px-4 py-4 sm:flex sm:h-20 dark:border-gray-700'>
       <div className='flex-grow'>
         <span className='text-lg font-medium'>
           {settings[settingKey].name} {disabled && <span className='text-red-400'>(noch nicht verfügbar)</span>}
