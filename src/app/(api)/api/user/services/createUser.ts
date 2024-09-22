@@ -7,7 +7,12 @@ export async function createUser(userId: string, email: string, name: string, cu
         id: userId,
         email: email,
         name: name,
-        stripeCustomerId: customerId
+        stripeCustomerId: customerId,
+        savedCollections: {
+          connect: {
+            id: 1
+          }
+        }
       }
     });
     return newUser;
