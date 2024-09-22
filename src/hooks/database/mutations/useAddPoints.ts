@@ -5,10 +5,19 @@ export const useAddPoints = (method: 'increment' | 'set') => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (points: number) => axios.post('/api/points', { points, method }).then((res) => res.data),
-    onError: (error) => {
-      console.error('Error adding points:', error);
+    onMutate: async (newPoints: number) => {
+      await queryClient.cancelQueries({ queryKey: ['points'] });
+      const previousPoints = queryClient.getQueryData(['points']);
+      queryClient.setQueryData(['points'], (old: number | undefined) =>
+        method === 'increment' ? (old || 0) + newPoints : newPoints
+      );
+      return { previousPoints };
     },
-    onSuccess: () => {
+    onError: (error, _, context) => {
+      console.error('Error adding points:', error);
+      queryClient.setQueryData(['points'], context?.previousPoints);
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['points'] });
     }
   });
