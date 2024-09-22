@@ -19,7 +19,7 @@ const Button = ({ color = 'default', children, className, icon, disabled, unstyl
         !unstyled && ui.basic,
         className,
         'justify-center transition-colors',
-        COLORS[color].background,
+        COLORS[color].dynamic,
         disabled && 'disabled:opacity-50'
       )}
       disabled={disabled}
