@@ -27,7 +27,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
     listInclude: ['words']
   });
 
-  const primaryColor = usePrimaryColor();
+  const primaryColor = usePrimaryColor(true);
 
   const [excludeExceptionalWords, setExcludeExceptionalWords] = useState(false);
   const [selectedCollection, setSelectedCollection] = useState<number>();
@@ -89,7 +89,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               collections.map((collection) => (
                 <Button
                   key={collection.id}
-                  color={selectedCollection === collection.id ? primaryColor : 'default'}
+                  color={selectedCollection === collection.id ? primaryColor() : 'default'}
                   onClick={() => setSelectedCollection((prev) => (prev === collection.id ? undefined : collection.id))}
                 >
                   {collection.name}
@@ -112,7 +112,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                 <Button
                   color={
                     status === 'success' && selectedLists.length === filteredLists.length && selectedCollection
-                      ? primaryColor
+                      ? primaryColor()
                       : 'default'
                   }
                   onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
@@ -122,7 +122,9 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                 </Button>
                 <Button
                   color={
-                    selectedLists.length === 0 && status === 'success' && selectedCollection ? primaryColor : 'default'
+                    selectedLists.length === 0 && status === 'success' && selectedCollection
+                      ? primaryColor()
+                      : 'default'
                   }
                   onClick={() => setSelectedLists([])}
                   disabled={status !== 'success' || filteredLists.length === 0}
@@ -140,7 +142,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               filteredLists.map((list) => (
                 <Button
                   key={list.id}
-                  color={selectedLists.includes(list.id) ? primaryColor : 'default'}
+                  color={selectedLists.includes(list.id) ? primaryColor() : 'default'}
                   onClick={() =>
                     setSelectedLists((prev) =>
                       prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]
@@ -162,7 +164,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
         <div className='mt-5 grid items-center gap-3 sm:grid-cols-2'>
           <p className='order-2 sm:order-none'>
             Es wurde{selectedWords.length !== 1 && 'n'}{' '}
-            <b className={COLORS[primaryColor].text}>
+            <b className={COLORS[primaryColor()].text}>
               {selectedWords.length === 0 ? 'keine' : selectedWords.length}{' '}
               {onlyAcceptType
                 ? MAPPER.extended.type[selectedWords.length !== 1 ? 'plural' : 'singular'][onlyAcceptType]
