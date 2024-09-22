@@ -10,6 +10,8 @@ import Link from '@/components/Link';
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import CheckboxWithLabel from './CheckboxWithLabel';
 import { useCollections } from '@/hooks/database/queries/useCollections';
+import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
+import { COLORS } from '@/constants/other';
 
 type ListSelectionProps = {
   selectedWords: Word[];
@@ -24,6 +26,8 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
     include: ['lists'],
     listInclude: ['words']
   });
+
+  const primaryColor = usePrimaryColor();
 
   const [excludeExceptionalWords, setExcludeExceptionalWords] = useState(false);
   const [selectedCollection, setSelectedCollection] = useState<number>();
@@ -85,7 +89,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               collections.map((collection) => (
                 <Button
                   key={collection.id}
-                  color={selectedCollection === collection.id ? 'blue' : 'default'}
+                  color={selectedCollection === collection.id ? primaryColor : 'default'}
                   onClick={() => setSelectedCollection((prev) => (prev === collection.id ? undefined : collection.id))}
                 >
                   {collection.name}
@@ -94,10 +98,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             ) : (
               <div className='col-span-full text-yellow-500'>
                 Keine gespeicherten Kollektionen gefunden. Sie können bei der{' '}
-                <Link href={'/user/collections'} className='font-medium text-blue-500 hover:underline'>
-                  Wortschatz-Verwaltung
-                </Link>{' '}
-                ein paar hinzufügen.
+                <Link href='/user/collections'>Wortschatz-Verwaltung</Link> ein paar hinzufügen.
               </div>
             ))}
         </div>
@@ -111,7 +112,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                 <Button
                   color={
                     status === 'success' && selectedLists.length === filteredLists.length && selectedCollection
-                      ? 'blue'
+                      ? primaryColor
                       : 'default'
                   }
                   onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
@@ -120,7 +121,9 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                   Alle auswählen
                 </Button>
                 <Button
-                  color={selectedLists.length === 0 && status === 'success' && selectedCollection ? 'blue' : 'default'}
+                  color={
+                    selectedLists.length === 0 && status === 'success' && selectedCollection ? primaryColor : 'default'
+                  }
                   onClick={() => setSelectedLists([])}
                   disabled={status !== 'success' || filteredLists.length === 0}
                 >
@@ -137,7 +140,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               filteredLists.map((list) => (
                 <Button
                   key={list.id}
-                  color={selectedLists.includes(list.id) ? 'blue' : 'default'}
+                  color={selectedLists.includes(list.id) ? primaryColor : 'default'}
                   onClick={() =>
                     setSelectedLists((prev) =>
                       prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]
@@ -159,7 +162,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
         <div className='mt-5 grid items-center gap-3 sm:grid-cols-2'>
           <p className='order-2 sm:order-none'>
             Es wurde{selectedWords.length !== 1 && 'n'}{' '}
-            <b className='text-blue-500'>
+            <b className={COLORS[primaryColor].text}>
               {selectedWords.length === 0 ? 'keine' : selectedWords.length}{' '}
               {onlyAcceptType
                 ? MAPPER.extended.type[selectedWords.length !== 1 ? 'plural' : 'singular'][onlyAcceptType]
