@@ -34,7 +34,19 @@ const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
           <tbody>
             <tr className={table.tr}>
               {WORD_CONSTANTS.comparisonDegree.map((comparisonDegree) => (
-                <td key={comparisonDegree} className={table.td}>
+                <td
+                  key={comparisonDegree}
+                  className={clsx(
+                    table.td,
+                    getForm(word, {
+                      comparisonDegree,
+                      adverb: true,
+                      gender: 'M',
+                      numerus: 'sin',
+                      wordCase: '1'
+                    }).exception && 'text-yellow-500'
+                  )}
+                >
                   {
                     getForm(word, {
                       comparisonDegree,
@@ -76,7 +88,14 @@ const AdjectiveTable = ({ word }: AdjectiveTableProps) => {
                           {MAPPER.short.wordCase[wordCase]} {MAPPER.extended.numerus[numerus]}
                         </th>
                         {WORD_CONSTANTS.gender.map((gender, i) => (
-                          <td key={i} className={table.td}>
+                          <td
+                            key={i}
+                            className={clsx(
+                              table.td,
+                              getForm(word, { comparisonDegree, gender, numerus, wordCase }).exception &&
+                                'text-yellow-500'
+                            )}
+                          >
                             {getForm(word, { comparisonDegree, gender, numerus, wordCase }).form}
                           </td>
                         ))}

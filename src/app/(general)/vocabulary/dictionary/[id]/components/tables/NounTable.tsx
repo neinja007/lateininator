@@ -4,6 +4,7 @@ import { Noun } from '@/types/word';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { useSettings } from '@/hooks/database/queries/useSettings';
+import clsx from 'clsx';
 
 type NounTableProps = { word: Noun };
 
@@ -35,7 +36,13 @@ const NounTable = ({ word }: NounTableProps) => {
               <tr key={wordCase} className={table.tr}>
                 <th className={table.th}>{MAPPER.extended.wordCase[wordCase]}</th>
                 {WORD_CONSTANTS.numerus.map((numerus) => (
-                  <td key={numerus} className={table.td}>
+                  <td
+                    key={numerus}
+                    className={clsx(
+                      table.td,
+                      getForm(word, { wordCase: wordCase, numerus: numerus }).exception && 'text-yellow-500'
+                    )}
+                  >
                     {getForm(word, { wordCase: wordCase, numerus: numerus }).form}
                   </td>
                 ))}

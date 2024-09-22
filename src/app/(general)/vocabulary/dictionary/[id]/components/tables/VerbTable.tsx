@@ -44,7 +44,14 @@ const VerbTable = ({ word }: VerbTableProps) => {
                               (tense) =>
                                 (modus === 'ind' || tense !== 'fut1') &&
                                 (person !== '4' || tense === 'pres') && (
-                                  <td key={tense} className={table.td}>
+                                  <td
+                                    key={tense}
+                                    className={clsx(
+                                      table.td,
+                                      getForm(word, { modus, numerus, person, tense, voice }).exception &&
+                                        'text-yellow-500'
+                                    )}
+                                  >
                                     {getForm(word, { modus, numerus, person, tense, voice }).form}
                                   </td>
                                 )
