@@ -24,7 +24,7 @@ const colorMap: { [key in AvailableColor]: string } = {
 const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
   return (
     <div className='flex items-center'>
-      <span className={clsx('mr-4 rounded-md px-2', COLORS[value])}>{colorMap[value]}</span>
+      <span className={clsx('mr-4 rounded-md px-2 text-black', COLORS[value].static)}>{colorMap[value]}</span>
       <div className='grid grid-cols-3'>
         {availableColors.map((color) => (
           <button
@@ -33,7 +33,7 @@ const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
             onClick={() => onChange(color)}
             className='flex items-center justify-center'
           >
-            <div className={clsx('h-6 w-6', COLORS[color])} />
+            <div className={clsx('h-6 w-6', COLORS[color].static)} />
             {value === color && <CheckCircle className='absolute h-4 w-4' />}
           </button>
         ))}
