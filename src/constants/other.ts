@@ -67,7 +67,7 @@ export const COLORS: { [key in Color]: { [key in 'dynamic' | 'text' | 'static' |
   }
 };
 
-export const availableColors = ['yellow', 'blue', 'green', 'purple', 'pink', 'orange'] as const;
+export const availableColors = ['yellow', 'blue', 'green', 'purple', 'pink', 'orange', 'red'] as const;
 
 export const BREAKPOINTS: { [B in Breakpoint]: number } = {
   sm: 640,
