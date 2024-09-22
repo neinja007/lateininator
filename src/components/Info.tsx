@@ -1,6 +1,5 @@
-import { AvailableColor } from '@/app/(general)/user/settings/components/ColorPicker';
+import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
 import { COLORS } from '@/constants/other';
-import { useSettings } from '@/hooks/database/queries/useSettings';
 import clsx from 'clsx';
 import { InfoIcon, X } from 'lucide-react';
 import { useState } from 'react';
@@ -14,8 +13,7 @@ type InfoProps = {
 const Info = ({ children, heading, size = 4 }: InfoProps) => {
   const [showTutorial, setShowTutorial] = useState(false);
 
-  const { settings } = useSettings();
-  const primaryColor = settings?.PRIMARY_COLOR || 'blue';
+  const primaryColor = usePrimaryColor();
 
   return (
     <>
@@ -31,7 +29,7 @@ const Info = ({ children, heading, size = 4 }: InfoProps) => {
             <div
               className={clsx(
                 'relative mx-4 w-full max-w-md rounded-lg border border-neutral-200 p-4 dark:border-neutral-700',
-                COLORS[primaryColor as AvailableColor].static
+                COLORS[primaryColor].static
               )}
             >
               <div className='absolute inset-0 z-0 rounded-lg bg-inherit brightness-50'></div>
