@@ -1,6 +1,6 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 import { MAPPER } from '@/utils/other/mapper';
@@ -15,26 +15,17 @@ import { IndividualTrainerInput } from '../../components/IndividualTrainerInput'
 import { useSettings } from '@/hooks/database/queries/useSettings';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
+import { BaseProps, PointProps } from '../../types';
 
 type TestProps = {
   activeWord: Adjective;
-  testingType: 'table' | 'individual';
-  stage: 'test' | 'review';
   tableInputValues: TableInputValues;
   setTableInputValues: SetTableInputValues;
-  maxWords: number;
-  remainingWords: number;
-  handleContinue: () => void;
   genders: Gender[];
   comparisonDegrees: ComparisonDegree[];
-  individualInputValue: string;
-  setIndividualInputValue: Dispatch<SetStateAction<string>>;
   checkAdverb: boolean;
-  points: number;
-  difference: number;
-  addDifference: (difference: number) => void;
-  addDifferenceToPoints: () => void;
-};
+} & PointProps &
+  BaseProps;
 
 const Test = ({
   activeWord,

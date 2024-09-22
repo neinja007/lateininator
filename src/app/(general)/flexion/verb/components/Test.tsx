@@ -1,6 +1,6 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 import { MAPPER } from '@/utils/other/mapper';
@@ -12,23 +12,18 @@ import { getForm } from '@/utils/word/getForm';
 import { IndividualTrainerInput } from '../../components/IndividualTrainerInput';
 import { getRandomIndividualInputForm } from '../utils/getRandomIndividualInputForm';
 import { getRandomTableInputForm } from '../utils/getRandomTableInputForm';
+import { BaseProps, PointProps } from '../../types';
 
 type TestProps = {
   activeWord: Verb;
-  testingType: 'table' | 'individual';
-  stage: 'test' | 'review';
   tableInputValues: TableInputValues;
   setTableInputValues: SetTableInputValues;
-  maxWords: number;
-  remainingWords: number;
-  handleContinue: () => void;
   modi: Modus[];
   voices: Voice[];
   tenses: Tense[];
-  individualInputValue: string;
-  setIndividualInputValue: Dispatch<SetStateAction<string>>;
   checkImperative: boolean;
-};
+} & PointProps &
+  BaseProps;
 
 const Test = ({
   activeWord,
