@@ -12,20 +12,9 @@ import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isAdjective } from '@/utils/typeguards/isAdjective';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
 import { usePointCounter } from '@/hooks/usePointCounter';
+import { getAllTableInputValues } from './utils/getAllTableInputValues';
 
-const initialTableInputValues: TableInputValues = {
-  ...(WORD_CONSTANTS.gender.reduce(
-    (acc, cur) => ({
-      ...acc,
-      [cur]: WORD_CONSTANTS.numerus.reduce(
-        (acc, cur) => ({ ...acc, [cur]: WORD_CONSTANTS.wordCase.reduce((acc, cur) => ({ ...acc, [cur]: '' }), {}) }),
-        {}
-      )
-    }),
-    {}
-  ) as TableInputValues),
-  adverb: ''
-};
+const initialTableInputValues = getAllTableInputValues();
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
