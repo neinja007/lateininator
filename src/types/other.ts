@@ -17,6 +17,10 @@ export type ButtonSettingData = BaseSettingData & {
   invalidateQueries?: string;
 };
 
+export type ColorSettingData = BaseSettingData & {
+  type: 'color';
+};
+
 export type BaseSettingData = {
   name: string;
   description: string;
@@ -27,4 +31,4 @@ export type OtherSettingData = BaseSettingData & {
   type: 'boolean' | 'input';
 };
 
-export type SettingData = ListSettingData | ButtonSettingData | OtherSettingData;
+export type SettingData = ListSettingData | ButtonSettingData | ColorSettingData | OtherSettingData;
