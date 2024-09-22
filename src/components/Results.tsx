@@ -1,7 +1,6 @@
 import Button from '@/components/Button';
-import { useAddPoints } from '@/hooks/database/mutations/useAddPoints';
+import { usePoints } from '@/hooks/database/queries/usePoints';
 import { Stage } from '@/types/other';
-import { useState } from 'react';
 
 type ResultsProps = {
   handleContinue: (arg?: Stage) => void;
@@ -9,30 +8,19 @@ type ResultsProps = {
 };
 
 const Results = ({ handleContinue, points }: ResultsProps) => {
-  const { mutate: addPoints, status } = useAddPoints('increment');
-  const [saved, setSaved] = useState(false);
+  const { data: newPoints } = usePoints();
 
   return (
     <div className='flex flex-col items-center justify-center space-y-4'>
       {!!points && (
-        <div className='text-center'>
-          <h2 className='text-2xl font-semibold'>Ergebnisse</h2>
-          <p className='my-2 text-lg'>
-            Du hast {points} Punkt{points !== 1 ? 'e' : ''} erreicht!
-          </p>
-          {!saved && (
-            <Button
-              color='purple'
-              onClick={() => {
-                addPoints(points);
-                setSaved(true);
-              }}
-              disabled={status === 'pending'}
-            >
-              Punkte speichern
-            </Button>
-          )}
-        </div>
+        <p className='my-2'>
+          Du hast{' '}
+          <b>
+            {points} Punkt{points !== 1 ? 'e' : ''}
+          </b>{' '}
+          erreicht. Diese wurden bereits in die <b>Gesamtpunkte</b> miteinberechnet ({newPoints - points} + {points} ={' '}
+          <b>{newPoints}</b>)
+        </p>
       )}
       <Button onClick={() => handleContinue()} color='gray'>
         Neu Laden
