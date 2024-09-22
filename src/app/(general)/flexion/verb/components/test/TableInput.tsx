@@ -43,8 +43,8 @@ const TableInput = ({
 }: TableInputProps) => {
   return (
     <div>
-      <div className='flex justify-between'>
-        <p className='mb-2 text-center font-bold'>
+      <div className='mb-2 flex justify-between'>
+        <p className='text-center font-bold'>
           {MAPPER.extended.modus[tableInputForm.modus]} {MAPPER.extended.voice[tableInputForm.voice]}
         </p>
         <InsertBasesButton

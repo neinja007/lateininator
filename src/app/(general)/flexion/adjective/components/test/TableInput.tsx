@@ -38,8 +38,8 @@ const TableInput = ({
 
   return (
     <div>
-      <div className='flex justify-between'>
-        <p className='mb-2 text-center font-bold'>
+      <div className='mb-2 flex justify-between'>
+        <p className='text-center font-bold'>
           {MAPPER.extended.comparison[form.comparison]} {MAPPER.extended.comparisonDegree[form.comparisonDegree]}
         </p>
         <InsertBasesButton
