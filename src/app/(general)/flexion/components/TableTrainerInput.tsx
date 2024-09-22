@@ -53,7 +53,10 @@ const TableTrainerInput = ({
         <button
           type='button'
           className={label ? 'm-1.5' : 'm-1 w-7 flex-shrink'}
-          onClick={() => handleChange(correctValue)}
+          onClick={() => {
+            handleChange(correctValue);
+            setDisablePoints(true);
+          }}
         >
           <Check />
         </button>

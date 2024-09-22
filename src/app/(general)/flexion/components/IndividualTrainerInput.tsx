@@ -43,7 +43,14 @@ export const IndividualTrainerInput = ({
         <TrainerInput label={label} handleChange={setValue} value={value} correctValue={correctValue} stage={stage} />
       </div>
       {stage === 'review' && !isInputCorrect && (
-        <button type='button' className='m-1.5' onClick={() => setValue(correctValue)}>
+        <button
+          type='button'
+          className='m-1.5'
+          onClick={() => {
+            setValue(correctValue);
+            setDisablePoints(true);
+          }}
+        >
           <Check />
         </button>
       )}
