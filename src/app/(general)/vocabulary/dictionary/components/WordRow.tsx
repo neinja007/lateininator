@@ -8,7 +8,7 @@ import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import { ChevronRight, ChevronsRight } from 'lucide-react';
 import clsx from 'clsx';
 import Skeleton from '@/components/Skeleton';
-import { getHighlightedQuery } from '../utils/getHighlightedQuery';
+import { HighlightedQuery } from './HighlightedQuery';
 
 type WordRowProps = {
   word: Word;
@@ -28,7 +28,11 @@ const WordRow = ({ word, query, loading }: WordRowProps) => {
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <td className='p-2 px-4'>
-        {loading ? <Skeleton customSize className='h-6 w-32' pulse /> : getHighlightedQuery(word, query || '')}{' '}
+        {loading ? (
+          <Skeleton customSize className='h-6 w-32' pulse />
+        ) : (
+          <HighlightedQuery word={word} query={query || ''} />
+        )}{' '}
         <i>{getLexicalForm(word)}</i>
       </td>
       <td className='truncate p-2 px-4'>
