@@ -11,17 +11,9 @@ import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isVerb } from '@/utils/typeguards/isVerb';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
 import { usePointCounter } from '@/hooks/usePointCounter';
+import { getAllTableInputValues } from './utils/getAllTableInputValues';
 
-const initialTableInputValues: TableInputValues = WORD_CONSTANTS.tense.reduce(
-  (acc, curr) => ({
-    ...acc,
-    [curr]: WORD_CONSTANTS.numerus.reduce(
-      (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.person.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
-      {}
-    )
-  }),
-  {} as TableInputValues
-);
+const initialTableInputValues = getAllTableInputValues();
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
