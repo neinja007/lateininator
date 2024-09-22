@@ -1,3 +1,6 @@
+import { COLORS } from '@/constants/other';
+import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
+
 type ResultCountProps = {
   count: number;
   query: string;
@@ -5,6 +8,8 @@ type ResultCountProps = {
 };
 
 export const ResultCount = ({ count, query, isFetched }: ResultCountProps) => {
+  const primaryColor = usePrimaryColor();
+
   if (!isFetched) {
     return <div className='animate-pulse'>Wörter werden geladen...</div>;
   }
@@ -12,10 +17,10 @@ export const ResultCount = ({ count, query, isFetched }: ResultCountProps) => {
   return (
     <div>
       Wir haben{' '}
-      <b className='text-blue-500'>
+      <b className={COLORS[primaryColor].text}>
         {count === 0 ? 'Keine' : count} {count === 1 ? 'Ergebnis' : 'Ergebnisse'}
       </b>{' '}
-      {query.trim() && 'für'} <b className='text-blue-500'>{query.trim()}</b> gefunden.
+      {query.trim() && 'für'} <b className={COLORS[primaryColor].text}>{query.trim()}</b> gefunden.
     </div>
   );
 };
