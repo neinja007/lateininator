@@ -6,6 +6,9 @@ import { Tense } from '@/types/wordConstants';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
+import InsertBasesButton from '../../../components/InsertBasesButton';
+import { getAllTableInputValues } from '../../utils/getAllTableInputValues';
+import { getBase } from '@/utils/word/getBase';
 
 type TableInputProps = {
   tableInputForm: TableInputForm;
@@ -30,9 +33,12 @@ const TableInput = ({
 }: TableInputProps) => {
   return (
     <div>
-      <p className='mb-2 text-center font-bold'>
-        {MAPPER.extended.modus[tableInputForm.modus]} {MAPPER.extended.voice[tableInputForm.voice]}
-      </p>
+      <div className='flex justify-between'>
+        <p className='mb-2 text-center font-bold'>
+          {MAPPER.extended.modus[tableInputForm.modus]} {MAPPER.extended.voice[tableInputForm.voice]}
+        </p>
+        <InsertBasesButton onClick={() => setTableInputValues(getAllTableInputValues(getBase(activeWord, {})))} />
+      </div>
       <table className={table.table}>
         <thead className={table.thead}>
           <tr>
