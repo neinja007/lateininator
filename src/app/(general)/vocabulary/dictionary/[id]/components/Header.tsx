@@ -17,7 +17,9 @@ const Header = ({ word, loading }: HeaderProps | HeaderLoadingProps) => {
       <div className='flex w-full justify-end lg:justify-center'>
         <Heading
           heading={
-            word ? `${word?.name} ${getLexicalForm(word)} (${MAPPER.extended.type.singular[word.type]})` : 'Wörterbuch'
+            word
+              ? `${word?.name} ${getLexicalForm(word) || ''} (${MAPPER.extended.type.singular[word.type]})`
+              : 'Wörterbuch'
           }
         >
           Hier findest du <b>alle Informationen</b> zum {word ? MAPPER.extended.type.singular[word.type] : 'Wort'}{' '}
