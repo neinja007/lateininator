@@ -6,15 +6,12 @@ import Results from '@/components/Results';
 import Settings from './components/Settings';
 import Test from './components/Test';
 import { TableInputValues } from './types';
-import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { isNoun } from '@/utils/typeguards/isNoun';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
 import { usePointCounter } from '@/hooks/usePointCounter';
+import { getAllTableInputValues } from './utils/getAllTableInputValues';
 
-const initialTableInputValues: TableInputValues = WORD_CONSTANTS.numerus.reduce(
-  (acc, curr) => ({ ...acc, [curr]: WORD_CONSTANTS.wordCase.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}) }),
-  {} as TableInputValues
-);
+const initialTableInputValues = getAllTableInputValues();
 
 const Page = () => {
   const [testingType, setTestingType] = useState<'table' | 'individual'>('table');
