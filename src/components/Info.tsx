@@ -24,16 +24,13 @@ const Info = ({ children, heading, size = 4 }: InfoProps) => {
         />
       </button>
       {showTutorial && (
-        <div className='fixed inset-0 z-50 backdrop-brightness-75' onClick={() => setShowTutorial(false)}>
+        <div
+          className='fixed inset-0 z-50 backdrop-blur-sm backdrop-brightness-75'
+          onClick={() => setShowTutorial(false)}
+        >
           <div className='absolute inset-0 flex items-center justify-center'>
-            <div
-              className={clsx(
-                'relative mx-4 w-full max-w-md rounded-lg border border-neutral-200 p-4 dark:border-neutral-700',
-                COLORS[primaryColor].static
-              )}
-            >
+            <div className={clsx('relative mx-4 w-full max-w-md rounded-lg p-4', COLORS[primaryColor].static)}>
               <div className='absolute inset-0 z-0 rounded-lg bg-inherit brightness-50'></div>
-
               <div className='relative z-10'>
                 <div className='flex items-start justify-between'>
                   <h2 className='mb-2 line-clamp-2 text-2xl font-bold'>{heading || 'Information'}</h2>
