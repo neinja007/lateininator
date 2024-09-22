@@ -1,4 +1,14 @@
+import { WordType } from '@/types/appConstants';
 import { Breakpoint, Color } from '@/types/other';
+
+export const mapTypeToColor: { [key in WordType]: Color } = {
+  NOUN: 'blue',
+  VERB: 'red',
+  ADJECTIVE: 'green',
+  ADVERB: 'gray',
+  PRONOUN: 'gray',
+  OTHER: 'gray'
+};
 
 export const COLORS: { [key in Color]: { [key in 'dynamic' | 'text' | 'static' | 'hex']: string } } = {
   gray: {
