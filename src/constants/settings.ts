@@ -38,5 +38,10 @@ export const settings: Settings = {
     buttonText: 'Punkte zurücksetzen',
     color: 'red',
     invalidateQueries: 'points'
+  },
+  PRIMARY_COLOR: {
+    type: 'color',
+    name: 'Primäre Farbe',
+    description: 'Ändert die Farbe für Knöpfe, Text, und andere Elemente.'
   }
 };
