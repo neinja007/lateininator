@@ -45,8 +45,7 @@ const Page = () => {
           <h2 className='mb-2 flex items-center justify-center text-lg'>
             Aktivierte Kollektionen (maximal 3){' '}
             <Info size={5} heading='Aktivierte Kollektionen'>
-              Es können <b>bis zu 3 Kollektionen</b> gespeichert werden. Diese stehen Ihnen in den Trainern zur
-              Verfügung.
+              Es können <b>bis zu 3 Kollektionen</b> aktiviert werden. Diese stehen Ihnen in den Trainern zur Verfügung.
             </Info>
           </h2>
           <CellContainer>

@@ -70,7 +70,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
       <div>
         {(status !== 'success' || collections.length > 0) && (
           <p className='mb-2'>
-            Gespeicherte Kollektionen
+            Aktivierte Kollektionen
             {(status !== 'success' || collections.length > 0) && (
               <span>
                 {' '}
@@ -97,7 +97,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               ))
             ) : (
               <div className='col-span-full text-yellow-500'>
-                Keine gespeicherten Kollektionen gefunden. Sie können bei der{' '}
+                Keine aktivierten Kollektionen gefunden. Sie können bei der{' '}
                 <Link href='/user/collections'>Wortschatz-Verwaltung</Link> ein paar hinzufügen.
               </div>
             ))}
