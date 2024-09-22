@@ -6,6 +6,9 @@ import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
 import { useSettings } from '@/hooks/database/queries/useSettings';
+import InsertBasesButton from '../../../components/InsertBasesButton';
+import { getBase } from '@/utils/word/getBase';
+import { getAllTableInputValues } from '../../utils/getAllTableInputValues';
 
 type TableInputProps = {
   tableInputValues: TableInputValues;
@@ -17,12 +20,14 @@ type TableInputProps = {
 
 const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord, addDifference }: TableInputProps) => {
   const { settings } = useSettings();
-
   const showVocative = settings && settings.TESTING_VOCATIVE === 'true';
 
   return (
     <div>
-      <p className='mb-2 text-center font-bold'>{MAPPER.extended.declension[activeWord.noun.declension]}</p>
+      <div className='mb-2 flex items-baseline justify-between'>
+        <p className='font-bold'>{MAPPER.extended.declension[activeWord.noun.declension]}</p>
+        <InsertBasesButton onClick={() => setTableInputValues(getAllTableInputValues(getBase(activeWord, {})))} />
+      </div>
       <table className={table.table}>
         <thead className={table.thead}>
           <tr>
