@@ -2,7 +2,7 @@ import { MAPPER } from '@/utils/other/mapper';
 import table from '@/styles/table.module.css';
 import { SetTableInputValues, TableInputForm, TableInputValues } from '../../types';
 import { Verb } from '@/types/word';
-import { Tense } from '@/types/wordConstants';
+import { Tense, Voice } from '@/types/wordConstants';
 import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
@@ -21,6 +21,16 @@ type TableInputProps = {
   addDifference: (difference: number) => void;
 };
 
+const mapTypeToBaseType = (voice: Voice, type: Tense): 'present' | 'perfect' | 'participle' => {
+  if (type === 'fut1' || type === 'pres' || type === 'impe') {
+    return 'present';
+  } else if (voice === 'pas') {
+    return 'participle';
+  } else {
+    return 'perfect';
+  }
+};
+
 const TableInput = ({
   tableInputForm,
   tableInputValues,
@@ -37,7 +47,15 @@ const TableInput = ({
         <p className='mb-2 text-center font-bold'>
           {MAPPER.extended.modus[tableInputForm.modus]} {MAPPER.extended.voice[tableInputForm.voice]}
         </p>
-        <InsertBasesButton onClick={() => setTableInputValues(getAllTableInputValues(getBase(activeWord, {})))} />
+        <InsertBasesButton
+          onClick={() =>
+            setTableInputValues(
+              getAllTableInputValues((tense) =>
+                getBase(activeWord, { baseType: mapTypeToBaseType(tableInputForm.voice, tense) })
+              )
+            )
+          }
+        />
       </div>
       <table className={table.table}>
         <thead className={table.thead}>
