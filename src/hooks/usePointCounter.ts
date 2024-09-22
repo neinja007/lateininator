@@ -29,7 +29,7 @@ export const usePointCounter = (stage: Stage) => {
   }, [difference, addPoints, setDifference]);
 
   useEffect(() => {
-    if (stage === 'test' && difference !== 0) {
+    if (stage !== 'review' && difference !== 0) {
       addDifferenceToPoints();
     }
   }, [stage, addDifferenceToPoints, difference]);
