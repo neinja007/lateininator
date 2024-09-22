@@ -1,3 +1,6 @@
+import { AvailableColor } from '@/app/(general)/user/settings/components/ColorPicker';
+import { COLORS } from '@/constants/other';
+import { useSettings } from '@/hooks/database/queries/useSettings';
 import clsx from 'clsx';
 import { InfoIcon, X } from 'lucide-react';
 import { useState } from 'react';
@@ -11,6 +14,9 @@ type InfoProps = {
 const Info = ({ children, heading, size = 4 }: InfoProps) => {
   const [showTutorial, setShowTutorial] = useState(false);
 
+  const { settings } = useSettings();
+  const primaryColor = settings?.PRIMARY_COLOR || 'blue';
+
   return (
     <>
       <button className='ml-3 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-white'>
@@ -22,7 +28,12 @@ const Info = ({ children, heading, size = 4 }: InfoProps) => {
       {showTutorial && (
         <div className='fixed inset-0 z-50 backdrop-brightness-75' onClick={() => setShowTutorial(false)}>
           <div className='absolute inset-0 flex items-center justify-center'>
-            <div className='mx-4 w-full max-w-md rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-900'>
+            <div
+              className={clsx(
+                'mx-4 w-full max-w-md rounded-lg border border-neutral-200 p-4 dark:border-neutral-700',
+                COLORS[primaryColor as AvailableColor].static
+              )}
+            >
               <div className='flex items-start justify-between'>
                 <h2 className='mb-2 line-clamp-2 text-2xl font-bold'>{heading || 'Information'}</h2>
                 <button onClick={() => setShowTutorial(false)} className='mt-1 inline-block'>
