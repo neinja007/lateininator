@@ -15,6 +15,7 @@ type ButtonProps = {
 const Button = ({ color = 'default', children, className, icon, disabled, unstyled, ...props }: ButtonProps) => {
   return (
     <button
+      type={props.type || 'button'}
       className={clsx(
         !unstyled && ui.basic,
         className,
