@@ -1,7 +1,7 @@
 import { availableColors, COLORS } from '@/constants/other';
 import { PrimaryColor } from '@/types/other';
 import clsx from 'clsx';
-import { CheckCircle, CircleHelp } from 'lucide-react';
+import { CheckCircle, Dices } from 'lucide-react';
 
 type ColorPickerProps = {
   disabled: boolean;
@@ -38,7 +38,7 @@ const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
             {value === color ? (
               <CheckCircle className='absolute h-4 w-4' />
             ) : (
-              color === 'random' && <CircleHelp className='absolute h-4 w-4' />
+              color === 'random' && <Dices className='absolute h-4 w-4' />
             )}
           </button>
         ))}
