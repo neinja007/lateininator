@@ -1,4 +1,8 @@
+import { availableColors } from '@/constants/other';
+
 export type Color = 'gray' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'default' | 'pink';
+
+export type PrimaryColor = (typeof availableColors)[number];
 
 export type Stage = 'settings' | 'test' | 'review' | 'results';
 
