@@ -1,10 +1,11 @@
 import Input from '@/components/Input';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import ui from '@/styles/ui.module.css';
 import { WordProperty } from '@/types/appConstants';
 import { compareValues } from '@/utils/word/compareValues';
 import clsx from 'clsx';
 import { Check } from 'lucide-react';
+import { usePointState } from '@/hooks/usePointState';
 
 type TranslationInputProps = {
   correctTranslations: string[];
@@ -21,14 +22,14 @@ const TranslationInput = ({
   setInputValues,
   addDifference
 }: TranslationInputProps) => {
-  const [disablePoints, setDisablePoints] = useState<boolean>(false);
-
   const translations = inputValues.translation
     .split(',')
     .map((t) => t.trim())
     .filter((value, index, self) => self.indexOf(value) === index);
 
   const inputIsCorrect = compareValues(translations, correctTranslations, true);
+
+  const { handleSetCorrect } = usePointState(stage, inputIsCorrect, addDifference, translations.length);
 
   const correctValueIndicatorClasses = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
 
@@ -45,19 +46,6 @@ const TranslationInput = ({
 
   const displayedValue = stage === 'review' ? inputWithCorrectValueAppended : inputValues.translation;
 
-  useEffect(() => {
-    if (stage === 'review' && inputIsCorrect && !disablePoints) {
-      addDifference(translations.length);
-      setDisablePoints(true);
-    }
-  }, [disablePoints, inputIsCorrect, stage, translations.length, addDifference]);
-
-  useEffect(() => {
-    if (stage === 'test' && disablePoints) {
-      setDisablePoints(false);
-    }
-  }, [disablePoints, stage]);
-
   return (
     <div className='flex items-end'>
       <div className='block w-full'>
@@ -73,10 +61,9 @@ const TranslationInput = ({
         <button
           type='button'
           className='m-1.5 w-5 flex-shrink'
-          onClick={() => {
+          onClick={handleSetCorrect(() => {
             setInputValues((prev) => ({ ...prev, translation: correctTranslations.join(', ') }));
-            setDisablePoints(true);
-          }}
+          })}
         >
           <Check />
         </button>
