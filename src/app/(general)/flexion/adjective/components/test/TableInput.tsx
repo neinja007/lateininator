@@ -7,6 +7,9 @@ import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
 import { useSettings } from '@/hooks/database/queries/useSettings';
+import InsertBasesButton from '../../../components/InsertBasesButton';
+import { getAllTableInputValues } from '../../utils/getAllTableInputValues';
+import { getBase } from '@/utils/word/getBase';
 
 type TableInputProps = {
   form: TableInputForm;
@@ -35,9 +38,12 @@ const TableInput = ({
 
   return (
     <div>
-      <p className='mb-2 text-center font-bold'>
-        {MAPPER.extended.comparison[form.comparison]} {MAPPER.extended.comparisonDegree[form.comparisonDegree]}
-      </p>
+      <div className='flex justify-between'>
+        <p className='mb-2 text-center font-bold'>
+          {MAPPER.extended.comparison[form.comparison]} {MAPPER.extended.comparisonDegree[form.comparisonDegree]}
+        </p>
+        <InsertBasesButton onClick={() => setValues(getAllTableInputValues(getBase(activeWord, {})))} />
+      </div>
       {checkAdverb && (
         <div className='mb-4'>
           <TableTrainerInput
