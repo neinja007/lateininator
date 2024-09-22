@@ -31,6 +31,12 @@ export const IndividualTrainerInput = ({
     }
   }, [isInputCorrect, stage, disablePoints, addDifference]);
 
+  useEffect(() => {
+    if (stage === 'test' && disablePoints) {
+      setDisablePoints(false);
+    }
+  }, [disablePoints, stage]);
+
   return (
     <div className='mx-auto flex w-full max-w-96 items-end'>
       <div className='block w-full'>

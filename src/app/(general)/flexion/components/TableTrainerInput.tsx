@@ -31,6 +31,12 @@ const TableTrainerInput = ({
     }
   }, [isInputCorrect, stage, disablePoints, addDifference]);
 
+  useEffect(() => {
+    if (stage === 'test' && disablePoints) {
+      setDisablePoints(false);
+    }
+  }, [disablePoints, stage]);
+
   const Component = (
     <div className='flex w-full items-end'>
       <div className='block w-full flex-grow'>
