@@ -1,18 +1,15 @@
-import { COLORS } from '@/constants/other';
-import { Color } from '@/types/other';
+import { availableColors, COLORS } from '@/constants/other';
+import { Color, PrimaryColor } from '@/types/other';
 import clsx from 'clsx';
 import { CheckCircle } from 'lucide-react';
 
-const availableColors = ['yellow', 'blue', 'green', 'purple', 'pink', 'orange'] as const;
-export type AvailableColor = (typeof availableColors)[number];
-
 type ColorPickerProps = {
   disabled: boolean;
-  value: AvailableColor;
+  value: PrimaryColor;
   onChange: (color: Color) => void;
 };
 
-const colorMap: { [key in AvailableColor]: string } = {
+const colorMap: { [key in PrimaryColor]: string } = {
   yellow: 'Gelb',
   blue: 'Blau',
   green: 'Grün',
