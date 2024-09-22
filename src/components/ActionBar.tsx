@@ -37,7 +37,7 @@ const ActionBar = ({
         <ProgressBar progressPercentage={progressPercentage} />
         {points !== undefined && (
           <div className='order-3 mr-3 flex items-center gap-1'>
-            <Coins size={16} />
+            <Coins size={16} className='text-yellow-500' />
             <b>{points}</b> {!!difference && <span className={'text-green-500'}>+{difference}</span>}
           </div>
         )}
