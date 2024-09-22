@@ -3,13 +3,13 @@ import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
 import { useUpdateSettings } from '@/hooks/database/mutations/useUpdateSettings';
-import { ButtonSettingData, Color } from '@/types/other';
+import { ButtonSettingData } from '@/types/other';
 import { SettingKey } from '@prisma/client';
 import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Switch from 'react-switch';
-import ColorPicker from './ColorPicker';
+import ColorPicker, { AvailableColor } from './ColorPicker';
 
 type SettingProps = {
   settingKey: SettingKey;
@@ -79,7 +79,11 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
       break;
     case 'color':
       element = (
-        <ColorPicker value={value as Color} onChange={setNewValue} disabled={status === 'pending' || !!disabled} />
+        <ColorPicker
+          value={value as AvailableColor}
+          onChange={(value) => mutate({ settingKey: 'PRIMARY_COLOR', settingValue: value })}
+          disabled={status === 'pending' || !!disabled}
+        />
       );
       break;
   }
