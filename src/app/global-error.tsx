@@ -23,7 +23,6 @@ const Page = ({ error, reset }: PageProps) => {
                 Fehlermeldung an:
               </span>
               <button
-                color='blue'
                 className='float-end text-blue-500 hover:underline active:text-blue-600'
                 onClick={() =>
                   navigator.clipboard.writeText(
