@@ -42,7 +42,11 @@ const TableInput = ({
         <p className='mb-2 text-center font-bold'>
           {MAPPER.extended.comparison[form.comparison]} {MAPPER.extended.comparisonDegree[form.comparisonDegree]}
         </p>
-        <InsertBasesButton onClick={() => setValues(getAllTableInputValues(getBase(activeWord, {})))} />
+        <InsertBasesButton
+          onClick={() =>
+            setValues(getAllTableInputValues(getBase(activeWord, { superlative: form.comparisonDegree === 'sup' })))
+          }
+        />
       </div>
       {checkAdverb && (
         <div className='mb-4'>
