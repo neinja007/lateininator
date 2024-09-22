@@ -9,6 +9,7 @@ import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import clsx from 'clsx';
 import Skeleton from '@/components/Skeleton';
 import { HighlightedQuery } from './HighlightedQuery';
+import { mapTypeToColor } from '@/constants/other';
 
 type WordCardProps = {
   word: Word;
@@ -31,7 +32,9 @@ const WordCard = ({ word, query, loading }: WordCardProps) => {
       onClick={() => router.push('/vocabulary/dictionary/' + word.id)}
     >
       <div className='p-2 px-3'>
-        <div className='float-end m-1'>{!loading && <Badge text={MAPPER.extended.type.singular[word.type]} />}</div>
+        <div className='float-end m-1'>
+          {!loading && <Badge text={MAPPER.extended.type.singular[word.type]} color={mapTypeToColor[word.type]} />}
+        </div>
         <div className='line-clamp-1 h-8 text-2xl'>
           {loading ? (
             <Skeleton customSize className='h-7 w-32' pulse />
