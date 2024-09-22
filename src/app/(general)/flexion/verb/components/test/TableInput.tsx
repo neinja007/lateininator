@@ -15,6 +15,7 @@ type TableInputProps = {
   stage: 'test' | 'review';
   activeWord: Verb;
   checkImperative: boolean;
+  addDifference: (difference: number) => void;
 };
 
 const TableInput = ({
@@ -24,7 +25,8 @@ const TableInput = ({
   stage,
   activeWord,
   tenses,
-  checkImperative
+  checkImperative,
+  addDifference
 }: TableInputProps) => {
   return (
     <div>
@@ -55,6 +57,7 @@ const TableInput = ({
                     {tenses.map((tense) =>
                       ((tableInputForm.modus === 'ind' || tense !== 'fut1') && person !== '4') || tense === 'pres' ? (
                         <TableTrainerInput
+                          addDifference={addDifference}
                           key={tense}
                           value={tableInputValues[tense][numerus][person]}
                           correctValue={

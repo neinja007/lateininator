@@ -39,7 +39,11 @@ const Test = ({
   tenses,
   individualInputValue,
   setIndividualInputValue,
-  checkImperative
+  checkImperative,
+  addDifference,
+  addDifferenceToPoints,
+  points,
+  difference
 }: TestProps) => {
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
 
@@ -63,6 +67,7 @@ const Test = ({
         {testingType === 'individual'
           ? individualInputForm && (
               <IndividualTrainerInput
+                addDifference={addDifference}
                 label={`${MAPPER.extended.person[individualInputForm.person]} ${MAPPER.extended.numerus[individualInputForm.numerus]}; ${MAPPER.extended.modus[individualInputForm.modus]} ${MAPPER.extended.tense[individualInputForm.tense]} ${MAPPER.extended.voice[individualInputForm.voice]}`}
                 value={individualInputValue}
                 correctValue={getForm(activeWord, individualInputForm).form}
@@ -72,6 +77,7 @@ const Test = ({
             )
           : tableInputForm && (
               <TableInput
+                addDifference={addDifference}
                 checkImperative={checkImperative}
                 tenses={tenses}
                 tableInputForm={tableInputForm}
