@@ -45,11 +45,11 @@ const Select = ({
         className={clsx(ui.basic, className, 'mt-1', disabledStyle && disabled && 'disabled:opacity-50')}
       >
         <option value={''} hidden>
-          {(appendString && '(' + appendString + ')') || 'Auswählen'}
+          {appendString || 'Auswählen'}
         </option>
         {Object.keys(options).map((key, i) => (
           <option key={i} value={key}>
-            {options[key]} {appendString && '(' + appendString + ')'}
+            {(appendString && appendString + ' (' + options[key] + ')') || options[key]}
           </option>
         ))}
       </select>
