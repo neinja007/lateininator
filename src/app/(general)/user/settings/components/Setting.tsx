@@ -3,12 +3,13 @@ import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
 import { useUpdateSettings } from '@/hooks/database/mutations/useUpdateSettings';
-import { ButtonSettingData } from '@/types/other';
+import { ButtonSettingData, Color } from '@/types/other';
 import { SettingKey } from '@prisma/client';
 import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Switch from 'react-switch';
+import ColorPicker from './ColorPicker';
 
 type SettingProps = {
   settingKey: SettingKey;
@@ -76,12 +77,17 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
         </Button>
       );
       break;
+    case 'color':
+      element = (
+        <ColorPicker value={value as Color} onChange={setNewValue} disabled={status === 'pending' || !!disabled} />
+      );
+      break;
   }
 
   return (
     <div
       className={clsx(
-        'my-2 min-h-20 items-center justify-between border-b px-4 py-4 last:border-b-0 sm:flex dark:border-gray-700'
+        'my-2 items-center justify-between border-b px-4 py-4 last:border-b-0 sm:flex sm:h-20 dark:border-gray-700'
       )}
     >
       <div className='flex-grow'>
