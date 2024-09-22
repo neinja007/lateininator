@@ -9,10 +9,6 @@
   @apply xl:my-auto font-semibold cursor-pointer select-none p-2 px-3 gap-x-2 border-b last:border-b-0 dark:border-gray-500 flex items-center;
 }
 
-.active {
-  @apply text-blue-500;
-}
-
 .inactive {
   @apply text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200;
 }
