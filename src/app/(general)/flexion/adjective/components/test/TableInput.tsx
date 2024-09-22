@@ -16,9 +16,19 @@ type TableInputProps = {
   stage: 'test' | 'review';
   activeWord: Word;
   checkAdverb: boolean;
+  addDifference: (difference: number) => void;
 };
 
-const TableInput = ({ form, setValues, values, stage, activeWord, genders, checkAdverb }: TableInputProps) => {
+const TableInput = ({
+  form,
+  setValues,
+  values,
+  stage,
+  activeWord,
+  genders,
+  checkAdverb,
+  addDifference
+}: TableInputProps) => {
   const { settings } = useSettings();
 
   const showVocative = settings && settings.TESTING_VOCATIVE === 'true';
@@ -31,6 +41,7 @@ const TableInput = ({ form, setValues, values, stage, activeWord, genders, check
       {checkAdverb && (
         <div className='mb-4'>
           <TableTrainerInput
+            addDifference={addDifference}
             label='Adverb'
             value={values.adverb}
             handleChange={(value) => setValues((prev) => ({ ...prev, adverb: value }))}
@@ -68,6 +79,7 @@ const TableInput = ({ form, setValues, values, stage, activeWord, genders, check
                     </th>
                     {genders.map((gender, i) => (
                       <TableTrainerInput
+                        addDifference={addDifference}
                         key={gender}
                         value={values[gender][numerus][wordCase]}
                         correctValue={

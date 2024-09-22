@@ -30,6 +30,10 @@ type TestProps = {
   individualInputValue: string;
   setIndividualInputValue: Dispatch<SetStateAction<string>>;
   checkAdverb: boolean;
+  points: number;
+  difference: number;
+  addDifference: (difference: number) => void;
+  addDifferenceToPoints: () => void;
 };
 
 const Test = ({
@@ -45,7 +49,11 @@ const Test = ({
   comparisonDegrees,
   individualInputValue,
   setIndividualInputValue,
-  checkAdverb
+  checkAdverb,
+  points,
+  difference,
+  addDifference,
+  addDifferenceToPoints
 }: TestProps) => {
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
   const [tableInputForm, setTableInputForm] = useState<TableInputForm>();
@@ -76,6 +84,7 @@ const Test = ({
       <form onSubmit={submit} className='space-y-8'>
         {individualInputForm && (testingType === 'individual' || genders.length === 0) ? (
           <IndividualTrainerInput
+            addDifference={addDifference}
             label={
               !individualInputForm.adverb
                 ? `
@@ -96,6 +105,7 @@ const Test = ({
           tableInputForm &&
           testingType === 'table' && (
             <TableInput
+              addDifference={addDifference}
               checkAdverb={checkAdverb}
               genders={genders}
               form={tableInputForm}
@@ -107,9 +117,12 @@ const Test = ({
           )
         )}
         <ActionBar
+          addDifferenceToPoints={addDifferenceToPoints}
           form
           handleContinue={handleContinue}
+          points={points}
           progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+          difference={difference}
         />
       </form>
     </>
