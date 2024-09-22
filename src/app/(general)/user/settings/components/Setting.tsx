@@ -88,18 +88,14 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   }
 
   return (
-    <div
-      className={clsx(
-        'my-2 items-center justify-between border-b px-4 py-4 last:border-b-0 sm:flex sm:h-20 dark:border-gray-700'
-      )}
-    >
+    <div className={clsx('my-2 items-center justify-between px-4 py-4 sm:flex sm:h-20 dark:border-gray-700')}>
       <div className='flex-grow'>
         <span className='text-lg font-medium'>
           {settings[settingKey].name} {disabled && <span className='text-red-400'>(noch nicht verfügbar)</span>}
         </span>
         <p className='text-neutral-400'>{settings[settingKey].description}</p>
       </div>
-      <div className='mt-4 flex-shrink text-center sm:mt-0'>{element}</div>
+      <div className='mt-4 flex-shrink sm:mt-0'>{element}</div>
     </div>
   );
 };
