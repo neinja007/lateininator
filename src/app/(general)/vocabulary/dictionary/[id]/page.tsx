@@ -37,9 +37,9 @@ const Page = ({ params: { id } }: PageProps) => {
     <div className='space-y-3'>
       {status === 'success' ? (
         <>
-          <Header word={word!} loading={false} />
+          <Header word={word} loading={false} />
           <Hr />
-          <WordInformation word={word!} />
+          <WordInformation word={word} />
         </>
       ) : (
         <>
@@ -49,16 +49,16 @@ const Page = ({ params: { id } }: PageProps) => {
         </>
       )}
       {status === 'success' ? (
-        APP_CONSTANTS.mainWordTypes.includes(word!.type as MainWordType) && (
+        APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType) && (
           <>
             <Hr />
-            <TableInformation word={word!} />
-            {isNoun(word!) ? (
-              <NounTable word={word!} />
-            ) : isVerb(word!) ? (
-              <VerbTable word={word!} />
-            ) : isAdjective(word!) ? (
-              <AdjectiveTable word={word!} />
+            <TableInformation word={word} />
+            {isNoun(word) ? (
+              <NounTable word={word} />
+            ) : isVerb(word) ? (
+              <VerbTable word={word} />
+            ) : isAdjective(word) ? (
+              <AdjectiveTable word={word} />
             ) : (
               false
             )}
