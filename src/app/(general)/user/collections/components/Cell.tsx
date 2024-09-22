@@ -78,7 +78,7 @@ const Cell = ({
                 {lists} Liste{lists !== 1 && 'n'}
               </span>
               {owned ? (
-                <span className='font-medium text-sky-500'>Ihre Kollektion</span>
+                <span className='font-medium text-sky-100 dark:text-sky-500'>Ihre Kollektion</span>
               ) : (
                 <span>
                   von <span className='font-medium text-yellow-400 dark:text-yellow-500'>{owner}</span>
