@@ -8,7 +8,20 @@ export const useUpdateSettings = () => {
   return useMutation({
     mutationFn: ({ settingKey, settingValue }: { settingKey: SettingKey; settingValue: string }) =>
       axios.patch('/api/user-settings', { settingKey, settingValue }),
-    onSuccess: () => {
+    onMutate: async ({ settingKey, settingValue }) => {
+      await queryClient.cancelQueries({ queryKey: ['user-settings'] });
+      const previousSettings = queryClient.getQueryData(['user-settings']);
+      queryClient.setQueryData(['user-settings'], (oldData: { [key: string]: string }[]) => {
+        return [...oldData.filter((setting) => setting.settingKey !== settingKey), { settingKey, settingValue }];
+      });
+      return { previousSettings };
+    },
+    onError: (err, variables, context) => {
+      if (context?.previousSettings) {
+        queryClient.setQueryData(['user-settings'], context.previousSettings);
+      }
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['user-settings'] });
     }
   });
