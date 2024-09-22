@@ -33,7 +33,7 @@ const WordTypeSelection = ({
     setValidWords(possibleWords);
   }, [selectedWords, setValidWords, typesToCheck]);
 
-  const primaryColor = usePrimaryColor();
+  const primaryColor = usePrimaryColor(true);
 
   return (
     <>
@@ -46,7 +46,7 @@ const WordTypeSelection = ({
               typesToCheck.includes(type)
                 ? typesToExclude.includes(type as MainWordTypeWithOther)
                   ? 'orange'
-                  : primaryColor
+                  : primaryColor()
                 : 'default'
             }
             onClick={() =>
@@ -58,7 +58,7 @@ const WordTypeSelection = ({
         ))}
       </div>
       <p>
-        <b className={COLORS[primaryColor].text}>
+        <b className={COLORS[primaryColor()].text}>
           {validWords.length} von {selectedWords.length} Wörtern
         </b>{' '}
         stimmen mit den Wortarten überein.
