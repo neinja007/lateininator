@@ -53,11 +53,11 @@ const Page = ({ params: { id } }: PageProps) => {
           <>
             <Hr />
             <TableInformation word={word} />
-            {isNoun(word) ? (
+            {isNoun(word) && word.noun.declension !== 'NONE' && word.noun.gender !== 'NONE' ? (
               <NounTable word={word} />
-            ) : isVerb(word) ? (
+            ) : isVerb(word) && word.verb.conjugation !== 'NONE' ? (
               <VerbTable word={word} />
-            ) : isAdjective(word) ? (
+            ) : isAdjective(word) && word.adjective.comparison !== 'NONE' ? (
               <AdjectiveTable word={word} />
             ) : (
               false
