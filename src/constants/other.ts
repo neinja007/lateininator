@@ -44,7 +44,7 @@ export const COLORS: { [key in Color]: { [key in 'dynamic' | 'text' | 'static']:
   default: {
     dynamic: 'bg-white text-black hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800',
     text: 'text-gray-500',
-    static: 'bg-white'
+    static: 'bg-white dark:bg-gray-900'
   }
 };
 
