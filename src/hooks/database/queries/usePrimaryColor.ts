@@ -11,13 +11,17 @@ export function usePrimaryColor(randomFn?: boolean) {
 
   const primaryColor = (settings?.PRIMARY_COLOR as PrimaryColor | 'random') || 'blue';
 
-  if (primaryColor === 'random') {
-    if (randomFn) {
+  if (randomFn) {
+    if (primaryColor === 'random') {
       return () => availableColors[Math.floor(Math.random() * availableColors.length)];
     } else {
+      return () => primaryColor;
+    }
+  } else {
+    if (primaryColor === 'random') {
       return availableColors[Math.floor(Math.random() * availableColors.length)];
+    } else {
+      return primaryColor;
     }
   }
-
-  return primaryColor;
 }
