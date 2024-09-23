@@ -255,7 +255,7 @@ export const PUT = async (request: NextRequest) => {
       data: {
         name,
         description,
-        private: isPrivate,
+        private: process.env.ENABLE_PUBLIC_DATA === 'true' ? isPrivate : true,
         owner: {
           connect: {
             id: user.id
