@@ -63,7 +63,7 @@ model Collection {
 model List {
   id           Int        @id @default(autoincrement())
   name         String
-  collection   Collection @relation(fields: [collectionId], references: [id])
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   collectionId Int
   words        Word[]
   createdAt    DateTime   @default(now())
