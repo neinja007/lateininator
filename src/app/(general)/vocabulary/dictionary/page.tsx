@@ -13,6 +13,7 @@ import { useWords } from '@/hooks/database/queries/useWords';
 import { Word } from '@/types/word';
 import { placeholderWord } from '@/constants/placeholderData';
 import Link from '@/components/Link';
+import LinkToSupportEmail from '@/components/LinkToSupportEmail';
 
 const Page = () => {
   const [query, setQuery] = useState<string>('');
@@ -41,7 +42,12 @@ const Page = () => {
       {status === 'error' ? (
         <FailToLoad />
       ) : (
-        <ResultCount count={words ? words.length : 0} query={query} isFetched={fetchStatus === 'idle'} />
+        <div className='flex justify-between'>
+          <ResultCount count={words ? words.length : 0} query={query} isFetched={fetchStatus === 'idle'} />
+          <span>
+            Fehlendes Wort? Melden Sie es bitte bei unserem <LinkToSupportEmail />.
+          </span>
+        </div>
       )}
       {(status !== 'success' || words.length > 0) && (
         <div>
