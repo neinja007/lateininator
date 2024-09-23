@@ -101,12 +101,19 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
         <div className='flex gap-2'>
           <Button
             color='red'
-            disabled={status === 'pending'}
-            onClick={collectionId ? () => removeCollection(collectionId) : () => router.push('/user/collections')}
+            disabled={status === 'pending' || removeStatus === 'pending'}
+            onClick={
+              collectionId
+                ? () => {
+                    removeCollection(collectionId);
+                    router.push('/user/collections');
+                  }
+                : () => router.push('/user/collections')
+            }
           >
             Löschen
           </Button>
-          <Button color='green' disabled={status === 'pending'} onClick={submit}>
+          <Button color='green' disabled={status === 'pending' || removeStatus === 'pending'} onClick={submit}>
             Speichern
           </Button>
         </div>
