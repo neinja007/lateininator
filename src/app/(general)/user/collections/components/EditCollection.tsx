@@ -17,6 +17,7 @@ import { FullCollection, ListWithWords } from '@/types/collection';
 import Skeleton from '@/components/Skeleton';
 import FailToLoad from '@/components/FailToLoad';
 import { useRouter } from 'next/navigation';
+import { useRemoveCollection } from '@/hooks/database/mutations/useRemoveCollection';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -50,6 +51,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
   }, [collection]);
 
   const { updateCollection, status } = useUpdateCollection();
+  const { mutate: removeCollection, status: removeStatus } = useRemoveCollection();
 
   const router = useRouter();
 
@@ -96,9 +98,18 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
     <div>
       <div className='mb-3 flex items-center justify-between gap-4'>
         <CheckboxWithLabel label='Kollektion veröffentlichen' checked={isPublic} handleChange={setIsPublic} />
-        <Button color='green' disabled={status === 'pending'} onClick={submit}>
-          Speichern
-        </Button>
+        <div className='flex gap-2'>
+          <Button
+            color='red'
+            disabled={status === 'pending'}
+            onClick={collectionId ? () => removeCollection(collectionId) : () => router.push('/user/collections')}
+          >
+            Löschen
+          </Button>
+          <Button color='green' disabled={status === 'pending'} onClick={submit}>
+            Speichern
+          </Button>
+        </div>
       </div>
       <Input className='w-full' label='Name der Kollektion' value={name} onChange={setName} />
       <BasicDataEditor name={name} description={description} setName={setName} setDescription={setDescription} />
