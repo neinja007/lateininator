@@ -44,7 +44,7 @@ const WordCard = ({ word, query, loading }: WordCardProps) => {
         </div>
         <div className='h-6'>{loading ? <Skeleton customSize className='h-full w-14' pulse /> : lexicalForm}</div>
         <br />
-        <div className='h-6'>
+        <span className='line-clamp-1 h-6'>
           {loading ? (
             <Skeleton customSize className='h-6 w-44' pulse />
           ) : word.translation.length > 0 ? (
@@ -52,7 +52,7 @@ const WordCard = ({ word, query, loading }: WordCardProps) => {
           ) : (
             'Keine Übersetzung'
           )}
-        </div>
+        </span>
       </div>
       <div
         className={clsx(
