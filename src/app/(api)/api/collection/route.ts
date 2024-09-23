@@ -96,7 +96,6 @@ export const DELETE = async (request: NextRequest) => {
         id: collectionId
       },
       include: {
-        savedBy: true,
         owner: true
       }
     });
