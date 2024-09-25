@@ -51,8 +51,6 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
     mutateUsername(newValue);
   };
 
-  console.log(value, user?.user?.fullName);
-
   switch (type) {
     case 'boolean':
       element = (
