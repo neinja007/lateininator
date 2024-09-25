@@ -8,7 +8,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import Switch from 'react-switch';
 import ColorPicker from './ColorPicker';
-import { Check } from 'lucide-react';
+import { Check, RotateCcw } from 'lucide-react';
 import { useChangeUsername } from '@/hooks/database/mutations/useChangeUsername';
 import { useUser } from '@clerk/nextjs';
 type SettingProps = {
@@ -20,6 +20,8 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   const queryClient = useQueryClient();
 
   const disabled = settings[settingKey].disabled;
+
+  const [changedUsername, setChangedUsername] = useState(false);
 
   const { variables, status, mutate } = useUpdateSettings();
   const { mutate: mutateUsername, status: statusUsername } = useChangeUsername();
@@ -43,6 +45,11 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
     }
   };
 
+  const handleUsernameChange = (newValue: string) => {
+    setChangedUsername(true);
+    mutateUsername(newValue);
+  };
+
   switch (type) {
     case 'boolean':
       element = (
@@ -63,18 +70,30 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
     case 'input':
       element = (
         <div className='flex items-end gap-x-3'>
-          <Input value={newValue} onChange={setNewValue} className='w-40' disabled={disableInput} />
-          <Button
-            color='green'
-            onClick={
-              settingKey === 'NAME_CHANGE'
-                ? () => mutateUsername(newValue)
-                : () => mutate({ settingKey, settingValue: newValue || '' })
-            }
-            disabled={disableInput}
-          >
-            <Check className='size-5' />
-          </Button>
+          <Input
+            value={newValue}
+            onChange={setNewValue}
+            className='w-40'
+            disabled={disableInput || changedUsername}
+            useDisabledStyle={!changedUsername}
+          />
+          {!changedUsername ? (
+            <Button
+              color='green'
+              onClick={
+                settingKey === 'NAME_CHANGE'
+                  ? () => handleUsernameChange(newValue)
+                  : () => mutate({ settingKey, settingValue: newValue || '' })
+              }
+              disabled={disableInput}
+            >
+              <Check className='size-5' />
+            </Button>
+          ) : (
+            <Button color='blue' onClick={() => window.location.reload()} disabled={disableInput}>
+              <RotateCcw className='size-5' />
+            </Button>
+          )}
         </div>
       );
       break;
