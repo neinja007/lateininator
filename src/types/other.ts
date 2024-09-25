@@ -1,4 +1,5 @@
 import { availableColors } from '@/constants/other';
+import { SettingKey } from '@prisma/client';
 
 export type Color = 'gray' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'default' | 'pink';
 
@@ -18,7 +19,6 @@ export type ButtonSettingData = BaseSettingData & {
   buttonText: string;
   onClick: () => Promise<void>;
   color: Color;
-  invalidateQueries?: string;
 };
 
 export type ColorSettingData = BaseSettingData & {
@@ -29,10 +29,22 @@ export type BaseSettingData = {
   name: string;
   description: string;
   disabled?: boolean;
+  invalidateQueries?: string;
 };
 
 export type OtherSettingData = BaseSettingData & {
   type: 'boolean' | 'input';
 };
 
-export type SettingData = ListSettingData | ButtonSettingData | ColorSettingData | OtherSettingData;
+export type ClientSettingData = ButtonSettingData | (BaseSettingData & { type: 'input' });
+
+export type SettingData = ListSettingData | ButtonSettingData | ColorSettingData | OtherSettingData | ClientSettingData;
+
+type ClientSettingKey = 'RESET_POINTS' | 'NAME_CHANGE';
+export type AllSettingKey = SettingKey | ClientSettingKey;
+
+export type Settings = {
+  [S in SettingKey]: SettingData;
+} & {
+  [CS in ClientSettingKey]: ClientSettingData;
+};
