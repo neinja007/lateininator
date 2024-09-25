@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { SettingKey } from '@prisma/client';
+import { AllSettingKey } from '@/types/other';
 
 export const useUpdateSettings = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ settingKey, settingValue }: { settingKey: SettingKey; settingValue: string }) =>
+    mutationFn: ({ settingKey, settingValue }: { settingKey: AllSettingKey; settingValue: string }) =>
       axios.patch('/api/user-settings', { settingKey, settingValue }),
     onMutate: async ({ settingKey, settingValue }) => {
       await queryClient.cancelQueries({ queryKey: ['user-settings'] });
