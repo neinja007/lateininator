@@ -2,7 +2,7 @@ import { SettingData } from '@/types/other';
 import { SettingKey } from '@prisma/client';
 import axios from 'axios';
 
-type ClientSettings = 'RESET_POINTS';
+type ClientSettings = 'RESET_POINTS' | 'NAME_CHANGE';
 type Settings = {
   [S in SettingKey | ClientSettings]: SettingData;
 };
@@ -41,5 +41,10 @@ export const settings: Settings = {
     type: 'color',
     name: 'Primäre Farbe',
     description: 'Ändert die Farbe für Knöpfe, Text, und andere Elemente.'
+  },
+  NAME_CHANGE: {
+    type: 'input',
+    name: 'Namen ändern',
+    description: 'Verändere deinen Benutzernamen.',
   }
 };
