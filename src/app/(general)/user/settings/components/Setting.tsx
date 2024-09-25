@@ -3,14 +3,15 @@ import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { settings } from '@/constants/settings';
 import { useUpdateSettings } from '@/hooks/database/mutations/useUpdateSettings';
-import { ButtonSettingData, PrimaryColor } from '@/types/other';
-import { SettingKey } from '@prisma/client';
+import { AllSettingKey, ButtonSettingData, PrimaryColor } from '@/types/other';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import Switch from 'react-switch';
 import ColorPicker from './ColorPicker';
+import { CircleCheck } from 'lucide-react';
+import { useChangeUsername } from '@/hooks/database/mutations/useChangeUsername';
 type SettingProps = {
-  settingKey: SettingKey;
+  settingKey: AllSettingKey;
   settingValue: string | undefined;
 };
 
@@ -20,6 +21,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   const disabled = settings[settingKey].disabled;
 
   const { variables, status, mutate } = useUpdateSettings();
+  const { mutate: mutateUsername, status: statusUsername } = useChangeUsername();
 
   const value = variables?.settingValue || settingValue;
 
