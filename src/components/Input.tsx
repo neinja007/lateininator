@@ -7,9 +7,10 @@ type InputProps = {
   onChange?: Dispatch<SetStateAction<any>>;
   className?: React.CSSProperties;
   unstyled?: boolean;
+  useDisabledStyle?: boolean;
 } & Omit<React.ComponentProps<'input'>, 'onChange'>;
 
-const Input = ({ label, onChange, className, unstyled, ...props }: InputProps) => {
+const Input = ({ label, onChange, className, unstyled, useDisabledStyle, ...props }: InputProps) => {
   const id = useId();
 
   return (
@@ -23,7 +24,12 @@ const Input = ({ label, onChange, className, unstyled, ...props }: InputProps) =
         onChange={onChange ? (e) => onChange(e.target.value) : undefined}
         id={id}
         {...props}
-        className={clsx(className, !unstyled && ui.basic, !unstyled && 'mt-1')}
+        className={clsx(
+          className,
+          !unstyled && ui.basic,
+          !unstyled && 'mt-1',
+          useDisabledStyle && 'disabled:opacity-50'
+        )}
       />
     </div>
   );
