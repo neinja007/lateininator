@@ -7,7 +7,7 @@ export const useUpdateSettings = () => {
 
   return useMutation({
     mutationFn: ({ settingKey, settingValue }: { settingKey: AllSettingKey; settingValue: string }) =>
-      axios.patch('/api/user-settings', { settingKey, settingValue }),
+      axios.patch('/api/user-settings', { settingKey, settingValue: settingValue.trim() }),
     onMutate: async ({ settingKey, settingValue }) => {
       await queryClient.cancelQueries({ queryKey: ['user-settings'] });
       const previousSettings = queryClient.getQueryData(['user-settings']);
