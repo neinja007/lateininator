@@ -1,4 +1,4 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { clerkClient, currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
 import { createUser } from './services/createUser';
@@ -97,6 +97,11 @@ export const PATCH = async (request: NextRequest) => {
     data: {
       name: name
     }
+  });
+
+  await clerkClient().users.updateUser(user.id, {
+    firstName: name.split(' ')[0],
+    lastName: name.split(' ')[1] || ' '
   });
 
   return NextResponse.json(updatedUser, { status: 200 });
