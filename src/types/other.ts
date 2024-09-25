@@ -36,15 +36,11 @@ export type OtherSettingData = BaseSettingData & {
   type: 'boolean' | 'input';
 };
 
-export type ClientSettingData = ButtonSettingData | (BaseSettingData & { type: 'input' });
-
-export type SettingData = ListSettingData | ButtonSettingData | ColorSettingData | OtherSettingData | ClientSettingData;
+export type SettingData = ListSettingData | ButtonSettingData | ColorSettingData | OtherSettingData;
 
 type ClientSettingKey = 'RESET_POINTS' | 'NAME_CHANGE';
 export type AllSettingKey = SettingKey | ClientSettingKey;
 
 export type Settings = {
-  [S in SettingKey]: SettingData;
-} & {
-  [CS in ClientSettingKey]: ClientSettingData;
+  [S in AllSettingKey]: SettingData;
 };
