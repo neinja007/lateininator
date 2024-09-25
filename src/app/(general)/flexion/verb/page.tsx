@@ -84,7 +84,7 @@ const Page = () => {
               handleContinue={handleContinue}
             />
           )}
-        {stage === 'results' && <Results handleContinue={handleContinue} />}
+        {stage === 'results' && <Results handleContinue={handleContinue} points={points} />}
       </div>
     </AuthConditionalLock>
   );
