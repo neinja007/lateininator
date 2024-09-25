@@ -81,12 +81,12 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           {!changedUsername ? (
             <Button
               color='green'
+              disabled={settingKey === 'NAME_CHANGE' ? value !== user?.user?.fullName || disableInput : disableInput}
               onClick={
                 settingKey === 'NAME_CHANGE'
                   ? () => handleUsernameChange(newValue)
                   : () => mutate({ settingKey, settingValue: newValue || '' })
               }
-              disabled={disableInput}
             >
               <Check className='size-5' />
             </Button>
