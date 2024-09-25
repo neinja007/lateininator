@@ -32,6 +32,8 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   const type = settings[settingKey].type;
   let element: React.ReactNode;
 
+  const disableInput = status === 'pending' || statusUsername === 'pending' || disabled;
+
   const invalidateQueries = () => {
     const queryKey = (settings[settingKey] as ButtonSettingData).invalidateQueries;
     if (queryKey) {
@@ -48,7 +50,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           <Switch
             checked={value === 'true'}
             onChange={() => mutate({ settingKey, settingValue: value === 'true' ? 'false' : 'true' })}
-            disabled={status === 'pending' || disabled}
+            disabled={disableInput}
             uncheckedIcon={false}
             checkedIcon={false}
             offColor='#aa0000'
@@ -61,7 +63,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
     case 'input':
       element = (
         <div className='flex items-end gap-x-3'>
-          <Input value={newValue} onChange={setNewValue} disabled={status === 'pending' || disabled} />
+          <Input value={newValue} onChange={setNewValue} className='w-40' disabled={disableInput} />
           <Button
             color='green'
             onClick={
@@ -69,7 +71,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
                 ? () => mutateUsername(newValue)
                 : () => mutate({ settingKey, settingValue: newValue || '' })
             }
-            disabled={status === 'pending' || disabled}
+            disabled={disableInput}
           >
             <Check className='size-5' />
           </Button>
@@ -82,7 +84,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           value={value}
           handleChange={(value) => mutate(value)}
           options={settings[settingKey].options || {}}
-          disabled={status === 'pending' || disabled}
+          disabled={disableInput}
           disabledStyle
         />
       );
@@ -95,7 +97,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
             await (settings[settingKey] as ButtonSettingData).onClick();
             invalidateQueries();
           }}
-          disabled={status === 'pending' || disabled}
+          disabled={disableInput}
         >
           {settings[settingKey].buttonText}
         </Button>
