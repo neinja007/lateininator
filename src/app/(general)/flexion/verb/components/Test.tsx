@@ -91,6 +91,9 @@ const Test = ({
           form
           handleContinue={handleContinue}
           progressPercentage={((maxWords - remainingWords) / maxWords) * 100}
+          points={points}
+          difference={difference}
+          addDifferenceToPoints={addDifferenceToPoints}
         />
       </form>
     </>
