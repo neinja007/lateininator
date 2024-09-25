@@ -51,6 +51,8 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
     mutateUsername(newValue);
   };
 
+  console.log(value, user?.user?.fullName);
+
   switch (type) {
     case 'boolean':
       element = (
@@ -81,7 +83,9 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           {!changedUsername ? (
             <Button
               color='green'
-              disabled={settingKey === 'NAME_CHANGE' ? value !== user?.user?.fullName || disableInput : disableInput}
+              disabled={
+                settingKey === 'NAME_CHANGE' ? newValue.trim() === user?.user?.fullName || disableInput : disableInput
+              }
               onClick={
                 settingKey === 'NAME_CHANGE'
                   ? () => handleUsernameChange(newValue)
