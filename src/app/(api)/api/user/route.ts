@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
 import { createUser } from './services/createUser';
 import { getUserById } from './services/getUserById';
+import { z } from 'zod';
+import { prisma } from '@/utils/other/client';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -72,4 +74,30 @@ export const POST = async () => {
     console.error(error);
     return NextResponse.json({ status: 500, body: { message: error } });
   }
+};
+
+export const PATCH = async (request: NextRequest) => {
+  const user = await currentUser();
+  if (!user) {
+    return NextResponse.json({ status: 401, body: { message: 'Unauthorized' } });
+  }
+
+  const body = await request.json();
+
+  const name = z.string().min(1).parse(body.name);
+
+  if (!name) {
+    return NextResponse.json({ status: 400, body: { message: 'Name is required' } });
+  }
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: user.id
+    },
+    data: {
+      name: name
+    }
+  });
+
+  return NextResponse.json(updatedUser, { status: 200 });
 };
