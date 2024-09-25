@@ -17,14 +17,15 @@ type SettingProps = {
 };
 
 const Setting = ({ settingKey, settingValue }: SettingProps) => {
-  const queryClient = useQueryClient();
-
   const disabled = settings[settingKey].disabled;
+
+  const queryClient = useQueryClient();
 
   const [changedUsername, setChangedUsername] = useState(false);
 
   const { variables, status, mutate } = useUpdateSettings();
   const { mutate: mutateUsername, status: statusUsername } = useChangeUsername();
+
   const user = useUser();
 
   const value = settingKey === 'NAME_CHANGE' ? user?.user?.fullName || '' : variables?.settingValue || settingValue;
