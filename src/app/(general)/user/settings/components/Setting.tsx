@@ -8,8 +8,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import Switch from 'react-switch';
 import ColorPicker from './ColorPicker';
-import { CircleCheck } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { useChangeUsername } from '@/hooks/database/mutations/useChangeUsername';
+import { useUser } from '@clerk/nextjs';
 type SettingProps = {
   settingKey: AllSettingKey;
   settingValue: string | undefined;
@@ -22,13 +23,23 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
 
   const { variables, status, mutate } = useUpdateSettings();
   const { mutate: mutateUsername, status: statusUsername } = useChangeUsername();
+  const user = useUser();
 
-  const value = variables?.settingValue || settingValue;
+  const value = settingKey === 'NAME_CHANGE' ? user?.user?.fullName || '' : variables?.settingValue || settingValue;
 
-  const [newValue, setNewValue] = useState(value);
+  const [newValue, setNewValue] = useState(value || '');
 
   const type = settings[settingKey].type;
   let element: React.ReactNode;
+
+  const invalidateQueries = () => {
+    const queryKey = (settings[settingKey] as ButtonSettingData).invalidateQueries;
+    if (queryKey) {
+      queryClient.invalidateQueries({
+        predicate: (query) => query.queryKey.includes(queryKey)
+      });
+    }
+  };
 
   switch (type) {
     case 'boolean':
@@ -53,10 +64,14 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           <Input value={newValue} onChange={setNewValue} disabled={status === 'pending' || disabled} />
           <Button
             color='green'
-            onClick={() => mutate({ settingKey, settingValue: newValue || '' })}
+            onClick={
+              settingKey === 'NAME_CHANGE'
+                ? () => mutateUsername(newValue)
+                : () => mutate({ settingKey, settingValue: newValue || '' })
+            }
             disabled={status === 'pending' || disabled}
           >
-            <CircleCheck size={16} />
+            <Check className='size-5' />
           </Button>
         </div>
       );
@@ -78,12 +93,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
           color={settings[settingKey].color}
           onClick={async () => {
             await (settings[settingKey] as ButtonSettingData).onClick();
-            const queryKey = (settings[settingKey] as ButtonSettingData).invalidateQueries;
-            if (queryKey) {
-              queryClient.invalidateQueries({
-                predicate: (query) => query.queryKey.includes(queryKey)
-              });
-            }
+            invalidateQueries();
           }}
           disabled={status === 'pending' || disabled}
         >
