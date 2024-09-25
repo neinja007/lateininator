@@ -80,7 +80,7 @@ const Navbar = () => {
             return <Fragment key={i}>{makeStatusDependent(element, route.status)}</Fragment>;
           })}
           {user.isSignedIn && (
-            <div className={clsx('mx-4 my-auto flex items-center', points ?? 'animate-pulse')}>
+            <div className={clsx('mx-4 my-2 flex items-center xl:my-auto', points ?? 'animate-pulse')}>
               <b>{points ?? '?'}</b> <Coins className='ml-3 w-6 text-yellow-400' />
             </div>
           )}
