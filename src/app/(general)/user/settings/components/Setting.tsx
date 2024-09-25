@@ -46,7 +46,18 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
       );
       break;
     case 'input':
-      element = <Input value={newValue} onChange={setNewValue} disabled={status === 'pending' || disabled} />;
+      element = (
+        <div className='flex items-end gap-x-3'>
+          <Input value={newValue} onChange={setNewValue} disabled={status === 'pending' || disabled} />
+          <Button
+            color='green'
+            onClick={() => mutate({ settingKey, settingValue: newValue || '' })}
+            disabled={status === 'pending' || disabled}
+          >
+            <CircleCheck size={16} />
+          </Button>
+        </div>
+      );
       break;
     case 'list':
       element = (
