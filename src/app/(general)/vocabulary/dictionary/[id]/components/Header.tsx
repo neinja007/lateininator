@@ -4,11 +4,11 @@ import { getLexicalForm } from '@/utils/word/getLexicalForm';
 import BackToDictionaryButton from './BackToDictionaryButton';
 import { MAPPER } from '@/utils/other/mapper';
 
-type HeaderProps = { word: Word; loading: false };
+type HeaderProps = { word: Word };
 
-type HeaderLoadingProps = { word?: undefined; loading: true };
+type HeaderLoadingProps = { word?: undefined };
 
-const Header = ({ word, loading }: HeaderProps | HeaderLoadingProps) => {
+const Header = ({ word }: HeaderProps | HeaderLoadingProps) => {
   return (
     <div>
       <div className='float-start mb-2 sm:absolute'>
