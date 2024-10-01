@@ -37,15 +37,12 @@ const Page = ({ params: { id } }: PageProps) => {
     <div className='space-y-3'>
       {status === 'success' ? (
         <>
-          <Header word={word} loading={false} />
-          <Hr />
+          <Header word={word} />
           <WordInformation word={word} />
         </>
       ) : (
         <>
-          <Header word={undefined} loading={true} />
-          <Hr />
-          <Skeleton pulse customSize className='h-8 w-full' />
+          <Skeleton pulse customSize className='h-16 w-full' />
         </>
       )}
       {status === 'success' ? (
