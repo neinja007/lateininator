@@ -1,9 +1,7 @@
 'use client';
-
 import Input from '@/components/Input';
 import { useEffect, useState } from 'react';
 import Hr from '@/components/Hr';
-import BasicDataEditor from '../edit/components/BasicDataEditor';
 import ListAddForm from '../edit/components/ListAddForm';
 import Lists from '../edit/components/Lists';
 import AddWords from '../edit/components/AddWords';
@@ -18,6 +16,7 @@ import Skeleton from '@/components/Skeleton';
 import FailToLoad from '@/components/FailToLoad';
 import { useRouter } from 'next/navigation';
 import { useRemoveCollection } from '@/hooks/database/mutations/useRemoveCollection';
+import Textarea from '@/components/Textarea';
 
 type EditCollectionProps = {
   collectionId: number | undefined;
@@ -119,7 +118,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
         </div>
       </div>
       <Input className='w-full' label='Name der Kollektion' value={name} handleChange={setName} />
-      <BasicDataEditor name={name} description={description} setName={setName} setDescription={setDescription} />
+      <Textarea value={description} setValue={setDescription} />
       <Hr className='my-4' />
       <div>
         <ListAddForm lists={lists} setLists={setLists} />
