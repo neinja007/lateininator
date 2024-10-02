@@ -69,6 +69,12 @@ export const PUT = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  const dbUser = await prisma.user.findUnique({
+    where: {
+      id: user.id
+    }
+  });
+
   const body = await request.json();
 
   const parsed = wordSchema.safeParse(body);
@@ -142,6 +148,7 @@ export const PUT = async (request: NextRequest) => {
             id: user.id
           }
         },
+        private: !dbUser?.staff,
         ...(nounData && { noun: { create: nounData } }),
         ...(verbData && { verb: { create: verbData } }),
         ...(adjectiveData && { adjective: { create: adjectiveData } }),
