@@ -73,7 +73,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
         <div className='flex items-end gap-x-3'>
           <Input
             value={newValue}
-            onChange={setNewValue}
+            handleChange={setNewValue}
             className='w-40'
             disabled={disableInput || changedUsername}
             useDisabledStyle={!changedUsername}
