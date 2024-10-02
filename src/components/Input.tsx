@@ -8,7 +8,7 @@ type InputProps = {
   className?: React.CSSProperties;
   unstyled?: boolean;
   useDisabledStyle?: boolean;
-} & React.ComponentProps<'input'>;
+} & Omit<React.ComponentProps<'input'>, 'id'>;
 
 const Input = ({ label, handleChange, className, unstyled, useDisabledStyle, ...props }: InputProps) => {
   const id = useId();

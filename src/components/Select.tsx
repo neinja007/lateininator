@@ -10,7 +10,7 @@ type SelectProps = {
   appendString?: string;
   disabled?: boolean;
   disabledStyle?: boolean;
-} & Omit<React.ComponentProps<'select'>, 'disabled'>;
+} & Omit<React.ComponentProps<'select'>, 'disabled' | 'id'>;
 
 const Select = ({
   label,
