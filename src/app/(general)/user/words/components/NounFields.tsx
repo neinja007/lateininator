@@ -1,3 +1,4 @@
+import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import { WordSchema } from '@/schemas/word';
@@ -20,13 +21,7 @@ export const NounFields = ({ register }: { register: UseFormRegister<WordSchema>
         options={generateSelectInputPropertyOptions('gender')}
         {...register('noun.gender')}
       />
-      {/* <CheckboxWithLabel
-        label='Nur Plural'
-        checked={watch('noun.pluralOnly')}
-        handleChange={(value) => {
-          setValue('noun.pluralOnly', value);
-        }}
-      /> */}
+      <CheckboxWithLabel label='Nur Plural' {...register('noun.pluralOnly')} />
     </>
   );
 };
