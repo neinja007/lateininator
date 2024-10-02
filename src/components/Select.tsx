@@ -5,7 +5,7 @@ import ui from '@/styles/ui.module.css';
 type SelectProps = {
   label?: string;
   options: { [key: string]: string } | string[];
-  handleChange: Dispatch<SetStateAction<any>>;
+  handleChange?: Dispatch<SetStateAction<any>>;
   className?: React.CSSProperties;
   appendString?: string;
   disabled?: boolean;
@@ -38,7 +38,7 @@ const Select = ({
         </label>
       )}
       <select
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={handleChange && ((e) => handleChange(e.target.value))}
         id={id}
         {...props}
         disabled={disabled}
