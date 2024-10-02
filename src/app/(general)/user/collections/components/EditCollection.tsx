@@ -49,7 +49,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
     }
   }, [collection]);
 
-  const { updateCollection, status } = useUpdateCollection();
+  const { mutate: updateCollection, status } = useUpdateCollection();
   const { mutate: removeCollection, status: removeStatus } = useRemoveCollection();
 
   const router = useRouter();
