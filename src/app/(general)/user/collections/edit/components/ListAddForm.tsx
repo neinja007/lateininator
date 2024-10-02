@@ -24,7 +24,7 @@ const ListAddForm = ({ lists, setLists }: ListAddFormProps) => {
       <span className='mr-4'>Ihre Kollektion hat bereits {lists.length} Listen.</span>
       <br className='md:hidden' />
       <div className='mr-4'>
-        <Input className='w-full max-w-64' value={listName} placeholder='Listenname' onChange={setListName} />
+        <Input className='w-full max-w-64' value={listName} placeholder='Listenname' handleChange={setListName} />
       </div>
       <Button
         type='submit'

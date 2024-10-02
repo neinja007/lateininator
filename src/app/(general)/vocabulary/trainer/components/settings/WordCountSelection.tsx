@@ -60,7 +60,7 @@ const WordCountSelection = ({
         ) : (
           <Input
             label={`Anzahl der abgefragten Wörter (max. ${maxWords})`}
-            onChange={updateValue}
+            handleChange={updateValue}
             value={inputValue}
             className='w-1/3 text-center'
             type='number'

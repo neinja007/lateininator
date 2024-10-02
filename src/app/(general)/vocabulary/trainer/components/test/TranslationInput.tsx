@@ -54,7 +54,7 @@ const TranslationInput = ({
           className={clsx('w-full', correctValueIndicatorClasses)}
           disabled={stage === 'review'}
           value={displayedValue}
-          onChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
+          handleChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
         />
       </div>
       {stage === 'review' && !inputIsCorrect && (

@@ -75,7 +75,7 @@ const WordLimit = ({
           label={`Anzahl der abgefragten ${testingType === 'individual' ? 'Formen' : 'Tabellen'} (max. ${
             testingType === 'individual' ? '100' : '5'
           })`}
-          onChange={(value) => updateValue(value)}
+          handleChange={(value) => updateValue(value)}
           value={inputValue}
           className='w-full text-center'
           type='number'

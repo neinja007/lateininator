@@ -29,7 +29,7 @@ const ListDisplay = ({ list, activeList, setActiveList, editList, setEditList, s
         <Input
           className='w-full'
           value={list.name}
-          onChange={(value) => setLists(lists.map((l) => (l.id === list.id ? { ...l, name: value } : l)))}
+          handleChange={(value) => setLists(lists.map((l) => (l.id === list.id ? { ...l, name: value } : l)))}
           onClick={(e) => {
             e.stopPropagation();
             setActiveList(undefined);

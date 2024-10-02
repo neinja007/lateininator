@@ -14,7 +14,7 @@ const SearchBar = ({ query, setQuery }: SearchBarProps) => {
       placeholder='Lateinisches Wort eingeben'
       className='mr-4 w-full'
       value={query}
-      onChange={setQuery}
+      handleChange={setQuery}
     />
   );
 };

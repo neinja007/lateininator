@@ -26,7 +26,7 @@ const TrainerInput = ({ customStyle, label, handleChange, value, correctValue, s
       label={label}
       className={clsx('w-full', correctValueIndicator, customStyle)}
       value={stage === 'test' || inputIsCorrect ? parseValue(value) : formatCorrectedInput(value, correctValue)}
-      onChange={handleChange}
+      handleChange={handleChange}
       disabled={stage === 'review'}
     />
   );

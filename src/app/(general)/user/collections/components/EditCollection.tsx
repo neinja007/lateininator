@@ -118,7 +118,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
           </Button>
         </div>
       </div>
-      <Input className='w-full' label='Name der Kollektion' value={name} onChange={setName} />
+      <Input className='w-full' label='Name der Kollektion' value={name} handleChange={setName} />
       <BasicDataEditor name={name} description={description} setName={setName} setDescription={setDescription} />
       <Hr className='my-4' />
       <div>
