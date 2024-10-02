@@ -1,4 +1,4 @@
-import { CollectionSchema } from '@/schemas/collectionSchema';
+import { CollectionSchema } from '@/schemas/collection';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 

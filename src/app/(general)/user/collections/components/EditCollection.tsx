@@ -11,7 +11,7 @@ import { useUpdateCollection } from '@/hooks/database/mutations/useUpdateCollect
 import Button from '@/components/Button';
 import { Word } from '@/types/word';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
-import { collectionSchema } from '@/schemas/collectionSchema';
+import { collectionSchema } from '@/schemas/collection';
 import { useCollections } from '@/hooks/database/queries/useCollections';
 import { FullCollection, ListWithWords } from '@/types/collection';
 import Skeleton from '@/components/Skeleton';

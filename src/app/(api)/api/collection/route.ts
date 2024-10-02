@@ -2,7 +2,7 @@ import { prisma } from '@/utils/other/client';
 import { currentUser } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIncludedData } from '../../utils/getIncludedData';
-import { collectionSchema } from '@/schemas/collectionSchema';
+import { collectionSchema } from '@/schemas/collection';
 import { z } from 'zod';
 
 export const GET = async (request: NextRequest) => {
