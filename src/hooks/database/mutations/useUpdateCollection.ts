@@ -5,12 +5,12 @@ import axios from 'axios';
 export const useUpdateCollection = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateCollection, status } = useMutation({
+  const mutation = useMutation({
     mutationFn: async (collection: CollectionSchema) => axios.put('/api/collection', collection),
     onSuccess: () => {
       queryClient.invalidateQueries({ predicate: (query) => query.queryKey?.includes('collections') });
     }
   });
 
-  return { updateCollection, status };
+  return mutation;
 };
