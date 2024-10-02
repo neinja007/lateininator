@@ -3,7 +3,7 @@ import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
 import { Dispatch, SetStateAction, useId, forwardRef } from 'react';
 
 type CheckboxWithLabelProps = {
-  checked: boolean;
+  checked?: boolean;
   disabled?: boolean;
   handleChange?: Dispatch<SetStateAction<boolean>>;
   label: string;
@@ -14,7 +14,7 @@ const CheckboxWithLabel = forwardRef<HTMLInputElement, CheckboxWithLabelProps>(
   ({ checked, disabled, handleChange, label, noGeneratedId, ...props }, ref) => {
     const id = useId();
 
-    if ((!props.id && !noGeneratedId) || (props.id && noGeneratedId)) {
+    if ((!props.id && noGeneratedId) || (props.id && !noGeneratedId)) {
       throw new Error('conflicting ids!');
     }
 
@@ -42,7 +42,11 @@ const CheckboxWithLabel = forwardRef<HTMLInputElement, CheckboxWithLabelProps>(
         <label
           htmlFor={dynamicId}
           className={
-            checked ? COLORS[primaryColor()].text : disabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-500'
+            checked === undefined || checked
+              ? COLORS[primaryColor()].text
+              : disabled
+                ? 'text-gray-400 dark:text-gray-600'
+                : 'text-gray-500'
           }
         >
           {label}
