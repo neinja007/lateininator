@@ -18,8 +18,7 @@ export const WordAddForm = () => {
   const type = watch('type');
 
   const onSubmit = (data: any) => {
-    // addWord(data);
-    console.log(data);
+    addWord(data);
   };
 
   return (
