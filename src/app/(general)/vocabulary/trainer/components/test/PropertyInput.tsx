@@ -5,10 +5,10 @@ import ui from '@/styles/ui.module.css';
 import TrainerInput from '../../../../../../components/TrainerInput';
 import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
 import { WordProperty } from '@/types/appConstants';
-import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { compareValues } from '@/utils/word/compareValues';
 import { Check } from 'lucide-react';
 import { usePointState } from '@/hooks/usePointState';
+import { generateSelectInputPropertyOptions } from '@/utils/helpers/generateSelectInputPropertyOptions';
 
 type PropertyInputProps = {
   property: WordProperty;
@@ -27,12 +27,8 @@ const PropertyInput = ({
   inputValue,
   addDifference
 }: PropertyInputProps) => {
-  const options = isWordPropertiesUsingSelectInput(property)
-    ? WORD_CONSTANTS.optional[property].reduce((object: { [key: string]: string }, element) => {
-        object[element] = (MAPPER.extended[property] as { [key: string]: string })[element];
-        return object;
-      }, {})
-    : {};
+  const options = generateSelectInputPropertyOptions(property);
+
   const isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
   const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
 
