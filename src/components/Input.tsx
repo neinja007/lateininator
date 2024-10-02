@@ -5,11 +5,12 @@ import clsx from 'clsx';
 type InputProps = {
   label?: string;
   handleChange?: Dispatch<SetStateAction<any>>;
-  className?: React.CSSProperties;
   unstyled?: boolean;
+  className?: React.CSSProperties;
   useDisabledStyle?: boolean;
   noGeneratedId?: boolean;
 } & React.ComponentProps<'input'>;
+
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, handleChange, className, unstyled, useDisabledStyle, noGeneratedId, ...props }, ref) => {
     const id = useId();
