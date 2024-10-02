@@ -27,7 +27,7 @@ const PropertyInput = ({
   inputValue,
   addDifference
 }: PropertyInputProps) => {
-  const options = generateSelectInputPropertyOptions(property);
+  const options = isWordPropertiesUsingSelectInput(property) ? generateSelectInputPropertyOptions(property) : {};
 
   const isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
   const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
