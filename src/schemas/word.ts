@@ -3,14 +3,12 @@ import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { z } from 'zod';
 
 export const wordSchema = z.object({
-  id: z.number().optional(),
   name: z.string().min(1),
   type: z.enum(APP_CONSTANTS.wordTypes as [string, ...string[]]),
   translation: z.array(z.string().min(1)),
   info: z.string().optional(),
   derivativeId: z.number().optional(),
   exception: z.string().optional(),
-  private: z.boolean(),
 
   noun: z
     .object({
