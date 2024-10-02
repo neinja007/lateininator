@@ -92,7 +92,7 @@ model Word {
   adjective   Adjective? @relation(fields: [adjectiveId], references: [id])
   adjectiveId Int?       @unique
 
-  private     Boolean @default(false)
+  private     Boolean @default(true)
   createdBy   User    @relation("createdBy", fields: [createdById], references: [id])
   createdById String
 }
