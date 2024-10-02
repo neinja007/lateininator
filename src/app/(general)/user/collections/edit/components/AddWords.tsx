@@ -30,7 +30,7 @@ const AddWords = ({ listName, words, setWords }: AddWordsProps) => {
       </h2>
       <div className='mt-4 grid grid-cols-1 md:grid-cols-2'>
         <div className='space-y-3 border-b pb-3 md:border-b-0 md:border-r md:pb-0 md:pr-3'>
-          <Input className='w-full' placeholder='Wort suchen...' value={query} onChange={setQuery} />
+          <Input className='w-full' placeholder='Wort suchen...' value={query} handleChange={setQuery} />
           <div className='overflow-hidden overflow-y-scroll'>
             <WordContainer addedWords={words} words={data?.slice(0, 20) || []} setWords={setWords} />
           </div>
