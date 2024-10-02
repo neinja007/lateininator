@@ -10,6 +10,8 @@ import { prisma } from '@/utils/other/client';
 import { Comparison, Conjugation, Declension, Gender, Type } from '@prisma/client';
 
 export const GET = async (request: NextRequest) => {
+  const user = await currentUser();
+
   const searchParams = request.nextUrl.searchParams;
   const query = z.nullable(z.string()).parse(searchParams.get('query'));
   const id = z.coerce.number().optional().parse(searchParams.get('id'));
@@ -28,7 +30,7 @@ export const GET = async (request: NextRequest) => {
 
   if (query) {
     try {
-      const words = await getWordsByQuery(query, includedDataObject);
+      const words = await getWordsByQuery(query, includedDataObject, user?.id);
 
       return NextResponse.json(words);
     } catch (error: any) {
@@ -37,7 +39,7 @@ export const GET = async (request: NextRequest) => {
     }
   } else if (id) {
     try {
-      const word = await getWordById(id, includedDataObject);
+      const word = await getWordById(id, includedDataObject, user?.id);
 
       if (!word) {
         return NextResponse.json({ error: 'Word not found' }, { status: 404 });
@@ -50,7 +52,7 @@ export const GET = async (request: NextRequest) => {
     }
   } else {
     try {
-      const words = await getWords(includedDataObject);
+      const words = await getWords(includedDataObject, user?.id);
 
       return NextResponse.json(words);
     } catch (error: any) {
@@ -77,7 +79,7 @@ export const PUT = async (request: NextRequest) => {
 
   const word = parsed.data;
 
-  if (Number(!!word.noun) + Number(!!word.verb) + Number(!!word.adjective) <= 1) {
+  if (Number(!!word.noun) + Number(!!word.verb) + Number(!!word.adjective) > 1) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
