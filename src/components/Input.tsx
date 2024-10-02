@@ -4,13 +4,13 @@ import clsx from 'clsx';
 
 type InputProps = {
   label?: string;
-  onChange?: Dispatch<SetStateAction<any>>;
+  handleChange?: Dispatch<SetStateAction<any>>;
   className?: React.CSSProperties;
   unstyled?: boolean;
   useDisabledStyle?: boolean;
-} & Omit<React.ComponentProps<'input'>, 'onChange'>;
+} & React.ComponentProps<'input'>;
 
-const Input = ({ label, onChange, className, unstyled, useDisabledStyle, ...props }: InputProps) => {
+const Input = ({ label, handleChange, className, unstyled, useDisabledStyle, ...props }: InputProps) => {
   const id = useId();
 
   return (
@@ -21,7 +21,7 @@ const Input = ({ label, onChange, className, unstyled, useDisabledStyle, ...prop
         </label>
       )}
       <input
-        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+        onChange={handleChange ? (e) => handleChange(e.target.value) : props.onChange}
         id={id}
         {...props}
         className={clsx(

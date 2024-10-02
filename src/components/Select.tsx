@@ -10,7 +10,7 @@ type SelectProps = {
   appendString?: string;
   disabled?: boolean;
   disabledStyle?: boolean;
-} & Omit<React.ComponentProps<'select'>, 'onChange' | 'disabled'>;
+} & Omit<React.ComponentProps<'select'>, 'disabled'>;
 
 const Select = ({
   label,
@@ -38,11 +38,11 @@ const Select = ({
         </label>
       )}
       <select
-        onChange={handleChange && ((e) => handleChange(e.target.value))}
+        onChange={handleChange ? (e) => handleChange(e.target.value) : props.onChange}
         id={id}
-        {...props}
         disabled={disabled}
         className={clsx(ui.basic, className, 'mt-1', disabledStyle && disabled && 'disabled:opacity-50')}
+        {...props}
       >
         <option value={''} hidden>
           {appendString || 'Auswählen'}
