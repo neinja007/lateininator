@@ -26,6 +26,7 @@
     "next": "^14.2.10",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
     "react-switch": "^7.0.0",
     "sharp": "^0.33.4",
     "stripe": "^16.8.0",
