@@ -20,6 +20,7 @@ model User {
   savedCollections Collection[]  @relation("saved")
   ownedCollections Collection[]  @relation("owner")
   settings         UserSetting[]
+  staff            Boolean       @default(false)
 
   words Word[] @relation("createdBy")
 }
