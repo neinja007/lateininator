@@ -19,6 +19,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       throw new Error('conflicting ids!');
     }
 
+    if (handleChange && props.onChange) {
+      throw new Error('conflicting onChange handlers!');
+    }
+
     const dynamicId = noGeneratedId ? props.id : id;
 
     return (
