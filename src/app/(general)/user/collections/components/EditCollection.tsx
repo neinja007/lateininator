@@ -118,7 +118,7 @@ const EditCollection = ({ collectionId }: EditCollectionProps) => {
         </div>
       </div>
       <Input className='w-full' label='Name der Kollektion' value={name} handleChange={setName} />
-      <Textarea value={description} setValue={setDescription} />
+      <Textarea value={description} handleChange={setDescription} />
       <Hr className='my-4' />
       <div>
         <ListAddForm lists={lists} setLists={setLists} />
