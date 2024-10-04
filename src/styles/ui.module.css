@@ -20,11 +20,3 @@
 .shape:not([class*='border-']) {
 	@apply border dark:border-gray-700;
 }
-
-.correct {
-	@apply !bg-green-400 dark:!bg-green-800 border-none;
-}
-
-.incorrect {
-	@apply !bg-red-400 dark:!bg-red-800 border-none;
-}
