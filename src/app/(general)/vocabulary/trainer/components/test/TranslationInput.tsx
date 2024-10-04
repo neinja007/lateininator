@@ -1,6 +1,5 @@
 import Input from '@/components/Input';
 import { Dispatch, SetStateAction } from 'react';
-import ui from '@/styles/ui.module.css';
 import { WordProperty } from '@/types/appConstants';
 import { compareValues } from '@/utils/word/compareValues';
 import clsx from 'clsx';
@@ -31,8 +30,6 @@ const TranslationInput = ({
 
   const { handleSetCorrect } = usePointState(stage, inputIsCorrect, addDifference, translations.length);
 
-  const correctValueIndicatorClasses = stage === 'review' ? (inputIsCorrect ? ui.correct : ui.incorrect) : '';
-
   let inputWithCorrectValueAppended: string;
 
   const formattedCorrectTranslations =
@@ -51,8 +48,9 @@ const TranslationInput = ({
       <div className='block w-full'>
         <Input
           label='Übersetzung (mehrere Antworten durch "," trennen)'
-          className={clsx('w-full', correctValueIndicatorClasses)}
+          className={clsx('w-full')}
           disabled={stage === 'review'}
+          border={stage === 'test' ? 'default' : inputIsCorrect ? 'success' : 'danger'}
           value={displayedValue}
           handleChange={(value) => setInputValues((prev) => ({ ...prev, translation: value }))}
         />
