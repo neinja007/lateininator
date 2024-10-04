@@ -1,7 +1,6 @@
 import Select from '@/components/Select';
 import { MAPPER } from '@/utils/other/mapper';
 import clsx from 'clsx';
-import ui from '@/styles/ui.module.css';
 import TrainerInput from '../../../../../../components/TrainerInput';
 import { isWordPropertiesUsingSelectInput } from '@/utils/typeguards/isWordPropertiesUsingSelectInput';
 import { WordProperty } from '@/types/appConstants';
@@ -29,10 +28,9 @@ const PropertyInput = ({
 }: PropertyInputProps) => {
   const options = isWordPropertiesUsingSelectInput(property) ? generateSelectInputPropertyOptions(property) : {};
 
-  const isInputCorrect = stage === 'review' ? compareValues(inputValue, correctValue) : undefined;
-  const correctValueIndicatorClasses = isInputCorrect ? ui.correct : ui.incorrect;
+  const inputIsCorrect = stage === 'review' && compareValues(inputValue, correctValue);
 
-  const { handleSetCorrect } = usePointState(stage, !!isInputCorrect, addDifference);
+  const { handleSetCorrect } = usePointState(stage, !!inputIsCorrect, addDifference);
 
   return (
     <div className='flex items-end'>
@@ -41,9 +39,10 @@ const PropertyInput = ({
           <Select
             label={MAPPER.extended.property.singular[property]}
             options={options}
-            className={clsx('w-full opacity-100', stage === 'review' && correctValueIndicatorClasses)}
+            className={clsx('w-full opacity-100')}
+            border={stage === 'test' ? 'default' : inputIsCorrect ? 'success' : 'danger'}
             value={inputValue}
-            appendString={stage === 'review' && !isInputCorrect ? options[correctValue] : undefined}
+            appendString={stage === 'review' && !inputIsCorrect ? options[correctValue] : undefined}
             handleChange={(value) => handleChange(property, value)}
             disabled={stage === 'review'}
           />
@@ -57,7 +56,7 @@ const PropertyInput = ({
           />
         )}
       </div>
-      {stage === 'review' && !isInputCorrect && (
+      {stage === 'review' && !inputIsCorrect && (
         <button
           type='button'
           className='m-1.5 w-5 flex-shrink'
