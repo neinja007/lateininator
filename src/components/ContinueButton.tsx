@@ -11,7 +11,7 @@ const ContinueButton = ({ enableStart, handleContinue }: ContinueButtonProps) =>
       onClick={() => handleContinue()}
       className='w-full'
       disabled={!enableStart}
-      color={enableStart ? 'green' : 'gray'}
+      color={enableStart ? 'primary' : 'gray'}
     >
       <span>{!enableStart ? 'Überprüfen Sie bitte die Einstellungen' : 'Weiter'}</span>
     </Button>
