@@ -33,7 +33,7 @@ const FormSelection = ({
   setCheckImperative,
   validWords
 }: FormSelectionProps) => {
-  const conjugationsNotToCheck = conjugations.filter(
+  const conjugationsNotToCheck = WORD_CONSTANTS.conjugation.filter(
     (conjugation) => !validWords.some((word) => word.verb.conjugation === conjugation)
   );
 

@@ -15,11 +15,13 @@ type FormSelectionProps = {
 };
 
 const FormSelection = ({ genders, setGenders, declensions, setDeclensions, validWords }: FormSelectionProps) => {
-  const declensionsNotToCheck = declensions.filter(
+  const declensionsNotToCheck = WORD_CONSTANTS.declension.filter(
     (declension) => !validWords.some((word) => word.noun.declension === declension)
   );
 
-  const gendersNotToCheck = genders.filter((gender) => !validWords.some((word) => word.noun.gender === gender));
+  const gendersNotToCheck = WORD_CONSTANTS.gender.filter(
+    (gender) => !validWords.some((word) => word.noun.gender === gender)
+  );
 
   return (
     <FormSelectionWrapper

@@ -29,9 +29,9 @@ const FormSelection = ({
   setGenders,
   validWords
 }: FormSelectionProps) => {
-  const comparisonsNotToCheck = comparisons.filter((comparison) => {
-    return !validWords.some((word) => word.adjective.comparison === comparison);
-  });
+  const comparisonsNotToCheck = WORD_CONSTANTS.comparison.filter(
+    (comparison) => !validWords.some((word) => word.adjective.comparison === comparison)
+  );
 
   return (
     <FormSelectionWrapper
