@@ -1,6 +1,7 @@
 import TrainerInput from '@/components/TrainerInput';
 import { usePointState } from '@/hooks/usePointState';
 import { compareValues } from '@/utils/word/compareValues';
+import clsx from 'clsx';
 import { Check } from 'lucide-react';
 
 type TableTrainerInputProps = {
@@ -25,11 +26,16 @@ const TableTrainerInput = ({
   const { handleSetCorrect } = usePointState(stage, !!isInputCorrect, addDifference);
 
   const Component = (
-    <div className='flex w-full items-end'>
+    <div
+      className={clsx(
+        'flex w-full items-end border',
+        stage === 'test' ? 'border-none' : isInputCorrect ? 'border-green-500' : 'border-red-500'
+      )}
+    >
       <div className='block w-full flex-grow'>
         <TrainerInput
           label={label}
-          customStyle={label ? undefined : 'w-full m-0 h-8 px-1 bg-inherit focus:outline-none'}
+          customStyle={label ? undefined : 'w-full m-0 h-8 px-1 bg-inherit focus:outline-none !border-none'}
           value={value}
           correctValue={correctValue}
           handleChange={handleChange}
