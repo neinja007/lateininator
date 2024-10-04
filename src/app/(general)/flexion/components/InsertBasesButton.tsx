@@ -8,7 +8,7 @@ type InsertBasesButtonProps = {
 
 const InsertBasesButton = ({ onClick }: InsertBasesButtonProps) => {
   return (
-    <Button className='flex items-center gap-x-1' onClick={onClick}>
+    <Button className='flex items-center gap-x-2' color='primary' onClick={onClick}>
       <LucideBetweenVerticalStart size={16} />
       Stämme einfügen
     </Button>
