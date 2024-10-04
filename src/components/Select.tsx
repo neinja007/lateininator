@@ -11,6 +11,7 @@ type SelectProps = {
   disabled?: boolean;
   disabledStyle?: boolean;
   noGeneratedId?: boolean;
+  border?: 'default' | 'success' | 'danger';
 } & Omit<React.ComponentProps<'select'>, 'disabled'>;
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
@@ -23,6 +24,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       disabled,
       disabledStyle,
       noGeneratedId,
+      border,
       ...props
     }: SelectProps,
     ref
@@ -57,7 +59,13 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           onChange={handleChange ? (e) => handleChange(e.target.value) : props.onChange}
           id={dynamicId}
           disabled={disabled}
-          className={clsx(ui.basic, className, 'mt-1', disabledStyle && disabled && 'disabled:opacity-50')}
+          className={clsx(
+            ui.basic,
+            className,
+            'mt-1',
+            disabledStyle && disabled && 'disabled:opacity-50',
+            border === 'danger' ? 'border border-red-500' : border === 'success' && 'border border-green-500'
+          )}
           {...props}
           ref={ref}
         >

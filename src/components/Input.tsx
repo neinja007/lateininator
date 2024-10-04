@@ -9,10 +9,11 @@ type InputProps = {
   className?: React.CSSProperties;
   useDisabledStyle?: boolean;
   noGeneratedId?: boolean;
+  border?: 'danger' | 'default' | 'success';
 } & React.ComponentProps<'input'>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, handleChange, className, unstyled, useDisabledStyle, noGeneratedId, ...props }, ref) => {
+  ({ label, handleChange, className, unstyled, useDisabledStyle, noGeneratedId, border, ...props }, ref) => {
     const id = useId();
 
     if ((noGeneratedId && !props.id) || (!noGeneratedId && props.id)) {
@@ -40,7 +41,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             className,
             !unstyled && ui.basic,
             !unstyled && 'mt-1',
-            useDisabledStyle && 'disabled:opacity-50'
+            useDisabledStyle && 'disabled:opacity-50',
+            border === 'danger' ? 'border border-red-500' : border === 'success' && 'border border-green-500'
           )}
           {...props}
         />
