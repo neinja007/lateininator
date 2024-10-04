@@ -89,7 +89,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               collections.map((collection) => (
                 <Button
                   key={collection.id}
-                  color={selectedCollection === collection.id ? primaryColor() : 'default'}
+                  color={selectedCollection === collection.id ? 'primary' : 'default'}
                   onClick={() => setSelectedCollection((prev) => (prev === collection.id ? undefined : collection.id))}
                 >
                   {collection.name}
@@ -112,7 +112,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                 <Button
                   color={
                     status === 'success' && selectedLists.length === filteredLists.length && selectedCollection
-                      ? primaryColor()
+                      ? 'primary'
                       : 'default'
                   }
                   onClick={() => setSelectedLists(status === 'success' ? filteredLists.map((list) => list.id) : [])}
@@ -122,9 +122,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
                 </Button>
                 <Button
                   color={
-                    selectedLists.length === 0 && status === 'success' && selectedCollection
-                      ? primaryColor()
-                      : 'default'
+                    selectedLists.length === 0 && status === 'success' && selectedCollection ? 'primary' : 'default'
                   }
                   onClick={() => setSelectedLists([])}
                   disabled={status !== 'success' || filteredLists.length === 0}
@@ -142,7 +140,7 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
               filteredLists.map((list) => (
                 <Button
                   key={list.id}
-                  color={selectedLists.includes(list.id) ? primaryColor() : 'default'}
+                  color={selectedLists.includes(list.id) ? 'primary' : 'default'}
                   onClick={() =>
                     setSelectedLists((prev) =>
                       prev.includes(list.id) ? prev.filter((l) => l !== list.id) : [...prev, list.id]

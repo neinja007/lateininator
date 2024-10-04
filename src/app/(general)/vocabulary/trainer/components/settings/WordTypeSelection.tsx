@@ -46,7 +46,7 @@ const WordTypeSelection = ({
               typesToCheck.includes(type)
                 ? typesToExclude.includes(type as MainWordTypeWithOther)
                   ? 'orange'
-                  : primaryColor()
+                  : 'primary'
                 : 'default'
             }
             onClick={() =>

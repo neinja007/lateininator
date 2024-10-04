@@ -2,7 +2,6 @@ import Button from '@/components/Button';
 import CheckboxList from '@/components/CheckboxList';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
 import { APP_CONSTANTS } from '@/constants/appConstants';
-import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
 import { WordProperty, WordType } from '@/types/appConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
@@ -36,8 +35,6 @@ const PropertySelection = ({
     setWordPropertiesToCheck((prev) => prev.filter((property) => possibleWordProperties.includes(property)));
   }, [possibleWordProperties, setWordPropertiesToCheck, typesToCheck]);
 
-  const primaryColor = usePrimaryColor();
-
   return (
     <>
       <div className='grid sm:grid-cols-2 lg:grid-cols-3'>
@@ -53,7 +50,7 @@ const PropertySelection = ({
           <Button
             color={
               wordPropertiesToCheck.length === APP_CONSTANTS.allWordProperties.length && checkTranslation
-                ? primaryColor
+                ? 'primary'
                 : 'default'
             }
             onClick={() => {
@@ -64,7 +61,7 @@ const PropertySelection = ({
             Alle auswählen
           </Button>
           <Button
-            color={wordPropertiesToCheck.length === 0 && !checkTranslation ? primaryColor : 'default'}
+            color={wordPropertiesToCheck.length === 0 && !checkTranslation ? 'primary' : 'default'}
             onClick={() => {
               setWordPropertiesToCheck([]);
               setCheckTranslation(false);

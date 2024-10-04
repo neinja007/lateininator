@@ -1,6 +1,5 @@
 import Button from '@/components/Button';
 import CheckboxWithLabel from '@/components/CheckboxWithLabel';
-import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
 import clsx from 'clsx';
 
 type FormSelectionWrapperProps = {
@@ -33,8 +32,6 @@ const FormSelectionWrapper = ({
     4: 'sm:grid-cols-4'
   };
 
-  const primaryColor = usePrimaryColor();
-
   return (
     <>
       <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3'>
@@ -47,10 +44,10 @@ const FormSelectionWrapper = ({
           <div />
         )}
         <div className='col-span-2 mt-2 grid grid-cols-2 gap-x-4 lg:col-span-1 lg:mt-0'>
-          <Button color={selectAllActive ? primaryColor : 'default'} onClick={selectAll}>
+          <Button color={selectAllActive ? 'primary' : 'default'} onClick={selectAll}>
             Alle auswählen
           </Button>
-          <Button color={selectNoneActive ? primaryColor : 'default'} onClick={selectNone}>
+          <Button color={selectNoneActive ? 'primary' : 'default'} onClick={selectNone}>
             Alle abwählen
           </Button>
         </div>
