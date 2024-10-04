@@ -7,9 +7,9 @@ import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
 import { useSettings } from '@/hooks/database/queries/useSettings';
-import InsertBasesButton from '../../../components/InsertBasesButton';
 import { getAllTableInputValues } from '../../utils/getAllTableInputValues';
 import { getBase } from '@/utils/word/getBase';
+import { TableInputHeading } from '../../../components/TableInputHeading';
 
 type TableInputProps = {
   form: TableInputForm;
@@ -38,16 +38,12 @@ const TableInput = ({
 
   return (
     <div>
-      <div className='mb-2 flex justify-between'>
-        <p className='text-center font-bold'>
-          {MAPPER.extended.comparison[form.comparison]} {MAPPER.extended.comparisonDegree[form.comparisonDegree]}
-        </p>
-        <InsertBasesButton
-          onClick={() =>
-            setValues(getAllTableInputValues(getBase(activeWord, { superlative: form.comparisonDegree === 'sup' })))
-          }
-        />
-      </div>
+      <TableInputHeading
+        onInsertBases={() =>
+          setValues(getAllTableInputValues(getBase(activeWord, { superlative: form.comparisonDegree === 'sup' })))
+        }
+        text={`${MAPPER.extended.comparison[form.comparison]} ${MAPPER.extended.comparisonDegree[form.comparisonDegree]}`}
+      />
       {checkAdverb && (
         <div className='mb-4'>
           <TableTrainerInput

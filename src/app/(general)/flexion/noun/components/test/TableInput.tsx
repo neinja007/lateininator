@@ -6,9 +6,9 @@ import { getForm } from '@/utils/word/getForm';
 import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import TableTrainerInput from '../../../components/TableTrainerInput';
 import { useSettings } from '@/hooks/database/queries/useSettings';
-import InsertBasesButton from '../../../components/InsertBasesButton';
 import { getBase } from '@/utils/word/getBase';
 import { getAllTableInputValues } from '../../utils/getAllTableInputValues';
+import { TableInputHeading } from '../../../components/TableInputHeading';
 
 type TableInputProps = {
   tableInputValues: TableInputValues;
@@ -24,10 +24,10 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord, 
 
   return (
     <div>
-      <div className='mb-2 flex items-baseline justify-between'>
-        <p className='font-bold'>{MAPPER.extended.declension[activeWord.noun.declension]}</p>
-        <InsertBasesButton onClick={() => setTableInputValues(getAllTableInputValues(getBase(activeWord, {})))} />
-      </div>
+      <TableInputHeading
+        onInsertBases={() => setTableInputValues(getAllTableInputValues(getBase(activeWord, {})))}
+        text={`${MAPPER.extended.declension[activeWord.noun.declension]}`}
+      />
       <table className={table.table}>
         <thead className={table.thead}>
           <tr>
