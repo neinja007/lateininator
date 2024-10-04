@@ -11,5 +11,6 @@
     "numerus",
     "Tempusformen",
     "Vokabeltrainer"
-  ]
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
