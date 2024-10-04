@@ -17,7 +17,11 @@ const colorMap: { [key in PrimaryColor | 'random']: string } = {
   pink: 'Pink',
   orange: 'Orange',
   red: 'Rot',
-  random: 'Zufällig'
+  random: 'Zufällig',
+  gray: 'Grau',
+  cyan: 'Cyan',
+  lime: 'Limette',
+  default: 'Standard'
 };
 
 const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
@@ -26,7 +30,7 @@ const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
       <span className={clsx('mr-4 rounded-md px-2', COLORS[value === 'random' ? 'gray' : value].static)}>
         {colorMap[value]}
       </span>
-      <div className='grid grid-cols-4'>
+      <div className='grid grid-cols-5'>
         {([...availableColors, 'random'] as (PrimaryColor | 'random')[]).map((color) => (
           <button
             disabled={disabled}
