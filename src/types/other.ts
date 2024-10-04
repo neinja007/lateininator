@@ -1,7 +1,18 @@
 import { availableColors } from '@/constants/other';
 import { SettingKey } from '@prisma/client';
 
-export type Color = 'gray' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'default' | 'pink';
+export type Color =
+  | 'gray'
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'blue'
+  | 'purple'
+  | 'default'
+  | 'pink'
+  | 'cyan'
+  | 'lime';
 
 export type PrimaryColor = (typeof availableColors)[number];
 
