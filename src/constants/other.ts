@@ -64,10 +64,32 @@ export const COLORS: { [key in Color]: { [key in 'dynamic' | 'text' | 'static' |
     text: 'text-gray-500',
     static: 'bg-white border border-gray-200 dark:bg-gray-900',
     hex: '#fafafa'
+  },
+  cyan: {
+    dynamic: 'bg-cyan-500 text-white border-none hover:bg-cyan-400 dark:bg-cyan-800 dark:hover:bg-cyan-700',
+    text: 'text-cyan-500',
+    static: 'bg-cyan-400 border border-cyan-700 dark:bg-cyan-800',
+    hex: '#06b6d4'
+  },
+  lime: {
+    dynamic: 'bg-lime-500 text-white border-none hover:bg-lime-400 dark:bg-lime-800 dark:hover:bg-lime-700',
+    text: 'text-lime-500',
+    static: 'bg-lime-400 border border-lime-700 dark:bg-lime-800',
+    hex: '#84cc16'
   }
 };
 
-export const availableColors = ['yellow', 'blue', 'green', 'purple', 'pink', 'orange', 'red'] as const;
+export const availableColors = [
+  'yellow',
+  'blue',
+  'green',
+  'purple',
+  'pink',
+  'orange',
+  'red',
+  'cyan',
+  'lime'
+] as Color[];
 
 export const BREAKPOINTS: { [B in Breakpoint]: number } = {
   sm: 640,
