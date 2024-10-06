@@ -239,7 +239,7 @@ export const PUT = async (request: NextRequest) => {
         data: {
           name,
           description,
-          private: process.env.ENABLE_PUBLIC_DATA === 'true' ? isPrivate : true,
+          private: process.env.NEXT_PUBLIC_ENABLE_PUBLIC_DATA === 'true' ? isPrivate : true,
           lists: {
             deleteMany: {}
           }
@@ -254,7 +254,7 @@ export const PUT = async (request: NextRequest) => {
       data: {
         name,
         description,
-        private: process.env.ENABLE_PUBLIC_DATA === 'true' ? isPrivate : true,
+        private: process.env.NEXT_PUBLIC_ENABLE_PUBLIC_DATA === 'true' ? isPrivate : true,
         owner: {
           connect: {
             id: user.id
