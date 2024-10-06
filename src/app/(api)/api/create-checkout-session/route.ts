@@ -4,6 +4,10 @@ import { NextResponse } from 'next/server';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function POST() {
+  if (!process.env.ENABLE_PREMIUM) {
+    return NextResponse.json({ error: 'Premium is not enabled' }, { status: 400 });
+  }
+
   const user = await currentUser();
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
