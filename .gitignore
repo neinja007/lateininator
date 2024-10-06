@@ -49,3 +49,4 @@ next-env.d.ts
 .env
 /anchor.toml
 /tmp
+/.env.control
