@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function POST() {
-  if (!process.env.NEXT_PUBLIC_ENABLE_PREMIUM) {
+  if (process.env.NEXT_PUBLIC_ENABLE_PREMIUM !== 'true') {
     return NextResponse.json({ error: 'Premium is not enabled' }, { status: 400 });
   }
 
