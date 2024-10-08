@@ -20,7 +20,7 @@ const ListAddForm = ({ lists, setLists }: ListAddFormProps) => {
   const [listName, setListName] = useState('');
 
   return (
-    <form onSubmit={handleListSubmit} className='mb-8 items-baseline space-y-3 md:flex'>
+    <form onSubmit={handleListSubmit} className='items-baseline space-y-3 md:flex'>
       <span className='mr-4'>Ihre Kollektion hat bereits {lists.length} Listen.</span>
       <br className='md:hidden' />
       <div className='mr-4'>
