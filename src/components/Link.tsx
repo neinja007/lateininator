@@ -16,7 +16,11 @@ const Link = ({ children, href, className, ...props }: LinkProps) => {
   const primaryColor = usePrimaryColor();
 
   return (
-    <NextLink href={href} className={clsx('hover:underline', className, COLORS[primaryColor].text)} {...props}>
+    <NextLink
+      href={href}
+      className={clsx('inline-block hover:underline', className, COLORS[primaryColor].text)}
+      {...props}
+    >
       {children}
       <ExternalLink className='mx-1 inline-block h-4 w-4 align-text-top' />
     </NextLink>
