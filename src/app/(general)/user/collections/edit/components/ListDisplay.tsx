@@ -36,7 +36,9 @@ const ListDisplay = ({ list, activeList, setActiveList, editList, setEditList, s
           }}
         />
       ) : (
-        list.name
+        <span>
+          <b>{list.name}</b> ({list.words.length} Wörter) <br />
+        </span>
       )}
       {editList !== list.id ? (
         <Edit
