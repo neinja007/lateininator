@@ -1,6 +1,6 @@
 import { ListWithWords } from '@/types/collection';
 import ListDisplay from './ListDisplay';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type ListsProps = {
   lists: ListWithWords[];
@@ -11,6 +11,12 @@ type ListsProps = {
 
 const Lists = ({ lists, activeList, setActiveList, setLists }: ListsProps) => {
   const [editList, setEditList] = useState<number>();
+
+  useEffect(() => {
+    if (editList) {
+      setActiveList(undefined);
+    }
+  }, [editList, setActiveList]);
 
   return (
     <div className={lists.length > 0 ? 'mt-4' : undefined}>
