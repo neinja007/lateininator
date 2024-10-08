@@ -23,7 +23,7 @@ const ListDisplay = ({ list, activeList, setActiveList, editList, setEditList, s
           ? 'border-blue-500 bg-blue-200 hover:bg-blue-300 dark:bg-blue-800 dark:hover:bg-blue-600'
           : 'bg-gray-200 hover:border-gray-400 hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
       )}
-      onClick={() => setActiveList(editList !== list.id ? list.id : undefined)}
+      onClick={() => setActiveList(!editList ? list.id : undefined)}
     >
       {editList === list.id ? (
         <Input
