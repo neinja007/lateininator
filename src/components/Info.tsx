@@ -30,7 +30,7 @@ const Info = ({ children, heading, size = 4 }: InfoProps) => {
         >
           <div className='absolute inset-0 flex items-center justify-center'>
             <div className={clsx('relative mx-4 w-full max-w-lg rounded-lg p-4', COLORS[primaryColor].static)}>
-              <div className='absolute inset-0 z-0 rounded-lg bg-inherit brightness-125 dark:brightness-50'></div>
+              <div className='absolute inset-0 z-0 rounded-lg bg-inherit dark:brightness-50'></div>
               <div className='relative z-10'>
                 <div className='mb-3 flex items-start justify-between'>
                   <h2 className='mb-2 line-clamp-2 text-2xl font-bold'>{heading || 'Information'}</h2>
