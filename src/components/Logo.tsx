@@ -11,7 +11,7 @@ const Logo = () => {
 
   return (
     <Link href={'/'}>
-      <div className='absolute start-1 top-1'>
+      <div className='absolute start-1 top-1 h-[56px] w-[245px] overflow-hidden'>
         <LogoSVG
           className={clsx('h-full w-full', COLORS[primaryColor].text)}
           style={{
