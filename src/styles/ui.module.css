@@ -10,7 +10,7 @@
 }
 
 .shape {
-  @apply p-1 px-3 rounded-md focus:outline-none
+  @apply p-1 px-3 rounded-md
 }
 
 .shape:not([class*='bg-']) {
