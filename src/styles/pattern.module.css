@@ -3,7 +3,7 @@
 
 @media (prefers-color-scheme: light) {
   .dotted {
-    background-image: radial-gradient(#CCCCCC 1px, transparent 0);
+    background-image: radial-gradient(var(--dot-color-light) 1px, transparent 0);
   }
 
   .isometric {
@@ -15,7 +15,7 @@ background-image:  linear-gradient(30deg, var(--isometric-line-light) 12%, trans
 
 @media (prefers-color-scheme: dark) {
   .dotted {
-    background-image: radial-gradient(#444444 1px, transparent 0);
+    background-image: radial-gradient(var(--dot-color-dark) 1px, transparent 0);
   }
 
   .isometric {
