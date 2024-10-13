@@ -41,5 +41,10 @@ export const settings: Settings = {
     name: 'Namen ändern',
     description:
       'Verändere deinen Benutzernamen. Ihre Daten bleiben nach der Änderung erhalten. Es kann sein, dass Sie die Seite neu laden müssen, um Ihre Änderungen zu sehen.'
+  },
+  BACKGROUND_PATTERN: {
+    type: 'boolean',
+    name: 'Hintergrundmuster',
+    description: 'Wenn diese Einstellung aktiviert ist, wird ein Hintergrundmuster angezeigt.'
   }
 };
