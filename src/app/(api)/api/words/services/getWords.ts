@@ -1,6 +1,6 @@
 import { prisma } from '@/utils/other/client';
 
-export async function getWords(includedDataObject: any, userId: string | undefined) {
+export const getWords = async (includedDataObject: any, userId: string | undefined) => {
   try {
     const words = await prisma.word.findMany({
       include: includedDataObject,
@@ -25,4 +25,4 @@ export async function getWords(includedDataObject: any, userId: string | undefin
     console.error('Error fetching words:', error);
     throw error;
   }
-}
+};

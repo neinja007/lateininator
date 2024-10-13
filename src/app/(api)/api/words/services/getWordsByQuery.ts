@@ -1,6 +1,6 @@
 import { prisma } from '@/utils/other/client';
 
-export async function getWordsByQuery(query: string, includedDataObject: any, userId: string | undefined) {
+export const getWordsByQuery = async (query: string, includedDataObject: any, userId: string | undefined) => {
   return await prisma.word.findMany({
     where: {
       name: {
@@ -27,4 +27,4 @@ export async function getWordsByQuery(query: string, includedDataObject: any, us
     },
     include: includedDataObject
   });
-}
+};

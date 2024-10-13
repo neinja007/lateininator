@@ -1,7 +1,7 @@
 import { prisma } from '@/utils/other/client';
 import { User } from '@prisma/client';
 
-export async function getUserById(userId: string, includedDataObject?: any): Promise<User | null> {
+export const getUserById = async (userId: string, includedDataObject?: any): Promise<User | null> => {
   try {
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -12,4 +12,4 @@ export async function getUserById(userId: string, includedDataObject?: any): Pro
     console.error('Error finding user:', error);
     throw error;
   }
-}
+};

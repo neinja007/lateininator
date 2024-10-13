@@ -1,6 +1,6 @@
 import { prisma } from '@/utils/other/client';
 
-export async function createUser(userId: string, email: string, name: string, customerId: string) {
+export const createUser = async (userId: string, email: string, name: string, customerId: string) => {
   try {
     const newUser = await prisma.user.create({
       data: {
@@ -20,4 +20,4 @@ export async function createUser(userId: string, email: string, name: string, cu
     console.error('Error creating user:', error);
     throw error;
   }
-}
+};

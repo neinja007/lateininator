@@ -6,7 +6,7 @@ type Props = {
   params: { id: string };
 };
 
-export async function generateMetadata({ params }: Props) {
+export const generateMetadata = async ({ params }: Props) => {
   const id = params.id;
 
   const word = await prisma.word.findUnique({
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props) {
     title: `"${word?.name.toUpperCase()}" - Lateininator Wörterbuch`,
     description: `Formen und Informationen zu "${word?.name}" im Lateininator Wörterbuch`
   };
-}
+};
 
 const Layout = ({ children }: LayoutProps) => {
   return children;

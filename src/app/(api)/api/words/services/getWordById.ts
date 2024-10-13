@@ -1,6 +1,6 @@
 import { prisma } from '@/utils/other/client';
 
-export async function getWordById(id: number, includedDataObject: any, userId: string | undefined) {
+export const getWordById = async (id: number, includedDataObject: any, userId: string | undefined) => {
   return await prisma.word.findUnique({
     where: {
       id: id,
@@ -17,4 +17,4 @@ export async function getWordById(id: number, includedDataObject: any, userId: s
     },
     include: includedDataObject
   });
-}
+};
