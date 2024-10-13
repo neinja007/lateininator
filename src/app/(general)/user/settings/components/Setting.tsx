@@ -142,7 +142,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
         <span className='text-lg font-medium'>
           {settings[settingKey].name} {disabled && <span className='text-red-400'>(noch nicht verfügbar)</span>}
         </span>
-        <p className='text-neutral-400'>{settings[settingKey].description}</p>
+        <p className='text-gray-600 dark:text-gray-400'>{settings[settingKey].description}</p>
       </div>
       <div className='mt-4 flex-shrink sm:mt-0'>{element}</div>
     </div>
