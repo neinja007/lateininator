@@ -18,6 +18,13 @@ export async function getWordsByQuery(query: string, includedDataObject: any, us
         }
       ]
     },
+    orderBy: {
+      _relevance: {
+        fields: ['name', 'translation'],
+        search: query,
+        sort: 'asc'
+      }
+    },
     include: includedDataObject
   });
 }
