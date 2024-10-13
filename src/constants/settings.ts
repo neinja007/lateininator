@@ -1,4 +1,4 @@
-import { Settings } from '@/types/other';
+import { Pattern, Settings } from '@/types/other';
 import axios from 'axios';
 
 export const settings: Settings = {
@@ -48,8 +48,9 @@ export const settings: Settings = {
     description: 'Wenn diese Einstellung aktiviert ist, wird ein Hintergrundmuster angezeigt.',
     options: {
       false: 'Kein Muster',
-      dotted: 'Gepunktet'
-    },
+      dotted: 'Gepunktet',
+      isometric: 'Isometrisch'
+    } as { [P in Pattern]: string },
     invalidateQueries: 'settings'
   }
 };
