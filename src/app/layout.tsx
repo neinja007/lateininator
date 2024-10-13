@@ -25,7 +25,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           <QueryClientWrapper>
             <Pattern>
               <Navbar />
-              <div className='container mx-auto max-w-[1024px] pb-16'>{children}</div>
+              <div className='container mx-auto max-w-[1024px] pb-16'>
+                <div className='rounded-lg bg-white dark:bg-black'>{children}</div>
+              </div>
             </Pattern>
           </QueryClientWrapper>
           <Analytics />
