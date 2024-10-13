@@ -23,12 +23,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <html lang='en'>
         <body className={rubik.className + ' dark:bg-black dark:text-gray-300'}>
           <QueryClientWrapper>
-            <Pattern>
-              <Navbar />
-              <div className='container mx-auto max-w-[1024px] pb-16'>
-                <div className='rounded-lg bg-white dark:bg-black'>{children}</div>
-              </div>
-            </Pattern>
+            <Navbar />
+            <Pattern>{children}</Pattern>
           </QueryClientWrapper>
           <Analytics />
         </body>
