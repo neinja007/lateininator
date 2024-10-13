@@ -8,11 +8,11 @@ const BackToDictionaryButton = () => {
     <Link
       className={clsx(
         ui.basic,
-        'hover flex w-fit items-center bg-gray-100 text-center transition-colors hover:bg-gray-200 md:!pl-2 dark:bg-gray-900 hover:dark:bg-gray-800'
+        'hover col-span-2 flex w-fit items-center bg-gray-100 text-center transition-colors hover:bg-gray-200 lg:col-span-1 dark:bg-gray-900 hover:dark:bg-gray-800'
       )}
       href='/vocabulary/dictionary'
     >
-      <ArrowLeft size={20} className='inline align-text-top' /> Zurück zum Wörterbuch
+      <ArrowLeft size={20} className='mr-1 inline align-text-top' /> Zurück zum Wörterbuch
     </Link>
   );
 };

@@ -9,14 +9,11 @@ type HeaderProps = { word: Word };
 
 const Header = ({ word }: HeaderProps) => {
   return (
-    <div className='h-16'>
-      <div className='float-start mb-2 sm:absolute'>
-        <BackToDictionaryButton />
-      </div>
+    <div>
       <div className='grid w-full grid-cols-2 gap-4 lg:grid-cols-3'>
-        <div />
+        <BackToDictionaryButton />
         <div>
-          <Heading heading={word.name}>
+          <Heading className='!text-left lg:!text-center' heading={word.name}>
             Hier findest du <b>alle Informationen</b> zum {MAPPER.extended.type.singular[word.type]}
             &quot;
             {word.name}
