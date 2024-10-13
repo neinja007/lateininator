@@ -98,6 +98,6 @@ export const BREAKPOINTS: { [B in Breakpoint]: number } = {
   xl: 1280
 };
 
-export const fullPatterns: Pattern[] = ['isometric'];
+export const fullPatterns: Pattern[] = ['isometric', 'dotted'];
 
 export const monthlyPrice = 5;
