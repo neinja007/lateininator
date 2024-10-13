@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --dot-color-light: #CCCCCC;
+  --dot-color-dark: #444444;
+  --isometric-bg-light: #e5e5f7;
+  --isometric-bg-dark: #1a1a1a;
+  --isometric-line-light: #D2D2D2;
+  --isometric-line-dark: #1D1D1D;
+  --isometric-line-alpha-light: #D2D2D277;
+  --isometric-line-alpha-dark: #07070777;
+}
