@@ -55,3 +55,5 @@ export type AllSettingKey = SettingKey | ClientSettingKey;
 export type Settings = {
   [S in AllSettingKey]: SettingData;
 };
+
+export type Pattern = 'dotted' | 'isometric' | 'false';
