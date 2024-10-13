@@ -5,6 +5,7 @@ import { deDE } from '@clerk/localizations';
 import { Analytics } from '@vercel/analytics/react';
 import '@/app/globals.css';
 import { QueryClientWrapper } from '@/components/QueryClientWrapper';
+import Pattern from '@/components/Pattern';
 
 const rubik = Rubik({ subsets: ['latin'] });
 
@@ -21,12 +22,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <ClerkProvider localization={deDE}>
       <html lang='en'>
         <body className={rubik.className + ' dark:bg-black dark:text-gray-300'}>
-          <div className='min-h-screen px-4 pt-24'>
-            <QueryClientWrapper>
+          <QueryClientWrapper>
+            <Pattern>
               <Navbar />
               <div className='container mx-auto max-w-[1024px] pb-16'>{children}</div>
-            </QueryClientWrapper>
-          </div>
+            </Pattern>
+          </QueryClientWrapper>
           <Analytics />
         </body>
       </html>
