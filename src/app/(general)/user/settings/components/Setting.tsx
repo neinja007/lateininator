@@ -104,7 +104,7 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
       element = (
         <Select
           value={value}
-          handleChange={(value) => mutate(value)}
+          handleChange={(value: string) => mutate({ settingKey, settingValue: value })}
           options={settings[settingKey].options || {}}
           disabled={disableInput}
           disabledStyle
