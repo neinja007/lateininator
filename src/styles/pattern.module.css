@@ -1,7 +1,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (prefers-color-scheme: light) {
+  .dotted {
+    background-image: radial-gradient(#CCCCCC 1px, transparent 0);
+  }
+
+  .isometric {
+
+background-color: var(--isometric-bg-light);
+background-image:  linear-gradient(30deg, var(--isometric-line-light) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-light) 87.5%, var(--isometric-line-light)), linear-gradient(150deg, var(--isometric-line-light) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-light) 87.5%, var(--isometric-line-light)), linear-gradient(30deg, var(--isometric-line-light) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-light) 87.5%, var(--isometric-line-light)), linear-gradient(150deg, var(--isometric-line-light) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-light) 87.5%, var(--isometric-line-light)), linear-gradient(60deg, var(--isometric-line-alpha-light) 25%, transparent 25.5%, transparent 75%, var(--isometric-line-alpha-light) 75%, var(--isometric-line-alpha-light)), linear-gradient(60deg, var(--isometric-line-alpha-light) 25%, transparent 25.5%, transparent 75%, var(--isometric-line-alpha-light) 75%, var(--isometric-line-alpha-light));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dotted {
+    background-image: radial-gradient(#444444 1px, transparent 0);
+  }
+
+  .isometric {
+
+background-color: var(--isometric-bg-dark);
+background-image:  linear-gradient(30deg, var(--isometric-line-dark) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-dark) 87.5%, var(--isometric-line-dark)), linear-gradient(150deg, var(--isometric-line-dark) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-dark) 87.5%, var(--isometric-line-dark)), linear-gradient(30deg, var(--isometric-line-dark) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-dark) 87.5%, var(--isometric-line-dark)), linear-gradient(150deg, var(--isometric-line-dark) 12%, transparent 12.5%, transparent 87%, var(--isometric-line-dark) 87.5%, var(--isometric-line-dark)), linear-gradient(60deg, var(--isometric-line-alpha-dark) 25%, transparent 25.5%, transparent 75%, var(--isometric-line-alpha-dark) 75%, var(--isometric-line-alpha-dark)), linear-gradient(60deg, var(--isometric-line-alpha-dark) 25%, transparent 25.5%, transparent 75%, var(--isometric-line-alpha-dark) 75%, var(--isometric-line-alpha-dark));
+  }
+}
+
 .dotted {
-  background-image: radial-gradient(black 1px, transparent 0);
   background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+.isometric {
+background-size: 62px 109px;
+background-position: 0 0, 0 0, 31px 54px, 31px 54px, 0 0, 31px 54px;
 }
