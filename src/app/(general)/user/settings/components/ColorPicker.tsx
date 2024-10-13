@@ -38,7 +38,7 @@ const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
             onClick={() => onChange(color)}
             className='flex items-center justify-center'
           >
-            <div className={clsx('h-6 w-6', COLORS[color === 'random' ? 'gray' : color].static)} />
+            <div className={clsx('h-6 w-6 border-none', COLORS[color === 'random' ? 'gray' : color].static)} />
             {value === color ? (
               <CheckCircle className='absolute h-4 w-4' />
             ) : (
