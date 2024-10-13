@@ -34,7 +34,7 @@ export const settings: Settings = {
   PRIMARY_COLOR: {
     type: 'color',
     name: 'Primäre Farbe',
-    description: 'Ändert die Farbe für Knöpfe, Text, und andere Elemente.'
+    description: 'Ändert die Farbe von Knöpfen, vom Logo, und von anderen Elementen.'
   },
   NAME_CHANGE: {
     type: 'input',
