@@ -1,5 +1,5 @@
 import { WordType } from '@/types/appConstants';
-import { Breakpoint, Color } from '@/types/other';
+import { Breakpoint, Color, Pattern } from '@/types/other';
 
 export const mapTypeToColor: { [key in WordType]: Color } = {
   NOUN: 'blue',
@@ -97,5 +97,7 @@ export const BREAKPOINTS: { [B in Breakpoint]: number } = {
   lg: 1024,
   xl: 1280
 };
+
+export const fullPatterns: Pattern[] = ['isometric'];
 
 export const monthlyPrice = 5;
