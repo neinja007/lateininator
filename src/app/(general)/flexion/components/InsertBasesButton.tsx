@@ -4,11 +4,12 @@ import Button from '@/components/Button';
 
 type InsertBasesButtonProps = {
   onClick: () => void;
+  disabled?: boolean;
 };
 
-const InsertBasesButton = ({ onClick }: InsertBasesButtonProps) => {
+const InsertBasesButton = ({ onClick, disabled }: InsertBasesButtonProps) => {
   return (
-    <Button className='flex items-center gap-x-2' color='primary' onClick={onClick}>
+    <Button className='flex items-center gap-x-2' disabled={disabled} color='primary' onClick={onClick}>
       <LucideBetweenVerticalStart size={16} />
       Stämme einfügen
     </Button>

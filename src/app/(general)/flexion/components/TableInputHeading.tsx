@@ -10,7 +10,7 @@ export const TableInputHeading = ({ onInsertBases, text, stage }: TableInputHead
   return (
     <div className='mb-4 flex justify-between'>
       <p className='text-center font-bold'>{text}</p>
-      {stage === 'test' && <InsertBasesButton onClick={onInsertBases} />}
+      <InsertBasesButton disabled={stage === 'review'} onClick={onInsertBases} />
     </div>
   );
 };
