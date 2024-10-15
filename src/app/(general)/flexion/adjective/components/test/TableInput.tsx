@@ -39,6 +39,7 @@ const TableInput = ({
   return (
     <div>
       <TableInputHeading
+        stage={stage}
         onInsertBases={() =>
           setValues(getAllTableInputValues(getBase(activeWord, { superlative: form.comparisonDegree === 'sup' })))
         }

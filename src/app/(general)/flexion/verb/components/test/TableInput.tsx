@@ -44,6 +44,7 @@ const TableInput = ({
   return (
     <div>
       <TableInputHeading
+        stage={stage}
         onInsertBases={() =>
           setTableInputValues(
             getAllTableInputValues((tense) =>

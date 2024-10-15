@@ -25,6 +25,7 @@ const TableInput = ({ tableInputValues, setTableInputValues, stage, activeWord, 
   return (
     <div>
       <TableInputHeading
+        stage={stage}
         onInsertBases={() => setTableInputValues(getAllTableInputValues(getBase(activeWord, {})))}
         text={MAPPER.extended.declension[activeWord.noun.declension]}
       />
