@@ -28,8 +28,8 @@ const TableTrainerInput = ({
   const Component = (
     <div
       className={clsx(
-        'flex w-full items-end border',
-        stage === 'test' ? 'border-none' : isInputCorrect ? 'border-green-500' : 'border-red-500'
+        'flex w-full items-end outline outline-1 -outline-offset-1',
+        stage === 'test' ? 'outline-none' : isInputCorrect ? 'outline-green-500' : 'outline-red-500'
       )}
     >
       <div className='block w-full flex-grow'>
