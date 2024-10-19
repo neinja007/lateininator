@@ -1,7 +1,7 @@
 import { availableColors, COLORS } from '@/constants/other';
 import { PrimaryColor } from '@/types/other';
 import clsx from 'clsx';
-import { CheckCircle, Dices } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 type ColorPickerProps = {
   disabled: boolean;
@@ -38,12 +38,15 @@ const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
             onClick={() => onChange(color)}
             className='flex items-center justify-center'
           >
-            <div className={clsx('h-6 w-6 border-none', COLORS[color === 'random' ? 'gray' : color].static)} />
-            {value === color ? (
-              <CheckCircle className='absolute h-4 w-4' />
-            ) : (
-              color === 'random' && <Dices className='absolute h-4 w-4' />
-            )}
+            <div
+              className={clsx(
+                'h-6 w-6 border-none',
+                color === 'random'
+                  ? 'bg-gradient-to-b from-red-400 via-yellow-400 to-blue-400 dark:from-red-700 dark:via-yellow-700 dark:to-blue-700'
+                  : COLORS[color].static
+              )}
+            />
+            {value === color && <CheckCircle className='absolute h-4 w-4' />}
           </button>
         ))}
       </div>
