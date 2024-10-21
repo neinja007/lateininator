@@ -31,7 +31,6 @@ export const getForm = (
 ): { form: string; exception: boolean } => {
   let ending: string | undefined = undefined;
   let customEnding: string | undefined = undefined;
-  let exception = false;
 
   if (isNoun(word)) {
     if (word.noun.declension === 'NONE' || word.noun.gender === 'NONE')
@@ -45,8 +44,8 @@ export const getForm = (
         ending = endings.noun[word.noun.declension][word.noun.gender][info.numerus][1];
 
         if (word.noun.declension === 'O' && word.noun.gender === 'M') {
-          if (ending.endsWith('us')) ending = ending.substring(0, ending.length - 2) + 'e';
-          else if (ending.endsWith('ius')) ending = ending.substring(0, ending.length - 3) + 'i';
+          if (word.name.endsWith('ius')) ending = 'i';
+          else if (word.name.endsWith('us')) ending = 'e';
         }
       } else {
         ending = endings.noun[word.noun.declension][word.noun.gender][info.numerus][info.wordCase];
