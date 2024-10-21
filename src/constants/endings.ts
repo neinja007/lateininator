@@ -1217,7 +1217,7 @@ export const endings = {
     O: {
       M: {
         sin: {
-          1: 'us',
+          1: '-',
           2: 'i',
           3: 'o',
           4: 'um',
