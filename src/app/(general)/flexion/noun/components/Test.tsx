@@ -46,7 +46,7 @@ const Test = ({
 
   useEffect(() => {
     if (testingType === 'individual') {
-      setIndividualInputForm(getRandomIndividualInputForm([...enabledWordCases]));
+      setIndividualInputForm(getRandomIndividualInputForm([...enabledWordCases], activeWord.noun.pluralOnly));
     }
   }, [activeWord, enabledWordCases, testingType]);
 
