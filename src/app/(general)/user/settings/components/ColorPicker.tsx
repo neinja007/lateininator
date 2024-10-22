@@ -27,7 +27,14 @@ const colorMap: { [key in PrimaryColor | 'random']: string } = {
 const ColorPicker = ({ disabled, value, onChange }: ColorPickerProps) => {
   return (
     <div className='flex items-center'>
-      <span className={clsx('mr-4 rounded-md px-2', COLORS[value === 'random' ? 'gray' : value].static)}>
+      <span
+        className={clsx(
+          'mr-4 rounded-md px-2',
+          value === 'random'
+            ? 'bg-gradient-to-r from-red-400 via-yellow-400 to-blue-400 dark:from-red-700 dark:via-yellow-700 dark:to-blue-700'
+            : COLORS[value].static
+        )}
+      >
         {colorMap[value]}
       </span>
       <div className='grid grid-cols-5'>
