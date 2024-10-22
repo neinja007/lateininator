@@ -1990,6 +1990,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@number-flow/react@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@number-flow/react@npm:0.2.3"
+  dependencies:
+    esm-env: "npm:^1.0.0"
+    number-flow: "npm:0.3.2"
+  peerDependencies:
+    react: ^18 || ^19.0.0-rc-915b914b3a-20240515
+    react-dom: ^18
+  checksum: 10c0/d6d38016e47d23de231a9d8e322327ab792a4b5846362ecea9f7f8a336729df60abd0c52c44224562650d61e8be640e10886016392f2975f6829dc9e88c25411
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -3995,6 +4008,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esm-env@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "esm-env@npm:1.0.0"
+  checksum: 10c0/6ea0001410224ebc18de4a83ce97dbdca6abc83ea4bbe91625aa3aead70793bb98dfa089f38e2cc5c13b7b025668d0649d5e25f2f9e8cca0f4aa3ad3406870d0
+  languageName: node
+  linkType: hard
+
 "espree@npm:^9.6.0, espree@npm:^9.6.1":
   version: 9.6.1
   resolution: "espree@npm:9.6.1"
@@ -5057,6 +5077,7 @@ __metadata:
     "@clerk/themes": "npm:^2.1.21"
     "@hookform/resolvers": "npm:^3.9.0"
     "@neondatabase/serverless": "npm:^0.9.4"
+    "@number-flow/react": "npm:^0.2.3"
     "@prisma/client": "npm:^5.19.1"
     "@stripe/react-stripe-js": "npm:^2.8.0"
     "@stripe/stripe-js": "npm:^4.3.0"
@@ -5562,6 +5583,15 @@ __metadata:
   dependencies:
     boolbase: "npm:^1.0.0"
   checksum: 10c0/5fee7ff309727763689cfad844d979aedd2204a817fbaaf0e1603794a7c20db28548d7b024692f953557df6ce4a0ee4ae46cd8ebd9b36cfb300b9226b567c479
+  languageName: node
+  linkType: hard
+
+"number-flow@npm:0.3.2":
+  version: 0.3.2
+  resolution: "number-flow@npm:0.3.2"
+  dependencies:
+    esm-env: "npm:^1.0.0"
+  checksum: 10c0/f9b762e84d1c1301ed8c988b7fd9d267561383d260cdc26f1fd6210be33163a54f1c47b46356fbd7bf60ddf90e55b24fa5df8bc9b89d52591cc39e4e2bb81aeb
   languageName: node
   linkType: hard
 
