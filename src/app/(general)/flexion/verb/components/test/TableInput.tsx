@@ -58,11 +58,14 @@ const TableInput = ({
         <thead className={table.thead}>
           <tr>
             <th />
-            {tenses.map((tense, i) => (
-              <th key={i} className={table.th}>
-                {MAPPER.extended.tense[tense]}
-              </th>
-            ))}
+            {tenses.map(
+              (tense, i) =>
+                (tableInputForm.modus === 'ind' || tense !== 'fut1') && (
+                  <th key={i} className={table.th}>
+                    {MAPPER.extended.tense[tense]}
+                  </th>
+                )
+            )}
           </tr>
         </thead>
         <tbody>
@@ -75,36 +78,38 @@ const TableInput = ({
                     <th className={table.th}>
                       {MAPPER.short.person[person]} {MAPPER.extended.numerus[numerus]}
                     </th>
-                    {tenses.map((tense) =>
-                      ((tableInputForm.modus === 'ind' || tense !== 'fut1') && person !== '4') || tense === 'pres' ? (
-                        <TableTrainerInput
-                          addDifference={addDifference}
-                          key={tense}
-                          value={tableInputValues[tense][numerus][person]}
-                          correctValue={
-                            getForm(activeWord, {
-                              tense,
-                              numerus,
-                              person,
-                              modus: tableInputForm.modus,
-                              voice: tableInputForm.voice
-                            }).form
-                          }
-                          handleChange={(value) =>
-                            setTableInputValues((prev) => ({
-                              ...prev,
-                              [tense]: {
-                                ...prev[tense],
-                                [numerus]: {
-                                  ...prev[tense][numerus],
-                                  [person]: value
+                    {tenses.map(
+                      (tense) =>
+                        (((tableInputForm.modus === 'ind' || tense !== 'fut1') && person !== '4') ||
+                          tense === 'pres') && (
+                          <TableTrainerInput
+                            addDifference={addDifference}
+                            key={tense}
+                            value={tableInputValues[tense][numerus][person]}
+                            correctValue={
+                              getForm(activeWord, {
+                                tense,
+                                numerus,
+                                person,
+                                modus: tableInputForm.modus,
+                                voice: tableInputForm.voice
+                              }).form
+                            }
+                            handleChange={(value) =>
+                              setTableInputValues((prev) => ({
+                                ...prev,
+                                [tense]: {
+                                  ...prev[tense],
+                                  [numerus]: {
+                                    ...prev[tense][numerus],
+                                    [person]: value
+                                  }
                                 }
-                              }
-                            }))
-                          }
-                          stage={stage}
-                        />
-                      ) : null
+                              }))
+                            }
+                            stage={stage}
+                          />
+                        )
                     )}
                   </tr>
                 )
