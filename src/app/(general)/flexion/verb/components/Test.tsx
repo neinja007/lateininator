@@ -1,6 +1,6 @@
 import ActionBar from '@/components/ActionBar';
 import WordDisplay from '@/components/WordDisplay';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TableInput from './test/TableInput';
 import { IndividualInputForm, SetTableInputValues, TableInputForm, TableInputValues } from '../types';
 import { MAPPER } from '@/utils/other/mapper';
@@ -45,23 +45,21 @@ const Test = ({
   points,
   difference
 }: TestProps) => {
-  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>(
-    getRandomIndividualInputForm(checkImperative, modi, tenses, voices)
-  );
+  const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
 
-  const [tableInputForm, setTableInputForm] = useState<TableInputForm>(getRandomTableInputForm(voices, modi));
+  const [tableInputForm, setTableInputForm] = useState<TableInputForm>();
 
-  const { submit } = useTestForm(() => {
-    handleContinue();
-
-    if (stage === 'review') {
+  useEffect(() => {
+    if (stage === 'test') {
       if (testingType === 'individual') {
         setIndividualInputForm(getRandomIndividualInputForm(checkImperative, modi, tenses, voices));
       } else {
         setTableInputForm(getRandomTableInputForm(voices, modi));
       }
     }
-  });
+  }, [activeWord, checkImperative, modi, stage, tenses, testingType, voices]);
+
+  const { submit } = useTestForm(handleContinue);
 
   return (
     <>
