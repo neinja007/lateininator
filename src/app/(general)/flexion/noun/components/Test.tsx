@@ -45,10 +45,12 @@ const Test = ({
   const [individualInputForm, setIndividualInputForm] = useState<IndividualInputForm>();
 
   useEffect(() => {
-    if (testingType === 'individual') {
-      setIndividualInputForm(getRandomIndividualInputForm([...enabledWordCases], activeWord.noun.pluralOnly));
+    if (stage === 'test') {
+      if (testingType === 'individual') {
+        setIndividualInputForm(getRandomIndividualInputForm([...enabledWordCases], activeWord.noun.pluralOnly));
+      }
     }
-  }, [activeWord, enabledWordCases, testingType]);
+  }, [activeWord, enabledWordCases, stage, testingType]);
 
   const { submit } = useTestForm(handleContinue);
 
