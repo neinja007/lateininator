@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { makeStatusDependent } from '@/utils/other/makeStatusDependent';
 import { useUser } from '@clerk/nextjs';
 import { usePoints } from '@/hooks/database/queries/usePoints';
+import NumberFlow from '@number-flow/react';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -81,7 +82,12 @@ const Navbar = () => {
           })}
           {user.isSignedIn && (
             <div className={clsx('mx-4 my-2 flex items-center xl:my-auto', points ?? 'animate-pulse')}>
-              <b>{points ?? '?'}</b> <Coins className='ml-3 w-6 text-yellow-500 dark:text-yellow-400' />
+              {points ? (
+                <NumberFlow value={points} respectMotionPreference={false} style={{ fontWeight: 'bold' }} />
+              ) : (
+                '??'
+              )}{' '}
+              <Coins className='ml-3 w-6 text-yellow-500 dark:text-yellow-400' />
             </div>
           )}
         </div>
