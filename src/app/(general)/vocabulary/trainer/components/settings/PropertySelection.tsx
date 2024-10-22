@@ -38,7 +38,7 @@ const PropertySelection = ({
   return (
     <>
       <div className='grid sm:grid-cols-2 lg:grid-cols-3'>
-        <p className='sm:mb-3'>Wähle aus, was abgefragt werden soll:</p>
+        <p className='sm:mb-3'>Wählen Sie aus, was abgefragt werden soll:</p>
         <div className='my-2 justify-center sm:my-0 sm:flex lg:block'>
           <CheckboxWithLabel
             checked={checkTranslation}

@@ -35,7 +35,7 @@ const FormSelectionWrapper = ({
   return (
     <>
       <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3'>
-        <p>Wähle aus, was abgefragt werden soll:</p>
+        <p>Wählen Sie aus, was abgefragt werden soll:</p>
         {titleOption ? (
           <div className='block justify-end sm:flex lg:justify-start'>
             <CheckboxWithLabel {...titleOption} />

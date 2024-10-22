@@ -37,7 +37,7 @@ const WordTypeSelection = ({
 
   return (
     <>
-      <p>Wähle aus, welche Wortarten abgefragt werden sollen:</p>
+      <p>Wählen Sie aus, welche Wortarten abgefragt werden sollen:</p>
       <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
         {APP_CONSTANTS.mainWordTypesWithOther.map((type, i) => (
           <Button
