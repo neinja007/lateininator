@@ -82,7 +82,7 @@ const Navbar = () => {
           })}
           {user.isSignedIn && (
             <div className={clsx('mx-4 my-2 flex items-center xl:my-auto', points ?? 'animate-pulse')}>
-              {points ? (
+              {points !== undefined ? (
                 <NumberFlow value={points} willChange respectMotionPreference={false} style={{ fontWeight: 'bold' }} />
               ) : (
                 '??'
