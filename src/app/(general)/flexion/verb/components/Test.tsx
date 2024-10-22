@@ -57,7 +57,7 @@ const Test = ({
         setTableInputForm(getRandomTableInputForm(voices, modi));
       }
     }
-  }, [activeWord, checkImperative, modi, stage, tenses, testingType, voices]);
+  }, [checkImperative, modi, stage, tenses, testingType, voices]);
 
   const { submit } = useTestForm(handleContinue);
 

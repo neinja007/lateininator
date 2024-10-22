@@ -50,7 +50,7 @@ const Test = ({
         setIndividualInputForm(getRandomIndividualInputForm([...enabledWordCases], activeWord.noun.pluralOnly));
       }
     }
-  }, [activeWord, enabledWordCases, stage, testingType]);
+  }, [activeWord.noun.pluralOnly, enabledWordCases, stage, testingType]);
 
   const { submit } = useTestForm(handleContinue);
 
