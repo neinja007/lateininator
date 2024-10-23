@@ -75,6 +75,10 @@ export const PUT = async (request: NextRequest) => {
     }
   });
 
+  if (!dbUser?.staff) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const body = await request.json();
 
   const parsed = wordSchema.safeParse(body);
