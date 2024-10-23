@@ -36,7 +36,7 @@ const NavbarDropdown = ({ route, children, open, handleOpen, active }: NavbarDro
       {open === route.label && (
         <>
           <div onClick={() => handleOpen('')} className='fixed inset-0 z-50 h-full w-full' />
-          <div className='absolute z-50 translate-y-9 rounded-lg border bg-white text-center xl:translate-y-12 dark:border-gray-500 dark:bg-gray-900'>
+          <div className='absolute z-50 translate-y-9 rounded-md border bg-white text-center xl:translate-y-12 dark:border-gray-500 dark:bg-gray-900'>
             {children}
           </div>
         </>
