@@ -12,6 +12,7 @@ import { NounFields } from './NounFields';
 import WordSelector from './WordSelector';
 import { useEffect, useState } from 'react';
 import { Word } from '@/types/word';
+import Link from '@/components/Link';
 
 export const WordAddForm = () => {
   const [word, setWord] = useState<Word>();
@@ -63,9 +64,16 @@ export const WordAddForm = () => {
         {type === 'ADJECTIVE' && <AdjectiveFields register={register} />}
       </div>
       <Textarea placeholder='z.B. nur mit Perfekt' label='Info' className='w-full' {...register('info')} />
-      {status === 'pending' && <div className='text-center'>Wort wird gespeichert...</div>}
-      {status === 'success' && <div className='text-center'>Wort wurde erfolgreich gespeichert.</div>}
-      {status === 'error' && <div className='text-center'>Wort konnte nicht gespeichert werden</div>}
+      <div className='my-2 text-center'>
+        {status === 'pending' && <span className='animate-pulse'>Wort wird gespeichert...</span>}
+        {status === 'success' && (
+          <span className='text-green-500'>
+            Wort wurde erfolgreich gespeichert.{' '}
+            <Link href={`/vocabulary/dictionary/${word?.id}`}>Im Wörterbuch ansehen</Link>
+          </span>
+        )}
+        {status === 'error' && <span className='text-red-500'>Wort konnte nicht gespeichert werden.</span>}
+      </div>
       <div className='mt-4 flex justify-center'>
         <Button color='primary' type='submit'>
           Wort {word ? 'speichern' : 'hinzufügen'}
