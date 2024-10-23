@@ -1,5 +1,6 @@
-import { Color } from '@/types/other';
+import { Color, RouteStatus } from '@/types/other';
 import {
+  ALargeSmall,
   Bike,
   BookCheck,
   BookMarked,
@@ -26,7 +27,7 @@ export type Route = {
   icon: typeof X;
   color?: Color;
   children?: Route[];
-  status?: 'signedIn' | 'signedOut' | 'premium' | 'notPremium';
+  status?: RouteStatus;
 };
 
 export const routes: Route[] = [
@@ -83,6 +84,7 @@ export const routes: Route[] = [
     icon: User,
     children: [
       { label: 'Wortschatz', href: '/collections', color: 'purple', icon: Box, status: 'signedIn' },
+      { label: 'Wörter', href: '/words', color: 'blue', icon: ALargeSmall, status: 'staff' },
       { label: 'Einstellungen', href: '/settings', color: 'blue', icon: Settings, status: 'signedIn' },
       { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, status: 'signedIn' }
     ]
