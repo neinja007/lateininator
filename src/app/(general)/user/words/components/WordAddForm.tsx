@@ -16,6 +16,7 @@ import Link from '@/components/Link';
 
 export const WordAddForm = () => {
   const [word, setWord] = useState<Word>();
+  const [lastWordId, setLastWordId] = useState<number>();
   const { register, handleSubmit, watch, setValue, reset } = useForm<WordSchema>({ resolver: zodResolver(wordSchema) });
 
   // update inputs if the targeted word is changed
@@ -46,12 +47,13 @@ export const WordAddForm = () => {
     }
   }, [word, setValue, reset]);
 
-  const { mutate: addWord, status } = useAddWord(word?.id);
+  const { mutateAsync: addWord, status } = useAddWord(word?.id);
 
   const type = watch('type');
 
-  const onSubmit = (data: any) => {
-    addWord(data);
+  const onSubmit = async (data: any) => {
+    await addWord(data);
+    setLastWordId(word?.id);
     setWord(undefined);
   };
 
@@ -70,7 +72,7 @@ export const WordAddForm = () => {
         {status === 'success' && (
           <span className='text-green-500'>
             Wort wurde erfolgreich gespeichert.{' '}
-            <Link href={`/vocabulary/dictionary/${word?.id}`}>Im Wörterbuch ansehen</Link>
+            <Link href={`/vocabulary/dictionary/${lastWordId}`}>Im Wörterbuch ansehen</Link>
           </span>
         )}
         {status === 'error' && <span className='text-red-500'>Wort konnte nicht gespeichert werden.</span>}
