@@ -64,7 +64,10 @@ const Navbar = () => {
                   {route.children
                     .map((child) => ({ ...child, href: route.href + child.href }))
                     .map((child, i) => {
-                      return <NavbarLink dropdown key={i} route={child} active={pathname.startsWith(child.href)} />;
+                      return makeStatusDependent(
+                        <NavbarLink dropdown key={i} route={child} active={pathname.startsWith(child.href)} />,
+                        child.status
+                      );
                     })}
                 </NavbarDropdown>
               );
