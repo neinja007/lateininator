@@ -32,8 +32,8 @@ export const WordAddForm = () => {
           } else if (value instanceof Object) {
             // also set type specific inputs
             Object.entries(value).forEach(([k, v]) => {
-              const key = word.type.toLowerCase() + '.' + k;
-              setValue(key as keyof WordSchema, v.toString());
+              const fullKey = word.type.toLowerCase() + '.' + k;
+              setValue(fullKey as keyof WordSchema, v);
             });
             return;
           }
