@@ -6,6 +6,7 @@ import { Analytics } from '@vercel/analytics/react';
 import '@/app/globals.css';
 import { QueryClientWrapper } from '@/components/QueryClientWrapper';
 import Pattern from '@/components/Pattern';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const rubik = Rubik({ subsets: ['latin'] });
 
@@ -27,6 +28,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <Pattern>{children}</Pattern>
           </QueryClientWrapper>
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>

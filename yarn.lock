@@ -2356,6 +2356,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/speed-insights@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "@vercel/speed-insights@npm:1.0.13"
+  peerDependencies:
+    "@sveltejs/kit": ^1 || ^2
+    next: ">= 13"
+    react: ^18 || ^19
+    svelte: ">= 4"
+    vue: ^3
+    vue-router: ^4
+  peerDependenciesMeta:
+    "@sveltejs/kit":
+      optional: true
+    next:
+      optional: true
+    react:
+      optional: true
+    svelte:
+      optional: true
+    vue:
+      optional: true
+    vue-router:
+      optional: true
+  checksum: 10c0/b2493ac7dd7b1905d75ac96c31e97e37b1222dbddd83c420dfcdb2956e135bdfe0f0aa94cbeddced93387e5b89abb3e2933a2606db9bf8465e112e2c86b8b879
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^2.0.0":
   version: 2.0.0
   resolution: "abbrev@npm:2.0.0"
@@ -4913,6 +4940,7 @@ __metadata:
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
     "@vercel/analytics": "npm:^1.3.1"
+    "@vercel/speed-insights": "npm:^1.0.13"
     axios: "npm:^1.7.6"
     clsx: "npm:^2.1.1"
     dayjs: "npm:^1.11.13"
