@@ -30,6 +30,9 @@ export const WordAddForm = () => {
         {type === 'ADJECTIVE' && <AdjectiveFields register={register} />}
       </div>
       <Textarea placeholder='z.B. nur mit Perfekt' label='Info' className='w-full' {...register('info')} />
+      {status === 'pending' && <div className='text-center'>Wort wird gespeichert...</div>}
+      {status === 'success' && <div className='text-center'>Wort wurde erfolgreich gespeichert.</div>}
+      {status === 'error' && <div className='text-center'>Wort konnte nicht gespeichert werden</div>}
       <div className='mt-4 flex justify-center'>
         <Button color='primary' type='submit'>
           Wort hinzufügen
