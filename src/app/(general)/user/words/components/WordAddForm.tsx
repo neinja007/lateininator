@@ -52,6 +52,7 @@ export const WordAddForm = () => {
 
   const onSubmit = (data: any) => {
     addWord(data);
+    setWord(undefined);
   };
 
   return (
