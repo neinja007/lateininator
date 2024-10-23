@@ -60,13 +60,7 @@ const Navbar = () => {
             let element: React.ReactNode;
             if (route.children) {
               element = (
-                <NavbarDropdown
-                  route={route}
-                  key={i}
-                  open={open}
-                  handleOpen={setOpen}
-                  active={pathname.startsWith(route.href)}
-                >
+                <NavbarDropdown route={route} open={open} handleOpen={setOpen} active={pathname.startsWith(route.href)}>
                   {route.children
                     .map((child) => ({ ...child, href: route.href + child.href }))
                     .map((child, i) => {
@@ -75,7 +69,7 @@ const Navbar = () => {
                 </NavbarDropdown>
               );
             } else {
-              element = <NavbarLink key={i} route={route} active={pathname.startsWith(route.href)} />;
+              element = <NavbarLink route={route} active={pathname.startsWith(route.href)} />;
             }
 
             return <Fragment key={i}>{makeStatusDependent(element, route.status)}</Fragment>;
