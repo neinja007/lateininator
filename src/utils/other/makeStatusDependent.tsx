@@ -1,24 +1,19 @@
 import { IsPremium } from '@/components/IsPremium';
+import { IsStaff } from '@/components/IsStaff';
+import { RouteStatus } from '@/types/other';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 
-export const makeStatusDependent = (
-  element: React.ReactNode,
-  condition: 'signedIn' | 'signedOut' | 'premium' | 'notPremium' | undefined
-): React.ReactNode => {
+export const makeStatusDependent = (element: React.ReactNode, condition?: RouteStatus): React.ReactNode => {
   if (condition === 'signedIn') {
     return <SignedIn>{element}</SignedIn>;
-  }
-
-  if (condition === 'signedOut') {
+  } else if (condition === 'signedOut') {
     return <SignedOut>{element}</SignedOut>;
-  }
-
-  if (condition === 'premium') {
+  } else if (condition === 'premium') {
     return <IsPremium>{element}</IsPremium>;
-  }
-
-  if (condition === 'notPremium') {
+  } else if (condition === 'notPremium') {
     return <IsPremium not>{element}</IsPremium>;
+  } else if (condition === 'staff') {
+    return <IsStaff>{element}</IsStaff>;
   }
 
   return element;
