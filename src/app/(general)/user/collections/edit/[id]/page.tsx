@@ -1,10 +1,12 @@
 'use client';
+import { use } from 'react';
 
 import Heading from '@/components/Heading';
 import EditCollection from '../../components/EditCollection';
 import Link from '@/components/Link';
 
-const Page = ({ params }: { params: { id: string } }) => {
+const Page = (props: { params: Promise<{ id: string }> }) => {
+  const params = use(props.params);
   return (
     <div>
       <Heading heading='Kollektion bearbeiten'>

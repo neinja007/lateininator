@@ -3,10 +3,11 @@ import { prisma } from '@/utils/other/client';
 type LayoutProps = { children: React.ReactNode };
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-export const generateMetadata = async ({ params }: Props) => {
+export const generateMetadata = async (props: Props) => {
+  const params = await props.params;
   const id = params.id;
 
   const word = await prisma.word.findUnique({
