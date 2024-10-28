@@ -6,6 +6,7 @@ import { ChevronUp, IdCard } from 'lucide-react';
 import { Route } from '@/constants/routes';
 import { COLORS } from '@/constants/other';
 import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
+import { IsStaff } from './IsStaff';
 
 type NavbarDropdownProps = {
   route: Route;
@@ -26,7 +27,11 @@ const NavbarDropdown = ({ route, children, open, handleOpen, active, showAdminIn
         onClick={() => handleOpen((prevOpen) => (prevOpen === route.label ? '' : route.label))}
       >
         <route.icon className='w-5' /> <span className='max-w-40 truncate'>{route.label}</span>{' '}
-        {showAdminIndicator && <IdCard className='text-red-500' />}
+        {showAdminIndicator && (
+          <IsStaff>
+            <IdCard className='text-red-500' />
+          </IsStaff>
+        )}
         <ChevronUp
           size={20}
           className={clsx(
