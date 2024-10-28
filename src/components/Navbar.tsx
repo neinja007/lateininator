@@ -49,18 +49,24 @@ const Navbar = () => {
           )}
         >
           {routes.map((route, i) => {
-            route = {
-              ...route,
-              label: route.label.replace(
-                '{name}',
-                user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil'
-              )
-            };
+            let profileNavlink = route.label === '{name}';
+            if (profileNavlink) {
+              route = {
+                ...route,
+                label: user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil'
+              };
+            }
 
             let element: React.ReactNode;
             if (route.children) {
               element = (
-                <NavbarDropdown route={route} open={open} handleOpen={setOpen} active={pathname.startsWith(route.href)}>
+                <NavbarDropdown
+                  showAdminIndicator={profileNavlink}
+                  route={route}
+                  open={open}
+                  handleOpen={setOpen}
+                  active={pathname.startsWith(route.href)}
+                >
                   {route.children
                     .map((child) => ({ ...child, href: route.href + child.href }))
                     .map((child, i) => {
