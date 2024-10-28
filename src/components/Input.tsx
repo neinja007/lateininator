@@ -13,7 +13,10 @@ type InputProps = {
 } & React.ComponentProps<'input'>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, handleChange, className, unstyled, useDisabledStyle, noGeneratedId, border, ...props }, ref) => {
+  (
+    { label, handleChange, className, unstyled, useDisabledStyle, noGeneratedId, border, ...props }: InputProps,
+    ref
+  ) => {
     const id = useId();
 
     if ((noGeneratedId && !props.id) || (!noGeneratedId && props.id)) {

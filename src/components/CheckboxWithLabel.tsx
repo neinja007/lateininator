@@ -11,7 +11,7 @@ type CheckboxWithLabelProps = {
 } & Omit<React.ComponentProps<'input'>, 'type'>;
 
 const CheckboxWithLabel = forwardRef<HTMLInputElement, CheckboxWithLabelProps>(
-  ({ checked, disabled, handleChange, label, noGeneratedId, ...props }, ref) => {
+  ({ checked, disabled, handleChange, label, noGeneratedId, ...props }: CheckboxWithLabelProps, ref) => {
     const id = useId();
 
     if ((!props.id && noGeneratedId) || (props.id && !noGeneratedId)) {
