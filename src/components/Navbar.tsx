@@ -1,7 +1,7 @@
 'use client';
 import { Fragment, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
 import { routes } from '@/constants/routes';
