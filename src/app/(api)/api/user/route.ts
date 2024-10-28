@@ -99,7 +99,8 @@ export const PATCH = async (request: NextRequest) => {
     }
   });
 
-  await clerkClient().users.updateUser(user.id, {
+  const client = await clerkClient();
+  client.users.updateUser(user.id, {
     firstName: name.split(' ')[0],
     lastName: name.split(' ')[1] || ' '
   });
