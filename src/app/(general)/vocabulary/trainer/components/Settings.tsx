@@ -39,7 +39,7 @@ const Settings = ({
   const [selectedWords, setSelectedWords] = useState<Word[]>([]);
   const [validWords, setValidWords] = useState<Word[]>([]);
 
-  const [typesToCheck, setTypesToCheck] = useState<WordType[]>([...APP_CONSTANTS.mainWordTypes, 'OTHER']);
+  const [typesToCheck, setTypesToCheck] = useState<WordType[]>([]);
 
   const typesToExclude: MainWordTypeWithOther[] = useMemo(() => {
     const newTypesToExclude: MainWordTypeWithOther[] = APP_CONSTANTS.mainWordTypes.filter(
