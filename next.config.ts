@@ -1,4 +1,6 @@
-const nextConfig = {
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
@@ -7,13 +9,6 @@ const nextConfig = {
         permanent: true
       }
     ];
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack']
-    });
-    return config;
   }
 };
 
