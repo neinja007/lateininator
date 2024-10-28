@@ -99,10 +99,11 @@ export const PATCH = async (request: NextRequest) => {
     }
   });
 
+  const match = name.match(/^([^ ]+) (.*)$/) || name.split(' ');
   const client = await clerkClient();
   client.users.updateUser(user.id, {
-    firstName: name.split(' ')[0],
-    lastName: name.split(' ')[1] || ' '
+    firstName: match[1],
+    lastName: match[2] || ' '
   });
 
   return NextResponse.json(updatedUser, { status: 200 });
