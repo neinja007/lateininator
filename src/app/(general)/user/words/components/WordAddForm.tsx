@@ -55,6 +55,7 @@ export const WordAddForm = () => {
     await addWord(data);
     setLastWordId(word?.id);
     setWord(undefined);
+    reset();
   };
 
   return (
