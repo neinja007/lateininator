@@ -54,7 +54,6 @@ export const WordAddForm = () => {
   const type = watch('type');
 
   useEffect(() => {
-    console.log('unregister', type);
     if (!type) return;
     unregister(
       APP_CONSTANTS.mainWordTypes
