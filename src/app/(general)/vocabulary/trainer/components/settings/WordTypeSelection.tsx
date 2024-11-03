@@ -37,7 +37,22 @@ const WordTypeSelection = ({
 
   return (
     <>
-      <p>Wählen Sie aus, welche Wortarten abgefragt werden sollen:</p>
+      <div className='mb-3 grid-cols-2 items-baseline sm:grid lg:grid-cols-3'>
+        <p className='mb-2 mr-5 lg:col-span-2'>Wählen Sie aus, welche Wortarten abgefragt werden sollen:</p>
+        <div className='grid flex-grow grid-cols-2 gap-x-4'>
+          <Button
+            color={
+              APP_CONSTANTS.mainWordTypesWithOther.every((type) => typesToCheck.includes(type)) ? 'primary' : 'default'
+            }
+            onClick={() => setTypesToCheck([...APP_CONSTANTS.mainWordTypesWithOther])}
+          >
+            Alle auswählen
+          </Button>
+          <Button onClick={() => setTypesToCheck([])} color={typesToCheck.length === 0 ? 'primary' : 'default'}>
+            Alle abwählen
+          </Button>
+        </div>
+      </div>
       <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
         {APP_CONSTANTS.mainWordTypesWithOther.map((type, i) => (
           <Button
