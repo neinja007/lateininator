@@ -65,8 +65,7 @@ export const WordAddForm = () => {
   const { mutateAsync: addWord, status } = useAddWord(word?.id);
 
   const onSubmit = async (data: any) => {
-    await addWord(data);
-    setLastWordId(word?.id);
+    await addWord(data).then((data) => setLastWordId(data.data.id));
     setWord(undefined);
     reset();
   };
