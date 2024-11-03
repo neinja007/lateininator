@@ -54,12 +54,14 @@ export const WordAddForm = () => {
   const type = watch('type');
 
   useEffect(() => {
+    console.log('unregister', type);
+    if (!type) return;
     unregister(
       APP_CONSTANTS.mainWordTypes
         .filter((mainType) => type !== mainType)
         .map((type) => type.toLowerCase()) as Lowercase<MainWordType>[]
     );
-  }, [type, unregister]);
+  }, [type, unregister, word]);
 
   const { mutateAsync: addWord, status } = useAddWord(word?.id);
 
