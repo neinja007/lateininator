@@ -11,9 +11,11 @@ import { useRouter } from 'next/navigation';
 import { useToggleSavedCollection } from '@/hooks/database/mutations/useToggleSavedCollection';
 import Hr from '@/components/Hr';
 import Info from '@/components/Info';
+import { useDbUser } from '@/hooks/database/queries/useDbUser';
 
 const Page = () => {
   const user = useUser();
+  const dbUser = useDbUser();
 
   const { data: collections, status } = useCollections<FullCollection[]>({
     status: 'all',
@@ -66,6 +68,7 @@ const Page = () => {
                   name={collection.name}
                   owner={collection.owner.name}
                   owned={collection.owner.id === user.user?.id}
+                  admin={dbUser?.dbUser?.staff}
                 />
               ))}
             {[...Array(3 - (savedCollections ? savedCollections.length : 3))].map((_, i) => (
