@@ -13,11 +13,15 @@ import WordSelector from './WordSelector';
 import { useEffect, useState } from 'react';
 import { Word } from '@/types/word';
 import Link from '@/components/Link';
+import { APP_CONSTANTS } from '@/constants/appConstants';
+import { MainWordType } from '@/types/appConstants';
 
 export const WordAddForm = () => {
   const [word, setWord] = useState<Word>();
   const [lastWordId, setLastWordId] = useState<number>();
-  const { register, handleSubmit, watch, setValue, reset } = useForm<WordSchema>({ resolver: zodResolver(wordSchema) });
+  const { register, unregister, handleSubmit, watch, setValue, reset } = useForm<WordSchema>({
+    resolver: zodResolver(wordSchema)
+  });
 
   // update inputs if the targeted word is changed
   useEffect(() => {
@@ -47,9 +51,19 @@ export const WordAddForm = () => {
     }
   }, [word, setValue, reset]);
 
-  const { mutateAsync: addWord, status } = useAddWord(word?.id);
-
   const type = watch('type');
+
+  useEffect(() => {
+    unregister(
+      APP_CONSTANTS.mainWordTypes
+        .filter((mainType) => type !== mainType)
+        .map((type) => type.toLowerCase()) as Lowercase<MainWordType>[]
+    );
+  }, [type, unregister]);
+
+  console.log(watch());
+
+  const { mutateAsync: addWord, status } = useAddWord(word?.id);
 
   const onSubmit = async (data: any) => {
     await addWord(data);
