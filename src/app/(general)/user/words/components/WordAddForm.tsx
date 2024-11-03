@@ -61,8 +61,6 @@ export const WordAddForm = () => {
     );
   }, [type, unregister]);
 
-  console.log(watch());
-
   const { mutateAsync: addWord, status } = useAddWord(word?.id);
 
   const onSubmit = async (data: any) => {
