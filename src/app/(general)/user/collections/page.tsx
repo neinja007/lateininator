@@ -50,7 +50,7 @@ const Page = () => {
           </h2>
           <CellContainer>
             {!savedCollections &&
-              [...Array(3)].map((_, i) => <Skeleton key={i} pulse customSize className='h-32 w-full' />)}
+              [...Array(3)].map((_, i) => <Skeleton key={'skeleton-' + i} pulse customSize className='h-32 w-full' />)}
             {savedCollections &&
               savedCollections.map((collection) => (
                 <Cell
@@ -68,8 +68,8 @@ const Page = () => {
                   owned={collection.owner.id === user.user?.id}
                 />
               ))}
-            {[...Array(3 - (savedCollections ? savedCollections.length : 3))].map((i) => (
-              <Cell key={i} outlined />
+            {[...Array(3 - (savedCollections ? savedCollections.length : 3))].map((_, i) => (
+              <Cell key={'outlined-' + i} outlined />
             ))}
           </CellContainer>
         </div>
