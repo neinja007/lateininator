@@ -54,7 +54,7 @@ const Cell = ({
             <h3
               className={clsx(
                 'flex text-2xl font-medium',
-                description || editable ? 'justify-between' : 'justify-center'
+                description || editable || admin ? 'justify-between' : 'justify-center'
               )}
             >
               {name}
