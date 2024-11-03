@@ -169,9 +169,7 @@ export const PUT = async (request: NextRequest) => {
       updatedWord = await prisma.word.update({
         where: {
           id,
-          createdBy: {
-            id: user.id
-          }
+          createdBy: dbUser.staff ? undefined : { id: user.id }
         },
         data
       });
