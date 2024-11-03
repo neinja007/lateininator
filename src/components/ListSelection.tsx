@@ -17,9 +17,15 @@ type ListSelectionProps = {
   selectedWords: Word[];
   setSelectedWords: Dispatch<SetStateAction<Word[]>>;
   onlyAcceptType?: MainWordType;
+  hideExceptionalWordControls?: boolean;
 };
 
-const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: ListSelectionProps) => {
+const ListSelection = ({
+  selectedWords,
+  setSelectedWords,
+  onlyAcceptType,
+  hideExceptionalWordControls
+}: ListSelectionProps) => {
   const { data: collections, status } = useCollections<(Collection & { lists: (List & { words: Word[] })[] })[]>({
     status: 'saved',
     wordInclude: ['adjective', 'noun', 'verb'],
@@ -172,13 +178,15 @@ const ListSelection = ({ selectedWords, setSelectedWords, onlyAcceptType }: List
             </b>{' '}
             ausgewählt.
           </p>
-          <div className='sm:text-right'>
-            <CheckboxWithLabel
-              label='Wörter mit Ausnahmen ausschließen'
-              checked={excludeExceptionalWords}
-              handleChange={setExcludeExceptionalWords}
-            />
-          </div>
+          {!hideExceptionalWordControls && (
+            <div className='sm:text-right'>
+              <CheckboxWithLabel
+                label='Wörter mit Ausnahmen ausschließen'
+                checked={excludeExceptionalWords}
+                handleChange={setExcludeExceptionalWords}
+              />
+            </div>
+          )}
         </div>
       )}
     </>

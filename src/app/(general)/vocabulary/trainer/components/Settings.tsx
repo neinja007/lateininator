@@ -72,7 +72,7 @@ const Settings = ({
   return (
     <>
       {currentSettingsStage === 1 && (
-        <ListSelection selectedWords={selectedWords} setSelectedWords={setSelectedWords} />
+        <ListSelection hideExceptionalWordControls selectedWords={selectedWords} setSelectedWords={setSelectedWords} />
       )}
       {currentSettingsStage === 2 && (
         <WordTypeSelection
