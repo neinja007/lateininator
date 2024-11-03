@@ -15,6 +15,7 @@ type CellProps = {
   editable?: boolean;
   onToggleEditable?: () => void;
   owned?: boolean;
+  admin?: boolean;
 };
 
 const Cell = ({
@@ -28,7 +29,8 @@ const Cell = ({
   onToggleActive,
   editable,
   onToggleEditable,
-  owned
+  owned,
+  admin
 }: CellProps) => {
   return (
     <div className='min-h-32 rounded-lg border border-gray-200 dark:border-gray-700'>
@@ -56,7 +58,7 @@ const Cell = ({
               )}
             >
               {name}
-              {editable && (
+              {(editable || admin) && (
                 <button
                   onClick={
                     onToggleEditable
