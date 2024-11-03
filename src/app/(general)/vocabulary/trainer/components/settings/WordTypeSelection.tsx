@@ -37,7 +37,7 @@ const WordTypeSelection = ({
 
   return (
     <>
-      <div className='mb-3 grid-cols-2 items-baseline sm:grid lg:grid-cols-3'>
+      <div className='mb-3 grid-cols-2 items-baseline md:grid lg:grid-cols-3'>
         <p className='mb-2 mr-5 lg:col-span-2'>Wählen Sie aus, welche Wortarten abgefragt werden sollen:</p>
         <div className='grid flex-grow grid-cols-2 gap-x-4'>
           <Button
@@ -53,7 +53,7 @@ const WordTypeSelection = ({
           </Button>
         </div>
       </div>
-      <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
+      <div className='grid grid-cols-2 gap-3 sm:grid-cols-4'>
         {APP_CONSTANTS.mainWordTypesWithOther.map((type, i) => (
           <Button
             key={i}
