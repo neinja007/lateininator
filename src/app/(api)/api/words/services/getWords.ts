@@ -18,7 +18,8 @@ export const getWords = async (includedDataObject: any, userId: string | undefin
             }
           }
         ]
-      }
+      },
+      take: 30
     });
     return words;
   } catch (error) {
