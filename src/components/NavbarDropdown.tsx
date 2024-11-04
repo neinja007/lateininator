@@ -2,10 +2,11 @@
 import { Dispatch, SetStateAction } from 'react';
 import navbar from '@/styles/navbar.module.css';
 import clsx from 'clsx';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, IdCard } from 'lucide-react';
 import { Route } from '@/constants/routes';
 import { COLORS } from '@/constants/other';
 import { usePrimaryColor } from '@/hooks/database/queries/usePrimaryColor';
+import { IsStaff } from './IsStaff';
 
 type NavbarDropdownProps = {
   route: Route;
@@ -13,9 +14,10 @@ type NavbarDropdownProps = {
   open: string;
   handleOpen: Dispatch<SetStateAction<string>>;
   active: boolean;
+  showAdminIndicator?: boolean;
 };
 
-const NavbarDropdown = ({ route, children, open, handleOpen, active }: NavbarDropdownProps) => {
+const NavbarDropdown = ({ route, children, open, handleOpen, active, showAdminIndicator }: NavbarDropdownProps) => {
   const primaryColor = usePrimaryColor();
 
   return (
@@ -24,7 +26,12 @@ const NavbarDropdown = ({ route, children, open, handleOpen, active }: NavbarDro
         className={clsx(navbar.navlink, active ? COLORS[primaryColor].text : navbar.inactive)}
         onClick={() => handleOpen((prevOpen) => (prevOpen === route.label ? '' : route.label))}
       >
-        <route.icon className='w-5' /> <span className='max-w-40 truncate'>{route.label}</span>
+        <route.icon className='w-5' /> <span className='max-w-40 truncate'>{route.label}</span>{' '}
+        {showAdminIndicator && (
+          <IsStaff>
+            <IdCard className='text-red-500' />
+          </IsStaff>
+        )}
         <ChevronUp
           size={20}
           className={clsx(

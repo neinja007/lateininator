@@ -220,6 +220,12 @@ export const PUT = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
+  const dbUser = await prisma.user.findUnique({
+    where: {
+      id: user.id
+    }
+  });
+
   const collection = parsed.data;
 
   const id = collection.id;
@@ -234,12 +240,13 @@ export const PUT = async (request: NextRequest) => {
     try {
       updatedCollection = await prisma.collection.update({
         where: {
-          id
+          id,
+          ownerId: dbUser?.staff ? undefined : user.id
         },
         data: {
           name,
           description,
-          private: process.env.NEXT_PUBLIC_ENABLE_PUBLIC_DATA === 'true' ? isPrivate : true,
+          private: process.env.NEXT_PUBLIC_ENABLE_PUBLIC_DATA === 'true' ? isPrivate : dbUser?.staff ? isPrivate : true,
           lists: {
             deleteMany: {}
           }

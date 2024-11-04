@@ -57,3 +57,5 @@ export type Settings = {
 };
 
 export type Pattern = 'dotted' | 'isometric' | 'false';
+
+export type RouteStatus = 'signedIn' | 'signedOut' | 'premium' | 'notPremium' | 'staff';

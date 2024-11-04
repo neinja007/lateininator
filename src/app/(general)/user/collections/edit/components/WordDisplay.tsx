@@ -25,7 +25,7 @@ const WordDisplay = ({ added, word, setWords, words }: WordProps) => {
       }
       className='flex items-center rounded-lg bg-gray-200 px-3 py-2 hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
     >
-      {word.name}
+      {word.name} {word.info && `(${word.info})`}
       {added ? (
         <Minus className='ml-2 h-5 w-5 cursor-pointer rounded-full bg-red-400 p-0.5 dark:bg-red-700' />
       ) : (

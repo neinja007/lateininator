@@ -13,15 +13,15 @@ export const wordSchema = z.object({
   noun: z
     .object({
       pluralOnly: z.boolean(),
-      declension: z.enum(WORD_CONSTANTS.declension as [string, ...string[]]),
+      declension: z.enum(WORD_CONSTANTS.optional.declension as [string, ...string[]]),
       genitive: z.string(),
-      gender: z.enum(WORD_CONSTANTS.gender as [string, ...string[]])
+      gender: z.enum(WORD_CONSTANTS.optional.gender as [string, ...string[]])
     })
     .optional(),
 
   verb: z
     .object({
-      conjugation: z.enum(WORD_CONSTANTS.conjugation as [string, ...string[]]),
+      conjugation: z.enum(WORD_CONSTANTS.optional.conjugation as [string, ...string[]]),
       present: z.string(),
       perfect: z.string(),
       participle: z.string()
@@ -30,7 +30,7 @@ export const wordSchema = z.object({
 
   adjective: z
     .object({
-      comparison: z.enum(WORD_CONSTANTS.comparison as [string, ...string[]]),
+      comparison: z.enum(WORD_CONSTANTS.optional.comparison as [string, ...string[]]),
       femininum: z.string(),
       neutrum: z.string()
     })

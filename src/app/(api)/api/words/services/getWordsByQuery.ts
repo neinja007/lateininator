@@ -25,6 +25,7 @@ export const getWordsByQuery = async (query: string, includedDataObject: any, us
         sort: 'desc'
       }
     },
+    take: 30,
     include: includedDataObject
   });
 };

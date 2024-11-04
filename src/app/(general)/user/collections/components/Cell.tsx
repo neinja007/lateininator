@@ -15,6 +15,7 @@ type CellProps = {
   editable?: boolean;
   onToggleEditable?: () => void;
   owned?: boolean;
+  admin?: boolean;
 };
 
 const Cell = ({
@@ -28,7 +29,8 @@ const Cell = ({
   onToggleActive,
   editable,
   onToggleEditable,
-  owned
+  owned,
+  admin
 }: CellProps) => {
   return (
     <div className='min-h-32 rounded-lg border border-gray-200 dark:border-gray-700'>
@@ -52,11 +54,11 @@ const Cell = ({
             <h3
               className={clsx(
                 'flex text-2xl font-medium',
-                description || editable ? 'justify-between' : 'justify-center'
+                description || editable || admin ? 'justify-between' : 'justify-center'
               )}
             >
               {name}
-              {editable && (
+              {(editable || admin) && (
                 <button
                   onClick={
                     onToggleEditable

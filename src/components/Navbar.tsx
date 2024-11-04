@@ -1,7 +1,7 @@
 'use client';
 import { Fragment, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/Logo';
 import NavbarDropdown from '@/components/NavbarDropdown';
 import NavbarLink from '@/components/NavbarLink';
 import { routes } from '@/constants/routes';
@@ -49,20 +49,20 @@ const Navbar = () => {
           )}
         >
           {routes.map((route, i) => {
-            route = {
-              ...route,
-              label: route.label.replace(
-                '{name}',
-                user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil'
-              )
-            };
+            let profileNavlink = route.label === '{name}';
+            if (profileNavlink) {
+              route = {
+                ...route,
+                label: user.isLoaded && user.user ? user.user.fullName || 'Profil' : 'Profil'
+              };
+            }
 
             let element: React.ReactNode;
             if (route.children) {
               element = (
                 <NavbarDropdown
+                  showAdminIndicator={profileNavlink}
                   route={route}
-                  key={i}
                   open={open}
                   handleOpen={setOpen}
                   active={pathname.startsWith(route.href)}
@@ -70,12 +70,19 @@ const Navbar = () => {
                   {route.children
                     .map((child) => ({ ...child, href: route.href + child.href }))
                     .map((child, i) => {
-                      return <NavbarLink dropdown key={i} route={child} active={pathname.startsWith(child.href)} />;
+                      return (
+                        <Fragment key={i}>
+                          {makeStatusDependent(
+                            <NavbarLink dropdown key={i} route={child} active={pathname.startsWith(child.href)} />,
+                            child.status
+                          )}
+                        </Fragment>
+                      );
                     })}
                 </NavbarDropdown>
               );
             } else {
-              element = <NavbarLink key={i} route={route} active={pathname.startsWith(route.href)} />;
+              element = <NavbarLink route={route} active={pathname.startsWith(route.href)} />;
             }
 
             return <Fragment key={i}>{makeStatusDependent(element, route.status)}</Fragment>;

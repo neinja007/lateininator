@@ -20,7 +20,7 @@ const Lists = ({ lists, activeList, setActiveList, setLists }: ListsProps) => {
 
   return (
     <div className={lists.length > 0 ? 'mt-4' : undefined}>
-      <div className='flex flex-wrap gap-x-4'>
+      <div className='flex flex-wrap gap-2'>
         {lists.map((list) => (
           <ListDisplay
             key={list.id}

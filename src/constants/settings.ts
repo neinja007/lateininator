@@ -51,6 +51,6 @@ export const settings: Settings = {
       dotted: 'Gepunktet',
       isometric: 'Isometrisch'
     } as { [P in Pattern]: string },
-    invalidateQueries: 'settings'
+    invalidateQueries: 'user-settings'
   }
 };

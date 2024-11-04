@@ -1,4 +1,5 @@
 'use client';
+import { use } from 'react';
 import Header from './components/Header';
 import WordInformation from './components/WordInformation';
 import TableInformation from './components/TableInformation';
@@ -17,9 +18,13 @@ import { useWords } from '@/hooks/database/queries/useWords';
 import { Word } from '@/types/word';
 import WordNotFound from './components/WordNotFound';
 
-type PageProps = { params: { id: string } };
+type PageProps = { params: Promise<{ id: string }> };
 
-const Page = ({ params: { id } }: PageProps) => {
+const Page = (props: PageProps) => {
+  const params = use(props.params);
+
+  const { id } = params;
+
   const { data: word, status } = useWords<Word>({
     id: parseInt(id),
     include: ['derivative', 'noun', 'verb', 'adjective']

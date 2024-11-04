@@ -75,6 +75,10 @@ export const PUT = async (request: NextRequest) => {
     }
   });
 
+  if (!dbUser?.staff) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const body = await request.json();
 
   const parsed = wordSchema.safeParse(body);
@@ -89,13 +93,15 @@ export const PUT = async (request: NextRequest) => {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
+  const id = z.coerce.number().optional().parse(request.nextUrl.searchParams.get('id'));
+
   const rawWord = Object.assign(
     {},
     {
       name: word.name,
       type: word.type as Type,
       translation: word.translation,
-      info: word.info
+      info: word.info || undefined
     }
   );
 
@@ -139,24 +145,37 @@ export const PUT = async (request: NextRequest) => {
 
   const derivativeId = word.derivativeId;
 
-  try {
-    const newWord = await prisma.word.create({
-      data: {
-        ...rawWord,
-        createdBy: {
-          connect: {
-            id: user.id
-          }
-        },
-        private: !dbUser?.staff,
-        ...(nounData && { noun: { create: nounData } }),
-        ...(verbData && { verb: { create: verbData } }),
-        ...(adjectiveData && { adjective: { create: adjectiveData } }),
-        ...(derivativeId && { derivative: { connect: { id: derivativeId } } })
+  const data = {
+    ...rawWord,
+    createdBy: {
+      connect: {
+        id: user.id
       }
-    });
+    },
+    private: !dbUser?.staff,
+    ...(nounData && { noun: { create: nounData } }),
+    ...(verbData && { verb: { create: verbData } }),
+    ...(adjectiveData && { adjective: { create: adjectiveData } }),
+    ...(derivativeId && { derivative: { connect: { id: derivativeId } } })
+  };
 
-    return NextResponse.json(newWord);
+  try {
+    let updatedWord;
+    if (!id) {
+      updatedWord = await prisma.word.create({
+        data
+      });
+    } else {
+      updatedWord = await prisma.word.update({
+        where: {
+          id,
+          createdBy: dbUser.staff ? undefined : { id: user.id }
+        },
+        data
+      });
+    }
+
+    return NextResponse.json(updatedWord);
   } catch (error: any) {
     console.error(error);
     return NextResponse.json({ error: error.message }, { status: 500 });

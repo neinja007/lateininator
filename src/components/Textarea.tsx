@@ -12,7 +12,7 @@ type TextareaProps = {
 } & Omit<React.ComponentProps<'textarea'>, 'value'>;
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ value, handleChange, label, className, noGeneratedId, useDisabledStyle, ...props }, ref) => {
+  ({ value, handleChange, label, className, noGeneratedId, useDisabledStyle, ...props }: TextareaProps, ref) => {
     const id = useId();
 
     if ((noGeneratedId && !props.id) || (!noGeneratedId && props.id)) {
