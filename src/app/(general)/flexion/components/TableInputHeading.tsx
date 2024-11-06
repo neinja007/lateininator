@@ -9,7 +9,7 @@ type TableInputHeadingProps = {
 export const TableInputHeading = ({ onInsertBases, text, stage }: TableInputHeadingProps) => {
   return (
     <div className='mb-4 flex justify-between'>
-      <p className='text-center text-lg font-bold'>{text}</p>
+      <p className='text-center text-xl font-bold'>{text}</p>
       <InsertBasesButton disabled={stage === 'review'} onClick={onInsertBases} />
     </div>
   );
