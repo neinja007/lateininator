@@ -14,7 +14,8 @@ import { useEffect, useState } from 'react';
 import { Word } from '@/types/word';
 import Link from '@/components/Link';
 import { APP_CONSTANTS } from '@/constants/appConstants';
-import { MainWordType } from '@/types/appConstants';
+import { MainWordType, WordType } from '@/types/appConstants';
+import ExceptionEditor from './ExceptionEditor';
 
 export const WordAddForm = () => {
   const [word, setWord] = useState<Word>();
@@ -51,7 +52,7 @@ export const WordAddForm = () => {
     }
   }, [word, setValue, reset]);
 
-  const type = watch('type');
+  const type: WordType | undefined = watch('type') as WordType | undefined;
 
   useEffect(() => {
     if (!type) return;
@@ -80,6 +81,7 @@ export const WordAddForm = () => {
         {type === 'ADJECTIVE' && <AdjectiveFields register={register} />}
       </div>
       <Textarea placeholder='z.B. nur mit Perfekt' label='Info' className='w-full' {...register('info')} />
+      <ExceptionEditor exception={word?.exception} type={word?.type ?? type ?? 'OTHER'} />
       <div className='my-2 text-center'>
         {status === 'pending' && <span className='animate-pulse'>Wort wird gespeichert...</span>}
         {status === 'success' && (
