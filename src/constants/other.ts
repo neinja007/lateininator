@@ -101,3 +101,9 @@ export const BREAKPOINTS: { [B in Breakpoint]: number } = {
 export const fullPatterns: Pattern[] = ['isometric', 'dotted'];
 
 export const monthlyPrice = 5;
+
+export const exceptionStructure = {
+  NOUN: ['numerus', 'wordCase'],
+  VERB: ['modus', 'voice', 'tense', 'numerus', 'person'],
+  ADJECTIVE: ['gender', 'comparisonDegree', 'numerus', 'wordCase']
+};
