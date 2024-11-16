@@ -43,7 +43,7 @@ export const getForm = (
       if (info.wordCase === '6') {
         ending = endings.noun[word.noun.declension][word.noun.gender][info.numerus][1];
 
-        if (word.noun.declension === 'O' && word.noun.gender === 'M') {
+        if (word.noun.declension === 'O' && word.noun.gender === 'M' && info.numerus === 'sin') {
           if (word.name.endsWith('ius')) ending = 'i';
           else if (word.name.endsWith('us')) ending = 'e';
         }
