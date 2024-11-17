@@ -1,5 +1,6 @@
 import { Type } from '@prisma/client';
 
+// directly related properties grouped by word type
 const wordProperties = {
   NOUN: ['declension', 'genitive', 'gender'],
   VERB: ['conjugation', 'present', 'perfect', 'participle'],
@@ -8,6 +9,8 @@ const wordProperties = {
   ADVERB: [],
   PRONOUN: []
 } as const;
+
+// Properties directly related to the word type
 const allWordProperties = [
   'declension',
   'genitive',
@@ -20,6 +23,8 @@ const allWordProperties = [
   'femininum',
   'neutrum'
 ] as const;
+
+// Properties that are not directly related to the word type
 const otherProperties = [
   'comparisonDegree',
   'wordCase',
@@ -28,7 +33,7 @@ const otherProperties = [
   'modus',
   'voice',
   'tense',
-  'gender'
+  'gender' // adjectives can have all genders
 ] as const;
 const wordTypes = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER', 'ADVERB', 'PRONOUN'] as Type[];
 const mainWordTypes = ['NOUN', 'VERB', 'ADJECTIVE'] satisfies Type[];
