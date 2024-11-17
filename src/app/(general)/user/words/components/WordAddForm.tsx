@@ -38,6 +38,10 @@ export const WordAddForm = () => {
             // join translation array
             value = value.join(', ');
           } else if (value instanceof Object) {
+            if (key === 'exception') {
+              setValue('exception', JSON.stringify(value));
+              return;
+            }
             // also set type specific inputs
             Object.entries(value).forEach(([k, v]) => {
               const fullKey = word.type.toLowerCase() + '.' + k;
