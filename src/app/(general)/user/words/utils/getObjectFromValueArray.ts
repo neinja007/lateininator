@@ -1,14 +1,20 @@
-export const getObjectFromValueArray = (valueArray: string[][]): Object => {
-  return valueArray.reduce<Object>((acc, values) => {
-    const [path, value] = [values.slice(0, -1), values[values.length - 1]];
+export const getObjectFromValueArray = (arrays: string[][]): Object => {
+  return arrays.reduce((result, path) => {
+    const pathParts = path.slice(0, -1);
+    const value = path[path.length - 1];
 
-    return path.reduce((obj: Record<string, any>, key, index) => {
-      if (index === path.length - 1) {
-        obj[key] = value;
+    let current: Record<string, any> = result;
+
+    pathParts.forEach((key, index) => {
+      if (index === pathParts.length - 1) {
+        current[key] = current[key] || {};
+        current[key][value] = value;
       } else {
-        obj[key] = obj[key] || {};
+        current[key] = current[key] || {};
+        current = current[key];
       }
-      return obj[key];
-    }, acc);
+    });
+
+    return result;
   }, {});
 };
