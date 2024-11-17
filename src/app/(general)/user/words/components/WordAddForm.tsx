@@ -39,7 +39,7 @@ export const WordAddForm = () => {
             value = value.join(', ');
           } else if (value instanceof Object) {
             if (key === 'exception') {
-              setValue('exception', JSON.stringify(value));
+              setValue('exception', value as Record<string, any>);
               return;
             }
             // also set type specific inputs
@@ -88,8 +88,8 @@ export const WordAddForm = () => {
       <Textarea placeholder='z.B. nur mit Perfekt' label='Info' className='w-full' {...register('info')} />
       {type && transformTypeToMainType(type) !== 'OTHER' && (
         <ExceptionEditor
-          exception={JSON.parse(watch('exception') || '{}')}
-          setExceptions={(exceptions) => setValue('exception', JSON.stringify(exceptions))}
+          exception={watch('exception') || {}}
+          setExceptions={(exceptions) => setValue('exception', exceptions)}
           type={transformTypeToMainType(type) as MainWordType}
         />
       )}
