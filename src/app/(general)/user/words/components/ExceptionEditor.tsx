@@ -21,10 +21,7 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
   const exceptionsArray = getValueArrayFromObject(exception);
   const [newException, setNewException] = useState(Array(exceptionStructure[type].length + 1).fill(''));
 
-  console.log(exception);
-
   const onExceptionAdd = () => {
-    console.log(getObjectFromValueArray([...exceptionsArray, newException]));
     setExceptions(getObjectFromValueArray([...exceptionsArray, newException]));
     setNewException(Array(exceptionStructure[type].length + 1).fill(''));
   };
