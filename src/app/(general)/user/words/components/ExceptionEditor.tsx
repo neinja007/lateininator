@@ -8,7 +8,7 @@ import { Check, Plus, Settings2, X } from 'lucide-react';
 import Input from '@/components/Input';
 import table from '@/styles/table.module.css';
 import { getValueArrayFromObject } from '../utils/getValueArrayFromObject';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getObjectFromValueArray } from '../utils/getObjectFromValueArray';
 
 type ExceptionEditorProps = {
@@ -20,6 +20,10 @@ type ExceptionEditorProps = {
 const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProps) => {
   const exceptionsArray = getValueArrayFromObject(exception);
   const [newException, setNewException] = useState(Array(exceptionStructure[type].length + 1).fill(''));
+
+  useEffect(() => {
+    setNewException(Array(exceptionStructure[type].length + 1).fill(''));
+  }, [type]);
 
   const onExceptionAdd = () => {
     setExceptions(getObjectFromValueArray([...exceptionsArray, newException]));
