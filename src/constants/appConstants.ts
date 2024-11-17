@@ -20,7 +20,16 @@ const allWordProperties = [
   'femininum',
   'neutrum'
 ] as const;
-const otherProperties = ['comparisonDegree', 'wordCase', 'person', 'numerus', 'modus', 'voice', 'tense'] as const;
+const otherProperties = [
+  'comparisonDegree',
+  'wordCase',
+  'person',
+  'numerus',
+  'modus',
+  'voice',
+  'tense',
+  'gender'
+] as const;
 const wordTypes = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER', 'ADVERB', 'PRONOUN'] as Type[];
 const mainWordTypes = ['NOUN', 'VERB', 'ADJECTIVE'] satisfies Type[];
 const mainWordTypesWithOther = ['NOUN', 'VERB', 'ADJECTIVE', 'OTHER'] satisfies Type[];
