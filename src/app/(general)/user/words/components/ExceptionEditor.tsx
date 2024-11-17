@@ -4,7 +4,7 @@ import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { MainWordType, WordProperty } from '@/types/appConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import clsx from 'clsx';
-import { Check, Plus, X } from 'lucide-react';
+import { Check, Plus, Settings2, X } from 'lucide-react';
 import Input from '@/components/Input';
 import table from '@/styles/table.module.css';
 import { getValueArrayFromObject } from '../utils/getValueArrayFromObject';
@@ -21,12 +21,13 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
   const exceptionsArray = getValueArrayFromObject(exception);
   const [newException, setNewException] = useState(Array(exceptionStructure[type].length + 1).fill(''));
 
+  console.log(exception);
+
   const onExceptionAdd = () => {
+    console.log(getObjectFromValueArray([...exceptionsArray, newException]));
     setExceptions(getObjectFromValueArray([...exceptionsArray, newException]));
     setNewException(Array(exceptionStructure[type].length + 1).fill(''));
   };
-
-  console.log(newException, getObjectFromValueArray([newException]));
 
   return (
     <div className='mt-2'>
@@ -42,7 +43,7 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
               ))}
               <th className={table.th}>Ausnahme</th>
               <th className={clsx(table.th, 'w-12')}>
-                <X />
+                <Settings2 />
               </th>
             </tr>
           </thead>
@@ -52,10 +53,21 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
                 {exceptionValues.map((value, index) => (
                   <td className='border p-0 dark:border-gray-500' key={index}>
                     {index == exceptionStructure[type as MainWordType].length ? (
-                      <Input type='text' className={clsx(table.input, 'w-full')} value={value} />
+                      <Input
+                        disabled
+                        unstyled
+                        type='text'
+                        className={clsx(table.input, 'h-10 w-full bg-transparent px-3')}
+                        value={value}
+                      />
                     ) : (
                       <Select
-                        className={clsx(table.select, 'm-0 h-8 w-full !border-none px-1 focus:outline-none')}
+                        disabled
+                        className={clsx(
+                          table.select,
+                          'm-0 h-10 w-full !border-none bg-transparent px-3 focus:outline-none'
+                        )}
+                        unstyled
                         value={value}
                         options={
                           WORD_CONSTANTS[
@@ -66,12 +78,16 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
                     )}
                   </td>
                 ))}
-                <td className={table.td}>
-                  <div className='flex items-center'>
-                    <button className='rounded-lg border border-red-700 transition-colors hover:bg-red-500'>
-                      <X />
-                    </button>
-                  </div>
+                <td className='p-0'>
+                  <button
+                    type='button'
+                    onClick={() =>
+                      setExceptions(getObjectFromValueArray(exceptionsArray.filter((_, i) => i !== index)))
+                    }
+                    className={clsx('flex h-10 w-full items-center justify-center', COLORS.red.dynamic)}
+                  >
+                    <X />
+                  </button>
                 </td>
               </tr>
             ))}
@@ -114,6 +130,7 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
               <td className='p-0'>
                 <button
                   onClick={onExceptionAdd}
+                  type='button'
                   className={clsx('flex h-10 w-full items-center justify-center', COLORS.green.dynamic)}
                 >
                   <Check />
