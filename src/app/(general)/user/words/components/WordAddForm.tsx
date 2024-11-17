@@ -16,6 +16,7 @@ import Link from '@/components/Link';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 import { MainWordType, WordType } from '@/types/appConstants';
 import ExceptionEditor from './ExceptionEditor';
+import { transformTypeToMainType } from '@/utils/word/transformTypeToMainType';
 
 export const WordAddForm = () => {
   const [word, setWord] = useState<Word>();
@@ -81,7 +82,13 @@ export const WordAddForm = () => {
         {type === 'ADJECTIVE' && <AdjectiveFields register={register} />}
       </div>
       <Textarea placeholder='z.B. nur mit Perfekt' label='Info' className='w-full' {...register('info')} />
-      <ExceptionEditor exception={word?.exception} type={word?.type ?? type ?? 'OTHER'} />
+      {type && word && transformTypeToMainType(type) !== 'OTHER' && (
+        <ExceptionEditor
+          exception={word.exception}
+          setExceptions={() => {}}
+          type={transformTypeToMainType(type) as MainWordType}
+        />
+      )}
       <div className='my-2 text-center'>
         {status === 'pending' && <span className='animate-pulse'>Wort wird gespeichert...</span>}
         {status === 'success' && (
