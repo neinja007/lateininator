@@ -21,7 +21,7 @@ import { transformTypeToMainType } from '@/utils/word/transformTypeToMainType';
 export const WordAddForm = () => {
   const [word, setWord] = useState<Word>();
   const [lastWordId, setLastWordId] = useState<number>();
-  const { register, unregister, handleSubmit, watch, setValue, reset } = useForm<WordSchema>({
+  const { register, unregister, getValues, handleSubmit, watch, setValue, reset } = useForm<WordSchema>({
     resolver: zodResolver(wordSchema)
   });
 
@@ -86,9 +86,9 @@ export const WordAddForm = () => {
         {type === 'ADJECTIVE' && <AdjectiveFields register={register} />}
       </div>
       <Textarea placeholder='z.B. nur mit Perfekt' label='Info' className='w-full' {...register('info')} />
-      {type && word && transformTypeToMainType(type) !== 'OTHER' && (
+      {type && transformTypeToMainType(type) !== 'OTHER' && (
         <ExceptionEditor
-          exception={word.exception}
+          exception={JSON.parse(watch('exception') || '{}')}
           setExceptions={(exceptions) => setValue('exception', JSON.stringify(exceptions))}
           type={transformTypeToMainType(type) as MainWordType}
         />
