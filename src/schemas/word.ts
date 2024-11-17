@@ -8,7 +8,7 @@ export const wordSchema = z.object({
   translation: z.array(z.string().min(1)),
   info: z.string().optional(),
   derivativeId: z.number().optional(),
-  exception: z.string().optional(),
+  exception: z.object({}).catchall(z.unknown()).optional(),
 
   noun: z
     .object({
