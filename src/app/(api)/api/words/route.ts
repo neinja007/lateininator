@@ -101,7 +101,8 @@ export const PUT = async (request: NextRequest) => {
       name: word.name,
       type: word.type as Type,
       translation: word.translation,
-      info: word.info || undefined
+      info: word.info,
+      exception: word.exception
     }
   );
 
