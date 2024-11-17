@@ -66,11 +66,21 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
                         )}
                         unstyled
                         value={value}
-                        options={
-                          WORD_CONSTANTS[
-                            exceptionStructure[type as MainWordType][index] as keyof typeof WORD_CONSTANTS
-                          ] as string[]
-                        }
+                        options={Object.fromEntries(
+                          (
+                            WORD_CONSTANTS[
+                              exceptionStructure[type as MainWordType][index] as keyof typeof WORD_CONSTANTS
+                            ] as string[]
+                          ).map((value) => {
+                            const property = exceptionStructure[type as MainWordType][
+                              index
+                            ] as keyof typeof MAPPER.extended;
+                            return [
+                              value,
+                              MAPPER.extended[property][value as keyof (typeof MAPPER.extended)[typeof property]]
+                            ];
+                          })
+                        )}
                       />
                     )}
                   </td>
@@ -115,11 +125,21 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
                       value={newException[index]}
                       onChange={(e) => setNewException((prev) => prev.map((v, i) => (i == index ? e.target.value : v)))}
                       className={clsx(table.select, 'm-0 h-10 w-full !border-none bg-gray-900 px-3 focus:outline-none')}
-                      options={
-                        WORD_CONSTANTS[
-                          exceptionStructure[type as MainWordType][index] as keyof typeof WORD_CONSTANTS
-                        ] as string[]
-                      }
+                      options={Object.fromEntries(
+                        (
+                          WORD_CONSTANTS[
+                            exceptionStructure[type as MainWordType][index] as keyof typeof WORD_CONSTANTS
+                          ] as string[]
+                        ).map((value) => {
+                          const property = exceptionStructure[type as MainWordType][
+                            index
+                          ] as keyof typeof MAPPER.extended;
+                          return [
+                            value,
+                            MAPPER.extended[property][value as keyof (typeof MAPPER.extended)[typeof property]]
+                          ];
+                        })
+                      )}
                     />
                   )}
                 </td>
