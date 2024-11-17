@@ -13,8 +13,8 @@ import { getObjectFromValueArray } from '../utils/getObjectFromValueArray';
 
 type ExceptionEditorProps = {
   type: MainWordType;
-  exception: Object;
-  setExceptions: (value: Object) => void;
+  exception: Record<string, any>;
+  setExceptions: (value: Record<string, any>) => void;
 };
 
 const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProps) => {
