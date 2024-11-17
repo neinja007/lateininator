@@ -85,7 +85,7 @@ export const WordAddForm = () => {
       {type && word && transformTypeToMainType(type) !== 'OTHER' && (
         <ExceptionEditor
           exception={word.exception}
-          setExceptions={() => {}}
+          setExceptions={(exceptions) => setValue('exception', JSON.stringify(exceptions))}
           type={transformTypeToMainType(type) as MainWordType}
         />
       )}
