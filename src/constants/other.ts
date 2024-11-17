@@ -1,4 +1,4 @@
-import { WordType } from '@/types/appConstants';
+import { OtherProperty, WordType } from '@/types/appConstants';
 import { Breakpoint, Color, Pattern } from '@/types/other';
 
 export const mapTypeToColor: { [key in WordType]: Color } = {
@@ -103,7 +103,7 @@ export const fullPatterns: Pattern[] = ['isometric', 'dotted'];
 export const monthlyPrice = 5;
 
 export const exceptionStructure = {
-  NOUN: ['numerus', 'wordCase'],
-  VERB: ['modus', 'voice', 'tense', 'numerus', 'person'],
-  ADJECTIVE: ['gender', 'comparisonDegree', 'numerus', 'wordCase']
-};
+  NOUN: ['numerus', 'wordCase'] as OtherProperty[],
+  VERB: ['modus', 'voice', 'tense', 'numerus', 'person'] as OtherProperty[],
+  ADJECTIVE: ['gender', 'comparisonDegree', 'numerus', 'wordCase'] as OtherProperty[]
+} as const;
