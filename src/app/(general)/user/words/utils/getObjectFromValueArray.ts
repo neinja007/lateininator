@@ -7,8 +7,7 @@ export const getObjectFromValueArray = (arrays: string[][]): Object => {
 
     pathParts.forEach((key, index) => {
       if (index === pathParts.length - 1) {
-        current[key] = current[key] || {};
-        current[key][value] = value;
+        current[key] = value;
       } else {
         current[key] = current[key] || {};
         current = current[key];
