@@ -21,7 +21,7 @@ import { transformTypeToMainType } from '@/utils/word/transformTypeToMainType';
 export const WordAddForm = () => {
   const [word, setWord] = useState<Word>();
   const [lastWordId, setLastWordId] = useState<number>();
-  const { register, unregister, getValues, handleSubmit, watch, setValue, reset } = useForm<WordSchema>({
+  const { register, unregister, handleSubmit, watch, setValue, reset } = useForm<WordSchema>({
     resolver: zodResolver(wordSchema)
   });
 
@@ -58,6 +58,18 @@ export const WordAddForm = () => {
   }, [word, setValue, reset]);
 
   const type: WordType | undefined = watch('type') as WordType | undefined;
+
+  useEffect(() => {
+    if (word) {
+      if (type && type !== word.type) {
+        setValue('exception', {});
+      } else if (type === word.type) {
+        setValue('exception', word.exception || {});
+      }
+    } else {
+      setValue('exception', {});
+    }
+  }, [setValue, type, word]);
 
   useEffect(() => {
     if (!type) return;
