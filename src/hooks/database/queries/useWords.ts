@@ -13,10 +13,14 @@ export const useWords = <T extends Word | Word[]>(parameters: {
     throw new Error('Invalid searchParams (cannot read both id and query)');
   }
 
-  const query = useQuery({
+  const query = useQuery<{ words: T; count: number | undefined } | T>({
     queryKey: ['words', searchQuery, id, include],
     queryFn: () => axios.get('/api/words', { params: { query: searchQuery, id, include } }).then((res) => res.data)
   });
 
-  return { ...query, data: query.data as T };
+  return {
+    ...query,
+    data: query.data && 'words' in query.data ? query.data.words : query.data,
+    count: query.data && 'count' in query.data ? query.data.count : undefined
+  };
 };
