@@ -14,8 +14,7 @@ const Header = ({ word }: HeaderProps) => {
         <BackToDictionaryButton />
         <div>
           <Heading className='!text-left lg:!text-center' heading={word.name}>
-            Hier findest du <b>alle Informationen</b> zum {MAPPER.extended.type.singular[word.type]}
-            &quot;
+            Hier findest du <b>alle Informationen</b> zum {MAPPER.extended.type.singular[word.type]} &quot;
             {word.name}
             &quot;.
           </Heading>
