@@ -30,9 +30,9 @@ type AdjectiveException = FullyPartial<
         [N in Numerus]: {
           [C in WordCase]: string;
         };
-      } & {
-        base: string;
       };
+    } & {
+      base: string;
     };
   } & {
     adverb: {
