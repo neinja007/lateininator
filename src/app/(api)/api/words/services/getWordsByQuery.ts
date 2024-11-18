@@ -26,6 +26,9 @@ export const getWordsByQuery = async (query: string, includedDataObject: any, us
       }
     },
     take: 30,
-    include: includedDataObject
+    include: {
+      _count: true,
+      ...includedDataObject
+    }
   });
 };
