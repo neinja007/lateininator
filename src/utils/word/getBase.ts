@@ -2,12 +2,13 @@ import { Word } from '@/types/word';
 import { isNoun } from '../typeguards/isNoun';
 import { isVerb } from '../typeguards/isVerb';
 import { isAdjective } from '../typeguards/isAdjective';
+import { ComparisonDegree } from '@/types/wordConstants';
 
 export const getBase = (
   word: Word,
-  info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; superlative?: boolean }
+  info: { baseType?: 'word' | 'present' | 'perfect' | 'participle'; comparisonDegree?: ComparisonDegree }
 ): string => {
-  const { baseType, superlative } = info;
+  const { baseType, comparisonDegree } = info;
   let base = '';
 
   if (isNoun(word)) {
@@ -25,7 +26,12 @@ export const getBase = (
       base = word.verb.participle.substring(0, word.verb.participle.length - 2);
     }
   } else if (isAdjective(word)) {
-    if (superlative) {
+    if (!comparisonDegree) {
+      throw new Error('Error: Invalid word properties were passed to getBase()');
+    }
+    const customBase = word.exception[comparisonDegree]?.base?.slice(0, comparisonDegree === 'comp' ? -3 : -2);
+    if (customBase) return customBase;
+    if (comparisonDegree === 'sup') {
       base = word.name.substring(0, word.name.length - 2);
       if (word.name.endsWith('er')) {
         base += 'errim';
