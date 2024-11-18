@@ -40,7 +40,7 @@ const Page = (props: PageProps) => {
 
   return (
     <div className='space-y-3'>
-      {status === 'success' ? (
+      {status === 'success' && word ? (
         <>
           <Header word={word} />
           <WordInformation word={word} />
@@ -50,7 +50,7 @@ const Page = (props: PageProps) => {
           <Skeleton pulse customSize className='h-16 w-full' />
         </>
       )}
-      {status === 'success' ? (
+      {status === 'success' && word ? (
         APP_CONSTANTS.mainWordTypes.includes(word.type as MainWordType) && (
           <>
             <Hr />
