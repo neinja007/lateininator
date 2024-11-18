@@ -22,6 +22,7 @@ const Page = () => {
 
   const {
     data: words,
+    count,
     fetchStatus,
     status
   } = useWords<Word[]>({
@@ -41,13 +42,13 @@ const Page = () => {
         <FailToLoad />
       ) : (
         <div className='flex justify-between'>
-          <ResultCount count={words ? words.length : 0} query={query} isFetched={fetchStatus === 'idle'} />
+          <ResultCount count={count ? count : 0} query={query} isFetched={fetchStatus === 'idle'} />
           <span>
             Fehlendes Wort? Melden Sie es bitte bei unserem <LinkToSupportEmail />.
           </span>
         </div>
       )}
-      {(status !== 'success' || words.length > 0) && (
+      {(status !== 'success' || (words && words.length > 0)) && (
         <div>
           <Hr className='mb-4' />
           <DisplayMode view={view} setView={setView} />
