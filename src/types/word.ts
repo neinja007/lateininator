@@ -25,11 +25,13 @@ type VerbException = FullyPartial<{
 
 type AdjectiveException = FullyPartial<
   {
-    [G in Exclude<Gender, 'NONE'>]: {
-      [D in ComparisonDegree]: {
+    [D in ComparisonDegree]: {
+      [G in Exclude<Gender, 'NONE'>]: {
         [N in Numerus]: {
           [C in WordCase]: string;
         };
+      } & {
+        base: string;
       };
     };
   } & {

@@ -105,5 +105,5 @@ export const monthlyPrice = 5;
 export const exceptionStructure = {
   NOUN: ['numerus', 'wordCase'] as OtherProperty[],
   VERB: ['modus', 'voice', 'tense', 'numerus', 'person'] as OtherProperty[],
-  ADJECTIVE: ['gender', 'comparisonDegree', 'numerus', 'wordCase'] as OtherProperty[]
+  ADJECTIVE: ['comparisonDegree', 'gender', 'numerus', 'wordCase'] as OtherProperty[]
 } as const;
