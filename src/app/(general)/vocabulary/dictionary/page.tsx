@@ -35,7 +35,6 @@ const Page = () => {
     <div className='space-y-5'>
       <Heading heading='Wörterbuch'>
         Das ist das Lateininator Wörterbuch. Hier kannst du alle Wörter sehen, die es auf dem Lateininator gibt.
-        {/* Wenn es ein Wort noch nicht gibt, kannst du es unter <Link href='/user/words'>Wörter verwalten</Link> hinzufügen. */}
       </Heading>
       <SearchBar query={query} setQuery={setQuery} />
       {status === 'error' ? (
