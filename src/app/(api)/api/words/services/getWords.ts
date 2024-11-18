@@ -21,7 +21,23 @@ export const getWords = async (includedDataObject: any, userId: string | undefin
       },
       take: 30
     });
-    return words;
+
+    const count = await prisma.word.count({
+      where: {
+        OR: [
+          {
+            private: false
+          },
+          {
+            createdBy: {
+              id: userId ?? ''
+            }
+          }
+        ]
+      }
+    });
+
+    return { words, count };
   } catch (error) {
     console.error('Error fetching words:', error);
     throw error;
