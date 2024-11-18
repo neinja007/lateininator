@@ -125,7 +125,10 @@ export const getForm = (
     }
   }
 
-  const base = getBase(word, { baseType, superlative });
+  const base = getBase(word, {
+    baseType,
+    comparisonDegree: isAdjective(word) && 'comparisonDegree' in info ? info.comparisonDegree : undefined
+  });
   if (base === '') return { form: '-', exception: false };
   else return { form: base + ending, exception: false };
 };
