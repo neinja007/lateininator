@@ -32,7 +32,7 @@ export const GET = async (request: NextRequest) => {
     try {
       const { words, count } = await getWordsByQuery(query, includedDataObject, user?.id);
 
-      return NextResponse.json({ ...words, count });
+      return NextResponse.json({ words, count });
     } catch (error: any) {
       console.error(error);
       return NextResponse.json({ error: error.message }, { status: 500 });
@@ -54,7 +54,7 @@ export const GET = async (request: NextRequest) => {
     try {
       const { words, count } = await getWords(includedDataObject, user?.id);
 
-      return NextResponse.json({ ...words, count });
+      return NextResponse.json({ words, count });
     } catch (error: any) {
       console.error(error);
       return NextResponse.json({ error: error.message }, { status: 500 });
