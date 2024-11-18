@@ -80,7 +80,7 @@ export const getForm = (
 
         ending = endings.adverb[info.comparisonDegree][word.name.endsWith('ns') ? '_ns' : word.adjective.comparison];
       } else {
-        customEnding = word.exception[info.gender]?.[info.comparisonDegree]?.[info.numerus]?.[info.wordCase];
+        customEnding = word.exception[info.comparisonDegree]?.[info.gender]?.[info.numerus]?.[info.wordCase];
         if (customEnding) return { form: customEnding, exception: true };
 
         if (info.wordCase === '6') {
