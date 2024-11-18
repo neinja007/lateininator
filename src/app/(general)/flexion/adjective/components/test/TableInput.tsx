@@ -41,7 +41,7 @@ const TableInput = ({
       <TableInputHeading
         stage={stage}
         onInsertBases={() =>
-          setValues(getAllTableInputValues(getBase(activeWord, { superlative: form.comparisonDegree === 'sup' })))
+          setValues(getAllTableInputValues(getBase(activeWord, { comparisonDegree: form.comparisonDegree })))
         }
         text={`${MAPPER.extended.comparison[form.comparison]} ${MAPPER.extended.comparisonDegree[form.comparisonDegree]}`}
       />
