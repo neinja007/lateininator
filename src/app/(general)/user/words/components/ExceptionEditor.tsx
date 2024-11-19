@@ -4,12 +4,13 @@ import { WORD_CONSTANTS } from '@/constants/wordConstants';
 import { MainWordType, WordProperty } from '@/types/appConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import clsx from 'clsx';
-import { Check, Plus, Settings2, X } from 'lucide-react';
+import { Check, Plus, Settings2 } from 'lucide-react';
 import Input from '@/components/Input';
 import table from '@/styles/table.module.css';
 import { getValueArrayFromObject } from '../utils/getValueArrayFromObject';
 import { useEffect, useState } from 'react';
 import { getObjectFromValueArray } from '../utils/getObjectFromValueArray';
+import ExceptionRow from './ExceptionRow';
 
 type ExceptionEditorProps = {
   type: MainWordType;
@@ -50,57 +51,13 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
           </thead>
           <tbody>
             {exceptionsArray.map((exceptionValues, index) => (
-              <tr className={table.tr} key={index}>
-                {exceptionValues.map((value, index) => (
-                  <td className='border p-0 dark:border-gray-500' key={index}>
-                    {index == exceptionStructure[type as MainWordType].length ? (
-                      <Input
-                        disabled
-                        unstyled
-                        type='text'
-                        className={clsx(table.input, 'h-10 w-full bg-transparent px-3')}
-                        value={value}
-                      />
-                    ) : (
-                      <Select
-                        disabled
-                        className={clsx(
-                          table.select,
-                          'm-0 h-10 w-full !border-none bg-transparent px-3 focus:outline-none'
-                        )}
-                        unstyled
-                        value={value}
-                        options={Object.fromEntries(
-                          (
-                            WORD_CONSTANTS[
-                              exceptionStructure[type as MainWordType][index] as keyof typeof WORD_CONSTANTS
-                            ] as string[]
-                          ).map((value) => {
-                            const property = exceptionStructure[type as MainWordType][
-                              index
-                            ] as keyof typeof MAPPER.extended;
-                            return [
-                              value,
-                              MAPPER.extended[property][value as keyof (typeof MAPPER.extended)[typeof property]]
-                            ];
-                          })
-                        )}
-                      />
-                    )}
-                  </td>
-                ))}
-                <td className='p-0'>
-                  <button
-                    type='button'
-                    onClick={() =>
-                      setExceptions(getObjectFromValueArray(exceptionsArray.filter((_, i) => i !== index)))
-                    }
-                    className={clsx('flex h-10 w-full items-center justify-center', COLORS.red.dynamic)}
-                  >
-                    <X />
-                  </button>
-                </td>
-              </tr>
+              <ExceptionRow
+                key={index}
+                onClick={() => setExceptions(getObjectFromValueArray(exceptionsArray.filter((_, i) => i !== index)))}
+                exceptionValueArray={exceptionValues}
+                icon='x'
+                type={type}
+              />
             ))}
             <tr className={table.tr}>
               <td
