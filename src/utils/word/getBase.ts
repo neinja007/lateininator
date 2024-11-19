@@ -29,7 +29,7 @@ export const getBase = (
     if (!comparisonDegree) {
       throw new Error('Error: Invalid word properties were passed to getBase()');
     }
-    const customBase = word.exception[comparisonDegree]?.base?.slice(word.exception[comparisonDegree]?.fromIndex);
+    const customBase = word.exception[comparisonDegree]?.base;
     if (customBase) return customBase;
     if (comparisonDegree === 'sup') {
       base = word.name.substring(0, word.name.length - 2);
