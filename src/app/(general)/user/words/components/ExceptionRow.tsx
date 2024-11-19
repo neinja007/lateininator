@@ -11,27 +11,31 @@ import Input from '@/components/Input';
 type ExceptionRowProps = {
   exceptionValueArray: string[];
   type: MainWordType;
-  icon: 'check' | 'x';
+  mode: 'add' | 'display';
   onClick: () => void;
 };
 
-const ExceptionRow = ({ exceptionValueArray, type, onClick, icon }: ExceptionRowProps) => {
+const ExceptionRow = ({ exceptionValueArray, type, onClick, mode }: ExceptionRowProps) => {
   return (
     <tr className={table.tr}>
       {exceptionValueArray.map((value, index) => (
         <td className='border p-0 dark:border-gray-500' key={index}>
           {index == exceptionStructure[type as MainWordType].length ? (
             <Input
-              disabled
+              disabled={mode === 'display'}
               unstyled
               type='text'
-              className={clsx(table.input, 'h-10 w-full bg-transparent px-3')}
+              className={clsx(table.input, 'h-10 w-full px-3', mode === 'add' ? 'bg-gray-900' : 'bg-transparent')}
               value={value}
             />
           ) : (
             <Select
-              disabled
-              className={clsx(table.select, 'm-0 h-10 w-full !border-none bg-transparent px-3 focus:outline-none')}
+              disabled={mode === 'display'}
+              className={clsx(
+                table.select,
+                'm-0 h-10 w-full !border-none px-3 focus:outline-none',
+                mode === 'add' ? 'bg-gray-900' : 'bg-transparent'
+              )}
               unstyled
               value={value}
               options={Object.fromEntries(
@@ -54,10 +58,10 @@ const ExceptionRow = ({ exceptionValueArray, type, onClick, icon }: ExceptionRow
           onClick={onClick}
           className={clsx(
             'flex h-10 w-full items-center justify-center',
-            COLORS[icon === 'x' ? 'red' : 'green'].dynamic
+            COLORS[mode === 'display' ? 'red' : 'green'].dynamic
           )}
         >
-          {icon === 'x' ? <X /> : <Check />}
+          {mode === 'display' ? <X /> : <Check />}
         </button>
       </td>
     </tr>
