@@ -1,11 +1,8 @@
-import Select from '@/components/Select';
-import { COLORS, exceptionStructure } from '@/constants/other';
-import { WORD_CONSTANTS } from '@/constants/wordConstants';
+import { exceptionStructure } from '@/constants/other';
 import { MainWordType, WordProperty } from '@/types/appConstants';
 import { MAPPER } from '@/utils/other/mapper';
 import clsx from 'clsx';
-import { Check, Plus, Settings2 } from 'lucide-react';
-import Input from '@/components/Input';
+import { Plus, Settings2 } from 'lucide-react';
 import table from '@/styles/table.module.css';
 import { getValueArrayFromObject } from '../utils/getValueArrayFromObject';
 import { useEffect, useState } from 'react';
@@ -55,7 +52,7 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
                 key={index}
                 onClick={() => setExceptions(getObjectFromValueArray(exceptionsArray.filter((_, i) => i !== index)))}
                 exceptionValueArray={exceptionValues}
-                icon='x'
+                mode='display'
                 type={type}
               />
             ))}
@@ -69,52 +66,7 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
                 </div>
               </td>
             </tr>
-            <tr className={table.tr}>
-              {[...Array(exceptionStructure[type as MainWordType].length + 1)].map((_, index) => (
-                <td className='border p-0 dark:border-gray-500' key={index}>
-                  {index == exceptionStructure[type as MainWordType].length ? (
-                    <Input
-                      type='text'
-                      unstyled
-                      onChange={(e) => setNewException((prev) => prev.map((v, i) => (i == index ? e.target.value : v)))}
-                      value={newException[index]}
-                      className={clsx(table.input, 'h-10 w-full bg-gray-900 px-3')}
-                    />
-                  ) : (
-                    <Select
-                      unstyled
-                      value={newException[index]}
-                      onChange={(e) => setNewException((prev) => prev.map((v, i) => (i == index ? e.target.value : v)))}
-                      className={clsx(table.select, 'm-0 h-10 w-full !border-none bg-gray-900 px-3 focus:outline-none')}
-                      options={Object.fromEntries(
-                        (
-                          WORD_CONSTANTS[
-                            exceptionStructure[type as MainWordType][index] as keyof typeof WORD_CONSTANTS
-                          ] as string[]
-                        ).map((value) => {
-                          const property = exceptionStructure[type as MainWordType][
-                            index
-                          ] as keyof typeof MAPPER.extended;
-                          return [
-                            value,
-                            MAPPER.extended[property][value as keyof (typeof MAPPER.extended)[typeof property]]
-                          ];
-                        })
-                      )}
-                    />
-                  )}
-                </td>
-              ))}
-              <td className='p-0'>
-                <button
-                  onClick={onExceptionAdd}
-                  type='button'
-                  className={clsx('flex h-10 w-full items-center justify-center', COLORS.green.dynamic)}
-                >
-                  <Check />
-                </button>
-              </td>
-            </tr>
+            <ExceptionRow mode='add' exceptionValueArray={newException} onClick={onExceptionAdd} type={type} />
           </tbody>
         </table>
       </div>
