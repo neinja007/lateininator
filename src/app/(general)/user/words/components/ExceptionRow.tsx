@@ -13,9 +13,10 @@ type ExceptionRowProps = {
   type: MainWordType;
   mode: 'add' | 'display';
   onClick: () => void;
+  onValueChange?: (value: string, index: number) => void;
 };
 
-const ExceptionRow = ({ exceptionValueArray, type, onClick, mode }: ExceptionRowProps) => {
+const ExceptionRow = ({ exceptionValueArray, type, onClick, mode, onValueChange }: ExceptionRowProps) => {
   return (
     <tr className={table.tr}>
       {exceptionValueArray.map((value, index) => (
@@ -27,6 +28,7 @@ const ExceptionRow = ({ exceptionValueArray, type, onClick, mode }: ExceptionRow
               type='text'
               className={clsx(table.input, 'h-10 w-full px-3', mode === 'add' ? 'bg-gray-900' : 'bg-transparent')}
               value={value}
+              onChange={(e) => onValueChange && onValueChange(e.target.value, index)}
             />
           ) : (
             <Select
@@ -37,6 +39,7 @@ const ExceptionRow = ({ exceptionValueArray, type, onClick, mode }: ExceptionRow
                 mode === 'add' ? 'bg-gray-900' : 'bg-transparent'
               )}
               unstyled
+              onChange={(e) => onValueChange && onValueChange(e.target.value, index)}
               value={value}
               options={Object.fromEntries(
                 (

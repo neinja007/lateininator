@@ -54,7 +54,13 @@ const ExceptionEditor = ({ type, exception, setExceptions }: ExceptionEditorProp
                 </div>
               </td>
             </tr>
-            <ExceptionRow mode='add' exceptionValueArray={newException} onClick={onExceptionAdd} type={type} />
+            <ExceptionRow
+              mode='add'
+              onValueChange={(value, index) => setNewException((prev) => prev.map((v, i) => (i == index ? value : v)))}
+              exceptionValueArray={newException}
+              onClick={onExceptionAdd}
+              type={type}
+            />
           </tbody>
         </table>
       </div>
