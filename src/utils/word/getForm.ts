@@ -129,6 +129,11 @@ export const getForm = (
     baseType,
     comparisonDegree: isAdjective(word) && 'comparisonDegree' in info ? info.comparisonDegree : undefined
   });
+
+  let modifiedEnding: string = ending;
+  if (isAdjective(word) && 'comparisonDegree' in info) {
+    modifiedEnding = ending.slice(word.exception[info.comparisonDegree]?.fromIndex);
+  }
   if (base === '') return { form: '-', exception: false };
-  else return { form: base + ending, exception: false };
+  else return { form: base + modifiedEnding, exception: false };
 };
