@@ -33,6 +33,7 @@ type AdjectiveException = FullyPartial<
       };
     } & {
       base: string;
+      fromIndex: number;
     };
   } & {
     adverb: {
