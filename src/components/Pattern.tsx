@@ -19,7 +19,7 @@ const Pattern = ({ children }: PatternProps) => {
   const patternStyle = pattern === 'false' ? undefined : pattern;
 
   return (
-    <div className={clsx('min-h-screen px-4 pt-24', patternStyle && patternClasses[patternStyle])}>
+    <div className={clsx('min-h-screen bg-fixed px-4 pt-24', patternStyle && patternClasses[patternStyle])}>
       <div className='container mx-auto max-w-[1024px] pb-16'>
         <div className={clsx('rounded-lg', fullPatterns.includes(pattern) ? undefined : 'bg-white dark:bg-black')}>
           {children}
