@@ -6,7 +6,6 @@ import {
   BookMarked,
   BookOpenText,
   Box,
-  Gem,
   House,
   LayoutDashboard,
   LineChart,
@@ -70,13 +69,13 @@ export const routes: Route[] = [
       }
     ]
   },
-  {
-    label: 'Premium',
-    href: '/premium/overview',
-    icon: Gem,
-    color: 'pink',
-    status: 'notPremium'
-  },
+  // {
+  //   label: 'Premium',
+  //   href: '/premium/overview',
+  //   icon: Gem,
+  //   color: 'pink',
+  //   status: 'notPremium'
+  // },
   {
     label: '{name}',
     href: '/user',

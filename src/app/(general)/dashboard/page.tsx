@@ -7,8 +7,9 @@ import { useUser } from '@clerk/nextjs';
 
 const Page = () => {
   const signInRoute = routes.find((route) => route.label === 'Anmelden');
-  const premiumRoute = routes.find((route) => route.label === 'Premium');
-  if (!signInRoute || !premiumRoute) throw new Error('Route not found');
+  // const premiumRoute = routes.find((route) => route.label === 'Premium');
+  // if (!signInRoute || !premiumRoute) throw new Error('Route not found');
+  if (!signInRoute) throw new Error('Route not found');
 
   const user = useUser();
 
@@ -34,7 +35,8 @@ const Page = () => {
           hrefPrefix='/user'
           routes={routes.find((route) => route.label === '{name}')!.children || []}
         />
-        <StatusDependentRoutes routes={[signInRoute, premiumRoute]} />
+        {/* <StatusDependentRoutes routes={[signInRoute, premiumRoute]} /> */}
+        <StatusDependentRoutes routes={[signInRoute]} />
       </div>
     </div>
   );
