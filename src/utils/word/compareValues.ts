@@ -5,9 +5,10 @@ export const compareValues = (
 ): boolean => {
   if (translation && typeof correctInput === 'object' && typeof input === 'object') {
     if (correctInput.length === 0 && input.length === 0) return true;
-    return input.every((translation) => {
-      return correctInput.some((correctInput) => {
-        return compareValues(translation, correctInput);
+    return input.every((inputElement) => {
+      return correctInput.some((correctInputElement) => {
+        console.log(inputElement, correctInputElement);
+        return compareValues(inputElement, correctInputElement);
       });
     });
   } else if (typeof correctInput === 'string' && typeof input === 'string') {

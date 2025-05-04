@@ -5,6 +5,7 @@ import { compareValues } from '@/utils/word/compareValues';
 import clsx from 'clsx';
 import { Check } from 'lucide-react';
 import { usePointState } from '@/hooks/usePointState';
+import { convertTranslationInputIntoArray } from '@/utils/helpers/convertTranslationInputIntoArray';
 
 type TranslationInputProps = {
   correctTranslations: string[];
@@ -21,10 +22,7 @@ const TranslationInput = ({
   setInputValues,
   addDifference
 }: TranslationInputProps) => {
-  const translations = inputValues.translation
-    .split(',')
-    .map((t) => t.trim())
-    .filter((value, index, self) => self.indexOf(value) === index);
+  const translations = convertTranslationInputIntoArray(inputValues.translation);
 
   const inputIsCorrect = compareValues(translations, correctTranslations, true);
 

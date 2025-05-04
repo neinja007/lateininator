@@ -12,6 +12,7 @@ import { Word } from '@/types/word';
 import { APP_CONSTANTS } from '@/constants/appConstants';
 import { AuthConditionalLock } from '@/components/AuthConditionalLock';
 import { usePointCounter } from '@/hooks/usePointCounter';
+import { convertTranslationInputIntoArray } from '@/utils/helpers/convertTranslationInputIntoArray';
 
 const initialInputValues = [...APP_CONSTANTS.allWordProperties, 'translation'].reduce(
   (acc, key) => {
@@ -41,7 +42,8 @@ const Page = () => {
 
           return compareValues(originalInput, correctInput);
         }) &&
-        (!word.translation || compareValues(inputValues.translation, word.translation, true))),
+        (!word.translation ||
+          compareValues(convertTranslationInputIntoArray(inputValues.translation), word.translation, true))),
     [inputValues, checkIncorrectWordsAgain, wordPropertiesToCheck]
   );
 
