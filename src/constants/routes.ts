@@ -6,7 +6,6 @@ import {
   BookMarked,
   BookOpenText,
   Box,
-  ExternalLink,
   House,
   LayoutDashboard,
   LineChart,
@@ -89,8 +88,6 @@ export const routes: Route[] = [
       { label: 'Statistiken', href: '/statistics', color: 'green', icon: LineChart, status: 'signedIn' }
     ]
   },
-
-  { label: 'Mehr', href: 'https://neinja.dev/projects', color: 'lime', icon: ExternalLink },
   {
     label: 'Anmelden',
     href: '/auth/sign-in',
