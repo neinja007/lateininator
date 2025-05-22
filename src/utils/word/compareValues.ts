@@ -4,7 +4,11 @@ export const compareValues = (
   translation?: boolean
 ): boolean => {
   if (translation && typeof correctInput === 'object' && typeof input === 'object') {
-    if (correctInput.length === 0 && input.length === 0) return true;
+    if (
+      correctInput.length === 0 &&
+      (input.length === 0 || input.every((t) => t === 'Keine Übersetzung' || t === '' || t === '-'))
+    )
+      return true;
     return input.every((inputElement) => {
       return correctInput.some((correctInputElement) => {
         console.log(inputElement, correctInputElement);
