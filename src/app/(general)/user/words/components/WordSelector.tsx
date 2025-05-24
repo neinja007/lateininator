@@ -32,16 +32,11 @@ const WordSelector = ({ word, setWord }: WordSelectorProps) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          {words &&
-            words.slice(0, 5).map((word) => (
-              <button
-                key={word.id}
-                className='ml-2 cursor-pointer text-blue-500 underline'
-                onClick={() => setWord(word)}
-              >
-                {word.name}
-              </button>
-            ))}
+          {((words as Word[]) || []).slice(0, 5).map((word) => (
+            <button key={word.id} className='ml-2 cursor-pointer text-blue-500 underline' onClick={() => setWord(word)}>
+              {word.name}
+            </button>
+          ))}
         </span>
       )}
     </div>
