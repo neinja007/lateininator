@@ -18,9 +18,11 @@ export const useWords = <T extends Word | Word[]>(parameters: {
     queryFn: () => axios.get('/api/words', { params: { query: searchQuery, id, include } }).then((res) => res.data)
   });
 
-  return {
+  const result = {
     ...query,
     data: query.data && 'words' in query.data ? query.data.words : query.data,
     count: query.data && 'count' in query.data ? query.data.count : undefined
   };
+
+  return result as typeof result & { data: T | undefined };
 };
