@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Word as WordType } from '@/types/word';
 import { useWords } from '@/hooks/database/queries/useWords';
 import WordContainer from './WordContainer';
+import { Word } from '@/types/word';
 
 type AddWordsProps = {
   listName: string;
@@ -32,7 +33,7 @@ const AddWords = ({ listName, words, setWords }: AddWordsProps) => {
         <div className='space-y-3 border-b pb-3 md:border-b-0 md:border-r md:pb-0 md:pr-3'>
           <Input className='w-full' placeholder='Wort suchen...' value={query} handleChange={setQuery} />
           <div className='overflow-hidden overflow-y-scroll'>
-            <WordContainer addedWords={words} words={data?.slice(0, 20) || []} setWords={setWords} />
+            <WordContainer addedWords={words} words={((data as Word[]) || []).slice(0, 20)} setWords={setWords} />
           </div>
         </div>
         <div className='md:pl-3'>
