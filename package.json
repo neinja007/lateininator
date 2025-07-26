@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@clerk/localizations": "^3.14.4",
-    "@clerk/nextjs": "^6.18.5",
+    "@clerk/nextjs": "^6.23.3",
     "@clerk/themes": "^2.1.21",
     "@hookform/resolvers": "^3.9.0",
     "@neondatabase/serverless": "^0.9.4",
