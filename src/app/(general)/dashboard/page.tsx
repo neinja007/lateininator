@@ -5,6 +5,7 @@ import FancyLinkContainer from './components/FancyLinkContainer';
 import StatusDependentRoutes from './components/StatusDependentRoutes';
 import { useUser } from '@clerk/nextjs';
 import { Leaderboard } from './components/Leaderboard';
+import { LastActive } from './components/LastActive';
 
 const Page = () => {
   const signInRoute = routes.find((route) => route.label === 'Anmelden');
@@ -38,9 +39,16 @@ const Page = () => {
         />
         <StatusDependentRoutes routes={[signInRoute]} />
       </div>
-      <div>
-        <p className='mb-2 mt-10 text-center text-lg font-bold'>Leaderboard</p>
-        <Leaderboard />
+      <div className='grid grid-cols-2 gap-10'>
+        <div>
+          <p className='mb-2 mt-10 text-center text-lg font-bold'>Leaderboard</p>
+          <Leaderboard />
+        </div>
+
+        <div>
+          <p className='mb-2 mt-10 text-center text-lg font-bold'>Zuletzt aktiv</p>
+          <LastActive />
+        </div>
       </div>
     </div>
   );
