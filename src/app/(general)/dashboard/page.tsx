@@ -39,7 +39,7 @@ const Page = () => {
         />
         <StatusDependentRoutes routes={[signInRoute]} />
       </div>
-      <div className='grid grid-cols-2 gap-10'>
+      <div className='flex flex-col gap-10 lg:grid lg:grid-cols-2'>
         <div>
           <p className='mb-2 mt-10 text-center text-lg font-bold'>Leaderboard</p>
           <Leaderboard />
