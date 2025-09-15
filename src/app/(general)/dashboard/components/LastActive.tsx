@@ -36,7 +36,7 @@ export const LastActive = () => {
   };
 
   return (
-    <div className='bg-background mx-auto max-w-md overflow-hidden rounded-xl border border-purple-500 shadow dark:shadow-purple-500'>
+    <div className='bg-background mx-auto overflow-hidden rounded-xl border border-purple-500 shadow dark:shadow-purple-500'>
       <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-500'>
         <thead>
           <tr>
