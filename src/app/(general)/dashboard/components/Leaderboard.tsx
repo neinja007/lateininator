@@ -1,9 +1,11 @@
 import { useLeaderboard } from '@/hooks/database/queries/useLeaderboard';
 import { useIsDarkTheme } from '@/hooks/useIsDarkTheme';
+import { SignedIn, useUser } from '@clerk/nextjs';
 
 export const Leaderboard = () => {
   const { data, isLoading, error } = useLeaderboard();
   const darkTheme = useIsDarkTheme();
+  const { user } = useUser();
 
   if (isLoading) {
     return (
@@ -73,7 +75,14 @@ export const Leaderboard = () => {
           ))}
         </tbody>
       </table>
-      <div className='py-2 text-center text-xs text-gray-400'>Top 10 Nutzer nach Punkten</div>
+      <div className='py-2 text-center text-xs text-gray-400'>
+        Top 10 Nutzer nach Punkten.{' '}
+        <SignedIn>
+          <span className='font-bold text-purple-400'>
+            Deine Platzierung: #{data.findIndex((dbUser) => dbUser.id === user?.id) + 1}!
+          </span>
+        </SignedIn>
+      </div>
     </div>
   );
 };
