@@ -64,7 +64,7 @@ export const Leaderboard = () => {
               </td>
               <td className='flex items-center gap-2 px-4 py-2'>
                 {user.staff && (
-                  <span className='text-blacks rounded-md bg-red-400 px-2 text-sm font-bold uppercase text-black dark:bg-red-800 dark:text-white'>
+                  <span className='text-blacks rounded-md bg-red-400 px-2 text-sm font-bold uppercase text-black shadow shadow-sky-500 dark:bg-red-800 dark:text-white'>
                     Admin
                   </span>
                 )}
