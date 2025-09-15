@@ -1,7 +1,9 @@
 import { useLeaderboard } from '@/hooks/database/queries/useLeaderboard';
+import { useIsDarkTheme } from '@/hooks/useIsDarkTheme';
 
 export const Leaderboard = () => {
   const { data, isLoading, error } = useLeaderboard();
+  const darkTheme = useIsDarkTheme();
 
   if (isLoading) {
     return (
@@ -26,20 +28,26 @@ export const Leaderboard = () => {
   ];
 
   return (
-    <div className='mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md'>
-      <table className='min-w-full divide-y divide-gray-200'>
+    <div className='bg-background mx-auto max-w-md overflow-hidden rounded-xl border border-purple-500 shadow dark:shadow-purple-500'>
+      <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-500'>
         <thead>
           <tr>
-            <th className='px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-700'>#</th>
-            <th className='px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-700'>Name</th>
-            <th className='px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-700'>Punkte</th>
+            <th className='px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300'>
+              #
+            </th>
+            <th className='px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300'>
+              Name
+            </th>
+            <th className='px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300'>
+              Punkte
+            </th>
           </tr>
         </thead>
         <tbody>
           {data.slice(0, 10).map((user, idx) => (
             <tr
               key={user.id}
-              className={`${idx < 3 ? medalColors[idx] + ' font-bold' : idx % 2 === 0 ? 'bg-gray-50' : ''}`}
+              className={`${idx < 3 ? medalColors[idx] + ' font-bold' : idx % 2 === 0 ? 'bg-background dark:bg-gray-800' : ''}`}
             >
               <td className='px-4 py-2'>
                 {idx < 3 ? (
@@ -54,7 +62,7 @@ export const Leaderboard = () => {
               </td>
               <td className='flex items-center gap-2 px-4 py-2'>
                 {user.staff && (
-                  <span title='Team' className='font-bold text-blue-500'>
+                  <span title='Team' className='font-bold text-blue-500 dark:text-blue-400'>
                     ★
                   </span>
                 )}

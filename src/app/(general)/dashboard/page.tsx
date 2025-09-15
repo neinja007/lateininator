@@ -4,7 +4,7 @@ import { routes } from '@/constants/routes';
 import FancyLinkContainer from './components/FancyLinkContainer';
 import StatusDependentRoutes from './components/StatusDependentRoutes';
 import { useUser } from '@clerk/nextjs';
-import { Leaderboard } from './components/LeaderBoard';
+import { Leaderboard } from './components/Leaderboard';
 
 const Page = () => {
   const signInRoute = routes.find((route) => route.label === 'Anmelden');
