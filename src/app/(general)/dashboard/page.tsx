@@ -4,6 +4,7 @@ import { routes } from '@/constants/routes';
 import FancyLinkContainer from './components/FancyLinkContainer';
 import StatusDependentRoutes from './components/StatusDependentRoutes';
 import { useUser } from '@clerk/nextjs';
+import { Leaderboard } from './components/LeaderBoard';
 
 const Page = () => {
   const signInRoute = routes.find((route) => route.label === 'Anmelden');
@@ -35,8 +36,11 @@ const Page = () => {
           hrefPrefix='/user'
           routes={routes.find((route) => route.label === '{name}')!.children || []}
         />
-        {/* <StatusDependentRoutes routes={[signInRoute, premiumRoute]} /> */}
         <StatusDependentRoutes routes={[signInRoute]} />
+      </div>
+      <div>
+        <p className='mb-2 mt-10 text-center text-lg font-bold'>Leaderboard</p>
+        <Leaderboard />
       </div>
     </div>
   );
