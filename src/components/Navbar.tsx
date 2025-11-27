@@ -12,6 +12,8 @@ import { makeStatusDependent } from '@/utils/other/makeStatusDependent';
 import { useUser } from '@clerk/nextjs';
 import { usePoints } from '@/hooks/database/queries/usePoints';
 import NumberFlow from '@number-flow/react';
+import Link from './Link';
+import Button from './Button';
 
 const Navbar = () => {
   const [open, setOpen] = useState('');
@@ -42,6 +44,30 @@ const Navbar = () => {
           onClick={() => setMobileLinksOpen((prev) => !prev)}
         />
         <Logo />
+        {process.env.NEXT_PUBLIC_ENABLE_SPONSOR === 'TRUE' &&
+          typeof window !== 'undefined' &&
+          window.localStorage.getItem('hide-sponsor') !== 'true' && (
+            <div className='absolute left-5 top-20 animate-pulse rounded-lg p-3 pb-5 backdrop-blur-lg'>
+              Gesponsert von YouTuber{' '}
+              <Link href={process.env.NEXT_PUBLIC_SPONSOR_LINK!} target='_blank'>
+                Aaron Gessati
+              </Link>
+              ! <br />
+              <Link href='/user/settings' className='text-blue-500'>
+                Hier
+              </Link>{' '}
+              Creator Code eingeben für <b>100 Punkte</b>! <br />
+              <Button
+                color='blue'
+                onClick={() => {
+                  window.localStorage.setItem('hide-sponsor', 'true');
+                  window.location.reload();
+                }}
+              >
+                Nachricht verbergen
+              </Button>
+            </div>
+          )}
         <div
           className={clsx(
             'mr-4 mt-16 w-full justify-end bg-gray-100 pb-1 xl:mt-0 2xl:justify-center dark:bg-gray-950',
