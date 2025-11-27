@@ -52,5 +52,10 @@ export const settings: Settings = {
       isometric: 'Isometrisch'
     } as { [P in Pattern]: string },
     invalidateQueries: 'user-settings'
+  },
+  CREATOR_CODE: {
+    type: 'input',
+    name: 'Creator Code',
+    description: 'Geben Sie hier einen Creator Code ein, um gratis 100 Punkte zu erhalten.'
   }
 };

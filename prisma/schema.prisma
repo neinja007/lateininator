@@ -22,6 +22,7 @@ model User {
   ownedCollections       Collection[]  @relation("owner")
   settings               UserSetting[]
   staff                  Boolean       @default(false)
+  usedCreatorCode        Boolean       @default(false)
 
   words Word[] @relation("createdBy")
 }
@@ -176,4 +177,5 @@ enum SettingKey {
   TESTING_VOCATIVE
   PRIMARY_COLOR
   BACKGROUND_PATTERN
+  CREATOR_CODE
 }

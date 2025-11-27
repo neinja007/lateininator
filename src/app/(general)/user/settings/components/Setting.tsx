@@ -11,6 +11,8 @@ import ColorPicker from './ColorPicker';
 import { Check, RotateCcw } from 'lucide-react';
 import { useChangeUsername } from '@/hooks/database/mutations/useChangeUsername';
 import { useUser } from '@clerk/nextjs';
+import { useApplyCreatorCode } from '@/hooks/database/mutations/useApplyCreatorCode';
+import { useAppliedCreatorCode } from '@/hooks/database/queries/useAppliedCreatorCode';
 type SettingProps = {
   settingKey: AllSettingKey;
   settingValue: string | undefined;
@@ -22,9 +24,11 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
   const queryClient = useQueryClient();
 
   const [changedUsername, setChangedUsername] = useState(false);
+  const { data: appliedCreatorCode, isLoading: isLoadingAppliedCreatorCode } = useAppliedCreatorCode();
 
   const { variables, status, mutate } = useUpdateSettings();
   const { mutate: mutateUsername, status: statusUsername } = useChangeUsername();
+  const { mutate: mutateCreatorCode, status: statusCreatorCode } = useApplyCreatorCode();
 
   const user = useUser();
 
@@ -75,19 +79,27 @@ const Setting = ({ settingKey, settingValue }: SettingProps) => {
             value={newValue}
             handleChange={setNewValue}
             className='w-40'
-            disabled={disableInput || changedUsername}
+            disabled={
+              disableInput ||
+              changedUsername ||
+              (settingKey === 'CREATOR_CODE' && (isLoadingAppliedCreatorCode || appliedCreatorCode))
+            }
             useDisabledStyle={!changedUsername}
           />
           {!changedUsername ? (
             <Button
               color='green'
               disabled={
-                settingKey === 'NAME_CHANGE' ? newValue.trim() === user?.user?.fullName || disableInput : disableInput
+                settingKey === 'NAME_CHANGE'
+                  ? newValue.trim() === user?.user?.fullName || disableInput
+                  : disableInput || isLoadingAppliedCreatorCode || appliedCreatorCode
               }
               onClick={
                 settingKey === 'NAME_CHANGE'
                   ? () => handleUsernameChange(newValue)
-                  : () => mutate({ settingKey, settingValue: newValue || '' })
+                  : settingKey === 'CREATOR_CODE'
+                    ? () => mutateCreatorCode(newValue)
+                    : () => mutate({ settingKey, settingValue: newValue || '' })
               }
             >
               <Check className='size-5' />
