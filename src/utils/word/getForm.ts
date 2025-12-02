@@ -44,8 +44,12 @@ export const getForm = (
         ending = endings.noun[word.noun.declension][word.noun.gender][info.numerus][1];
 
         if (word.noun.declension === 'O' && word.noun.gender === 'M' && info.numerus === 'sin') {
-          if (word.name.endsWith('ius')) ending = 'i';
-          else if (word.name.endsWith('us')) ending = 'e';
+          if (word.name.endsWith('ius')) {
+            const base = getBase(word, {
+              baseType: 'word'
+            });
+            return { form: base.slice(0, -1) + 'i', exception: false };
+          } else if (word.name.endsWith('us')) ending = 'e';
         }
       } else {
         ending = endings.noun[word.noun.declension][word.noun.gender][info.numerus][info.wordCase];
