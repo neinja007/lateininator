@@ -15,7 +15,7 @@ export const getBase = (
     if (word.noun.declension === 'O') {
       base = word.noun.genitive.substring(0, word.noun.genitive.length - (word.noun.pluralOnly ? 4 : 1));
     } else {
-      base = word.noun.genitive.substring(0, word.noun.genitive.length - 2);
+      base = word.noun.genitive.substring(0, word.noun.genitive.length - (word.noun.pluralOnly ? 4 : 2));
     }
   } else if (isVerb(word)) {
     if (baseType === 'present' || baseType === 'word') {
