@@ -14,7 +14,7 @@ const Footer = () => {
       </div>
       <div className='flex flex-row justify-center gap-4'>
         <Link href='/impressum'>Impressum</Link>
-        <Link href='/privacy-policy'>Datenschutzerklärung</Link>
+        <Link href='/privacy-policy/de'>Datenschutzerklärung</Link>
         <Link href='/terms-of-service'>Nutzungsbedingungen</Link>
       </div>
     </div>
