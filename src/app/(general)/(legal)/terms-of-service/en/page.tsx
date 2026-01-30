@@ -89,7 +89,7 @@ export default function TermsOfServicePage() {
         <li>Distribute content that violates these terms</li>
         <li>Harass or bully other users</li>
       </ul>
-      <p>Violations of these rules may result in immediate suspension of your account without refund.</p>
+      <p>Violations of these rules may result in immediate suspension of your account.</p>
 
       <h2 className='mt-4 text-xl font-semibold'>5. Intellectual Property</h2>
       <p>
@@ -192,7 +192,7 @@ export default function TermsOfServicePage() {
       <p>
         You may delete your account at any time by contacting us at{' '}
         <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>. We reserve the right to suspend or
-        delete accounts that violate these Terms of Service without notice and without refund.
+        delete accounts that violate these Terms of Service without notice.
       </p>
 
       <h2 className='mt-4 text-xl font-semibold'>10. Changes to Terms of Service</h2>

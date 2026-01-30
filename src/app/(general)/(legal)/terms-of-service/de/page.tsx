@@ -90,10 +90,7 @@ export default function TermsOfServicePage() {
         <li>Inhalte zu verbreiten, die gegen diese Bedingungen verstoßen</li>
         <li>Andere Benutzer zu belästigen oder zu schikanieren</li>
       </ul>
-      <p>
-        Verstöße gegen diese Regeln können zur sofortigen Sperrung Ihres Kontos führen, ohne Anspruch auf
-        Rückerstattung.
-      </p>
+      <p>Verstöße gegen diese Regeln können zur sofortigen Sperrung Ihres Kontos führen.</p>
 
       <h2 className='mt-4 text-xl font-semibold'>5. Geistiges Eigentum</h2>
       <p>
@@ -204,7 +201,7 @@ export default function TermsOfServicePage() {
         Sie können Ihr Konto jederzeit löschen, indem Sie uns unter{' '}
         <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link> kontaktieren. Wir behalten uns das
         Recht vor, Konten zu suspendieren oder zu löschen, die gegen diese Nutzungsbedingungen verstoßen, ohne
-        Vorankündigung und ohne Anspruch auf Rückerstattung.
+        Vorankündigung.
       </p>
 
       <h2 className='mt-4 text-xl font-semibold'>10. Änderungen der Nutzungsbedingungen</h2>

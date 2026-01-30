@@ -10,6 +10,10 @@ export default function ImpressumPage() {
         die Personen, die hinter der Website stehen.
       </p>
       <p>
+        <b>Hinweis:</b> Dies ist ein privates, nicht-kommerzielles Hobbyprojekt ohne kommerzielle Absichten oder
+        Zahlungsabwicklung.
+      </p>
+      <p>
         <b>Land:</b> Österreich
       </p>
       <p>
@@ -20,8 +24,9 @@ export default function ImpressumPage() {
         <b>Entwickler-Webseite:</b> <Link href='https://neinja.dev'>neinja.dev</Link>
       </p>
       <p>
-        <b>Projekt Information:</b> Privates Projekt von <Link href='https://neinja.dev'>neinja.dev</Link>, ohne
-        Bezahlungen etc.
+        <b>Projekt Information:</b> Privates, nicht-kommerzielles Hobbyprojekt von{' '}
+        <Link href='https://neinja.dev'>neinja.dev</Link>. Keine kommerziellen Aktivitäten, keine Zahlungsabwicklung,
+        keine Gewinnerzielungsabsicht.
       </p>
     </div>
   );
