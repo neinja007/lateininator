@@ -1,4 +1,4 @@
-import { Rubik } from 'next/font/google';
+import localFont from 'next/font/local';
 import Navbar from '@/components/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { deDE } from '@clerk/localizations';
@@ -8,7 +8,22 @@ import { QueryClientWrapper } from '@/components/QueryClientWrapper';
 import Pattern from '@/components/Pattern';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-const rubik = Rubik({ subsets: ['latin'] });
+const rubik = localFont({
+  src: [
+    {
+      path: '../../public/font/Rubik-VariableFont_wght.ttf',
+      weight: '100 900',
+      style: 'normal'
+    },
+    {
+      path: '../../public/font/Rubik-Italic-VariableFont_wght.ttf',
+      weight: '100 900',
+      style: 'italic'
+    }
+  ],
+  variable: '--font-rubik',
+  display: 'swap'
+});
 
 export const metadata = {
   title: {
