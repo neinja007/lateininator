@@ -41,9 +41,6 @@ export default function TermsOfServicePage() {
         <li>
           <b>Points System:</b> A gamification system that rewards your progress
         </li>
-        <li>
-          <b>Premium Features:</b> Advanced features for premium subscribers
-        </li>
       </ul>
 
       <h2 className='mt-4 text-xl font-semibold'>2. User Accounts and Authentication</h2>
@@ -64,13 +61,7 @@ export default function TermsOfServicePage() {
         must notify us immediately if you suspect unauthorized use of your account.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>3. Premium Subscriptions</h2>
-      <p>
-        Lateininator offers premium subscriptions that unlock advanced features. For questions about subscriptions,
-        please contact us at <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>.
-      </p>
-
-      <h2 className='mt-4 text-xl font-semibold'>4. User-Generated Content</h2>
+      <h2 className='mt-4 text-xl font-semibold'>3. User-Generated Content</h2>
       <p>You may create your own content, including:</p>
       <ul className='ml-6 list-disc'>
         <li>Word collections (Collections)</li>
@@ -88,7 +79,7 @@ export default function TermsOfServicePage() {
         <li>Does not contain malware or harmful code</li>
       </ul>
 
-      <h2 className='mt-4 text-xl font-semibold'>5. Acceptable Use</h2>
+      <h2 className='mt-4 text-xl font-semibold'>4. Acceptable Use</h2>
       <p>You agree not to use our service to:</p>
       <ul className='ml-6 list-disc'>
         <li>Engage in illegal activities</li>
@@ -100,7 +91,7 @@ export default function TermsOfServicePage() {
       </ul>
       <p>Violations of these rules may result in immediate suspension of your account without refund.</p>
 
-      <h2 className='mt-4 text-xl font-semibold'>6. Intellectual Property</h2>
+      <h2 className='mt-4 text-xl font-semibold'>5. Intellectual Property</h2>
       <p>
         All rights to the Lateininator website, including design, code, logos, and trademarks, are the property of
         neinja.dev or its licensors. The technologies used include:
@@ -153,7 +144,7 @@ export default function TermsOfServicePage() {
         You may not copy, modify, distribute, or commercially use our website without our express written permission.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>7. Third-Party Services</h2>
+      <h2 className='mt-4 text-xl font-semibold'>6. Third-Party Services</h2>
       <p>Our service uses various third-party services that have their own terms of service:</p>
       <ul className='ml-6 list-disc'>
         <li>
@@ -171,7 +162,7 @@ export default function TermsOfServicePage() {
         </li>
       </ul>
 
-      <h2 className='mt-4 text-xl font-semibold'>8. Service Availability</h2>
+      <h2 className='mt-4 text-xl font-semibold'>7. Service Availability</h2>
       <p>
         We strive to provide a reliable service but cannot guarantee uninterrupted availability. The service may be
         temporarily unavailable for the following reasons:
@@ -184,7 +175,7 @@ export default function TermsOfServicePage() {
       </ul>
       <p>We reserve the right to modify, suspend, or discontinue the service at any time, with or without notice.</p>
 
-      <h2 className='mt-4 text-xl font-semibold'>9. Disclaimer</h2>
+      <h2 className='mt-4 text-xl font-semibold'>8. Disclaimer</h2>
       <p>The service is provided &quot;as is&quot; and &quot;as available&quot;. We make no warranties regarding:</p>
       <ul className='ml-6 list-disc'>
         <li>The accuracy or completeness of the information provided</li>
@@ -197,27 +188,27 @@ export default function TermsOfServicePage() {
         or inability to use our service.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>10. Termination</h2>
+      <h2 className='mt-4 text-xl font-semibold'>9. Termination</h2>
       <p>
         You may delete your account at any time by contacting us at{' '}
         <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>. We reserve the right to suspend or
         delete accounts that violate these Terms of Service without notice and without refund.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>11. Changes to Terms of Service</h2>
+      <h2 className='mt-4 text-xl font-semibold'>10. Changes to Terms of Service</h2>
       <p>
         We reserve the right to modify these Terms of Service at any time. Material changes will be notified to you by
         email or through a notice on the website. Your continued use of the service after such changes constitutes your
         acceptance of the modified terms.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>12. Governing Law</h2>
+      <h2 className='mt-4 text-xl font-semibold'>11. Governing Law</h2>
       <p>
         These Terms of Service are governed by Austrian law. Disputes will be heard before the competent Austrian
         courts.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>13. Contact</h2>
+      <h2 className='mt-4 text-xl font-semibold'>12. Contact</h2>
       <p>If you have questions about these Terms of Service, please contact:</p>
       <p>
         <b>neinja.dev</b>

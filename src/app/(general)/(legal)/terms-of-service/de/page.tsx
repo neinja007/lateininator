@@ -42,9 +42,6 @@ export default function TermsOfServicePage() {
         <li>
           <b>Punktesystem:</b> Ein Gamification-System, das Ihre Fortschritte belohnt
         </li>
-        <li>
-          <b>Premium-Funktionen:</b> Erweiterte Funktionen für Premium-Abonnenten
-        </li>
       </ul>
 
       <h2 className='mt-4 text-xl font-semibold'>2. Benutzerkonten und Authentifizierung</h2>
@@ -65,13 +62,7 @@ export default function TermsOfServicePage() {
         überwachen. Sie müssen uns sofort benachrichtigen, wenn Sie eine unbefugte Nutzung Ihres Kontos vermuten.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>3. Premium-Abonnements</h2>
-      <p>
-        Lateininator bietet Premium-Abonnements an, die erweiterte Funktionen freischalten. Bei Fragen zu Abonnements
-        kontaktieren Sie uns bitte unter <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>.
-      </p>
-
-      <h2 className='mt-4 text-xl font-semibold'>4. Benutzergenerierte Inhalte</h2>
+      <h2 className='mt-4 text-xl font-semibold'>3. Benutzergenerierte Inhalte</h2>
       <p>Sie können eigene Inhalte erstellen, einschließlich:</p>
       <ul className='ml-6 list-disc'>
         <li>Wortsammlungen (Collections)</li>
@@ -89,7 +80,7 @@ export default function TermsOfServicePage() {
         <li>Keine Malware oder schädlichen Code enthalten</li>
       </ul>
 
-      <h2 className='mt-4 text-xl font-semibold'>5. Akzeptable Nutzung</h2>
+      <h2 className='mt-4 text-xl font-semibold'>4. Akzeptable Nutzung</h2>
       <p>Sie verpflichten sich, unseren Service nicht zu:</p>
       <ul className='ml-6 list-disc'>
         <li>Für illegale Zwecke zu nutzen</li>
@@ -104,7 +95,7 @@ export default function TermsOfServicePage() {
         Rückerstattung.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>6. Geistiges Eigentum</h2>
+      <h2 className='mt-4 text-xl font-semibold'>5. Geistiges Eigentum</h2>
       <p>
         Alle Rechte an der Lateininator-Website, einschließlich Design, Code, Logos und Marken, sind Eigentum von
         neinja.dev oder deren Lizenzgebern. Die verwendeten Technologien umfassen:
@@ -158,7 +149,7 @@ export default function TermsOfServicePage() {
         ausdrückliche schriftliche Genehmigung.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>7. Drittanbieter-Dienste</h2>
+      <h2 className='mt-4 text-xl font-semibold'>6. Drittanbieter-Dienste</h2>
       <p>Unser Service nutzt verschiedene Drittanbieter-Dienste, die ihre eigenen Nutzungsbedingungen haben:</p>
       <ul className='ml-6 list-disc'>
         <li>
@@ -176,7 +167,7 @@ export default function TermsOfServicePage() {
         </li>
       </ul>
 
-      <h2 className='mt-4 text-xl font-semibold'>8. Verfügbarkeit des Dienstes</h2>
+      <h2 className='mt-4 text-xl font-semibold'>7. Verfügbarkeit des Dienstes</h2>
       <p>
         Wir bemühen uns, einen zuverlässigen Service anzubieten, können jedoch keine Garantie für ununterbrochene
         Verfügbarkeit geben. Der Service kann aus folgenden Gründen vorübergehend nicht verfügbar sein:
@@ -192,7 +183,7 @@ export default function TermsOfServicePage() {
         ohne Vorankündigung.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>9. Haftungsausschluss</h2>
+      <h2 className='mt-4 text-xl font-semibold'>8. Haftungsausschluss</h2>
       <p>
         Der Service wird &quot;wie besehen&quot; und &quot;wie verfügbar&quot; bereitgestellt. Wir übernehmen keine
         Gewährleistung für:
@@ -208,7 +199,7 @@ export default function TermsOfServicePage() {
         Unmöglichkeit der Nutzung unseres Dienstes entstehen.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>10. Kündigung</h2>
+      <h2 className='mt-4 text-xl font-semibold'>9. Kündigung</h2>
       <p>
         Sie können Ihr Konto jederzeit löschen, indem Sie uns unter{' '}
         <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link> kontaktieren. Wir behalten uns das
@@ -216,20 +207,20 @@ export default function TermsOfServicePage() {
         Vorankündigung und ohne Anspruch auf Rückerstattung.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>11. Änderungen der Nutzungsbedingungen</h2>
+      <h2 className='mt-4 text-xl font-semibold'>10. Änderungen der Nutzungsbedingungen</h2>
       <p>
         Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Wesentliche Änderungen werden wir
         Sie per E-Mail oder durch eine Mitteilung auf der Website benachrichtigen. Ihre fortgesetzte Nutzung des
         Dienstes nach solchen Änderungen stellt Ihre Zustimmung zu den geänderten Bedingungen dar.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>12. Geltendes Recht</h2>
+      <h2 className='mt-4 text-xl font-semibold'>11. Geltendes Recht</h2>
       <p>
         Diese Nutzungsbedingungen unterliegen österreichischem Recht. Streitigkeiten werden vor den zuständigen
         österreichischen Gerichten verhandelt.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>13. Kontakt</h2>
+      <h2 className='mt-4 text-xl font-semibold'>12. Kontakt</h2>
       <p>Bei Fragen zu diesen Nutzungsbedingungen kontaktieren Sie bitte:</p>
       <p>
         <b>neinja.dev</b>
