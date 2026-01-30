@@ -65,23 +65,10 @@ export default function TermsOfServicePage() {
         überwachen. Sie müssen uns sofort benachrichtigen, wenn Sie eine unbefugte Nutzung Ihres Kontos vermuten.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>3. Premium-Abonnements und Zahlungen</h2>
+      <h2 className='mt-4 text-xl font-semibold'>3. Premium-Abonnements</h2>
       <p>
-        Lateininator bietet Premium-Abonnements an, die erweiterte Funktionen freischalten. Zahlungen werden über{' '}
-        <Link href='https://stripe.com' target='_blank' rel='noopener noreferrer'>
-          Stripe
-        </Link>{' '}
-        abgewickelt, einen sicheren Zahlungsdienstleister. Durch den Kauf eines Premium-Abonnements:
-      </p>
-      <ul className='ml-6 list-disc'>
-        <li>Stimmen Sie den Zahlungsbedingungen von Stripe zu</li>
-        <li>Verstehen Sie, dass Abonnements automatisch verlängert werden können</li>
-        <li>Erkennen Sie an, dass alle Zahlungen endgültig sind, sofern nicht gesetzlich vorgeschrieben</li>
-        <li>Haben Sie das Recht, Ihr Abonnement jederzeit zu kündigen</li>
-      </ul>
-      <p>
-        Bei Fragen zu Abonnements oder Zahlungen kontaktieren Sie uns bitte unter{' '}
-        <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>.
+        Lateininator bietet Premium-Abonnements an, die erweiterte Funktionen freischalten. Bei Fragen zu Abonnements
+        kontaktieren Sie uns bitte unter <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>.
       </p>
 
       <h2 className='mt-4 text-xl font-semibold'>4. Benutzergenerierte Inhalte</h2>
@@ -178,12 +165,6 @@ export default function TermsOfServicePage() {
           <b>Clerk:</b> Für Authentifizierung und Benutzerverwaltung. Ihre Nutzung unterliegt den{' '}
           <Link href='https://clerk.com/legal' target='_blank' rel='noopener noreferrer'>
             Clerk-Nutzungsbedingungen
-          </Link>
-        </li>
-        <li>
-          <b>Stripe:</b> Für Zahlungsabwicklung. Ihre Nutzung unterliegt den{' '}
-          <Link href='https://stripe.com/legal' target='_blank' rel='noopener noreferrer'>
-            Stripe-Nutzungsbedingungen
           </Link>
         </li>
         <li>

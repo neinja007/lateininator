@@ -64,23 +64,10 @@ export default function TermsOfServicePage() {
         must notify us immediately if you suspect unauthorized use of your account.
       </p>
 
-      <h2 className='mt-4 text-xl font-semibold'>3. Premium Subscriptions and Payments</h2>
+      <h2 className='mt-4 text-xl font-semibold'>3. Premium Subscriptions</h2>
       <p>
-        Lateininator offers premium subscriptions that unlock advanced features. Payments are processed through{' '}
-        <Link href='https://stripe.com' target='_blank' rel='noopener noreferrer'>
-          Stripe
-        </Link>
-        , a secure payment provider. By purchasing a premium subscription:
-      </p>
-      <ul className='ml-6 list-disc'>
-        <li>You agree to Stripe's payment terms</li>
-        <li>You understand that subscriptions may automatically renew</li>
-        <li>You acknowledge that all payments are final unless required by law</li>
-        <li>You have the right to cancel your subscription at any time</li>
-      </ul>
-      <p>
-        For questions about subscriptions or payments, please contact us at{' '}
-        <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>.
+        Lateininator offers premium subscriptions that unlock advanced features. For questions about subscriptions,
+        please contact us at <Link href='mailto:support@lateininator.com'>support@lateininator.com</Link>.
       </p>
 
       <h2 className='mt-4 text-xl font-semibold'>4. User-Generated Content</h2>
@@ -172,13 +159,7 @@ export default function TermsOfServicePage() {
         <li>
           <b>Clerk:</b> For authentication and user management. Your use is subject to{' '}
           <Link href='https://clerk.com/legal' target='_blank' rel='noopener noreferrer'>
-            Clerk's Terms of Service
-          </Link>
-        </li>
-        <li>
-          <b>Stripe:</b> For payment processing. Your use is subject to{' '}
-          <Link href='https://stripe.com/legal' target='_blank' rel='noopener noreferrer'>
-            Stripe's Terms of Service
+            Clerk&apos;s Terms of Service
           </Link>
         </li>
         <li>
@@ -204,7 +185,7 @@ export default function TermsOfServicePage() {
       <p>We reserve the right to modify, suspend, or discontinue the service at any time, with or without notice.</p>
 
       <h2 className='mt-4 text-xl font-semibold'>9. Disclaimer</h2>
-      <p>The service is provided "as is" and "as available". We make no warranties regarding:</p>
+      <p>The service is provided &quot;as is&quot; and &quot;as available&quot;. We make no warranties regarding:</p>
       <ul className='ml-6 list-disc'>
         <li>The accuracy or completeness of the information provided</li>
         <li>The continuous availability of the service</li>
