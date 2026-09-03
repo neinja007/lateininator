@@ -7,7 +7,7 @@ export default function TermsOfServicePage() {
     <div className='flex flex-col gap-2'>
       <Heading heading='Terms of Service' />
       <p>
-        <NextLink href='/terms-of-service' className='text-blue-600 hover:underline dark:text-blue-400'>
+        <NextLink href='/terms-of-service/de' className='text-blue-600 hover:underline dark:text-blue-400'>
           Deutsche Version
         </NextLink>
       </p>

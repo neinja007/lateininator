@@ -2,41 +2,29 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useEffect, useState } from 'react';
-import { persistQueryClient } from '@tanstack/react-query-persist-client';
-import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+import { useState } from 'react';
 
 export const QueryClientWrapper = ({ children }: { children: React.ReactNode }) => {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 5 * 60 * 1000
-          }
+  const [queryClient] = useState(() => {
+    const client = new QueryClient({
+      defaultOptions: {
+        queries: {
+          staleTime: 5 * 60 * 1000
         }
-      })
-  );
-
-  useEffect(() => {
-    const persister = createSyncStoragePersister({
-      storage: window.localStorage
+      }
     });
 
-    persistQueryClient({
-      queryClient,
-      persister
+    client.setQueryDefaults(['dbUser'], {
+      staleTime: 0
     });
-  }, [queryClient]);
 
-  queryClient.setQueryDefaults(['dbUser'], {
-    staleTime: 0
+    return client;
   });
 
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

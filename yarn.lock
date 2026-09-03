@@ -2332,25 +2332,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-persist-client-core@npm:5.91.11":
-  version: 5.91.11
-  resolution: "@tanstack/query-persist-client-core@npm:5.91.11"
-  dependencies:
-    "@tanstack/query-core": "npm:5.90.12"
-  checksum: 10c0/fe092c00680fb0e773e2e4ac840ee71ce39423abfd550aa3e13dbe43c9dbca855a2debcd9f85dd4104224d2323e9d30f0f7b5ab80dcf6d76602afe322a150079
-  languageName: node
-  linkType: hard
-
-"@tanstack/query-sync-storage-persister@npm:^5.90.14":
-  version: 5.90.14
-  resolution: "@tanstack/query-sync-storage-persister@npm:5.90.14"
-  dependencies:
-    "@tanstack/query-core": "npm:5.90.12"
-    "@tanstack/query-persist-client-core": "npm:5.91.11"
-  checksum: 10c0/14fe2039eeb95da419bc3a3c21841f40329f0c4c33480ee3cf85b6186da14d3c50040d56ccaac6df5c386a0401d3ce47affc163a4e6d3a762f4d0cc204ad97c4
-  languageName: node
-  linkType: hard
-
 "@tanstack/react-query-devtools@npm:^5.91.1":
   version: 5.91.1
   resolution: "@tanstack/react-query-devtools@npm:5.91.1"
@@ -2360,18 +2341,6 @@ __metadata:
     "@tanstack/react-query": ^5.90.10
     react: ^18 || ^19
   checksum: 10c0/be19d04a292168bf9404f0f98a0e3f95f0340c0e88c838028805578da5c49b014275b1014f7a04f9c865788d96112be001eb72fa8253cadd83b6905f6bd6331e
-  languageName: node
-  linkType: hard
-
-"@tanstack/react-query-persist-client@npm:^5.90.14":
-  version: 5.90.14
-  resolution: "@tanstack/react-query-persist-client@npm:5.90.14"
-  dependencies:
-    "@tanstack/query-persist-client-core": "npm:5.91.11"
-  peerDependencies:
-    "@tanstack/react-query": ^5.90.12
-    react: ^18 || ^19
-  checksum: 10c0/371b41d095b54626b7553ce48d021feda262d5e80455aeae29e3ff63b87df7716e854c3bac5d644645b01b88dad76e3b907fd4e55a7eb77f9fe2c68b751dc978
   languageName: node
   linkType: hard
 
@@ -5681,10 +5650,8 @@ __metadata:
     "@stripe/stripe-js": "npm:^4.10.0"
     "@svgr/webpack": "npm:^8.1.0"
     "@tanstack/eslint-plugin-query": "npm:^5.91.2"
-    "@tanstack/query-sync-storage-persister": "npm:^5.90.14"
     "@tanstack/react-query": "npm:^5.90.12"
     "@tanstack/react-query-devtools": "npm:^5.91.1"
-    "@tanstack/react-query-persist-client": "npm:^5.90.14"
     "@types/node": "npm:^20.19.25"
     "@types/react": "npm:^19.2.0"
     "@types/react-dom": "npm:^19.2.0"
